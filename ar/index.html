@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="ORIGEX — قالب HTML عربي أولًا لشركات تجارة وتوزيع واستيراد الأغذية بين الشركات.">
+  <meta name="robots" content="noindex,nofollow">
+  <title>ORIGEX — الهيكل العام | أوريجكس</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/rtl.css">
+  <link rel="stylesheet" href="../assets/css/shell.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">انتقل إلى المحتوى</a>
+
+  <header class="orx-site-header">
+    <div class="container orx-header-shell">
+      <a class="orx-brand-link" href="index.html" aria-label="أوريجكس — الرئيسية">
+        <img src="../assets/brand/origex-logo-light.svg" alt="ORIGEX — أوريجكس بواسطة ORVEAX">
+      </a>
+
+      <nav class="orx-desktop-nav" aria-label="التنقل الرئيسي">
+        <div class="orx-nav-rail">
+          <a class="orx-nav-link" href="index.html" aria-current="page">الرئيسية</a>
+          <a class="orx-nav-link" href="about.html">عن أوريجكس</a>
+          <a class="orx-nav-link" href="how-we-work.html">كيف نعمل</a>
+          <a class="orx-nav-link" href="products.html">المنتجات</a>
+
+          <div class="orx-mega" data-orx-mega>
+            <button class="orx-mega-toggle" type="button" data-orx-mega-toggle aria-expanded="false" aria-controls="orxMegaPanel">
+              <span>استكشف</span>
+              <svg class="orx-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+
+            <div class="orx-mega-panel" id="orxMegaPanel">
+              <section class="orx-mega-feature">
+                <small>من المصدر إلى السوق</small>
+                <h2>ابدأ من المسار المناسب</h2>
+                <p>مسارات واضحة للمصنعين والموردين والموزعين والفرق التجارية.</p>
+                <a href="rfq.html"><span>اطلب عرض سعر</span><span aria-hidden="true">↖</span></a>
+              </section>
+
+              <div class="orx-mega-groups">
+                <section class="orx-mega-group">
+                  <span class="orx-mega-kicker">السوق والتوريد</span>
+                  <a class="orx-mega-item" href="markets.html"><span class="orx-mega-icon">MK</span><span class="orx-mega-copy"><b>الأسواق</b><small>الوصول إلى الأسواق وقنوات التوزيع</small></span></a>
+                  <a class="orx-mega-item" href="suppliers.html"><span class="orx-mega-icon">SP</span><span class="orx-mega-copy"><b>للموردين</b><small>اعرض منتجك وابدأ المسار التجاري</small></span></a>
+                </section>
+
+                <section class="orx-mega-group">
+                  <span class="orx-mega-kicker">الشركة والموارد</span>
+                  <a class="orx-mega-item" href="company-profile.html"><span class="orx-mega-icon">CP</span><span class="orx-mega-copy"><b>الملف التعريفي</b><small>مرجع الشركة ونطاق الأعمال</small></span></a>
+                  <a class="orx-mega-item" href="faq.html"><span class="orx-mega-icon">FAQ</span><span class="orx-mega-copy"><b>الأسئلة الشائعة</b><small>إجابات سريعة للمشترين والموردين</small></span></a>
+                </section>
+
+                <section class="orx-mega-group">
+                  <span class="orx-mega-kicker">التواصل</span>
+                  <a class="orx-mega-item" href="contact.html"><span class="orx-mega-icon">@</span><span class="orx-mega-copy"><b>اتصل بنا</b><small>تواصل مع القسم المناسب</small></span></a>
+                  <div class="orx-mega-direct">
+                    <a href="mailto:sales@example.com">sales@example.com</a>
+                    <a href="mailto:partners@example.com">partners@example.com</a>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="orx-header-actions">
+        <a class="orx-lang-switch" href="../en/index.html" lang="en" dir="ltr" aria-label="View English version">EN</a>
+        <a class="orx-btn orx-header-cta" href="rfq.html">اطلب عرض سعر</a>
+        <button class="orx-menu-button" type="button" data-orx-menu-open aria-controls="orxMobileDrawer" aria-expanded="false" aria-label="فتح القائمة">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="orx-mobile-backdrop" data-orx-backdrop data-open="false"></div>
+  <aside class="orx-mobile-drawer" id="orxMobileDrawer" data-orx-drawer data-open="false" aria-hidden="true" aria-label="قائمة أوريجكس">
+    <div class="orx-mobile-head">
+      <a href="index.html"><img src="../assets/brand/origex-logo-light.svg" alt="ORIGEX"></a>
+      <button class="orx-mobile-close" type="button" data-orx-menu-close aria-label="إغلاق القائمة"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="orx-mobile-body">
+      <div class="orx-mobile-intro"><small>ORIGEX NAVIGATION</small><p>انتقل مباشرة إلى المسار الذي تحتاجه.</p></div>
+      <nav class="orx-mobile-routes" aria-label="التنقل على الهاتف">
+        <a class="orx-mobile-route" href="index.html" aria-current="page"><small>01</small><b>الرئيسية</b><span class="orx-mobile-route-arrow">↖</span></a>
+        <a class="orx-mobile-route" href="about.html"><small>02</small><b>عن أوريجكس</b><span class="orx-mobile-route-arrow">↖</span></a>
+        <a class="orx-mobile-route" href="how-we-work.html"><small>03</small><b>كيف نعمل</b><span class="orx-mobile-route-arrow">↖</span></a>
+        <a class="orx-mobile-route" href="products.html"><small>04</small><b>المنتجات</b><span class="orx-mobile-route-arrow">↖</span></a>
+        <a class="orx-mobile-route" href="markets.html"><small>05</small><b>الأسواق</b><span class="orx-mobile-route-arrow">↖</span></a>
+        <a class="orx-mobile-route" href="suppliers.html"><small>06</small><b>للموردين</b><span class="orx-mobile-route-arrow">↖</span></a>
+      </nav>
+      <section class="orx-mobile-commercial">
+        <small>للمصنعين والموردين</small><h2>لديك منتج مناسب للسوق؟</h2><p>ابدأ النقاش التجاري عبر مسار طلب عرض السعر أو تقديم المنتج.</p><a href="rfq.html"><span>ابدأ الطلب</span><span aria-hidden="true">↖</span></a>
+      </section>
+      <div class="orx-mobile-utils">
+        <a href="company-profile.html"><small>مورد الشركة</small><b>الملف التعريفي</b></a>
+        <a href="contact.html"><small>تواصل</small><b>اتصل بنا</b></a>
+      </div>
+    </div>
+  </aside>
+
+  <main id="main">
+    <section class="orx-shell-stage">
+      <div class="container">
+        <article class="orx-shell-stage-card">
+          <span class="orx-eyebrow">المرحلة 04 · الهيكل العام</span>
+          <h1>الواجهة جاهزة لاستقبال الصفحة الرئيسية.</h1>
+          <p>تم بناء الهيدر والقائمة الموسعة والتنقل على الهاتف والفوتر كنظام مشترك. هذه المساحة مؤقتة فقط، وسيحل محلها Home 01 في الخطوة التالية.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="orx-site-footer">
+    <div class="container orx-footer-shell">
+      <div class="orx-footer-main">
+        <section class="orx-footer-brand">
+          <img src="../assets/brand/origex-logo-light.svg" alt="ORIGEX — أوريجكس">
+          <p class="orx-footer-brand-copy">نموذج شركة B2B لتجارة واستيراد وتوزيع الأغذية، مصمم لعرض المنتجات والموردين ومسارات الوصول إلى السوق بشكل احترافي وقابل للتخصيص.</p>
+          <div class="orx-footer-facts"><span>تجارة بين الشركات</span><span>استيراد وتوزيع</span><span>عربي + English</span></div>
+          <a class="orx-footer-cta" href="rfq.html"><span>اطلب عرض سعر</span><span aria-hidden="true">↖</span></a>
+        </section>
+
+        <nav aria-label="مسارات الفوتر">
+          <div class="orx-footer-nav-head"><small>استكشف أوريجكس</small><h2>المسارات الرئيسية</h2></div>
+          <div class="orx-footer-routes">
+            <a class="orx-footer-route" href="about.html"><small>01</small><b>عن أوريجكس</b><span>↖</span></a>
+            <a class="orx-footer-route" href="how-we-work.html"><small>02</small><b>كيف نعمل</b><span>↖</span></a>
+            <a class="orx-footer-route" href="products.html"><small>03</small><b>المنتجات</b><span>↖</span></a>
+            <a class="orx-footer-route" href="markets.html"><small>04</small><b>الأسواق</b><span>↖</span></a>
+            <a class="orx-footer-route" href="suppliers.html"><small>05</small><b>للموردين</b><span>↖</span></a>
+            <a class="orx-footer-route" href="contact.html"><small>06</small><b>اتصل بنا</b><span>↖</span></a>
+          </div>
+        </nav>
+      </div>
+
+      <section class="orx-footer-contact-band" aria-label="قنوات التواصل التجريبية">
+        <a href="mailto:info@example.com"><span>استفسارات عامة</span><strong>info@example.com</strong></a>
+        <a href="mailto:sales@example.com"><span>المبيعات والتجاري</span><strong>sales@example.com</strong></a>
+        <a href="mailto:procurement@example.com"><span>المشتريات</span><strong>procurement@example.com</strong></a>
+        <a href="mailto:partners@example.com"><span>المصنعون والموردون</span><strong>partners@example.com</strong></a>
+      </section>
+
+      <div class="orx-footer-bottom">
+        <div>© 2026 ORIGEX · Demo Template</div>
+        <nav class="orx-footer-utility" aria-label="روابط قانونية"><a href="company-profile.html">الملف التعريفي</a><a href="faq.html">الأسئلة الشائعة</a><a href="privacy.html">الخصوصية</a><a href="terms.html">الشروط</a></nav>
+        <div class="orx-footer-orveax"><span>تصميم وتطوير المنتج بواسطة</span><a href="https://orveax.com" target="_blank" rel="noopener">ORVEAX</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/navigation.js"></script>
+</body>
+</html>
