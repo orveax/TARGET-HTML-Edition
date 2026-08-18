@@ -1,0 +1,2 @@
+/* ORIGEX ORX-P01 · Home 01 interactions · © ORVEAX */
+(()=>{const items=[...document.querySelectorAll('[data-orx-faq-item]')];items.forEach(item=>{const b=item.querySelector('[data-orx-faq-button]');if(!b)return;b.addEventListener('click',()=>{const open=b.getAttribute('aria-expanded')==='true';items.forEach(o=>{o.classList.remove('is-open');const x=o.querySelector('[data-orx-faq-button]');if(x)x.setAttribute('aria-expanded','false')});if(!open){item.classList.add('is-open');b.setAttribute('aria-expanded','true')}})})})();
