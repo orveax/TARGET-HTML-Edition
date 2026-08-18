@@ -1,11 +1,11 @@
 /*
  * ORIGEX — ORX-P01
- * Simple Customization Config v1.0.0
+ * Simple Customization Config v1.1.0
  * Designed & developed by ORVEAX
  * Copyright © ORVEAX
  *
- * Edit this file to change the most common global settings without touching
- * the HTML templates. Keep values inside quotes unless the value is true/false.
+ * EDIT THIS FILE for the most common website changes.
+ * You do not need to edit config-engine.js.
  */
 
 window.ORIGEX_CONFIG = {
@@ -35,14 +35,24 @@ window.ORIGEX_CONFIG = {
   ui: {
     stickyHeader: true,
     megaMenu: true,
+
+    headerCta: {
+      enabled: true,
+      labelAr: "اطلب عرض سعر",
+      labelEn: "Request a Quote",
+      link: "rfq.html"
+    },
+
     announcementBar: {
       enabled: true,
+      dismissible: true,
       textAr: "حلول تجارة وتوزيع أغذية للشركات — من المصدر إلى السوق.",
       textEn: "B2B food trading and distribution — from source to market.",
       link: "contact.html",
       linkLabelAr: "تواصل معنا",
       linkLabelEn: "Contact us"
     },
+
     floatingWhatsApp: true,
     backToTop: true
   },
@@ -74,6 +84,7 @@ window.ORIGEX_CONFIG = {
     showSocialLinks: true,
     showBusinessHours: true,
     showAnnouncementBar: true,
+    showHeaderCta: true,
     showFloatingWhatsApp: true,
     showBackToTop: true
   }
