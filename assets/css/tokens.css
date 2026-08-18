@@ -2,7 +2,7 @@
  * ORIGEX — ORX-P01
  * Designed & developed by ORVEAX
  * Copyright © ORVEAX
- * Design Tokens v1.0.0
+ * Design Tokens v1.1.0
  */
 
 :root {
@@ -33,9 +33,35 @@
   --orx-danger: #A64E46;
   --orx-info: #3C6577;
 
-  /* Typography */
-  --orx-font-ar: "IBM Plex Sans Arabic", "Noto Sans Arabic", Tahoma, Arial, sans-serif;
+  /* Typography families — Arabic is the primary presentation language */
+  --orx-font-ar: "Tajawal", "Noto Sans Arabic", Tahoma, Arial, sans-serif;
   --orx-font-en: "Manrope", Inter, Arial, sans-serif;
+
+  /* Typography weights */
+  --orx-weight-regular: 400;
+  --orx-weight-medium: 500;
+  --orx-weight-semibold: 600;
+  --orx-weight-bold: 700;
+  --orx-weight-extrabold: 800;
+
+  /* Fluid hierarchy */
+  --orx-type-display: clamp(2.85rem, 7vw, 5.75rem);
+  --orx-type-h1: clamp(2.35rem, 5.5vw, 4.75rem);
+  --orx-type-h2: clamp(1.95rem, 4.2vw, 3.75rem);
+  --orx-type-h3: clamp(1.4rem, 2.6vw, 2.15rem);
+  --orx-type-h4: clamp(1.15rem, 1.8vw, 1.5rem);
+  --orx-type-body-lg: clamp(1.05rem, 1.4vw, 1.2rem);
+  --orx-type-body: 1rem;
+  --orx-type-small: .875rem;
+  --orx-type-label: .78rem;
+
+  /* Line height hierarchy */
+  --orx-leading-display-ar: 1.12;
+  --orx-leading-display-en: 1.02;
+  --orx-leading-heading-ar: 1.28;
+  --orx-leading-heading-en: 1.12;
+  --orx-leading-body-ar: 1.85;
+  --orx-leading-body-en: 1.65;
 
   /* Layout */
   --orx-container: 1200px;
@@ -75,10 +101,12 @@
 
 html[dir="rtl"] body {
   font-family: var(--orx-font-ar);
+  line-height: var(--orx-leading-body-ar);
 }
 
 html[dir="ltr"] body {
   font-family: var(--orx-font-en);
+  line-height: var(--orx-leading-body-en);
 }
 
 @media (prefers-reduced-motion: reduce) {
