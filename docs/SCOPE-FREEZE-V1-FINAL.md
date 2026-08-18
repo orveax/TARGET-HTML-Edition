@@ -25,7 +25,8 @@ Core differentiation:
 - Product, supplier, market and RFQ systems.
 - Simple customization through `config.js`.
 - One global ORIGEX design system with Page Design Profiles.
-- Fast HTML/CSS/Vanilla JS implementation.
+- HTML5 + CSS3 + Bootstrap 5.x foundation + Vanilla JavaScript.
+- Bootstrap is used as infrastructure; ORIGEX owns the visual component language.
 - Strong beginner-friendly documentation.
 
 ## 3. Frozen Page Architecture — 32 Unique Layouts
@@ -133,7 +134,8 @@ Main Features: buttons, cards, badges, headings, tabs, accordions, forms, tables
 - Arabic-first RTL + complete English LTR.
 - Tajawal + Manrope typography hierarchy.
 - Responsive design system.
-- Global design tokens.
+- Bootstrap 5.x as the layout/responsive foundation.
+- Global ORIGEX design tokens and registered components layered above Bootstrap.
 - Page Design Profiles.
 - Mega menu and mobile drawer.
 - `config.js` customization layer.
@@ -152,6 +154,10 @@ Main Features: buttons, cards, badges, headings, tabs, accordions, forms, tables
 - Admin dashboard.
 - Page builder integration.
 - React/Vue runtime dependency.
+- Astro runtime in the customer package.
+- Tailwind.
+- jQuery.
+- Mandatory Node/build process.
 - Heavy animation frameworks as a core dependency.
 - Dark mode.
 - Generic Team and Careers standalone pages.
@@ -163,5 +169,6 @@ After this freeze:
 - Accessibility, performance, responsive and RTL fixes do not reopen scope.
 - Content refinement inside an approved Main Feature does not reopen scope.
 - Any new page or feature family requires a formal Scope Change or moves to V1.1+.
+- Changing Bootstrap as the V1 foundation requires an explicit architecture change record.
 
 Copyright © ORVEAX.
