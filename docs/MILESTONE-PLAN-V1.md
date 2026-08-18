@@ -12,9 +12,12 @@ Build a premium Arabic-first bilingual HTML template for B2B food trading, impor
 
 Submission Candidate 1.0.0 must include:
 - Approved/frozen scope and product architecture.
-- Frozen foundation/design-system architecture.
+- Frozen foundation/design-system/content architecture.
 - 32 unique page layouts delivered in Arabic and English.
 - V1 Main Features only; Additional Features remain in V1.1 Expansion Backlog.
+- Complete Content Contract for every V1 page.
+- Arabic master + English professional adaptation.
+- One coherent fictional Demo Dataset across products, suppliers, markets, cases and resources.
 - `config.js` simple customization layer.
 - Product/supplier/market data patterns conforming to frozen schemas.
 - Beginner-friendly HTML documentation.
@@ -22,6 +25,17 @@ Submission Candidate 1.0.0 must include:
 - Live preview package.
 - Marketplace screenshots/listing copy.
 - Clean final ZIP and submission checklist.
+
+## Global Content Gate
+
+Authority: `CONTENT-SYSTEM-V1.md`.
+
+No page enters implementation before its content reaches C6 — FROZEN.
+
+Workflow:
+C0 Brief → C1 Arabic Draft → C2 Commercial Review → C3 English Adaptation → C4 UI Fit → C5 Demo/Claim Review → C6 FROZEN → C7 Implemented → C8 QA Passed.
+
+Content is prepared batch-by-batch before each implementation milestone. Content is never improvised inside page code.
 
 ## M0 — Scope & Product Architecture Freeze — CLOSED
 **Purpose:** stop scope and foundation churn before build.
@@ -45,9 +59,13 @@ Completed/frozen deliverables:
 - Code architecture/naming.
 - Browser support policy.
 - Performance budget principles.
-- QA Definition of Done.
+- Content System.
+- Master Content Architecture for all 32 layouts.
+- Canonical Demo Content Dataset.
+- Prepared V1.1 Additional Feature Content Packs.
+- QA Definition of Done including Content Gate.
 - Config eligibility rules.
-- Page Design Profile template.
+- Page Design Profile template including Content Contract.
 - V1 exclusions.
 - Milestone plan.
 
@@ -77,12 +95,15 @@ Deliverables:
 - RTL/LTR helpers.
 - `config.js` + engine.
 - data file foundations conforming to `DATA-SCHEMA-V1.md`.
-- Components/Elements page foundation.
+- Components/Elements page foundation using realistic canonical demo content, not lorem ipsum.
 
 Gate: component QA in Arabic and English using `QA-DEFINITION-OF-DONE-V1.md`.
 
 ## M2 — Global Shell & Home Family
 **Purpose:** establish the visual benchmark.
+
+### Content Entry Gate
+Home 01 / Home 02 / Home 03 / Landing must each reach Content C6 before page coding starts.
 
 Deliverables:
 - Header / mega menu / mobile drawer.
@@ -93,9 +114,13 @@ Deliverables:
 - Home 03.
 - Landing / One Page.
 
-Gate: responsive and RTL/LTR baseline approved.
+Gate: Content C8 + responsive and RTL/LTR baseline approved.
 
 ## M3 — Company, Business & Market Pages
+
+### Content Entry Gate
+About / How We Work / Capabilities / Service Details / Market Access / Markets must reach C6 before implementation.
+
 Deliverables:
 - About.
 - How We Work.
@@ -104,9 +129,13 @@ Deliverables:
 - Market Access.
 - Markets / Countries.
 
-Gate: page design profiles and documentation entries complete.
+Gate: Content C8, page design profiles and documentation entries complete.
 
 ## M4 — Product, Supplier & Conversion Core
+
+### Content Entry Gate
+All product, supplier and conversion pages must reach C6 and align with `DEMO-CONTENT-DATASET-V1.md` + `DATA-SCHEMA-V1.md` before implementation.
+
 Deliverables:
 - Product Categories.
 - Products Grid.
@@ -118,9 +147,13 @@ Deliverables:
 - RFQ.
 - Become Distributor / Partner.
 
-Gate: frozen data schemas, filters/forms and B2B conversion QA complete.
+Gate: Content C8, frozen data schemas, filters/forms and B2B conversion QA complete.
 
 ## M5 — Proof, Resources, Compliance & Content
+
+### Content Entry Gate
+Case Studies, Resources, Compliance and editorial pages reach C6 with demo/factual disclaimers reviewed before implementation.
+
 Deliverables:
 - Case Studies.
 - Case Study Details.
@@ -129,9 +162,13 @@ Deliverables:
 - Blog / Insights.
 - Article Details.
 
-Gate: download/resource patterns and licensing placeholders complete.
+Gate: Content C8, download/resource patterns and licensing placeholders complete.
 
 ## M6 — Support & Utility Pages
+
+### Content Entry Gate
+FAQ / Contact / 404 / Coming Soon / Privacy / Terms / Components reach C6 before implementation; sample legal text must retain explicit template/legal-review disclaimers.
+
 Deliverables:
 - FAQ.
 - Contact.
@@ -141,10 +178,14 @@ Deliverables:
 - Terms.
 - Final Components / Elements page.
 
-Gate: all 32 unique layouts exist in AR/EN.
+Gate: all 32 unique layouts exist in AR/EN with Content C8.
 
 ## M7 — Full QA & Optimization
 Deliverables:
+- Content consistency scan across all pages.
+- Arabic/English commercial parity review.
+- Demo-claim/disclaimer scan.
+- Product/supplier/market dataset consistency scan.
 - HTML validation.
 - CSS/JS integrity.
 - Broken link/asset scan.
@@ -167,6 +208,8 @@ Deliverables:
 - File Structure.
 - Config guide.
 - Arabic/English guide.
+- Content customization guide.
+- Demo-data replacement guide.
 - Components guide.
 - Product/Supplier/Market data guide.
 - Forms/RFQ integration guide.
@@ -187,8 +230,9 @@ Gate: Submission Candidate 1.0.0 approved.
 
 After M0 closure:
 - New page or Main Feature family = Scope Change or V1.1+.
-- Foundation/technology/component-system change = Architecture/Design System Change Request.
+- Foundation/technology/component/content-system change = Architecture/Design System/Content-System Change Request.
 - Additional Features remain V1.1 backlog and are not silently introduced into V1.
+- A future Additional Feature must have a complete bilingual Content Pack before design/development.
 - QA/accessibility/performance/responsive/RTL fixes do not reopen scope.
 - Normal page implementation must conform to `FOUNDATION-FREEZE-V1.md`.
 
