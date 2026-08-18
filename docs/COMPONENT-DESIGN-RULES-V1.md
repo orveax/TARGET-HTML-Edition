@@ -8,6 +8,7 @@ This document defines the global rules. Detailed component contracts live in:
 - `DESIGN-SYSTEM-HIERARCHY-V1.md`
 - `COMPONENT-REGISTRY-V1.md`
 - `PAGE-DESIGN-PROFILE-TEMPLATE-V1.md`
+- `TECH-STACK-V1.md`
 
 ## 1. One Global System, Many Page Profiles
 
@@ -310,15 +311,27 @@ Rules:
 - Meaningful alt text.
 - Skip link.
 
-## 19. Performance Rules
+## 19. Technology & Performance Rules
 
-- Static HTML first.
-- CSS + Vanilla JS for V1 unless a dependency has measurable benefit.
-- Avoid unnecessary runtime frameworks.
+Approved V1 stack:
+- HTML5.
+- CSS3.
+- Bootstrap 5.x as foundation for grid, containers, responsive breakpoints and selected utilities/primitives.
+- ORIGEX Design System above Bootstrap for branded components and patterns.
+- Vanilla JavaScript for ORIGEX-specific behavior.
+
+Rules:
+- Bootstrap is infrastructure, not ORIGEX's visual identity.
+- Do not use Bootstrap default cards/buttons/forms as substitutes for registered ORIGEX components.
+- No jQuery.
+- No React/Vue/Astro runtime in the customer package.
+- No Tailwind.
+- No mandatory build process.
 - Lazy-load below-fold media.
 - Defer non-critical scripts.
-- Lightweight motion.
-- No third-party script required for core layout/navigation.
+- Keep motion lightweight.
+- Use production/minified Bootstrap assets in the final customer package.
+- Avoid unnecessary third-party plugins.
 
 ## 20. Ecommerce / Cart Rule
 
