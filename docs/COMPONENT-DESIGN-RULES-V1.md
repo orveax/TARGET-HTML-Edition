@@ -2,7 +2,12 @@
 
 Product ID: ORX-P01  
 Owner: ORVEAX  
-Status: REVIEW CANDIDATE
+Status: LOCKED FOR V1
+
+This document defines the global rules. Detailed component contracts live in:
+- `DESIGN-SYSTEM-HIERARCHY-V1.md`
+- `COMPONENT-REGISTRY-V1.md`
+- `PAGE-DESIGN-PROFILE-TEMPLATE-V1.md`
 
 ## 1. One Global System, Many Page Profiles
 
@@ -25,10 +30,12 @@ Page-level variables:
 - Hero pattern.
 - Section sequence.
 - Density.
-- Card family mix.
+- Approved card family mix.
 - CTA rhythm.
 - Media treatment.
 - Motion level.
+
+Pages may compose approved components but may not visually fork them through page-specific CSS.
 
 ## 2. Color Rules
 
@@ -47,10 +54,10 @@ Approved roles:
 - Success / Warning / Danger / Info only when semantically required.
 
 Rules:
-- Never create page-specific decorative colors without design review.
+- Never create page-specific decorative colors without registry/design review.
 - Accent is for emphasis, not large body backgrounds by default.
-- Status colors must communicate state, not decoration.
-- Contrast must remain accessible in both themes produced through config customization.
+- Status colors communicate state, not decoration.
+- Contrast must remain accessible after documented config customization.
 
 ## 3. Typography Rules
 
@@ -71,17 +78,22 @@ Hierarchy:
 
 Rules:
 - Arabic line-height is independently tuned.
-- English letter-spacing must not be copied into Arabic.
+- English letter-spacing is not copied into Arabic.
 - Mixed LTR data in RTL pages uses bidi-safe helpers.
-- No arbitrary font-size values inside page CSS unless a component token is being added.
+- No arbitrary font-size values in page CSS.
 
 ## 4. Section Rules
 
-Every section must declare one of four roles:
+Every section declares a role:
 1. Standard content.
 2. Soft contrast.
 3. Dark emphasis.
-4. Conversion / CTA.
+4. Data/specification.
+5. Directory/grid.
+6. Process.
+7. Trust/proof.
+8. Conversion / CTA.
+9. Utility/legal.
 
 Spacing families:
 - Tight.
@@ -89,79 +101,54 @@ Spacing families:
 - Large.
 
 Rules:
-- Section spacing is consistent vertically.
-- Adjacent sections may intentionally merge only when composition requires it.
+- Section spacing remains consistent vertically.
+- Adjacent sections may merge only by documented composition.
 - No zero-padding collisions between unrelated sections.
-- Section headings use a repeatable anatomy: kicker → title → supporting copy → optional action.
+- Standard section-heading anatomy is controlled by Registry S01.
 
 ## 5. Hero Rules
 
-Maximum V1 hero families:
-1. Split commercial hero.
-2. Centered editorial hero.
-3. Product / supplier detail hero.
-4. Utility hero.
+V1 hero families are fixed in the registry:
+1. S02 Split Commercial Hero.
+2. S03 Centered Editorial Hero.
+3. S04 Detail Hero.
+4. S05 Utility Hero.
 
 Rules:
-- Hero must communicate page purpose within the first viewport.
+- Hero communicates page purpose in the first viewport.
 - One primary CTA; maximum one secondary CTA.
-- No decorative sliders unless the page purpose benefits materially.
-- Mobile hero order is explicitly defined, never accidental reflow.
+- No decorative sliders unless scope explicitly changes.
+- Mobile content order is explicitly defined.
 
 ## 6. Card System
 
-Card is a system, not a generic box.
+A card is a registered semantic component, not a generic box.
 
-Approved card families:
-- Feature Card.
-- Product Card.
-- Supplier / Brand Card.
-- Market Card.
-- Process Card.
-- Metric / Stat Card.
-- Certification Card.
-- Download / Resource Card.
-- Case Study Card.
-- Contact / Department Card.
-- CTA Card.
-
-Shared card anatomy where applicable:
-- optional icon/media.
-- eyebrow/category.
-- title.
-- supporting text.
-- metadata.
-- action.
-- optional status/badge.
+Approved families are defined as C01–C11 in `COMPONENT-REGISTRY-V1.md`.
 
 Rules:
-- Icon and title align consistently.
-- One card family uses one radius and one primary border/shadow treatment.
-- Cards must not rely only on hover to reveal essential information.
-- Hover movement stays restrained.
-- Active/selected states are semantic and visible.
-- RTL ordering and directional icons are explicitly mirrored when necessary.
+- A page chooses a registered card family and approved variant.
+- A page may not change the component's core radius, padding, shadow, icon/title alignment, or anatomy.
+- Content and approved semantic states may change.
+- Hover never hides essential information.
+- RTL ordering/directional icons are explicitly handled.
+- Any new variant is added to the central registry before page use.
 
 ## 7. Button Rules
 
-Approved variants:
-- Primary.
-- Secondary.
-- Ghost.
-- Text link.
-- Icon-only utility.
-
-Approved sizes:
-- Small.
-- Default.
-- Large.
+Approved primitives:
+- P01 Primary.
+- P02 Secondary.
+- P03 Text Action.
+- P04 Icon Button.
 
 Rules:
 - One primary button per local decision area.
-- Button copy uses actions, not vague labels.
-- Minimum touch target must remain mobile-friendly.
-- Focus-visible state is mandatory.
+- Copy uses explicit actions.
+- Touch target remains mobile-friendly.
+- Focus-visible is mandatory.
 - Directional arrows mirror in RTL.
+- No page-specific button shapes/colors.
 
 ## 8. Form Rules
 
@@ -172,88 +159,97 @@ Form families:
 - Partner / Distributor application.
 - Newsletter / simple lead.
 
+All forms are composed from registry primitives/components P06–P09 and C23–C25.
+
 Rules:
 - Visible labels; placeholder is not a label.
-- Required/optional state is explicit.
-- Error text appears next to the affected field.
-- Success and failure states are designed.
-- File upload UI is accessible.
-- Telephone/email/SKU fields remain bidi-safe on Arabic pages.
-- Backend processing is not implied; documentation explains integration points.
+- Required/optional state explicit.
+- Error text associated with field.
+- Success/failure states designed.
+- File upload accessible.
+- Telephone/email/SKU bidi-safe in Arabic.
+- Static template does not imply backend processing.
 
 ## 9. Tables & Specification Rules
 
-Use tables for:
+Registry authority: C18 Specification Table.
+
+Use for:
 - Product specifications.
 - Compliance matrices.
 - Service comparisons.
-- SLA / responsibility matrices.
+- Responsibility tables.
 
 Rules:
-- Mobile fallback is defined: scroll, stacked rows, or definition-list layout.
-- Header cells are semantic.
-- No dense table is left unusable at 360px.
+- Mobile fallback defined.
+- Header cells semantic.
+- No dense unusable 360px table.
 
 ## 10. Tabs, Accordions, Filters & Modals
 
+Registry authorities include C13–C17.
+
 Rules:
 - Keyboard accessible.
-- ARIA/state attributes synchronized.
-- Deep linking used when materially useful.
-- Filter empty states designed.
-- Mobile filter drawer available when horizontal controls become crowded.
-- Modal/off-canvas focus is controlled.
+- ARIA/state synchronized.
+- Empty states designed.
+- Mobile filters use a controlled drawer/pattern when crowded.
+- Focus controlled for modal/off-canvas.
 
 ## 11. Badges & Status
 
-Badge families:
+Registry authority: P05 Badge.
+
+Semantic families:
 - Category.
 - Origin.
 - Certification.
 - Availability.
 - Featured.
-- New / Updated.
+- Updated.
 
 Rules:
-- Do not use color alone to communicate meaning.
-- Badge vocabulary is limited and documented.
+- No color-only meaning.
+- Vocabulary limited and documented.
 
 ## 12. Icon Rules
 
 - One primary semantic icon system for V1.
-- No mixing multiple icon libraries for the same semantic role.
-- Decorative icons are optional and must not be required to understand content.
+- No duplicate icon libraries for same roles.
+- Decorative icons optional.
 - Directional icons mirror in RTL.
-- Icons must align to the same optical sizing system.
+- Optical sizing standardized.
 
 ## 13. Image & Media Rules
 
-- Product imagery uses consistent aspect-ratio families.
-- Supplier logos use a controlled logo container.
-- Preview-only imagery is tracked separately from distributable assets.
-- No client/TARGET assets enter the commercial product.
-- Lazy loading is default below the fold.
+Registry authorities: C26–C28.
+
+- Product imagery uses controlled aspect ratios.
+- Supplier logos use C27 Logo Frame.
+- Preview-only imagery tracked separately.
+- No TARGET/client assets in commercial package.
+- Lazy loading below the fold.
 - Alt text required when informative.
 
 ## 14. Motion Rules
 
 Motion levels:
-- Level 0: utility/legal pages — near-static.
-- Level 1: most corporate/product pages — subtle hover/fade/slide.
-- Level 2: selected home/landing sections — controlled premium reveals.
+- Level 0: utility/legal — near-static.
+- Level 1: most business/product pages — subtle transitions.
+- Level 2: selected home/landing areas — controlled premium reveals.
 
 Rules:
 - No scroll-jacking.
-- No motion that hides or delays essential content.
+- No motion delaying essential content.
 - `prefers-reduced-motion` supported.
-- Avoid heavy animation libraries by default.
-- Motion duration and easing come from tokens.
+- No heavy animation library by default.
+- Duration/easing come from tokens.
 
 ## 15. Config Eligibility Rules
 
-Good candidates for `config.js`:
+Good `config.js` candidates:
 - global colors.
-- company name/contact details.
+- company/contact details.
 - social links.
 - business hours.
 - announcement bar.
@@ -261,15 +257,13 @@ Good candidates for `config.js`:
 - WhatsApp.
 - global show/hide switches.
 
-Not suitable for `config.js`:
-- complete page copy.
+Not for `config.js`:
+- full page copy.
 - products.
 - suppliers.
 - blog content.
-- complex page layout.
-- large section markup.
-
-Structured data belongs in dedicated JSON files when needed.
+- complex layout.
+- large markup.
 
 ## 16. Data Files Planned
 
@@ -281,7 +275,7 @@ Rules:
 - Human-readable.
 - Simple schema.
 - Documented examples.
-- Graceful fallback when JavaScript is unavailable where possible.
+- Graceful fallback where practical.
 
 ## 17. Responsive Rules
 
@@ -299,10 +293,10 @@ Primary QA widths:
 - 1920.
 
 Rules:
-- Mobile is not a compressed desktop layout.
-- Navigation, filters, tables, hero media and CTAs receive explicit mobile behavior.
+- Mobile is not compressed desktop.
+- Navigation, filters, tables, hero media and CTAs have explicit mobile behavior.
 - No horizontal overflow.
-- Content order is checked in Arabic and English independently.
+- Arabic and English content order checked independently.
 
 ## 18. Accessibility Rules
 
@@ -319,34 +313,27 @@ Rules:
 ## 19. Performance Rules
 
 - Static HTML first.
-- CSS and Vanilla JS only for V1 unless a dependency has a clear measurable benefit.
+- CSS + Vanilla JS for V1 unless a dependency has measurable benefit.
 - Avoid unnecessary runtime frameworks.
 - Lazy-load below-fold media.
 - Defer non-critical scripts.
-- Keep animation lightweight.
+- Lightweight motion.
 - No third-party script required for core layout/navigation.
 
 ## 20. Ecommerce / Cart Rule
 
-V1 has no cart or checkout. If a future ecommerce edition is created, it must be a separate product/version scope. Current conversion patterns are RFQ, enquiry, sample request, submit product and partner/distributor applications.
+V1 has no cart or checkout. Current conversion patterns are RFQ, enquiry, submit product and partner/distributor applications. Ecommerce requires a future separate scope.
 
-## 21. Page Design Profile Template
+## 21. V1 Main-Features Rule
 
-Before building a page, record:
-- Page ID / name.
-- Commercial goal.
-- Main features.
-- Additional features.
-- Hero family.
-- Section sequence.
-- Primary card families.
-- Interaction list.
-- Motion level.
-- Config values.
-- Arabic RTL notes.
-- English LTR notes.
-- Mobile risks.
-- Asset/license requirements.
-- Documentation entries.
+V1 implementation contains only Main Features defined in the frozen scope.
+
+Additional Features are not implemented in V1. They are retained only in the V1.1 Expansion Backlog.
+
+## 22. Page Design Profile Rule
+
+Before coding any page, complete `PAGE-DESIGN-PROFILE-TEMPLATE-V1.md` and declare registry IDs for every major UI building block.
+
+If a required component has no registry ID, stop and review the central registry. Do not create a page-local fork.
 
 Copyright © ORVEAX.
