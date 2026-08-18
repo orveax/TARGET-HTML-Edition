@@ -1,6 +1,6 @@
 /*
  * ORIGEX — ORX-P01
- * Config UI Layer v1.0.0
+ * Config UI Layer v1.1.0
  * Designed & developed by ORVEAX
  * Copyright © ORVEAX
  */
@@ -20,6 +20,14 @@
   align-items: center;
   justify-content: center;
   gap: 14px;
+}
+
+.orx-announcement__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 14px;
   text-align: center;
 }
 
@@ -28,6 +36,25 @@
   text-decoration: underline;
   text-underline-offset: 3px;
   white-space: nowrap;
+}
+
+.orx-announcement__close {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,.14);
+  color: #fff;
+  font: 500 1.25rem/1 Arial,sans-serif;
+  cursor: pointer;
+}
+
+.orx-announcement__close:hover,
+.orx-announcement__close:focus-visible {
+  background: rgba(255,255,255,.22);
 }
 
 .orx-site-header.orx-header--static {
@@ -95,10 +122,14 @@
   .orx-announcement__inner {
     min-height: 44px;
     justify-content: space-between;
+  }
+
+  .orx-announcement__content {
+    justify-content: flex-start;
     text-align: start;
   }
 
-  .orx-announcement__inner span {
+  .orx-announcement__content span {
     font-size: .78rem;
   }
 
