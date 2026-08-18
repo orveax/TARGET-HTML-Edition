@@ -4,22 +4,38 @@
 **Status:** OPEN  
 **Must close before:** final design tokens, final header/footer styling, Home 01 production build.
 
-## Why This Gate Exists
+## Approved Naming Decision
 
-The commercial template must not inherit TARGET client identity as its marketplace demo identity. A distinct demo brand is required so the product can be sold independently while preserving the successful TARGET UX and layout DNA.
+### Marketplace / Demo Product Brand
 
-## Decisions Required
+**ORIGEX**
 
-### 1. Marketplace Demo Brand Name
+Working Arabic rendering: **أوريجكس**
 
-Requirements:
-- short and memorable
-- credible for food trading / wholesale / import-export
-- international enough for GCC and global buyers
-- must not use TARGET as the commercial template brand
-- should work in English and have a clean Arabic rendering
+Internal shorthand may use **RGX** where useful for internal product references, but the public-facing template/demo brand is **ORIGEX**.
 
-### 2. Logo System
+### Brand Relationship
+
+- **ORVEAX** = Author / Product Owner / Copyright Owner
+- **ORX-P01** = Internal product code
+- **ORIGEX** = Commercial template / demo brand
+
+The template must not inherit TARGET client identity as its marketplace demo identity. ORIGEX is the distinct commercial brand while the product preserves the successful TARGET UX and layout DNA.
+
+## Reserved Naming Bank
+
+The following names are not selected for ORX-P01 and are reserved for possible future ORVEAX products:
+
+- MERQEX
+- NASEQ
+- MAVRED
+- SORIQ
+
+These names must not be reused casually inside ORIGEX source/demo content.
+
+## Decisions Remaining
+
+### 1. Logo System
 
 Required deliverables:
 - primary horizontal logo
@@ -31,7 +47,7 @@ Required deliverables:
 - favicon / app icon
 - Arabic/English lockup decision
 
-### 3. Color System
+### 2. Color System
 
 Required tokens:
 - primary
@@ -48,7 +64,7 @@ Required tokens:
 
 The commercial demo palette must be distinct from TARGET client branding while keeping an appropriate premium B2B food-trading character.
 
-### 4. Typography
+### 3. Typography
 
 Requirements:
 - Arabic-first readability
@@ -56,7 +72,7 @@ Requirements:
 - commercially redistributable or safely web-loadable licensing
 - defined heading, body and UI hierarchy
 
-### 5. Visual Direction
+### 4. Visual Direction
 
 Lock:
 - image treatment
@@ -73,15 +89,15 @@ Lock:
 
 This gate closes only when the following are approved:
 
-- demo brand name
-- Arabic rendering of brand name
-- logo direction
-- final core palette
-- Arabic font
-- English font
-- icon direction
-- image direction
-- final visual personality statement
+- [x] demo brand name — ORIGEX
+- [x] Arabic rendering — أوريجكس (working approved rendering)
+- [ ] logo direction
+- [ ] final core palette
+- [ ] Arabic font
+- [ ] English font
+- [ ] icon direction
+- [ ] image direction
+- [ ] final visual personality statement
 
 ## Build Rule
 
