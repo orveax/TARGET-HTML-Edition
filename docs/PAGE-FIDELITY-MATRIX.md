@@ -15,7 +15,7 @@ This matrix is the mandatory conversion control for TARGET HTML Edition.
 | # | Source route | HTML Edition route | Conversion | Visual | Interaction | RTL/LTR | Commercial generalization |
 |---|---|---|---|---|---|---|---|
 | 01 | `index.html` | `ar/index.html` + `en/index.html` | GENERALIZED | BASELINE | BASELINE | BASELINE | GENERALIZED |
-| 02 | `about.html` | `about.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
+| 02 | `about.html` | `ar/about.html` + `en/about.html` | GENERALIZED | BASELINE | BASELINE | BASELINE | GENERALIZED |
 | 03 | `capabilities.html` | `how-we-work.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
 | 04 | `products-companies.html` | `products-companies.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
 | 05 | `qatar-market.html` | `market.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
@@ -57,6 +57,22 @@ The homepage cannot be marked `MATCHED` until every source section is accounted 
 - No ecommerce cart/checkout behavior was introduced; conversion remains B2B RFQ/product-enquiry oriented.
 - Static structural QA and JavaScript syntax QA passed locally.
 - `MATCHED` and `QA PASS` remain blocked until full visual/responsive review is completed against the source and the common-screen preview matrix.
+
+## About Build 05 control — 2026-08-19
+
+| Section | Status | Current implementation |
+|---|---|---|
+| A01 Hero | BASELINE | Eyebrow, H1, lead, profile resource link, commercial media and 2 facts |
+| A02 Who We Are | BASELINE | 2 explanatory paragraphs, editorial panel and 4/4 facts |
+| A03 Vision & Mission | BASELINE | 2/2 full content cards |
+| A04 Commercial Role | BASELINE | Source → ORIGEX → Market three-node flow |
+| A05 Commercial Clarity | BASELINE | 4/4 trust cards + boundary note |
+| A06 Final Conversion | BASELINE | Company Profile panel + product/opportunity CTA panel |
+
+- Arabic and English are separate ready-to-use pages; Arabic remains primary.
+- TARGET/Qatar client identity and owned imagery were removed and replaced with reusable B2B demo content/CSS artwork without reducing the source section roles.
+- Static HTML structure, section counts, AR/EN pairing and client-data leakage checks passed locally.
+- Visual screenshot QA remains pending because the current Chromium environment does not produce a stable screenshot session; no false `MATCHED`/`QA PASS` status is recorded.
 
 ## Non-negotiable rule
 
