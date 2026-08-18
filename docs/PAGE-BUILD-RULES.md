@@ -77,13 +77,48 @@ Examples:
 - Logo wall.
 - CTA variants.
 
-## 8. Pre-build decision record
+## 8. Simple Config eligibility rule
+
+Before every page/component build, identify which values belong in the global `assets/js/config.js` customization layer.
+
+**Good config candidates:**
+
+- Brand/theme colors.
+- Repeated company contact data.
+- Social URLs.
+- Business hours.
+- Announcement/top bar content and visibility.
+- Global header CTA.
+- Sticky header / mega-menu visibility.
+- Floating WhatsApp / Back-to-top controls.
+- Other small global on/off switches that genuinely reduce buyer editing effort.
+
+**Do not put in global config:**
+
+- Long page copy.
+- Entire About/Services sections.
+- Product, supplier or blog records.
+- Layout construction.
+- Large per-page content structures.
+
+The goal is a simple buyer customization layer, not a CMS or page builder.
+
+Every global/contact/footer component should use documented config hooks where practical while preserving a valid HTML fallback.
+
+## 9. Progressive enhancement rule
+
+- Pages must remain structurally usable if the config engine is unavailable.
+- Essential content must exist in HTML; config may replace/reuse repeated values but must not become the only source of page meaning.
+- JavaScript enhancements must not break navigation or reading when disabled.
+
+## 10. Pre-build decision record
 
 Before implementation of every new page, record:
 
 - Page goal.
 - Core sections.
 - Optional feature candidates.
+- Config-eligible global values.
 - Arabic-specific UX considerations.
 - English counterpart.
 - Responsive risks.
@@ -91,8 +126,8 @@ Before implementation of every new page, record:
 - Asset/licensing requirements.
 - Final V1 inclusion decision.
 
-## 9. Gate condition
+## 11. Gate condition
 
-No new page moves into implementation until this rule set has been reviewed and the page-specific Core / Optional / Not-in-V1 decisions are recorded.
+No new page moves into implementation until this rule set has been reviewed and the page-specific Core / Optional / Not-in-V1 / Config-eligible decisions are recorded.
 
 Copyright © ORVEAX.
