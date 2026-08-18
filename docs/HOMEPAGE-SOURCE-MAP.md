@@ -52,7 +52,7 @@ Four trust/fact items:
 - Section kicker
 - H2
 - Intro copy
-- Editorial image
+- Editorial image/media area
 - Five category cards
 - Portfolio explore link
 
@@ -93,13 +93,29 @@ Four trust/fact items:
 - Primary CTA
 - Secondary contact CTA
 
+## Build 04 implementation map — 2026-08-19
+
+| Source block | ORIGEX implementation | State |
+|---|---|---|
+| Global shell | `ar/index.html`, `en/index.html`, `shell.css`, `navigation.js` | BASELINE |
+| H01 Hero | `.orx-home-hero` + `.orx-route-card` | BASELINE |
+| H02 Trust | `.orx-home-trust` with 4 items | BASELINE |
+| H03 How We Work | `.orx-feature-grid` with 4 cards | BASELINE |
+| H04 Products | `.orx-products-layout` + 5 category cards | BASELINE |
+| H05 Why | `.orx-why-grid` with 4 cards | BASELINE |
+| H06 Steps | `.orx-step-grid` with 4 ordered steps | BASELINE |
+| H07 FAQ | `.orx-faq-list` + `home.js` accordion | BASELINE |
+| H08 Final CTA | `.orx-final-cta` + 2 conversion routes | BASELINE |
+
+The source editorial photo areas are currently represented with original ORIGEX CSS demo artwork so no TARGET/client image rights are carried into the commercial baseline. Licensed marketplace/demo imagery can be introduced later without changing the section contract.
+
 ## Fidelity acceptance rule
 
 Homepage conversion is not `MATCHED` until:
 
 - all H01–H08 sections exist;
 - header, navigation, language and footer systems work;
-- Arabic/English text switching works;
+- Arabic/English language routes work;
 - RTL/LTR flips correctly;
 - mobile navigation works;
 - homepage FAQ works;
