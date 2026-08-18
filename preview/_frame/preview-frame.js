@@ -16,7 +16,8 @@
   let lang = qs.get('lang') === 'en' ? 'en' : 'ar';
   let mode = qs.get('mode') === 'focus' ? 'focus' : 'grid';
   let screenId = screens.some(s => s.id === qs.get('screen')) ? qs.get('screen') : 'desktop';
-  const page = qs.get('page') || 'brand-board-v2.html';
+  const pageAr = qs.get('pageAr') || '../ar/index.html';
+  const pageEn = qs.get('pageEn') || '../en/index.html';
 
   const stage = document.querySelector('[data-pf-stage]');
   const select = document.querySelector('[data-pf-screen]');
@@ -32,7 +33,7 @@
   });
   select.value = screenId;
 
-  const pageUrl = (language) => `${page}?lang=${language}`;
+  const pageUrl = (language) => language === 'en' ? pageEn : pageAr;
 
   function card(s, focus=false){
     const article = document.createElement('article');
