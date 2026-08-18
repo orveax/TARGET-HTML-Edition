@@ -6,6 +6,15 @@
 **Author / Product Owner:** ORVEAX  
 **Status:** APPROVED FOR V1 BUILD
 
+## Language Priority
+
+ORIGEX is **Arabic-first**.
+
+- Arabic is the default language in previews and the primary presentation language.
+- English is always provided as the second language.
+- Every preview/review artifact must expose both Arabic and English states.
+- Arabic is not a mirrored afterthought; it receives independent typography, spacing, direction, mixed-content and responsive QA.
+
 ## Positioning
 
 ORIGEX is a premium Arabic-first bilingual HTML template for B2B food trading, import-export, wholesale, distribution, manufacturers and suppliers.
@@ -35,7 +44,7 @@ Rules:
 - must survive monochrome use
 - no wheat, fork, spoon, shopping cart, globe cliché, or literal shipping container
 - the symbol may appear independently as favicon/app mark
-- the public wordmark is ORIGEX; Arabic أوريجكس is a supporting lockup, not a separate logo identity
+- the public wordmark is ORIGEX; Arabic أوريجكس is a supporting language lockup, not a separate logo identity
 
 ## Core Palette
 
@@ -56,19 +65,37 @@ Semantic colors are functional only and must not compete with the brand palette.
 
 ## Typography
 
-### Arabic
+### Arabic — Primary
 
-Preferred family: **IBM Plex Sans Arabic**  
-Role: headings, body and UI in Arabic.
+**Tajawal**
 
-### English
+Approved hierarchy:
 
-Preferred family: **Manrope**  
-Role: headings, body and UI in English.
+- 800 — display / hero emphasis
+- 700 — H1/H2 and strong headings
+- 600 — H3/H4 and strong UI
+- 500 — labels / navigation / controls
+- 400 — body copy
+
+Arabic line-height is intentionally more generous than English to protect readability and visual rhythm.
+
+### English — Secondary
+
+**Manrope**
+
+Approved hierarchy:
+
+- 800 — display / hero emphasis
+- 700 — H1/H2 and strong headings
+- 600 — H3/H4 and strong UI
+- 500 — labels / navigation / controls
+- 400 — body copy
+
+Canonical family, size, weight and line-height variables live in `assets/css/tokens.css`.
 
 ### Packaging Note
 
-Typography is approved as the visual direction, but final downloadable font-file redistribution remains subject to the asset/license registry. Until that audit is closed, development may use safe web-loading or system fallbacks and must not embed unverified font binaries in the commercial ZIP.
+Typography is approved as the visual direction. Final downloadable font-file redistribution remains subject to the asset/license registry. Until that audit is closed, development may use safe web-loading or system fallbacks and must not embed unverified font binaries in the commercial ZIP.
 
 ## Icon Direction
 
@@ -108,6 +135,19 @@ Avoid:
 - high information clarity on product and supplier pages
 - subtle motion only; reduced-motion support is mandatory
 - Arabic layouts are designed intentionally, not mechanically mirrored after completion
+
+## Preview Rule
+
+Preview infrastructure is review-only and must remain isolated from the production package.
+
+Every preview must provide:
+
+- Arabic as the default state
+- English as the secondary state
+- a raw page view
+- a framed responsive QA view using the common-screen matrix
+
+The preview frame is removed/excluded from the final production/marketplace package.
 
 ## Ownership Layer
 
