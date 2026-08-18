@@ -14,10 +14,43 @@ Use this record before implementing every V1 page.
 - Commercial Goal:
 - Primary Audience:
 
-## 2. Main Features
+## 2. Content Contract — Mandatory
+
+Authority: `CONTENT-SYSTEM-V1.md` and `MASTER-CONTENT-ARCHITECTURE-V1.md`.
+
+No page may enter implementation without Content Status C6 — FROZEN.
+
+Complete:
+- Content ID:
+- Funnel Role:
+- Primary User Question:
+- Primary Message:
+- Required Facts/Data:
+- Arabic Master Copy status:
+- English Adaptation status:
+- Primary CTA:
+- Secondary CTA:
+- Labels/Microcopy:
+- Empty State:
+- Success/Error/Validation states where applicable:
+- Demo/Legal Disclaimer:
+- SEO Title Intent:
+- SEO Description Intent:
+- Data Source / Owner:
+- Content Status: C0 / C1 / C2 / C3 / C4 / C5 / C6 / C7 / C8
+
+Rules:
+- Arabic is the master commercial copy.
+- English is a professional adaptation, not literal translation.
+- Facts and commercial promises must match in both languages.
+- Demo entities must use `DEMO-CONTENT-DATASET-V1.md` unless a reviewed new entity is added.
+- No lorem ipsum in commercial preview pages.
+- Additional Features use the same Content Contract when activated.
+
+## 3. Main Features
 List only V1 Main Features approved in the frozen scope.
 
-## 3. Component Map
+## 4. Component Map
 Declare registry IDs only.
 
 Example:
@@ -35,7 +68,7 @@ Global Navigation: N01 + N02 + N03 + N04
 
 Rule: if a required UI unit has no registry ID, stop and review the registry before coding. Do not invent a page-local component.
 
-## 4. Section Sequence
+## 5. Section Sequence
 Document exact page order.
 
 Example:
@@ -49,7 +82,7 @@ Example:
 07 Final CTA
 ```
 
-## 5. Design Profile
+## 6. Design Profile
 - Hero family:
 - Density: Compact / Standard / Comfortable
 - Section rhythm: Tight / Standard / Large
@@ -59,7 +92,7 @@ Example:
 - Media treatment:
 - Motion level: 0 / 1 / 2
 
-## 6. Interaction Budget
+## 7. Interaction Budget
 Only list interactions required by the Main Features.
 
 Examples:
@@ -73,7 +106,7 @@ Examples:
 
 No decorative interaction is added without UX value.
 
-## 7. Config Eligibility
+## 8. Config Eligibility
 List only global recurring values from `config.js`.
 
 Example:
@@ -86,7 +119,7 @@ Page body copy: HTML
 Product data: JSON/data source
 ```
 
-## 8. Arabic RTL Rules
+## 9. Arabic RTL Rules
 - Content reading order:
 - Arrow/directional behavior:
 - Mixed LTR data:
@@ -94,13 +127,13 @@ Product data: JSON/data source
 - Mobile ordering:
 - Alignment exceptions:
 
-## 9. English LTR Rules
+## 10. English LTR Rules
 - Content reading order:
 - Arrow/directional behavior:
 - Mobile ordering:
 - Copy-length risks:
 
-## 10. Responsive Contract
+## 11. Responsive Contract
 For each critical range define behavior, not only breakpoints.
 
 - 360–412 Mobile:
@@ -109,7 +142,7 @@ For each critical range define behavior, not only breakpoints.
 - 1280–1536 Desktop:
 - 1920 Large Desktop:
 
-## 11. Accessibility Contract
+## 12. Accessibility Contract
 - Heading hierarchy.
 - Landmark structure.
 - Keyboard interactions.
@@ -119,27 +152,30 @@ For each critical range define behavior, not only breakpoints.
 - Media alt strategy.
 - Reduced motion behavior.
 
-## 12. Performance Contract
+## 13. Performance Contract
 - Required JS modules:
 - Required images/media:
 - Lazy-loaded assets:
 - No third-party runtime requirement unless explicitly approved.
 
-## 13. Asset & License Record
+## 14. Asset & License Record
 - Distributable assets:
 - Preview-only assets:
 - Placeholders:
 - License/source registry references:
 
-## 14. Documentation Entries
+## 15. Documentation Entries
 List documentation that must be updated while building this page.
 
-## 15. QA Exit Gate
+## 16. QA Exit Gate
 A page cannot move to DONE until:
+- Content Contract complete and status reached C8 after implementation QA.
 - Main Features complete.
 - Registry components used without unauthorized forks.
 - Arabic complete.
 - English complete.
+- Commercial meaning/facts/CTA parity checked across AR/EN.
+- Demo/factual disclaimers present where required.
 - RTL/LTR QA complete.
 - Responsive QA complete.
 - Keyboard/accessibility baseline checked.
