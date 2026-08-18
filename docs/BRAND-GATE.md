@@ -1,18 +1,18 @@
 # ORX-P01 — Demo Brand & Visual Identity Gate
 
 **Gate:** 02  
-**Status:** OPEN  
-**Must close before:** final design tokens, final header/footer styling, Home 01 production build.
+**Status:** CLOSED — APPROVED  
+**Closed:** 2026-08-19  
+**Next Gate:** 03 — Design System Foundation
 
-## Approved Naming Decision
+## Approved Brand
 
 ### Marketplace / Demo Product Brand
 
-**ORIGEX**
-
-Working Arabic rendering: **أوريجكس**
-
-Internal shorthand may use **RGX** where useful for internal product references, but the public-facing template/demo brand is **ORIGEX**.
+**ORIGEX**  
+Arabic rendering: **أوريجكس**  
+Internal shorthand: **RGX**  
+Product code: **ORX-P01**
 
 ### Brand Relationship
 
@@ -20,85 +20,106 @@ Internal shorthand may use **RGX** where useful for internal product references,
 - **ORX-P01** = Internal product code
 - **ORIGEX** = Commercial template / demo brand
 
-The template must not inherit TARGET client identity as its marketplace demo identity. ORIGEX is the distinct commercial brand while the product preserves the successful TARGET UX and layout DNA.
+ORIGEX is independent from TARGET client identity while preserving the reusable UX and layout DNA extracted from the mature TARGET project.
 
-## Reserved Naming Bank
+## Approved Logo Direction
 
-The following names are not selected for ORX-P01 and are reserved for possible future ORVEAX products:
+**Origin Route Mark**
 
-- MERQEX
-- NASEQ
-- MAVRED
-- SORIQ
-
-These names must not be reused casually inside ORIGEX source/demo content.
-
-## Decisions Remaining
-
-### 1. Logo System
-
-Required deliverables:
-- primary horizontal logo
-- compact / icon mark
-- light version
-- dark version
+- O / Origin outer form
+- route from source to destination
+- intersecting route geometry creates a subtle X / exchange reference
 - SVG-first
-- transparent PNG fallback
-- favicon / app icon
-- Arabic/English lockup decision
+- monochrome-capable geometry
+- compact mark suitable for favicon/app use
+- public wordmark: ORIGEX
+- Arabic أوريجكس is a supporting language lockup
 
-### 2. Color System
+Current source assets:
 
-Required tokens:
-- primary
-- primary strong
-- secondary
-- accent
-- background
-- surface
-- soft surface
-- text
-- muted text
-- border
-- semantic success / warning / danger / info
+- `assets/brand/origex-mark.svg`
+- `assets/brand/origex-logo.svg`
 
-The commercial demo palette must be distinct from TARGET client branding while keeping an appropriate premium B2B food-trading character.
+## Approved Core Palette
 
-### 3. Typography
+- Trade Ink — `#15343B`
+- Deep Ink — `#0D252B`
+- Route Teal — `#3F6F68`
+- Origin Copper — `#C47A4A`
+- Warm Sand — `#E8DFD0`
+- Paper — `#FAF8F4`
+- Surface — `#FFFFFF`
+- Graphite — `#20282C`
+- Muted — `#667278`
+- Border — `#D8DEDB`
 
-Requirements:
-- Arabic-first readability
-- matched Arabic / Latin visual weight
-- commercially redistributable or safely web-loadable licensing
-- defined heading, body and UI hierarchy
+Canonical variables live in `assets/css/tokens.css`.
 
-### 4. Visual Direction
+## Approved Typography Direction
 
-Lock:
-- image treatment
-- corner radius family
-- shadows
-- borders
-- icon style
-- spacing personality
-- card density
-- motion intensity
-- product photography treatment
+### Arabic
 
-## Brand Gate Exit Criteria
+**IBM Plex Sans Arabic**
 
-This gate closes only when the following are approved:
+### English
+
+**Manrope**
+
+Typography is approved for design/build direction. Commercial ZIP font-file redistribution remains a separate licensing/asset-registry check before marketplace packaging; no unverified font binaries are to be embedded in deliverables.
+
+## Approved Icon Direction
+
+- single outline icon family
+- consistent optical stroke
+- directional icons mirror in RTL
+- no mixed icon packs
+- icons are functional/hierarchical rather than decorative clutter
+
+## Approved Image Direction
+
+Focus on:
+
+- manufacturing and packing
+- product review and sourcing
+- B2B supplier context
+- warehouse/distribution selectively
+- route-to-market and export context
+
+Avoid restaurant imagery, grocery-store clichés, generic handshakes and all TARGET-owned/client-specific assets.
+
+## Approved Visual Personality
+
+**Premium Trade / Origin / Market Access**
+
+- medium-low radius
+- restrained shadows
+- borders/surface contrast for structure
+- strong whitespace
+- high information density only where products/suppliers require it
+- subtle motion
+- reduced-motion support mandatory
+- Arabic is designed and QA'd as a first-class system
+
+## Ownership Rule
+
+ORVEAX attribution is mandatory in product source headers, README, documentation, changelog, credits/license notice and marketplace authorship.
+
+Buyer-facing footer attribution may be removed by the licensed buyer and is not the primary ownership mechanism.
+
+## Exit Criteria
 
 - [x] demo brand name — ORIGEX
-- [x] Arabic rendering — أوريجكس (working approved rendering)
-- [ ] logo direction
-- [ ] final core palette
-- [ ] Arabic font
-- [ ] English font
-- [ ] icon direction
-- [ ] image direction
-- [ ] final visual personality statement
+- [x] Arabic rendering — أوريجكس
+- [x] logo direction — Origin Route Mark
+- [x] final core palette
+- [x] Arabic typography direction
+- [x] English typography direction
+- [x] icon direction
+- [x] image direction
+- [x] visual personality statement
 
-## Build Rule
+## Gate Result
 
-Structural engineering may continue while this gate is open (semantic HTML, folder architecture, shared utilities, QA tooling), but no page is considered visually final until Brand Gate 02 is CLOSED.
+**GATE 02 PASSED.**
+
+Proceed to **Gate 03 — Design System Foundation** and then the first production page build.
