@@ -5,7 +5,7 @@ This matrix is the mandatory conversion control for TARGET HTML Edition.
 ## Status vocabulary
 
 - `PENDING` — not converted yet
-- `BASELINE` — copied/reproduced for fidelity, not yet commercially generalized
+- `BASELINE` — copied/reproduced for fidelity, not yet fully verified
 - `MATCHED` — section/function verified against the source website
 - `GENERALIZED` — client-specific content/assets replaced without reducing the experience
 - `QA PASS` — responsive, RTL/LTR, interaction and visual QA complete
@@ -14,7 +14,7 @@ This matrix is the mandatory conversion control for TARGET HTML Edition.
 
 | # | Source route | HTML Edition route | Conversion | Visual | Interaction | RTL/LTR | Commercial generalization |
 |---|---|---|---|---|---|---|---|
-| 01 | `index.html` | `index.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
+| 01 | `index.html` | `ar/index.html` + `en/index.html` | GENERALIZED | BASELINE | BASELINE | BASELINE | GENERALIZED |
 | 02 | `about.html` | `about.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
 | 03 | `capabilities.html` | `how-we-work.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
 | 04 | `products-companies.html` | `products-companies.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
@@ -29,24 +29,34 @@ This matrix is the mandatory conversion control for TARGET HTML Edition.
 
 ## Homepage section control
 
-The homepage cannot be marked `MATCHED` unless every source section is accounted for.
+The homepage cannot be marked `MATCHED` until every source section is accounted for and responsive visual comparison is complete.
 
-| Section / system | Status | Rule |
+| Section / system | Status | Current implementation |
 |---|---|---|
-| Global header | PENDING | Preserve desktop + mobile behavior |
-| Mega menu | PENDING | Preserve hierarchy and interactions |
-| Language toggle | PENDING | Preserve AR/EN + dir switching |
-| Hero | PENDING | Preserve composition, hierarchy and responsive behavior |
-| Commercial route visual | PENDING | Preserve the visual/functional concept |
-| Trust strip / facts | PENDING | Preserve full card/fact family |
-| How We Work / capability cards | PENDING | Preserve all cards and content roles |
-| Product/category section | PENDING | Preserve complete category family |
-| Why / differentiation section | PENDING | Preserve full section |
-| Process / steps | PENDING | Preserve all steps |
-| Supplier/opportunity CTA | PENDING | Preserve conversion intent |
-| FAQ / supporting conversion content if present | PENDING | Do not silently remove |
-| Global footer | PENDING | Preserve full navigation/resource/contact hierarchy |
-| Contextual utilities | PENDING | Reproduce only where source behavior exists |
+| Global header | BASELINE | Premium sticky shell exists in AR/EN |
+| Mega menu | BASELINE | Hierarchy and open/close interaction preserved |
+| Language toggle | BASELINE | Dedicated `/ar/` and `/en/` routes; Arabic is primary |
+| Hero | BASELINE | Eyebrow, H1, lead, 2 CTAs, media composition preserved |
+| Commercial route visual | BASELINE | Source → ORIGEX → Market route preserved |
+| Trust strip / facts | BASELINE | 4/4 trust items preserved |
+| How We Work / capability cards | BASELINE | 4/4 cards preserved with number, role and metadata |
+| Product/category section | BASELINE | Editorial panel + 5/5 categories + explore route |
+| Why / differentiation section | BASELINE | 4/4 differentiation cards preserved |
+| Process / steps | BASELINE | 4/4 ordered steps preserved |
+| Supplier/opportunity CTA | BASELINE | RFQ / sales conversion intent generalized |
+| FAQ / supporting conversion | BASELINE | 3/3 accessible accordion items; first open |
+| Final conversion CTA | BASELINE | Kicker, headline, lead, disclaimer and 2 CTAs |
+| Global footer | BASELINE | Full route/contact/legal hierarchy preserved |
+| Contextual utilities | BASELINE | Language, mobile drawer, resource/contact routes preserved |
+
+## Home 01 Build 04 notes — 2026-08-19
+
+- Arabic and English are separate ready-to-use pages; Arabic remains the default review language.
+- Home 01 now accounts for all H01–H08 source sections.
+- Client-specific Qatar/TARGET copy and identity were generalized while preserving the same UX role and section density.
+- No ecommerce cart/checkout behavior was introduced; conversion remains B2B RFQ/product-enquiry oriented.
+- Static structural QA and JavaScript syntax QA passed locally.
+- `MATCHED` and `QA PASS` remain blocked until full visual/responsive review is completed against the source and the common-screen preview matrix.
 
 ## Non-negotiable rule
 
