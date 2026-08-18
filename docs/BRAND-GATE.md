@@ -22,6 +22,13 @@ Product code: **ORX-P01**
 
 ORIGEX is independent from TARGET client identity while preserving the reusable UX and layout DNA extracted from the mature TARGET project.
 
+## Approved Language Priority
+
+- **Arabic = primary/default presentation language**
+- **English = secondary language**
+- every preview/review artifact must include both Arabic and English states
+- Arabic receives first-class RTL, typography, mixed-content and responsive QA
+
 ## Approved Logo Direction
 
 **Origin Route Mark**
@@ -57,13 +64,31 @@ Canonical variables live in `assets/css/tokens.css`.
 
 ## Approved Typography Direction
 
-### Arabic
+### Arabic — Primary
 
-**IBM Plex Sans Arabic**
+**Tajawal**
 
-### English
+Hierarchy:
+
+- 800 — display / hero
+- 700 — major headings
+- 600 — subheadings / strong UI
+- 500 — labels / navigation / controls
+- 400 — body
+
+Arabic-specific line-height tokens are required.
+
+### English — Secondary
 
 **Manrope**
+
+Hierarchy:
+
+- 800 — display / hero
+- 700 — major headings
+- 600 — subheadings / strong UI
+- 500 — labels / navigation / controls
+- 400 — body
 
 Typography is approved for design/build direction. Commercial ZIP font-file redistribution remains a separate licensing/asset-registry check before marketplace packaging; no unverified font binaries are to be embedded in deliverables.
 
@@ -100,6 +125,17 @@ Avoid restaurant imagery, grocery-store clichés, generic handshakes and all TAR
 - reduced-motion support mandatory
 - Arabic is designed and QA'd as a first-class system
 
+## Preview Rule
+
+Until final production packaging, each preview must provide:
+
+- Arabic default state
+- English secondary state
+- raw page preview
+- reusable device-frame preview using the common-screen matrix in `docs/PREVIEW-POLICY.md`
+
+The preview frame is review infrastructure and is excluded/removed from the final production/marketplace package.
+
 ## Ownership Rule
 
 ORVEAX attribution is mandatory in product source headers, README, documentation, changelog, credits/license notice and marketplace authorship.
@@ -112,8 +148,9 @@ Buyer-facing footer attribution may be removed by the licensed buyer and is not 
 - [x] Arabic rendering — أوريجكس
 - [x] logo direction — Origin Route Mark
 - [x] final core palette
-- [x] Arabic typography direction
-- [x] English typography direction
+- [x] Arabic typography — Tajawal
+- [x] English typography — Manrope
+- [x] Arabic-first language priority
 - [x] icon direction
 - [x] image direction
 - [x] visual personality statement
