@@ -1,6 +1,6 @@
 /*
  * ORIGEX — ORX-P01
- * Simple Customization Engine v1.0.0
+ * Simple Customization Engine v1.1.0
  * Designed & developed by ORVEAX
  * Copyright © ORVEAX
  */
@@ -59,6 +59,19 @@
   if (header && cfg.ui?.stickyHeader === false) header.classList.add("orx-header--static");
   if (cfg.ui?.megaMenu === false) document.querySelectorAll(".orx-mega").forEach((element) => element.hidden = true);
 
+  const headerCta = document.querySelector(".orx-header-cta");
+  const showHeaderCta = cfg.features?.showHeaderCta !== false && cfg.ui?.headerCta?.enabled !== false;
+  if (headerCta) {
+    if (!showHeaderCta) {
+      headerCta.hidden = true;
+    } else {
+      const label = isArabic ? cfg.ui.headerCta.labelAr : cfg.ui.headerCta.labelEn;
+      const href = safeUrl(cfg.ui.headerCta.link);
+      if (label) headerCta.textContent = label;
+      if (href) headerCta.href = href;
+    }
+  }
+
   const directEmails = document.querySelectorAll(".orx-mega-direct a[href^='mailto:']");
   if (directEmails[0] && cfg.site?.email) {
     directEmails[0].textContent = cfg.site.email;
@@ -82,15 +95,30 @@
 
     const inner = document.createElement("div");
     inner.className = "container orx-announcement__inner";
+
+    const content = document.createElement("div");
+    content.className = "orx-announcement__content";
     const message = document.createElement("span");
     message.textContent = text || "";
-    inner.appendChild(message);
+    content.appendChild(message);
 
     if (href && label) {
       const link = document.createElement("a");
       link.href = href;
       link.textContent = label;
-      inner.appendChild(link);
+      content.appendChild(link);
+    }
+
+    inner.appendChild(content);
+
+    if (cfg.ui.announcementBar.dismissible !== false) {
+      const close = document.createElement("button");
+      close.className = "orx-announcement__close";
+      close.type = "button";
+      close.setAttribute("aria-label", isArabic ? "إغلاق الإعلان" : "Close announcement");
+      close.textContent = "×";
+      close.addEventListener("click", () => bar.remove());
+      inner.appendChild(close);
     }
 
     bar.appendChild(inner);
