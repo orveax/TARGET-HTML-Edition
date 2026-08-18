@@ -9,6 +9,7 @@ This document defines the global rules. Detailed component contracts live in:
 - `COMPONENT-REGISTRY-V1.md`
 - `PAGE-DESIGN-PROFILE-TEMPLATE-V1.md`
 - `TECH-STACK-V1.md`
+- `ICON-SYSTEM-V1.md`
 
 ## 1. One Global System, Many Page Profiles
 
@@ -213,13 +214,32 @@ Rules:
 - No color-only meaning.
 - Vocabulary limited and documented.
 
-## 12. Icon Rules
+## 12. Icon System — LOCKED
 
-- One primary semantic icon system for V1.
-- No duplicate icon libraries for same roles.
-- Decorative icons optional.
-- Directional icons mirror in RTL.
-- Optical sizing standardized.
+Authority: `ICON-SYSTEM-V1.md`.
+
+Approved system:
+- Lucide is the single primary semantic icon family for V1.
+- Outline style on a 24 × 24 base grid.
+- Default stroke 2.
+- Approved sizes: 14 / 16 / 20 / 24 / 32 / 40px.
+- Icons inherit `currentColor` and ORIGEX semantic color tokens.
+- Local SVG / SVG sprite delivery; no required CDN for core icons.
+- Brand/social marks are separate official or separately licensed assets.
+- Multiple semantic icon libraries are prohibited.
+- Custom ORIGEX icons require central registry approval before page use.
+
+RTL rules:
+- Only directional arrows, chevrons, previous/next and forward/back cues mirror or swap.
+- Semantic icons such as phone, mail, package, truck, search, download, calendar and warehouse never mirror.
+- Global SVG flipping rules are prohibited.
+
+Accessibility:
+- Decorative icons use `aria-hidden="true"`.
+- Icon-only controls require an accessible name.
+- Icon/color alone never communicates essential status.
+
+Pages may not introduce page-local icon styles, mappings or libraries.
 
 ## 13. Image & Media Rules
 
