@@ -10,6 +10,7 @@ This document defines the global rules. Detailed component contracts live in:
 - `PAGE-DESIGN-PROFILE-TEMPLATE-V1.md`
 - `TECH-STACK-V1.md`
 - `ICON-SYSTEM-V1.md`
+- `PATTERN-SYSTEM-V1.md`
 
 ## 1. One Global System, Many Page Profiles
 
@@ -25,6 +26,7 @@ Global invariants:
 - Button language.
 - Form language.
 - Icon language.
+- Pattern language.
 - Motion budget.
 - Arabic RTL and English LTR behavior.
 
@@ -35,6 +37,7 @@ Page-level variables:
 - Approved card family mix.
 - CTA rhythm.
 - Media treatment.
+- Approved pattern family selection.
 - Motion level.
 
 Pages may compose approved components but may not visually fork them through page-specific CSS.
@@ -252,7 +255,31 @@ Registry authorities: C26–C28.
 - Lazy loading below the fold.
 - Alt text required when informative.
 
-## 14. Motion Rules
+## 14. Pattern System — LOCKED
+
+Authority: `PATTERN-SYSTEM-V1.md`.
+
+Approved V1 pattern families:
+- PT01 Route Lines.
+- PT02 Trade Grid.
+- PT03 Dot Matrix.
+- PT04 Market Nodes.
+- PT05 Packaging Geometry.
+- PT06 Flow Lines.
+
+Rules:
+- Patterns support content; they are never primary content.
+- Pages may use only registered PT families.
+- Default visual density remains restrained; opacity normally stays approximately 3%–12%.
+- Patterns use ORIGEX design tokens only.
+- Non-directional patterns do not mirror in RTL.
+- Directional route/flow variants require explicit RTL/LTR behavior.
+- No third-party pattern library is a runtime/core dependency.
+- Pattern Monster and Haikei are reference/exploration tools only.
+- Customer-package pattern assets are ORIGEX-created or explicitly redistribution-cleared.
+- Wheat, forks, chef motifs, generic food doodles and globe clichés are excluded from the core pattern language.
+
+## 15. Motion Rules
 
 Motion levels:
 - Level 0: utility/legal — near-static.
@@ -266,7 +293,7 @@ Rules:
 - No heavy animation library by default.
 - Duration/easing come from tokens.
 
-## 15. Config Eligibility Rules
+## 16. Config Eligibility Rules
 
 Good `config.js` candidates:
 - global colors.
@@ -286,7 +313,7 @@ Not for `config.js`:
 - complex layout.
 - large markup.
 
-## 16. Data Files Planned
+## 17. Data Files Planned
 
 - `assets/data/products.json`
 - `assets/data/suppliers.json`
@@ -298,7 +325,7 @@ Rules:
 - Documented examples.
 - Graceful fallback where practical.
 
-## 17. Responsive Rules
+## 18. Responsive Rules
 
 Primary QA widths:
 - 360.
@@ -319,7 +346,7 @@ Rules:
 - No horizontal overflow.
 - Arabic and English content order checked independently.
 
-## 18. Accessibility Rules
+## 19. Accessibility Rules
 
 - Semantic HTML.
 - Keyboard navigation.
@@ -331,7 +358,7 @@ Rules:
 - Meaningful alt text.
 - Skip link.
 
-## 19. Technology & Performance Rules
+## 20. Technology & Performance Rules
 
 Approved V1 stack:
 - HTML5.
@@ -353,20 +380,20 @@ Rules:
 - Use production/minified Bootstrap assets in the final customer package.
 - Avoid unnecessary third-party plugins.
 
-## 20. Ecommerce / Cart Rule
+## 21. Ecommerce / Cart Rule
 
 V1 has no cart or checkout. Current conversion patterns are RFQ, enquiry, submit product and partner/distributor applications. Ecommerce requires a future separate scope.
 
-## 21. V1 Main-Features Rule
+## 22. V1 Main-Features Rule
 
 V1 implementation contains only Main Features defined in the frozen scope.
 
 Additional Features are not implemented in V1. They are retained only in the V1.1 Expansion Backlog.
 
-## 22. Page Design Profile Rule
+## 23. Page Design Profile Rule
 
-Before coding any page, complete `PAGE-DESIGN-PROFILE-TEMPLATE-V1.md` and declare registry IDs for every major UI building block.
+Before coding any page, complete `PAGE-DESIGN-PROFILE-TEMPLATE-V1.md` and declare registry IDs for every major UI building block, including any PT pattern IDs used.
 
-If a required component has no registry ID, stop and review the central registry. Do not create a page-local fork.
+If a required component or pattern has no registry ID, stop and review the central system. Do not create a page-local fork.
 
 Copyright © ORVEAX.
