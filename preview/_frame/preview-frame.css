@@ -1,0 +1,38 @@
+/*
+ * ORIGEX Preview Frame — review infrastructure only
+ * ORX-P01 / ORVEAX
+ * REMOVE / EXCLUDE FROM FINAL PRODUCTION PACKAGE
+ */
+:root{
+  --pf-bg:#0b161a;
+  --pf-panel:#111f24;
+  --pf-border:#294048;
+  --pf-text:#eef3f1;
+  --pf-muted:#91a3a8;
+  --pf-accent:#C47A4A;
+  --pf-radius:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--pf-bg);color:var(--pf-text);font-family:Arial,sans-serif}
+body{padding:14px}
+.pf-shell{display:grid;gap:12px;min-height:calc(100vh - 28px)}
+.pf-bar{position:sticky;top:8px;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 12px;border:1px solid var(--pf-border);background:rgba(17,31,36,.96);backdrop-filter:blur(12px);border-radius:var(--pf-radius)}
+.pf-brand{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--pf-muted)}
+.pf-brand strong{color:var(--pf-text);font-size:13px;letter-spacing:.04em}
+.pf-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pf-btn,.pf-select,.pf-link{min-height:36px;border:1px solid var(--pf-border);border-radius:9px;background:#16282e;color:var(--pf-text);padding:0 11px;font-size:12px;text-decoration:none;cursor:pointer}
+.pf-btn[aria-pressed="true"]{border-color:var(--pf-accent);box-shadow:inset 0 0 0 1px var(--pf-accent)}
+.pf-select{padding-inline:10px 30px}
+.pf-link{display:inline-flex;align-items:center}
+.pf-stage{min-width:0;border:1px solid var(--pf-border);border-radius:var(--pf-radius);background:#071014;overflow:auto;padding:14px}
+.pf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;align-items:start}
+.pf-device{display:grid;gap:8px;min-width:0}
+.pf-device__meta{display:flex;justify-content:space-between;gap:10px;color:var(--pf-muted);font-size:11px}
+.pf-viewport-shell{position:relative;overflow:hidden;border:1px solid #38505a;border-radius:12px;background:#fff;box-shadow:0 16px 36px rgba(0,0,0,.28)}
+.pf-viewport-shell iframe{display:block;border:0;background:#fff;transform-origin:0 0}
+.pf-focus{display:grid;place-items:start center;min-width:max-content}
+.pf-focus .pf-device{width:max-content}
+.pf-focus .pf-viewport-shell{overflow:visible}
+.pf-focus iframe{transform:none!important}
+.pf-hint{padding:8px 2px 0;color:var(--pf-muted);font-size:11px}
+@media(max-width:720px){body{padding:8px}.pf-bar{top:4px}.pf-stage{padding:8px}.pf-grid{grid-template-columns:1fr}}
