@@ -5,7 +5,7 @@ Owner: ORVEAX
 Status: APPROVED & FROZEN  
 Approval Date: 2026-08-19
 
-This document is the canonical authority for ORIGEX V1 foundation decisions. Page implementation must consume these rules. Foundation decisions are not reopened during normal page work. Any change to a frozen foundation requires a documented Design System / Architecture Change Request.
+This document is the canonical authority for ORIGEX V1 foundation decisions. Page implementation must consume these rules. Foundation decisions are not reopened during normal page work. Any change to a frozen foundation requires a documented Design System / Architecture / Content-System Change Request.
 
 ## 1. Approved Technology Foundation
 
@@ -200,17 +200,39 @@ Progressive enhancement is preferred: content and navigation should remain under
 
 Performance optimization does not reopen scope or design decisions.
 
-## 14. QA Definition of Done
+## 14. Content System
+
+Authorities:
+- `CONTENT-SYSTEM-V1.md`.
+- `MASTER-CONTENT-ARCHITECTURE-V1.md`.
+- `DEMO-CONTENT-DATASET-V1.md`.
+- V1.1 Content Pack files for deferred Additional Features.
+
+Locked rules:
+- Arabic is the master commercial language.
+- English is a professional adaptation, not literal translation.
+- Main Features and Additional Features use the same Content Contract.
+- No page or feature enters implementation before Content Status C6 — FROZEN.
+- Product/supplier/market demo facts use one canonical dataset and stable IDs.
+- No lorem ipsum in the commercial preview.
+- Unsupported claims, fake customers, fake certifications and fake performance metrics are prohibited.
+- Demo facts that can look factual must be disclosed as illustrative.
+- CTA vocabulary, microcopy, form states and disclaimers follow the Content System.
+- A future Additional Feature is incomplete until its full AR/EN Content Pack exists.
+
+Content corrections that fix verified facts do not reopen the foundation. A new audience promise, writing model, or commercial-content architecture requires a Content-System Change Request.
+
+## 15. QA Definition of Done
 
 Authority: `QA-DEFINITION-OF-DONE-V1.md`.
 
-A page is not closed until its Page Definition of Done passes. After closure, it reopens only for:
+A page is not closed until its Content/Page/Component Definition of Done passes. After closure, it reopens only for:
 - verified bug.
 - accessibility/performance/responsive defect.
-- approved content correction.
+- verified factual/content correction.
 - formal change request.
 
-## 15. Governance Lock
+## 16. Governance Lock
 
 The following are frozen for V1:
 - stack.
@@ -226,6 +248,10 @@ The following are frozen for V1:
 - data schema principles.
 - code naming/architecture.
 - browser support.
+- content-writing mechanism.
+- bilingual adaptation rules.
+- demo-data consistency rules.
+- CTA/microcopy/content-state rules.
 - QA Definition of Done.
 
 Normal page development cannot reopen these decisions.
