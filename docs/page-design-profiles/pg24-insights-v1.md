@@ -100,4 +100,7 @@ Required: self canonical, AR/EN/x-default hreflang, Open Graph baseline, `Collec
 ## Exit Gate
 PS7 only after source/editorial-safety/runtime/navigation/footer/icon/client-leak QA + rendered AR/EN 390/820/1366/1536 + search/filter/pagination/query/language-preservation/empty-state interaction QA all PASS. PS8 remains gated by deployed Cloudflare browser acceptance.
 
+## QA Rerun Note — 2026-08-20
+Initial PG24 rendered and interaction QA passed, but the first source gate detected a canonical Global Footer V1 drift in `en/insights.html`. The shared footer normalizer was rerun centrally; this profile update intentionally retriggers PG24 QA against the normalized footer before any PS7 promotion.
+
 Copyright © ORVEAX.
