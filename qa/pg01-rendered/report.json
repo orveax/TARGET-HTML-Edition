@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-19T02:08:57Z",
-  "failures": 0,
+  "generatedAt": "2026-08-19T04:12:43Z",
+  "failures": 4,
   "results": [
     {
       "target": "ar",
@@ -22,7 +22,7 @@
         "bodyBg": "rgb(250, 248, 244)",
         "bodyColor": "rgb(32, 40, 44)",
         "buttonsBelow44": [],
-        "cardHeightMax": 553,
+        "cardHeightMax": 464,
         "cardHeightMin": 83,
         "clientWidth": 375,
         "dir": "rtl",
@@ -32,7 +32,7 @@
         "h1LineHeight": "46.08px",
         "h1Width": 335,
         "headerHeight": 77,
-        "heroHeight": 1060,
+        "heroHeight": 1071,
         "horizontalOverflow": false,
         "lang": "ar",
         "minButtonHeight": 55,
@@ -61,7 +61,7 @@
         "bodyBg": "rgb(250, 248, 244)",
         "bodyColor": "rgb(32, 40, 44)",
         "buttonsBelow44": [],
-        "cardHeightMax": 584,
+        "cardHeightMax": 529,
         "cardHeightMin": 88,
         "clientWidth": 805,
         "dir": "rtl",
@@ -88,10 +88,10 @@
         "height": 900
       },
       "minTarget": 40,
-      "pass": true,
+      "pass": false,
       "checks": {
         "direction": true,
-        "noHorizontalOverflow": true,
+        "noHorizontalOverflow": false,
         "touchTargets": true,
         "heroReadable": true,
         "fontsReady": true
@@ -100,7 +100,7 @@
         "bodyBg": "rgb(250, 248, 244)",
         "bodyColor": "rgb(32, 40, 44)",
         "buttonsBelow44": [],
-        "cardHeightMax": 535,
+        "cardHeightMax": 486,
         "cardHeightMin": 88,
         "clientWidth": 1351,
         "dir": "rtl",
@@ -110,11 +110,72 @@
         "h1LineHeight": "69.9392px",
         "h1Width": 563,
         "headerHeight": 77,
-        "heroHeight": 619,
+        "heroHeight": 746,
         "horizontalOverflow": false,
         "lang": "ar",
         "minButtonHeight": 46,
-        "offscreen": [],
+        "offscreen": [
+          {
+            "cls": "orx-media orx-media--hero orx-pattern",
+            "left": -135,
+            "right": 615,
+            "tag": "DIV"
+          },
+          {
+            "cls": "h-100 d-flex flex-column justify-content-center p-4 p-lg-5",
+            "left": -134,
+            "right": 614,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-eyebrow",
+            "left": -96,
+            "right": 575,
+            "tag": "SPAN"
+          },
+          {
+            "cls": "orx-stack",
+            "left": -96,
+            "right": 575,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-card",
+            "left": -96,
+            "right": 575,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-cluster",
+            "left": -39,
+            "right": 558,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-card",
+            "left": -96,
+            "right": 575,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-cluster",
+            "left": -39,
+            "right": 558,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-card",
+            "left": -96,
+            "right": 575,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-cluster",
+            "left": -39,
+            "right": 558,
+            "tag": "DIV"
+          }
+        ],
         "scrollWidth": 1351
       },
       "screenshot": "qa/pg01-rendered/ar-laptop-1366.jpeg"
@@ -127,10 +188,10 @@
         "height": 960
       },
       "minTarget": 40,
-      "pass": true,
+      "pass": false,
       "checks": {
         "direction": true,
-        "noHorizontalOverflow": true,
+        "noHorizontalOverflow": false,
         "touchTargets": true,
         "heroReadable": true,
         "fontsReady": true
@@ -139,7 +200,7 @@
         "bodyBg": "rgb(250, 248, 244)",
         "bodyColor": "rgb(32, 40, 44)",
         "buttonsBelow44": [],
-        "cardHeightMax": 535,
+        "cardHeightMax": 486,
         "cardHeightMin": 88,
         "clientWidth": 1521,
         "dir": "rtl",
@@ -149,11 +210,54 @@
         "h1LineHeight": "78.6432px",
         "h1Width": 558,
         "headerHeight": 77,
-        "heroHeight": 730,
+        "heroHeight": 756,
         "horizontalOverflow": false,
         "lang": "ar",
         "minButtonHeight": 46,
-        "offscreen": [],
+        "offscreen": [
+          {
+            "cls": "orx-media orx-media--hero orx-pattern",
+            "left": -54,
+            "right": 696,
+            "tag": "DIV"
+          },
+          {
+            "cls": "h-100 d-flex flex-column justify-content-center p-4 p-lg-5",
+            "left": -53,
+            "right": 695,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-eyebrow",
+            "left": -15,
+            "right": 656,
+            "tag": "SPAN"
+          },
+          {
+            "cls": "orx-stack",
+            "left": -15,
+            "right": 656,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-card",
+            "left": -15,
+            "right": 656,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-card",
+            "left": -15,
+            "right": 656,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-card",
+            "left": -15,
+            "right": 656,
+            "tag": "DIV"
+          }
+        ],
         "scrollWidth": 1521
       },
       "screenshot": "qa/pg01-rendered/ar-desktop-1536.jpeg"
@@ -178,7 +282,7 @@
         "bodyBg": "rgb(250, 248, 244)",
         "bodyColor": "rgb(32, 40, 44)",
         "buttonsBelow44": [],
-        "cardHeightMax": 564,
+        "cardHeightMax": 455,
         "cardHeightMin": 79,
         "clientWidth": 375,
         "dir": "ltr",
@@ -188,7 +292,7 @@
         "h1LineHeight": "40.32px",
         "h1Width": 335,
         "headerHeight": 77,
-        "heroHeight": 1131,
+        "heroHeight": 1143,
         "horizontalOverflow": false,
         "lang": "en",
         "minButtonHeight": 52,
@@ -217,7 +321,7 @@
         "bodyBg": "rgb(250, 248, 244)",
         "bodyColor": "rgb(32, 40, 44)",
         "buttonsBelow44": [],
-        "cardHeightMax": 575,
+        "cardHeightMax": 520,
         "cardHeightMin": 83,
         "clientWidth": 805,
         "dir": "ltr",
@@ -244,10 +348,10 @@
         "height": 900
       },
       "minTarget": 40,
-      "pass": true,
+      "pass": false,
       "checks": {
         "direction": true,
-        "noHorizontalOverflow": true,
+        "noHorizontalOverflow": false,
         "touchTargets": true,
         "heroReadable": true,
         "fontsReady": true
@@ -256,7 +360,7 @@
         "bodyBg": "rgb(250, 248, 244)",
         "bodyColor": "rgb(32, 40, 44)",
         "buttonsBelow44": [],
-        "cardHeightMax": 524,
+        "cardHeightMax": 475,
         "cardHeightMin": 83,
         "clientWidth": 1351,
         "dir": "ltr",
@@ -270,7 +374,68 @@
         "horizontalOverflow": false,
         "lang": "en",
         "minButtonHeight": 44,
-        "offscreen": [],
+        "offscreen": [
+          {
+            "cls": "orx-media orx-media--hero orx-pattern",
+            "left": 736,
+            "right": 1486,
+            "tag": "DIV"
+          },
+          {
+            "cls": "h-100 d-flex flex-column justify-content-center p-4 p-lg-5",
+            "left": 737,
+            "right": 1485,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-eyebrow",
+            "left": 776,
+            "right": 1447,
+            "tag": "SPAN"
+          },
+          {
+            "cls": "orx-stack",
+            "left": 776,
+            "right": 1447,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-card",
+            "left": 776,
+            "right": 1447,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-cluster",
+            "left": 793,
+            "right": 1390,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-card",
+            "left": 776,
+            "right": 1447,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-cluster",
+            "left": 793,
+            "right": 1390,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-card",
+            "left": 776,
+            "right": 1447,
+            "tag": "DIV"
+          },
+          {
+            "cls": "orx-cluster",
+            "left": 793,
+            "right": 1390,
+            "tag": "DIV"
+          }
+        ],
         "scrollWidth": 1351
       },
       "screenshot": "qa/pg01-rendered/en-laptop-1366.jpeg"
@@ -283,10 +448,10 @@
         "height": 960
       },
       "minTarget": 40,
-      "pass": true,
+      "pass": false,
       "checks": {
         "direction": true,
-        "noHorizontalOverflow": true,
+        "noHorizontalOverflow": false,
         "touchTargets": true,
         "heroReadable": true,
         "fontsReady": true
@@ -295,7 +460,7 @@
         "bodyBg": "rgb(250, 248, 244)",
         "bodyColor": "rgb(32, 40, 44)",
         "buttonsBelow44": [],
-        "cardHeightMax": 524,
+        "cardHeightMax": 475,
         "cardHeightMin": 83,
         "clientWidth": 1521,
         "dir": "ltr",
@@ -309,7 +474,20 @@
         "horizontalOverflow": false,
         "lang": "en",
         "minButtonHeight": 44,
-        "offscreen": [],
+        "offscreen": [
+          {
+            "cls": "orx-media orx-media--hero orx-pattern",
+            "left": 825,
+            "right": 1575,
+            "tag": "DIV"
+          },
+          {
+            "cls": "h-100 d-flex flex-column justify-content-center p-4 p-lg-5",
+            "left": 826,
+            "right": 1574,
+            "tag": "DIV"
+          }
+        ],
         "scrollWidth": 1521
       },
       "screenshot": "qa/pg01-rendered/en-desktop-1536.jpeg"
