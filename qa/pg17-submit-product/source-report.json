@@ -1,8 +1,5 @@
 {
-  "failures": [
-    "en:unsupported-claim",
-    "global-footer-drift"
-  ],
+  "failures": [],
   "pages": {
     "ar": {
       "failures": [],
@@ -15,9 +12,7 @@
       ]
     },
     "en": {
-      "failures": [
-        "unsupported-claim"
-      ],
+      "failures": [],
       "sections": [
         "hero",
         "disclosure",
@@ -29,6 +24,5 @@
   },
   "runtime": {
     "failures": []
-  },
-  "footer_output": "DRIFT: ar/submit-product.html\nDRIFT: en/submit-product.html\n"
+  }
 }
