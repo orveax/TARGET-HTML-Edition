@@ -70,6 +70,9 @@
     "en/capabilities.html": {
       "failures": []
     },
+    "en/case-studies.html": {
+      "failures": []
+    },
     "en/company-profile.html": {
       "failures": []
     },
@@ -123,7 +126,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 40,
+    "pagesChecked": 41,
     "failures": 0
   }
 }
