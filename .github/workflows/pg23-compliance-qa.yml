@@ -1,0 +1,131 @@
+name: PG23 Certifications Compliance QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/certifications-compliance.html'
+      - 'en/certifications-compliance.html'
+      - 'assets/css/origex-compliance.css'
+      - 'docs/page-design-profiles/pg23-certifications-compliance-v1.md'
+      - 'assets/css/origex-components.css'
+      - 'assets/css/origex-shell.css'
+      - 'assets/icons/sprite.svg'
+      - 'assets/js/origex-ui.js'
+      - '.github/scripts/normalize_global_navigation.py'
+      - '.github/scripts/normalize_global_footer.py'
+      - '.github/workflows/pg23-compliance-qa.yml'
+
+concurrency:
+  group: pg23-compliance-qa
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --quiet beautifulsoup4 selenium
+      - name: Run PG23 source claim rendered and interaction QA
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json,re,subprocess,time
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.keys import Keys
+          R=Path('.');O=R/'qa/pg23-compliance';O.mkdir(parents=True,exist_ok=True)
+          source={'failures':[],'pages':{}}
+          sprite=(R/'assets/icons/sprite.svg').read_text(encoding='utf-8');sprite_ids=set(re.findall(r'<symbol[^>]+id="([^"]+)"',sprite))
+          specs={'ar':('rtl','اعرض متطلبات الجودة والامتثال بدون مبالغة أو غموض.','../en/certifications-compliance.html'),'en':('ltr','Present quality and compliance information without ambiguity or inflated claims.','../ar/certifications-compliance.html')}
+          expected=['hero','categories','quality','handling','traceability','documents','guidance','cta']
+          prohibited_schema={'Certification','Product','Offer','Review','Rating','AggregateRating'}
+          for lang,(direction,h1,other) in specs.items():
+            text=(R/lang/'certifications-compliance.html').read_text(encoding='utf-8');s=BeautifulSoup(text,'html.parser');f=[]
+            if s.html.get('lang')!=lang or s.html.get('dir')!=direction:f.append('lang-dir')
+            hs=s.find_all('h1');
+            if len(hs)!=1 or hs[0].get_text(' ',strip=True)!=h1:f.append('h1')
+            sections=[n.get('data-pg23-section') for n in s.select('[data-pg23-section]')]
+            if sections!=expected:f.append('sections:'+str(sections))
+            if len(s.select('.orx-compliance-card'))!=6:f.append('category-count')
+            if len(s.select('.orx-quality-step'))!=4:f.append('quality-count')
+            if len(s.select('.orx-principle'))!=4:f.append('principle-count')
+            if len(s.select('.orx-traceability__node'))!=4:f.append('trace-count')
+            if len(s.select('.orx-doc-row[role="row"]'))<5:f.append('document-rows')
+            combined=s.get_text(' ',strip=True).lower()
+            for marker in ('placeholder','demo'):
+              if marker not in combined:f.append('missing-boundary:'+marker)
+            if 'TARGET' in text or 'targetft' in text.lower():f.append('client-leak')
+            if re.search(r'certificate\s*(no\.?|number)\s*[:#]?\s*[a-z0-9-]{4,}',combined):f.append('fabricated-certificate-number')
+            if not s.find('a',href=other):f.append('language-switch')
+            if not s.select_one('[data-orx-mega-trigger][aria-current="page"]'):f.append('explore-current')
+            if not s.select_one('.orx-mega-menu a[href="certifications-compliance.html"][aria-current="page"]'):f.append('mega-current')
+            if s.select_one('.orx-mobile-nav a[href="certifications-compliance.html"]'):f.append('mobile-ia-fork')
+            if not s.select_one('footer[data-orx-global-footer="v1"] [data-orx-business-hours]'):f.append('footer')
+            canonical=s.find('link',rel='canonical')
+            if not canonical or canonical.get('href')!=f'https://example.com/{lang}/certifications-compliance.html':f.append('canonical')
+            hreflangs={n.get('hreflang') for n in s.find_all('link',rel='alternate')}
+            if not {'ar','en','x-default'}.issubset(hreflangs):f.append('hreflang')
+            try:
+              data=json.loads(s.find('script',attrs={'type':'application/ld+json'}).string);types={x.get('@type') for x in data.get('@graph',[])}
+              if not {'WebPage','BreadcrumbList'}.issubset(types):f.append('schema')
+              if types & prohibited_schema:f.append('prohibited-schema:'+str(sorted(types&prohibited_schema)))
+            except Exception:f.append('schema-json')
+            icons=set(re.findall(r'sprite\.svg#([a-z0-9-]+)',text));missing=sorted(icons-sprite_ids)
+            if missing:f.append('icons:'+str(missing))
+            source['pages'][lang]={'failures':f,'sections':sections};source['failures'] += [lang+':'+x for x in f]
+          for script,label in [('.github/scripts/normalize_global_navigation.py','nav-drift'),('.github/scripts/normalize_global_footer.py','footer-drift')]:
+            r=subprocess.run(['python',script,'--check'],capture_output=True,text=True)
+            if r.returncode:source['failures'].append(label);source[label]=r.stdout+r.stderr
+          (O/'source-report.json').write_text(json.dumps(source,ensure_ascii=False,indent=2),encoding='utf-8')
+          rendered={'failures':[],'cases':[],'interaction':{}}
+          opts=Options();opts.add_argument('--headless=new');opts.add_argument('--no-sandbox');opts.add_argument('--disable-dev-shm-usage');opts.add_argument('--window-size=820,1800')
+          srv=subprocess.Popen(['python','-m','http.server','8765'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL);time.sleep(1)
+          try:
+            for lang in ('ar','en'):
+              d=webdriver.Chrome(options=opts)
+              try:
+                for w in (390,820,1366,1536):
+                  f=[]
+                  try:
+                    d.set_window_size(w,1800);d.get(f'http://127.0.0.1:8765/{lang}/certifications-compliance.html');time.sleep(.15)
+                    if d.execute_script('return document.documentElement.scrollWidth')>d.execute_script('return document.documentElement.clientWidth')+1:f.append('overflow')
+                    if d.find_element(By.TAG_NAME,'html').get_attribute('dir')!=('rtl' if lang=='ar' else 'ltr'):f.append('direction')
+                    if len(d.find_elements(By.CSS_SELECTOR,'.orx-compliance-card'))!=6:f.append('cards')
+                    small=[]
+                    for e in d.find_elements(By.CSS_SELECTOR,'a,button,input,select'):
+                      if e.is_displayed() and e.rect['width'] and e.rect['height'] and (e.rect['width']<24 or e.rect['height']<24):small.append({'tag':e.tag_name,'w':round(e.rect['width'],1),'h':round(e.rect['height'],1),'text':e.text[:24],'href':e.get_attribute('href') or ''})
+                    if small:f.append('touch:'+json.dumps(small,ensure_ascii=False))
+                    if w>=1051:
+                      t=d.find_element(By.CSS_SELECTOR,'[data-orx-mega-trigger]');t.click();time.sleep(.04)
+                      if t.get_attribute('aria-expanded')!='true':f.append('mega-open')
+                      t.send_keys(Keys.ESCAPE);time.sleep(.04)
+                      if t.get_attribute('aria-expanded')!='false':f.append('mega-escape')
+                    else:
+                      op=d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-open]');op.click();time.sleep(.04);dr=d.find_element(By.CSS_SELECTOR,'[data-orx-mobile-drawer]')
+                      if dr.get_attribute('aria-hidden')!='false':f.append('drawer-open')
+                      d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-close]').click();time.sleep(.04)
+                      if dr.get_attribute('aria-hidden')!='true':f.append('drawer-close')
+                  except Exception as e:f.append(type(e).__name__+':'+str(e)[:160])
+                  rendered['cases'].append({'lang':lang,'width':w,'failures':f});rendered['failures'] += [f'{lang}-{w}:{x}' for x in f]
+              finally:d.quit()
+          finally:srv.terminate()
+          (O/'rendered-report.json').write_text(json.dumps(rendered,ensure_ascii=False,indent=2),encoding='utf-8')
+          status='PASS' if not source['failures'] and not rendered['failures'] else 'FAIL';(O/'run-status.txt').write_text(status+'\n',encoding='utf-8')
+          print(status);print(source['failures']);print(rendered['failures'])
+          if status!='PASS':raise SystemExit(1)
+          PY
+      - name: Commit PG23 evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg23-compliance || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "PG23 record Certifications Compliance QA evidence"
+          git pull --rebase origin main || true
+          git push origin main || true
