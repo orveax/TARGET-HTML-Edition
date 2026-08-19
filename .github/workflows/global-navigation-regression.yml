@@ -10,12 +10,22 @@ on:
       - 'assets/js/origex-ui.js'
       - '.github/scripts/normalize_global_navigation.py'
       - 'docs/GLOBAL-NAVIGATION-CONTRACT-V1.md'
+      - '.github/workflows/global-navigation-regression.yml'
+
+concurrency:
+  group: global-navigation-v1
+  cancel-in-progress: true
+
+permissions:
+  contents: write
 
 jobs:
   navigation-contract:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Normalize canonical standard navigation
+        run: python .github/scripts/normalize_global_navigation.py
       - name: Verify canonical standard navigation
         run: python .github/scripts/normalize_global_navigation.py --check
       - name: Verify Landing exception remains explicit
@@ -30,3 +40,11 @@ jobs:
                   raise SystemExit(f'{path}: landing must retain compact conversion header without mega menu')
           print('Landing exception PASS')
           PY
+      - name: Commit normalized navigation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ar en assets/js/origex-ui.js || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Normalize Global Navigation V1"
+          git push origin main
