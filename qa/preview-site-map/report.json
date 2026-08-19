@@ -1,11 +1,9 @@
 {
-  "failures": [
-    "implemented-count:25",
-    "pending-count:8"
-  ],
+  "failures": [],
   "cards": 33,
   "implemented": 25,
   "pending": 8,
   "linkedLanguagePages": 50,
-  "pg23": "PS7"
+  "pg24": "PS7",
+  "next": "PG25"
 }
