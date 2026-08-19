@@ -1,4 +1,5 @@
 name: Global Footer V1 QA
+# Retriggered after PG24 Insights addition so newly added AR/EN pages consume canonical Footer V1 before page closure.
 
 on:
   workflow_dispatch:
