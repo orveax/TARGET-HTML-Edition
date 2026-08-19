@@ -4,7 +4,7 @@ Product ID: ORX-P01
 Owner: ORVEAX  
 Repository: `orveax/origex-html-template`  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-20 — M5 IN PROGRESS / PG20 PS7 CI QA PASS / PG21 NEXT
+Last Updated: 2026-08-20 — M5 IN PROGRESS / PG20–PG21 PS7 CI QA PASS / PG22 NEXT
 
 This file is the concise repo-level execution tracker. Notion `ORIGEX — ORX-P01 | Project HQ` remains the product-state authority; GitHub records implementation and evidence. If this tracker conflicts with Project HQ, reconcile immediately.
 
@@ -22,10 +22,10 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 | M1 Global System & Components | PASS / CLOSED |
 | Global Navigation V1 | LOCKED / centrally normalized |
 | Global Footer V1 | LOCKED / centrally normalized |
-| F05 Icon Integrity | PASS — global automated gate active; 42 AR/EN pages / 0 missing sprite references at PG20 closure |
+| F05 Icon Integrity | PASS — global automated gate active; 44 AR/EN pages / 0 missing sprite references at PG21 closure |
 | Cloudflare Test Environment | AVAILABLE VIA MANUAL REBUILD |
 | Cloudflare Auto-Deploy | DEFERRED / repair pending |
-| Active Production Milestone | M5 IN PROGRESS — PG20 PS7; PG21 next |
+| Active Production Milestone | M5 IN PROGRESS — PG20–PG21 PS7; PG22 next |
 | Parallel Final Acceptance | M2/M3/M4 and completed M5 pages require applicable PS8 Cloudflare browser review |
 
 ## Page Production Snapshot
@@ -61,8 +61,8 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 
 ### M5 — Proof / Resources / Compliance / Content
 - PG20 Case Studies — **PS7 / IMPLEMENTED / CI QA PASS** — AR+EN; source/runtime failures 0; rendered 8/8; filter/query/language/empty-state interactions PASS; Cloudflare review pending.
-- PG21 Case Study Details — **NEXT VALID PAGE PRODUCTION ACTION**.
-- PG22 Downloads / Resources — NOT STARTED.
+- PG21 Case Study Details — **PS7 / IMPLEMENTED / CI QA PASS** — AR+EN; six HTML editorial case records; source/runtime failures 0; rendered 8/8; valid/invalid ID, language preservation, previous/next and related-case interactions PASS; Cloudflare review pending.
+- PG22 Downloads / Resources — **NEXT VALID PAGE PRODUCTION ACTION**.
 - PG23 Certifications & Compliance — NOT STARTED.
 - PG24 Insights / Blog — NOT STARTED.
 - PG25 Article Details — NOT STARTED.
@@ -98,14 +98,25 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 - Final evidence commit: `d559056fe2b6b6bd88b7d0debf371f19525e0d80`.
 - QA report: `docs/PG20-QA-REPORT-V1.md`.
 
+## PG21 Final Evidence
+
+- Profile: `docs/page-design-profiles/pg21-case-study-details-v1.md`.
+- AR/EN: `ar/case-study-details.html` + `en/case-study-details.html`.
+- CSS: `assets/css/origex-case-study-details.css`.
+- Runtime: `assets/js/origex-case-study-details.js`.
+- Editorial governance: six PG20-aligned case-detail records remain in HTML `<template>` elements; no new `cases.json` schema domain.
+- QA: `qa/pg21-case-study-details/` — source/runtime failures 0; rendered AR/EN × 390/820/1366/1536 = 8/8 PASS; valid/invalid ID, language preservation, previous/next and related-case interactions PASS.
+- Final evidence commit: `7b5be6b72985026d003f48da5f7b3674fb84fcf6`.
+- QA report: `docs/PG21-QA-REPORT-V1.md`.
+
 ## Shared F05 / Shell State
 
-- Global Footer V1 PASS after PG20 addition; no page-local footer fork.
-- F05 Icon Integrity PASS; active scan reached **42 AR/EN pages / 0 missing sprite references** at PG20 closure.
-- Global Navigation V1 remains locked. PG20 follows the canonical rule: Case Studies is current in the desktop Mega Menu, while the locked flat mobile drawer intentionally does not include Case Studies.
+- Global Footer V1 PASS after PG21 addition; no page-local footer fork.
+- F05 Icon Integrity PASS; active scan reached **44 AR/EN pages / 0 missing sprite references** at PG21 closure.
+- Global Navigation V1 remains locked. PG21 is mapped to Case Studies as the Explore parent without introducing a new flat mobile route.
 
 ## Next Action
 
-Prepare **PG21 — Case Study Details** through canonical content review → PS6 Page Design Profile / SEO contract → AR+EN implementation → related-case/detail-state QA. Cloudflare PS8 browser acceptance continues as a parallel closure stream.
+Prepare **PG22 — Downloads / Resources** through canonical content review → PS6 Page Design Profile / SEO contract → AR+EN implementation → resource/download-state/language/licensing QA. Cloudflare PS8 browser acceptance continues as a parallel closure stream.
 
 Copyright © ORVEAX.
