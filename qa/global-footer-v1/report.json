@@ -10,6 +10,9 @@
     "ar/capabilities.html": {
       "failures": []
     },
+    "ar/case-studies.html": {
+      "failures": []
+    },
     "ar/company-profile.html": {
       "failures": []
     },
@@ -126,7 +129,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 41,
+    "pagesChecked": 42,
     "failures": 0
   }
 }
