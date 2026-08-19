@@ -51,6 +51,7 @@ No third-party asset or dependency may enter the distributable package without a
 | ORX-MEDIA-008 | Commercial enquiry hero scene | `assets/media/demo/hero-commercial-enquiry.svg` | ORVEAX OWNED | PG04 landing demo media; abstract product-information-enquiry route; no client, brand, performance or conversion claim |
 | ORX-MEDIA-009 | Confectionery demo packshot | `assets/media/demo/product-confectionery.svg` | ORVEAX OWNED | PG10 fictional generic confectionery packaging; no third-party brand/trademark |
 | ORX-MEDIA-010 | Ingredients demo packshot | `assets/media/demo/product-ingredients.svg` | ORVEAX OWNED | PG10 fictional generic B2B ingredient packaging; no third-party brand/trademark |
+| ORX-MEDIA-011 | Company Profile demo cover | `assets/media/demo/company-profile-cover.svg` | ORVEAX OWNED | PG33 fictional digital company-profile cover; distributable; no client document, logo, trademark, person or verified-file claim |
 
 ## Fonts
 
