@@ -203,7 +203,62 @@
     });
   };
 
+  // M4 product IA: expose Product Categories and Products centrally.
+  // Product Details is treated as a child of Products for current-state semantics.
+  const hydrateProductNavigation = () => {
+    const isArabic = document.documentElement.lang.toLowerCase().startsWith('ar');
+    const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+    const activeProductFile = currentFile === 'product-details.html' ? 'products.html' : currentFile;
+    const productFiles = new Set(['product-categories.html', 'products.html']);
+    const labels = isArabic
+      ? {
+          items: [
+            ['product-categories.html', 'فئات المنتجات'],
+            ['products.html', 'كل المنتجات']
+          ]
+        }
+      : {
+          items: [
+            ['product-categories.html', 'Product Categories'],
+            ['products.html', 'All Products']
+          ]
+        };
+
+    qsa('[data-orx-mega-menu]').forEach((menu) => {
+      labels.items.forEach(([href, text]) => {
+        const link = menu.querySelector(`a[href="${href}"]`);
+        if (!link) return;
+        link.textContent = text;
+        link.dataset.orxProductLink = href;
+        link.removeAttribute('aria-current');
+        if (href === activeProductFile) link.setAttribute('aria-current', 'page');
+      });
+    });
+
+    qsa('.orx-mobile-nav').forEach((nav) => {
+      qsa('a', nav).forEach((link) => {
+        const href = (link.getAttribute('href') || '').split('#')[0];
+        if (productFiles.has(href)) link.remove();
+      });
+
+      const fragment = document.createDocumentFragment();
+      labels.items.forEach(([href, text]) => {
+        const link = document.createElement('a');
+        link.href = href;
+        link.textContent = text;
+        link.dataset.orxProductLink = href;
+        if (href === activeProductFile) link.setAttribute('aria-current', 'page');
+        fragment.append(link);
+      });
+
+      const lastHome = nav.querySelector('[data-orx-home-variant-link]:last-of-type');
+      if (lastHome) lastHome.after(fragment);
+      else nav.prepend(fragment);
+    });
+  };
+
   hydrateHomeFamilyNavigation();
+  hydrateProductNavigation();
   // Keep this separator so the retired one-time PG14 workflow cannot reapply the patch.
   hydrateCompanyNavigation();
   hydrateMarketNavigation();
