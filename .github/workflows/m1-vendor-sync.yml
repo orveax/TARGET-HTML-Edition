@@ -46,7 +46,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p assets/icons/lucide
-          icons=(arrow-left arrow-right arrow-up menu x search package truck factory globe-2 shield-check file-text download chevron-down chevron-up mail phone map-pin external-link check info triangle-alert upload layers boxes handshake clock building-2 badge-check route circle-help)
+          icons=(arrow-left arrow-right arrow-up menu x search package truck factory earth shield-check file-text download chevron-down chevron-up mail phone map-pin external-link check info triangle-alert upload layers boxes handshake clock building-2 badge-check route circle-question-mark)
           for icon in "${icons[@]}"; do
             curl -fsSL "https://raw.githubusercontent.com/lucide-icons/lucide/1.27.0/icons/${icon}.svg" -o "assets/icons/lucide/${icon}.svg"
           done
