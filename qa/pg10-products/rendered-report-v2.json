@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T15:43:58Z",
+  "generatedAt": "2026-08-19T15:46:20Z",
   "failures": 0,
   "results": [
     {
@@ -13,7 +13,6 @@
         "threeSections": true,
         "sixPageCards": true,
         "datasetLoaded": true,
-        "firstVisibleImageLoaded": true,
         "resultCount12": true
       },
       "metrics": {
@@ -21,7 +20,6 @@
         "count": "12 منتج مطابق",
         "dir": "rtl",
         "error": false,
-        "firstImageLoaded": true,
         "h1": true,
         "minButton": 44,
         "off": 0,
@@ -41,7 +39,6 @@
         "threeSections": true,
         "sixPageCards": true,
         "datasetLoaded": true,
-        "firstVisibleImageLoaded": true,
         "resultCount12": true
       },
       "metrics": {
@@ -49,7 +46,6 @@
         "count": "12 منتج مطابق",
         "dir": "rtl",
         "error": false,
-        "firstImageLoaded": true,
         "h1": true,
         "minButton": 44,
         "off": 0,
@@ -69,7 +65,6 @@
         "threeSections": true,
         "sixPageCards": true,
         "datasetLoaded": true,
-        "firstVisibleImageLoaded": true,
         "resultCount12": true
       },
       "metrics": {
@@ -77,7 +72,6 @@
         "count": "12 منتج مطابق",
         "dir": "rtl",
         "error": false,
-        "firstImageLoaded": true,
         "h1": true,
         "minButton": 44,
         "off": 0,
@@ -97,7 +91,6 @@
         "threeSections": true,
         "sixPageCards": true,
         "datasetLoaded": true,
-        "firstVisibleImageLoaded": true,
         "resultCount12": true
       },
       "metrics": {
@@ -105,7 +98,6 @@
         "count": "12 منتج مطابق",
         "dir": "rtl",
         "error": false,
-        "firstImageLoaded": true,
         "h1": true,
         "minButton": 44,
         "off": 0,
@@ -125,7 +117,6 @@
         "threeSections": true,
         "sixPageCards": true,
         "datasetLoaded": true,
-        "firstVisibleImageLoaded": true,
         "resultCount12": true
       },
       "metrics": {
@@ -133,7 +124,6 @@
         "count": "12 matching products",
         "dir": "ltr",
         "error": false,
-        "firstImageLoaded": true,
         "h1": true,
         "minButton": 44,
         "off": 0,
@@ -153,7 +143,6 @@
         "threeSections": true,
         "sixPageCards": true,
         "datasetLoaded": true,
-        "firstVisibleImageLoaded": true,
         "resultCount12": true
       },
       "metrics": {
@@ -161,7 +150,6 @@
         "count": "12 matching products",
         "dir": "ltr",
         "error": false,
-        "firstImageLoaded": true,
         "h1": true,
         "minButton": 44,
         "off": 0,
@@ -181,7 +169,6 @@
         "threeSections": true,
         "sixPageCards": true,
         "datasetLoaded": true,
-        "firstVisibleImageLoaded": true,
         "resultCount12": true
       },
       "metrics": {
@@ -189,7 +176,6 @@
         "count": "12 matching products",
         "dir": "ltr",
         "error": false,
-        "firstImageLoaded": true,
         "h1": true,
         "minButton": 44,
         "off": 0,
@@ -209,7 +195,6 @@
         "threeSections": true,
         "sixPageCards": true,
         "datasetLoaded": true,
-        "firstVisibleImageLoaded": true,
         "resultCount12": true
       },
       "metrics": {
@@ -217,7 +202,6 @@
         "count": "12 matching products",
         "dir": "ltr",
         "error": false,
-        "firstImageLoaded": true,
         "h1": true,
         "minButton": 44,
         "off": 0,
