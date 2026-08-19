@@ -112,6 +112,9 @@
     "en/index.html": {
       "failures": []
     },
+    "en/insights.html": {
+      "failures": []
+    },
     "en/landing.html": {
       "failures": []
     },
@@ -150,7 +153,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 49,
+    "pagesChecked": 50,
     "failures": 0
   }
 }
