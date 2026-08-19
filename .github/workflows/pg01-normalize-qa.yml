@@ -1,0 +1,171 @@
+name: PG01 Canonical Normalize & QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.pg01-qa-trigger'
+      - '.github/workflows/pg01-normalize-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  normalize-and-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Normalize PG01 AR/EN against canonical registry and SEO contract
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          pages = {
+              Path('ar/index.html'): {
+                  'lang': 'ar', 'dir': 'rtl', 'locale': 'ar_QA',
+                  'url': 'https://example.com/ar/',
+                  'title': 'تجارة واستيراد الأغذية B2B | ORIGEX',
+                  'desc': 'استعرض منتجات وموردين وفئات غذائية من خلال بيانات تجارية منظمة ومسارات واضحة لطلب عرض السعر أو تقديم المنتج.'
+              },
+              Path('en/index.html'): {
+                  'lang': 'en', 'dir': 'ltr', 'locale': 'en_US',
+                  'url': 'https://example.com/en/',
+                  'title': 'B2B Food Trading & Import | ORIGEX',
+                  'desc': 'Explore food products, suppliers and categories through structured commercial data with clear routes for RFQ and product submission.'
+              }
+          }
+
+          for path, meta in pages.items():
+              text = path.read_text(encoding='utf-8')
+              text = text.replace('categories.html', 'product-categories.html')
+              text = text.replace('partner.html', 'become-partner.html')
+              text = text.replace('data-orx-email="sales"', 'data-orx-email="trade"')
+
+              if '<meta name="theme-color"' not in text:
+                  text = text.replace('<meta name="description"', '<meta name="theme-color" content="#15343B">\n  <meta name="description"', 1)
+
+              if '<meta property="og:site_name"' not in text:
+                  text = text.replace(
+                      '<meta property="og:type" content="website">',
+                      '<meta property="og:type" content="website">\n  <meta property="og:site_name" content="ORIGEX Trading Demo">\n  <meta property="og:locale" content="%s">' % meta['locale'],
+                      1
+                  )
+
+              if '<meta property="og:url"' not in text:
+                  marker = '<meta property="og:description" content="%s">' % meta['desc']
+                  text = text.replace(marker, marker + '\n  <meta property="og:url" content="%s">' % meta['url'], 1)
+
+              if 'application/ld+json' not in text:
+                  jsonld = '''\n  <script type="application/ld+json">\n  {\n    "@context": "https://schema.org",\n    "@graph": [\n      {"@type":"WebSite","name":"ORIGEX Trading Demo","url":"%s","inLanguage":"%s"},\n      {"@type":"Organization","name":"ORIGEX Trading Demo","url":"%s","email":"trade@example.com","telephone":"+974 0000 0000","address":{"@type":"PostalAddress","addressLocality":"Doha","addressCountry":"QA"}}\n    ]\n  }\n  </script>\n''' % (meta['url'], meta['lang'], meta['url'])
+                  text = text.replace('</head>', jsonld + '</head>', 1)
+
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Run PG01 structural content SEO and asset QA
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          from urllib.parse import urlparse
+          import json, re, sys
+
+          ROOT = Path('.')
+          page_specs = {
+            'ar/index.html': {
+              'lang':'ar','dir':'rtl','h1':'من المصدر إلى السوق، بخطوات تجارية أوضح.',
+              'disclosure':'جميع الأسماء والبيانات التجارية الواردة في العرض التوضيحي أمثلة خيالية لأغراض القالب، ويجب استبدالها ببيانات فعلية قبل النشر.',
+              'canonical':'https://example.com/ar/'
+            },
+            'en/index.html': {
+              'lang':'en','dir':'ltr','h1':'From source to market, through a clearer commercial route.',
+              'disclosure':'All names and commercial data in this demo are fictional template examples and must be replaced with verified business information before publication.',
+              'canonical':'https://example.com/en/'
+            }
+          }
+
+          forbidden = ['targetft', 'target.targetft', 'cdn.jsdelivr', 'unpkg.com', 'cdnjs.cloudflare', 'fonts.googleapis.com', 'fonts.gstatic.com']
+          canonical_files = {'product-categories.html','products.html','product-details.html','suppliers.html','market-access.html','markets.html','for-suppliers.html','submit-product.html','rfq.html','become-partner.html','about.html','contact.html','faq.html','resources.html'}
+
+          class Parser(HTMLParser):
+            def __init__(self):
+              super().__init__(); self.ids=[]; self.h1=[]; self.links=[]; self.assets=[]; self.html_attrs={}; self.in_h1=False; self.h1_buf=[]; self.jsonld=0
+            def handle_starttag(self, tag, attrs):
+              d=dict(attrs)
+              if tag=='html': self.html_attrs=d
+              if 'id' in d: self.ids.append(d['id'])
+              if tag=='h1': self.in_h1=True; self.h1_buf=[]
+              if tag=='a' and 'href' in d: self.links.append(d['href'])
+              if tag in ('link','script','img'):
+                key='href' if tag=='link' else 'src'
+                if d.get(key): self.assets.append(d[key])
+              if tag=='script' and d.get('type')=='application/ld+json': self.jsonld += 1
+            def handle_endtag(self, tag):
+              if tag=='h1': self.in_h1=False; self.h1.append(''.join(self.h1_buf).strip())
+            def handle_data(self, data):
+              if self.in_h1: self.h1_buf.append(data)
+
+          failures=[]; report=[]
+          for rel,spec in page_specs.items():
+            path=ROOT/rel; text=path.read_text(encoding='utf-8'); p=Parser(); p.feed(text)
+            checks=[]
+            def check(name, ok, detail=''):
+              checks.append((name,ok,detail));
+              if not ok: failures.append(f'{rel}: {name} {detail}')
+            check('language/direction', p.html_attrs.get('lang')==spec['lang'] and p.html_attrs.get('dir')==spec['dir'])
+            check('single canonical H1', len(p.h1)==1 and p.h1[0]==spec['h1'], repr(p.h1))
+            check('mandatory demo disclosure', spec['disclosure'] in text)
+            check('canonical URL', f'rel="canonical" href="{spec["canonical"]}"' in text)
+            check('hreflang AR/EN/x-default', all(x in text for x in ('hreflang="ar"','hreflang="en"','hreflang="x-default"')))
+            check('Open Graph baseline', all(x in text for x in ('og:type','og:site_name','og:title','og:description','og:url')))
+            check('structured data baseline', p.jsonld >= 1)
+            check('unique IDs', len(p.ids)==len(set(p.ids)))
+            check('no forbidden client/CDN leakage', not any(x.lower() in text.lower() for x in forbidden))
+            check('canonical file names', 'categories.html' not in text and 'partner.html' not in text)
+            check('future route names valid', all((urlparse(h).path.split('/')[-1] in canonical_files or urlparse(h).path.split('/')[-1] in ('','index.html') or h.startswith('#') or h.startswith('../')) for h in p.links if not h.startswith(('mailto:','tel:','http://','https://'))), str(p.links))
+            local_assets=[]
+            for asset in p.assets:
+              if asset.startswith(('http://','https://','data:','#')): continue
+              clean=asset.split('#',1)[0].split('?',1)[0]
+              if not clean: continue
+              local=(path.parent/clean).resolve()
+              local_assets.append((asset, local.exists()))
+            check('local linked assets exist', all(ok for _,ok in local_assets), str([a for a,ok in local_assets if not ok]))
+            check('local Bootstrap runtime', '../assets/vendor/bootstrap/' in text)
+            check('M1 runtime present', all(x in text for x in ('../assets/js/config.js','../assets/js/config-engine.js','../assets/js/origex-ui.js')))
+            check('FAQ disclosure interaction', text.count('data-orx-accordion-trigger') >= 3)
+            check('featured demo products', all(x in text for x in ('Tomato','Hibiscus','UHT','Frozen') ) if spec['lang']=='en' else all(x in text for x in ('طماطم','كركديه','UHT','مجمدة')))
+            report.append((rel,checks))
+
+          lines=['# ORIGEX — PG01 Home 01 QA Report V1','', 'Product ID: ORX-P01  ', 'Page: PG01 — Home 01 — Food Trading / Importer  ', 'Date: 2026-08-19  ', 'Gate: SOURCE / STRUCTURE / CONTENT / SEO / ASSET INTEGRITY', '']
+          for rel,checks in report:
+            lines += [f'## {rel}','', '| Check | Result | Detail |','|---|---|---|']
+            for name,ok,detail in checks:
+              detail=(detail or '').replace('|','/').replace('\n',' ')[:500]
+              lines.append(f'| {name} | {"PASS" if ok else "FAIL"} | {detail} |')
+            lines.append('')
+          if failures:
+            lines += ['## Result','','**FAIL — PG01 remains in QA.**',''] + [f'- {x}' for x in failures]
+          else:
+            lines += ['## Result','','**PASS — automated source/content/SEO/asset gate.**','', 'This gate does not substitute the later live visual/browser matrix. PG01 may reach Content C8 only when the project governance accepts the available visual/responsive QA evidence.']
+          Path('docs/PG01-QA-REPORT-V1.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          if failures:
+            print('\n'.join(failures)); sys.exit(1)
+          PY
+
+      - name: Commit normalized PG01 and QA evidence
+        shell: bash
+        run: |
+          git config user.name "orveax-build"
+          git config user.email "actions@users.noreply.github.com"
+          git add ar/index.html en/index.html docs/PG01-QA-REPORT-V1.md
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git commit -m "PG01 normalize canonical routes and pass source QA"
+          git push origin main
