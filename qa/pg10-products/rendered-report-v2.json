@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-19T15:42:25Z",
-  "failures": 2,
+  "generatedAt": "2026-08-19T15:43:58Z",
+  "failures": 0,
   "results": [
     {
       "lang": "ar",
@@ -13,7 +13,7 @@
         "threeSections": true,
         "sixPageCards": true,
         "datasetLoaded": true,
-        "firstVisibleImageLoaded": false,
+        "firstVisibleImageLoaded": true,
         "resultCount12": true
       },
       "metrics": {
@@ -21,14 +21,14 @@
         "count": "12 منتج مطابق",
         "dir": "rtl",
         "error": false,
-        "firstImageLoaded": false,
+        "firstImageLoaded": true,
         "h1": true,
         "minButton": 44,
         "off": 0,
         "overflow": false,
         "sections": 3
       },
-      "pass": false
+      "pass": true
     },
     {
       "lang": "ar",
@@ -125,7 +125,7 @@
         "threeSections": true,
         "sixPageCards": true,
         "datasetLoaded": true,
-        "firstVisibleImageLoaded": false,
+        "firstVisibleImageLoaded": true,
         "resultCount12": true
       },
       "metrics": {
@@ -133,14 +133,14 @@
         "count": "12 matching products",
         "dir": "ltr",
         "error": false,
-        "firstImageLoaded": false,
+        "firstImageLoaded": true,
         "h1": true,
         "minButton": 44,
         "off": 0,
         "overflow": false,
         "sections": 3
       },
-      "pass": false
+      "pass": true
     },
     {
       "lang": "en",
@@ -227,8 +227,5 @@
       "pass": true
     }
   ],
-  "errors": [
-    "ar-390:{'direction': True, 'noOverflow': True, 'touchTargets': True, 'h1': True, 'threeSections': True, 'sixPageCards': True, 'datasetLoaded': True, 'firstVisibleImageLoaded': False, 'resultCount12': True}:{'cards': 6, 'count': '12 منتج مطابق', 'dir': 'rtl', 'error': False, 'firstImageLoaded': False, 'h1': True, 'minButton': 44, 'off': 0, 'overflow': False, 'sections': 3}",
-    "en-390:{'direction': True, 'noOverflow': True, 'touchTargets': True, 'h1': True, 'threeSections': True, 'sixPageCards': True, 'datasetLoaded': True, 'firstVisibleImageLoaded': False, 'resultCount12': True}:{'cards': 6, 'count': '12 matching products', 'dir': 'ltr', 'error': False, 'firstImageLoaded': False, 'h1': True, 'minButton': 44, 'off': 0, 'overflow': False, 'sections': 3}"
-  ]
+  "errors": []
 }
