@@ -1,0 +1,65 @@
+name: PG12 Render Diagnostic
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/pg12-render-diagnostic.yml'
+permissions:
+  contents: write
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --quiet selenium
+      - name: Diagnose PG12 rendered phase
+        run: |
+          python - <<'PY'
+          import json, subprocess, time, traceback
+          from pathlib import Path
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.keys import Keys
+          from selenium.webdriver.support.ui import WebDriverWait, Select
+          out=Path('qa/pg12-suppliers'); out.mkdir(parents=True,exist_ok=True)
+          report={'steps':[],'exception':None}
+          server=subprocess.Popen(['python','-m','http.server','8765'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL);time.sleep(1)
+          def drv(w=1366):
+            o=Options();o.add_argument('--headless=new');o.add_argument('--no-sandbox');o.add_argument('--disable-dev-shm-usage');o.add_argument(f'--window-size={w},1200');return webdriver.Chrome(options=o)
+          try:
+            for lang,w in [('ar',390),('en',1366)]:
+              d=drv(w)
+              try:
+                d.get(f'http://127.0.0.1:8765/{lang}/suppliers.html')
+                WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg12-root]').get_attribute('data-load-state') in ('ready','error'))
+                report['steps'].append({'step':f'{lang}-{w}-load','state':d.find_element(By.CSS_SELECTOR,'[data-pg12-root]').get_attribute('data-load-state'),'cards':len(d.find_elements(By.CSS_SELECTOR,'[data-supplier-id]')),'featured':len(d.find_elements(By.CSS_SELECTOR,'[data-featured-supplier-id]'))})
+                if w<1051:
+                  op=d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-open]');op.click();time.sleep(.05);report['steps'].append({'step':'drawer-open','hidden':d.find_element(By.CSS_SELECTOR,'[data-orx-mobile-drawer]').get_attribute('aria-hidden')});d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-close]').click()
+                else:
+                  t=d.find_element(By.CSS_SELECTOR,'[data-orx-mega-trigger]');t.click();time.sleep(.05);report['steps'].append({'step':'mega-open','expanded':t.get_attribute('aria-expanded')});t.send_keys(Keys.ESCAPE)
+              finally:d.quit()
+            d=drv()
+            try:
+              d.get('http://127.0.0.1:8765/en/suppliers.html');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg12-root]').get_attribute('data-load-state')=='ready')
+              s=d.find_element(By.CSS_SELECTOR,'[data-pg12-search]');s.send_keys('NordVale');time.sleep(.08);report['steps'].append({'step':'search','cards':len(d.find_elements(By.CSS_SELECTOR,'[data-supplier-id]'))})
+              s.clear();time.sleep(.05);Select(d.find_element(By.CSS_SELECTOR,'[data-pg12-category]')).select_by_value('frozen');time.sleep(.08);report['steps'].append({'step':'category','cards':len(d.find_elements(By.CSS_SELECTOR,'[data-supplier-id]'))})
+              d.find_element(By.CSS_SELECTOR,'[data-pg12-reset]').click();time.sleep(.08);report['steps'].append({'step':'reset','cards':len(d.find_elements(By.CSS_SELECTOR,'[data-supplier-id]'))})
+              Select(d.find_element(By.CSS_SELECTOR,'[data-pg12-origin]')).select_by_value('IT');time.sleep(.08);report['steps'].append({'step':'origin','cards':len(d.find_elements(By.CSS_SELECTOR,'[data-supplier-id]'))})
+            finally:d.quit()
+          except Exception as e:
+            report['exception']={'type':type(e).__name__,'message':str(e),'traceback':traceback.format_exc()[-5000:]}
+          finally:server.terminate()
+          (out/'diagnostic.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(report,ensure_ascii=False,indent=2))
+          PY
+      - name: Commit diagnostic
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg12-suppliers/diagnostic.json || true
+          git diff --cached --quiet && exit 0
+          git commit -m "PG12 record rendered QA diagnostic"
+          git push origin main
