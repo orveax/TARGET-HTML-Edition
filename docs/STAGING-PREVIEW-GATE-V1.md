@@ -2,13 +2,13 @@
 
 Product ID: ORX-P01  
 Owner: ORVEAX  
-Status: APPROVED CONTROL GATE  
+Status: APPROVED CONTROL GATE — R1 ALIGNED  
 Adopted: 2026-08-19  
 Runtime: **Cloudflare Test Environment**
 
 ## Purpose
 
-This gate separates page implementation/QA from deployed browser review.
+This gate controls deployed browser acceptance before **PS8 — Final Page Acceptance**.
 
 ORIGEX uses this deployment model:
 
@@ -20,33 +20,42 @@ Cloudflare Git Integration / Test Environment
 Cloudflare test domain
 ```
 
-GitHub is the canonical source remote. Cloudflare is the intended test/deployment runtime.
+GitHub is the canonical source remote. Cloudflare is the test/deployment runtime.
 
 GitHub Pages is **not** part of the ORIGEX deployment architecture.
 
-## Required Staging Checks
+## Canonical Repository
+
+Repository: `orveax/origex-html-template`  
+Branch: `main`
+
+Historical references to `orveax/TARGET-HTML-Edition` are superseded and must not be used as the deployment authority.
+
+## Required Staging Checks Before PS8
 
 1. Cloudflare test deployment target is configured and reachable.
-2. Deployment source is the canonical GitHub repository `orveax/TARGET-HTML-Edition`.
-3. Production/test branch mapping uses `main` unless ORVEAX explicitly changes it.
-4. Root `/` resolves successfully.
-5. Arabic route resolves successfully.
-6. English route resolves successfully.
-7. CSS, JavaScript, fonts, icons, patterns and media load correctly from Cloudflare.
-8. No broken relative/base-path assumptions appear in the deployed environment.
-9. Test-environment indexability is controlled appropriately.
-10. External browser smoke review is completed on mobile and desktop.
+2. Deployment source is `orveax/origex-html-template`.
+3. production/test branch mapping uses `main` unless ORVEAX explicitly changes it.
+4. root `/` resolves successfully.
+5. applicable Arabic routes resolve successfully.
+6. applicable English routes resolve successfully.
+7. CSS, JavaScript, fonts, icons, patterns, media and structured data files load correctly from Cloudflare.
+8. no broken relative/base-path assumptions appear in the deployed environment.
+9. test-environment indexability is controlled appropriately.
+10. external browser smoke review is completed on representative mobile and desktop viewports.
 11. Arabic RTL and English LTR are reviewed through the deployed Cloudflare URL.
-12. The deployed revision is traceable to a Git commit.
+12. deployed revision is traceable to a Git commit.
 
 ## Deployment Automation vs Preview Availability
 
 These are separate controls.
 
 ### Preview Availability
-A Cloudflare deployment may be valid even when a deployment is started manually with **Rebuild**.
+
+A Cloudflare deployment may be valid when it is started manually with **Rebuild**.
 
 ### Auto-Deploy Automation
+
 Preferred operating mode:
 
 ```text
@@ -57,17 +66,17 @@ Cloudflare detects commit
 automatic build/deploy
 ```
 
-Failure of the Git push trigger is an operational automation issue. It does not invalidate page code or prevent development if the Cloudflare Test Environment can still deploy the current `main` revision through Manual Rebuild.
+Failure of the Git push trigger is an operational automation issue. It does not invalidate valid PS7 page code/CI evidence when Manual Rebuild still deploys the current `main` revision.
 
 ## Current ORX-P01 State — 2026-08-19
 
-Confirmed by ORVEAX administrator:
+Confirmed operating state:
 - Cloudflare Test Environment exists.
-- The deployed site works when **Rebuild** is triggered manually.
-- GitHub `main` is receiving ORIGEX commits correctly.
-- Current issue: Cloudflare is **not automatically starting a deployment after each push to `main`**.
+- deployed site works when **Rebuild** is triggered manually.
+- GitHub `main` receives ORIGEX commits correctly.
+- current issue: Cloudflare does not automatically start a deployment after each push to `main`.
 - Manual Rebuild remains functional.
-- Auto-deploy diagnosis/correction is explicitly deferred to the next work session.
+- auto-deploy diagnosis/correction remains deferred to the dedicated infrastructure session.
 
 Current control states:
 
@@ -77,15 +86,19 @@ Cloudflare Auto-Deploy Trigger: DEFERRED / NEEDS CORRECTION
 GitHub Pages: NOT USED
 ```
 
-The exact Cloudflare test URL is managed in the deployment environment and should be added to canonical documentation when confirmed explicitly.
+The exact Cloudflare test URL is not stored in the current canonical repository/Notion records. It must be recorded when explicitly confirmed from the deployment environment.
 
-## Page-Family Rule
+## Parallel Page-Production Rule
 
-The first representative page in a family should be viewed in the actual Cloudflare Test Environment before that family is considered visually validated.
+Cloudflare review is a **PS8/final-acceptance gate**, not a PS7 implementation gate.
 
-Manual Rebuild is an acceptable temporary deployment path while auto-deploy is being repaired.
+Therefore:
+- PS6 preparation and PS7 implementation may continue while Cloudflare review is pending.
+- Manual Rebuild is acceptable temporarily.
+- a page cannot advance from PS7 to PS8 until the applicable deployed Cloudflare checks pass.
+- a milestone cannot close while its required Cloudflare acceptance remains pending.
 
-Therefore, auto-deploy failure alone does **not** block PG02 implementation. PG02 closure still requires its current source revision to be deployed to Cloudflare and smoke-reviewed before final acceptance.
+This rule supersedes earlier wording that implied the next page in a family must be code-blocked while the representative staging review was pending.
 
 ## Status Vocabulary
 
@@ -101,16 +114,17 @@ Automation state:
 - `AUTO-DEPLOY DEGRADED`
 - `AUTO-DEPLOY DEFERRED`
 
-Do not map deployment states onto C0–C8; deployment readiness and page/content QA are separate control dimensions.
+Page stage remains PS0–PS8 and is tracked separately from deployment automation state. PS8, however, requires the applicable deployed-browser acceptance defined by this gate.
 
 ## Deferred Operational Item
 
-Next Cloudflare session should verify:
-- connected repository = `orveax/TARGET-HTML-Edition`;
+Next Cloudflare infrastructure session should verify:
+- connected repository = `orveax/origex-html-template`;
 - branch = `main`;
 - automatic deployments enabled;
 - build watch paths do not exclude normal ORIGEX changes;
 - latest GitHub commit is detected automatically;
-- one test commit produces a Cloudflare deployment without manual Rebuild.
+- one harmless test commit produces a Cloudflare deployment without Manual Rebuild;
+- canonical test URL is recorded in Notion and deployment documentation.
 
 Copyright © ORVEAX.
