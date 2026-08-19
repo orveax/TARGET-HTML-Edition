@@ -45,8 +45,8 @@ jobs:
           out=root/'qa/pg17-submit-product'; out.mkdir(parents=True,exist_ok=True)
           source={'failures':[],'pages':{},'runtime':{}}
           expected={
-            'ar':{'file':'ar/submit-product.html','dir':'rtl','h1':'قدّم منتجك بمعلومات تجارية قابلة للمراجعة.','other':'../en/submit-product.html'},
-            'en':{'file':'en/submit-product.html','dir':'ltr','h1':'Submit your product with commercial information that can be reviewed.','other':'../ar/submit-product.html'}
+            'ar':{'file':'ar/submit-product.html','dir':'rtl','h1':'قدّم منتجك بمعلومات تجارية قابلة للمراجعة.','other':'../en/submit-product.html','boundary':'لا يعني التسجيل أو ضمان دخول السوق'},
+            'en':{'file':'en/submit-product.html','dir':'ltr','h1':'Submit your product with commercial information that can be reviewed.','other':'../ar/submit-product.html','boundary':'do not imply registration or guaranteed entry'}
           }
           frozen_sections=['hero','disclosure','form','review','cta']
           required_names=['companyName','companyRole','contactName','email','productName','category','origin','packSize','packaging','moq','consent']
@@ -97,8 +97,9 @@ jobs:
                           if ext not in accept: failures.append(f'accept:{ext}')
                   if not form.select_one('[data-orx-submit-success][role="status"]'): failures.append('success-status')
                   if not form.select_one('[data-orx-submit-error][role="alert"]'): failures.append('error-status')
+              if cfg['boundary'].lower() not in text.lower(): failures.append('mandatory-market-entry-boundary')
               if 'TARGET' in text or 'targetft' in text.lower(): failures.append('client-leakage')
-              if re.search(r'automatic approval|guaranteed entry|verified supplier|exclusive distributor',text,re.I): failures.append('unsupported-claim')
+              if re.search(r'automatic approval|verified supplier|exclusive distributor',text,re.I): failures.append('unsupported-claim')
               if 'does not transmit' not in text and 'لا يتم إرسال' not in text: failures.append('demo-backend-disclosure')
               html_icons=set(re.findall(r'sprite\.svg#([a-z0-9-]+)',text)); missing=sorted(html_icons-sprite_ids)
               if missing: failures.append(f'icons:{missing}')
@@ -165,7 +166,6 @@ jobs:
                   d=None; failures=[]
                   try:
                       d=driver_for(820); d.get(f'http://127.0.0.1:8765/{lang}/submit-product.html')
-                      form=d.find_element(By.CSS_SELECTOR,'[data-orx-submit-product-form]')
                       submit=d.find_element(By.CSS_SELECTOR,'button[type="submit"]')
                       d.execute_script("arguments[0].scrollIntoView({block:'center'});",submit); submit.send_keys(Keys.ENTER); time.sleep(.1)
                       if d.find_element(By.CSS_SELECTOR,'[data-orx-submit-success]').is_displayed(): failures.append('empty-form-success')
@@ -175,7 +175,10 @@ jobs:
                       for name,value in values.items(): d.find_element(By.NAME,name).send_keys(value)
                       d.find_element(By.NAME,'companyRole').send_keys('Manufacturer' if lang=='en' else 'مصنع')
                       d.find_element(By.NAME,'category').send_keys('Ambient Foods' if lang=='en' else 'أغذية جافة')
-                      d.find_element(By.NAME,'consent').click()
+                      consent=d.find_element(By.NAME,'consent')
+                      d.execute_script("arguments[0].scrollIntoView({block:'center',inline:'nearest'}); arguments[0].focus();",consent); time.sleep(.05)
+                      consent.send_keys(Keys.SPACE); time.sleep(.05)
+                      if not consent.is_selected(): failures.append('consent-keyboard')
                       d.execute_script("arguments[0].scrollIntoView({block:'center'});",submit); submit.send_keys(Keys.ENTER); time.sleep(.12)
                       if not d.find_element(By.CSS_SELECTOR,'[data-orx-submit-success]').is_displayed(): failures.append('valid-form-no-success')
                       if d.execute_script("return performance.getEntriesByType('resource').filter(x=>x.initiatorType==='fetch'||x.initiatorType==='xmlhttprequest').length") != 0: failures.append('network-request')
@@ -184,7 +187,7 @@ jobs:
                       if d:
                           try:d.quit()
                           except Exception:pass
-                  rendered['interaction'][f'{lang}-validation']=failures; rendered['failures'].extend([f'{lang}-validation:{x}' for x in failures])
+                  rendered['interaction'][f'{lang}-validation-keyboard']=failures; rendered['failures'].extend([f'{lang}-validation-keyboard:{x}' for x in failures])
 
               tmp=Path(tempfile.gettempdir()); valid=tmp/'pg17-sample.pdf'; invalid=tmp/'pg17-sample.exe'; valid.write_bytes(b'%PDF-1.4 demo'); invalid.write_bytes(b'demo')
               for lang in ('en','ar'):
@@ -221,4 +224,5 @@ jobs:
           git add qa/pg17-submit-product || true
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "PG17 record Submit Product QA evidence"
+          git pull --rebase origin main
           git push origin main
