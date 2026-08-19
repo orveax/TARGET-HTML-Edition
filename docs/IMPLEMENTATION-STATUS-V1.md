@@ -4,7 +4,7 @@ Product ID: ORX-P01
 Owner: ORVEAX  
 Repository: `orveax/origex-html-template`  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-20 — M5 IN PROGRESS / PG20–PG21 PS7 CI QA PASS / PG22 NEXT
+Last Updated: 2026-08-20 — M5 IN PROGRESS / PG20–PG22 PS7 CI QA PASS / PG23 NEXT
 
 This file is the concise repo-level execution tracker. Notion `ORIGEX — ORX-P01 | Project HQ` remains the product-state authority; GitHub records implementation and evidence. If this tracker conflicts with Project HQ, reconcile immediately.
 
@@ -22,10 +22,10 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 | M1 Global System & Components | PASS / CLOSED |
 | Global Navigation V1 | LOCKED / centrally normalized |
 | Global Footer V1 | LOCKED / centrally normalized |
-| F05 Icon Integrity | PASS — global automated gate active; 44 AR/EN pages / 0 missing sprite references at PG21 closure |
+| F05 Icon Integrity | PASS — global automated gate active; 46 AR/EN pages / 0 missing sprite references at PG22 closure |
 | Cloudflare Test Environment | AVAILABLE VIA MANUAL REBUILD |
 | Cloudflare Auto-Deploy | DEFERRED / repair pending |
-| Active Production Milestone | M5 IN PROGRESS — PG20–PG21 PS7; PG22 next |
+| Active Production Milestone | M5 IN PROGRESS — PG20–PG22 PS7; PG23 next |
 | Parallel Final Acceptance | M2/M3/M4 and completed M5 pages require applicable PS8 Cloudflare browser review |
 
 ## Page Production Snapshot
@@ -62,8 +62,8 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 ### M5 — Proof / Resources / Compliance / Content
 - PG20 Case Studies — **PS7 / IMPLEMENTED / CI QA PASS** — AR+EN; source/runtime failures 0; rendered 8/8; filter/query/language/empty-state interactions PASS; Cloudflare review pending.
 - PG21 Case Study Details — **PS7 / IMPLEMENTED / CI QA PASS** — AR+EN; six HTML editorial case records; source/runtime failures 0; rendered 8/8; valid/invalid ID, language preservation, previous/next and related-case interactions PASS; Cloudflare review pending.
-- PG22 Downloads / Resources — **NEXT VALID PAGE PRODUCTION ACTION**.
-- PG23 Certifications & Compliance — NOT STARTED.
+- PG22 Downloads / Resources — **PS7 / IMPLEMENTED / CI QA PASS** — AR+EN; five registered local Demo resources; source/runtime/resource failures 0; rendered 8/8; category query, language preservation, keyboard reset and empty-state interactions PASS; Cloudflare review pending.
+- PG23 Certifications & Compliance — **NEXT VALID PAGE PRODUCTION ACTION**.
 - PG24 Insights / Blog — NOT STARTED.
 - PG25 Article Details — NOT STARTED.
 
@@ -109,14 +109,27 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 - Final evidence commit: `7b5be6b72985026d003f48da5f7b3674fb84fcf6`.
 - QA report: `docs/PG21-QA-REPORT-V1.md`.
 
+## PG22 Final Evidence
+
+- Profile: `docs/page-design-profiles/pg22-resources-v1.md`.
+- AR/EN: `ar/resources.html` + `en/resources.html`.
+- CSS: `assets/css/origex-resources.css`.
+- Runtime: `assets/js/origex-resources.js`.
+- Resource register: `docs/RESOURCE-ASSET-REGISTER-V1.md`.
+- Five ORVEAX-authored bilingual UTF-8 Demo resource files under `assets/resources/`; no fabricated PDF/certificate/live-market asset.
+- QA: `qa/pg22-resources/` — source/runtime/resource failures 0; rendered AR/EN × 390/820/1366/1536 = 8/8 PASS; category query, language preservation, keyboard reset and empty-state interactions PASS.
+- Download target existence / register parity / TXT-UTF8 type accuracy: PASS.
+- Final evidence commit: `630b626d0180d2c62dd8112531bddb5f419b1bc6`.
+- QA report: `docs/PG22-QA-REPORT-V1.md`.
+
 ## Shared F05 / Shell State
 
-- Global Footer V1 PASS after PG21 addition; no page-local footer fork.
-- F05 Icon Integrity PASS; active scan reached **44 AR/EN pages / 0 missing sprite references** at PG21 closure.
-- Global Navigation V1 remains locked. PG21 is mapped to Case Studies as the Explore parent without introducing a new flat mobile route.
+- Global Footer V1 PASS after PG22 addition; no page-local footer fork.
+- F05 Icon Integrity PASS; active scan reached **46 AR/EN pages / 0 missing sprite references** at PG22 closure.
+- Global Navigation V1 remains locked and centrally normalized.
 
 ## Next Action
 
-Prepare **PG22 — Downloads / Resources** through canonical content review → PS6 Page Design Profile / SEO contract → AR+EN implementation → resource/download-state/language/licensing QA. Cloudflare PS8 browser acceptance continues as a parallel closure stream.
+Prepare **PG23 — Certifications & Compliance** through canonical content review → PS6 Page Design Profile / SEO contract → AR+EN implementation → compliance-claim/document-state/RTL-responsive QA. Cloudflare PS8 browser acceptance continues as a parallel closure stream.
 
 Copyright © ORVEAX.
