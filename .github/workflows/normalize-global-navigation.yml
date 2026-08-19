@@ -29,3 +29,5 @@ jobs:
           git add ar en assets/js/origex-ui.js
           git commit -m "fix: unify global navigation across standard pages"
           git push origin main
+
+# R1 navigation normalization retrigger — 2026-08-19
