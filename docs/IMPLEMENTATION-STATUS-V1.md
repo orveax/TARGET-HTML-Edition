@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Owner: ORVEAX  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-19 — M1 CLOSED / M2 ACTIVE / PG01 BENCHMARK CLOSED / PG02 C7 CI QA PASS / CLOUDFLARE REVIEW PENDING
+Last Updated: 2026-08-19 — M1 CLOSED / M2 HOME FAMILY IMPLEMENTED / PG02–PG04 C7 CI QA PASS / CLOUDFLARE REVIEW PENDING
 
 This is the repo-level execution tracker. It records actual current implementation state and must match the active code tree.
 
@@ -17,7 +17,7 @@ This is the repo-level execution tracker. It records actual current implementati
 - `PASS / CLOSED`
 - `REFERENCE ONLY`
 
-Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`. Deployment readiness uses the separate vocabulary from `STAGING-PREVIEW-GATE-V1.md`.
+Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`. Deployment/browser readiness is a separate control dimension.
 
 ## Project Control
 
@@ -27,15 +27,19 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`. Deployment readiness uses the 
 | Hard Audit / Legacy Cleanup | PASS / CLOSED |
 | Canonical Authority Map | PASS / CLOSED |
 | Project Rules | PASS / CLOSED |
-| Asset/License Register | ACTIVE — M1 baseline + PG01/PG02 ORVEAX-owned demo media verified |
+| Asset/License Register | ACTIVE — M1 baseline + M2 Home Family ORVEAX-owned demo media verified |
 | PG01 Page/Code QA | C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK |
 | PG01 Marketplace Visual Polish CR | PASS / CLOSED |
 | PG02 Build | C7 IMPLEMENTED — AR + EN |
 | PG02 CI QA | PASS — source + rendered 8/8 + interaction |
-| PG02 Cloudflare Browser Review | PENDING — Manual Rebuild available |
+| PG03 Build | C7 IMPLEMENTED — AR + EN |
+| PG03 CI QA | PASS — source + rendered 8/8 + interaction |
+| PG04 Build | C7 IMPLEMENTED — AR + EN |
+| PG04 CI QA | PASS — source + rendered 8/8 + interaction + demo-form validation |
+| PG02–PG04 Cloudflare Browser Review | PENDING — Manual Rebuild available |
 | Cloudflare Test Environment | AVAILABLE VIA MANUAL REBUILD |
 | Cloudflare Git Auto-Deploy | DEFERRED — push trigger does not currently start deployment automatically |
-| Current Build Baseline | M2 IN PROGRESS — PG01 benchmark closed; PG02 C7 pending Cloudflare review |
+| Current Build Baseline | M2 IN PROGRESS — all four Home layouts implemented; deployed browser acceptance pending for PG02–PG04 |
 
 ## Milestones
 
@@ -43,7 +47,7 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`. Deployment readiness uses the 
 |---|---|---|
 | M0 Product Foundation | PASS / CLOSED | Product Foundation Complete |
 | M1 Global System & Component Foundation | PASS / CLOSED | Component AR/EN foundation QA |
-| M2 Global Shell & Home Family | IN PROGRESS | Home family + Cloudflare deployed browser QA |
+| M2 Global Shell & Home Family | IN PROGRESS | PG01–PG04 AR/EN + Cloudflare deployed browser QA |
 | M3 Company / Business / Market | NOT STARTED | Batch Page QA |
 | M4 Product / Supplier / Conversion | NOT STARTED | Data/forms/conversion QA |
 | M5 Proof / Resources / Compliance / Content | NOT STARTED | Resource/content QA |
@@ -71,18 +75,22 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`. Deployment readiness uses the 
 | Config integration with M1 components | PASS / CLOSED | semantic hook integration |
 | Global shell | PASS / CLOSED | N01–N04 foundation implemented |
 | Components / Elements M1 foundation view | PASS / CLOSED | AR + EN noindex QA surfaces |
-| M1 AR/EN component QA | PASS / CLOSED | see `M1-QA-REPORT-V1.md` and `M1-CLOSURE-2026-08-19.md` |
+| M1 AR/EN component QA | PASS / CLOSED | `M1-QA-REPORT-V1.md` + `M1-CLOSURE-2026-08-19.md` |
 
 ## Active Shared Implementation Tree
 
 ```text
 index.html                         # Arabic-first language entry
 ar/
-├── index.html                     # PG01 AR
-└── home-02.html                   # PG02 AR — C7
+├── index.html                     # PG01 AR — C8
+├── home-02.html                   # PG02 AR — C7 CI PASS
+├── home-03.html                   # PG03 AR — C7 CI PASS
+└── landing.html                   # PG04 AR — C7 CI PASS
 en/
-├── index.html                     # PG01 EN
-└── home-02.html                   # PG02 EN — C7
+├── index.html                     # PG01 EN — C8
+├── home-02.html                   # PG02 EN — C7 CI PASS
+├── home-03.html                   # PG03 EN — C7 CI PASS
+└── landing.html                   # PG04 EN — C7 CI PASS
 assets/
 ├── brand/
 ├── css/
@@ -91,11 +99,15 @@ assets/
 │   ├── origex-components.css
 │   ├── origex-compositions.css
 │   ├── origex-marketplace-polish.css
-│   ├── origex-distribution.css    # PG02/M2 reusable distribution compositions
-│   └── origex-shell.css           # M1 shell
+│   ├── origex-distribution.css
+│   ├── origex-manufacturer.css
+│   ├── origex-landing.css
+│   └── origex-shell.css
 ├── media/demo/
 │   ├── hero-trade-scene.svg
 │   ├── hero-distribution-network.svg
+│   ├── hero-manufacturer-readiness.svg
+│   ├── hero-commercial-enquiry.svg
 │   ├── product-tomato-sauce.svg
 │   ├── product-hibiscus.svg
 │   ├── product-milk.svg
@@ -103,6 +115,10 @@ assets/
 ├── fonts/
 ├── icons/
 ├── js/
+│   ├── config.js
+│   ├── config-engine.js
+│   ├── origex-ui.js
+│   └── origex-landing.js
 ├── patterns/
 └── vendor/bootstrap/
 preview/
@@ -113,19 +129,22 @@ qa/
 ├── pg02-source/
 ├── pg02-rendered/
 ├── pg02-interaction/
-└── pg02-visual-review/
+├── pg02-visual-review/
+└── pg03-pg04-home-family/
 docs/
 ├── page-design-profiles/
 │   ├── pg01-home-01-v1.md
-│   └── pg02-home-02-v1.md
+│   ├── pg02-home-02-v1.md
+│   ├── pg03-home-03-v1.md
+│   └── pg04-landing-v1.md
 ├── PG01-CLOSURE-2026-08-19.md
 ├── PG01-MARKETPLACE-VISUAL-POLISH-2026-08-19.md
 ├── PG02-QA-REPORT-V1.md
-├── STAGING-PREVIEW-GATE-V1.md
+├── PG03-PG04-HOME-FAMILY-QA-2026-08-19.md
 └── canonical authorities
 ```
 
-PG02 uses `origex-distribution.css` as an M2 reusable composition layer. It consumes registered ORIGEX primitives/components and does not reopen M1 or create a competing design system.
+M2 pages consume the closed M1 system. Page-family CSS layers are compositions of registered components and do not reopen or replace M1.
 
 ## 32 V1 Layouts
 
@@ -133,8 +152,8 @@ PG02 uses `origex-distribution.css` as an M2 reusable composition layer. It cons
 |---|---|---|---|---|---|
 | PG01 | Home 01 — Food Trading / Importer | C8 — CLOSED | APPROVED | `ar/index.html` + `en/index.html` | PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK |
 | PG02 | Home 02 — Wholesale & Distribution | C7 — IMPLEMENTED | APPROVED — `pg02-home-02-v1.md` | `ar/home-02.html` + `en/home-02.html` | CI PASS — CLOUDFLARE REVIEW PENDING |
-| PG03 | Home 03 — Manufacturer / Supplier | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
-| PG04 | Landing / One Page | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
+| PG03 | Home 03 — Manufacturer / Supplier | C7 — IMPLEMENTED | APPROVED — `pg03-home-03-v1.md` | `ar/home-03.html` + `en/home-03.html` | CI PASS — CLOUDFLARE REVIEW PENDING |
+| PG04 | Landing / One Page | C7 — IMPLEMENTED | APPROVED — `pg04-landing-v1.md` | `ar/landing.html` + `en/landing.html` | CI PASS — CLOUDFLARE REVIEW PENDING |
 | PG05 | About | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG06 | How We Work | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG07 | Capabilities / Services | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
@@ -164,38 +183,47 @@ PG02 uses `origex-distribution.css` as an M2 reusable composition layer. It cons
 | PG31 | Terms | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG32 | Components / Elements Library | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 
-## PG01 Closure Evidence
+## M2 Home Family Evidence
 
-PG01 passed the original page/code gate and the approved marketplace visual polish Change Request on 2026-08-19.
-
-- base closure: `docs/PG01-QA-REPORT-V1.md` + `docs/PG01-CLOSURE-2026-08-19.md`.
-- marketplace benchmark closure: `docs/PG01-MARKETPLACE-VISUAL-POLISH-2026-08-19.md`.
+### PG01 — Home 01
+- Page/code: C8 / PASS / CLOSED.
+- Marketplace visual benchmark closure: `docs/PG01-MARKETPLACE-VISUAL-POLISH-2026-08-19.md`.
 - final rendered QA: `5ab1edb6fe2a17adc41857790170097dfad57f0f` — 8/8 PASS.
 - final interaction QA: `b3d12beb103492144f4c5fc690ef15eedd49eef4` — PASS.
-- final visual snapshots: `e1c09173757defc6992ac162447990f2ffc76f5a`.
 
-## PG02 C7 Evidence
+### PG02 — Home 02
+- Authority: `docs/page-design-profiles/pg02-home-02-v1.md`.
+- QA summary: `docs/PG02-QA-REPORT-V1.md`.
+- source/content/SEO/assets: PASS / failures 0.
+- rendered responsive matrix: 8/8 PASS / failures 0.
+- runtime interaction: PASS / failures 0.
+- current: C7 pending Cloudflare deployed-browser review.
 
-Authority: `docs/page-design-profiles/pg02-home-02-v1.md`.  
-QA summary: `docs/PG02-QA-REPORT-V1.md`.
+### PG03 — Home 03
+- Authority: `docs/page-design-profiles/pg03-home-03-v1.md`.
+- Arabic: `ar/home-03.html` — `feab4179f6f4386a6c29672abffc53a9ada4187e`.
+- English: `en/home-03.html` — `7a4bc145e1f81569c000001f15c305c0ed08f777`.
+- owned hero media: `hero-manufacturer-readiness.svg`.
+- source/content/SEO/assets: PASS / failures 0.
+- rendered responsive: AR/EN × 390/820/1366/1536 = 8/8 PASS.
+- interaction: mega menu, Escape, announcement and mobile drawer PASS.
+- demo certification/export-market safeguards PASS.
+- current: C7 pending Cloudflare deployed-browser review.
 
-Implementation:
-- Arabic: `ar/home-02.html` — commit `3d41fc7683ea4c20e50266718f9e6746ac7b8def`.
-- English: `en/home-02.html` — commit `64d34c0dea3d32049b49c1d5bd0d7af5c5a9a651`.
-- distribution media: `assets/media/demo/hero-distribution-network.svg` — ORVEAX OWNED.
-- composition layer: `assets/css/origex-distribution.css`.
+### PG04 — Landing / One Page
+- Authority: `docs/page-design-profiles/pg04-landing-v1.md`.
+- Arabic: `ar/landing.html` — `635c58718fb027cafe9795604e3019380c11786c`.
+- English: `en/landing.html` — `12690632fd9ace12324cbcd9b3a385693e40e748`.
+- owned hero media: `hero-commercial-enquiry.svg`.
+- page JS: `origex-landing.js` — native validation/demo success only; no network submission.
+- source/content/SEO/assets: PASS / failures 0.
+- rendered responsive: AR/EN × 390/820/1366/1536 = 8/8 PASS.
+- interaction: anchor targets, demo-form validation and mobile drawer PASS.
+- current: C7 pending Cloudflare deployed-browser review.
 
-CI QA:
-- source/content/SEO/assets: `c396b2024bb77ba5d39bd47b756a794ab20431cd` — PASS / failures 0.
-- rendered responsive matrix: `f2d25834ac57f2b00c7218cd5bea1376a2ee2d3c` — 8/8 PASS / failures 0.
-- runtime interaction: `a6d7488f96c2a3085f90a7ec319dcb2a468be2f0` — PASS / failures 0.
-- compact visual snapshots: `38d4c851f894a27fc88eb7ad36652d46e46e1beb`.
-
-PG02 remains **C7**, not C8, until its current revision is deployed to the real Cloudflare Test Environment and receives external AR/EN mobile + desktop browser review.
+Combined PG03/PG04 QA authority: `docs/PG03-PG04-HOME-FAMILY-QA-2026-08-19.md`; evidence commit `1bbbe7cc81633630dd4678030110d7051d3563dc`.
 
 ## Cloudflare Test Environment Control
-
-Authority: `docs/STAGING-PREVIEW-GATE-V1.md`.
 
 Canonical deployment model:
 
@@ -203,33 +231,30 @@ Canonical deployment model:
 GitHub `main` → Cloudflare Test Environment
 ```
 
-Current state confirmed by ORVEAX administrator:
-- Cloudflare deployment works when **Rebuild** is started manually.
-- GitHub commits to `main` are correct.
-- automatic Cloudflare deployment is not being triggered by each push.
-- Auto-Deploy correction is deferred to the next work session.
+Current state:
+- Manual Rebuild works.
+- GitHub `main` remains canonical source.
+- automatic Cloudflare deployment after push is degraded and deferred.
 - GitHub Pages is not used.
-
-Auto-deploy degradation does not block implementation while Manual Rebuild remains available. Final page browser review must still use the deployed Cloudflare test environment.
-
-## Historical Build Status
-
-Build 02–05 code remains removed from the active tree because it predates the frozen architecture. Historical value remains in Git history and selected source-map files only.
+- Auto-deploy degradation does not invalidate local/CI page QA.
+- C8 for PG02–PG04 still requires the current revision to be opened through the real Cloudflare test runtime.
 
 ## Page Production Gate
 
 **M1 PASSED / CLOSED.**  
 **PG01 = C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK.**  
-**PG02 = C7 IMPLEMENTED — CI QA PASS — CLOUDFLARE TEST REVIEW PENDING.**
+**PG02 = C7 / CI QA PASS — CLOUDFLARE REVIEW PENDING.**  
+**PG03 = C7 / CI QA PASS — CLOUDFLARE REVIEW PENDING.**  
+**PG04 = C7 / CI QA PASS — CLOUDFLARE REVIEW PENDING.**
 
 Next execution actions:
-1. deploy current `main` to the Cloudflare Test Environment using Manual Rebuild if required;
-2. open `/ar/home-02.html` and `/en/home-02.html` through the real test URL on mobile + desktop;
-3. verify deployed assets, base paths, layout, RTL/LTR and interactions;
-4. fix/retest any deployment-only defect;
-5. promote PG02 to C8 / PASS / CLOSED only after Cloudflare review passes;
-6. repair Cloudflare auto-deploy in the deferred infrastructure session;
-7. PG03 preparation may proceed independently, but PG02 is not considered closed until step 5.
+1. Manual Rebuild current `main` in Cloudflare Test Environment.
+2. Open PG02, PG03 and PG04 AR + EN from the deployed test domain on mobile and desktop.
+3. Verify base paths/assets, layout, RTL/LTR and interactions.
+4. Fix/retest any deployment-only defect.
+5. Promote PG02–PG04 individually to C8 / PASS / CLOSED after deployed review.
+6. When PG01–PG04 all satisfy M2 exit criteria, close M2 and open M3.
+7. Repair Cloudflare Git auto-deploy in the deferred infrastructure session.
 
 ## Update Rule
 
