@@ -1,7 +1,7 @@
 # ORIGEX Staging Deployment Status
 
-- Head SHA: `dbcbd44e45b016c41db6aaa16083972b36121900`
-- Workflow run: https://github.com/orveax/TARGET-HTML-Edition/actions/runs/32213315029
+- Head SHA: `97142bfcbed77a8b80533401bf3f380f8ee58e24`
+- Workflow run: https://github.com/orveax/TARGET-HTML-Edition/actions/runs/32214171176
 - Prepare: success
 - Configure Pages: failure
 - Upload artifact: skipped
