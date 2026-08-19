@@ -2,258 +2,313 @@
 
 Product ID: ORX-P01  
 Owner: ORVEAX  
-Status: APPROVED & FROZEN  
-Approval Date: 2026-08-19
+Status: APPROVED, FROZEN & COMPLETE  
+Approval Date: 2026-08-19  
+Normalized: 2026-08-19 Hard Audit
 
-This document is the canonical authority for ORIGEX V1 foundation decisions. Page implementation must consume these rules. Foundation decisions are not reopened during normal page work. Any change to a frozen foundation requires a documented Design System / Architecture / Content-System Change Request.
+This is the consolidated frozen-system authority for ORIGEX V1. Implementation consumes these systems; normal page work does not reopen them.
 
-## 1. Approved Technology Foundation
+Operational entry point: `PROJECT-HQ-V1.md`.
 
-- HTML5.
-- CSS3.
-- Bootstrap 5.x as layout/responsive foundation only.
-- Vanilla JavaScript for ORIGEX interactions.
-- ORIGEX Design System controls branded components and patterns.
-- `config.js` controls approved global/repeated settings.
-- JSON is used for approved structured product/supplier/market data where needed.
-- No React, Vue, Astro runtime, Tailwind, jQuery, mandatory Node/build process, or heavy animation framework in V1 customer package.
+## 1. Technology Foundation
+
+Exact authority: `TECH-STACK-V1.md`.
+
+V1 uses:
+- HTML5;
+- CSS3;
+- Bootstrap **5.3.8** as infrastructure/layout foundation;
+- Vanilla JavaScript;
+- ORIGEX Design System;
+- `config.js` simple global customization;
+- approved JSON data domains where useful.
+
+Explicit exclusions:
+- React;
+- Vue;
+- Astro runtime in buyer package;
+- Tailwind;
+- jQuery;
+- mandatory Node/build pipeline;
+- heavy animation framework.
+
+Bootstrap is infrastructure, never ORIGEX visual identity.
 
 ## 2. Design-System Hierarchy
 
-Foundation → Primitive → Component → Pattern → Section → Page Design Profile.
+Authorities:
+- `DESIGN-SYSTEM-HIERARCHY-V1.md`
+- `COMPONENT-REGISTRY-V1.md`
+- `COMPONENT-DESIGN-RULES-V1.md`
 
-Pages compose registered components. Pages do not visually fork components through local CSS. A genuinely new variant must be registered centrally before page use.
+```text
+Bootstrap 5.3.8 Infrastructure
+→ ORIGEX Foundations
+→ Primitives
+→ Components
+→ Patterns / Global Navigation
+→ Sections
+→ Page Design Profiles
+```
 
-## 3. Grid / Container / Responsive System
+Pages compose registered units. Shared components are changed centrally, never forked through page-local CSS.
 
-Bootstrap grid is the structural base.
+## 3. Grid / Container / Responsive
+
+Bootstrap grid is structural infrastructure.
 
 ORIGEX container profiles:
-- Narrow content: max 840px.
-- Standard content: max 1140px.
-- Wide content: max 1320px.
-- Full bleed: viewport width with controlled inner content.
+- Narrow: max 840px;
+- Standard: max 1140px;
+- Wide: max 1320px;
+- Full Bleed: viewport width with controlled inner content.
 
-Horizontal page gutters:
-- Mobile: 20px.
-- Tablet: 24px.
+Horizontal gutters:
+- Mobile: 20px;
+- Tablet: 24px;
 - Desktop: 32px.
 
+Primary QA widths:
+360 / 390 / 412 / 768 / 820 / 1024 / 1280 / 1366 / 1440 / 1536 / 1920.
+
 Rules:
-- Use the 12-column Bootstrap grid where grid layout is appropriate.
-- Use logical CSS properties for directional spacing.
-- Mobile is a composed layout, not compressed desktop.
-- No horizontal overflow at supported QA widths.
-- Arabic and English ordering is tested independently.
+- mobile is intentionally composed, not compressed desktop;
+- logical properties are preferred;
+- AR and EN ordering is independently verified;
+- horizontal overflow is a defect.
 
-Primary QA widths remain: 360, 390, 412, 768, 820, 1024, 1280, 1366, 1440, 1536, 1920.
+## 4. Shape / Border / Elevation
 
-## 4. Shape / Border / Elevation Tokens
+Radius:
+- XS 8px;
+- SM 12px;
+- MD 16px;
+- LG 24px;
+- Pill 999px.
 
-Radius tokens:
-- `--orx-radius-xs: 8px`
-- `--orx-radius-sm: 12px`
-- `--orx-radius-md: 16px`
-- `--orx-radius-lg: 24px`
-- `--orx-radius-pill: 999px`
-
-Border tokens:
-- Subtle: 1px using soft border token.
-- Default: 1px using standard border token.
-- Strong: 2px only where hierarchy/state requires it.
+Border:
+- Subtle: 1px soft border;
+- Default: 1px standard border;
+- Strong: 2px only where state/hierarchy justifies it.
 
 Elevation:
-- E0: none.
-- E1: restrained surface separation.
-- E2: interactive/featured card emphasis.
-- E3: overlays, drawers, dropdowns/modals only.
+- E0 none;
+- E1 subtle separation;
+- E2 featured/interactive emphasis;
+- E3 overlay/drawer/dropdown/modal only.
 
-Rules:
-- No page-local radius, border or shadow language.
-- Elevation communicates hierarchy/state, not decoration.
+No page-local shape/shadow language.
 
-## 5. Motion / Interaction System
+## 5. Motion / Interaction
 
-Duration tokens:
-- Fast: 150ms.
-- Standard: 250ms.
-- Slow: 400ms.
+Durations:
+- Fast 150ms;
+- Standard 250ms;
+- Slow 400ms.
 
-Motion levels:
-- Level 0: utility/legal — near-static.
-- Level 1: normal business/product UI — subtle transitions.
-- Level 2: selected home/landing areas — controlled premium reveals.
+Levels:
+- L0 utility/legal;
+- L1 normal business/product UI;
+- L2 selected home/landing emphasis.
 
-Approved motion uses:
-- color/background/border transitions.
-- restrained transform for cards/actions.
-- accordion/tabs/menu/drawer/modal state transitions.
-- directional arrow micro-motion.
-
-Prohibited:
-- scroll-jacking.
-- continuous decorative loops.
-- bouncing UI.
-- motion that delays essential content.
-- page-specific animation libraries.
+Allowed: restrained state transitions, directional micro-motion, disclosure/navigation transitions.  
+Prohibited: scroll-jacking, bouncing, continuous decorative loops, essential-content delay, page-specific motion libraries.
 
 `prefers-reduced-motion` is mandatory.
 
 ## 6. Icon System
 
-Authority: `ICON-SYSTEM-V1.md`.
+Authority: `ICON-SYSTEM-V1.md` / Registry F05.
 
-- Lucide is the single primary semantic icon family.
-- Outline, 24×24 base grid, default stroke 2.
-- Sizes: 14 / 16 / 20 / 24 / 32 / 40px.
-- Local SVG / SVG sprite delivery.
-- `currentColor` + ORIGEX semantic tokens.
-- Directional icons only mirror/swap in RTL.
-- Brand/social marks are separate official/separately licensed assets.
-- Multiple semantic icon libraries are prohibited.
+- Lucide = single semantic icon family;
+- outline;
+- 24×24 base grid;
+- default stroke 2;
+- sizes 14 / 16 / 20 / 24 / 32 / 40px;
+- selected local SVGs / local sprite;
+- brand/social marks separate;
+- only directional icons swap/mirror in RTL;
+- text/glyph placeholders are prohibited production icon substitutes;
+- icon-only controls require accessible names.
 
 ## 7. Pattern System
 
 Authority: `PATTERN-SYSTEM-V1.md`.
 
-Approved families:
-- PT01 Route Lines.
-- PT02 Trade Grid.
-- PT03 Dot Matrix.
-- PT04 Market Nodes.
-- PT05 Packaging Geometry.
+Approved ORIGEX-owned families:
+- PT01 Route Lines;
+- PT02 Trade Grid;
+- PT03 Dot Matrix;
+- PT04 Market Nodes;
+- PT05 Packaging Geometry;
 - PT06 Flow Lines.
 
-Patterns are custom ORIGEX SVG/CSS assets. External pattern libraries are reference/exploration tools only and are not runtime dependencies or default distributed assets.
+External pattern libraries are reference/exploration only unless an exact asset is separately approved and logged.
 
 ## 8. Image / Media System
 
 Authority: `IMAGE-MEDIA-SYSTEM-V1.md`.
 
-Core direction: Natural Industrial Premium, focused on B2B food trading, wholesale, distribution, manufacturing, logistics, products and market access.
+Direction: **Natural Industrial Premium**, B2B food trading / wholesale / distribution / manufacturing / sourcing / market access.
 
-Default asset policy:
-- Third-party stock photography may be used for preview only after source/license verification.
-- Third-party stock photography is not included in the buyer ZIP by default.
-- Buyer ZIP uses ORVEAX-created placeholders, SVG/CSS graphics and explicitly redistributable assets only.
-- Every preview/distributed asset must be logged in the Asset Register.
+Approved frame families:
+- Hero: 3:2 or 16:10; mobile editorial crop 4:5;
+- Product: 1:1;
+- Supplier/brand media: 4:3; logos use controlled contain frame;
+- Blog: 16:9;
+- Case/facility: 16:10 or 3:2;
+- Avatar: 1:1 when used.
 
-## 9. Media Frame System
+Third-party stock is preview-only by default. Buyer ZIP uses ORVEAX-owned placeholders/graphics or explicitly redistributable assets only.
 
-Approved aspect-ratio families:
-- Hero: 3:2 or 16:10; mobile editorial crop 4:5.
-- Product: 1:1 primary.
-- Supplier/brand media: 4:3; logos use controlled logo frame.
-- Blog: 16:9.
-- Case study/facility: 16:10 or 3:2 according to registered component.
-- Avatar: 1:1 if used.
+## 9. Asset / License Governance
 
-Rules:
-- `object-fit` behavior is controlled centrally.
-- Product, supplier logo, certification, resource and editorial frames are registered components, not arbitrary image boxes.
+Authority: `ASSET-LICENSE-REGISTER-V1.md`.
+
+No dependency/image/font/icon/logo/PDF/third-party asset enters the distributable package before source and redistribution status are logged.
+
+M1 must close Bootstrap/Lucide/font/pattern delivery records before component foundation closes.
 
 ## 10. Data Architecture
 
 Authority: `DATA-SCHEMA-V1.md`.
 
-Canonical data domains:
-- Products.
-- Suppliers/brands.
-- Markets/countries.
+Canonical structured domains:
+- Products;
+- Suppliers/Brands;
+- Markets/Countries.
 
-`config.js` does not become a CMS. Page editorial content stays in HTML; structured repeated business data uses documented JSON schemas when data-driven behavior is required.
+`config.js` is not a CMS. Editorial page copy remains HTML; structured repeated business records use documented data structures when data-driven behavior is required.
 
 ## 11. Code Architecture / Naming
 
 Authority: `CODE-ARCHITECTURE-V1.md`.
 
-- ORIGEX-owned CSS classes use `orx-` prefix.
-- Component naming follows BEM-like anatomy: `.orx-component`, `.orx-component__part`, `.orx-component--variant`.
-- JS hooks use `data-orx-*`; styling must not depend on JS-only hook names.
-- CSS tokens use `--orx-*`.
-- Files use lowercase kebab-case.
-- No page-specific component forks/hotfix layers without documented exception.
+- ORIGEX classes use `orx-`;
+- CSS variables use `--orx-*`;
+- JS hooks use `data-orx-*`;
+- files use lowercase kebab-case;
+- BEM-like block/element/modifier naming;
+- no hidden hotfix layer;
+- no `final-final`, `fix2`, `new-copy`, or other temporary canonical filenames.
 
-## 12. Browser Support
+## 12. Configuration Contract
 
-V1 targets modern evergreen browsers:
-- current and previous two major desktop generations of Chrome, Edge, Firefox and Safari where practical.
-- current mainstream iOS Safari and Android Chromium-based browsers.
+Authority: `CONFIGURATION.md`.
 
-No legacy Internet Explorer support.
+`config-engine.js` enhances existing semantic HTML through registered data hooks. It does not construct core UI/components or become the source of essential page meaning.
 
-Progressive enhancement is preferred: content and navigation should remain understandable when non-essential JavaScript is unavailable.
+Global/repeated settings may enter config; page editorial content and structured catalogs do not.
 
-## 13. Performance Budget
-
-- Bootstrap is the only approved general UI foundation dependency.
-- No duplicate icon/component libraries.
-- Core icons local.
-- Below-fold imagery lazy-loaded.
-- Width/height declared for raster imagery where practical.
-- Modern compressed image formats preferred.
-- Non-critical scripts deferred.
-- Feature JS loaded/initialized only where required.
-- No unoptimized multi-megabyte preview images.
-- No third-party script required for core navigation/layout.
-- CSS/JS duplication is a QA defect.
-
-Performance optimization does not reopen scope or design decisions.
-
-## 14. Content System
+## 13. Content System
 
 Authorities:
-- `CONTENT-SYSTEM-V1.md`.
-- `MASTER-CONTENT-ARCHITECTURE-V1.md`.
-- `DEMO-CONTENT-DATASET-V1.md`.
-- V1.1 Content Pack files for deferred Additional Features.
+- `CONTENT-SYSTEM-V1.md`;
+- `MASTER-CONTENT-ARCHITECTURE-V1.md`;
+- `DEMO-CONTENT-DATASET-V1.md`;
+- V1.1 Content Pack authorities.
 
-Locked rules:
-- Arabic is the master commercial language.
-- English is a professional adaptation, not literal translation.
-- Main Features and Additional Features use the same Content Contract.
-- No page or feature enters implementation before Content Status C6 — FROZEN.
-- Product/supplier/market demo facts use one canonical dataset and stable IDs.
-- No lorem ipsum in the commercial preview.
-- Unsupported claims, fake customers, fake certifications and fake performance metrics are prohibited.
-- Demo facts that can look factual must be disclosed as illustrative.
-- CTA vocabulary, microcopy, form states and disclaimers follow the Content System.
-- A future Additional Feature is incomplete until its full AR/EN Content Pack exists.
+Rules:
+- Arabic master;
+- English professional adaptation;
+- same facts/promise/CTA intent;
+- no page/feature implementation before C6 — FROZEN;
+- final implemented content reaches C8 after QA;
+- no lorem ipsum in commercial demo pages;
+- no fake customers/certifications/performance claims;
+- demo facts that may look real are disclosed as illustrative;
+- future Additional Feature requires a full Content Contract/Pack before design/development.
 
-Content corrections that fix verified facts do not reopen the foundation. A new audience promise, writing model, or commercial-content architecture requires a Content-System Change Request.
+## 14. SEO / Metadata / Page Naming
 
-## 15. QA Definition of Done
+Authority: `SEO-METADATA-PAGE-NAMING-V1.md`.
+
+Every page uses:
+- registered PG ID;
+- canonical filename/slug;
+- H1 intent;
+- unique title/meta description;
+- canonical URL contract;
+- AR/EN hreflang + x-default strategy where applicable;
+- Open Graph contract;
+- indexability class;
+- structured-data mapping where appropriate.
+
+SEO is part of page identity and QA, not a final afterthought.
+
+## 15. Demo vs Production
+
+Authority: `DEMO-VS-PRODUCTION-POLICY-V1.md`.
+
+- fictional demo entities remain clearly demo/illustrative;
+- no private/client credentials or proprietary data;
+- preview-only assets never enter buyer ZIP;
+- buyer documentation includes a Demo → Production replacement checklist;
+- demo indexability is intentionally controlled.
+
+## 16. Browser / Performance
+
+V1 targets modern evergreen desktop/mobile browsers; no Internet Explorer support.
+
+Performance rules:
+- no duplicate UI/icon libraries;
+- local core dependencies;
+- no unnecessary scripts;
+- below-fold media lazy-loaded;
+- image dimensions declared where practical;
+- modern compressed formats preferred;
+- no unoptimized multi-megabyte media;
+- core navigation/content does not require a third-party runtime;
+- CSS/JS duplication is a QA defect.
+
+## 17. QA Definition of Done
 
 Authority: `QA-DEFINITION-OF-DONE-V1.md`.
 
-A page is not closed until its Content/Page/Component Definition of Done passes. After closure, it reopens only for:
-- verified bug.
-- accessibility/performance/responsive defect.
-- verified factual/content correction.
-- formal change request.
+A page/component/content unit closes only after applicable Content / Design / AR / EN / Responsive / Accessibility / SEO / Asset / Performance / Runtime checks pass.
 
-## 16. Governance Lock
+Submission Candidate requires zero Critical and zero High defects.
 
-The following are frozen for V1:
-- stack.
-- grid/container strategy.
-- typography hierarchy.
-- palette/tokens.
-- radii/borders/elevation.
-- component registry and governance.
-- icon system.
-- pattern system.
-- image/media strategy.
-- motion system.
-- data schema principles.
-- code naming/architecture.
-- browser support.
-- content-writing mechanism.
-- bilingual adaptation rules.
-- demo-data consistency rules.
-- CTA/microcopy/content-state rules.
-- QA Definition of Done.
+## 18. Release / Versioning
 
-Normal page development cannot reopen these decisions.
+Authority: `RELEASE-VERSIONING-POLICY-V1.md`.
+
+Product releases use semantic `MAJOR.MINOR.PATCH` governance. Code comments/schema labels are not release claims. Release number, changelog, package contents and marketplace version must agree.
+
+## 19. V1 / V1.1 Boundary
+
+Authority: `SCOPE-FREEZE-V1-FINAL.md` and `V1.1-ADDITIONAL-FEATURES-BACKLOG.md`.
+
+V1 = approved Main Features only.  
+Additional Features remain V1.1+ unless a formal scope change is approved.
+
+## 20. Governance Lock
+
+Frozen for V1:
+- scope/page architecture;
+- stack/version-family baseline;
+- design-system hierarchy;
+- grid/shape/motion;
+- component registry governance;
+- icon/pattern/media systems;
+- asset/license process;
+- data/config architecture;
+- code naming;
+- content-writing mechanism;
+- bilingual adaptation;
+- SEO/page naming;
+- demo/production policy;
+- browser/performance principles;
+- QA/release/change control.
+
+Normal page implementation cannot reopen these decisions.
+
+Valid post-freeze classifications:
+1. verified bug/defect;
+2. verified content/SEO correction;
+3. formal Design System / Architecture / Product Governance Change Request;
+4. V1.1+ backlog.
+
+Current implementation state is tracked only in `IMPLEMENTATION-STATUS-V1.md`.
 
 Copyright © ORVEAX.
