@@ -1,0 +1,26 @@
+{
+  "failures": [],
+  "cases": [
+    {"lang": "ar", "width": 390, "failures": []},
+    {"lang": "ar", "width": 820, "failures": []},
+    {"lang": "ar", "width": 1366, "failures": []},
+    {"lang": "ar", "width": 1536, "failures": []},
+    {"lang": "en", "width": 390, "failures": []},
+    {"lang": "en", "width": 820, "failures": []},
+    {"lang": "en", "width": 1366, "failures": []},
+    {"lang": "en", "width": 1536, "failures": []}
+  ],
+  "interaction": {
+    "en-search-filter-reset-empty": [],
+    "ar-query-params": []
+  },
+  "navigation": {
+    "desktop-mega": [],
+    "mobile-drawer": []
+  },
+  "provenance": {
+    "diagnosticCommit": "88827601664524f1111229d7cce5bd876b72e5b5",
+    "runtimeFixCommit": "15e7c2efe2344f2324e12e68d4cd8cec6b48647b",
+    "note": "Canonicalized from the comprehensive PG12 rendered diagnostic after the filter-state synchronization fix. The diagnostic recorded 8/8 responsive cases, interactions, deep-link hydration and navigation with zero failures and no exception."
+  }
+}
