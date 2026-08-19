@@ -1,5 +1,6 @@
 name: PG23 Certifications Compliance QA
 
+# Retrigger after canonical navigation normalization.
 on:
   workflow_dispatch:
   push:
