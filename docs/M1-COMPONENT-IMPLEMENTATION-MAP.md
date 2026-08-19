@@ -5,7 +5,7 @@ Milestone: M1 — Global System & Component Foundation
 Status: IMPLEMENTED — QA EVIDENCE MAP  
 Date: 2026-08-19
 
-Authority: `DESIGN-SYSTEM-HIERARCHY-V1.md`, `COMPONENT-REGISTRY-V1.md`, `COMPONENT-DESIGN-RULES-V1.md`, `FOUNDATION-FREEZE-V1.md`.
+Authority: `DESIGN-SYSTEM-HIERARCHY-V1.md`, `COMPONENT-REGISTRY-V1.md`, `COMPONENT-DESIGN-RULES-V1.md`, `FOUNDATION-FREEZE-V1.md`, `GLOBAL-FOOTER-CONTRACT-V1.md`.
 
 This file maps the frozen registry to the active M1 implementation. It does not introduce new component IDs.
 
@@ -88,7 +88,7 @@ This file maps the frozen registry to the active M1 implementation. It does not 
 | N01 Header | `.orx-site-header*` |
 | N02 Mega Menu | `.orx-mega-menu*` + `data-orx-mega-trigger` runtime |
 | N03 Mobile Drawer | `.orx-mobile-drawer*` + focus/Escape/open-close runtime |
-| N04 Footer | `.orx-site-footer*`, business-hours/social/config hooks |
+| N04 Footer | `.orx-site-footer*` + `data-orx-global-footer="v1"`; exact AR/EN structure governed by `GLOBAL-FOOTER-CONTRACT-V1.md`, enforced by `.github/scripts/normalize_global_footer.py`, with contact/business-hours config hooks |
 
 ## Bootstrap Interaction Baseline
 
@@ -102,6 +102,7 @@ The milestone plan mentions modal behavior. No ORIGEX modal ID exists in the fro
 - `assets/js/config-engine.js` enhances existing semantic HTML and does not construct core UI.
 - `assets/js/origex-ui.js` handles ORIGEX navigation/disclosure/filter/upload interactions.
 - Demo defaults align with `DEMO-CONTENT-DATASET-V1.md`.
+- Global footer drift is prohibited: AR/EN pages use N04 from `GLOBAL-FOOTER-CONTRACT-V1.md`; page-specific conversion messaging belongs in S06, not the footer.
 
 ## M1 QA Surfaces
 
@@ -112,6 +113,6 @@ The QA surfaces are `noindex,nofollow`, use the canonical fictional demo disclos
 
 ## Non-Negotiable Rule
 
-Pages consume this system. Pages do not create replacement card, hero, navigation, spacing, icon, form or motion systems locally.
+Pages consume this system. Pages do not create replacement card, hero, navigation, footer, spacing, icon, form or motion systems locally.
 
 Copyright © ORVEAX.
