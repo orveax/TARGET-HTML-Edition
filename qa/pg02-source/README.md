@@ -1,6 +1,6 @@
 # PG02 Source / Content / SEO / Asset QA
 
-Generated: 2026-08-19T05:03:33Z
+Generated: 2026-08-19T05:04:51Z
 
 ## ar/home-02.html
 
@@ -13,7 +13,7 @@ Generated: 2026-08-19T05:03:33Z
 | canonical URL | PASS |  |
 | hreflang AR EN x-default | PASS |  |
 | Open Graph baseline | PASS |  |
-| WebPage structured data | FAIL |  |
+| WebPage structured data | PASS | [] |
 | mandatory demo disclosure | PASS |  |
 | eight frozen section intents | PASS |  |
 | demo metrics explicitly qualified | PASS |  |
@@ -36,7 +36,7 @@ Generated: 2026-08-19T05:03:33Z
 | canonical URL | PASS |  |
 | hreflang AR EN x-default | PASS |  |
 | Open Graph baseline | PASS |  |
-| WebPage structured data | FAIL |  |
+| WebPage structured data | PASS | [] |
 | mandatory demo disclosure | PASS |  |
 | eight frozen section intents | PASS |  |
 | demo metrics explicitly qualified | PASS |  |
@@ -50,7 +50,5 @@ Generated: 2026-08-19T05:03:33Z
 
 ## Result
 
-**FAIL — 2 issues.**
+**PASS — source gate complete.**
 
-- ar/home-02.html: WebPage structured data: 
-- en/home-02.html: WebPage structured data: 

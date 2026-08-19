@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-19T05:03:33Z",
-  "failures": 2,
+  "generatedAt": "2026-08-19T05:04:51Z",
+  "failures": 0,
   "pages": [
     {
       "page": "ar/home-02.html",
@@ -42,8 +42,8 @@
         },
         {
           "name": "WebPage structured data",
-          "pass": false,
-          "detail": ""
+          "pass": true,
+          "detail": "[]"
         },
         {
           "name": "mandatory demo disclosure",
@@ -137,8 +137,8 @@
         },
         {
           "name": "WebPage structured data",
-          "pass": false,
-          "detail": ""
+          "pass": true,
+          "detail": "[]"
         },
         {
           "name": "mandatory demo disclosure",
@@ -193,8 +193,5 @@
       ]
     }
   ],
-  "errors": [
-    "ar/home-02.html: WebPage structured data: ",
-    "en/home-02.html: WebPage structured data: "
-  ]
+  "errors": []
 }
