@@ -1,8 +1,5 @@
 {
-  "failures": [
-    "en:unsupported-claim",
-    "global-navigation-drift"
-  ],
+  "failures": [],
   "pages": {
     "ar": {
       "failures": [],
@@ -18,9 +15,7 @@
       ]
     },
     "en": {
-      "failures": [
-        "unsupported-claim"
-      ],
+      "failures": [],
       "sections": [
         "hero",
         "value",
@@ -32,6 +27,5 @@
         "cta"
       ]
     }
-  },
-  "navigation_output": "DRIFT: ar/for-suppliers.html\nDRIFT: en/for-suppliers.html\n"
+  }
 }
