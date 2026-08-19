@@ -29,7 +29,7 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           from bs4 import BeautifulSoup
-          import json, os, subprocess, time
+          import json, subprocess, time
           from selenium import webdriver
           from selenium.webdriver.chrome.options import Options
           from selenium.webdriver.common.by import By
@@ -69,7 +69,6 @@ jobs:
               source['pages'][lang] = {'failures': failures, 'sections': sections}
               source['failures'].extend([f'{lang}:{f}' for f in failures])
 
-          # canonical navigation drift check
           proc = subprocess.run(['python','.github/scripts/normalize_global_navigation.py','--check'], text=True, capture_output=True)
           if proc.returncode:
               source['failures'].append('global-navigation-drift')
@@ -93,9 +92,9 @@ jobs:
                       try:
                           driver.get(f'http://127.0.0.1:8765/{lang}/company-profile.html')
                           time.sleep(.35)
-                          scroll_width = driver.execute_script('return document.documentElement.scrollWidth')
-                          client_width = driver.execute_script('return document.documentElement.clientWidth')
-                          if scroll_width > client_width + 1: case_failures.append(f'overflow:{scroll_width}>{client_width}')
+                          sw = driver.execute_script('return document.documentElement.scrollWidth')
+                          cw = driver.execute_script('return document.documentElement.clientWidth')
+                          if sw > cw + 1: case_failures.append(f'overflow:{sw}>{cw}')
                           if len(driver.find_elements(By.TAG_NAME,'h1')) != 1: case_failures.append('h1')
                           if len(driver.find_elements(By.CSS_SELECTOR,'[data-pg33-section]')) != 6: case_failures.append('section-count')
                           if width >= 992:
@@ -111,9 +110,8 @@ jobs:
                               if drawer.get_attribute('aria-hidden') != 'false': case_failures.append('drawer-open')
                               driver.find_element(By.CSS_SELECTOR,'[data-orx-drawer-close]').click(); time.sleep(.1)
                               if drawer.get_attribute('aria-hidden') != 'true': case_failures.append('drawer-close')
-                          targets = driver.find_elements(By.CSS_SELECTOR,'a,button,input,select,textarea')
                           small = []
-                          for el in targets:
+                          for el in driver.find_elements(By.CSS_SELECTOR,'a,button,input,select,textarea'):
                               if not el.is_displayed(): continue
                               r = el.rect
                               if r['width'] and r['height'] and (r['width'] < 24 or r['height'] < 24): small.append((el.tag_name,r['width'],r['height']))
@@ -144,3 +142,5 @@ jobs:
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "PG33 record company profile QA evidence"
           git push origin main
+
+# explicit QA retrigger — 2026-08-19
