@@ -50,6 +50,8 @@ jobs:
           for icon in "${icons[@]}"; do
             curl -fsSL "https://raw.githubusercontent.com/lucide-icons/lucide/1.27.0/icons/${icon}.svg" -o "assets/icons/lucide/${icon}.svg"
           done
+          # Registry compatibility alias: the M1 preview uses `globe-2`; Lucide 1.27.0 ships the canonical `earth` icon.
+          cp assets/icons/lucide/earth.svg assets/icons/lucide/globe-2.svg
           curl -fsSL https://raw.githubusercontent.com/lucide-icons/lucide/1.27.0/LICENSE -o assets/icons/lucide/LICENSE
           python - <<'PY'
           from pathlib import Path
