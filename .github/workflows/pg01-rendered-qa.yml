@@ -1,0 +1,168 @@
+name: PG01 Rendered Visual QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/index.html'
+      - 'en/index.html'
+      - 'assets/css/**'
+      - 'assets/js/**'
+      - '.github/workflows/pg01-rendered-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rendered-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.62.0
+          npx playwright install --with-deps chromium
+
+      - name: Start static server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/origex-http.log 2>&1 &
+          echo $! > /tmp/origex-http.pid
+          sleep 2
+
+      - name: Run rendered QA
+        run: |
+          mkdir -p qa/pg01-rendered
+          cat > /tmp/pg01-rendered-qa.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs';
+
+          const browser = await chromium.launch({ headless: true });
+          const targets = [
+            { lang: 'ar', path: '/ar/', dir: 'rtl' },
+            { lang: 'en', path: '/en/', dir: 'ltr' },
+          ];
+          const viewports = [
+            { name: 'mobile-390', width: 390, height: 844 },
+            { name: 'tablet-820', width: 820, height: 1180 },
+            { name: 'laptop-1366', width: 1366, height: 900 },
+            { name: 'desktop-1536', width: 1536, height: 960 },
+          ];
+
+          const results = [];
+          let failures = 0;
+
+          for (const target of targets) {
+            for (const viewport of viewports) {
+              const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
+              const page = await context.newPage();
+              const consoleErrors = [];
+              const pageErrors = [];
+              page.on('console', msg => { if (msg.type() === 'error') consoleErrors.push(msg.text()); });
+              page.on('pageerror', err => pageErrors.push(String(err)));
+
+              const response = await page.goto(`http://127.0.0.1:4173${target.path}`, { waitUntil: 'networkidle' });
+              await page.emulateMedia({ reducedMotion: 'reduce' });
+
+              const metrics = await page.evaluate(({ expectedDir, width }) => {
+                const doc = document.documentElement;
+                const body = document.body;
+                const header = document.querySelector('.orx-site-header');
+                const hero = document.querySelector('.orx-hero');
+                const h1 = document.querySelector('h1');
+                const heroActions = document.querySelector('.orx-hero__actions');
+                const buttons = [...document.querySelectorAll('.orx-btn')];
+                const cards = [...document.querySelectorAll('.orx-card')];
+                const sections = [...document.querySelectorAll('main > section')];
+                const offscreen = [...document.querySelectorAll('body *')].filter(el => {
+                  const r = el.getBoundingClientRect();
+                  return r.width > 0 && (r.right > width + 1 || r.left < -1);
+                }).slice(0, 20).map(el => ({ tag: el.tagName, cls: el.className || '', left: Math.round(el.getBoundingClientRect().left), right: Math.round(el.getBoundingClientRect().right) }));
+
+                const buttonRects = buttons.map(b => {
+                  const r = b.getBoundingClientRect();
+                  return { text: (b.textContent || '').trim().slice(0, 60), width: Math.round(r.width), height: Math.round(r.height) };
+                });
+                const cardRects = cards.map(c => Math.round(c.getBoundingClientRect().height)).filter(Boolean);
+                const sectionGaps = sections.slice(1).map((s, i) => {
+                  const prev = sections[i].getBoundingClientRect();
+                  const cur = s.getBoundingClientRect();
+                  return Math.round(cur.top - prev.bottom);
+                });
+                return {
+                  lang: doc.lang,
+                  dir: doc.dir,
+                  expectedDir,
+                  scrollWidth: Math.round(doc.scrollWidth),
+                  clientWidth: Math.round(doc.clientWidth),
+                  horizontalOverflow: doc.scrollWidth > doc.clientWidth + 1,
+                  offscreen,
+                  headerHeight: header ? Math.round(header.getBoundingClientRect().height) : null,
+                  heroHeight: hero ? Math.round(hero.getBoundingClientRect().height) : null,
+                  h1FontSize: h1 ? getComputedStyle(h1).fontSize : null,
+                  h1LineHeight: h1 ? getComputedStyle(h1).lineHeight : null,
+                  h1Width: h1 ? Math.round(h1.getBoundingClientRect().width) : null,
+                  heroActionsDisplay: heroActions ? getComputedStyle(heroActions).display : null,
+                  minButtonHeight: buttonRects.length ? Math.min(...buttonRects.map(x => x.height)) : null,
+                  buttonsBelow44: buttonRects.filter(x => x.height < 44),
+                  cardHeightMin: cardRects.length ? Math.min(...cardRects) : null,
+                  cardHeightMax: cardRects.length ? Math.max(...cardRects) : null,
+                  sectionGapMin: sectionGaps.length ? Math.min(...sectionGaps) : null,
+                  sectionGapMax: sectionGaps.length ? Math.max(...sectionGaps) : null,
+                  bodyBg: getComputedStyle(body).backgroundColor,
+                  bodyColor: getComputedStyle(body).color,
+                };
+              }, { expectedDir: target.dir, width: viewport.width });
+
+              const checks = {
+                http: response?.ok() ?? false,
+                direction: metrics.dir === target.dir,
+                noHorizontalOverflow: !metrics.horizontalOverflow && metrics.offscreen.length === 0,
+                noConsoleErrors: consoleErrors.length === 0 && pageErrors.length === 0,
+                touchTargets: (metrics.minButtonHeight ?? 0) >= 44,
+                heroReadable: (metrics.h1Width ?? 0) > 0 && (metrics.heroHeight ?? 0) > 0,
+              };
+              const pass = Object.values(checks).every(Boolean);
+              if (!pass) failures += 1;
+
+              const screenshot = `qa/pg01-rendered/${target.lang}-${viewport.name}.jpeg`;
+              await page.screenshot({ path: screenshot, fullPage: true, type: 'jpeg', quality: 42 });
+
+              results.push({ target: target.lang, viewport, pass, checks, metrics, consoleErrors, pageErrors, screenshot });
+              await context.close();
+            }
+          }
+
+          await browser.close();
+          fs.writeFileSync('qa/pg01-rendered/report.json', JSON.stringify({ generatedAt: new Date().toISOString(), failures, results }, null, 2));
+
+          const lines = ['# PG01 Rendered QA', '', `Generated: ${new Date().toISOString()}`, '', '| Lang | Viewport | Result | Overflow | Console | Min button | Hero |', '|---|---:|---|---|---|---:|---|'];
+          for (const r of results) {
+            lines.push(`| ${r.target.toUpperCase()} | ${r.viewport.width}×${r.viewport.height} | ${r.pass ? 'PASS' : 'FAIL'} | ${r.checks.noHorizontalOverflow ? 'PASS' : 'FAIL'} | ${r.checks.noConsoleErrors ? 'PASS' : 'FAIL'} | ${r.metrics.minButtonHeight ?? 'n/a'}px | ${r.checks.heroReadable ? 'PASS' : 'FAIL'} |`);
+          }
+          lines.push('', '## Notes', '', '- This is rendered Chromium QA, not final human visual approval.', '- Screenshots are evidence for UI/UX review and are not buyer-package assets.', '- C8 remains blocked if any rendered check fails or human visual review finds a defect.', '');
+          fs.writeFileSync('qa/pg01-rendered/README.md', lines.join('\n'));
+
+          if (failures) process.exitCode = 1;
+          EOF
+          node /tmp/pg01-rendered-qa.mjs
+
+      - name: Commit QA evidence
+        if: always()
+        run: |
+          git config user.name 'orveax-build'
+          git config user.email 'actions@users.noreply.github.com'
+          git add qa/pg01-rendered
+          if git diff --cached --quiet; then
+            echo 'No QA evidence changes'
+            exit 0
+          fi
+          git commit -m 'PG01 record rendered visual QA evidence'
+          git push origin main
