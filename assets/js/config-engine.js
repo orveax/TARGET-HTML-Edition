@@ -115,16 +115,19 @@
     }
   });
 
-  document.querySelectorAll("[data-orx-email='sales']").forEach((element) => {
-    if (!cfg.site?.email) return;
-    element.textContent = cfg.site.email;
-    if (element.matches("a")) element.href = `mailto:${cfg.site.email}`;
-  });
+  const emailMap = {
+    sales: cfg.site?.email,
+    trade: cfg.site?.email,
+    rfq: cfg.site?.rfqEmail,
+    suppliers: cfg.site?.suppliersEmail,
+    partners: cfg.site?.partnersEmail
+  };
 
-  document.querySelectorAll("[data-orx-email='partners']").forEach((element) => {
-    if (!cfg.site?.partnersEmail) return;
-    element.textContent = cfg.site.partnersEmail;
-    if (element.matches("a")) element.href = `mailto:${cfg.site.partnersEmail}`;
+  document.querySelectorAll("[data-orx-email]").forEach((element) => {
+    const value = emailMap[element.dataset.orxEmail];
+    if (!value) return;
+    element.textContent = value;
+    if (element.matches("a")) element.href = `mailto:${value}`;
   });
 
   document.querySelectorAll("[data-orx-phone]").forEach((element) => {
