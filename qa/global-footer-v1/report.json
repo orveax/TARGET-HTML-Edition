@@ -52,6 +52,9 @@
     "ar/products.html": {
       "failures": []
     },
+    "ar/resources.html": {
+      "failures": []
+    },
     "ar/rfq.html": {
       "failures": []
     },
@@ -138,7 +141,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 45,
+    "pagesChecked": 46,
     "failures": 0
   }
 }
