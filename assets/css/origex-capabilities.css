@@ -1,0 +1,28 @@
+/* ORIGEX — ORX-P01 | PG07 Capabilities composition | Copyright © ORVEAX */
+.orx-cap-hero .orx-media--hero{min-block-size:460px;overflow:hidden;background:linear-gradient(145deg,var(--orx-primary-strong),var(--orx-primary));color:#fff;display:grid;place-items:center;padding:var(--orx-space-8)}
+.orx-cap-map{inline-size:min(100%,620px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--orx-space-4);align-items:stretch}
+.orx-cap-map__core{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:var(--orx-space-4);padding:var(--orx-space-5);border:1px solid rgba(255,255,255,.2);border-radius:var(--orx-radius-lg);background:rgba(255,255,255,.1);backdrop-filter:blur(8px)}
+.orx-cap-map__core strong{font-size:clamp(1.25rem,2vw,1.75rem)}
+.orx-cap-map__core span{opacity:.78;font-size:var(--orx-fs-small)}
+.orx-cap-map__item{min-inline-size:0;padding:var(--orx-space-5);border:1px solid rgba(255,255,255,.16);border-radius:var(--orx-radius-md);background:rgba(255,255,255,.07);display:flex;gap:var(--orx-space-3);align-items:flex-start}
+.orx-cap-map__item .orx-icon{flex:0 0 auto;margin-block-start:.15rem}.orx-cap-map__item strong{display:block;line-height:1.35}.orx-cap-map__item span{display:block;opacity:.72;font-size:var(--orx-fs-small);margin-block-start:.25rem}
+.orx-capability-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--orx-space-5)}
+.orx-capability-card{block-size:100%;display:flex;flex-direction:column;gap:var(--orx-space-4);position:relative;overflow:hidden}
+.orx-capability-card::before{content:"";position:absolute;inset-block-start:0;inset-inline-start:0;inline-size:4px;block-size:100%;background:var(--orx-accent)}
+.orx-capability-card .orx-card__copy{flex:1;margin-block-end:0}
+.orx-capability-card__link{display:inline-flex;align-items:center;gap:.5rem;font-weight:700;text-decoration:none;color:var(--orx-primary)}
+.orx-cap-focus{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:var(--orx-space-10);align-items:start}
+.orx-cap-focus--reverse>.orx-cap-focus__content{order:2}.orx-cap-focus--reverse>.orx-cap-focus__panel{order:1}
+.orx-cap-focus__content{display:grid;gap:var(--orx-space-4)}
+.orx-cap-focus__panel{border:1px solid var(--orx-border);border-radius:var(--orx-radius-lg);background:var(--orx-surface);padding:var(--orx-space-6);box-shadow:var(--orx-shadow-sm)}
+.orx-cap-checklist{list-style:none;margin:0;padding:0;display:grid;gap:var(--orx-space-3)}
+.orx-cap-checklist li{display:flex;gap:var(--orx-space-3);align-items:flex-start;padding:var(--orx-space-4);border-radius:var(--orx-radius-md);background:var(--orx-surface-soft)}
+.orx-cap-checklist .orx-icon-box{flex:0 0 auto}
+.orx-cap-route{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--orx-space-3)}
+.orx-cap-route__step{padding:var(--orx-space-4);border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);background:var(--orx-surface);min-inline-size:0}
+.orx-cap-route__step strong{display:block;margin-block-end:.35rem}.orx-cap-route__step span{font-size:var(--orx-fs-small);color:var(--orx-text-muted)}
+.orx-cap-boundary{display:flex;gap:var(--orx-space-4);align-items:flex-start;padding:var(--orx-space-5);border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);background:var(--orx-surface-soft)}
+.orx-cap-boundary .orx-icon-box{flex:0 0 auto}
+@media (max-width:1199.98px){.orx-capability-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.orx-cap-route{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:767.98px){.orx-cap-hero .orx-media--hero{min-block-size:auto;padding:var(--orx-space-6)}.orx-cap-map,.orx-capability-grid,.orx-cap-focus,.orx-cap-route{grid-template-columns:1fr}.orx-cap-focus--reverse>.orx-cap-focus__content,.orx-cap-focus--reverse>.orx-cap-focus__panel{order:initial}.orx-cap-map__core{grid-column:auto;align-items:flex-start;flex-direction:column}}
+@media (prefers-reduced-motion:reduce){.orx-cap-map__core{backdrop-filter:none}}
