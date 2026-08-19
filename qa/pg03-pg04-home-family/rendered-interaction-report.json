@@ -1,0 +1,564 @@
+{
+  "generatedAt": "2026-08-19T11:47:00Z",
+  "failures": 0,
+  "rendered": [
+    {
+      "kind": "pg03",
+      "lang": "ar",
+      "viewport": {
+        "name": "mobile-390",
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 375,
+        "dir": "rtl",
+        "expected": "rtl",
+        "fonts": "loaded",
+        "h1Width": 335,
+        "heroHeight": 1071,
+        "minButton": 55,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 375
+      },
+      "screenshot": "qa/pg03-pg04-home-family/pg03-ar-390-full.jpeg"
+    },
+    {
+      "kind": "pg03",
+      "lang": "ar",
+      "viewport": {
+        "name": "tablet-820",
+        "width": 820,
+        "height": 1180
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 805,
+        "dir": "rtl",
+        "expected": "rtl",
+        "fonts": "loaded",
+        "h1Width": 757,
+        "heroHeight": 961,
+        "minButton": 55,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 805
+      },
+      "screenshot": null
+    },
+    {
+      "kind": "pg03",
+      "lang": "ar",
+      "viewport": {
+        "name": "laptop-1366",
+        "width": 1366,
+        "height": 900
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 1351,
+        "dir": "rtl",
+        "expected": "rtl",
+        "fonts": "loaded",
+        "h1Width": 563,
+        "heroHeight": 746,
+        "minButton": 46,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 1351
+      },
+      "screenshot": null
+    },
+    {
+      "kind": "pg03",
+      "lang": "ar",
+      "viewport": {
+        "name": "desktop-1536",
+        "width": 1536,
+        "height": 960
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 1521,
+        "dir": "rtl",
+        "expected": "rtl",
+        "fonts": "loaded",
+        "h1Width": 558,
+        "heroHeight": 756,
+        "minButton": 46,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 1521
+      },
+      "screenshot": "qa/pg03-pg04-home-family/pg03-ar-1536-full.jpeg"
+    },
+    {
+      "kind": "pg03",
+      "lang": "en",
+      "viewport": {
+        "name": "mobile-390",
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 375,
+        "dir": "ltr",
+        "expected": "ltr",
+        "fonts": "loaded",
+        "h1Width": 335,
+        "heroHeight": 1112,
+        "minButton": 52,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 375
+      },
+      "screenshot": "qa/pg03-pg04-home-family/pg03-en-390-full.jpeg"
+    },
+    {
+      "kind": "pg03",
+      "lang": "en",
+      "viewport": {
+        "name": "tablet-820",
+        "width": 820,
+        "height": 1180
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 805,
+        "dir": "ltr",
+        "expected": "ltr",
+        "fonts": "loaded",
+        "h1Width": 757,
+        "heroHeight": 942,
+        "minButton": 52,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 805
+      },
+      "screenshot": null
+    },
+    {
+      "kind": "pg03",
+      "lang": "en",
+      "viewport": {
+        "name": "laptop-1366",
+        "width": 1366,
+        "height": 900
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 1351,
+        "dir": "ltr",
+        "expected": "ltr",
+        "fonts": "loaded",
+        "h1Width": 563,
+        "heroHeight": 747,
+        "minButton": 44,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 1351
+      },
+      "screenshot": null
+    },
+    {
+      "kind": "pg03",
+      "lang": "en",
+      "viewport": {
+        "name": "desktop-1536",
+        "width": 1536,
+        "height": 960
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 1521,
+        "dir": "ltr",
+        "expected": "ltr",
+        "fonts": "loaded",
+        "h1Width": 558,
+        "heroHeight": 793,
+        "minButton": 44,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 1521
+      },
+      "screenshot": "qa/pg03-pg04-home-family/pg03-en-1536-full.jpeg"
+    },
+    {
+      "kind": "pg04",
+      "lang": "ar",
+      "viewport": {
+        "name": "mobile-390",
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 375,
+        "dir": "rtl",
+        "expected": "rtl",
+        "fonts": "loaded",
+        "h1Width": 335,
+        "heroHeight": 1055,
+        "minButton": 55,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 375
+      },
+      "screenshot": "qa/pg03-pg04-home-family/pg04-ar-390-full.jpeg"
+    },
+    {
+      "kind": "pg04",
+      "lang": "ar",
+      "viewport": {
+        "name": "tablet-820",
+        "width": 820,
+        "height": 1180
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 805,
+        "dir": "rtl",
+        "expected": "rtl",
+        "fonts": "loaded",
+        "h1Width": 757,
+        "heroHeight": 866,
+        "minButton": 55,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 805
+      },
+      "screenshot": null
+    },
+    {
+      "kind": "pg04",
+      "lang": "ar",
+      "viewport": {
+        "name": "laptop-1366",
+        "width": 1366,
+        "height": 900
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 1351,
+        "dir": "rtl",
+        "expected": "rtl",
+        "fonts": "loaded",
+        "h1Width": 563,
+        "heroHeight": 719,
+        "minButton": 46,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 1351
+      },
+      "screenshot": null
+    },
+    {
+      "kind": "pg04",
+      "lang": "ar",
+      "viewport": {
+        "name": "desktop-1536",
+        "width": 1536,
+        "height": 960
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 1521,
+        "dir": "rtl",
+        "expected": "rtl",
+        "fonts": "loaded",
+        "h1Width": 558,
+        "heroHeight": 724,
+        "minButton": 46,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 1521
+      },
+      "screenshot": "qa/pg03-pg04-home-family/pg04-ar-1536-full.jpeg"
+    },
+    {
+      "kind": "pg04",
+      "lang": "en",
+      "viewport": {
+        "name": "mobile-390",
+        "width": 390,
+        "height": 844
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 375,
+        "dir": "ltr",
+        "expected": "ltr",
+        "fonts": "loaded",
+        "h1Width": 335,
+        "heroHeight": 1136,
+        "minButton": 52,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 375
+      },
+      "screenshot": "qa/pg03-pg04-home-family/pg04-en-390-full.jpeg"
+    },
+    {
+      "kind": "pg04",
+      "lang": "en",
+      "viewport": {
+        "name": "tablet-820",
+        "width": 820,
+        "height": 1180
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 805,
+        "dir": "ltr",
+        "expected": "ltr",
+        "fonts": "loaded",
+        "h1Width": 757,
+        "heroHeight": 926,
+        "minButton": 52,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 805
+      },
+      "screenshot": null
+    },
+    {
+      "kind": "pg04",
+      "lang": "en",
+      "viewport": {
+        "name": "laptop-1366",
+        "width": 1366,
+        "height": 900
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 1351,
+        "dir": "ltr",
+        "expected": "ltr",
+        "fonts": "loaded",
+        "h1Width": 563,
+        "heroHeight": 719,
+        "minButton": 44,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 1351
+      },
+      "screenshot": null
+    },
+    {
+      "kind": "pg04",
+      "lang": "en",
+      "viewport": {
+        "name": "desktop-1536",
+        "width": 1536,
+        "height": 960
+      },
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "clientWidth": 1521,
+        "dir": "ltr",
+        "expected": "ltr",
+        "fonts": "loaded",
+        "h1Width": 558,
+        "heroHeight": 799,
+        "minButton": 44,
+        "offscreen": [],
+        "overflow": false,
+        "scrollWidth": 1521
+      },
+      "screenshot": "qa/pg03-pg04-home-family/pg04-en-1536-full.jpeg"
+    }
+  ],
+  "interactions": [
+    {
+      "kind": "pg03",
+      "lang": "ar",
+      "mode": "desktop",
+      "pass": true,
+      "checks": {
+        "mega_open_close": true,
+        "announcement_close": true
+      }
+    },
+    {
+      "kind": "pg03",
+      "lang": "ar",
+      "mode": "mobile",
+      "pass": true,
+      "checks": {
+        "drawer_open_close": true
+      }
+    },
+    {
+      "kind": "pg03",
+      "lang": "en",
+      "mode": "desktop",
+      "pass": true,
+      "checks": {
+        "mega_open_close": true,
+        "announcement_close": true
+      }
+    },
+    {
+      "kind": "pg03",
+      "lang": "en",
+      "mode": "mobile",
+      "pass": true,
+      "checks": {
+        "drawer_open_close": true
+      }
+    },
+    {
+      "kind": "pg04",
+      "lang": "ar",
+      "mode": "desktop",
+      "pass": true,
+      "checks": {
+        "anchors_present": true,
+        "demo_form_validates": true
+      }
+    },
+    {
+      "kind": "pg04",
+      "lang": "ar",
+      "mode": "mobile",
+      "pass": true,
+      "checks": {
+        "drawer_open_close": true
+      }
+    },
+    {
+      "kind": "pg04",
+      "lang": "en",
+      "mode": "desktop",
+      "pass": true,
+      "checks": {
+        "anchors_present": true,
+        "demo_form_validates": true
+      }
+    },
+    {
+      "kind": "pg04",
+      "lang": "en",
+      "mode": "mobile",
+      "pass": true,
+      "checks": {
+        "drawer_open_close": true
+      }
+    }
+  ]
+}

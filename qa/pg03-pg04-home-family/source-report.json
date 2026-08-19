@@ -1,0 +1,387 @@
+{
+  "generatedAt": "2026-08-19T11:46:15Z",
+  "failures": 0,
+  "pages": [
+    {
+      "page": "ar/home-03.html",
+      "checks": [
+        {
+          "name": "language/direction",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "single canonical H1",
+          "pass": true,
+          "detail": "['قدم منتجك للسوق بالمعلومات التي يحتاجها المشتري.']"
+        },
+        {
+          "name": "unique IDs",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "canonical URL",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "hreflang AR EN x-default",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "Open Graph baseline",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "WebPage structured data",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "mandatory demo disclosure",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "no client/CDN leakage",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "local Bootstrap",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "M1 runtime",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "page profile exists",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "PG03 frozen intents",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "certifications explicitly demo-labelled",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "export markets illustrative",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "manufacturer composition layer",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "local linked assets exist",
+          "pass": true,
+          "detail": "[]"
+        },
+        {
+          "name": "canonical internal filenames",
+          "pass": true,
+          "detail": "[]"
+        }
+      ]
+    },
+    {
+      "page": "en/home-03.html",
+      "checks": [
+        {
+          "name": "language/direction",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "single canonical H1",
+          "pass": true,
+          "detail": "['Present your product with the information buyers need.']"
+        },
+        {
+          "name": "unique IDs",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "canonical URL",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "hreflang AR EN x-default",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "Open Graph baseline",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "WebPage structured data",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "mandatory demo disclosure",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "no client/CDN leakage",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "local Bootstrap",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "M1 runtime",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "page profile exists",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "PG03 frozen intents",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "certifications explicitly demo-labelled",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "export markets illustrative",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "manufacturer composition layer",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "local linked assets exist",
+          "pass": true,
+          "detail": "[]"
+        },
+        {
+          "name": "canonical internal filenames",
+          "pass": true,
+          "detail": "[]"
+        }
+      ]
+    },
+    {
+      "page": "ar/landing.html",
+      "checks": [
+        {
+          "name": "language/direction",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "single canonical H1",
+          "pass": true,
+          "detail": "['فرصة تجارية أوضح تبدأ بمعلومات أفضل.']"
+        },
+        {
+          "name": "unique IDs",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "canonical URL",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "hreflang AR EN x-default",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "Open Graph baseline",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "WebPage structured data",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "mandatory demo disclosure",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "no client/CDN leakage",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "local Bootstrap",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "M1 runtime",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "page profile exists",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "PG04 frozen intents",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "compact demo form",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "no form endpoint",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "landing runtime",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "local linked assets exist",
+          "pass": true,
+          "detail": "[]"
+        },
+        {
+          "name": "canonical internal filenames",
+          "pass": true,
+          "detail": "[]"
+        }
+      ]
+    },
+    {
+      "page": "en/landing.html",
+      "checks": [
+        {
+          "name": "language/direction",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "single canonical H1",
+          "pass": true,
+          "detail": "['Clearer commercial opportunities start with better information.']"
+        },
+        {
+          "name": "unique IDs",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "canonical URL",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "hreflang AR EN x-default",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "Open Graph baseline",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "WebPage structured data",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "mandatory demo disclosure",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "no client/CDN leakage",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "local Bootstrap",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "M1 runtime",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "page profile exists",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "PG04 frozen intents",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "compact demo form",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "no form endpoint",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "landing runtime",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "local linked assets exist",
+          "pass": true,
+          "detail": "[]"
+        },
+        {
+          "name": "canonical internal filenames",
+          "pass": true,
+          "detail": "[]"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}
