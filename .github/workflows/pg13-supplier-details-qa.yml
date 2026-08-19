@@ -1,0 +1,234 @@
+name: PG13 Supplier Details QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/supplier-details.html'
+      - 'en/supplier-details.html'
+      - 'assets/css/origex-supplier-details.css'
+      - 'assets/css/origex-components.css'
+      - 'assets/css/origex-shell.css'
+      - 'assets/js/origex-supplier-details.js'
+      - 'assets/js/origex-ui.js'
+      - 'assets/data/suppliers.json'
+      - 'assets/data/products.json'
+      - 'assets/data/markets.json'
+      - 'docs/page-design-profiles/pg13-supplier-details-v1.md'
+      - 'docs/GLOBAL-NAVIGATION-CONTRACT-V1.md'
+      - '.github/scripts/normalize_global_navigation.py'
+      - '.github/workflows/pg13-supplier-details-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install QA dependencies
+        run: python -m pip install --quiet beautifulsoup4 selenium
+      - name: Source data rendered and interaction QA
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json, re, subprocess, time
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.keys import Keys
+          from selenium.webdriver.support.ui import WebDriverWait
+
+          root=Path('.')
+          out=root/'qa/pg13-supplier-details'; out.mkdir(parents=True,exist_ok=True)
+          source={'failures':[],'pages':{},'data':{}}
+          suppliers=json.loads((root/'assets/data/suppliers.json').read_text(encoding='utf-8'))
+          products=json.loads((root/'assets/data/products.json').read_text(encoding='utf-8'))
+          markets=json.loads((root/'assets/data/markets.json').read_text(encoding='utf-8'))
+          s_by={x['id']:x for x in suppliers}; p_by={x['id']:x for x in products}; m_by={x['id']:x for x in markets}
+          expected_categories={'ambient','beverages','dairy','frozen','confectionery','ingredients'}
+          if len(suppliers)!=4: source['failures'].append(f'data:supplier-count:{len(suppliers)}')
+          if len(products)!=12: source['failures'].append(f'data:product-count:{len(products)}')
+          if len(markets)!=6: source['failures'].append(f'data:market-count:{len(markets)}')
+          for s in suppliers:
+              sid=s.get('id','?')
+              if not s.get('nameAr') or not s.get('nameEn'): source['failures'].append(f'data:{sid}:localized-name')
+              if not set(s.get('categoryIds',[])).issubset(expected_categories): source['failures'].append(f'data:{sid}:category')
+              if not re.fullmatch(r'[A-Z]{2}',s.get('countryCode','')): source['failures'].append(f'data:{sid}:country-code')
+              linked=[p_by.get(x) for x in s.get('productIds',[])]
+              if not linked or any(x is None for x in linked): source['failures'].append(f'data:{sid}:product-relation')
+              if any(x and x.get('supplierId')!=sid for x in linked): source['failures'].append(f'data:{sid}:reverse-product-relation')
+              linked_markets=[m_by.get(x) for x in s.get('marketIds',[])]
+              if not linked_markets or any(x is None for x in linked_markets): source['failures'].append(f'data:{sid}:market-relation')
+          for p in products:
+              if p.get('supplierId') not in s_by: source['failures'].append(f'data:{p.get("id")}:supplier')
+          for m in markets:
+              if not re.fullmatch(r'[A-Z]{2}',m.get('countryCode','')): source['failures'].append(f'data:{m.get("id")}:country-code')
+              if not m.get('nameAr') or not m.get('nameEn'): source['failures'].append(f'data:{m.get("id")}:localized-name')
+          source['data']={'suppliers':len(suppliers),'products':len(products),'markets':len(markets),'supplierProductRelations':sum(len(s.get('productIds',[])) for s in suppliers),'supplierMarketRelations':sum(len(s.get('marketIds',[])) for s in suppliers)}
+
+          expected={
+            'ar':{'file':'ar/supplier-details.html','dir':'rtl','h1':'اعرف المورد ومنتجاته والأسواق المستهدفة قبل بدء التواصل التجاري.','other':'../en/supplier-details.html'},
+            'en':{'file':'en/supplier-details.html','dir':'ltr','h1':'Understand the supplier, linked products and target markets before starting a commercial conversation.','other':'../ar/supplier-details.html'}
+          }
+          sprite=(root/'assets/icons/sprite.svg').read_text(encoding='utf-8'); sprite_ids=set(re.findall(r'<symbol[^>]+id="([^"]+)"',sprite))
+          for lang,cfg in expected.items():
+              p=root/cfg['file']; text=p.read_text(encoding='utf-8'); soup=BeautifulSoup(text,'html.parser'); failures=[]
+              if soup.html.get('lang')!=lang: failures.append('lang')
+              if soup.html.get('dir')!=cfg['dir']: failures.append('dir')
+              h1s=soup.find_all('h1')
+              if len(h1s)!=1 or h1s[0].get_text(' ',strip=True)!=cfg['h1']: failures.append('h1')
+              ids=[x.get('id') for x in soup.select('[id]') if x.get('id')]
+              if len(ids)!=len(set(ids)): failures.append('duplicate-ids')
+              if not soup.select_one('[data-pg13-root][data-suppliers-url][data-products-url][data-markets-url]'): failures.append('root-contract')
+              if not soup.find('link',href='../assets/css/origex-supplier-details.css'): failures.append('css')
+              if not soup.find('script',src='../assets/js/origex-supplier-details.js'): failures.append('runtime')
+              for sel in ('[data-pg13-facts]','[data-pg13-categories]','[data-pg13-products]','[data-pg13-certifications]','[data-pg13-markets]','[data-pg13-status]','[data-pg13-error]'):
+                  if not soup.select_one(sel): failures.append(f'hook:{sel}')
+              if not soup.find('link',rel='canonical'): failures.append('canonical')
+              hreflangs={x.get('hreflang') for x in soup.find_all('link',rel='alternate')}
+              if not {'ar','en','x-default'}.issubset(hreflangs): failures.append('hreflang')
+              if not soup.find('a',href=cfg['other']): failures.append('language-switch')
+              if not soup.select_one('.orx-primary-nav a[href="suppliers.html"][aria-current="page"]'): failures.append('supplier-primary-current')
+              if not soup.select_one('.orx-mega-menu a[href="suppliers.html"][aria-current="page"]'): failures.append('supplier-mega-current')
+              if not soup.select_one('.orx-mobile-nav a[href="suppliers.html"][aria-current="page"]'): failures.append('supplier-mobile-current')
+              schemas=soup.find_all('script',{'type':'application/ld+json'})
+              if len(schemas)<2: failures.append('schemas')
+              if not soup.find('script',id='pg13-supplier-schema'): failures.append('organization-schema')
+              if 'TARGET' in text or 'targetft' in text.lower(): failures.append('client-leakage')
+              if re.search(r'verified supplier|rating|review count|response rate|years in business',text,re.I): failures.append('unsupported-claim')
+              html_icons=set(re.findall(r'sprite\.svg#([a-z0-9-]+)',text)); missing=sorted(html_icons-sprite_ids)
+              if missing: failures.append(f'icons:{missing}')
+              for tag,attr in [('img','src'),('link','href'),('script','src')]:
+                  for node in soup.find_all(tag):
+                      value=node.get(attr,'')
+                      if value.startswith('../'):
+                          target=(p.parent/value).resolve()
+                          if not target.exists(): failures.append(f'asset:{value}')
+              source['pages'][lang]={'failures':failures}
+              source['failures'].extend([f'{lang}:{x}' for x in failures])
+
+          nav=subprocess.run(['python','.github/scripts/normalize_global_navigation.py','--check'],capture_output=True,text=True)
+          if nav.returncode:
+              source['failures'].append('global-navigation-drift'); source['navigation_output']=nav.stdout+nav.stderr
+          js=subprocess.run(['node','--check','assets/js/origex-supplier-details.js'],capture_output=True,text=True)
+          if js.returncode:
+              source['failures'].append('javascript-syntax'); source['javascript_output']=js.stdout+js.stderr
+          (out/'source-report.json').write_text(json.dumps(source,ensure_ascii=False,indent=2),encoding='utf-8')
+
+          server=subprocess.Popen(['python','-m','http.server','8765'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL); time.sleep(1)
+          rendered={'failures':[],'cases':[],'interaction':{}}
+          def driver_for(width):
+              o=Options(); o.add_argument('--headless=new'); o.add_argument('--no-sandbox'); o.add_argument('--disable-dev-shm-usage'); o.add_argument(f'--window-size={width},1400'); return webdriver.Chrome(options=o)
+          def wait_ready(d):
+              WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg13-root]').get_attribute('data-load-state') in ('ready','error'))
+          try:
+              for lang in ('ar','en'):
+                  for width in (390,820,1366,1536):
+                      d=driver_for(width); failures=[]
+                      try:
+                          d.get(f'http://127.0.0.1:8765/{lang}/supplier-details.html'); wait_ready(d)
+                          pg=d.find_element(By.CSS_SELECTOR,'[data-pg13-root]')
+                          if pg.get_attribute('data-load-state')!='ready': failures.append('data-load')
+                          if pg.get_attribute('data-active-supplier-id')!='supplier-noura': failures.append('default-supplier')
+                          if pg.get_attribute('data-product-count')!='4': failures.append('product-count')
+                          if pg.get_attribute('data-market-count')!='3': failures.append('market-count')
+                          if pg.get_attribute('data-category-count')!='4': failures.append('category-count')
+                          if pg.get_attribute('data-certification-count')!='1': failures.append('certification-count')
+                          if len(d.find_elements(By.CSS_SELECTOR,'[data-pg13-products] [data-product-id]'))!=4: failures.append('product-render')
+                          if len(d.find_elements(By.CSS_SELECTOR,'[data-pg13-markets] [data-market-id]'))!=3: failures.append('market-render')
+                          if len(d.find_elements(By.CSS_SELECTOR,'[data-pg13-categories] a[href^="products.html?category="]'))!=4: failures.append('category-routes')
+                          if len(d.find_elements(By.CSS_SELECTOR,'[data-pg13-products] a[href^="product-details.html?id="]'))!=4: failures.append('product-detail-routes')
+                          if d.execute_script('return document.documentElement.scrollWidth')>d.execute_script('return document.documentElement.clientWidth')+1: failures.append('overflow')
+                          if d.find_element(By.TAG_NAME,'html').get_attribute('dir')!=('rtl' if lang=='ar' else 'ltr'): failures.append('direction')
+                          header=d.find_element(By.CSS_SELECTOR,'[data-orx-header-cta]')
+                          if 'supplier=supplier-noura' not in header.get_attribute('href'): failures.append('header-rfq-sync')
+                          small=[]
+                          for el in d.find_elements(By.CSS_SELECTOR,'a,button,input,select'):
+                              if not el.is_displayed(): continue
+                              r=el.rect
+                              if r['width'] and r['height'] and (r['width']<24 or r['height']<24): small.append((el.tag_name,round(r['width'],1),round(r['height'],1)))
+                          if small: failures.append(f'touch-targets:{len(small)}:{small[:4]}')
+                          if width>=1051:
+                              t=d.find_element(By.CSS_SELECTOR,'[data-orx-mega-trigger]'); t.click(); time.sleep(.05)
+                              if t.get_attribute('aria-expanded')!='true': failures.append('mega-open')
+                              t.send_keys(Keys.ESCAPE); time.sleep(.05)
+                              if t.get_attribute('aria-expanded')!='false': failures.append('mega-escape')
+                          else:
+                              op=d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-open]'); op.click(); time.sleep(.05)
+                              dr=d.find_element(By.CSS_SELECTOR,'[data-orx-mobile-drawer]')
+                              if dr.get_attribute('aria-hidden')!='false': failures.append('drawer-open')
+                              d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-close]').click(); time.sleep(.05)
+                              if dr.get_attribute('aria-hidden')!='true': failures.append('drawer-close')
+                      finally: d.quit()
+                      rendered['cases'].append({'lang':lang,'width':width,'failures':failures}); rendered['failures'].extend([f'{lang}-{width}:{x}' for x in failures])
+
+              d=driver_for(1366); failures=[]
+              try:
+                  d.get('http://127.0.0.1:8765/en/supplier-details.html?id=supplier-nordvale'); wait_ready(d)
+                  pg=d.find_element(By.CSS_SELECTOR,'[data-pg13-root]')
+                  if pg.get_attribute('data-active-supplier-id')!='supplier-nordvale': failures.append('supplier-switch')
+                  if pg.get_attribute('data-product-count')!='2': failures.append('nordvale-products')
+                  if pg.get_attribute('data-market-count')!='3': failures.append('nordvale-markets')
+                  if pg.get_attribute('data-category-count')!='1': failures.append('nordvale-categories')
+                  if 'NordVale' not in d.find_element(By.CSS_SELECTOR,'[data-pg13-name]').text: failures.append('nordvale-name')
+                  lang_href=d.find_element(By.CSS_SELECTOR,'.orx-lang-switch').get_attribute('href')
+                  if 'id=supplier-nordvale' not in lang_href: failures.append('language-id')
+                  if 'supplier=supplier-nordvale' not in d.find_element(By.CSS_SELECTOR,'[data-orx-header-cta]').get_attribute('href'): failures.append('supplier-rfq')
+                  schema=json.loads(d.find_element(By.ID,'pg13-supplier-schema').get_attribute('textContent'))
+                  if schema.get('identifier')!='supplier-nordvale': failures.append('schema-update')
+              finally:d.quit()
+              rendered['interaction']['en-supplier-switch']=failures; rendered['failures'].extend([f'en-switch:{x}' for x in failures])
+
+              d=driver_for(1366); failures=[]
+              try:
+                  d.get('http://127.0.0.1:8765/en/supplier-details.html?id=supplier-blueport'); wait_ready(d)
+                  pg=d.find_element(By.CSS_SELECTOR,'[data-pg13-root]')
+                  if pg.get_attribute('data-active-supplier-id')!='supplier-blueport': failures.append('blueport-switch')
+                  if pg.get_attribute('data-certification-count')!='0': failures.append('blueport-cert-count')
+                  cert_text=d.find_element(By.CSS_SELECTOR,'[data-pg13-certifications]').text
+                  if 'No demo certification references' not in cert_text: failures.append('cert-empty-state')
+              finally:d.quit()
+              rendered['interaction']['en-cert-empty']=failures; rendered['failures'].extend([f'en-cert:{x}' for x in failures])
+
+              d=driver_for(1366); failures=[]
+              try:
+                  d.get('http://127.0.0.1:8765/en/supplier-details.html?id=missing-supplier'); wait_ready(d)
+                  pg=d.find_element(By.CSS_SELECTOR,'[data-pg13-root]')
+                  if pg.get_attribute('data-active-supplier-id')!='supplier-noura': failures.append('fallback-supplier')
+                  if pg.get_attribute('data-fallback-used')!='true': failures.append('fallback-flag')
+                  if 'not found' not in d.find_element(By.CSS_SELECTOR,'[data-pg13-status]').text.lower(): failures.append('fallback-message')
+              finally:d.quit()
+              rendered['interaction']['en-invalid-id']=failures; rendered['failures'].extend([f'en-invalid:{x}' for x in failures])
+
+              d=driver_for(1366); failures=[]
+              try:
+                  d.get('http://127.0.0.1:8765/ar/supplier-details.html?id=supplier-nordvale'); wait_ready(d)
+                  pg=d.find_element(By.CSS_SELECTOR,'[data-pg13-root]')
+                  if pg.get_attribute('data-active-supplier-id')!='supplier-nordvale': failures.append('ar-switch')
+                  if 'id=supplier-nordvale' not in d.find_element(By.CSS_SELECTOR,'.orx-lang-switch').get_attribute('href'): failures.append('ar-language-id')
+                  if d.find_element(By.TAG_NAME,'html').get_attribute('dir')!='rtl': failures.append('ar-dir')
+              finally:d.quit()
+              rendered['interaction']['ar-query-language']=failures; rendered['failures'].extend([f'ar-query:{x}' for x in failures])
+          finally:
+              server.terminate()
+
+          (out/'rendered-report.json').write_text(json.dumps(rendered,ensure_ascii=False,indent=2),encoding='utf-8')
+          status='PASS' if not source['failures'] and not rendered['failures'] else 'FAIL'
+          (out/'run-status.txt').write_text(status+'\n',encoding='utf-8')
+          print('source failures',len(source['failures'])); print('rendered failures',len(rendered['failures']))
+          if status!='PASS':
+              print(source['failures']); print(rendered['failures']); raise SystemExit(1)
+          PY
+      - name: Commit QA evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg13-supplier-details || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "PG13 record supplier details QA evidence"
+          git push origin main
