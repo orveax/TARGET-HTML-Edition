@@ -2,7 +2,7 @@
 
 Product ID: ORX-P01  
 Milestone: M4 — Product / Supplier / Conversion  
-Status: PS6 — FROZEN FOR BUILD  
+Status: PS6 — FROZEN / BUILD IMPLEMENTED / QA GATE OPEN  
 Canonical file: `submit-product.html`
 
 ## Purpose
@@ -226,6 +226,14 @@ Required: self canonical, AR/EN/x-default hreflang, Open Graph baseline, WebPage
 - AR RTL / EN LTR independently verified;
 - touch targets follow shared component floor;
 - reduced-motion inherited globally.
+
+## Automated QA Gate
+
+- Workflow: `.github/workflows/pg17-submit-product-qa.yml`.
+- Evidence: `qa/pg17-submit-product/`.
+- Source gate checks required fields, file contract, demo-backend safety, SEO, icons, Global Navigation V1 and Global Footer V1.
+- Rendered gate checks AR/EN at 390 / 820 / 1366 / 1536, touch targets and global navigation interactions.
+- Interaction gate verifies empty-form rejection, keyboard consent, valid demo success, zero fetch/XHR requests, invalid-file rejection and valid-file filename state.
 
 ## Exit Gate
 
