@@ -15,6 +15,10 @@ on:
       - '.github/scripts/normalize_global_footer.py'
       - '.github/workflows/global-footer-qa.yml'
 
+concurrency:
+  group: global-footer-v1
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -23,6 +27,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install QA dependencies
+        run: python -m pip install --quiet beautifulsoup4
 
       - name: Normalize canonical footer
         run: python .github/scripts/normalize_global_footer.py
