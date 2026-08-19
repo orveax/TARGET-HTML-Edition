@@ -1,0 +1,21 @@
+/* ORIGEX — ORX-P01 | PG12 Suppliers / Brands Directory */
+.orx-suppliers-hero{padding-block:clamp(3.5rem,7vw,6.5rem)}
+.orx-suppliers-hero__meta{display:flex;flex-wrap:wrap;gap:.55rem;margin-block-start:1.35rem}
+.orx-suppliers-featured{display:grid;grid-template-columns:1fr;gap:1rem}
+.orx-suppliers-featured__item{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:1rem;padding:1.1rem;border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);background:var(--orx-surface)}
+.orx-suppliers-featured__identity,.orx-supplier-directory-card__identity{display:grid;place-items:center;flex:0 0 auto;inline-size:58px;block-size:58px;border:1px solid var(--orx-border);border-radius:var(--orx-radius-sm);background:var(--orx-surface-soft);color:var(--orx-primary);font-weight:800;letter-spacing:.04em}
+.orx-suppliers-featured__copy{min-width:0}.orx-suppliers-featured__copy h3{margin:0;font-size:1rem}.orx-suppliers-featured__copy p{margin:.25rem 0 0;color:var(--orx-text-muted);font-size:.88rem}
+.orx-suppliers-shell{display:grid;gap:1.25rem}
+.orx-suppliers-controls{padding:1rem;border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);background:var(--orx-surface)}
+.orx-suppliers-controls__grid{display:grid;gap:1rem}.orx-suppliers-controls__actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem;margin-block-start:1rem}
+.orx-suppliers-results-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem}.orx-suppliers-results-head p{margin:0;color:var(--orx-text-muted)}
+.orx-suppliers-filter-summary{display:flex;flex-wrap:wrap;gap:.45rem}.orx-suppliers-filter-summary .orx-badge button{border:0;background:transparent;color:inherit;font:inherit;cursor:pointer;padding:.15rem .25rem;min-inline-size:24px;min-block-size:24px}
+.orx-suppliers-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+.orx-supplier-directory-card{display:grid;gap:1rem;height:100%}.orx-supplier-directory-card__head{display:flex;align-items:flex-start;gap:1rem}.orx-supplier-directory-card__head>div:last-child{min-width:0;flex:1}.orx-supplier-directory-card__head h2{font-size:1.15rem;margin:0}.orx-supplier-directory-card__summary{margin:0;color:var(--orx-text-muted)}
+.orx-supplier-directory-card__meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem}.orx-supplier-directory-card__fact{padding:.8rem;border:1px solid var(--orx-border);border-radius:var(--orx-radius-sm);background:var(--orx-surface-soft)}.orx-supplier-directory-card__fact dt{font-size:.76rem;color:var(--orx-text-muted);font-weight:700}.orx-supplier-directory-card__fact dd{margin:.2rem 0 0;font-weight:800}
+.orx-supplier-directory-card__tags{display:flex;flex-wrap:wrap;gap:.45rem}.orx-supplier-directory-card__actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-block-start:auto}
+.orx-suppliers-empty,.orx-suppliers-error{grid-column:1/-1}.orx-suppliers-error{padding:1.2rem;border:1px solid var(--orx-danger);border-radius:var(--orx-radius-md);background:var(--orx-surface)}.orx-suppliers-error p{margin:.35rem 0 0;color:var(--orx-text-muted)}
+.orx-suppliers-disclosure{margin:0;padding:1rem 1.1rem;border-inline-start:3px solid var(--orx-accent);background:var(--orx-surface-soft);color:var(--orx-text-muted)}
+@media(min-width:640px){.orx-suppliers-featured{grid-template-columns:repeat(2,minmax(0,1fr))}.orx-suppliers-controls__grid{grid-template-columns:minmax(0,1.5fr) repeat(2,minmax(180px,.75fr))}}
+@media(min-width:820px){.orx-suppliers-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:639.98px){.orx-supplier-directory-card__meta{grid-template-columns:1fr}.orx-supplier-directory-card__actions>.orx-btn{flex:1 1 100%}.orx-suppliers-controls__actions>.orx-btn{width:100%}}
