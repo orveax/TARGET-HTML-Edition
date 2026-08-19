@@ -3,86 +3,110 @@
 Product ID: ORX-P01  
 Owner: ORVEAX  
 Status: APPROVED, FROZEN & COMPLETE  
-Closure Date: 2026-08-19
+Closure Date: 2026-08-19  
+Hard-Audit Confirmation: 2026-08-19
 
-This document is the closure authority for ORIGEX V1 product foundation. It does not replace the detailed authority documents; it confirms that the planning/foundation layer is complete and normal implementation must now consume the frozen systems rather than reopen them.
+This document certifies that ORIGEX V1 product planning/foundation is closed. The active implementation must consume the frozen authorities rather than rediscover conventions page by page.
+
+Operational entry point: `PROJECT-HQ-V1.md`.
 
 ## 1. Closure Decision
 
-ORIGEX V1 Product Foundation is COMPLETE.
+```text
+M0 — PRODUCT FOUNDATION: PASS / CLOSED
+M1 — GLOBAL SYSTEM & COMPONENT FOUNDATION: CLEAN START / READY
+```
 
-The project may proceed through M1–M8 using the frozen architecture, content, SEO, asset, QA and product-governance systems.
+Page production begins only after the M1 foundation gate passes.
 
-Normal implementation does not reopen foundation decisions.
+## 2. Frozen Scope
 
-## 2. Frozen Product Systems
+- 32 unique V1 layouts;
+- Arabic-first RTL + complete English LTR;
+- V1 Main Features only;
+- Additional Features deferred to V1.1+;
+- no ecommerce/account/admin/page-builder scope in V1.
 
-### Product / Scope
-- V1 Main Features scope.
-- 32 unique layouts / bilingual AR+EN architecture.
-- V1.1 Additional Features separation.
-- milestone and change-control model.
+Authority: `SCOPE-FREEZE-V1-FINAL.md`.
 
-### Technology / Code
-- HTML5 / CSS3.
-- Bootstrap 5.x foundation policy.
-- Vanilla JavaScript.
-- no mandatory build/runtime framework.
-- `config.js` customization layer.
-- JSON structured-data domains.
-- `orx-` code namespace and naming conventions.
+## 3. Frozen Technology
 
-### Design System
-- hierarchy and registry governance.
-- typography and color foundations.
-- grid/container/responsive rules.
-- radius/border/elevation system.
-- reusable components and page profiles.
-- Lucide semantic icon system.
-- ORIGEX custom SVG/CSS Pattern System.
-- Image/Media System and media frames.
-- motion/interaction rules.
-- RTL/LTR behavior.
+- HTML5;
+- CSS3;
+- Bootstrap **5.3.8** infrastructure/layout foundation;
+- Vanilla JavaScript;
+- ORIGEX Design System;
+- `config.js` simple customization;
+- approved JSON structured data;
+- no React/Vue/Astro runtime/Tailwind/jQuery/mandatory build pipeline/heavy animation dependency.
 
-### Content
-- Arabic master / English professional adaptation.
-- Content Contract C0–C8.
-- Master Content Architecture for all 32 layouts.
-- canonical Demo Dataset.
-- CTA/microcopy/state rules.
-- complete content mechanism for future Additional Features.
+Authority: `TECH-STACK-V1.md`.
 
-### SEO / Page Identity
-- PG01–PG32 page identity registry.
-- canonical filename/slug convention.
-- H1/title/meta rules.
-- canonical/hreflang architecture.
-- Open Graph contract.
-- structured-data governance.
-- indexability classes.
-- internal-link naming rules.
+## 4. Frozen Design Systems
 
-### Demo / Production
-- fictional demo-data governance.
-- demo-vs-buyer data separation.
-- preview-only asset policy.
-- production replacement checklist.
-- demo indexability policy.
-- prohibition on leaked client/private credentials/data.
+- Brand System;
+- Design-System hierarchy;
+- Component Registry and immutability governance;
+- Page Design Profiles;
+- grid/container/responsive;
+- shape/border/elevation;
+- motion;
+- Lucide Icon System;
+- ORIGEX PT01–PT06 Pattern System;
+- Image/Media System and registered frames.
 
-### QA / Release
-- Page/Content/Component/SEO/Demo Definition of Done.
-- modern browser-support policy.
-- performance budget.
-- MAJOR.MINOR.PATCH release governance.
-- changelog and release gate.
+## 5. Frozen Content System
 
-## 3. Canonical Authorities
+- Arabic master / English professional adaptation;
+- Content Contract C0–C8;
+- Master Content Architecture for all 32 layouts;
+- coherent fictional Demo Dataset;
+- CTA/microcopy/states/disclaimers;
+- future Additional Feature Content Pack mechanism.
 
-Core authorities include:
+No page/feature enters implementation before C6 — FROZEN.
+
+## 6. Frozen SEO / Page Identity
+
+- PG01–PG32 identities;
+- canonical filenames/slugs;
+- H1/title/meta rules;
+- canonical/hreflang;
+- Open Graph;
+- indexability classes;
+- structured-data governance;
+- internal-link naming.
+
+## 7. Frozen Product Governance
+
+- Demo vs Production separation;
+- Asset/License register requirement;
+- QA Definition of Done;
+- browser/performance principles;
+- semantic release/versioning;
+- changelog/release gate;
+- formal change classification.
+
+## 8. Hard Audit Confirmation
+
+The 2026-08-19 hard audit removed pre-foundation Build 02–05 active HTML/CSS/JS and superseded planning/gate documents from the current tree.
+
+Git history remains the historical archive. Selected source maps remain reference-only and cannot override current authorities.
+
+Audit authority: `HARD-AUDIT-CLOSURE-2026-08-19.md`.
+
+## 9. Canonical Control Set
+
+Start at:
+- `PROJECT-HQ-V1.md`
+- `PROJECT-RULES-V1.md`
+- `IMPLEMENTATION-STATUS-V1.md`
+
+Core frozen authorities:
 - `SCOPE-FREEZE-V1-FINAL.md`
 - `FOUNDATION-FREEZE-V1.md`
 - `TECH-STACK-V1.md`
+- `BRAND-SYSTEM-V1.md`
 - `DESIGN-SYSTEM-HIERARCHY-V1.md`
 - `COMPONENT-REGISTRY-V1.md`
 - `COMPONENT-DESIGN-RULES-V1.md`
@@ -92,47 +116,40 @@ Core authorities include:
 - `IMAGE-MEDIA-SYSTEM-V1.md`
 - `DATA-SCHEMA-V1.md`
 - `CODE-ARCHITECTURE-V1.md`
+- `CONFIGURATION.md`
 - `CONTENT-SYSTEM-V1.md`
 - `MASTER-CONTENT-ARCHITECTURE-V1.md`
 - `DEMO-CONTENT-DATASET-V1.md`
 - `SEO-METADATA-PAGE-NAMING-V1.md`
 - `DEMO-VS-PRODUCTION-POLICY-V1.md`
+- `ASSET-LICENSE-REGISTER-V1.md`
 - `QA-DEFINITION-OF-DONE-V1.md`
 - `RELEASE-VERSIONING-POLICY-V1.md`
 - `MILESTONE-PLAN-V1.md`
 - `V1.1-ADDITIONAL-FEATURES-BACKLOG.md`
 - V1.1 Content Pack authorities.
 
-## 4. Implementation Rule
+Reference-only files are indexed by `REFERENCE-INDEX-V1.md`.
 
-From this closure forward, implementation asks:
+## 10. Implementation Rule
 
-> Which frozen rule/component/content/SEO contract applies?
+From this closure forward, the implementation question is:
+
+> Which frozen authority/component/content/SEO contract applies?
 
 not:
 
-> What design/content/SEO convention should we invent for this page?
+> What convention should this page invent?
 
-If a required unit does not exist, implementation pauses only long enough to classify it through change control. It is not solved with a local one-off fork.
+If a required reusable unit genuinely does not exist, classify it through formal change control before implementation.
 
-## 5. Change Classification After Closure
+## 11. Valid Change Classes
 
-Any new request is classified as one of:
-
-1. **Bug / Defect** — fix within existing system.
-2. **Content Correction** — verified correction following Content governance.
-3. **Design System / Architecture / SEO / Product Governance Change Request** — intentional change to a frozen system.
-4. **V1.1+ Backlog** — new feature/expansion not required for V1.
+1. Verified bug / defect.
+2. Verified content / SEO correction.
+3. Formal Design System / Architecture / Product Governance Change Request.
+4. V1.1+ Backlog.
 
 Preference or experimentation alone does not reopen Product Foundation.
-
-## 6. Current Project State
-
-```text
-M0 — PRODUCT FOUNDATION: CLOSED / COMPLETE
-M1 — GLOBAL SYSTEM & COMPONENT FOUNDATION: READY FOR IMPLEMENTATION
-```
-
-The next work is implementation, not further foundation discovery.
 
 Copyright © ORVEAX.
