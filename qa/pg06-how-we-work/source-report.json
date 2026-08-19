@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-19T12:50:16Z",
-  "failures": 2,
+  "generatedAt": "2026-08-19T12:56:40Z",
+  "failures": 0,
   "results": [
     {
       "page": "ar/how-we-work.html",
@@ -20,14 +20,11 @@
         "runtime": true,
         "uniqueIDs": true,
         "noClientCDNLeakage": true,
-        "iconReferencesResolve": false,
+        "iconReferencesResolve": true,
         "localAssets": true
       },
-      "missingIcons": [
-        "files",
-        "store"
-      ],
-      "pass": false
+      "missingIcons": [],
+      "pass": true
     },
     {
       "page": "en/how-we-work.html",
@@ -47,18 +44,12 @@
         "runtime": true,
         "uniqueIDs": true,
         "noClientCDNLeakage": true,
-        "iconReferencesResolve": false,
+        "iconReferencesResolve": true,
         "localAssets": true
       },
-      "missingIcons": [
-        "files",
-        "store"
-      ],
-      "pass": false
+      "missingIcons": [],
+      "pass": true
     }
   ],
-  "errors": [
-    "ar/how-we-work.html: ['iconReferencesResolve']; missing icons=['files', 'store']",
-    "en/how-we-work.html: ['iconReferencesResolve']; missing icons=['files', 'store']"
-  ]
+  "errors": []
 }

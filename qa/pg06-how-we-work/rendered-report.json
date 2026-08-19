@@ -1,0 +1,199 @@
+{
+  "generatedAt": "2026-08-19T12:57:04Z",
+  "failures": 0,
+  "results": [
+    {
+      "lang": "ar",
+      "viewport": 390,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fourSteps": true,
+        "threeRoles": true,
+        "threeDecisions": true
+      },
+      "metrics": {
+        "decisions": 3,
+        "dir": "rtl",
+        "h1": true,
+        "minButton": 54.625,
+        "off": 0,
+        "overflow": false,
+        "roles": 3,
+        "steps": 4
+      },
+      "pass": true
+    },
+    {
+      "lang": "ar",
+      "viewport": 820,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fourSteps": true,
+        "threeRoles": true,
+        "threeDecisions": true
+      },
+      "metrics": {
+        "decisions": 3,
+        "dir": "rtl",
+        "h1": true,
+        "minButton": 54.625,
+        "off": 0,
+        "overflow": false,
+        "roles": 3,
+        "steps": 4
+      },
+      "pass": true
+    },
+    {
+      "lang": "ar",
+      "viewport": 1366,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fourSteps": true,
+        "threeRoles": true,
+        "threeDecisions": true
+      },
+      "metrics": {
+        "decisions": 3,
+        "dir": "rtl",
+        "h1": true,
+        "minButton": 46.234375,
+        "off": 0,
+        "overflow": false,
+        "roles": 3,
+        "steps": 4
+      },
+      "pass": true
+    },
+    {
+      "lang": "ar",
+      "viewport": 1536,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fourSteps": true,
+        "threeRoles": true,
+        "threeDecisions": true
+      },
+      "metrics": {
+        "decisions": 3,
+        "dir": "rtl",
+        "h1": true,
+        "minButton": 46.234375,
+        "off": 0,
+        "overflow": false,
+        "roles": 3,
+        "steps": 4
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 390,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fourSteps": true,
+        "threeRoles": true,
+        "threeDecisions": true
+      },
+      "metrics": {
+        "decisions": 3,
+        "dir": "ltr",
+        "h1": true,
+        "minButton": 52.21875,
+        "off": 0,
+        "overflow": false,
+        "roles": 3,
+        "steps": 4
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 820,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fourSteps": true,
+        "threeRoles": true,
+        "threeDecisions": true
+      },
+      "metrics": {
+        "decisions": 3,
+        "dir": "ltr",
+        "h1": true,
+        "minButton": 52.21875,
+        "off": 0,
+        "overflow": false,
+        "roles": 3,
+        "steps": 4
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 1366,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fourSteps": true,
+        "threeRoles": true,
+        "threeDecisions": true
+      },
+      "metrics": {
+        "decisions": 3,
+        "dir": "ltr",
+        "h1": true,
+        "minButton": 44.078125,
+        "off": 0,
+        "overflow": false,
+        "roles": 3,
+        "steps": 4
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 1536,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fourSteps": true,
+        "threeRoles": true,
+        "threeDecisions": true
+      },
+      "metrics": {
+        "decisions": 3,
+        "dir": "ltr",
+        "h1": true,
+        "minButton": 44.078125,
+        "off": 0,
+        "overflow": false,
+        "roles": 3,
+        "steps": 4
+      },
+      "pass": true
+    }
+  ],
+  "errors": []
+}
