@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-08-19T05:09:57Z",
+  "cases": [
+    {
+      "case": "ar-390",
+      "full": "qa/pg02-visual-review/ar-390-full-review.jpeg",
+      "hero": "qa/pg02-visual-review/ar-390-hero-review.jpeg",
+      "fullBytes": 35196,
+      "heroBytes": 9488
+    },
+    {
+      "case": "en-390",
+      "full": "qa/pg02-visual-review/en-390-full-review.jpeg",
+      "hero": "qa/pg02-visual-review/en-390-hero-review.jpeg",
+      "fullBytes": 45948,
+      "heroBytes": 12553
+    },
+    {
+      "case": "ar-1536",
+      "full": "qa/pg02-visual-review/ar-1536-full-review.jpeg",
+      "hero": "qa/pg02-visual-review/ar-1536-hero-review.jpeg",
+      "fullBytes": 15793,
+      "heroBytes": 8851
+    },
+    {
+      "case": "en-1536",
+      "full": "qa/pg02-visual-review/en-1536-full-review.jpeg",
+      "hero": "qa/pg02-visual-review/en-1536-hero-review.jpeg",
+      "fullBytes": 18669,
+      "heroBytes": 9956
+    }
+  ]
+}
