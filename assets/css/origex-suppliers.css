@@ -20,3 +20,4 @@
 @media(min-width:820px){.orx-suppliers-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:639.98px){.orx-supplier-directory-card__meta{grid-template-columns:1fr}.orx-supplier-directory-card__actions>.orx-btn{flex:1 1 100%}.orx-suppliers-controls__actions>.orx-btn{width:100%}}
 /* QA retrigger: PG12 permanent gate */
+/* QA rerun after filter-state synchronization */
