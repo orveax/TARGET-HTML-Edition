@@ -2,7 +2,7 @@
 
 Product ID: ORX-P01  
 Milestone: M5 — Proof / Resources / Compliance / Content  
-Status: PS6 — FROZEN FOR BUILD  
+Status: PS7 — IMPLEMENTED / CI QA PASS — AR+EN  
 Canonical file: `resources.html`
 
 ## Purpose
@@ -86,7 +86,7 @@ Premium document-library UI; restrained B2B cards; visible file/type/status/lang
 ## Navigation / Footer
 - Standard Global Navigation V1.
 - Explore current state; Resources current in Mega Menu.
-- Locked mobile drawer already includes Resources and should mark it current through the global normalizer.
+- Locked mobile drawer includes Resources and marks it current through the global normalizer.
 - Footer consumes Global Footer V1 exactly.
 - Language switch preserves a valid `category` query parameter.
 
@@ -117,9 +117,16 @@ Required: self canonical, AR/EN/x-default hreflang, Open Graph baseline, WebPage
 - touch-target baseline applies;
 - Arabic RTL / English LTR verified separately.
 
-## Exit Gate
-PS7 only after AR+EN implementation and source/SEO/navigation/footer/icon/client-leak/resource-path/license-register/filter-query/language-preservation/responsive/interaction QA PASS.
-
-PS8 remains gated by deployed Cloudflare browser acceptance.
+## PS7 Closure Evidence — 2026-08-20
+- AR/EN pages implemented.
+- Five local registered Demo resources exist and match the resource register.
+- Source/runtime/resource QA failures: 0.
+- Rendered AR/EN × 390/820/1366/1536: 8/8 PASS.
+- Category query hydration, language preservation, keyboard reset and empty-state interactions: PASS.
+- Download path existence and `.txt` / UTF-8 type accuracy: PASS.
+- Global Navigation V1 + Global Footer V1: PASS.
+- F05 Icon Integrity: 46 AR/EN pages / 0 missing sprite references at closure.
+- Final QA evidence commit: `630b626d0180d2c62dd8112531bddb5f419b1bc6`.
+- PS8 remains gated by deployed Cloudflare browser acceptance.
 
 Copyright © ORVEAX.
