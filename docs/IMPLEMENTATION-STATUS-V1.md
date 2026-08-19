@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Owner: ORVEAX  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-19 — M1 CLOSED / PG01 READY
+Last Updated: 2026-08-19 — M1 CLOSED / M2 ACTIVE / PG01 QA
 
 This is the repo-level execution tracker. It records actual current implementation state and must match the active code tree.
 
@@ -28,7 +28,7 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`.
 | Canonical Authority Map | PASS / CLOSED |
 | Project Rules | PASS / CLOSED |
 | Asset/License Register | ACTIVE — M1 BASELINE VERIFIED |
-| Current Build Baseline | M1 CLOSED — M2 / PG01 READY |
+| Current Build Baseline | M2 IN PROGRESS — PG01 AR/EN IN QA |
 
 ## Milestones
 
@@ -36,7 +36,7 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`.
 |---|---|---|
 | M0 Product Foundation | PASS / CLOSED | Product Foundation Complete |
 | M1 Global System & Component Foundation | PASS / CLOSED | Component AR/EN foundation QA |
-| M2 Global Shell & Home Family | READY | Home family + shell QA |
+| M2 Global Shell & Home Family | IN PROGRESS | Home family + shell QA |
 | M3 Company / Business / Market | NOT STARTED | Batch Page QA |
 | M4 Product / Supplier / Conversion | NOT STARTED | Data/forms/conversion QA |
 | M5 Proof / Resources / Compliance / Content | NOT STARTED | Resource/content QA |
@@ -62,9 +62,9 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`.
 | Component code implementation | PASS / CLOSED | C01–C28 mapped centrally |
 | Config schema/engine normalization | PASS / CLOSED | canonical demo defaults + eligible hooks |
 | Config integration with M1 components | PASS / CLOSED | semantic hook integration |
-| Global shell | PASS / CLOSED | N01–N04 foundation implemented |
+| Global shell | PASS / CLOSED | N01–N04 foundation implemented; mega-menu positioning context corrected centrally |
 | Components / Elements M1 foundation view | PASS / CLOSED | AR + EN noindex QA surfaces |
-| M1 AR/EN component QA | PASS / CLOSED | structural/component gate; see `M1-QA-REPORT-V1.md` |
+| M1 AR/EN component QA | PASS / CLOSED | structural/component gate; see `M1-QA-REPORT-V1.md` and `M1-CLOSURE-2026-08-19.md` |
 
 ## Active M1 Foundation Tree
 
@@ -96,6 +96,7 @@ preview/
 docs/
 ├── M1-COMPONENT-IMPLEMENTATION-MAP.md
 ├── M1-QA-REPORT-V1.md
+├── M1-CLOSURE-2026-08-19.md
 ├── M1-VENDOR-SHA256.txt
 └── canonical authorities
 ```
@@ -104,7 +105,7 @@ docs/
 
 | PG | Page | Content | Design Profile | Build | QA |
 |---|---|---|---|---|---|
-| PG01 | Home 01 — Food Trading / Importer | C6 — FROZEN | READY / APPROVED | READY | NOT STARTED |
+| PG01 | Home 01 — Food Trading / Importer | C7 — IMPLEMENTED | READY / APPROVED | QA — `ar/index.html` + `en/index.html` | IN PROGRESS |
 | PG02 | Home 02 — Wholesale & Distribution | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG03 | Home 03 — Manufacturer / Supplier | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG04 | Landing / One Page | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
@@ -145,16 +146,17 @@ Historical value remains in Git history and selected reference/source-map files.
 
 ## Page Production Gate
 
-**M1 PASSED / CLOSED.** Page production is now open under the normal per-page gates.
+**M1 PASSED / CLOSED.** Page production is open under the normal per-page gates.
 
-PG01 has completed its immediate entry requirements:
-- Content C6 — FROZEN.
-- Page Design Profile prepared and approved for implementation.
-- SEO & Page Identity Contract included in the profile.
-- component map uses the M1 registered system.
-- demo/legal and asset rules are explicit.
+PG01 has entered implementation and QA:
+- Content C6 was frozen before coding.
+- Page Design Profile and SEO & Page Identity Contract were completed before coding.
+- Arabic and English implementations were created together using the M1 registered system.
+- Canonical fictional demo data and disclosure are used; no TARGET client data/assets entered PG01.
+- local Bootstrap, fonts, icons, patterns, config and runtime are used.
+- PG01 is now Content C7 — IMPLEMENTED and remains in page QA before C8 closure.
 
-Next execution action: build PG01 Arabic + English together, then Content C7 → page QA → C8.
+Next execution action: PG01 responsive / interaction / content / SEO QA → C8. After PG01 closure, prepare and build PG02 under the same gate sequence.
 
 ## Update Rule
 
