@@ -1,7 +1,7 @@
 {
   "failures": [],
   "summary": {
-    "pagesChecked": 49,
+    "pagesChecked": 50,
     "symbolsRegistered": 33,
     "symbolsReferenced": 29,
     "missingReferences": 0
@@ -633,6 +633,18 @@
         "phone",
         "route",
         "search",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/insights.html": {
+      "references": [
+        "arrow-up",
+        "chevron-down",
+        "file-text",
+        "info",
+        "menu",
+        "message-circle",
         "x"
       ],
       "missing": []
