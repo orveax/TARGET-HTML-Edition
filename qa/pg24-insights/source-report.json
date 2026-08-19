@@ -1,7 +1,5 @@
 {
-  "failures": [
-    "footer-drift"
-  ],
+  "failures": [],
   "pages": {
     "ar": {
       "failures": [],
@@ -28,6 +26,5 @@
   },
   "runtime": {
     "failures": []
-  },
-  "footer-drift": "DRIFT: en/insights.html\n"
+  }
 }
