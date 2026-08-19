@@ -1,0 +1,130 @@
+name: Home Family Navigation Regression
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/js/origex-ui.js'
+      - '.github/workflows/home-navigation-regression.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: home-navigation-regression-main
+  cancel-in-progress: true
+
+jobs:
+  navigation:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start static server and ChromeDriver
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p qa/home-navigation-regression
+          google-chrome --version | tee qa/home-navigation-regression/browser-baseline.txt
+          chromedriver --version | tee -a qa/home-navigation-regression/browser-baseline.txt
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/origex-nav-http.log 2>&1 &
+          chromedriver --port=9515 --allowed-origins='*' >/tmp/origex-nav-chromedriver.log 2>&1 &
+          sleep 2
+          curl -fsS http://127.0.0.1:4173/ar/index.html >/dev/null
+          curl -fsS http://127.0.0.1:9515/status >/dev/null
+
+      - name: Verify desktop and mobile Home Family navigation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,time,urllib.request,sys
+          from pathlib import Path
+
+          WD='http://127.0.0.1:9515'
+          OUT=Path('qa/home-navigation-regression')
+          variants=['index.html','home-02.html','home-03.html','landing.html']
+          pages=[]
+          for lang in ('ar','en'):
+              for file in variants:
+                  pages.append((lang,file,f'/{lang}/{file}'))
+
+          def req(method,path,payload=None):
+              data=None if payload is None else json.dumps(payload).encode()
+              r=urllib.request.Request(WD+path,data=data,method=method,headers={'Content-Type':'application/json'})
+              with urllib.request.urlopen(r,timeout=30) as f:
+                  body=json.loads(f.read().decode())
+              value=body.get('value') if isinstance(body,dict) else body
+              if isinstance(value,dict) and value.get('error'):
+                  raise RuntimeError(value)
+              return value
+
+          def session(w,h):
+              v=req('POST','/session',{'capabilities':{'alwaysMatch':{'browserName':'chrome','goog:chromeOptions':{'args':['--headless=new','--no-sandbox','--disable-dev-shm-usage',f'--window-size={w},{h}']}}}})
+              sid=v['sessionId']
+              req('POST',f'/session/{sid}/window/rect',{'width':w,'height':h,'x':0,'y':0})
+              return sid
+
+          def js(sid,script,args=None):
+              return req('POST',f'/session/{sid}/execute/sync',{'script':script,'args':args or []})
+
+          rows=[]; failures=[]
+          for lang,file,path in pages:
+              row={'lang':lang,'file':file,'desktop':{},'mobile':{}}
+              sid=session(1366,900)
+              try:
+                  req('POST',f'/session/{sid}/url',{'url':'http://127.0.0.1:4173'+path}); time.sleep(.5)
+                  desktop=js(sid,r'''const expected=arguments[0],current=arguments[1];const menu=document.querySelector('[data-orx-mega-menu]');const trigger=document.querySelector('[data-orx-mega-trigger]');const group=menu?.querySelector('[data-orx-home-variants]');const links=group?[...group.querySelectorAll('[data-orx-home-variant-link]')]:[];const hrefs=links.map(a=>a.getAttribute('href'));const active=links.filter(a=>a.getAttribute('aria-current')==='page').map(a=>a.getAttribute('href'));if(trigger)trigger.click();const opened=!!menu&&!menu.hidden&&trigger.getAttribute('aria-expanded')==='true';document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));const escaped=!!menu&&menu.hidden&&trigger.getAttribute('aria-expanded')==='false';const r=menu?.getBoundingClientRect();return{menu:!!menu,trigger:!!trigger,group:!!group,hrefs,active,opened,escaped,noViewportOverflow:!r||(r.left>=-1&&r.right<=document.documentElement.clientWidth+1),expected,current};''',[variants,file])
+                  row['desktop']=desktop
+                  checks=[desktop['menu'],desktop['trigger'],desktop['group'],desktop['hrefs']==variants,desktop['active']==[file],desktop['opened'],desktop['escaped'],desktop['noViewportOverflow']]
+                  if not all(checks): failures.append(f'{lang}/{file}: desktop navigation regression: {desktop}')
+              finally:
+                  try:req('DELETE',f'/session/{sid}')
+                  except:pass
+
+              sid=session(390,844)
+              try:
+                  req('POST',f'/session/{sid}/url',{'url':'http://127.0.0.1:4173'+path}); time.sleep(.5)
+                  mobile=js(sid,r'''const expected=arguments[0],current=arguments[1];const nav=document.querySelector('.orx-mobile-nav');const drawer=document.querySelector('[data-orx-mobile-drawer]');const opener=document.querySelector('[data-orx-drawer-open]');const links=nav?[...nav.querySelectorAll('[data-orx-home-variant-link]')]:[];const hrefs=links.map(a=>a.getAttribute('href'));const active=links.filter(a=>a.getAttribute('aria-current')==='page').map(a=>a.getAttribute('href'));if(opener)opener.click();const opened=!!drawer&&drawer.getAttribute('aria-hidden')==='false'&&document.body.classList.contains('orx-nav-open');document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));const escaped=!!drawer&&drawer.getAttribute('aria-hidden')==='true'&&!document.body.classList.contains('orx-nav-open');return{nav:!!nav,drawer:!!drawer,opener:!!opener,hrefs,active,opened,escaped,expected,current};''',[variants,file])
+                  row['mobile']=mobile
+                  checks=[mobile['nav'],mobile['drawer'],mobile['opener'],mobile['hrefs']==variants,mobile['active']==[file],mobile['opened'],mobile['escaped']]
+                  if not all(checks): failures.append(f'{lang}/{file}: mobile navigation regression: {mobile}')
+              finally:
+                  try:req('DELETE',f'/session/{sid}')
+                  except:pass
+              rows.append(row)
+
+          # Ensure all canonical Home Family targets resolve from both language folders.
+          resolved={}
+          for lang in ('ar','en'):
+              for file in variants:
+                  url=f'http://127.0.0.1:4173/{lang}/{file}'
+                  try:
+                      with urllib.request.urlopen(url,timeout=10) as response:
+                          ok=response.status==200
+                  except Exception:
+                      ok=False
+                  resolved[f'{lang}/{file}']=ok
+                  if not ok: failures.append(f'unresolved Home Family route: {lang}/{file}')
+
+          report={'generatedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'failures':len(failures),'variants':variants,'routes':resolved,'pages':rows,'errors':failures}
+          (OUT/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+          (OUT/'run-status.txt').write_text('PASS\n' if not failures else 'FAIL\n',encoding='utf-8')
+          if failures:
+              print('\n'.join(failures)); sys.exit(1)
+          print('Home navigation regression PASS — 8 AR/EN pages, desktop + mobile')
+          PY
+
+      - name: Record QA evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add qa/home-navigation-regression
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'QA record Home Family navigation regression'
+          git pull --rebase origin main
+          git push origin HEAD:main
