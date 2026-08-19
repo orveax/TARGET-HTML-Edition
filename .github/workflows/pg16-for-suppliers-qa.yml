@@ -156,19 +156,20 @@ jobs:
                       else:
                           second=triggers[1]; target=second.get_attribute('aria-controls')
                           if second.get_attribute('aria-expanded')!='false': failures.append('initial-expanded')
-                          second.click(); time.sleep(.08)
-                          if second.get_attribute('aria-expanded')!='true': failures.append('open-expanded')
-                          if not d.find_element(By.ID,target).is_displayed(): failures.append('panel-open')
-                          second.click(); time.sleep(.08)
-                          if second.get_attribute('aria-expanded')!='false': failures.append('close-expanded')
-                          if d.find_element(By.ID,target).is_displayed(): failures.append('panel-close')
+                          d.execute_script("arguments[0].scrollIntoView({block:'center',inline:'nearest'});", second); time.sleep(.08)
+                          second.send_keys(Keys.ENTER); time.sleep(.08)
+                          if second.get_attribute('aria-expanded')!='true': failures.append('keyboard-open-expanded')
+                          if not d.find_element(By.ID,target).is_displayed(): failures.append('keyboard-panel-open')
+                          second.send_keys(Keys.SPACE); time.sleep(.08)
+                          if second.get_attribute('aria-expanded')!='false': failures.append('keyboard-close-expanded')
+                          if d.find_element(By.ID,target).is_displayed(): failures.append('keyboard-panel-close')
                   except Exception as exc:
                       failures.append(f'exception:{type(exc).__name__}:{str(exc)[:180]}')
                   finally:
                       if d:
                           try: d.quit()
                           except Exception: pass
-                  rendered['interaction'][f'{lang}-accordion']=failures; rendered['failures'].extend([f'{lang}-accordion:{x}' for x in failures])
+                  rendered['interaction'][f'{lang}-accordion-keyboard']=failures; rendered['failures'].extend([f'{lang}-accordion-keyboard:{x}' for x in failures])
           except Exception as exc:
               rendered['failures'].append(f'harness-exception:{type(exc).__name__}:{str(exc)[:180]}')
           finally:
