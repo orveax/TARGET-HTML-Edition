@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 92" role="img" aria-labelledby="title desc">
+  <title id="title">ORIGEX — أوريجكس</title>
+  <desc id="desc">Bilingual ORIGEX Route 3 Premium Mark lockup.</desc>
+  <g transform="translate(4 14)">
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="32" r="23" stroke="#15343B" stroke-width="4.5"/>
+      <path d="M32 9c-8 7-10.5 16.5-10.5 23S24 48 32 55c8-7 10.5-16.5 10.5-23S40 16 32 9Z" stroke="#15343B" stroke-width="2.2" opacity=".58"/>
+      <path d="M13.5 24.5C22 20 42 20 50.5 24.5M14.5 40c9 4 26 4 35 0" stroke="#3F6F68" stroke-width="2" opacity=".68"/>
+      <path d="M16.5 43C23.5 39.5 27.5 34.5 33 32c6-2.8 10.8-8.1 16-16" stroke="#C47A4A" stroke-width="4.4"/>
+      <path d="M42.8 16.8 50 15.2 48.5 22.5" stroke="#C47A4A" stroke-width="4.4"/>
+    </g>
+    <circle cx="16.5" cy="43" r="3.7" fill="#C47A4A"/>
+  </g>
+  <text x="84" y="42" fill="#15343B" font-family="Manrope, Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="1.8">ORIGEX</text>
+  <text x="84" y="69" direction="rtl" unicode-bidi="plaintext" fill="#15343B" font-family="Tajawal, Arial, sans-serif" font-size="25" font-weight="700">أوريجكس</text>
+  <path d="M317 26v42" stroke="#D8DEDB" stroke-width="1.5"/>
+  <text x="440" y="43" text-anchor="end" direction="rtl" unicode-bidi="plaintext" fill="#667278" font-family="Tajawal, Arial, sans-serif" font-size="11" font-weight="500">من المصدر إلى السوق</text>
+  <text x="440" y="62" text-anchor="end" fill="#667278" font-family="Manrope, Arial, sans-serif" font-size="9.5" font-weight="600" letter-spacing=".35">FROM SOURCE TO MARKET</text>
+</svg>
