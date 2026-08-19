@@ -47,6 +47,43 @@ Rules:
 - No lorem ipsum in commercial preview pages.
 - Additional Features use the same Content Contract when activated.
 
+## 2A. SEO & Page Identity Contract — Mandatory
+
+Authority: `SEO-METADATA-PAGE-NAMING-V1.md`.
+
+Complete before page implementation:
+- SEO/Page ID:
+- Indexability: INDEX / NOINDEX / ENVIRONMENT-DEPENDENT
+- Canonical Page Name:
+- File/Slug AR:
+- File/Slug EN:
+- H1 AR:
+- H1 EN:
+- SEO Title AR:
+- SEO Title EN:
+- Meta Description AR:
+- Meta Description EN:
+- Canonical URL AR placeholder:
+- Canonical URL EN placeholder:
+- hreflang AR:
+- hreflang EN:
+- x-default strategy:
+- OG Type:
+- OG Title AR/EN:
+- OG Description AR/EN:
+- OG Image strategy:
+- Structured Data candidate/type:
+- Breadcrumb Label AR/EN:
+- Primary Internal Links / Anchor Copy:
+
+Rules:
+- page file/slug follows the locked PG01–PG32 naming registry.
+- Canonical Page Name, H1 and SEO title may differ in wording but must communicate the same page intent.
+- Each indexable page requires unique title/description content.
+- No fake ratings/reviews/prices/certifications/availability in structured data.
+- Demo canonical/hreflang values must not hard-code buyer production domains.
+- ThemeForest/demo indexability follows `DEMO-VS-PRODUCTION-POLICY-V1.md`.
+
 ## 3. Main Features
 List only V1 Main Features approved in the frozen scope.
 
@@ -170,6 +207,7 @@ List documentation that must be updated while building this page.
 ## 16. QA Exit Gate
 A page cannot move to DONE until:
 - Content Contract complete and status reached C8 after implementation QA.
+- SEO & Page Identity Contract complete and QA-passed.
 - Main Features complete.
 - Registry components used without unauthorized forks.
 - Arabic complete.
