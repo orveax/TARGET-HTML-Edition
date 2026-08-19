@@ -1,0 +1,92 @@
+name: PG01 Visual Review Snapshots
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.pg01-review-trigger'
+      - '.github/workflows/pg01-visual-review-snapshots.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pg01-visual-review-snapshots-main
+  cancel-in-progress: true
+
+jobs:
+  snapshots:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start site and ChromeDriver
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/origex-http.log 2>&1 &
+          chromedriver --port=9515 --allowed-origins='*' >/tmp/origex-chromedriver.log 2>&1 &
+          sleep 2
+          curl -fsS http://127.0.0.1:4173/en/ >/dev/null
+
+      - name: Capture compact review images
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p qa/pg01-visual-review
+          cat >/tmp/review.py <<'PY'
+          import base64, json, time, urllib.request
+          from pathlib import Path
+          WD='http://127.0.0.1:9515'
+          OUT=Path('qa/pg01-visual-review')
+
+          def req(method,path,payload=None):
+              data=None if payload is None else json.dumps(payload).encode()
+              r=urllib.request.Request(WD+path,data=data,method=method,headers={'Content-Type':'application/json'})
+              with urllib.request.urlopen(r,timeout=30) as f: body=json.loads(f.read().decode())
+              value=body.get('value')
+              if isinstance(value,dict) and value.get('error'): raise RuntimeError(value)
+              return value
+
+          def session(w,h):
+              v=req('POST','/session',{'capabilities':{'alwaysMatch':{'browserName':'chrome','goog:chromeOptions':{'args':['--headless=new','--no-sandbox','--disable-dev-shm-usage','--force-device-scale-factor=1',f'--window-size={w},{h}']}}}})
+              sid=v['sessionId']; req('POST',f'/session/{sid}/window/rect',{'width':w,'height':h,'x':0,'y':0}); return sid
+
+          def cdp(sid,cmd,params=None): return req('POST',f'/session/{sid}/goog/cdp/execute',{'cmd':cmd,'params':params or {}})
+
+          cases=[
+            ('ar','/ar/',390,844,0.55,0.75),
+            ('en','/en/',390,844,0.55,0.75),
+            ('ar','/ar/',1536,960,0.25,0.40),
+            ('en','/en/',1536,960,0.25,0.40),
+          ]
+          rows=[]
+          for lang,path,w,h,full_scale,hero_scale in cases:
+              sid=session(w,h)
+              try:
+                  req('POST',f'/session/{sid}/url',{'url':'http://127.0.0.1:4173'+path}); time.sleep(1)
+                  layout=cdp(sid,'Page.getLayoutMetrics'); size=layout.get('cssContentSize') or layout.get('contentSize')
+                  label=f'{lang}-{w}'
+                  full=cdp(sid,'Page.captureScreenshot',{'format':'jpeg','quality':8,'fromSurface':True,'captureBeyondViewport':True,'clip':{'x':0,'y':0,'width':size['width'],'height':size['height'],'scale':full_scale}})
+                  full_path=OUT/f'{label}-full-review.jpeg'; full_path.write_bytes(base64.b64decode(full['data']))
+                  hero=cdp(sid,'Page.captureScreenshot',{'format':'jpeg','quality':12,'fromSurface':True,'captureBeyondViewport':False,'clip':{'x':0,'y':0,'width':w,'height':h,'scale':hero_scale}})
+                  hero_path=OUT/f'{label}-hero-review.jpeg'; hero_path.write_bytes(base64.b64decode(hero['data']))
+                  rows.append({'case':label,'full':str(full_path),'hero':str(hero_path),'fullBytes':full_path.stat().st_size,'heroBytes':hero_path.stat().st_size})
+              finally:
+                  try:req('DELETE',f'/session/{sid}')
+                  except Exception:pass
+          (OUT/'manifest.json').write_text(json.dumps(rows,indent=2),encoding='utf-8')
+          PY
+          python3 /tmp/review.py
+
+      - name: Commit review evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'orveax-build'
+          git config user.email 'actions@users.noreply.github.com'
+          git add qa/pg01-visual-review
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'PG01 add compact visual review snapshots'
+          git push origin main
