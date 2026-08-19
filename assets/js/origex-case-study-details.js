@@ -29,23 +29,20 @@
         fallback: 'معرّف الحالة غير متاح في بيانات Demo، لذلك تم عرض الحالة التوضيحية الافتراضية.',
         prev: 'الحالة السابقة',
         next: 'الحالة التالية',
-        related: 'شاهد الحالة التوضيحية',
-        titleSuffix: 'تفاصيل حالة Demo | ORIGEX'
+        related: 'شاهد الحالة التوضيحية'
       }
     : {
         fallback: 'That case ID is not available in the Demo set, so the default illustrative case is shown.',
         prev: 'Previous case',
         next: 'Next case',
-        related: 'View Demo case',
-        titleSuffix: 'Demo Case Details | ORIGEX'
+        related: 'View Demo case'
       };
 
   const target = root.querySelector('[data-orx-case-detail-target]');
   if (target) target.replaceChildren(record.template.content.cloneNode(true));
 
   const setText = (selector, value) => {
-    const node = root.querySelector(selector);
-    if (node) node.textContent = value || '';
+    root.querySelectorAll(selector).forEach((node) => { node.textContent = value || ''; });
   };
   setText('[data-orx-case-title]', record.title);
   setText('[data-orx-case-summary]', record.summary);
@@ -59,7 +56,10 @@
   const notice = root.querySelector('[data-orx-case-fallback]');
   if (notice) {
     notice.hidden = !invalid;
-    if (invalid) notice.querySelector('[data-orx-case-fallback-text]').textContent = text.fallback;
+    if (invalid) {
+      const message = notice.querySelector('[data-orx-case-fallback-text]');
+      if (message) message.textContent = text.fallback;
+    }
   }
 
   const index = records.findIndex((item) => item.id === record.id);
@@ -69,8 +69,10 @@
     const link = root.querySelector(selector);
     if (!link) return;
     link.href = `case-study-details.html?id=${encodeURIComponent(item.id)}`;
-    link.querySelector('[data-orx-case-nav-label]').textContent = label;
-    link.querySelector('[data-orx-case-nav-title]').textContent = item.title;
+    const labelNode = link.querySelector('[data-orx-case-nav-label]');
+    const titleNode = link.querySelector('[data-orx-case-nav-title]');
+    if (labelNode) labelNode.textContent = label;
+    if (titleNode) titleNode.textContent = item.title;
   };
   setCaseLink('[data-orx-case-prev]', previous, text.prev);
   setCaseLink('[data-orx-case-next]', next, text.next);
@@ -85,7 +87,13 @@
       article.className = 'orx-case-detail-related-card';
       const badges = document.createElement('div');
       badges.className = 'orx-case-study-card__tags';
-      badges.innerHTML = `<span class="orx-badge">${item.category}</span><span class="orx-badge">${item.focus}</span>`;
+      const category = document.createElement('span');
+      category.className = 'orx-badge';
+      category.textContent = item.category;
+      const focus = document.createElement('span');
+      focus.className = 'orx-badge';
+      focus.textContent = item.focus;
+      badges.append(category, focus);
       const heading = document.createElement('h3');
       heading.textContent = item.title;
       const summary = document.createElement('p');
@@ -108,4 +116,6 @@
       }
     } catch (_) {}
   });
+
+  root.dataset.pg21Ready = 'true';
 })();
