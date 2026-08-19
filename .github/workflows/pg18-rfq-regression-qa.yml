@@ -1,0 +1,152 @@
+name: PG18 RFQ Regression QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/rfq.html'
+      - 'en/rfq.html'
+      - 'assets/css/origex-rfq.css'
+      - 'assets/js/origex-rfq.js'
+      - 'assets/data/products.json'
+      - '.github/workflows/pg18-rfq-regression-qa.yml'
+
+concurrency:
+  group: pg18-rfq-regression
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --quiet beautifulsoup4 selenium
+      - name: Run PG18 regression gate
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json,subprocess,time,tempfile
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.keys import Keys
+          from selenium.webdriver.support.ui import WebDriverWait,Select
+
+          R=Path('.'); O=R/'qa/pg18-rfq'; O.mkdir(parents=True,exist_ok=True)
+          source={'failures':[],'pages':{},'data':{},'runtime':{}}
+          products=json.loads((R/'assets/data/products.json').read_text(encoding='utf-8'))
+          ids=[p.get('id') for p in products]; df=[]
+          if len(products)!=12: df.append(f'product-count:{len(products)}')
+          if len(ids)!=len(set(ids)): df.append('duplicate-product-ids')
+          for p in products:
+            for k in ('id','nameAr','nameEn','categoryId','originCode','packSizeAr','packSizeEn'):
+              if not p.get(k): df.append(f'{p.get("id")}:{k}')
+          source['data']={'productCount':len(products),'failures':df}; source['failures']+=df
+          js=(R/'assets/js/origex-rfq.js').read_text(encoding='utf-8'); rf=[]
+          compact=js.replace(' ','')
+          for bad in ('localStorage','sessionStorage','XMLHttpRequest','method:"POST"',"method:'POST'"):
+            if bad in js: rf.append('forbidden:'+bad)
+          for required in ('fetch(productsUrl','event.preventDefault()','10*1024*1024'):
+            if required.replace(' ','') not in compact: rf.append('missing:'+required)
+          source['runtime']={'failures':rf}; source['failures']+=rf
+          spec={'ar':('rtl','حوّل احتياج الشراء إلى طلب عرض سعر أوضح.','../en/rfq.html'),'en':('ltr','Turn your buying requirement into a clearer RFQ.','../ar/rfq.html')}
+          required_names=['companyName','contactName','email','productId','quantity','quantityUnit','destination','targetTiming','consent']
+          for lang,(direction,h1,other) in spec.items():
+            text=(R/lang/'rfq.html').read_text(encoding='utf-8'); s=BeautifulSoup(text,'html.parser'); f=[]
+            if s.html.get('lang')!=lang or s.html.get('dir')!=direction:f.append('lang-dir')
+            hs=s.find_all('h1')
+            if len(hs)!=1 or hs[0].get_text(' ',strip=True)!=h1:f.append('h1')
+            if [n.get('data-pg18-section') for n in s.select('[data-pg18-section]')]!=['hero','disclosure','form','cta']:f.append('sections')
+            if not s.find('a',href=other):f.append('language-switch')
+            form=s.select_one('[data-orx-rfq-form]')
+            for name in required_names:
+              n=form.find(attrs={'name':name}) if form else None
+              if not n or not n.has_attr('required'):f.append('required:'+name)
+            fi=form.select_one('[data-orx-rfq-file]') if form else None
+            if not fi or fi.get('accept')!='.pdf,.jpg,.jpeg,.png,.doc,.docx':f.append('file-contract')
+            if not s.select_one('footer[data-orx-global-footer="v1"] [data-orx-business-hours]'):f.append('footer')
+            if 'TARGET' in text or 'targetft' in text.lower():f.append('client-leak')
+            source['pages'][lang]={'failures':f}; source['failures'] += [lang+':'+x for x in f]
+          for script,label in [('.github/scripts/normalize_global_navigation.py','nav-drift'),('.github/scripts/normalize_global_footer.py','footer-drift')]:
+            r=subprocess.run(['python',script,'--check'],capture_output=True,text=True)
+            if r.returncode: source['failures'].append(label)
+          (O/'source-report.json').write_text(json.dumps(source,ensure_ascii=False,indent=2),encoding='utf-8')
+
+          rendered={'failures':[],'cases':[],'interaction':{}}
+          opts=Options(); opts.add_argument('--headless=new');opts.add_argument('--no-sandbox');opts.add_argument('--disable-dev-shm-usage');opts.add_argument('--window-size=820,1500')
+          srv=subprocess.Popen(['python','-m','http.server','8765'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL);time.sleep(1)
+          try:
+            for lang in ('ar','en'):
+              d=webdriver.Chrome(options=opts)
+              try:
+                for w in (390,820,1366,1536):
+                  f=[]
+                  try:
+                    d.set_window_size(w,1500); d.get(f'http://127.0.0.1:8765/{lang}/rfq.html')
+                    WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg18-root]').get_attribute('data-pg18-products')=='ready')
+                    if len(Select(d.find_element(By.NAME,'productId')).options)!=13:f.append('products')
+                    if d.execute_script('return document.documentElement.scrollWidth')>d.execute_script('return document.documentElement.clientWidth')+1:f.append('overflow')
+                    if d.find_element(By.TAG_NAME,'html').get_attribute('dir')!=('rtl' if lang=='ar' else 'ltr'):f.append('direction')
+                    small=[]
+                    for e in d.find_elements(By.CSS_SELECTOR,'a,button,input,select'):
+                      if e.is_displayed() and e.rect['width'] and e.rect['height'] and (e.rect['width']<24 or e.rect['height']<24):small.append({'tag':e.tag_name,'name':e.get_attribute('name'),'w':e.rect['width'],'h':e.rect['height']})
+                    if small:f.append('touch:'+json.dumps(small,ensure_ascii=False))
+                  except Exception as e:f.append(type(e).__name__+':'+str(e)[:140])
+                  rendered['cases'].append({'lang':lang,'width':w,'failures':f}); rendered['failures'] += [f'{lang}-{w}:{x}' for x in f]
+
+                f=[]
+                try:
+                  d.set_window_size(820,1500);d.get(f'http://127.0.0.1:8765/{lang}/rfq.html?product=prod-005');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg18-root]').get_attribute('data-pg18-products')=='ready')
+                  if d.find_element(By.NAME,'productId').get_attribute('value')!='prod-005':f.append('prefill')
+                  if not d.find_element(By.CSS_SELECTOR,'[data-orx-rfq-product-summary]').is_displayed():f.append('summary')
+                  if 'product=prod-005' not in d.find_element(By.CSS_SELECTOR,'.orx-lang-switch').get_attribute('href'):f.append('language-preserve')
+                  d.get(f'http://127.0.0.1:8765/{lang}/rfq.html?product=bad-id');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg18-root]').get_attribute('data-pg18-products')=='ready')
+                  if d.find_element(By.NAME,'productId').get_attribute('value'):f.append('invalid-fallback')
+                  if not d.find_element(By.CSS_SELECTOR,'[data-orx-rfq-query-notice]').is_displayed():f.append('invalid-notice')
+                except Exception as e:f.append(type(e).__name__+':'+str(e)[:140])
+                rendered['interaction'][lang+'-query']=f; rendered['failures'] += [lang+'-query:'+x for x in f]
+
+                f=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/rfq.html');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg18-root]').get_attribute('data-pg18-products')=='ready')
+                  for n,v in {'companyName':'Demo Buyer LLC','contactName':'Demo Buyer','email':'buyer@example.com','quantity':'120','destination':'Doha Port'}.items():d.find_element(By.NAME,n).send_keys(v)
+                  Select(d.find_element(By.NAME,'productId')).select_by_index(1);Select(d.find_element(By.NAME,'quantityUnit')).select_by_value('cases');Select(d.find_element(By.NAME,'targetTiming')).select_by_value('30-days')
+                  c=d.find_element(By.NAME,'consent');d.execute_script("arguments[0].scrollIntoView({block:'center'});arguments[0].focus();",c);c.send_keys(Keys.SPACE)
+                  b=d.find_element(By.CSS_SELECTOR,'button[type="submit"]');d.execute_script("arguments[0].scrollIntoView({block:'center'});",b);b.send_keys(Keys.ENTER);time.sleep(.08)
+                  if not d.find_element(By.CSS_SELECTOR,'[data-orx-rfq-success]').is_displayed():f.append('success')
+                  fetches=d.execute_script("return performance.getEntriesByType('resource').filter(x=>x.initiatorType==='fetch').map(x=>x.name)")
+                  if any('/assets/data/products.json' not in x for x in fetches):f.append('unexpected-fetch')
+                except Exception as e:f.append(type(e).__name__+':'+str(e)[:140])
+                rendered['interaction'][lang+'-validation']=f;rendered['failures'] += [lang+'-validation:'+x for x in f]
+
+                tmp=Path(tempfile.gettempdir());ok=tmp/'pg18-regression.pdf';bad=tmp/'pg18-regression.exe';ok.write_bytes(b'%PDF');bad.write_bytes(b'x');f=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/rfq.html');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg18-root]').get_attribute('data-pg18-products')=='ready')
+                  inp=d.find_element(By.CSS_SELECTOR,'[data-orx-rfq-file]');inp.send_keys(str(bad));time.sleep(.05)
+                  if not d.find_element(By.CSS_SELECTOR,'[data-orx-rfq-error]').is_displayed():f.append('bad-file')
+                  inp.send_keys(str(ok));time.sleep(.05)
+                  if ok.name not in d.find_element(By.CSS_SELECTOR,'[data-orx-rfq-file-name]').text:f.append('good-file')
+                except Exception as e:f.append(type(e).__name__+':'+str(e)[:140])
+                rendered['interaction'][lang+'-file']=f;rendered['failures'] += [lang+'-file:'+x for x in f]
+              finally:d.quit()
+          finally:srv.terminate()
+          (O/'rendered-report.json').write_text(json.dumps(rendered,ensure_ascii=False,indent=2),encoding='utf-8')
+          status='PASS' if not source['failures'] and not rendered['failures'] else 'FAIL';(O/'run-status.txt').write_text(status+'\n',encoding='utf-8')
+          print(status);print(source['failures']);print(rendered['failures'])
+          if status!='PASS':raise SystemExit(1)
+          PY
+      - name: Commit PG18 evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg18-rfq || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "PG18 record RFQ regression QA evidence"
+          git pull --rebase origin main || true
+          git push origin main || true
