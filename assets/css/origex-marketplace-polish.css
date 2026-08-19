@@ -6,7 +6,10 @@
 /* Hero: preserve the trade-route information while giving it a stronger B2B visual anchor. */
 .orx-hero__grid>.orx-media.orx-media--hero{
   position:relative;
+  inline-size:100%;
+  min-inline-size:0;
   min-block-size:500px;
+  aspect-ratio:auto;
   background-color:#e9eee9;
   background-image:
     linear-gradient(90deg,rgba(250,248,244,.94) 0%,rgba(250,248,244,.82) 48%,rgba(250,248,244,.32) 100%),
