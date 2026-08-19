@@ -2,7 +2,7 @@
 
 Product ID: ORX-P01  
 Milestone: M4 — Product / Supplier / Conversion  
-Status: PS6 — FROZEN FOR BUILD  
+Status: PS6 — FROZEN / BUILD IMPLEMENTED / QA GATE OPEN  
 Canonical file: `for-suppliers.html`
 
 ## Purpose
