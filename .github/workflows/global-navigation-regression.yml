@@ -1,5 +1,6 @@
 name: Global Navigation Regression
 
+# Retriggered after PG23 to reconcile canonical navigation drift.
 on:
   workflow_dispatch:
   push:
