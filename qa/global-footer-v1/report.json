@@ -1,0 +1,214 @@
+{
+  "failures": [
+    "ar/about.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/capabilities.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/company-profile.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/for-suppliers.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/home-02.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/home-03.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/how-we-work.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/index.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/landing.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/market-access.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/markets.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/product-categories.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/product-details.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/products.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/service-details.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/supplier-details.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "ar/suppliers.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/about.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/capabilities.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/company-profile.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/for-suppliers.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/home-02.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/home-03.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/how-we-work.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/index.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/landing.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/market-access.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/markets.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/product-categories.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/product-details.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/products.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/service-details.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/supplier-details.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']",
+    "en/suppliers.html:explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+  ],
+  "pages": {
+    "ar/about.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/capabilities.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/company-profile.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/for-suppliers.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/home-02.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/home-03.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/how-we-work.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/index.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/landing.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/market-access.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/markets.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/product-categories.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/product-details.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/products.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/service-details.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/supplier-details.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "ar/suppliers.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/about.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/capabilities.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/company-profile.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/for-suppliers.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/home-02.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/home-03.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/how-we-work.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/index.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/landing.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/market-access.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/markets.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/product-categories.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/product-details.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/products.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/service-details.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/supplier-details.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    },
+    "en/suppliers.html": {
+      "failures": [
+        "explore-links:['products.html', 'suppliers.html', 'markets.html', 'resources.html', 'mailto:trade@example.com', 'tel:+97400000000']"
+      ]
+    }
+  },
+  "summary": {
+    "pagesChecked": 34,
+    "failures": 34
+  }
+}
