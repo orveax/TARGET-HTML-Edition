@@ -11,14 +11,16 @@
 
 window.ORIGEX_CONFIG = {
   site: {
-    name: "ORIGEX",
-    nameAr: "أوريجكس",
-    email: "sales@example.com",
+    name: "ORIGEX Trading Demo",
+    nameAr: "أوريجكس للتجارة — نموذج توضيحي",
+    email: "trade@example.com",
+    rfqEmail: "rfq@example.com",
+    suppliersEmail: "suppliers@example.com",
     partnersEmail: "partners@example.com",
-    phone: "+000 0000 0000",
-    whatsapp: "+00000000000",
-    addressAr: "المدينة، الدولة",
-    addressEn: "City, Country"
+    phone: "+974 0000 0000",
+    whatsapp: "+97400000000",
+    addressAr: "الدوحة، قطر — توضيحي",
+    addressEn: "Doha, Qatar — illustrative"
   },
 
   theme: {
