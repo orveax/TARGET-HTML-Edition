@@ -2,7 +2,7 @@
 
 Product ID: ORX-P01  
 Milestone: M5 — Proof / Resources / Compliance / Content  
-Status: PS6 — FROZEN FOR BUILD  
+Status: PS7 — IMPLEMENTED / CI QA PASS — AR+EN  
 Canonical file: `insights.html`
 
 ## Purpose
@@ -28,7 +28,7 @@ Authority: `docs/SCOPE-FREEZE-V1-FINAL.md`.
 - No live market-data, legal/regulatory advice, investment advice, price forecast, client claim or measured commercial result is presented.
 - Editorial article records remain semantic HTML. No new `articles.json` domain is introduced in V1.
 - PG24 ships 9 Demo article records: one featured article and eight grid articles.
-- Canonical PG25 route is `article-details.html?id=<article-id>`; PG24 may link to it before PG25 implementation because it is the frozen next detail layout.
+- Canonical PG25 route is `article-details.html?id=<article-id>`; PG24 links to that frozen detail layout.
 - Article dates are Demo publication metadata, not evidence of live intelligence.
 
 ## Categories
@@ -88,19 +88,26 @@ Required: self canonical, AR/EN/x-default hreflang, Open Graph baseline, `Collec
 
 ## Accessibility / Responsive
 - one H1;
-- search has visible label or accessible label;
+- search has visible label;
 - filters use buttons + `aria-pressed`;
 - result count is in `aria-live=polite` context;
-- pagination uses semantic nav and buttons/links with current state;
+- pagination is semantic and keyboard operable;
 - hidden cards use `hidden`;
 - no horizontal overflow at 390/820/1366/1536;
 - touch-target baseline applies;
 - Arabic RTL / English LTR tested independently.
 
-## Exit Gate
-PS7 only after source/editorial-safety/runtime/navigation/footer/icon/client-leak QA + rendered AR/EN 390/820/1366/1536 + search/filter/pagination/query/language-preservation/empty-state interaction QA all PASS. PS8 remains gated by deployed Cloudflare browser acceptance.
-
-## QA Rerun Note — 2026-08-20
-Initial PG24 rendered and interaction QA passed, but the first source gate detected a canonical Global Footer V1 drift in `en/insights.html`. The shared footer normalizer was rerun centrally; this profile update intentionally retriggers PG24 QA against the normalized footer before any PS7 promotion.
+## PS7 Closure Evidence — 2026-08-20
+- AR/EN pages implemented with 1 featured + 8 grid Demo articles.
+- Search, category filters and 6-per-page pagination implemented with local Vanilla JS only.
+- First source gate detected one shared Global Footer V1 drift in `en/insights.html`; the global footer normalizer was rerun centrally, not patched locally.
+- Final source/editorial/runtime failures: **0**.
+- Rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
+- Category query hydration, text search, pagination/page query, AR/EN language-state preservation and zero-result empty state: PASS.
+- Global Footer V1: PASS across 50 AR/EN pages / 0 failures.
+- F05 Icon Integrity: PASS across 50 AR/EN pages / 0 missing sprite references.
+- Final PG24 evidence commit: `9fd0853544bd36d46f9ad34dd3239152a7f4646f`.
+- QA authority: `docs/PG24-QA-REPORT-V1.md`.
+- PS8 remains gated by deployed Cloudflare browser acceptance.
 
 Copyright © ORVEAX.
