@@ -1,0 +1,45 @@
+{
+  "generatedAt": "2026-08-19T12:31:45Z",
+  "failures": 0,
+  "results": [
+    {
+      "page": "ar/about.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "demoDisclosure": true,
+        "sixCanonicalSections": true,
+        "aboutCSS": true,
+        "runtime": true,
+        "uniqueIDs": true,
+        "noTargetLeakage": true,
+        "localAssets": true
+      },
+      "pass": true
+    },
+    {
+      "page": "en/about.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "demoDisclosure": true,
+        "sixCanonicalSections": true,
+        "aboutCSS": true,
+        "runtime": true,
+        "uniqueIDs": true,
+        "noTargetLeakage": true,
+        "localAssets": true
+      },
+      "pass": true
+    }
+  ],
+  "errors": []
+}
