@@ -13,6 +13,9 @@
     "ar/case-studies.html": {
       "failures": []
     },
+    "ar/case-study-details.html": {
+      "failures": []
+    },
     "ar/company-profile.html": {
       "failures": []
     },
@@ -132,7 +135,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 43,
+    "pagesChecked": 44,
     "failures": 0
   }
 }
