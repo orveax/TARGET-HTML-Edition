@@ -1,0 +1,220 @@
+{
+  "generatedAt": "2026-08-19T14:44:31Z",
+  "failures": 4,
+  "results": [
+    {
+      "lang": "ar",
+      "viewport": 390,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fiveSections": true,
+        "sixCards": true,
+        "sevenFilters": true,
+        "allVisible": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "rtl",
+        "filters": 7,
+        "h1": true,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 5,
+        "visible": 6
+      },
+      "pass": true
+    },
+    {
+      "lang": "ar",
+      "viewport": 820,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fiveSections": true,
+        "sixCards": true,
+        "sevenFilters": true,
+        "allVisible": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "rtl",
+        "filters": 7,
+        "h1": true,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 5,
+        "visible": 6
+      },
+      "pass": true
+    },
+    {
+      "lang": "ar",
+      "viewport": 1366,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fiveSections": true,
+        "sixCards": true,
+        "sevenFilters": true,
+        "allVisible": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "rtl",
+        "filters": 7,
+        "h1": true,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 5,
+        "visible": 6
+      },
+      "pass": true
+    },
+    {
+      "lang": "ar",
+      "viewport": 1536,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fiveSections": true,
+        "sixCards": true,
+        "sevenFilters": true,
+        "allVisible": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "rtl",
+        "filters": 7,
+        "h1": true,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 5,
+        "visible": 6
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 390,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fiveSections": true,
+        "sixCards": true,
+        "sevenFilters": true,
+        "allVisible": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "ltr",
+        "filters": 7,
+        "h1": true,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 5,
+        "visible": 6
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 820,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fiveSections": true,
+        "sixCards": true,
+        "sevenFilters": true,
+        "allVisible": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "ltr",
+        "filters": 7,
+        "h1": true,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 5,
+        "visible": 6
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 1366,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fiveSections": true,
+        "sixCards": true,
+        "sevenFilters": true,
+        "allVisible": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "ltr",
+        "filters": 7,
+        "h1": true,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 5,
+        "visible": 6
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 1536,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "fiveSections": true,
+        "sixCards": true,
+        "sevenFilters": true,
+        "allVisible": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "ltr",
+        "filters": 7,
+        "h1": true,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 5,
+        "visible": 6
+      },
+      "pass": true
+    }
+  ],
+  "errors": [
+    "ar: mobile Product navigation",
+    "ar: desktop Product navigation",
+    "en: mobile Product navigation",
+    "en: desktop Product navigation"
+  ]
+}

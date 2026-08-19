@@ -1,0 +1,109 @@
+{
+  "generatedAt": "2026-08-19T14:44:10Z",
+  "failures": 0,
+  "results": [
+    {
+      "page": "ar/product-categories.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "visibleBreadcrumb": true,
+        "demoDisclosure": true,
+        "fiveCompositionSections": true,
+        "sixCategoryCards": true,
+        "sevenFilterControls": true,
+        "categoryRoutes": true,
+        "categoryCSS": true,
+        "categoryRuntime": true,
+        "sharedRuntime": true,
+        "staticProductCurrent": true,
+        "uniqueIDs": true,
+        "noClientCDNLeakage": true,
+        "iconReferencesResolve": true,
+        "localAssets": true
+      },
+      "sections": [
+        "hero",
+        "category-facts",
+        "category-grid",
+        "buyer-guidance",
+        "cta"
+      ],
+      "categories": [
+        "ambient",
+        "beverages",
+        "dairy",
+        "frozen",
+        "confectionery",
+        "ingredients"
+      ],
+      "filters": [
+        "all",
+        "ambient",
+        "beverages",
+        "dairy",
+        "frozen",
+        "confectionery",
+        "ingredients"
+      ],
+      "missingIcons": [],
+      "pass": true
+    },
+    {
+      "page": "en/product-categories.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "visibleBreadcrumb": true,
+        "demoDisclosure": true,
+        "fiveCompositionSections": true,
+        "sixCategoryCards": true,
+        "sevenFilterControls": true,
+        "categoryRoutes": true,
+        "categoryCSS": true,
+        "categoryRuntime": true,
+        "sharedRuntime": true,
+        "staticProductCurrent": true,
+        "uniqueIDs": true,
+        "noClientCDNLeakage": true,
+        "iconReferencesResolve": true,
+        "localAssets": true
+      },
+      "sections": [
+        "hero",
+        "category-facts",
+        "category-grid",
+        "buyer-guidance",
+        "cta"
+      ],
+      "categories": [
+        "ambient",
+        "beverages",
+        "dairy",
+        "frozen",
+        "confectionery",
+        "ingredients"
+      ],
+      "filters": [
+        "all",
+        "ambient",
+        "beverages",
+        "dairy",
+        "frozen",
+        "confectionery",
+        "ingredients"
+      ],
+      "missingIcons": [],
+      "pass": true
+    }
+  ],
+  "errors": []
+}
