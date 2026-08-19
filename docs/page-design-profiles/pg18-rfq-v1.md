@@ -2,7 +2,7 @@
 
 Product ID: ORX-P01  
 Milestone: M4 — Product / Supplier / Conversion  
-Status: PS6 — FROZEN FOR BUILD  
+Status: PS7 — IMPLEMENTED / CI QA PASS — AR+EN  
 Canonical file: `rfq.html`
 
 ## Purpose
@@ -196,9 +196,22 @@ Required: self canonical, AR/EN/x-default hreflang, Open Graph baseline, WebPage
 - AR RTL / EN LTR verified independently;
 - reduced-motion inherited globally.
 
+## Automated QA Gate
+
+- Canonical fast gate: `.github/workflows/pg18-rfq-regression-qa.yml`.
+- Evidence: `qa/pg18-rfq/`.
+- Source/Data/Runtime failures: 0.
+- Canonical dataset: 12 Demo products with unique IDs.
+- Rendered gate: AR/EN × 390 / 820 / 1366 / 1536 = 8/8 PASS.
+- Query gate: valid product prefill + selected-product summary + language preservation PASS; invalid ID non-fallback + guidance PASS.
+- Form gate: required fields + keyboard consent + browser-only confirmation PASS.
+- Network boundary: no submission fetch; local `products.json` fetch only.
+- File gate: invalid extension rejection + valid local filename state PASS.
+- Shared-shell regression discovered and corrected: direct `orx-whatsapp` / `orx-back-to-top` utilities now receive canonical 44–48px hit areas through `assets/css/origex-shell.css`.
+
 ## Exit Gate
 
-PS7 only after AR+EN build plus source/SEO/assets/icons/navigation/footer/product-data/query-hydration/form semantics/attachment/native validation/consent/confirmation/responsive/interaction QA PASS.
+**PS7 / IMPLEMENTED / CI QA PASS — AR+EN.**
 
 PS8 remains gated by deployed Cloudflare browser acceptance.
 
