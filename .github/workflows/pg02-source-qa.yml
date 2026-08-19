@@ -1,0 +1,134 @@
+name: PG02 Source Content SEO QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.pg02-source-trigger'
+      - 'ar/home-02.html'
+      - 'en/home-02.html'
+      - 'assets/css/origex-distribution.css'
+      - 'assets/media/demo/hero-distribution-network.svg'
+      - '.github/workflows/pg02-source-qa.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pg02-source-qa-main
+  cancel-in-progress: true
+
+jobs:
+  source-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run PG02 source content SEO and asset QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          from urllib.parse import urlparse
+          import json, re, sys, time
+
+          ROOT=Path('.')
+          OUT=Path('qa/pg02-source'); OUT.mkdir(parents=True,exist_ok=True)
+          specs={
+            'ar/home-02.html':{'lang':'ar','dir':'rtl','h1':'من المخزن إلى القناة المناسبة، بتوزيع أكثر وضوحًا.','canonical':'https://example.com/ar/home-02.html','title':'الجملة والتوزيع الغذائي B2B | ORIGEX','disclosure':'جميع الأسماء والبيانات التجارية الواردة في العرض التوضيحي أمثلة خيالية لأغراض القالب، ويجب استبدالها ببيانات فعلية قبل النشر.'},
+            'en/home-02.html':{'lang':'en','dir':'ltr','h1':'From warehouse to the right channel, with clearer distribution planning.','canonical':'https://example.com/en/home-02.html','title':'Food Wholesale & Distribution | ORIGEX','disclosure':'All names and commercial data in this demo are fictional template examples and must be replaced with verified business information before publication.'}
+          }
+          forbidden=['targetft','target.targetft','cdn.jsdelivr','unpkg.com','cdnjs.cloudflare','fonts.googleapis.com','fonts.gstatic.com']
+          canonical_files={'index.html','home-02.html','home-03.html','landing.html','about.html','how-we-work.html','capabilities.html','service-details.html','product-categories.html','products.html','product-details.html','suppliers.html','supplier-details.html','market-access.html','markets.html','for-suppliers.html','submit-product.html','rfq.html','become-partner.html','case-studies.html','case-study-details.html','resources.html','certifications-compliance.html','insights.html','article-details.html','faq.html','contact.html','404.html','coming-soon.html','privacy.html','terms.html','components.html'}
+
+          class Parser(HTMLParser):
+            def __init__(self):
+              super().__init__(); self.html={}; self.h1=[]; self.ids=[]; self.links=[]; self.assets=[]; self.in_h1=False; self.buf=[]
+            def handle_starttag(self,tag,attrs):
+              d=dict(attrs)
+              if tag=='html': self.html=d
+              if d.get('id'): self.ids.append(d['id'])
+              if tag=='h1': self.in_h1=True; self.buf=[]
+              if tag=='a' and d.get('href'): self.links.append(d['href'])
+              if tag in ('link','script','img'):
+                key='href' if tag=='link' else 'src'
+                if d.get(key): self.assets.append(d[key])
+            def handle_data(self,data):
+              if self.in_h1: self.buf.append(data)
+            def handle_endtag(self,tag):
+              if tag=='h1': self.in_h1=False; self.h1.append(''.join(self.buf).strip())
+
+          failures=[]; pages=[]
+          for rel,s in specs.items():
+            path=ROOT/rel; text=path.read_text(encoding='utf-8'); p=Parser(); p.feed(text); checks=[]
+            def ck(name,ok,detail=''):
+              checks.append({'name':name,'pass':bool(ok),'detail':str(detail)[:500]})
+              if not ok: failures.append(f'{rel}: {name}: {detail}')
+            ck('language and direction',p.html.get('lang')==s['lang'] and p.html.get('dir')==s['dir'])
+            ck('single canonical H1',len(p.h1)==1 and p.h1[0]==s['h1'],p.h1)
+            ck('unique IDs',len(p.ids)==len(set(p.ids)))
+            ck('SEO title',f'<title>{s["title"]}</title>' in text)
+            ck('canonical URL',f'rel="canonical" href="{s["canonical"]}"' in text)
+            ck('hreflang AR EN x-default',all(x in text for x in ('hreflang="ar"','hreflang="en"','hreflang="x-default"')))
+            ck('Open Graph baseline',all(x in text for x in ('og:type','og:site_name','og:title','og:description','og:url','og:image')))
+            blocks=re.findall(r'<script\s+type="application/ld\+json">(.*?)</script>',text,re.S|re.I)
+            structured=False; json_errors=[]
+            for raw in blocks:
+              try:
+                data=json.loads(raw)
+                if isinstance(data,dict) and data.get('@type')=='WebPage': structured=True
+              except Exception as e: json_errors.append(str(e))
+            ck('WebPage structured data',structured,json_errors)
+            ck('mandatory demo disclosure',s['disclosure'] in text)
+            ck('eight frozen section intents',all(x in text for x in ('orx-distribution-hero','id="channels"','orx-coverage-band','id="categories-title"','id="process-title"','orx-metrics-band','orx-route-market-grid','orx-final-cta')))
+            ck('demo metrics explicitly qualified',('Demo Metrics' in text and 'not performance' in text) if s['lang']=='en' else ('مؤشرات Demo' in text and 'ليست أرقام أداء' in text))
+            ck('fictional distributor disclosure','Horizon Route Distribution' in text and (('fictional' in text.lower()) if s['lang']=='en' else ('خيالية' in text)))
+            ck('no client or CDN leakage',not any(v.lower() in text.lower() for v in forbidden))
+            ck('local Bootstrap','../assets/vendor/bootstrap/' in text)
+            ck('M1 runtime',all(x in text for x in ('../assets/js/config.js','../assets/js/config-engine.js','../assets/js/origex-ui.js')))
+            ck('distribution layer','../assets/css/origex-distribution.css' in text)
+            local=[]
+            for a in p.assets:
+              if a.startswith(('http://','https://','data:','#')): continue
+              clean=a.split('#',1)[0].split('?',1)[0]
+              if clean: local.append((a,(path.parent/clean).resolve().exists()))
+            ck('local linked assets exist',all(v for _,v in local),[a for a,v in local if not v])
+            bad=[]
+            for h in p.links:
+              if h.startswith(('http://','https://','mailto:','tel:','#','../')): continue
+              base=urlparse(h).path.split('/')[-1]
+              if base and base not in canonical_files: bad.append(h)
+            ck('canonical internal filenames',not bad,bad)
+            pages.append({'page':rel,'checks':checks})
+
+          for r in ('assets/media/demo/hero-distribution-network.svg','assets/css/origex-distribution.css','docs/page-design-profiles/pg02-home-02-v1.md'):
+            if not (ROOT/r).exists(): failures.append(f'missing required PG02 authority/asset: {r}')
+
+          report={'generatedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'failures':len(failures),'pages':pages,'errors':failures}
+          (OUT/'report.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
+          lines=['# PG02 Source / Content / SEO / Asset QA','',f"Generated: {report['generatedAt']}",'']
+          for page in pages:
+            lines += [f"## {page['page']}",'','| Check | Result | Detail |','|---|---|---|']
+            for c in page['checks']: lines.append(f"| {c['name']} | {'PASS' if c['pass'] else 'FAIL'} | {c['detail'].replace('|','/')} |")
+            lines.append('')
+          lines += ['## Result','', '**PASS — source gate complete.**' if not failures else f'**FAIL — {len(failures)} issues.**','']
+          if failures: lines += [f'- {x}' for x in failures]
+          (OUT/'README.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          (OUT/'run-status.txt').write_text(('PASS' if not failures else f'FAIL — {len(failures)} issues')+'\n',encoding='utf-8')
+          if failures: print('\n'.join(failures)); sys.exit(1)
+          PY
+
+      - name: Commit source QA evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'orveax-build'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A qa/pg02-source
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'PG02 record source content SEO asset QA evidence'
+          git push origin main
