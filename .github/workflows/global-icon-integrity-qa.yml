@@ -1,0 +1,74 @@
+name: Global F05 Icon Integrity QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/icons/sprite.svg'
+      - 'ar/*.html'
+      - 'en/*.html'
+      - '.github/workflows/global-icon-integrity-qa.yml'
+
+concurrency:
+  group: global-icon-integrity
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate every distributed icon reference
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,re
+
+          root=Path('.')
+          out=root/'qa/global-icon-integrity'
+          out.mkdir(parents=True,exist_ok=True)
+          sprite=(root/'assets/icons/sprite.svg').read_text(encoding='utf-8')
+          symbols=set(re.findall(r'<symbol[^>]+id="([^"]+)"',sprite))
+          report={'failures':[],'summary':{},'pages':{}}
+          used=set()
+          pages=sorted(list((root/'ar').glob('*.html'))+list((root/'en').glob('*.html')))
+          for page in pages:
+            text=page.read_text(encoding='utf-8')
+            refs=sorted(set(re.findall(r'sprite\.svg#([a-z0-9-]+)',text)))
+            used.update(refs)
+            missing=sorted(set(refs)-symbols)
+            rel=str(page.relative_to(root))
+            report['pages'][rel]={'references':refs,'missing':missing}
+            for icon in missing:
+              report['failures'].append(f'{rel}:{icon}')
+          report['summary']={
+            'pagesChecked':len(pages),
+            'symbolsRegistered':len(symbols),
+            'symbolsReferenced':len(used),
+            'missingReferences':len(report['failures'])
+          }
+          (out/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+          status='PASS' if not report['failures'] else 'FAIL'
+          (out/'run-status.txt').write_text(status+'\n',encoding='utf-8')
+          print(status,report['summary'])
+          if report['failures']:
+            print(report['failures'])
+            raise SystemExit(1)
+          PY
+      - name: Commit icon integrity evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/global-icon-integrity || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record global F05 icon integrity evidence"
+          for i in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then exit 0; fi
+            sleep 2
+          done
+          exit 1
