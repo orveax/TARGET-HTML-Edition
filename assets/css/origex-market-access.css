@@ -30,3 +30,4 @@
 .orx-market-disclosure .orx-icon-box{flex:0 0 auto}
 @media(max-width:1199.98px){.orx-market-model{grid-template-columns:repeat(2,minmax(0,1fr))}.orx-channel-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.orx-rtm-process{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:767.98px){.orx-market-hero .orx-media--hero{min-block-size:auto;padding:var(--orx-space-6)}.orx-market-matrix,.orx-market-model,.orx-channel-grid,.orx-market-fit,.orx-market-fit__criteria,.orx-rtm-process,.orx-opportunity-grid{grid-template-columns:1fr}.orx-market-matrix__core{grid-column:auto;flex-direction:column}.orx-market-fit{gap:var(--orx-space-5)}}
+/* QA retrigger: shared Market navigation finalized in origex-ui.js. */
