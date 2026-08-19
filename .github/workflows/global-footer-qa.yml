@@ -1,0 +1,90 @@
+name: Global Footer V1 QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/*.html'
+      - 'en/*.html'
+      - 'assets/css/origex-shell.css'
+      - 'assets/js/config.js'
+      - 'assets/js/config-engine.js'
+      - 'docs/GLOBAL-FOOTER-CONTRACT-V1.md'
+      - 'docs/M1-COMPONENT-IMPLEMENTATION-MAP.md'
+      - '.github/scripts/normalize_global_footer.py'
+      - '.github/workflows/global-footer-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  footer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Normalize canonical footer
+        run: python .github/scripts/normalize_global_footer.py
+
+      - name: Verify footer contract
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json, subprocess
+
+          root=Path('.')
+          out=root/'qa/global-footer-v1'; out.mkdir(parents=True,exist_ok=True)
+          report={'failures':[],'pages':{},'summary':{}}
+          required=['[data-orx-global-footer="v1"]','.orx-footer__grid','.orx-footer__brand','.orx-footer__title','.orx-footer__links','[data-orx-email="trade"]','[data-orx-phone]','[data-orx-address]','[data-orx-business-hours]','.orx-footer__bottom']
+          page_count=0
+          for lang in ('ar','en'):
+              for p in sorted((root/lang).glob('*.html')):
+                  page_count+=1
+                  text=p.read_text(encoding='utf-8')
+                  soup=BeautifulSoup(text,'html.parser')
+                  failures=[]
+                  footers=soup.select('footer.orx-site-footer')
+                  if len(footers)!=1:
+                      failures.append(f'footer-count:{len(footers)}')
+                  else:
+                      footer=footers[0]
+                      if footer.get('data-orx-global-footer')!='v1': failures.append('version')
+                      for sel in required[1:]:
+                          if not footer.select_one(sel): failures.append(f'missing:{sel}')
+                      if footer.select_one('.orx-site-footer__grid'): failures.append('legacy-grid-class')
+                      links=[a.get('href') for a in footer.select('.orx-footer__links a')]
+                      if links!=['products.html','suppliers.html','markets.html','resources.html']: failures.append(f'explore-links:{links}')
+                      if lang=='ar':
+                          email=footer.select_one('[data-orx-email="trade"]'); phone=footer.select_one('[data-orx-phone]')
+                          if email and 'orx-bidi' not in email.get('class',[]): failures.append('ar-email-bidi')
+                          if phone and 'orx-bidi' not in phone.get('class',[]): failures.append('ar-phone-bidi')
+                          if 'بيانات العرض توضيحية · © ORVEAX' not in footer.get_text(' ',strip=True): failures.append('ar-disclosure')
+                      else:
+                          if 'Demo data only · © ORVEAX' not in footer.get_text(' ',strip=True): failures.append('en-disclosure')
+                  report['pages'][str(p)]={'failures':failures}
+                  report['failures'].extend([f'{p}:{x}' for x in failures])
+
+          drift=subprocess.run(['python','.github/scripts/normalize_global_footer.py','--check'],capture_output=True,text=True)
+          if drift.returncode:
+              report['failures'].append('normalizer-drift')
+              report['normalizer_output']=drift.stdout+drift.stderr
+          report['summary']={'pagesChecked':page_count,'failures':len(report['failures'])}
+          (out/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+          (out/'run-status.txt').write_text(('PASS' if not report['failures'] else 'FAIL')+'\n',encoding='utf-8')
+          print(report['summary'])
+          if report['failures']:
+              print(report['failures'])
+              raise SystemExit(1)
+          PY
+
+      - name: Commit normalized footers and evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ar en qa/global-footer-v1 || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Normalize Global Footer V1 and record QA evidence"
+          git push origin main
