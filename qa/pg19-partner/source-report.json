@@ -1,0 +1,41 @@
+{
+  "failures": [
+    "ar:icons:['message-circle']",
+    "en:icons:['message-circle']"
+  ],
+  "pages": {
+    "ar": {
+      "failures": [
+        "icons:['message-circle']"
+      ],
+      "sections": [
+        "hero",
+        "value",
+        "criteria",
+        "disclosure",
+        "form",
+        "cta"
+      ]
+    },
+    "en": {
+      "failures": [
+        "icons:['message-circle']"
+      ],
+      "sections": [
+        "hero",
+        "value",
+        "criteria",
+        "disclosure",
+        "form",
+        "cta"
+      ]
+    }
+  },
+  "data": {
+    "marketCount": 6,
+    "failures": []
+  },
+  "runtime": {
+    "failures": []
+  }
+}
