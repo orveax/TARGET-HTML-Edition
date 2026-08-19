@@ -1,0 +1,233 @@
+name: PG03 PG04 Home Family QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.pg03-pg04-qa-trigger'
+      - 'ar/home-03.html'
+      - 'en/home-03.html'
+      - 'ar/landing.html'
+      - 'en/landing.html'
+      - 'assets/css/origex-manufacturer.css'
+      - 'assets/css/origex-landing.css'
+      - 'assets/js/origex-landing.js'
+      - 'assets/media/demo/hero-manufacturer-readiness.svg'
+      - 'assets/media/demo/hero-commercial-enquiry.svg'
+      - '.github/workflows/pg03-pg04-home-family-qa.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pg03-pg04-home-family-qa-main
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Source content SEO asset QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p qa/pg03-pg04-home-family
+          python3 - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          from urllib.parse import urlparse
+          import json, re, sys, time
+
+          OUT=Path('qa/pg03-pg04-home-family')
+          pages={
+            'ar/home-03.html':{'lang':'ar','dir':'rtl','h1':'قدم منتجك للسوق بالمعلومات التي يحتاجها المشتري.','canonical':'https://example.com/ar/home-03.html','profile':'docs/page-design-profiles/pg03-home-03-v1.md','kind':'pg03'},
+            'en/home-03.html':{'lang':'en','dir':'ltr','h1':'Present your product with the information buyers need.','canonical':'https://example.com/en/home-03.html','profile':'docs/page-design-profiles/pg03-home-03-v1.md','kind':'pg03'},
+            'ar/landing.html':{'lang':'ar','dir':'rtl','h1':'فرصة تجارية أوضح تبدأ بمعلومات أفضل.','canonical':'https://example.com/ar/landing.html','profile':'docs/page-design-profiles/pg04-landing-v1.md','kind':'pg04'},
+            'en/landing.html':{'lang':'en','dir':'ltr','h1':'Clearer commercial opportunities start with better information.','canonical':'https://example.com/en/landing.html','profile':'docs/page-design-profiles/pg04-landing-v1.md','kind':'pg04'},
+          }
+          forbidden=['targetft','target.targetft','cdn.jsdelivr','unpkg.com','cdnjs.cloudflare','fonts.googleapis.com','fonts.gstatic.com']
+          canonical_files={'index.html','home-02.html','home-03.html','landing.html','about.html','how-we-work.html','capabilities.html','service-details.html','product-categories.html','products.html','product-details.html','suppliers.html','supplier-details.html','market-access.html','markets.html','for-suppliers.html','submit-product.html','rfq.html','become-partner.html','case-studies.html','case-study-details.html','resources.html','certifications-compliance.html','insights.html','article-details.html','faq.html','contact.html','404.html','coming-soon.html','privacy.html','terms.html','components.html'}
+
+          class P(HTMLParser):
+            def __init__(self):
+              super().__init__(); self.html={}; self.ids=[]; self.h1=[]; self.links=[]; self.assets=[]; self.in_h1=False; self.buf=[]; self.in_json=False; self.jsonbuf=[]; self.jsonld=[]
+            def handle_starttag(self,tag,attrs):
+              d=dict(attrs)
+              if tag=='html': self.html=d
+              if d.get('id'): self.ids.append(d['id'])
+              if tag=='h1': self.in_h1=True; self.buf=[]
+              if tag=='a' and d.get('href'): self.links.append(d['href'])
+              if tag in ('link','script','img'):
+                key='href' if tag=='link' else 'src'
+                if d.get(key): self.assets.append(d[key])
+              if tag=='script' and d.get('type')=='application/ld+json': self.in_json=True; self.jsonbuf=[]
+            def handle_data(self,data):
+              if self.in_h1: self.buf.append(data)
+              if self.in_json: self.jsonbuf.append(data)
+            def handle_endtag(self,tag):
+              if tag=='h1': self.in_h1=False; self.h1.append(''.join(self.buf).strip())
+              if tag=='script' and self.in_json: self.in_json=False; self.jsonld.append(''.join(self.jsonbuf).strip())
+
+          failures=[]; rows=[]
+          for rel,s in pages.items():
+            path=Path(rel); text=path.read_text(encoding='utf-8'); p=P(); p.feed(text); checks=[]
+            def ck(name,ok,detail=''):
+              checks.append({'name':name,'pass':bool(ok),'detail':str(detail)[:500]})
+              if not ok: failures.append(f'{rel}: {name}: {detail}')
+            ck('language/direction',p.html.get('lang')==s['lang'] and p.html.get('dir')==s['dir'])
+            ck('single canonical H1',len(p.h1)==1 and p.h1[0]==s['h1'],p.h1)
+            ck('unique IDs',len(p.ids)==len(set(p.ids)))
+            ck('canonical URL',f'rel="canonical" href="{s["canonical"]}"' in text)
+            ck('hreflang AR EN x-default',all(x in text for x in ('hreflang="ar"','hreflang="en"','hreflang="x-default"')))
+            ck('Open Graph baseline',all(x in text for x in ('og:type','og:site_name','og:title','og:description','og:url','og:image')))
+            structured=False
+            for raw in p.jsonld:
+              try:
+                data=json.loads(raw)
+                nodes=data.get('@graph',[]) if isinstance(data,dict) else []
+                if any(isinstance(n,dict) and n.get('@type')=='WebPage' for n in nodes): structured=True
+              except Exception as e: pass
+            ck('WebPage structured data',structured)
+            disclosure_ar='جميع الأسماء والبيانات التجارية الواردة في العرض التوضيحي أمثلة خيالية لأغراض القالب، ويجب استبدالها ببيانات فعلية قبل النشر.'
+            disclosure_en='All names and commercial data in this demo are fictional template examples and must be replaced with verified business information before publication.'
+            ck('mandatory demo disclosure',(disclosure_ar in text) if s['lang']=='ar' else (disclosure_en in text))
+            ck('no client/CDN leakage',not any(x.lower() in text.lower() for x in forbidden))
+            ck('local Bootstrap', '../assets/vendor/bootstrap/' in text)
+            ck('M1 runtime',all(x in text for x in ('../assets/js/config.js','../assets/js/config-engine.js','../assets/js/origex-ui.js')))
+            ck('page profile exists',Path(s['profile']).exists())
+            if s['kind']=='pg03':
+              ck('PG03 frozen intents',all(x in text for x in ('orx-manufacturer-hero','orx-capability-grid','orx-demo-manufacturer','orx-cert-grid','orx-export-grid','orx-private-label','id="quality-title"','orx-final-cta')))
+              ck('certifications explicitly demo-labelled','Demo Placeholder' in text and ('ليست شهادات حقيقية' in text if s['lang']=='ar' else 'not real certifications' in text))
+              ck('export markets illustrative','Illustrative' in text and ('ليست سجل تصدير فعلي' in text if s['lang']=='ar' else 'not a verified export record' in text))
+              ck('manufacturer composition layer','../assets/css/origex-manufacturer.css' in text)
+            else:
+              ck('PG04 frozen intents',all(x in text for x in ('orx-landing-hero','id="benefits"','id="categories"','orx-trust-band','id="process"','orx-conversion-section','orx-landing-final')))
+              ck('compact demo form',all(x in text for x in ('data-orx-demo-enquiry-form','type="email"','required','data-orx-demo-form-status')))
+              ck('no form endpoint','<form data-orx-demo-enquiry-form>' in text and 'action=' not in text)
+              ck('landing runtime','../assets/js/origex-landing.js' in text and '../assets/css/origex-landing.css' in text)
+            local=[]
+            for a in p.assets:
+              if a.startswith(('http://','https://','data:','#')): continue
+              clean=a.split('#',1)[0].split('?',1)[0]
+              if not clean: continue
+              resolved=(path.parent/clean).resolve(); local.append((a,resolved.exists()))
+            ck('local linked assets exist',all(v for _,v in local),[a for a,v in local if not v])
+            bad=[]
+            for h in p.links:
+              if h.startswith(('http://','https://','mailto:','tel:','#')): continue
+              if h.startswith('../'): continue
+              base=urlparse(h).path.split('/')[-1]
+              if base and base not in canonical_files: bad.append(h)
+            ck('canonical internal filenames',not bad,bad)
+            rows.append({'page':rel,'checks':checks})
+
+          for required in ['assets/media/demo/hero-manufacturer-readiness.svg','assets/media/demo/hero-commercial-enquiry.svg','assets/css/origex-manufacturer.css','assets/css/origex-landing.css','assets/js/origex-landing.js']:
+            if not Path(required).exists(): failures.append(f'missing required asset/runtime: {required}')
+          report={'generatedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'failures':len(failures),'pages':rows,'errors':failures}
+          (OUT/'source-report.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
+          if failures:
+            print('\n'.join(failures)); sys.exit(1)
+          PY
+
+      - name: Start static server and ChromeDriver
+        shell: bash
+        run: |
+          set -euo pipefail
+          google-chrome --version | tee qa/pg03-pg04-home-family/browser-baseline.txt
+          chromedriver --version | tee -a qa/pg03-pg04-home-family/browser-baseline.txt
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/origex-http.log 2>&1 &
+          chromedriver --port=9515 --allowed-origins='*' >/tmp/origex-chromedriver.log 2>&1 &
+          sleep 2
+          curl -fsS http://127.0.0.1:4173/en/home-03.html >/dev/null
+          curl -fsS http://127.0.0.1:9515/status >/dev/null
+
+      - name: Rendered responsive interaction and snapshot QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64,json,time,urllib.request
+          from pathlib import Path
+          WD='http://127.0.0.1:9515'; OUT=Path('qa/pg03-pg04-home-family'); OUT.mkdir(parents=True,exist_ok=True)
+          def req(method,path,payload=None):
+            data=None if payload is None else json.dumps(payload).encode(); r=urllib.request.Request(WD+path,data=data,method=method,headers={'Content-Type':'application/json'})
+            with urllib.request.urlopen(r,timeout=30) as f: body=json.loads(f.read().decode())
+            value=body.get('value') if isinstance(body,dict) else body
+            if isinstance(value,dict) and value.get('error'): raise RuntimeError(value)
+            return value
+          def session(w,h):
+            v=req('POST','/session',{'capabilities':{'alwaysMatch':{'browserName':'chrome','goog:chromeOptions':{'args':['--headless=new','--no-sandbox','--disable-dev-shm-usage','--force-device-scale-factor=1',f'--window-size={w},{h}']}}}})
+            sid=v['sessionId']; req('POST',f'/session/{sid}/window/rect',{'width':w,'height':h,'x':0,'y':0}); return sid
+          def js(sid,script,args=None): return req('POST',f'/session/{sid}/execute/sync',{'script':script,'args':args or []})
+          def cdp(sid,cmd,params=None): return req('POST',f'/session/{sid}/goog/cdp/execute',{'cmd':cmd,'params':params or {}})
+          pages=[('pg03','ar','/ar/home-03.html','rtl'),('pg03','en','/en/home-03.html','ltr'),('pg04','ar','/ar/landing.html','rtl'),('pg04','en','/en/landing.html','ltr')]
+          viewports=[('mobile-390',390,844),('tablet-820',820,1180),('laptop-1366',1366,900),('desktop-1536',1536,960)]
+          results=[]; failures=0
+          metrics_script=r'''const width=arguments[0],expected=arguments[1];const doc=document.documentElement;const visible=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0&&!e.closest('[aria-hidden="true"]')};const off=[...document.querySelectorAll('body *')].filter(e=>{if(!visible(e)||getComputedStyle(e).position==='fixed')return false;const r=e.getBoundingClientRect();return r.right>width+1||r.left<-1}).slice(0,20).map(e=>({tag:e.tagName,cls:typeof e.className==='string'?e.className:'',left:Math.round(e.getBoundingClientRect().left),right:Math.round(e.getBoundingClientRect().right)}));const buttons=[...document.querySelectorAll('.orx-btn')].filter(visible).map(b=>Math.round(b.getBoundingClientRect().height));const h1=document.querySelector('h1');return{dir:doc.dir,expected,scrollWidth:Math.round(doc.scrollWidth),clientWidth:Math.round(doc.clientWidth),overflow:doc.scrollWidth>doc.clientWidth+1,offscreen:off,minButton:buttons.length?Math.min(...buttons):null,h1Width:h1?Math.round(h1.getBoundingClientRect().width):0,heroHeight:document.querySelector('.orx-hero')?Math.round(document.querySelector('.orx-hero').getBoundingClientRect().height):0,fonts:document.fonts?document.fonts.status:'unsupported'};'''
+          for kind,lang,path,dirn in pages:
+            for name,w,h in viewports:
+              sid=session(w,h)
+              try:
+                req('POST',f'/session/{sid}/url',{'url':'http://127.0.0.1:4173'+path});time.sleep(.7)
+                m=js(sid,metrics_script,[w,dirn]); required=44 if w<=1024 else 40
+                checks={'direction':m['dir']==dirn,'noHorizontalOverflow':not m['overflow'] and not m['offscreen'],'touchTargets':(m['minButton'] or 0)>=required,'heroReadable':m['h1Width']>0 and m['heroHeight']>0,'fontsReady':m['fonts'] in ('loaded','unsupported')}
+                passed=all(checks.values()); failures += 0 if passed else 1
+                shot=None
+                if w in (390,1536):
+                  layout=cdp(sid,'Page.getLayoutMetrics');size=layout.get('cssContentSize') or layout.get('contentSize')
+                  cap=cdp(sid,'Page.captureScreenshot',{'format':'jpeg','quality':18,'fromSurface':True,'captureBeyondViewport':True,'clip':{'x':0,'y':0,'width':size['width'],'height':size['height'],'scale':0.42 if w==390 else 0.22}})
+                  shot=OUT/f'{kind}-{lang}-{w}-full.jpeg';shot.write_bytes(base64.b64decode(cap['data']))
+                results.append({'kind':kind,'lang':lang,'viewport':{'name':name,'width':w,'height':h},'pass':passed,'checks':checks,'metrics':m,'screenshot':str(shot) if shot else None})
+              finally:
+                try:req('DELETE',f'/session/{sid}')
+                except:pass
+          interactions=[]
+          for kind,lang,path,dirn in pages:
+            # desktop
+            sid=session(1366,900)
+            try:
+              req('POST',f'/session/{sid}/url',{'url':'http://127.0.0.1:4173'+path});time.sleep(.5); c={}
+              if kind=='pg03':
+                c['mega_open_close']=js(sid,"const t=document.querySelector('[data-orx-mega-trigger]');if(!t)return false;t.click();const m=document.getElementById(t.getAttribute('aria-controls'));const o=t.getAttribute('aria-expanded')==='true'&&!m.hidden;document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));return o&&t.getAttribute('aria-expanded')==='false'&&m.hidden;")
+                c['announcement_close']=js(sid,"const b=document.querySelector('[data-orx-announcement]'),x=document.querySelector('[data-orx-announcement-close]');if(!b||!x)return false;x.click();return b.hidden===true;")
+              else:
+                c['anchors_present']=js(sid,"return ['benefits','categories','process','enquiry'].every(id=>!!document.getElementById(id));")
+                c['demo_form_validates']=js(sid,"const f=document.querySelector('[data-orx-demo-enquiry-form]');if(!f)return false;f.querySelector('[name=name]').value='Demo User';f.querySelector('[name=email]').value='demo@example.com';f.querySelector('[name=type]').selectedIndex=1;f.querySelector('[name=requirement]').value='Demo requirement';f.querySelector('input[type=checkbox]').checked=true;f.requestSubmit();const s=f.querySelector('[data-orx-demo-form-status]');return !!s&&!s.hidden;")
+              passed=all(c.values()); failures += 0 if passed else 1; interactions.append({'kind':kind,'lang':lang,'mode':'desktop','pass':passed,'checks':c})
+            finally:
+              try:req('DELETE',f'/session/{sid}')
+              except:pass
+            # mobile drawer
+            sid=session(390,844)
+            try:
+              req('POST',f'/session/{sid}/url',{'url':'http://127.0.0.1:4173'+path});time.sleep(.5)
+              c={'drawer_open_close':js(sid,"const o=document.querySelector('[data-orx-drawer-open]'),d=document.querySelector('[data-orx-mobile-drawer]');if(!o||!d)return false;o.click();const open=d.getAttribute('aria-hidden')==='false'&&o.getAttribute('aria-expanded')==='true';document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));return open&&d.getAttribute('aria-hidden')==='true'&&o.getAttribute('aria-expanded')==='false';")}
+              passed=all(c.values()); failures += 0 if passed else 1; interactions.append({'kind':kind,'lang':lang,'mode':'mobile','pass':passed,'checks':c})
+            finally:
+              try:req('DELETE',f'/session/{sid}')
+              except:pass
+          report={'generatedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'failures':failures,'rendered':results,'interactions':interactions}
+          (OUT/'rendered-interaction-report.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
+          lines=['# PG03 + PG04 Home Family QA','',f"Generated: {report['generatedAt']}",'',f"Result: {'PASS' if failures==0 else 'FAIL'} — failures {failures}",'','## Rendered Cases','','| Page | Lang | Viewport | Result | Overflow | Touch |','|---|---|---:|---|---|---|']
+          for r in results: lines.append(f"| {r['kind'].upper()} | {r['lang'].upper()} | {r['viewport']['width']}×{r['viewport']['height']} | {'PASS' if r['pass'] else 'FAIL'} | {'PASS' if r['checks']['noHorizontalOverflow'] else 'FAIL'} | {'PASS' if r['checks']['touchTargets'] else 'FAIL'} |")
+          lines += ['','## Interaction Cases','','| Page | Lang | Mode | Result |','|---|---|---|---|']
+          for r in interactions: lines.append(f"| {r['kind'].upper()} | {r['lang'].upper()} | {r['mode']} | {'PASS' if r['pass'] else 'FAIL'} |")
+          (OUT/'README.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          (OUT/'run-status.txt').write_text(('PASS' if failures==0 else f'FAIL — {failures}')+'\n',encoding='utf-8')
+          raise SystemExit(1 if failures else 0)
+          PY
+
+      - name: Commit QA evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'orveax-build'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A qa/pg03-pg04-home-family
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'PG03 PG04 record home family QA evidence'
+          git push origin main
