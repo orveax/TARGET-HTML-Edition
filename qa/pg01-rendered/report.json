@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-19T04:12:43Z",
-  "failures": 4,
+  "generatedAt": "2026-08-19T04:15:00Z",
+  "failures": 0,
   "results": [
     {
       "target": "ar",
@@ -71,7 +71,7 @@
         "h1LineHeight": "46.08px",
         "h1Width": 757,
         "headerHeight": 77,
-        "heroHeight": 960,
+        "heroHeight": 915,
         "horizontalOverflow": false,
         "lang": "ar",
         "minButtonHeight": 55,
@@ -88,10 +88,10 @@
         "height": 900
       },
       "minTarget": 40,
-      "pass": false,
+      "pass": true,
       "checks": {
         "direction": true,
-        "noHorizontalOverflow": false,
+        "noHorizontalOverflow": true,
         "touchTargets": true,
         "heroReadable": true,
         "fontsReady": true
@@ -114,68 +114,7 @@
         "horizontalOverflow": false,
         "lang": "ar",
         "minButtonHeight": 46,
-        "offscreen": [
-          {
-            "cls": "orx-media orx-media--hero orx-pattern",
-            "left": -135,
-            "right": 615,
-            "tag": "DIV"
-          },
-          {
-            "cls": "h-100 d-flex flex-column justify-content-center p-4 p-lg-5",
-            "left": -134,
-            "right": 614,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-eyebrow",
-            "left": -96,
-            "right": 575,
-            "tag": "SPAN"
-          },
-          {
-            "cls": "orx-stack",
-            "left": -96,
-            "right": 575,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-card",
-            "left": -96,
-            "right": 575,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-cluster",
-            "left": -39,
-            "right": 558,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-card",
-            "left": -96,
-            "right": 575,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-cluster",
-            "left": -39,
-            "right": 558,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-card",
-            "left": -96,
-            "right": 575,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-cluster",
-            "left": -39,
-            "right": 558,
-            "tag": "DIV"
-          }
-        ],
+        "offscreen": [],
         "scrollWidth": 1351
       },
       "screenshot": "qa/pg01-rendered/ar-laptop-1366.jpeg"
@@ -188,10 +127,10 @@
         "height": 960
       },
       "minTarget": 40,
-      "pass": false,
+      "pass": true,
       "checks": {
         "direction": true,
-        "noHorizontalOverflow": false,
+        "noHorizontalOverflow": true,
         "touchTargets": true,
         "heroReadable": true,
         "fontsReady": true
@@ -214,50 +153,7 @@
         "horizontalOverflow": false,
         "lang": "ar",
         "minButtonHeight": 46,
-        "offscreen": [
-          {
-            "cls": "orx-media orx-media--hero orx-pattern",
-            "left": -54,
-            "right": 696,
-            "tag": "DIV"
-          },
-          {
-            "cls": "h-100 d-flex flex-column justify-content-center p-4 p-lg-5",
-            "left": -53,
-            "right": 695,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-eyebrow",
-            "left": -15,
-            "right": 656,
-            "tag": "SPAN"
-          },
-          {
-            "cls": "orx-stack",
-            "left": -15,
-            "right": 656,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-card",
-            "left": -15,
-            "right": 656,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-card",
-            "left": -15,
-            "right": 656,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-card",
-            "left": -15,
-            "right": 656,
-            "tag": "DIV"
-          }
-        ],
+        "offscreen": [],
         "scrollWidth": 1521
       },
       "screenshot": "qa/pg01-rendered/ar-desktop-1536.jpeg"
@@ -292,7 +188,7 @@
         "h1LineHeight": "40.32px",
         "h1Width": 335,
         "headerHeight": 77,
-        "heroHeight": 1143,
+        "heroHeight": 1169,
         "horizontalOverflow": false,
         "lang": "en",
         "minButtonHeight": 52,
@@ -331,7 +227,7 @@
         "h1LineHeight": "40.32px",
         "h1Width": 757,
         "headerHeight": 77,
-        "heroHeight": 987,
+        "heroHeight": 942,
         "horizontalOverflow": false,
         "lang": "en",
         "minButtonHeight": 52,
@@ -348,10 +244,10 @@
         "height": 900
       },
       "minTarget": 40,
-      "pass": false,
+      "pass": true,
       "checks": {
         "direction": true,
-        "noHorizontalOverflow": false,
+        "noHorizontalOverflow": true,
         "touchTargets": true,
         "heroReadable": true,
         "fontsReady": true
@@ -374,68 +270,7 @@
         "horizontalOverflow": false,
         "lang": "en",
         "minButtonHeight": 44,
-        "offscreen": [
-          {
-            "cls": "orx-media orx-media--hero orx-pattern",
-            "left": 736,
-            "right": 1486,
-            "tag": "DIV"
-          },
-          {
-            "cls": "h-100 d-flex flex-column justify-content-center p-4 p-lg-5",
-            "left": 737,
-            "right": 1485,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-eyebrow",
-            "left": 776,
-            "right": 1447,
-            "tag": "SPAN"
-          },
-          {
-            "cls": "orx-stack",
-            "left": 776,
-            "right": 1447,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-card",
-            "left": 776,
-            "right": 1447,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-cluster",
-            "left": 793,
-            "right": 1390,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-card",
-            "left": 776,
-            "right": 1447,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-cluster",
-            "left": 793,
-            "right": 1390,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-card",
-            "left": 776,
-            "right": 1447,
-            "tag": "DIV"
-          },
-          {
-            "cls": "orx-cluster",
-            "left": 793,
-            "right": 1390,
-            "tag": "DIV"
-          }
-        ],
+        "offscreen": [],
         "scrollWidth": 1351
       },
       "screenshot": "qa/pg01-rendered/en-laptop-1366.jpeg"
@@ -448,10 +283,10 @@
         "height": 960
       },
       "minTarget": 40,
-      "pass": false,
+      "pass": true,
       "checks": {
         "direction": true,
-        "noHorizontalOverflow": false,
+        "noHorizontalOverflow": true,
         "touchTargets": true,
         "heroReadable": true,
         "fontsReady": true
@@ -474,20 +309,7 @@
         "horizontalOverflow": false,
         "lang": "en",
         "minButtonHeight": 44,
-        "offscreen": [
-          {
-            "cls": "orx-media orx-media--hero orx-pattern",
-            "left": 825,
-            "right": 1575,
-            "tag": "DIV"
-          },
-          {
-            "cls": "h-100 d-flex flex-column justify-content-center p-4 p-lg-5",
-            "left": 826,
-            "right": 1574,
-            "tag": "DIV"
-          }
-        ],
+        "offscreen": [],
         "scrollWidth": 1521
       },
       "screenshot": "qa/pg01-rendered/en-desktop-1536.jpeg"
