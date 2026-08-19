@@ -2,205 +2,192 @@
 
 Product ID: ORX-P01  
 Owner: ORVEAX  
-Status: LOCKED FOR V1  
-Scope: Main Features only
+Status: APPROVED & LOCKED  
+Scope: V1 Main Features only  
+Normalized: 2026-08-19 Hard Audit
 
-## 1. Purpose
-
-ORIGEX uses one controlled design system. Pages compose approved building blocks; they do not redesign those building blocks locally.
+ORIGEX uses one controlled design system. Pages compose registered building blocks; they do not redesign those blocks locally.
 
 Core principle:
 
-> Define once → reuse everywhere → change centrally.
+> Define once → register → reuse everywhere → change centrally.
 
-A page may choose an approved component or variant, change its content, and change documented semantic states. A page may not create a visual fork of an existing component through page-specific CSS.
+## 1. Architecture Stack
 
-## 2. System Hierarchy
-
-### Level 0 — Foundations
-Global visual and behavioral constants.
-
-Includes:
-- Brand colors and semantic colors.
-- Typography families and type scale.
-- Spacing scale.
-- Container widths.
-- Grid rules.
-- Radius scale.
-- Border scale.
-- Shadow scale.
-- Icon sizing.
-- Motion duration/easing.
-- Breakpoints.
-- RTL/LTR direction rules.
-- Focus/accessibility tokens.
-
-Strategy: foundations never belong to one page. They are centrally defined and inherited.
-
-Sample:
-```css
-:root {
-  --orx-primary: #15343B;
-  --orx-accent: #C47A4A;
-  --orx-space-4: 1rem;
-  --orx-radius-md: .75rem;
-  --orx-duration-fast: 160ms;
-}
+```text
+Infrastructure Layer — Bootstrap 5.3.8
+        ↓
+F — ORIGEX Foundations
+        ↓
+P — Primitives
+        ↓
+C — Components
+        ↓
+PT / N — Reusable Patterns & Global Navigation
+        ↓
+S — Sections
+        ↓
+PG — Page Design Profiles
 ```
 
-### Level 1 — Primitives
-Small reusable UI atoms that carry no page-specific business meaning.
+Bootstrap is below the ORIGEX Design System. It provides infrastructure; it is not a branded hierarchy level and cannot bypass the registry.
 
-Includes:
-- Button.
-- Icon button.
-- Text link.
-- Badge.
-- Label.
-- Input.
-- Select.
-- Checkbox.
-- Radio.
-- Textarea.
-- Divider.
-- Avatar/logo holder.
-- Media frame.
-- Tooltip trigger.
+## 2. Infrastructure Layer — Bootstrap 5.3.8
 
-Strategy: primitives have few variants, strong states, and no page-specific overrides.
-
-Sample:
-```html
-<a class="orx-btn orx-btn--primary" href="rfq.html">اطلب عرض سعر</a>
-```
-
-### Level 2 — Components
-Reusable semantic UI units built from primitives.
-
-Includes:
-- Feature Card.
-- Product Card.
-- Supplier Card.
-- Market Card.
-- Process Card.
-- Certification Card.
-- Resource Card.
-- Case Study Card.
-- Contact Card.
-- CTA Card.
-- Search control.
-- Filter group.
-- Accordion item.
-- Tab set.
-- Pagination.
-- Form field.
-- File upload.
-- Stat block.
-- Breadcrumb.
-
-Strategy: each component has a documented anatomy, allowed variants, states, responsive behavior, RTL behavior, and sample markup.
-
-### Level 3 — Patterns
-Compositions of several components that solve a repeated UX task.
-
-Includes:
-- Product filter bar.
-- Supplier directory toolbar.
-- RFQ form group.
-- Process flow.
-- Specification table.
-- Trust strip.
-- Resource/download grid.
-- FAQ group.
-- Contact-channel group.
-- CTA cluster.
-- Navigation group.
-
-Strategy: patterns may rearrange approved components, but may not alter their internal visual contract.
-
-### Level 4 — Sections
-Page-level content blocks composed from patterns/components.
-
-Section families:
-- Hero.
-- Standard content.
-- Soft contrast.
-- Dark emphasis.
-- Data/specification.
-- Directory/grid.
-- Process.
-- Trust/proof.
-- Conversion/CTA.
-- Utility/legal.
-
-Strategy: sections control composition and rhythm. They do not redefine button, card, form or badge styling.
-
-### Level 5 — Page Design Profiles
-A page profile selects and sequences approved sections and components.
-
-Each profile defines:
-- Commercial goal.
-- Hero family.
-- Main section sequence.
-- Content density.
-- Allowed card families.
-- CTA hierarchy.
-- Interaction budget.
-- Motion level.
-- Mobile behavior.
-- Arabic RTL notes.
-- English LTR notes.
-- Config-controlled values.
-
-Strategy: a page gets identity through composition, not through creating a separate design language.
-
-## 3. Component Immutability Rule
-
-When an approved component is used inside a page:
-
-Allowed:
-- Replace content.
-- Change image/data.
-- Apply an approved modifier/variant.
-- Apply semantic state: active, unavailable, featured, selected, error, success.
-- Change placement and grid span if documented.
+Allowed roles:
+- grid;
+- containers;
+- breakpoints;
+- selected layout/display/spacing utilities;
+- selected behavior primitives when approved centrally.
 
 Not allowed:
-- New border radius only for one page.
-- New shadow only for one page.
-- Different icon/title alignment only for one page.
-- Different padding only because a page needs to 'look different'.
-- Page CSS that rewrites core component anatomy.
-- Duplicating the component under a new class with minor visual changes.
+- using default Bootstrap cards/buttons/forms/navigation styling as ORIGEX design language;
+- page-by-page mixing of Bootstrap behavior with different custom implementations for the same interaction.
 
-If a legitimate new requirement appears:
-1. Check whether an approved variant already solves it.
-2. If not, propose a new variant.
-3. Add the variant to the central registry.
-4. QA Arabic, English, responsive, accessibility.
-5. Only then use it in a page.
+Exact technology authority: `TECH-STACK-V1.md`.
 
-## 4. Naming Strategy
+## 3. F — Foundations
 
-Base component:
+Global constants and systems that never belong to one page.
+
+Registered in `COMPONENT-REGISTRY-V1.md`:
+- F01 Color System
+- F02 Typography System
+- F03 Spacing, Grid & Layout
+- F04 Shape, Border & Elevation
+- F05 Icon System
+- F06 Motion & Interaction
+- F07 Media & Pattern Foundations
+
+Strategy: foundations are inherited by every primitive/component/page. A page cannot create an alternative foundation.
+
+## 4. P — Primitives
+
+Small reusable UI atoms with minimal business meaning.
+
+Current primitive registry:
+- P01 Primary Button
+- P02 Secondary Button
+- P03 Text Action
+- P04 Icon Button
+- P05 Badge
+- P06 Form Input
+- P07 Select
+- P08 Textarea
+- P09 Checkbox / Radio
+- P10 Divider
+- P11 Icon Container
+
+Strategy: few variants, strong states, consistent accessibility and no page-local overrides.
+
+## 5. C — Components
+
+Reusable semantic UI units composed from foundations/primitives.
+
+Current registered families C01–C28 include:
+- Feature / Product / Supplier / Market / Process / Metric / Certification / Resource / Case Study / Contact / CTA cards;
+- Breadcrumb / Tabs / Accordion / Pagination / Search / Filters;
+- Specification / Trust / Empty / Alert;
+- Form Field / File Upload / Form Status;
+- Product Media / Logo Frame / Editorial Media.
+
+Detailed IDs and contracts live only in `COMPONENT-REGISTRY-V1.md`.
+
+Strategy: a component keeps the same core anatomy across pages. Content, approved variant/state and placement may change; its visual contract may not.
+
+## 6. PT / N — Patterns
+
+Patterns solve repeated UX/composition tasks using registered components.
+
+### Visual pattern families
+Authority: `PATTERN-SYSTEM-V1.md`.
+
+- PT01 Route Lines
+- PT02 Trade Grid
+- PT03 Dot Matrix
+- PT04 Market Nodes
+- PT05 Packaging Geometry
+- PT06 Flow Lines
+
+### Global navigation patterns
+- N01 Site Header
+- N02 Mega Menu
+- N03 Mobile Drawer
+- N04 Footer
+
+Other repeated UX compositions may be documented as patterns during implementation only if they reuse registered components and pass change control.
+
+## 7. S — Sections
+
+Registered section families:
+- S01 Section Header
+- S02 Split Hero
+- S03 Centered Editorial Hero
+- S04 Detail Hero
+- S05 Utility Hero
+- S06 Final CTA
+
+Sections control page composition/rhythm and may combine components. They do not redefine components.
+
+## 8. PG — Page Design Profiles
+
+Every page receives a Page Design Profile before implementation.
+
+A profile defines:
+- Page ID / SEO identity;
+- commercial goal and audience;
+- Content Contract / C6 status;
+- Main Features;
+- component/section IDs;
+- section sequence;
+- density and media treatment;
+- interaction budget;
+- config eligibility;
+- AR RTL / EN LTR behavior;
+- responsive/accessibility/performance contracts;
+- assets/licenses;
+- QA exit conditions.
+
+A page gets identity through **content + composition**, not a private design system.
+
+## 9. Component Immutability Rule
+
+Allowed at page level:
+- change content/data;
+- select approved variant;
+- select semantic state;
+- change documented grid span/placement;
+- compose registered units.
+
+Not allowed:
+- new radius/shadow/padding just for one page;
+- page-specific icon grammar;
+- different button/form/card anatomy;
+- duplicate component class with minor visual changes;
+- hidden hotfix override layer.
+
+If a real repeated need appears:
+
 ```text
-.orx-card
+Check existing registry
+→ confirm gap
+→ define central variant/component
+→ document/register
+→ AR/EN/mobile/accessibility QA
+→ reuse
 ```
 
-Semantic family:
+## 10. Naming
+
+ORIGEX-owned classes:
 ```text
-.orx-product-card
-.orx-supplier-card
-.orx-process-card
+.orx-component
+.orx-component__part
+.orx-component--variant
 ```
 
-Approved modifier:
-```text
-.orx-product-card--featured
-.orx-product-card--compact
-```
-
-Semantic state:
+State classes:
 ```text
 .is-active
 .is-selected
@@ -208,52 +195,43 @@ Semantic state:
 .has-error
 ```
 
-Page-specific selectors may control layout placement only:
-```css
-.products-page__grid .orx-product-card { /* placement/grid only */ }
-```
+JavaScript hooks use `data-orx-*`; CSS styling must not depend on JS-only hook names.
 
-They must not redefine the visual contract of `.orx-product-card`.
+Page selectors may control placement/composition only, never shared component internals.
 
-## 5. Documentation Contract for Every Component
+## 11. Documentation Contract
 
-Every component entry must contain exactly these headings:
-1. Name / ID.
-2. Purpose.
-3. Hierarchy level.
-4. Strategy.
-5. Anatomy.
-6. Approved variants.
-7. Approved states.
-8. Content rules.
-9. RTL/LTR rules.
-10. Responsive rules.
-11. Accessibility rules.
-12. Config eligibility.
-13. Do / Don't.
-14. HTML sample.
-15. Pages using it.
+The registry is intentionally concise. A component/primitive entry must define the information needed for implementation without duplicating global rules already owned by companion authorities.
 
-## 6. Change Control
+Minimum required where applicable:
+- ID / name;
+- hierarchy level;
+- purpose;
+- anatomy/strategy;
+- approved variants/states;
+- critical rule(s);
+- dependency/authority reference when needed.
 
-V1 pages consume the registry. They do not expand it casually.
+Global RTL, accessibility, icon, media, shape and motion rules may be referenced rather than repeated in every entry.
 
-A proposed new component/variant must answer:
-- Is the use case repeated?
-- Can an existing component solve it?
-- Is it vertical-specific and commercially useful?
-- Does it preserve performance and simplicity?
-- Does it work in Arabic and English?
-- Does it justify long-term maintenance?
+The implementation itself and Components/Elements page provide executable/visual examples during M1/M6.
+
+## 12. Change Control
+
+A new component/variant must answer:
+- Is the need repeated?
+- Can an existing registered unit solve it?
+- Is it commercially useful for this vertical?
+- Does it preserve static simplicity/performance?
+- Does it work AR/EN and mobile?
+- Does it justify maintenance?
 
 If not, it does not enter V1.
 
-## 7. Components Page Relationship
+## 13. Components Page Relationship
 
-The future `Components / Elements` page is not a separate design experiment. It is a visual rendering of this registry and serves as:
-- buyer reference,
-- developer reference,
-- QA reference,
-- documentation examples source.
+PG32 Components / Elements is a rendering of the same registry, not an independent design experiment. It serves buyer reference, developer reference and QA evidence.
+
+Current implementation status is tracked in `IMPLEMENTATION-STATUS-V1.md`.
 
 Copyright © ORVEAX.
