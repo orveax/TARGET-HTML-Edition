@@ -41,3 +41,4 @@ jobs:
           git commit -m 'PG10 make rendered image QA lazy-loading safe'
           git pull --rebase origin main
           git push origin HEAD:main
+# retrigger 2026-08-19
