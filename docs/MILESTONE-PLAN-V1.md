@@ -2,7 +2,7 @@
 
 Product ID: ORX-P01  
 Owner: ORVEAX  
-Status: APPROVED — PRODUCT FOUNDATION COMPLETE / M1 READY
+Status: APPROVED — M1 CLOSED / M2 READY
 
 ## Project Brief
 
@@ -83,38 +83,43 @@ Canonical closure authority: `PRODUCT-FOUNDATION-COMPLETE-V1.md`.
 
 Gate: PASSED — APPROVED, FROZEN & COMPLETE on 2026-08-19.
 
-## M1 — Global System & Component Foundation — READY FOR IMPLEMENTATION
+## M1 — Global System & Component Foundation — CLOSED / COMPLETE
 **Purpose:** implement the frozen system once and reuse everywhere.
 
-Deliverables:
+Completed deliverables:
 - Design tokens implemented.
-- Bootstrap foundation integrated according to `TECH-STACK-V1.md`.
-- Typography hierarchy implemented.
+- Bootstrap foundation integrated locally according to `TECH-STACK-V1.md`.
+- Typography hierarchy implemented with local Tajawal and Manrope assets.
 - Grid/container helpers implemented.
 - shape/border/elevation tokens implemented.
 - Section system.
 - Hero families.
 - Card families.
 - Buttons/badges/forms.
-- Lucide local SVG/icon system integration.
+- Lucide local SVG/icon subset + sprite + license.
 - ORIGEX pattern assets PT01–PT06.
 - registered media frames/placeholders.
 - Tables/specification patterns.
-- Tabs/accordions/filters/modals.
-- Motion tokens/interactions.
+- Tabs/accordions/filters plus approved local Bootstrap behavior baseline when a registered page contract requires it.
+- Motion tokens/interactions + reduced-motion baseline.
 - RTL/LTR helpers.
-- `config.js` + engine.
-- data file foundations conforming to `DATA-SCHEMA-V1.md`.
-- Components/Elements page foundation using realistic canonical demo content, not lorem ipsum.
-- reusable metadata/head pattern supporting the frozen SEO contract.
+- `config.js` + engine aligned with the canonical demo dataset.
+- global shell foundation.
+- Components/Elements M1 QA surfaces using canonical fictional demo content, not lorem ipsum.
+- reusable component/head-ready architecture supporting the frozen SEO contract.
+- M1 asset/license baseline + vendor checksums.
 
-Gate: component QA in Arabic and English using `QA-DEFINITION-OF-DONE-V1.md`.
+Gate: **PASSED / CLOSED on 2026-08-19**. Authority: `M1-QA-REPORT-V1.md` + `M1-COMPONENT-IMPLEMENTATION-MAP.md`.
 
-## M2 — Global Shell & Home Family
+## M2 — Global Shell & Home Family — READY
 **Purpose:** establish the visual benchmark.
 
 ### Content / SEO Entry Gate
 Home 01 / Home 02 / Home 03 / Landing must each reach Content C6 and complete the SEO/Page Identity Contract before page coding starts.
+
+Current entry state:
+- PG01 Home 01 — C6 FROZEN + Page Design Profile + SEO/Page Identity Contract complete; **READY FOR BUILD**.
+- PG02–PG04 — remain blocked at C0 until their own content/design/SEO gates are completed.
 
 Deliverables:
 - Header / mega menu / mobile drawer.
