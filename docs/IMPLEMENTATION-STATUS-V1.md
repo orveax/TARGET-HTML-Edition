@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Owner: ORVEAX  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-19 — M1 CLOSED / M2 HOME FAMILY IMPLEMENTED / PG02–PG04 C7 CI QA PASS / CLOUDFLARE REVIEW PENDING
+Last Updated: 2026-08-19 — M2 HOME FAMILY IMPLEMENTED / M3 IN PROGRESS / PG05–PG06 C7 CI QA PASS
 
 This is the repo-level execution tracker. It records actual current implementation state and must match the active code tree.
 
@@ -27,19 +27,18 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`. Deployment/browser readiness i
 | Hard Audit / Legacy Cleanup | PASS / CLOSED |
 | Canonical Authority Map | PASS / CLOSED |
 | Project Rules | PASS / CLOSED |
-| Asset/License Register | ACTIVE — M1 baseline + M2 Home Family ORVEAX-owned demo media verified |
+| Asset/License Register | ACTIVE — M1 baseline + ORVEAX-owned M2 demo media verified |
 | PG01 Page/Code QA | C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK |
-| PG01 Marketplace Visual Polish CR | PASS / CLOSED |
-| PG02 Build | C7 IMPLEMENTED — AR + EN |
-| PG02 CI QA | PASS — source + rendered 8/8 + interaction |
-| PG03 Build | C7 IMPLEMENTED — AR + EN |
-| PG03 CI QA | PASS — source + rendered 8/8 + interaction |
-| PG04 Build | C7 IMPLEMENTED — AR + EN |
-| PG04 CI QA | PASS — source + rendered 8/8 + interaction + demo-form validation |
+| PG02 Build / CI QA | C7 IMPLEMENTED — AR+EN — PASS |
+| PG03 Build / CI QA | C7 IMPLEMENTED — AR+EN — PASS |
+| PG04 Build / CI QA | C7 IMPLEMENTED — AR+EN — PASS |
 | PG02–PG04 Cloudflare Browser Review | PENDING — Manual Rebuild available |
+| PG05 About | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + NAVIGATION QA PASS |
+| PG06 How We Work | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + NAVIGATION QA PASS |
+| M3 Company Navigation IA | ACTIVE — About + How We Work + Capabilities exposed centrally in shared navigation |
 | Cloudflare Test Environment | AVAILABLE VIA MANUAL REBUILD |
 | Cloudflare Git Auto-Deploy | DEFERRED — push trigger does not currently start deployment automatically |
-| Current Build Baseline | M2 IN PROGRESS — all four Home layouts implemented; deployed browser acceptance pending for PG02–PG04 |
+| Current Build Baseline | M3 IN PROGRESS — PG05/PG06 CI-complete; PG07 next |
 
 ## Milestones
 
@@ -48,49 +47,35 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`. Deployment/browser readiness i
 | M0 Product Foundation | PASS / CLOSED | Product Foundation Complete |
 | M1 Global System & Component Foundation | PASS / CLOSED | Component AR/EN foundation QA |
 | M2 Global Shell & Home Family | IN PROGRESS | PG01–PG04 AR/EN + Cloudflare deployed browser QA |
-| M3 Company / Business / Market | NOT STARTED | Batch Page QA |
+| M3 Company / Business / Market | IN PROGRESS | PG05–PG08 + PG14–PG15 batch page QA |
 | M4 Product / Supplier / Conversion | NOT STARTED | Data/forms/conversion QA |
 | M5 Proof / Resources / Compliance / Content | NOT STARTED | Resource/content QA |
 | M6 Support / Utility | NOT STARTED | All 32 layouts exist AR/EN |
-| M7 Full QA & Optimization | NOT STARTED | Zero Critical / High defects |
+| M7 Full QA & Optimization | NOT STARTED | Zero Critical / High defects + final visual polish |
 | M8 Docs / Licensing / Marketplace Package | NOT STARTED | Submission Candidate 1.0.0 |
 
-## M1 Foundation Units — CLOSED
+## M1 Foundation — CLOSED
 
-| Unit | Status | Evidence / Notes |
-|---|---|---|
-| Bootstrap 5.3.8 exact baseline | PASS / CLOSED | exact version authority locked |
-| Bootstrap local vendor files | PASS / CLOSED | local LTR/RTL CSS + bundle + MIT notice |
-| Asset/license register | PASS / CLOSED | M1 vendor/font/icon/pattern baseline verified; remains living register for future assets |
-| Design hierarchy / registry normalization | PASS / CLOSED | F01–F07, P01–P11, C01–C28, S01–S06, N01–N04 |
-| Tokens / typography / spacing implementation | PASS / CLOSED | central CSS foundation |
-| Grid / containers / responsive helpers | PASS / CLOSED | Bootstrap infrastructure + ORIGEX container decisions |
-| Radius / border / elevation implementation | PASS / CLOSED | frozen tokens implemented |
-| Motion / reduced-motion implementation | PASS / CLOSED | frozen tokens + accessibility fallback |
-| Lucide local icon assets/sprite | PASS / CLOSED | selected 1.27.0 subset + combined license |
-| ORIGEX PT01–PT06 pattern assets | PASS / CLOSED | six ORVEAX-owned SVGs |
-| Primitive code implementation | PASS / CLOSED | P01–P11 mapped |
-| Component code implementation | PASS / CLOSED | C01–C28 mapped centrally |
-| Config schema/engine normalization | PASS / CLOSED | canonical demo defaults + eligible hooks |
-| Config integration with M1 components | PASS / CLOSED | semantic hook integration |
-| Global shell | PASS / CLOSED | N01–N04 foundation implemented |
-| Components / Elements M1 foundation view | PASS / CLOSED | AR + EN noindex QA surfaces |
-| M1 AR/EN component QA | PASS / CLOSED | `M1-QA-REPORT-V1.md` + `M1-CLOSURE-2026-08-19.md` |
+M1 remains closed. M2/M3 pages consume the registered design system, shell, components, local Bootstrap, typography, icons, config runtime and accessibility foundation. Page-family CSS files are composition layers and do not replace the M1 system.
 
 ## Active Shared Implementation Tree
 
 ```text
 index.html                         # Arabic-first language entry
 ar/
-├── index.html                     # PG01 AR — C8
-├── home-02.html                   # PG02 AR — C7 CI PASS
-├── home-03.html                   # PG03 AR — C7 CI PASS
-└── landing.html                   # PG04 AR — C7 CI PASS
+├── index.html                     # PG01 — C8
+├── home-02.html                   # PG02 — C7 CI PASS
+├── home-03.html                   # PG03 — C7 CI PASS
+├── landing.html                   # PG04 — C7 CI PASS
+├── about.html                     # PG05 — C7 CI PASS
+└── how-we-work.html               # PG06 — C7 CI PASS
 en/
-├── index.html                     # PG01 EN — C8
-├── home-02.html                   # PG02 EN — C7 CI PASS
-├── home-03.html                   # PG03 EN — C7 CI PASS
-└── landing.html                   # PG04 EN — C7 CI PASS
+├── index.html                     # PG01 — C8
+├── home-02.html                   # PG02 — C7 CI PASS
+├── home-03.html                   # PG03 — C7 CI PASS
+├── landing.html                   # PG04 — C7 CI PASS
+├── about.html                     # PG05 — C7 CI PASS
+└── how-we-work.html               # PG06 — C7 CI PASS
 assets/
 ├── brand/
 ├── css/
@@ -102,16 +87,10 @@ assets/
 │   ├── origex-distribution.css
 │   ├── origex-manufacturer.css
 │   ├── origex-landing.css
+│   ├── origex-about.css
+│   ├── origex-how-we-work.css
 │   └── origex-shell.css
 ├── media/demo/
-│   ├── hero-trade-scene.svg
-│   ├── hero-distribution-network.svg
-│   ├── hero-manufacturer-readiness.svg
-│   ├── hero-commercial-enquiry.svg
-│   ├── product-tomato-sauce.svg
-│   ├── product-hibiscus.svg
-│   ├── product-milk.svg
-│   └── product-frozen.svg
 ├── fonts/
 ├── icons/
 ├── js/
@@ -121,8 +100,8 @@ assets/
 │   └── origex-landing.js
 ├── patterns/
 └── vendor/bootstrap/
-preview/
 qa/
+├── home-navigation-regression/
 ├── pg01-rendered/
 ├── pg01-interaction/
 ├── pg01-visual-review/
@@ -130,32 +109,30 @@ qa/
 ├── pg02-rendered/
 ├── pg02-interaction/
 ├── pg02-visual-review/
-└── pg03-pg04-home-family/
+├── pg03-pg04-home-family/
+├── pg05-about/
+└── pg06-how-we-work/
 docs/
 ├── page-design-profiles/
 │   ├── pg01-home-01-v1.md
 │   ├── pg02-home-02-v1.md
 │   ├── pg03-home-03-v1.md
-│   └── pg04-landing-v1.md
-├── PG01-CLOSURE-2026-08-19.md
-├── PG01-MARKETPLACE-VISUAL-POLISH-2026-08-19.md
-├── PG02-QA-REPORT-V1.md
-├── PG03-PG04-HOME-FAMILY-QA-2026-08-19.md
+│   ├── pg04-landing-v1.md
+│   ├── pg05-about-v1.md
+│   └── pg06-how-we-work-v1.md
 └── canonical authorities
 ```
-
-M2 pages consume the closed M1 system. Page-family CSS layers are compositions of registered components and do not reopen or replace M1.
 
 ## 32 V1 Layouts
 
 | PG | Page | Content | Design Profile | Build | QA |
 |---|---|---|---|---|---|
 | PG01 | Home 01 — Food Trading / Importer | C8 — CLOSED | APPROVED | `ar/index.html` + `en/index.html` | PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK |
-| PG02 | Home 02 — Wholesale & Distribution | C7 — IMPLEMENTED | APPROVED — `pg02-home-02-v1.md` | `ar/home-02.html` + `en/home-02.html` | CI PASS — CLOUDFLARE REVIEW PENDING |
-| PG03 | Home 03 — Manufacturer / Supplier | C7 — IMPLEMENTED | APPROVED — `pg03-home-03-v1.md` | `ar/home-03.html` + `en/home-03.html` | CI PASS — CLOUDFLARE REVIEW PENDING |
-| PG04 | Landing / One Page | C7 — IMPLEMENTED | APPROVED — `pg04-landing-v1.md` | `ar/landing.html` + `en/landing.html` | CI PASS — CLOUDFLARE REVIEW PENDING |
-| PG05 | About | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
-| PG06 | How We Work | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
+| PG02 | Home 02 — Wholesale & Distribution | C7 — IMPLEMENTED | APPROVED | AR+EN | CI PASS — CLOUDFLARE REVIEW PENDING |
+| PG03 | Home 03 — Manufacturer / Supplier | C7 — IMPLEMENTED | APPROVED | AR+EN | CI PASS — CLOUDFLARE REVIEW PENDING |
+| PG04 | Landing / One Page | C7 — IMPLEMENTED | APPROVED | AR+EN | CI PASS — CLOUDFLARE REVIEW PENDING |
+| PG05 | About | C7 — IMPLEMENTED | APPROVED — `pg05-about-v1.md` | `ar/about.html` + `en/about.html` | SOURCE + RENDERED + NAVIGATION QA PASS — CLOUDFLARE BATCH REVIEW PENDING |
+| PG06 | How We Work | C7 — IMPLEMENTED | APPROVED — `pg06-how-we-work-v1.md` | `ar/how-we-work.html` + `en/how-we-work.html` | SOURCE + RENDERED + NAVIGATION QA PASS — CLOUDFLARE BATCH REVIEW PENDING |
 | PG07 | Capabilities / Services | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG08 | Service Details | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG09 | Product Categories | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
@@ -185,43 +162,57 @@ M2 pages consume the closed M1 system. Page-family CSS layers are compositions o
 
 ## M2 Home Family Evidence
 
-### PG01 — Home 01
-- Page/code: C8 / PASS / CLOSED.
-- Marketplace visual benchmark closure: `docs/PG01-MARKETPLACE-VISUAL-POLISH-2026-08-19.md`.
-- final rendered QA: `5ab1edb6fe2a17adc41857790170097dfad57f0f` — 8/8 PASS.
-- final interaction QA: `b3d12beb103492144f4c5fc690ef15eedd49eef4` — PASS.
+### PG01
+- C8 / PASS / CLOSED.
+- Marketplace visual benchmark: `docs/PG01-MARKETPLACE-VISUAL-POLISH-2026-08-19.md`.
+- Rendered QA: AR/EN × 390/820/1366/1536 PASS.
+- Interaction QA PASS.
 
-### PG02 — Home 02
-- Authority: `docs/page-design-profiles/pg02-home-02-v1.md`.
-- QA summary: `docs/PG02-QA-REPORT-V1.md`.
-- source/content/SEO/assets: PASS / failures 0.
-- rendered responsive matrix: 8/8 PASS / failures 0.
-- runtime interaction: PASS / failures 0.
-- current: C7 pending Cloudflare deployed-browser review.
+### PG02
+- `docs/page-design-profiles/pg02-home-02-v1.md`.
+- Source/content/SEO/assets PASS.
+- Rendered responsive 8/8 PASS.
+- Interaction PASS.
+- C7 pending Cloudflare deployed-browser review.
 
-### PG03 — Home 03
-- Authority: `docs/page-design-profiles/pg03-home-03-v1.md`.
-- Arabic: `ar/home-03.html` — `feab4179f6f4386a6c29672abffc53a9ada4187e`.
-- English: `en/home-03.html` — `7a4bc145e1f81569c000001f15c305c0ed08f777`.
-- owned hero media: `hero-manufacturer-readiness.svg`.
-- source/content/SEO/assets: PASS / failures 0.
-- rendered responsive: AR/EN × 390/820/1366/1536 = 8/8 PASS.
-- interaction: mega menu, Escape, announcement and mobile drawer PASS.
-- demo certification/export-market safeguards PASS.
-- current: C7 pending Cloudflare deployed-browser review.
+### PG03 + PG04
+- Authorities: `pg03-home-03-v1.md`, `pg04-landing-v1.md`.
+- Combined QA: `docs/PG03-PG04-HOME-FAMILY-QA-2026-08-19.md`.
+- Source/content/SEO/assets PASS.
+- Rendered responsive 16/16 PASS across both pages.
+- Interaction/demo-form QA PASS.
+- C7 pending Cloudflare deployed-browser review.
 
-### PG04 — Landing / One Page
-- Authority: `docs/page-design-profiles/pg04-landing-v1.md`.
-- Arabic: `ar/landing.html` — `635c58718fb027cafe9795604e3019380c11786c`.
-- English: `en/landing.html` — `12690632fd9ace12324cbcd9b3a385693e40e748`.
-- owned hero media: `hero-commercial-enquiry.svg`.
-- page JS: `origex-landing.js` — native validation/demo success only; no network submission.
-- source/content/SEO/assets: PASS / failures 0.
-- rendered responsive: AR/EN × 390/820/1366/1536 = 8/8 PASS.
-- interaction: anchor targets, demo-form validation and mobile drawer PASS.
-- current: C7 pending Cloudflare deployed-browser review.
+### Home Family Navigation
+- Shared runtime: `assets/js/origex-ui.js`.
+- Home 01 / Home 02 / Home 03 / Landing exposed centrally in desktop mega menu where applicable and mobile drawer.
+- Regression: `qa/home-navigation-regression/report.json` — PASS / failures 0.
 
-Combined PG03/PG04 QA authority: `docs/PG03-PG04-HOME-FAMILY-QA-2026-08-19.md`; evidence commit `1bbbe7cc81633630dd4678030110d7051d3563dc`.
+## M3 Evidence
+
+### PG05 — About
+- Source fidelity: `docs/ABOUT-SOURCE-MAP.md`.
+- Profile: `docs/page-design-profiles/pg05-about-v1.md`.
+- Arabic: `ar/about.html`.
+- English: `en/about.html`.
+- Composition: `assets/css/origex-about.css`.
+- QA: `qa/pg05-about/` — PASS.
+- Source/rendered/navigation QA PASS.
+- Current: C7 pending Cloudflare batch browser review.
+
+### PG06 — How We Work
+- Frozen scope: hero, qualification logic, four-step process, roles/responsibilities, required information, decision flow, next-step CTA.
+- Historical TARGET source contains six operational steps; ORIGEX V1 deliberately consolidates the logic into the frozen four-step process. The frozen scope remains authoritative.
+- Profile: `docs/page-design-profiles/pg06-how-we-work-v1.md`.
+- Arabic: `ar/how-we-work.html`.
+- English: `en/how-we-work.html`.
+- Composition: `assets/css/origex-how-we-work.css`.
+- Company/process navigation exposed centrally through `origex-ui.js`.
+- Initial QA identified two unresolved icon IDs (`store`, `files`). They were replaced with registered shared IDs (`boxes`, `file-text`) without reopening the M1 icon subset.
+- Final source QA: `qa/pg06-how-we-work/source-report.json` — failures 0.
+- Final rendered QA: `qa/pg06-how-we-work/rendered-report.json` — AR/EN × 390/820/1366/1536 = 8/8 PASS; no overflow; touch targets, direction, four steps, three roles and three decision states PASS.
+- Final evidence commit: `46233f52acb64973b3307376a3028764b30ffba1`.
+- Current: C7 pending Cloudflare batch browser review.
 
 ## Cloudflare Test Environment Control
 
@@ -236,24 +227,27 @@ Current state:
 - GitHub `main` remains canonical source.
 - automatic Cloudflare deployment after push is degraded and deferred.
 - GitHub Pages is not used.
-- Auto-deploy degradation does not invalidate local/CI page QA.
-- C8 for PG02–PG04 still requires the current revision to be opened through the real Cloudflare test runtime.
+- Auto-deploy degradation does not invalidate source/CI page QA.
+- Cloudflare deployed-browser acceptance is retained as a separate batch gate before C8 for pages that have not received it.
 
-## Page Production Gate
+## Current Page Production Gate
 
-**M1 PASSED / CLOSED.**  
-**PG01 = C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK.**  
-**PG02 = C7 / CI QA PASS — CLOUDFLARE REVIEW PENDING.**  
-**PG03 = C7 / CI QA PASS — CLOUDFLARE REVIEW PENDING.**  
-**PG04 = C7 / CI QA PASS — CLOUDFLARE REVIEW PENDING.**
+- M0 = PASS / CLOSED.
+- M1 = PASS / CLOSED.
+- M2 = IN PROGRESS — Home Family code implemented; Cloudflare browser acceptance remains pending for PG02–PG04.
+- M3 = IN PROGRESS.
+- PG05 = C7 / CI QA PASS / Cloudflare batch review pending.
+- PG06 = C7 / CI QA PASS / Cloudflare batch review pending.
+- **Next build: PG07 — Capabilities / Services.**
 
-Next execution actions:
-1. Manual Rebuild current `main` in Cloudflare Test Environment.
-2. Open PG02, PG03 and PG04 AR + EN from the deployed test domain on mobile and desktop.
-3. Verify base paths/assets, layout, RTL/LTR and interactions.
-4. Fix/retest any deployment-only defect.
-5. Promote PG02–PG04 individually to C8 / PASS / CLOSED after deployed review.
-6. When PG01–PG04 all satisfy M2 exit criteria, close M2 and open M3.
+### Next execution actions
+
+1. PG07 Content/Design/SEO Contract → C6.
+2. Build `ar/capabilities.html` + `en/capabilities.html` using the shared system.
+3. Run source/rendered/navigation QA.
+4. Continue PG08, then PG14–PG15 under M3.
+5. Run Cloudflare batch browser review before promoting pending C7 pages to C8.
+6. Keep final aesthetic CSS polish for M7; only functional/responsive/RTL/overflow defects are fixed during page production.
 7. Repair Cloudflare Git auto-deploy in the deferred infrastructure session.
 
 ## Update Rule
