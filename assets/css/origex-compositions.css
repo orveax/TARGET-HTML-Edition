@@ -133,6 +133,107 @@
 
 .orx-route-visual__footer strong{color:var(--orx-primary)}
 
+/*
+ * Compatibility bridge for PG01's pre-composition M2 markup.
+ * It gives the legacy utility stack the same F07 visual language until the
+ * semantic route markup migration lands. No page ID or client selector is used.
+ */
+.orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual)>.h-100.d-flex.flex-column{
+  position:relative;
+  justify-content:center!important;
+  padding:clamp(1.35rem,3vw,2.4rem)!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.42),rgba(243,239,232,.58));
+}
+
+.orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual)>.h-100.d-flex.flex-column::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 18%,rgba(196,122,74,.13),transparent 30%),
+    radial-gradient(circle at 82% 82%,rgba(63,111,104,.11),transparent 32%);
+}
+
+.orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual)>.h-100.d-flex.flex-column>.orx-eyebrow{
+  margin-block-end:1.15rem;
+}
+
+.orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual) .orx-stack{
+  position:relative;
+  display:grid;
+  gap:.8rem!important;
+  counter-reset:orx-route-step;
+}
+
+.orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual) .orx-stack::before{
+  content:"";
+  position:absolute;
+  inset-block:1.8rem;
+  inset-inline-start:1.55rem;
+  z-index:0;
+  border-inline-start:2px dashed var(--orx-border-strong);
+  opacity:.7;
+}
+
+.orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual) .orx-stack>.orx-card{
+  counter-increment:orx-route-step;
+  z-index:1;
+  display:block;
+  padding:.95rem 3.5rem .95rem 1rem;
+  border-color:var(--orx-border-strong);
+  background:rgba(255,255,255,.91);
+  box-shadow:var(--orx-shadow-e1);
+}
+
+html[dir="rtl"] .orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual) .orx-stack>.orx-card{
+  padding:.95rem 1rem .95rem 3.5rem;
+}
+
+.orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual) .orx-stack>.orx-card:last-child{
+  border-color:var(--orx-secondary);
+  background:var(--orx-surface);
+}
+
+.orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual) .orx-stack>.orx-card::after{
+  content:"0" counter(orx-route-step);
+  position:absolute;
+  inset-block-start:50%;
+  inset-inline-end:1rem;
+  display:grid;
+  place-items:center;
+  inline-size:2rem;
+  block-size:2rem;
+  translate:0 -50%;
+  border-radius:var(--orx-radius-pill);
+  background:var(--orx-primary-strong);
+  color:#fff;
+  font-family:var(--orx-font-en);
+  font-size:.7rem;
+  font-weight:800;
+  line-height:1;
+}
+
+.orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual) .orx-stack>.orx-card:last-child::after{
+  background:var(--orx-accent);
+}
+
+.orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual) .orx-stack>.orx-card .orx-cluster{
+  gap:.8rem;
+}
+
+.orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual) .orx-stack>.orx-card .orx-icon-box{
+  inline-size:46px;
+  block-size:46px;
+  border-color:var(--orx-border-strong);
+  background:var(--orx-surface-soft);
+}
+
+.orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual){
+  box-shadow:var(--orx-shadow-e2);
+}
+
 @media(min-width:900px){
   .orx-route-visual{min-block-size:470px}
   .orx-route-visual__step{padding:1rem 1.1rem}
@@ -146,6 +247,20 @@
   .orx-route-visual__step .orx-icon-box{display:none}
   .orx-route-visual__track::before{inset-inline-start:1.18rem}
   .orx-route-visual__footer{font-size:.74rem}
+
+  .orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual)>.h-100.d-flex.flex-column{
+    padding:1.15rem!important;
+  }
+  .orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual) .orx-stack>.orx-card,
+  html[dir="rtl"] .orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual) .orx-stack>.orx-card{
+    padding:.8rem 3.1rem .8rem .8rem;
+  }
+  html[dir="rtl"] .orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual) .orx-stack>.orx-card{
+    padding:.8rem .8rem .8rem 3.1rem;
+  }
+  .orx-hero__grid>.orx-media.orx-media--hero:not(.orx-route-visual) .orx-stack>.orx-card::after{
+    inset-inline-end:.8rem;
+  }
 }
 
 @media(prefers-reduced-motion:reduce){
