@@ -1,0 +1,177 @@
+name: PG08 Service Details QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/service-details.html'
+      - 'en/service-details.html'
+      - 'assets/css/origex-service-details.css'
+      - 'assets/js/origex-ui.js'
+      - 'docs/page-design-profiles/pg08-service-details-v1.md'
+      - '.github/workflows/pg08-service-details-qa.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pg08-service-details-main
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Source contract QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p qa/pg08-service-details
+          python3 - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          import json,re,time,sys
+          pages={
+            'ar/service-details.html':{'lang':'ar','dir':'rtl','h1':'مراجعة جاهزية المنتج للسوق.','canonical':'https://example.com/ar/service-details.html','disclosure':'جميع أسماء الشركات والسيناريوهات التجارية ووصف الخدمات والمخرجات المعروضة في هذا الـDemo محتوى خيالي للقالب، ويجب استبداله ببيانات أعمال موثقة قبل النشر.'},
+            'en/service-details.html':{'lang':'en','dir':'ltr','h1':'Product Market-Readiness Review.','canonical':'https://example.com/en/service-details.html','disclosure':'All company names, commercial scenarios, service descriptions and outputs shown in this demo are fictional template content and must be replaced with verified business information before publication.'},
+          }
+          sprite=Path('assets/icons/sprite.svg').read_text(encoding='utf-8')
+          sprite_ids=set(re.findall(r'<symbol\s+id="([^"]+)"',sprite))
+          class P(HTMLParser):
+            def __init__(self):
+              super().__init__();self.html={};self.h1=[];self.buf=[];self.in_h1=False;self.assets=[];self.ids=[];self.icons=[];self.sections=[];self.steps=0;self.deliverables=0;self.fit=0;self.related=0
+            def handle_starttag(self,t,a):
+              d=dict(a)
+              if t=='html':self.html=d
+              if d.get('id'):self.ids.append(d['id'])
+              if t=='h1':self.in_h1=True;self.buf=[]
+              if d.get('data-pg08-section'):self.sections.append(d['data-pg08-section'])
+              cls=d.get('class','').split()
+              if t=='article' and 'orx-service-step' in cls:self.steps+=1
+              if t=='article' and 'orx-service-deliverable' in cls:self.deliverables+=1
+              if t=='article' and 'orx-service-fit-card' in cls:self.fit+=1
+              if t=='article' and 'orx-related-service' in cls:self.related+=1
+              if t in ('link','script','img'):
+                k='href' if t=='link' else 'src'
+                if d.get(k):self.assets.append(d[k])
+              if t=='use' and d.get('href','').startswith('../assets/icons/sprite.svg#'):self.icons.append(d['href'].split('#',1)[1])
+            def handle_data(self,d):
+              if self.in_h1:self.buf.append(d)
+            def handle_endtag(self,t):
+              if t=='h1':self.in_h1=False;self.h1.append(''.join(self.buf).strip())
+          errors=[];results=[]
+          expected_sections=['hero','overview','scope','process','deliverables','fit','related','cta']
+          for rel,s in pages.items():
+            text=Path(rel).read_text(encoding='utf-8');p=P();p.feed(text);missing=sorted(set(p.icons)-sprite_ids);checks={}
+            checks['languageDirection']=p.html.get('lang')==s['lang'] and p.html.get('dir')==s['dir']
+            checks['singleH1']=len(p.h1)==1 and p.h1[0]==s['h1']
+            checks['canonical']=f'rel="canonical" href="{s["canonical"]}"' in text
+            checks['hreflang']=all(x in text for x in ('hreflang="ar"','hreflang="en"','hreflang="x-default"'))
+            checks['openGraph']=all(x in text for x in ('og:type','og:site_name','og:title','og:description','og:url','og:image'))
+            checks['structuredData']='BreadcrumbList' in text and 'WebPage' in text
+            checks['visibleBreadcrumb']='class="orx-breadcrumb"' in text and 'capabilities.html' in text
+            checks['demoDisclosure']=s['disclosure'] in text
+            checks['eightFrozenSections']=p.sections==expected_sections
+            checks['fourStepProcess']=p.steps==4
+            checks['fourDeliverables']=p.deliverables==4
+            checks['fitNotFit']=p.fit==2
+            checks['threeRelatedServices']=p.related==3
+            checks['serviceCSS']='../assets/css/origex-service-details.css' in text
+            checks['runtime']=all(x in text for x in ('../assets/js/config.js','../assets/js/config-engine.js','../assets/js/origex-ui.js'))
+            checks['parentCapabilityState']='href="capabilities.html" aria-current="page"' in text
+            checks['uniqueIDs']=len(p.ids)==len(set(p.ids))
+            checks['noClientCDNLeakage']='TARGET' not in text and 'targetft' not in text.lower() and 'cdn.' not in text.lower()
+            checks['iconReferencesResolve']=not missing
+            local=[]
+            for a in p.assets:
+              if a.startswith(('http://','https://','data:','#')):continue
+              clean=a.split('?',1)[0].split('#',1)[0]
+              if clean:local.append(((Path(rel).parent/clean).resolve()).exists())
+            checks['localAssets']=all(local)
+            bad=[k for k,v in checks.items() if not v]
+            if bad:errors.append(f'{rel}: {bad}; missing icons={missing}; sections={p.sections}')
+            results.append({'page':rel,'checks':checks,'missingIcons':missing,'sections':p.sections,'steps':p.steps,'deliverables':p.deliverables,'fitCards':p.fit,'relatedServices':p.related,'pass':not bad})
+          for req in ('assets/css/origex-service-details.css','docs/page-design-profiles/pg08-service-details-v1.md'):
+            if not Path(req).exists():errors.append('missing '+req)
+          report={'generatedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'failures':len(errors),'results':results,'errors':errors}
+          Path('qa/pg08-service-details/source-report.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
+          if errors:print('\n'.join(errors));sys.exit(1)
+          PY
+
+      - name: Start browser QA services
+        shell: bash
+        run: |
+          set -euo pipefail
+          google-chrome --version | tee qa/pg08-service-details/browser-baseline.txt
+          chromedriver --version | tee -a qa/pg08-service-details/browser-baseline.txt
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/origex-http.log 2>&1 &
+          chromedriver --port=9515 --allowed-origins='*' >/tmp/origex-chromedriver.log 2>&1 &
+          sleep 2
+          curl -fsS http://127.0.0.1:4173/ar/service-details.html >/dev/null
+          curl -fsS http://127.0.0.1:9515/status >/dev/null
+
+      - name: Rendered responsive and navigation QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,time,urllib.request,sys
+          from pathlib import Path
+          WD='http://127.0.0.1:9515';OUT=Path('qa/pg08-service-details')
+          def req(method,path,payload=None):
+            data=None if payload is None else json.dumps(payload).encode();r=urllib.request.Request(WD+path,data=data,method=method,headers={'Content-Type':'application/json'})
+            with urllib.request.urlopen(r,timeout=30) as f:body=json.loads(f.read().decode())
+            return body.get('value') if isinstance(body,dict) else body
+          def session(w,h):
+            v=req('POST','/session',{'capabilities':{'alwaysMatch':{'browserName':'chrome','goog:chromeOptions':{'args':['--headless=new','--no-sandbox','--disable-dev-shm-usage','--force-device-scale-factor=1',f'--window-size={w},{h}']}}}});sid=v['sessionId'];req('POST',f'/session/{sid}/window/rect',{'width':w,'height':h,'x':0,'y':0});return sid
+          def js(sid,s,args=None):return req('POST',f'/session/{sid}/execute/sync',{'script':s,'args':args or []})
+          pages=[('ar','/ar/service-details.html','rtl'),('en','/en/service-details.html','ltr')];views=[(390,844),(820,1180),(1366,900),(1536,960)];results=[];errors=[]
+          metric="""const w=arguments[0],doc=document.documentElement;const vis=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0&&!e.closest('[aria-hidden=\"true\"]')};const off=[...document.querySelectorAll('body *')].filter(e=>{if(!vis(e)||getComputedStyle(e).position==='fixed')return false;const r=e.getBoundingClientRect();return r.right>w+1||r.left<-1}).length;const b=[...document.querySelectorAll('.orx-btn')].filter(vis).map(e=>e.getBoundingClientRect().height);return{dir:doc.dir,overflow:doc.scrollWidth>doc.clientWidth+1,off,minButton:b.length?Math.min(...b):0,h1:!!document.querySelector('h1'),sections:document.querySelectorAll('[data-pg08-section]').length,steps:document.querySelectorAll('.orx-service-step').length,deliverables:document.querySelectorAll('.orx-service-deliverable').length,fit:document.querySelectorAll('.orx-service-fit-card').length,related:document.querySelectorAll('.orx-related-service').length};"""
+          for lang,path,dirn in pages:
+            for w,h in views:
+              sid=session(w,h)
+              try:
+                req('POST',f'/session/{sid}/url',{'url':'http://127.0.0.1:4173'+path});time.sleep(.45);m=js(sid,metric,[w]);required=44 if w<=1024 else 40
+                checks={'direction':m['dir']==dirn,'noOverflow':not m['overflow'] and m['off']==0,'touchTargets':m['minButton']>=required,'h1':m['h1'],'eightSections':m['sections']==8,'fourSteps':m['steps']==4,'fourDeliverables':m['deliverables']==4,'fitNotFit':m['fit']==2,'threeRelated':m['related']==3}
+                if not all(checks.values()):errors.append(f'{lang}-{w}: {checks} {m}')
+                results.append({'lang':lang,'viewport':w,'checks':checks,'metrics':m,'pass':all(checks.values())})
+              finally:
+                try:req('DELETE',f'/session/{sid}')
+                except:pass
+            sid=session(1366,900)
+            try:
+              req('POST',f'/session/{sid}/url',{'url':'http://127.0.0.1:4173'+path});time.sleep(.35)
+              nav=js(sid,"""const parent=document.querySelector('.orx-primary-nav a[href=\"capabilities.html\"][aria-current=\"page\"]');const t=document.querySelector('[data-orx-mega-trigger]');if(!t||!parent)return false;t.click();const m=document.getElementById(t.getAttribute('aria-controls'));const injected=m?.querySelector('[data-orx-company-link=\"capabilities.html\"][aria-current=\"page\"]');const open=t.getAttribute('aria-expanded')==='true'&&!m.hidden;document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));return !!injected&&open&&t.getAttribute('aria-expanded')==='false'&&m.hidden;""")
+              if not nav:errors.append(f'{lang}: desktop parent navigation')
+            finally:
+              try:req('DELETE',f'/session/{sid}')
+              except:pass
+            sid=session(390,844)
+            try:
+              req('POST',f'/session/{sid}/url',{'url':'http://127.0.0.1:4173'+path});time.sleep(.35)
+              mobile=js(sid,"""const b=document.querySelector('[data-orx-drawer-open]');if(!b)return false;b.click();const d=document.querySelector('[data-orx-mobile-drawer]');const parent=d.querySelector('[data-orx-company-link=\"capabilities.html\"][aria-current=\"page\"]');const lang=d.querySelector('a[lang]');const ok=d.getAttribute('aria-hidden')==='false'&&parent&&lang;document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));return !!ok&&d.getAttribute('aria-hidden')==='true';""")
+              if not mobile:errors.append(f'{lang}: mobile parent navigation/language')
+            finally:
+              try:req('DELETE',f'/session/{sid}')
+              except:pass
+          report={'generatedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'failures':len(errors),'results':results,'errors':errors}
+          (OUT/'rendered-report.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
+          (OUT/'run-status.txt').write_text('PASS\n' if not errors else 'FAIL\n')
+          if errors:print('\n'.join(errors));sys.exit(1)
+          PY
+
+      - name: Record QA evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add qa/pg08-service-details
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'PG08 record Service Details QA evidence'
+          git pull --rebase origin main
+          git push origin HEAD:main
