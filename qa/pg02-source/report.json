@@ -1,0 +1,200 @@
+{
+  "generatedAt": "2026-08-19T05:03:33Z",
+  "failures": 2,
+  "pages": [
+    {
+      "page": "ar/home-02.html",
+      "checks": [
+        {
+          "name": "language and direction",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "single canonical H1",
+          "pass": true,
+          "detail": "['من المخزن إلى القناة المناسبة، بتوزيع أكثر وضوحًا.']"
+        },
+        {
+          "name": "unique IDs",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "SEO title",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "canonical URL",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "hreflang AR EN x-default",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "Open Graph baseline",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "WebPage structured data",
+          "pass": false,
+          "detail": ""
+        },
+        {
+          "name": "mandatory demo disclosure",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "eight frozen section intents",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "demo metrics explicitly qualified",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "fictional distributor disclosure",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "no client or CDN leakage",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "local Bootstrap",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "M1 runtime",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "distribution layer",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "local linked assets exist",
+          "pass": true,
+          "detail": "[]"
+        },
+        {
+          "name": "canonical internal filenames",
+          "pass": true,
+          "detail": "[]"
+        }
+      ]
+    },
+    {
+      "page": "en/home-02.html",
+      "checks": [
+        {
+          "name": "language and direction",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "single canonical H1",
+          "pass": true,
+          "detail": "['From warehouse to the right channel, with clearer distribution planning.']"
+        },
+        {
+          "name": "unique IDs",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "SEO title",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "canonical URL",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "hreflang AR EN x-default",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "Open Graph baseline",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "WebPage structured data",
+          "pass": false,
+          "detail": ""
+        },
+        {
+          "name": "mandatory demo disclosure",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "eight frozen section intents",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "demo metrics explicitly qualified",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "fictional distributor disclosure",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "no client or CDN leakage",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "local Bootstrap",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "M1 runtime",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "distribution layer",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "local linked assets exist",
+          "pass": true,
+          "detail": "[]"
+        },
+        {
+          "name": "canonical internal filenames",
+          "pass": true,
+          "detail": "[]"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "ar/home-02.html: WebPage structured data: ",
+    "en/home-02.html: WebPage structured data: "
+  ]
+}
