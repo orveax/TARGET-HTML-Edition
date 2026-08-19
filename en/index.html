@@ -4,19 +4,33 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>B2B Food Trading & Import | ORIGEX</title>
+  <meta name="theme-color" content="#15343B">
   <meta name="description" content="Explore food products, suppliers and categories through structured commercial data with clear routes for RFQ and product submission.">
   <link rel="canonical" href="https://example.com/en/">
   <link rel="alternate" hreflang="ar" href="https://example.com/ar/">
   <link rel="alternate" hreflang="en" href="https://example.com/en/">
   <link rel="alternate" hreflang="x-default" href="https://example.com/en/">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ORIGEX Trading Demo">
+  <meta property="og:locale" content="en_US">
   <meta property="og:title" content="B2B Food Trading & Import | ORIGEX">
   <meta property="og:description" content="Explore food products, suppliers and categories through structured commercial data with clear routes for RFQ and product submission.">
+  <meta property="og:url" content="https://example.com/en/">
   <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/origex-tokens.css">
   <link rel="stylesheet" href="../assets/css/origex-foundation.css">
   <link rel="stylesheet" href="../assets/css/origex-components.css">
   <link rel="stylesheet" href="../assets/css/origex-shell.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {"@type":"WebSite","name":"ORIGEX Trading Demo","url":"https://example.com/en/","inLanguage":"en"},
+      {"@type":"Organization","name":"ORIGEX Trading Demo","url":"https://example.com/en/","email":"trade@example.com","telephone":"+974 0000 0000","address":{"@type":"PostalAddress","addressLocality":"Doha","addressCountry":"QA"}}
+    ]
+  }
+  </script>
 </head>
 <body>
 <a class="orx-skip-link" href="#main">Skip to content</a>
@@ -46,9 +60,9 @@
     </div>
     <div class="orx-mega-menu" id="home-mega-en" data-orx-mega-menu hidden>
       <div class="orx-mega-menu__grid">
-        <div class="orx-mega-menu__group"><span class="orx-mega-menu__title">Products</span><a href="categories.html">Product Categories</a><a href="products.html">All Products</a><a href="rfq.html">Request a Quote</a></div>
+        <div class="orx-mega-menu__group"><span class="orx-mega-menu__title">Products</span><a href="product-categories.html">Product Categories</a><a href="products.html">All Products</a><a href="rfq.html">Request a Quote</a></div>
         <div class="orx-mega-menu__group"><span class="orx-mega-menu__title">Suppliers</span><a href="suppliers.html">Suppliers & Brands</a><a href="for-suppliers.html">For Suppliers</a><a href="submit-product.html">Submit Your Product</a></div>
-        <div class="orx-mega-menu__group"><span class="orx-mega-menu__title">Market</span><a href="market-access.html">Market Access</a><a href="markets.html">Markets</a><a href="partner.html">Distribution Partnership</a></div>
+        <div class="orx-mega-menu__group"><span class="orx-mega-menu__title">Market</span><a href="market-access.html">Market Access</a><a href="markets.html">Markets</a><a href="become-partner.html">Distribution Partnership</a></div>
       </div>
     </div>
   </div>
@@ -113,12 +127,12 @@
     <div class="orx-container orx-container--wide">
       <header class="orx-section-header"><span class="orx-eyebrow">Product Categories</span><h2 id="categories-title">Food categories ready to explore.</h2><p class="orx-lead">Move into the right category, then compare products through clear pack, storage and origin information.</p></header>
       <div class="orx-grid orx-grid--3">
-        <a class="orx-card orx-feature-card" href="categories.html#ambient"><div class="orx-icon-box orx-icon-box--md"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#package"></use></svg></div><span class="orx-feature-card__index">01</span><h3 class="orx-card__title">Ambient Foods</h3><p class="orx-card__copy">Shelf-stable products for retail and wholesale channels.</p></a>
-        <a class="orx-card orx-feature-card" href="categories.html#beverages"><div class="orx-icon-box orx-icon-box--md"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#layers"></use></svg></div><span class="orx-feature-card__index">02</span><h3 class="orx-card__title">Beverages</h3><p class="orx-card__copy">Beverages and concentrates with pack, storage and channel context.</p></a>
-        <a class="orx-card orx-feature-card" href="categories.html#dairy"><div class="orx-icon-box orx-icon-box--md"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#badge-check"></use></svg></div><span class="orx-feature-card__index">03</span><h3 class="orx-card__title">Dairy</h3><p class="orx-card__copy">Clear storage, shelf-life and packaging requirements.</p></a>
-        <a class="orx-card orx-feature-card" href="categories.html#frozen"><div class="orx-icon-box orx-icon-box--md"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#boxes"></use></svg></div><span class="orx-feature-card__index">04</span><h3 class="orx-card__title">Frozen</h3><p class="orx-card__copy">Cold-chain, temperature and pack-size information.</p></a>
-        <a class="orx-card orx-feature-card" href="categories.html#confectionery"><div class="orx-icon-box orx-icon-box--md"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#package"></use></svg></div><span class="orx-feature-card__index">05</span><h3 class="orx-card__title">Confectionery</h3><p class="orx-card__copy">Illustrative category with packaging and target-market context.</p></a>
-        <a class="orx-card orx-feature-card" href="categories.html#ingredients"><div class="orx-icon-box orx-icon-box--md"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#factory"></use></svg></div><span class="orx-feature-card__index">06</span><h3 class="orx-card__title">Ingredients</h3><p class="orx-card__copy">Commercial or manufacturing ingredients with defined specifications.</p></a>
+        <a class="orx-card orx-feature-card" href="product-categories.html#ambient"><div class="orx-icon-box orx-icon-box--md"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#package"></use></svg></div><span class="orx-feature-card__index">01</span><h3 class="orx-card__title">Ambient Foods</h3><p class="orx-card__copy">Shelf-stable products for retail and wholesale channels.</p></a>
+        <a class="orx-card orx-feature-card" href="product-categories.html#beverages"><div class="orx-icon-box orx-icon-box--md"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#layers"></use></svg></div><span class="orx-feature-card__index">02</span><h3 class="orx-card__title">Beverages</h3><p class="orx-card__copy">Beverages and concentrates with pack, storage and channel context.</p></a>
+        <a class="orx-card orx-feature-card" href="product-categories.html#dairy"><div class="orx-icon-box orx-icon-box--md"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#badge-check"></use></svg></div><span class="orx-feature-card__index">03</span><h3 class="orx-card__title">Dairy</h3><p class="orx-card__copy">Clear storage, shelf-life and packaging requirements.</p></a>
+        <a class="orx-card orx-feature-card" href="product-categories.html#frozen"><div class="orx-icon-box orx-icon-box--md"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#boxes"></use></svg></div><span class="orx-feature-card__index">04</span><h3 class="orx-card__title">Frozen</h3><p class="orx-card__copy">Cold-chain, temperature and pack-size information.</p></a>
+        <a class="orx-card orx-feature-card" href="product-categories.html#confectionery"><div class="orx-icon-box orx-icon-box--md"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#package"></use></svg></div><span class="orx-feature-card__index">05</span><h3 class="orx-card__title">Confectionery</h3><p class="orx-card__copy">Illustrative category with packaging and target-market context.</p></a>
+        <a class="orx-card orx-feature-card" href="product-categories.html#ingredients"><div class="orx-icon-box orx-icon-box--md"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#factory"></use></svg></div><span class="orx-feature-card__index">06</span><h3 class="orx-card__title">Ingredients</h3><p class="orx-card__copy">Commercial or manufacturing ingredients with defined specifications.</p></a>
       </div>
     </div>
   </section>
@@ -141,7 +155,7 @@
       <div class="orx-grid orx-grid--4">
         <article class="orx-card orx-feature-card"><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#search"></use></svg></div><h3 class="orx-card__title">Buyer</h3><p class="orx-card__copy">Start with products and categories.</p><a class="orx-text-action" href="products.html">Explore Products <svg class="orx-icon orx-icon--sm" aria-hidden="true"><use href="../assets/icons/sprite.svg#arrow-right"></use></svg></a></article>
         <article class="orx-card orx-feature-card"><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#factory"></use></svg></div><h3 class="orx-card__title">Supplier</h3><p class="orx-card__copy">Submit the core product information.</p><a class="orx-text-action" href="submit-product.html">Submit Product <svg class="orx-icon orx-icon--sm" aria-hidden="true"><use href="../assets/icons/sprite.svg#arrow-right"></use></svg></a></article>
-        <article class="orx-card orx-feature-card"><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#handshake"></use></svg></div><h3 class="orx-card__title">Distributor</h3><p class="orx-card__copy">Review partnership and coverage routes.</p><a class="orx-text-action" href="partner.html">Become a Partner <svg class="orx-icon orx-icon--sm" aria-hidden="true"><use href="../assets/icons/sprite.svg#arrow-right"></use></svg></a></article>
+        <article class="orx-card orx-feature-card"><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#handshake"></use></svg></div><h3 class="orx-card__title">Distributor</h3><p class="orx-card__copy">Review partnership and coverage routes.</p><a class="orx-text-action" href="become-partner.html">Become a Partner <svg class="orx-icon orx-icon--sm" aria-hidden="true"><use href="../assets/icons/sprite.svg#arrow-right"></use></svg></a></article>
         <article class="orx-card orx-feature-card"><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#earth"></use></svg></div><h3 class="orx-card__title">Market Team</h3><p class="orx-card__copy">Review market-access steps and channels.</p><a class="orx-text-action" href="market-access.html">Review Market Access <svg class="orx-icon orx-icon--sm" aria-hidden="true"><use href="../assets/icons/sprite.svg#arrow-right"></use></svg></a></article>
       </div>
     </div>
@@ -190,7 +204,7 @@
     <div class="orx-footer__grid">
       <div class="orx-footer__brand"><a class="orx-brand" href="index.html"><img src="../assets/brand/origex-logo-light.svg" alt="ORIGEX" width="140" height="40"></a><p>A fictional company inside the ORIGEX template demonstrating a B2B food-trading experience connecting products, suppliers, buyers and distribution partners.</p></div>
       <div><h3 class="orx-footer__title">Explore</h3><ul class="orx-footer__links"><li><a href="products.html">Products</a></li><li><a href="suppliers.html">Suppliers</a></li><li><a href="markets.html">Markets</a></li><li><a href="resources.html">Resources</a></li></ul></div>
-      <div><h3 class="orx-footer__title">Contact</h3><ul class="orx-footer__links"><li><a href="mailto:trade@example.com" data-orx-email="sales">trade@example.com</a></li><li><a href="tel:+97400000000" data-orx-phone>+974 0000 0000</a></li><li><span data-orx-address>Doha, Qatar — illustrative</span></li></ul></div>
+      <div><h3 class="orx-footer__title">Contact</h3><ul class="orx-footer__links"><li><a href="mailto:trade@example.com" data-orx-email="trade">trade@example.com</a></li><li><a href="tel:+97400000000" data-orx-phone>+974 0000 0000</a></li><li><span data-orx-address>Doha, Qatar — illustrative</span></li></ul></div>
       <div><h3 class="orx-footer__title">Business Hours</h3><div class="orx-business-hours" data-orx-business-hours></div></div>
     </div>
     <div class="orx-footer__bottom"><span>ORIGEX — B2B Food Trading & Distribution HTML Template</span><span>Demo data only · © ORVEAX</span></div>
