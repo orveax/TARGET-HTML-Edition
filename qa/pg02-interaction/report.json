@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-08-19T05:08:47Z",
+  "failures": 0,
+  "results": [
+    {
+      "lang": "ar",
+      "mode": "desktop",
+      "pass": true,
+      "checks": {
+        "mega_present": true,
+        "mega_open": true,
+        "mega_escape_close": true,
+        "announcement_close": true,
+        "channel_anchor_target": true
+      }
+    },
+    {
+      "lang": "ar",
+      "mode": "mobile",
+      "pass": true,
+      "checks": {
+        "drawer_present": true,
+        "drawer_open": true,
+        "drawer_escape_close": true,
+        "language_link": true
+      }
+    },
+    {
+      "lang": "en",
+      "mode": "desktop",
+      "pass": true,
+      "checks": {
+        "mega_present": true,
+        "mega_open": true,
+        "mega_escape_close": true,
+        "announcement_close": true,
+        "channel_anchor_target": true
+      }
+    },
+    {
+      "lang": "en",
+      "mode": "mobile",
+      "pass": true,
+      "checks": {
+        "drawer_present": true,
+        "drawer_open": true,
+        "drawer_escape_close": true,
+        "language_link": true
+      }
+    }
+  ]
+}
