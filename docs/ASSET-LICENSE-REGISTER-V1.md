@@ -49,6 +49,8 @@ No third-party asset or dependency may enter the distributable package without a
 | ORX-MEDIA-006 | Distribution network hero scene | `assets/media/demo/hero-distribution-network.svg` | ORVEAX OWNED | PG02 wholesale/distribution demo media; abstract warehouse, inventory, route and channel nodes; no real fleet/property/coverage claim |
 | ORX-MEDIA-007 | Manufacturer readiness hero scene | `assets/media/demo/hero-manufacturer-readiness.svg` | ORVEAX OWNED | PG03 manufacturer/supplier demo media; abstract factory, packaging, documents and market route; no real capacity/certification/factory claim |
 | ORX-MEDIA-008 | Commercial enquiry hero scene | `assets/media/demo/hero-commercial-enquiry.svg` | ORVEAX OWNED | PG04 landing demo media; abstract product-information-enquiry route; no client, brand, performance or conversion claim |
+| ORX-MEDIA-009 | Confectionery demo packshot | `assets/media/demo/product-confectionery.svg` | ORVEAX OWNED | PG10 fictional generic confectionery packaging; no third-party brand/trademark |
+| ORX-MEDIA-010 | Ingredients demo packshot | `assets/media/demo/product-ingredients.svg` | ORVEAX OWNED | PG10 fictional generic B2B ingredient packaging; no third-party brand/trademark |
 
 ## Fonts
 
