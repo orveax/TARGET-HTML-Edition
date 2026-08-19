@@ -1,0 +1,15 @@
+ORIGEX DEMO RESOURCE — PRODUCT DATASHEET
+Status: Fictional template example / not a verified product specification
+Language: Arabic + English
+Source: ORVEAX original
+
+ARABIC
+مثال لهيكل ورقة بيانات منتج: اسم المنتج، الفئة، العلامة، المنشأ، حجم العبوة، التعبئة، مدة الصلاحية، التخزين، MOQ، المستندات المرتبطة وحالة التوفر.
+لا توجد في هذا الملف مواصفات أو شهادات أو أسعار حقيقية.
+
+ENGLISH
+Example product-datasheet structure: product name, category, brand, origin, pack size, packaging, shelf life, storage, MOQ, related documents and availability state.
+This file contains no verified specifications, certificates, prices or stock claims.
+
+Replace all Demo values with verified product information before production use.
+Copyright © ORVEAX.
