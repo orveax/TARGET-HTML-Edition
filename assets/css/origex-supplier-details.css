@@ -1,0 +1,38 @@
+/* ORIGEX — ORX-P01 | PG13 Supplier / Brand Details */
+.orx-supplier-detail-hero{padding-block:clamp(3.5rem,7vw,6.5rem)}
+.orx-supplier-detail-hero__grid{display:grid;gap:2rem;align-items:center}
+.orx-supplier-detail-identity{display:grid;gap:1.15rem}
+.orx-supplier-detail-identity__mark{display:grid;place-items:center;inline-size:112px;block-size:112px;border:1px solid var(--orx-border);border-radius:var(--orx-radius-lg);background:var(--orx-surface-soft);color:var(--orx-primary);font-size:2rem;font-weight:800;letter-spacing:.04em;box-shadow:var(--orx-shadow-e1)}
+.orx-supplier-detail-identity__badges,.orx-supplier-detail-tags,.orx-supplier-detail-actions{display:flex;flex-wrap:wrap;gap:.55rem}
+.orx-supplier-detail-status{margin:0}
+.orx-supplier-detail-error{padding:1rem 1.1rem;border:1px solid var(--orx-danger);border-radius:var(--orx-radius-md);background:var(--orx-surface)}
+.orx-supplier-detail-profile{padding:1.35rem;border:1px solid var(--orx-border);border-radius:var(--orx-radius-lg);background:var(--orx-surface);box-shadow:var(--orx-shadow-e1)}
+.orx-supplier-detail-profile__top{display:flex;align-items:flex-start;gap:1rem}
+.orx-supplier-detail-profile__copy{min-width:0}
+.orx-supplier-detail-profile__copy h2{margin:0}
+.orx-supplier-detail-facts{display:grid;grid-template-columns:1fr;gap:.75rem;margin:1.25rem 0 0}
+.orx-supplier-detail-fact{padding:.95rem;border:1px solid var(--orx-border);border-radius:var(--orx-radius-sm);background:var(--orx-surface-soft)}
+.orx-supplier-detail-fact dt{font-size:.76rem;color:var(--orx-text-muted);font-weight:700}
+.orx-supplier-detail-fact dd{margin:.25rem 0 0;font-weight:800;color:var(--orx-primary-strong)}
+.orx-supplier-detail-category-grid{display:flex;flex-wrap:wrap;gap:.65rem}
+.orx-supplier-detail-category-grid a{text-decoration:none}
+.orx-supplier-detail-product-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+.orx-supplier-detail-product-card{display:grid;height:100%;overflow:hidden}
+.orx-supplier-detail-product-card__media{aspect-ratio:16/10;background:var(--orx-surface-soft);overflow:hidden}
+.orx-supplier-detail-product-card__media img{width:100%;height:100%;object-fit:cover}
+.orx-supplier-detail-product-card__body{display:grid;gap:.8rem;padding:1.1rem}
+.orx-supplier-detail-product-card__body h3{margin:0;font-size:1.08rem}
+.orx-supplier-detail-product-card__meta{display:flex;flex-wrap:wrap;gap:.45rem}
+.orx-supplier-detail-product-card__actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-block-start:auto}
+.orx-supplier-detail-two-col{display:grid;gap:1rem}
+.orx-supplier-detail-panel{padding:1.25rem;border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);background:var(--orx-surface)}
+.orx-supplier-detail-cert-list,.orx-supplier-detail-market-list{display:grid;gap:.8rem;margin:0;padding:0;list-style:none}
+.orx-supplier-detail-cert,.orx-supplier-detail-market{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:start;gap:.8rem;padding:.9rem;border:1px solid var(--orx-border);border-radius:var(--orx-radius-sm);background:var(--orx-surface-soft)}
+.orx-supplier-detail-market{grid-template-columns:minmax(0,1fr)}
+.orx-supplier-detail-market h3{font-size:1rem;margin:0}
+.orx-supplier-detail-market__head{display:flex;align-items:flex-start;justify-content:space-between;gap:.8rem}
+.orx-supplier-detail-market__tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-block-start:.65rem}
+.orx-supplier-detail-disclosure{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.8rem;padding:1rem 1.1rem;border-inline-start:3px solid var(--orx-accent);background:var(--orx-surface-soft);border-radius:var(--orx-radius-sm)}
+@media(min-width:700px){.orx-supplier-detail-facts{grid-template-columns:repeat(3,minmax(0,1fr))}.orx-supplier-detail-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.orx-supplier-detail-two-col{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1040px){.orx-supplier-detail-hero__grid{grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr)}.orx-supplier-detail-product-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:639.98px){.orx-supplier-detail-actions>.orx-btn,.orx-supplier-detail-product-card__actions>.orx-btn{flex:1 1 100%}.orx-supplier-detail-identity__mark{inline-size:88px;block-size:88px;font-size:1.6rem}.orx-supplier-detail-cert{grid-template-columns:auto minmax(0,1fr)}.orx-supplier-detail-cert>.orx-badge{grid-column:2}}
