@@ -1,0 +1,23 @@
+/* ORIGEX — ORX-P01 | PG06 How We Work composition | Copyright © ORVEAX */
+.orx-how-hero .orx-media--hero{min-block-size:460px;overflow:hidden;background:linear-gradient(145deg,var(--orx-primary-strong),var(--orx-primary));color:#fff;display:grid;place-items:center;padding:var(--orx-space-8)}
+.orx-how-route{inline-size:min(100%,560px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--orx-space-3);align-items:stretch}
+.orx-how-route__step{border:1px solid rgba(255,255,255,.18);border-radius:var(--orx-radius-md);padding:var(--orx-space-5);background:rgba(255,255,255,.08);backdrop-filter:blur(8px);display:flex;flex-direction:column;gap:var(--orx-space-3);min-inline-size:0}
+.orx-how-route__step strong{font-size:var(--orx-fs-body);line-height:1.35}.orx-how-route__step span{font-size:var(--orx-fs-small);opacity:.78}
+.orx-how-route__number{inline-size:2.25rem;block-size:2.25rem;border-radius:var(--orx-radius-pill);display:grid;place-items:center;background:var(--orx-accent);color:#fff;font-weight:800}
+.orx-qualification-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--orx-space-5)}
+.orx-qualification-card{block-size:100%;position:relative;overflow:hidden}.orx-qualification-card::before{content:"";position:absolute;inset-block-start:0;inset-inline-start:0;inline-size:4px;block-size:100%;background:var(--orx-accent)}
+.orx-qualification-card .orx-card__copy{margin-block-end:0}
+.orx-process-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--orx-space-5);counter-reset:orx-process}
+.orx-process-step{position:relative;padding-block-start:var(--orx-space-12);counter-increment:orx-process}.orx-process-step::before{content:"0" counter(orx-process);position:absolute;inset-block-start:var(--orx-space-4);inset-inline-end:var(--orx-space-5);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;line-height:1;color:color-mix(in srgb,var(--orx-primary) 12%,transparent)}
+.orx-role-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--orx-space-5)}
+.orx-role-card{block-size:100%;display:flex;flex-direction:column;gap:var(--orx-space-4)}.orx-role-card ul{margin:0;padding-inline-start:1.2rem;display:grid;gap:var(--orx-space-3)}[dir="rtl"] .orx-role-card ul{padding-inline-start:0;padding-inline-end:1.2rem}
+.orx-info-layout{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:var(--orx-space-10);align-items:start}
+.orx-required-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--orx-space-4);margin:0;padding:0;list-style:none}.orx-required-list li{display:flex;gap:var(--orx-space-3);align-items:flex-start;padding:var(--orx-space-5);border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);background:var(--orx-surface)}
+.orx-required-list .orx-icon-box{flex:0 0 auto}
+.orx-decision-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--orx-space-5)}
+.orx-decision-card{block-size:100%;border-block-start:4px solid var(--orx-border-strong)}.orx-decision-card--go{border-block-start-color:var(--orx-success)}.orx-decision-card--clarify{border-block-start-color:var(--orx-warning)}.orx-decision-card--hold{border-block-start-color:var(--orx-info)}
+.orx-how-boundary{border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);padding:var(--orx-space-6);background:var(--orx-surface-soft);display:flex;gap:var(--orx-space-4);align-items:flex-start}
+.orx-how-boundary .orx-icon-box{flex:0 0 auto}
+@media (max-width:1199.98px){.orx-qualification-grid,.orx-process-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.orx-how-route{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:767.98px){.orx-how-hero .orx-media--hero{min-block-size:auto;padding:var(--orx-space-6)}.orx-how-route,.orx-qualification-grid,.orx-process-grid,.orx-role-grid,.orx-info-layout,.orx-decision-flow{grid-template-columns:1fr}.orx-required-list{grid-template-columns:1fr}.orx-process-step{padding-block-start:var(--orx-space-10)}.orx-process-step::before{font-size:3rem}}
+@media (prefers-reduced-motion:reduce){.orx-how-route__step{backdrop-filter:none}}
