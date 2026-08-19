@@ -2,7 +2,8 @@
 
 Product ID: ORX-P01  
 Owner: ORVEAX  
-Status: APPROVED — M1 CLOSED / M2 READY
+Status: APPROVED — M0/M1 CLOSED / M2–M4 IN PROGRESS  
+Last Alignment: 2026-08-19 — R1 Direction & Compliance Review
 
 ## Project Brief
 
@@ -27,14 +28,21 @@ Submission Candidate 1.0.0 must include:
 - Marketplace screenshots/listing copy.
 - Clean final ZIP, changelog/version record and submission checklist.
 
-## Global Content Gate
+## Page Stage Lifecycle
 
 Authority: `CONTENT-SYSTEM-V1.md`.
 
-No page enters implementation before its content reaches C6 — FROZEN.
+`PS0–PS8` is the canonical page-production lifecycle. `C01–C28` is reserved for Component IDs. Historical C0–C8 references remain historical evidence only.
+
+No page enters implementation before reaching **PS6 — FROZEN**.
 
 Workflow:
-C0 Brief → C1 Arabic Draft → C2 Commercial Review → C3 English Adaptation → C4 UI Fit → C5 Demo/Claim Review → C6 FROZEN → C7 Implemented → C8 QA Passed.
+
+`PS0 Brief → PS1 Arabic Draft → PS2 Commercial Review → PS3 English Adaptation → PS4 UI Fit → PS5 Demo/Claim Review → PS6 FROZEN → PS7 Implemented / CI QA → PS8 Final Page Acceptance.`
+
+PS8 requires the applicable page QA and deployed Cloudflare browser acceptance defined in `QA-DEFINITION-OF-DONE-V1.md`, `PS8-CLOSURE-MATRIX-V1.md` and `STAGING-PREVIEW-GATE-V1.md`.
+
+Cloudflare review is a **parallel final-acceptance gate**. It does not block continued PS6/PS7 production of subsequent pages when the test environment remains available through Manual Rebuild.
 
 Content is prepared batch-by-batch before each implementation milestone. Content is never improvised inside page code.
 
@@ -45,130 +53,93 @@ Authority: `SEO-METADATA-PAGE-NAMING-V1.md`.
 Every page must use its locked PG identity/file naming and complete its SEO & Page Identity Contract before implementation. SEO/metadata QA is part of page closure, not a final cosmetic step.
 
 ## M0 — Product Foundation Freeze — CLOSED / COMPLETE
+
 **Purpose:** stop scope and foundation churn before build.
 
-Completed/frozen deliverables:
-- Product positioning.
-- 32-page architecture and PG01–PG32 identity map.
-- Main Features per page.
-- V1.1 Additional Features backlog separation.
-- Component & Design Rules.
-- Design System hierarchy and Component Registry.
-- Technology Stack.
-- Bootstrap foundation policy.
-- Icon System.
-- Pattern System.
-- Image/Media System.
-- Grid/container/responsive rules.
-- shape/border/elevation tokens.
-- Motion/interaction rules.
-- Data schema.
-- Code architecture/naming.
-- Browser support policy.
-- Performance budget principles.
-- Content System.
-- Master Content Architecture for all 32 layouts.
-- Canonical Demo Content Dataset.
-- Prepared V1.1 Additional Feature Content Packs.
-- SEO, Metadata & Page Naming System.
-- Demo vs Production Policy.
-- Release & Versioning Policy.
-- QA Definition of Done including Content/SEO/Demo/Release Gates.
-- Config eligibility rules.
-- Page Design Profile template including Content + SEO Contracts.
-- V1 exclusions.
-- Milestone plan.
+Completed/frozen deliverables include product positioning, 32-page architecture, V1/V1.1 separation, Design System, Component Registry, technology stack, responsive/RTL rules, data schema, content system, demo dataset, SEO/page naming, Demo vs Production policy, release policy, QA DoD and milestone plan.
 
 Canonical closure authority: `PRODUCT-FOUNDATION-COMPLETE-V1.md`.
 
-Gate: PASSED — APPROVED, FROZEN & COMPLETE on 2026-08-19.
+Gate: **PASSED — APPROVED, FROZEN & COMPLETE on 2026-08-19.**
 
 ## M1 — Global System & Component Foundation — CLOSED / COMPLETE
+
 **Purpose:** implement the frozen system once and reuse everywhere.
 
 Completed deliverables:
-- Design tokens implemented.
-- Bootstrap foundation integrated locally according to `TECH-STACK-V1.md`.
-- Typography hierarchy implemented with local Tajawal and Manrope assets.
-- Grid/container helpers implemented.
-- shape/border/elevation tokens implemented.
-- Section system.
-- Hero families.
-- Card families.
-- Buttons/badges/forms.
-- Lucide local SVG/icon subset + sprite + license.
-- ORIGEX pattern assets PT01–PT06.
-- registered media frames/placeholders.
-- Tables/specification patterns.
-- Tabs/accordions/filters plus approved local Bootstrap behavior baseline when a registered page contract requires it.
-- Motion tokens/interactions + reduced-motion baseline.
-- RTL/LTR helpers.
-- `config.js` + engine aligned with the canonical demo dataset.
-- global shell foundation.
-- Components/Elements M1 QA surfaces using canonical fictional demo content, not lorem ipsum.
-- reusable component/head-ready architecture supporting the frozen SEO contract.
+- Design tokens and Bootstrap 5.3.8 local foundation.
+- Local Tajawal / Manrope typography.
+- Grid/container helpers, shape/border/elevation and section systems.
+- Hero/card/button/badge/form/table/filter/navigation foundations.
+- Lucide local subset + sprite + license.
+- ORIGEX patterns PT01–PT06.
+- RTL/LTR and reduced-motion foundations.
+- `config.js` + config engine.
+- global shell and reusable component/head-ready architecture.
 - M1 asset/license baseline + vendor checksums.
 
 Gate: **PASSED / CLOSED on 2026-08-19**. Authority: `M1-QA-REPORT-V1.md` + `M1-COMPONENT-IMPLEMENTATION-MAP.md`.
 
-## M2 — Global Shell & Home Family — READY
+## M2 — Global Shell & Home Family — IN PROGRESS
+
 **Purpose:** establish the visual benchmark.
-
-### Content / SEO Entry Gate
-Home 01 / Home 02 / Home 03 / Landing must each reach Content C6 and complete the SEO/Page Identity Contract before page coding starts.
-
-Current entry state:
-- PG01 Home 01 — C6 FROZEN + Page Design Profile + SEO/Page Identity Contract complete; **READY FOR BUILD**.
-- PG02–PG04 — remain blocked at C0 until their own content/design/SEO gates are completed.
 
 Deliverables:
 - Header / mega menu / mobile drawer.
 - Footer.
 - Announcement/global CTA behavior.
-- Home 01.
-- Home 02.
-- Home 03.
-- Landing / One Page.
+- PG01 Home 01.
+- PG02 Home 02.
+- PG03 Home 03.
+- PG04 Landing / One Page.
 
-Gate: Content C8 + SEO Gate + responsive and RTL/LTR baseline approved.
+Current state:
+- PG01 — **PS8 / PASS / CLOSED — Marketplace Visual Benchmark**.
+- PG02–PG04 — **PS7 / IMPLEMENTED / CI QA PASS**.
+- Cloudflare deployed-browser review remains open for PG02–PG04 before PS8.
 
-## M3 — Company, Business & Market Pages
+Gate: all M2 pages PS8 + SEO/RTL/responsive/browser acceptance + zero Critical/High milestone defects.
 
-### Content / SEO Entry Gate
-About / How We Work / Capabilities / Service Details / Market Access / Markets must reach C6 and complete their SEO/Page Identity Contract before implementation.
-
-Deliverables:
-- About.
-- How We Work.
-- Capabilities / Services.
-- Service Details.
-- Market Access.
-- Markets / Countries.
-
-Gate: Content C8, SEO Gate, page design profiles and documentation entries complete.
-
-## M4 — Product, Supplier & Conversion Core
-
-### Content / SEO Entry Gate
-All product, supplier and conversion pages must reach C6, complete their SEO/Page Identity Contract, and align with `DEMO-CONTENT-DATASET-V1.md` + `DATA-SCHEMA-V1.md` before implementation.
+## M3 — Company, Business & Market Pages — IN PROGRESS
 
 Deliverables:
-- Product Categories.
-- Products Grid.
-- Product Details.
-- Suppliers / Brands Directory.
-- Supplier / Brand Details.
-- For Suppliers.
-- Submit Product.
-- RFQ.
-- Become Distributor / Partner.
+- PG05 About.
+- PG06 How We Work.
+- PG07 Capabilities / Services.
+- PG08 Service Details.
+- PG14 Market Access.
+- PG15 Markets / Countries.
 
-Gate: Content C8, SEO Gate, frozen data schemas, filters/forms and B2B conversion QA complete.
+Current state:
+- PG05 / PG06 / PG07 / PG08 / PG14 / PG15 — **PS7 / IMPLEMENTED / CI QA PASS**.
+- M3 page production is code/CI complete.
+- Cloudflare M3 batch browser acceptance remains before PS8 / milestone closure.
 
-## M5 — Proof, Resources, Compliance & Content
+Gate: all listed pages PS8 + SEO/Page Identity + documentation alignment + zero Critical/High milestone defects.
 
-### Content / SEO Entry Gate
-Case Studies, Resources, Compliance and editorial pages reach C6 with demo/factual disclaimers and SEO/Page Identity Contract reviewed before implementation.
+## M4 — Product, Supplier & Conversion Core — IN PROGRESS
+
+Deliverables:
+- PG09 Product Categories.
+- PG10 Products Grid.
+- PG11 Product Details.
+- PG12 Suppliers / Brands Directory.
+- PG13 Supplier / Brand Details.
+- PG16 For Suppliers.
+- PG17 Submit Product.
+- PG18 RFQ.
+- PG19 Become Distributor / Partner.
+
+Current state:
+- PG09 — **PS7 / IMPLEMENTED / CI QA PASS**.
+- PG10 — **PS7 / IMPLEMENTED / DATA + SOURCE + RENDERED/INTERACTION CI QA PASS**.
+- PG11 — **NEXT BUILD** after R1 governance alignment.
+- PG12/PG13/PG16/PG17/PG18/PG19 — NOT STARTED.
+- Cloudflare M4 browser acceptance remains a parallel PS8 gate and does not block PS7 page production.
+
+Gate: all listed pages PS8 + frozen data schemas + filters/forms/conversion QA + zero Critical/High milestone defects.
+
+## M5 — Proof, Resources, Compliance & Content — NOT STARTED
 
 Deliverables:
 - Case Studies.
@@ -178,12 +149,9 @@ Deliverables:
 - Blog / Insights.
 - Article Details.
 
-Gate: Content C8, SEO Gate, download/resource patterns and licensing placeholders complete.
+Gate: all listed pages PS8 + SEO + download/resource/licensing controls.
 
-## M6 — Support & Utility Pages
-
-### Content / SEO Entry Gate
-FAQ / Contact / 404 / Coming Soon / Privacy / Terms / Components reach C6 before implementation; sample legal text must retain explicit template/legal-review disclaimers and each page must have the correct indexability class.
+## M6 — Support & Utility Pages — NOT STARTED
 
 Deliverables:
 - FAQ.
@@ -194,58 +162,53 @@ Deliverables:
 - Terms.
 - Final Components / Elements page.
 
-Gate: all 32 unique layouts exist in AR/EN with Content C8 and SEO/Page Identity QA complete.
+Gate: all 32 unique layouts exist in AR/EN and reach applicable PS8 / SEO/Page Identity QA.
 
-## M7 — Full QA & Optimization
+## M7 — Full QA & Optimization — NOT STARTED
+
 Deliverables:
-- Content consistency scan across all pages.
-- Arabic/English commercial parity review.
+- Content consistency and AR/EN parity review.
 - Demo-claim/disclaimer scan.
 - Product/supplier/market dataset consistency scan.
-- Page naming/file/slug consistency scan.
-- title/meta/canonical/hreflang/Open Graph QA.
-- indexability and structured-data review.
-- HTML validation.
-- CSS/JS integrity.
-- Broken link/asset scan.
-- Console error scan.
-- Arabic RTL QA.
-- English LTR QA.
-- Responsive matrix.
-- Keyboard/accessibility review.
-- Reduced-motion review.
-- Performance cleanup.
-- Cross-browser smoke test.
-- Client/TARGET leakage scan.
-- Demo vs Production safety scan.
+- Page naming/slug/SEO metadata QA.
+- HTML validation and CSS/JS integrity.
+- Broken link/asset and console-error scans.
+- RTL/LTR and full responsive matrix.
+- Keyboard/accessibility/focus/reduced-motion review.
+- Performance cleanup and duplicate-code/component-promotion review.
+- Cross-browser smoke testing.
+- TARGET/client leakage and Demo vs Production safety scan.
+- final marketplace visual polish.
 
 Gate: zero Critical and zero High defects.
 
-## M8 — Documentation, Licensing & Marketplace Package
+## M8 — Documentation, Licensing & Marketplace Package — NOT STARTED
+
 Deliverables:
-- HTML documentation site.
-- Getting Started / 5-minute setup.
-- File Structure.
-- Config guide.
-- Arabic/English guide.
-- Content customization guide.
-- Demo-data replacement guide / Before You Publish checklist.
-- Components guide.
-- Product/Supplier/Market data guide.
-- Forms/RFQ integration guide.
-- Deployment guide.
+- HTML documentation site and Getting Started.
+- File structure/config/AR-EN/content customization guides.
+- Demo-data replacement / Before You Publish checklist.
+- Components and structured-data guides.
+- Forms/RFQ integration and deployment guides.
 - SEO/hreflang/metadata/page naming guide.
 - Credits/license/asset register.
-- `CHANGELOG.md`.
-- Release version record following `RELEASE-VERSIONING-POLICY-V1.md`.
-- Support guide.
-- Live preview build governed by `DEMO-VS-PRODUCTION-POLICY-V1.md`.
-- Preview screenshots.
-- Item title/description/features/tags draft.
-- Final downloadable ZIP.
-- ThemeForest submission checklist.
+- `CHANGELOG.md` + release version record.
+- Support guide and live preview package.
+- Marketplace preview screenshots/listing copy.
+- Final downloadable ZIP and ThemeForest submission checklist.
 
 Gate: Submission Candidate **1.0.0** approved under the Release Gate.
+
+## R1 — Direction & Compliance Review — 2026-08-19
+
+R1 is a control review, not a new milestone.
+
+Result:
+- Product direction: PASS.
+- Architecture/stack/reusability/RTL-LTR/demo safety/licensing direction: PASS.
+- Corrective actions: lifecycle naming alignment, stale deployment-governance wording correction, PS8 closure matrix creation, repository-name correction in staging governance.
+- No redesign, rollback or V1 scope change required.
+- PG11 may proceed after R1 documentation alignment; Cloudflare PS8 acceptance remains parallel.
 
 ## Change Control
 
