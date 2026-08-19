@@ -1,0 +1,167 @@
+/* ORIGEX — ORX-P01 | PG33 Company Profile Composition | Copyright © ORVEAX */
+
+.orx-profile-hero .orx-media--hero {
+  min-block-size: clamp(22rem, 42vw, 36rem);
+  overflow: hidden;
+  padding: var(--orx-space-4);
+  display: grid;
+  place-items: center;
+  background: var(--orx-surface-soft);
+}
+
+.orx-profile-hero .orx-media--hero img {
+  inline-size: 100%;
+  block-size: auto;
+  max-block-size: 34rem;
+  object-fit: contain;
+  display: block;
+  border-radius: var(--orx-radius-lg);
+  box-shadow: var(--orx-shadow-md);
+}
+
+.orx-profile-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--orx-space-2);
+  margin-block-start: var(--orx-space-4);
+}
+
+.orx-profile-snapshot,
+.orx-profile-routes,
+.orx-profile-document-meta {
+  display: grid;
+  gap: var(--orx-space-4);
+}
+
+.orx-profile-fact,
+.orx-profile-meta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--orx-space-3);
+  min-block-size: 100%;
+}
+
+.orx-profile-route {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--orx-space-4);
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--orx-border);
+  border-radius: var(--orx-radius-md);
+  padding: var(--orx-space-5);
+  background: var(--orx-surface);
+  transition: transform var(--orx-motion-fast) ease, border-color var(--orx-motion-fast) ease;
+}
+
+.orx-profile-route:hover,
+.orx-profile-route:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--orx-primary);
+}
+
+.orx-profile-route__number {
+  color: var(--orx-accent);
+  font-weight: 800;
+  font-size: var(--orx-fs-small);
+}
+
+.orx-profile-route__copy h3,
+.orx-profile-route__copy p {
+  margin: 0;
+}
+
+.orx-profile-route__copy p {
+  margin-block-start: var(--orx-space-1);
+  color: var(--orx-text-muted);
+}
+
+.orx-profile-resource {
+  display: grid;
+  gap: var(--orx-space-6);
+  align-items: center;
+  border: 1px solid var(--orx-border);
+  border-radius: var(--orx-radius-lg);
+  padding: clamp(var(--orx-space-5), 4vw, var(--orx-space-8));
+  background: var(--orx-primary-strong);
+  color: var(--orx-surface);
+  overflow: hidden;
+}
+
+.orx-profile-resource__preview {
+  background: var(--orx-surface);
+  border-radius: var(--orx-radius-lg);
+  padding: var(--orx-space-3);
+}
+
+.orx-profile-resource__preview img {
+  inline-size: 100%;
+  block-size: auto;
+  display: block;
+  border-radius: var(--orx-radius-md);
+}
+
+.orx-profile-resource .orx-muted,
+.orx-profile-resource p {
+  color: color-mix(in srgb, var(--orx-surface) 76%, transparent);
+}
+
+.orx-profile-resource__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--orx-space-2);
+  margin-block-end: var(--orx-space-3);
+  color: var(--orx-surface);
+  font-weight: 700;
+}
+
+.orx-profile-boundary {
+  margin-block-start: var(--orx-space-5);
+  border-inline-start: 4px solid var(--orx-accent);
+  padding-inline-start: var(--orx-space-4);
+  color: color-mix(in srgb, var(--orx-surface) 78%, transparent);
+  font-size: var(--orx-fs-small);
+}
+
+.orx-profile-final-grid {
+  display: grid;
+  gap: var(--orx-space-5);
+}
+
+@media (min-width: 768px) {
+  .orx-profile-snapshot,
+  .orx-profile-document-meta,
+  .orx-profile-final-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .orx-profile-routes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .orx-profile-snapshot {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .orx-profile-resource {
+    grid-template-columns: minmax(18rem, .8fr) minmax(0, 1.2fr);
+  }
+
+  .orx-profile-document-meta {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orx-profile-route {
+    transition: none;
+  }
+
+  .orx-profile-route:hover,
+  .orx-profile-route:focus-visible {
+    transform: none;
+  }
+}
