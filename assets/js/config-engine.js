@@ -1,8 +1,11 @@
 /*
  * ORIGEX — ORX-P01
- * Simple Customization Engine v1.1.0
+ * Simple Customization Engine — V1
+ * M1 implementation seed; not a released product version.
  * Designed & developed by ORVEAX
  * Copyright © ORVEAX
+ *
+ * Principle: enhance existing semantic HTML; do not construct core UI/components here.
  */
 
 (() => {
@@ -13,16 +16,19 @@
   const isArabic = (root.lang || "").toLowerCase().startsWith("ar");
 
   const get = (path) => path.split(".").reduce((value, key) => value?.[key], cfg);
-  const isHex = (value) => typeof value === "string" && /^#[0-9a-fA-F]{6}$/.test(value);
+
   const safeUrl = (value) => {
     if (typeof value !== "string" || !value.trim()) return "";
     if (value === "#") return "#";
     try {
       const url = new URL(value, window.location.href);
-      if (["http:", "https:", "mailto:", "tel:"].includes(url.protocol)) return value;
-    } catch (_) {}
-    return "";
+      return ["http:", "https:", "mailto:", "tel:"].includes(url.protocol) ? value : "";
+    } catch (_) {
+      return "";
+    }
   };
+
+  const isHex = (value) => typeof value === "string" && /^#[0-9a-fA-F]{6}$/.test(value);
 
   const themeMap = {
     primary: "--orx-primary",
@@ -55,142 +61,139 @@
     element.hidden = !Boolean(get(element.dataset.configVisible));
   });
 
-  const header = document.querySelector(".orx-site-header");
-  if (header && cfg.ui?.stickyHeader === false) header.classList.add("orx-header--static");
-  if (cfg.ui?.megaMenu === false) document.querySelectorAll(".orx-mega").forEach((element) => element.hidden = true);
-
-  const headerCta = document.querySelector(".orx-header-cta");
-  const showHeaderCta = cfg.features?.showHeaderCta !== false && cfg.ui?.headerCta?.enabled !== false;
-  if (headerCta) {
-    if (!showHeaderCta) {
-      headerCta.hidden = true;
-    } else {
-      const label = isArabic ? cfg.ui.headerCta.labelAr : cfg.ui.headerCta.labelEn;
-      const href = safeUrl(cfg.ui.headerCta.link);
-      if (label) headerCta.textContent = label;
-      if (href) headerCta.href = href;
-    }
-  }
-
-  const directEmails = document.querySelectorAll(".orx-mega-direct a[href^='mailto:']");
-  if (directEmails[0] && cfg.site?.email) {
-    directEmails[0].textContent = cfg.site.email;
-    directEmails[0].href = `mailto:${cfg.site.email}`;
-  }
-  if (directEmails[1] && cfg.site?.partnersEmail) {
-    directEmails[1].textContent = cfg.site.partnersEmail;
-    directEmails[1].href = `mailto:${cfg.site.partnersEmail}`;
-  }
-
-  const shouldShowAnnouncement = cfg.features?.showAnnouncementBar !== false && cfg.ui?.announcementBar?.enabled !== false;
-  if (shouldShowAnnouncement && header) {
-    const bar = document.createElement("div");
-    bar.className = "orx-announcement";
-    bar.setAttribute("role", "region");
-    bar.setAttribute("aria-label", isArabic ? "إعلان الموقع" : "Site announcement");
-
-    const text = isArabic ? cfg.ui.announcementBar.textAr : cfg.ui.announcementBar.textEn;
-    const label = isArabic ? cfg.ui.announcementBar.linkLabelAr : cfg.ui.announcementBar.linkLabelEn;
-    const href = safeUrl(cfg.ui.announcementBar.link);
-
-    const inner = document.createElement("div");
-    inner.className = "container orx-announcement__inner";
-
-    const content = document.createElement("div");
-    content.className = "orx-announcement__content";
-    const message = document.createElement("span");
-    message.textContent = text || "";
-    content.appendChild(message);
-
-    if (href && label) {
-      const link = document.createElement("a");
-      link.href = href;
-      link.textContent = label;
-      content.appendChild(link);
-    }
-
-    inner.appendChild(content);
-
-    if (cfg.ui.announcementBar.dismissible !== false) {
-      const close = document.createElement("button");
-      close.className = "orx-announcement__close";
-      close.type = "button";
-      close.setAttribute("aria-label", isArabic ? "إغلاق الإعلان" : "Close announcement");
-      close.textContent = "×";
-      close.addEventListener("click", () => bar.remove());
-      inner.appendChild(close);
-    }
-
-    bar.appendChild(inner);
-    header.parentNode.insertBefore(bar, header);
-  }
-
-  document.querySelectorAll("[data-orx-business-hours]").forEach((target) => {
-    if (cfg.features?.showBusinessHours === false || cfg.businessHours?.enabled === false) {
-      target.hidden = true;
-      return;
-    }
-    const rows = isArabic ? cfg.businessHours?.ar : cfg.businessHours?.en;
-    if (!Array.isArray(rows)) return;
-    target.replaceChildren(...rows.map((row) => {
-      const item = document.createElement("div");
-      item.className = "orx-config-hours__row";
-      const days = document.createElement("span");
-      const hours = document.createElement("strong");
-      days.textContent = row.days || "";
-      hours.textContent = row.hours || "";
-      item.append(days, hours);
-      return item;
-    }));
+  document.querySelectorAll("[data-orx-site-name]").forEach((element) => {
+    element.textContent = isArabic ? (cfg.site?.nameAr || cfg.site?.name || "") : (cfg.site?.name || "");
   });
 
-  document.querySelectorAll("[data-orx-social-links]").forEach((target) => {
-    if (cfg.features?.showSocialLinks === false || cfg.social?.enabled === false) {
-      target.hidden = true;
-      return;
+  const header = document.querySelector("[data-orx-site-header]");
+  if (header && cfg.ui?.stickyHeader === false) header.classList.add("orx-site-header--static");
+
+  document.querySelectorAll("[data-orx-mega-menu]").forEach((element) => {
+    if (cfg.ui?.megaMenu === false) element.hidden = true;
+  });
+
+  document.querySelectorAll("[data-orx-header-cta]").forEach((element) => {
+    const enabled = cfg.features?.showHeaderCta !== false && cfg.ui?.headerCta?.enabled !== false;
+    element.hidden = !enabled;
+    if (!enabled) return;
+
+    const label = isArabic ? cfg.ui?.headerCta?.labelAr : cfg.ui?.headerCta?.labelEn;
+    const href = safeUrl(cfg.ui?.headerCta?.link);
+    if (label) element.textContent = label;
+    if (href) element.setAttribute("href", href);
+  });
+
+  document.querySelectorAll("[data-orx-announcement]").forEach((bar) => {
+    const enabled = cfg.features?.showAnnouncementBar !== false && cfg.ui?.announcementBar?.enabled !== false;
+    bar.hidden = !enabled;
+    if (!enabled) return;
+
+    const text = isArabic ? cfg.ui?.announcementBar?.textAr : cfg.ui?.announcementBar?.textEn;
+    const linkLabel = isArabic ? cfg.ui?.announcementBar?.linkLabelAr : cfg.ui?.announcementBar?.linkLabelEn;
+    const href = safeUrl(cfg.ui?.announcementBar?.link);
+
+    const message = bar.querySelector("[data-orx-announcement-text]");
+    const link = bar.querySelector("[data-orx-announcement-link]");
+    const close = bar.querySelector("[data-orx-announcement-close]");
+
+    if (message && text) message.textContent = text;
+    if (link) {
+      if (href && linkLabel) {
+        link.hidden = false;
+        link.textContent = linkLabel;
+        link.setAttribute("href", href);
+      } else {
+        link.hidden = true;
+      }
     }
-    const labels = { linkedin: "LinkedIn", instagram: "Instagram", facebook: "Facebook", x: "X", youtube: "YouTube", tiktok: "TikTok" };
+
+    if (close) {
+      close.hidden = cfg.ui?.announcementBar?.dismissible === false;
+      close.addEventListener("click", () => {
+        bar.hidden = true;
+      });
+    }
+  });
+
+  document.querySelectorAll("[data-orx-email='sales']").forEach((element) => {
+    if (!cfg.site?.email) return;
+    element.textContent = cfg.site.email;
+    if (element.matches("a")) element.href = `mailto:${cfg.site.email}`;
+  });
+
+  document.querySelectorAll("[data-orx-email='partners']").forEach((element) => {
+    if (!cfg.site?.partnersEmail) return;
+    element.textContent = cfg.site.partnersEmail;
+    if (element.matches("a")) element.href = `mailto:${cfg.site.partnersEmail}`;
+  });
+
+  document.querySelectorAll("[data-orx-phone]").forEach((element) => {
+    if (!cfg.site?.phone) return;
+    element.textContent = cfg.site.phone;
+    if (element.matches("a")) element.href = `tel:${String(cfg.site.phone).replace(/[^+\d]/g, "")}`;
+  });
+
+  document.querySelectorAll("[data-orx-address]").forEach((element) => {
+    element.textContent = isArabic ? (cfg.site?.addressAr || "") : (cfg.site?.addressEn || "");
+  });
+
+  document.querySelectorAll("[data-orx-business-hours]").forEach((target) => {
+    const enabled = cfg.features?.showBusinessHours !== false && cfg.businessHours?.enabled !== false;
+    target.hidden = !enabled;
+    if (!enabled) return;
+
+    const rows = isArabic ? cfg.businessHours?.ar : cfg.businessHours?.en;
+    if (!Array.isArray(rows)) return;
+
     const fragment = document.createDocumentFragment();
-    Object.entries(labels).forEach(([key, label]) => {
-      const href = safeUrl(cfg.social?.[key]);
-      if (!href || href === "#") return;
-      const link = document.createElement("a");
-      link.href = href;
-      link.textContent = label;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      fragment.appendChild(link);
+    rows.forEach((row) => {
+      const item = document.createElement("div");
+      item.className = "orx-business-hours__row";
+
+      const days = document.createElement("span");
+      days.textContent = row.days || "";
+
+      const hours = document.createElement("strong");
+      hours.textContent = row.hours || "";
+
+      item.append(days, hours);
+      fragment.appendChild(item);
     });
     target.replaceChildren(fragment);
   });
 
-  const showWhatsapp = cfg.features?.showFloatingWhatsApp !== false && cfg.ui?.floatingWhatsApp !== false;
-  if (showWhatsapp && cfg.site?.whatsapp) {
-    const number = String(cfg.site.whatsapp).replace(/\D/g, "");
-    if (number) {
-      const link = document.createElement("a");
-      link.className = "orx-floating-action orx-floating-action--whatsapp";
-      link.href = `https://wa.me/${number}`;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.setAttribute("aria-label", isArabic ? "تواصل عبر واتساب" : "Contact via WhatsApp");
-      link.textContent = "WA";
-      document.body.appendChild(link);
-    }
-  }
+  document.querySelectorAll("[data-orx-social-link]").forEach((link) => {
+    const key = link.dataset.orxSocialLink;
+    const href = safeUrl(cfg.social?.[key]);
+    const enabled = cfg.features?.showSocialLinks !== false && cfg.social?.enabled !== false && href && href !== "#";
+    link.hidden = !enabled;
+    if (enabled) link.setAttribute("href", href);
+  });
 
-  const showBackToTop = cfg.features?.showBackToTop !== false && cfg.ui?.backToTop !== false;
-  if (showBackToTop) {
-    const button = document.createElement("button");
-    button.className = "orx-floating-action orx-floating-action--top";
-    button.type = "button";
-    button.setAttribute("aria-label", isArabic ? "العودة إلى أعلى الصفحة" : "Back to top");
-    button.textContent = "↑";
-    button.hidden = true;
-    button.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-    const sync = () => button.hidden = window.scrollY < 500;
+  document.querySelectorAll("[data-orx-floating-whatsapp]").forEach((link) => {
+    const enabled = cfg.features?.showFloatingWhatsApp !== false && cfg.ui?.floatingWhatsApp !== false;
+    const number = String(cfg.site?.whatsapp || "").replace(/\D/g, "");
+    link.hidden = !(enabled && number);
+    if (enabled && number) link.href = `https://wa.me/${number}`;
+  });
+
+  document.querySelectorAll("[data-orx-back-to-top]").forEach((button) => {
+    const enabled = cfg.features?.showBackToTop !== false && cfg.ui?.backToTop !== false;
+    if (!enabled) {
+      button.hidden = true;
+      return;
+    }
+
+    const sync = () => {
+      button.hidden = window.scrollY < 500;
+    };
+
+    button.addEventListener("click", () => {
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+    });
+
     window.addEventListener("scroll", sync, { passive: true });
     sync();
-    document.body.appendChild(button);
-  }
+  });
 })();
