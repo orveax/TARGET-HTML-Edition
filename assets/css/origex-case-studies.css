@@ -1,0 +1,21 @@
+/* ORIGEX — ORX-P01 | PG20 Case Studies composition | Copyright © ORVEAX */
+[data-pg20-root]{background:var(--orx-bg)}
+.orx-case-hero{padding-block:clamp(3.75rem,7vw,6.5rem);background:linear-gradient(180deg,var(--orx-surface-soft),var(--orx-bg))}
+.orx-case-hero__grid{display:grid;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.orx-case-hero__actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-block-start:1.5rem}
+.orx-case-proof{display:grid;gap:1rem;padding:clamp(1.35rem,3vw,2rem);border:1px solid var(--orx-border);border-radius:var(--orx-radius-lg);background:var(--orx-surface);box-shadow:var(--orx-shadow-e1)}
+.orx-case-proof h2{margin:0;font-size:1.25rem}.orx-case-proof p{margin:0;color:var(--orx-text-muted)}
+.orx-case-proof__list{display:grid;gap:.8rem;list-style:none;padding:0;margin:0}.orx-case-proof__item{display:grid;grid-template-columns:auto 1fr;gap:.75rem;align-items:start}.orx-case-proof__item .orx-icon{margin-block-start:.15rem;color:var(--orx-accent)}
+.orx-case-filter-shell{display:grid;gap:1rem;padding:1rem;border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);background:var(--orx-surface)}
+.orx-case-filter-row{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}.orx-case-filter-row .orx-filter-group{max-width:100%;overflow-x:auto;flex-wrap:nowrap;padding-block:.15rem .35rem;scrollbar-width:thin}.orx-case-filter-row .orx-filter-chip{min-block-size:44px;white-space:nowrap;cursor:pointer}
+.orx-case-filter-meta{display:flex;align-items:center;gap:.55rem;color:var(--orx-text-muted);font-size:.9rem}.orx-case-filter-meta strong{color:var(--orx-primary)}
+.orx-case-grid{display:grid;gap:1rem;margin-block-start:1.25rem}.orx-case-study-card{height:100%;padding:1.25rem;border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);background:var(--orx-surface)}.orx-case-study-card[hidden]{display:none!important}
+.orx-case-study-card__head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}.orx-case-study-card__number{font-size:.78rem;font-weight:800;color:var(--orx-text-muted);letter-spacing:.04em;text-transform:uppercase}.orx-case-study-card__tags{display:flex;flex-wrap:wrap;gap:.4rem}.orx-case-study-card__title{font-size:1.15rem;margin:0}.orx-case-study-card__challenge{margin:0;color:var(--orx-text-muted)}
+.orx-case-study-card__action{display:grid;gap:.35rem;padding:1rem;border-radius:var(--orx-radius-sm);background:var(--orx-surface-soft)}.orx-case-study-card__action strong{font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;color:var(--orx-text-muted)}.orx-case-study-card__action p{margin:0}
+.orx-case-study-card__result{display:grid;gap:.35rem;margin-block-start:auto;padding-block-start:1rem;border-block-start:1px solid var(--orx-border);font-weight:400;color:var(--orx-text)}.orx-case-study-card__result span{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--orx-accent)}.orx-case-study-card__result strong{font-size:1rem;color:var(--orx-primary)}
+.orx-case-study-card__footer{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}.orx-case-study-card__footer .orx-text-action{min-block-size:44px}
+.orx-case-empty[hidden]{display:none!important}
+.orx-case-boundary{display:grid;grid-template-columns:auto 1fr;gap:.9rem;padding:1.1rem 1.2rem;border:1px solid rgba(196,122,74,.32);border-radius:var(--orx-radius-md);background:rgba(196,122,74,.07)}.orx-case-boundary p{margin:.25rem 0 0;color:var(--orx-text-muted)}.orx-case-boundary .orx-icon{color:var(--orx-accent);margin-block-start:.15rem}
+@media(min-width:700px){.orx-case-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:980px){.orx-case-hero__grid{grid-template-columns:minmax(0,1.08fr) minmax(350px,.72fr)}.orx-case-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:767.98px){.orx-case-hero__actions>.orx-btn{width:100%}.orx-case-filter-row{align-items:flex-start}.orx-case-filter-meta{width:100%}}
