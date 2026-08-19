@@ -5,7 +5,7 @@
   <path d="m12 5 7 7-7 7" /></symbol>
 <symbol id="arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7" />
   <path d="M12 19V5" /></symbol>
-<symbol id="badge-check" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+<symbol id="badge-check" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1 0-6.76Z" />
   <path d="m9 12 2 2 4-4" /></symbol>
 <symbol id="boxes" viewBox="0 0 24 24"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
   <path d="m7 16.5-4.74-2.85" />
@@ -41,7 +41,7 @@
   <circle cx="12" cy="12" r="10" /></symbol>
 <symbol id="external-link" viewBox="0 0 24 24"><path d="M15 3h6v6" />
   <path d="M10 14 21 3" />
-  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></symbol>
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1 2-2h6" /></symbol>
 <symbol id="factory" viewBox="0 0 24 24"><path d="M12 16h.01" />
   <path d="M16 16h.01" />
   <path d="M3 19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a.5.5 0 0 0-.769-.422l-4.462 2.844A.5.5 0 0 1 15 10.5v-2a.5.5 0 0 0-.769-.422L9.77 10.922A.5.5 0 0 1 9 10.5V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z" />
@@ -68,6 +68,7 @@
   <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></symbol>
 <symbol id="mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
   <rect x="2" y="4" width="20" height="16" rx="2" /></symbol>
+<symbol id="message-circle" viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" /></symbol>
 <symbol id="map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
   <circle cx="12" cy="10" r="3" /></symbol>
 <symbol id="menu" viewBox="0 0 24 24"><path d="M4 5h16" />
