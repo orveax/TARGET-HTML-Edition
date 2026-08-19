@@ -2,7 +2,7 @@
 
 Product ID: ORX-P01  
 Owner: ORVEAX  
-Status: APPROVED & FROZEN  
+Status: APPROVED & FROZEN — STAGING GATE AMENDMENT 2026-08-19  
 Approval Date: 2026-08-19
 
 A page is not considered closed until all applicable checks below pass.
@@ -48,6 +48,26 @@ A page is not considered closed until all applicable checks below pass.
 37. Cross-browser smoke test on supported modern browser set before milestone closure.
 38. Content Status moves from C7 — Implemented to C8 — QA Passed.
 39. Page status explicitly changed to CLOSED/PASS in project tracking.
+
+## Staging Preview Gate
+
+Authority: `STAGING-PREVIEW-GATE-V1.md`.
+
+C8 / PASS / CLOSED means page implementation and page QA have passed. It does not by itself prove that the page is reachable through an external browser URL.
+
+Before a page is described as staging-ready, used for owner browser review, or used as the benchmark that authorizes coding of the next page in the same family:
+- a staging target must be enabled and configured.
+- deployment must originate from canonical `main`.
+- root `/` must resolve and provide the approved language-entry behavior.
+- AR and EN deployed routes must resolve.
+- deployed CSS/JS/fonts/icons/patterns/assets must load from the real deployment base path.
+- the staging artifact must exclude internal `docs/`, `qa/` and `.github/` content.
+- staging indexability must be explicit; default is `noindex` unless separately approved.
+- at least one external mobile and one external desktop browser smoke check must pass.
+- AR RTL and EN LTR must both be opened via the deployed URL.
+- deployment source commit, run result and generated URL must be recorded.
+
+For the first representative page in each milestone/page family, this gate must pass before the next page in that family enters code implementation. Content/design/SEO preparation for the next page may continue while staging is blocked.
 
 ## Content Gate
 
@@ -118,7 +138,7 @@ A component is considered registry-ready only when:
 
 A milestone closes only when:
 - every listed deliverable exists.
-- applicable Content/Page/SEO/Demo/Component Gates pass.
+- applicable Content/Page/SEO/Demo/Component/Staging Preview Gates pass.
 - critical and high-severity defects are zero.
 - documentation and tracking are updated.
 - unresolved scope additions are moved to backlog/change control rather than silently implemented.
@@ -148,6 +168,8 @@ A closed page/component/content unit may reopen only for:
 - approved commercial-message correction.
 - verified SEO/metadata defect.
 - formal Design System / Architecture / Scope / Product Governance Change Request.
+
+A staging/deployment failure does not automatically reopen C8 when the page code itself remains valid. It creates or reopens the independent Staging Preview Gate.
 
 Preference or visual experimentation alone does not reopen a closed item.
 
