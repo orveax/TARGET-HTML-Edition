@@ -2,7 +2,7 @@
 
 Product ID: ORX-P01  
 Milestone: M4 — Product / Supplier / Conversion  
-Status: PS6 — FROZEN / BUILD IMPLEMENTED / QA GATE OPEN  
+Status: PS7 — IMPLEMENTED / CI QA PASS — AR+EN  
 Canonical file: `submit-product.html`
 
 ## Purpose
@@ -235,9 +235,27 @@ Required: self canonical, AR/EN/x-default hreflang, Open Graph baseline, WebPage
 - Rendered gate checks AR/EN at 390 / 820 / 1366 / 1536, touch targets and global navigation interactions.
 - Interaction gate verifies empty-form rejection, keyboard consent, valid demo success, zero fetch/XHR requests, invalid-file rejection and valid-file filename state.
 
+## Final QA Evidence
+
+Final evidence commit: `168d4d4b9687421fc0a6f73c3fc268bd94028fda`.
+
+- Source failures: **0**.
+- Runtime safety failures: **0**.
+- Arabic rendered 390 / 820 / 1366 / 1536: **4/4 PASS**.
+- English rendered 390 / 820 / 1366 / 1536: **4/4 PASS**.
+- Total responsive cases: **8/8 PASS**.
+- Empty form does not enter success state: PASS.
+- Required consent keyboard activation AR/EN: PASS.
+- Valid demo submission success AR/EN: PASS.
+- Fetch/XHR network requests after demo submit: **0**.
+- Invalid file rejection AR/EN: PASS.
+- Valid file-name UI state AR/EN: PASS.
+- Global Footer V1 after PG17: **36 pages / 0 failures / PASS**.
+- `qa/pg17-submit-product/run-status.txt`: **PASS**.
+
 ## Exit Gate
 
-PS7 only after AR+EN build plus source/SEO/assets/icons/navigation/footer/form semantics/file validation/native validation/consent/success state/responsive/interaction QA PASS.
+**PS7 ACHIEVED — IMPLEMENTED / CI QA PASS — AR+EN.**
 
 PS8 remains gated by deployed Cloudflare browser acceptance.
 
