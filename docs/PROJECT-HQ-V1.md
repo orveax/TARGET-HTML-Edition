@@ -4,17 +4,27 @@ Product ID: ORX-P01
 Owner: ORVEAX  
 Repository: `orveax/TARGET-HTML-Edition`  
 Status: ACTIVE CONTROL DOCUMENT  
-Last hard audit: 2026-08-19
+Last Updated: 2026-08-19 — M2 / PG01 QA
 
 This is the operational entry point for ORIGEX. If another document conflicts with this HQ, use the authority order below and stop local improvisation.
 
 ## 1. Current Project State
 
 ```text
-M0 — PRODUCT FOUNDATION: CLOSED / COMPLETE
-M1 — GLOBAL SYSTEM & COMPONENT FOUNDATION: CLEAN START / IMPLEMENTATION NEXT
-M2–M8 — NOT STARTED
+M0 — PRODUCT FOUNDATION: PASS / CLOSED
+M1 — GLOBAL SYSTEM & COMPONENT FOUNDATION: PASS / CLOSED
+M2 — GLOBAL SHELL & HOME FAMILY: IN PROGRESS
+PG01 — HOME 01: C7 IMPLEMENTED / AR + EN / QA IN PROGRESS
+PG02–PG04: gated by C6 + Design Profile + SEO Contract
+M3–M8: NOT STARTED
 ```
+
+M1 closure authority is `M1-QA-REPORT-V1.md` plus `M1-COMPONENT-IMPLEMENTATION-MAP.md`, `M1-CLOSURE-2026-08-19.md` and `M1-VENDOR-SHA256.txt`.
+
+PG01 source:
+- Arabic: `ar/index.html`
+- English: `en/index.html`
+- Page contract: `page-design-profiles/pg01-home-01-v1.md`
 
 The pre-foundation Build 02–05 implementation was removed from the active tree during the 2026-08-19 hard audit. Git history remains the archive. No removed pre-freeze file is an implementation authority.
 
@@ -28,7 +38,7 @@ V1 ships 32 unique layouts in Arabic and English, with Main Features only. Addit
 
 - HTML5
 - CSS3
-- Bootstrap **5.3.8** as infrastructure/layout foundation
+- Bootstrap **5.3.8** as infrastructure/layout foundation, packaged locally
 - Vanilla JavaScript
 - ORIGEX Design System
 - `config.js` simple customization layer
@@ -89,6 +99,8 @@ No reference document may override a frozen authority.
 - `DEMO-VS-PRODUCTION-POLICY-V1.md`
 - `ASSET-LICENSE-REGISTER-V1.md`
 - `QA-DEFINITION-OF-DONE-V1.md`
+- `M1-QA-REPORT-V1.md`
+- `M1-COMPONENT-IMPLEMENTATION-MAP.md`
 - `DOCUMENTATION-ARCHITECTURE.md`
 
 ### Reference Only
@@ -101,37 +113,36 @@ Reference files inform fidelity/research; they do not define current architectur
 
 ## 6. Active Repository Structure
 
-Current clean-start structure before M1 implementation:
-
 ```text
 /
 ├── README.md
 ├── CHANGELOG.md
+├── ar/
+│   └── index.html              # PG01 Arabic — C7 / QA
+├── en/
+│   └── index.html              # PG01 English — C7 / QA
 ├── assets/
-│   ├── brand/          # approved ORIGEX brand SVG assets
-│   └── js/             # config seed only until M1 normalization
-└── docs/               # canonical product authorities and references
+│   ├── brand/
+│   ├── css/
+│   │   ├── origex-tokens.css
+│   │   ├── origex-foundation.css
+│   │   ├── origex-components.css
+│   │   └── origex-shell.css
+│   ├── fonts/
+│   ├── icons/
+│   ├── js/
+│   │   ├── config.js
+│   │   ├── config-engine.js
+│   │   └── origex-ui.js
+│   ├── patterns/
+│   └── vendor/bootstrap/
+├── preview/
+│   ├── m1-components-ar.html
+│   └── m1-components-en.html
+└── docs/
 ```
 
-M1 is responsible for creating the compliant implementation structure:
-
-```text
-assets/
-├── vendor/bootstrap/   # Bootstrap 5.3.8 local distribution
-├── icons/              # local Lucide subset/sprite + license note
-├── patterns/           # ORIGEX PT01–PT06
-├── brand/
-├── css/
-├── js/
-├── data/
-└── media/
-
-ar/
-en/
-preview/                # development-only QA infrastructure
-```
-
-No page code is reintroduced before the M1 global foundation is implemented.
+M1 owns the reusable foundation. M2+ pages consume it and may not create competing local systems.
 
 ## 7. Page Entry Gate
 
@@ -141,10 +152,13 @@ A page may enter implementation only when all are true:
 - V1 Main Features match `SCOPE-FREEZE-V1-FINAL.md`.
 - Content reaches C6 — FROZEN.
 - Page Design Profile is complete.
+- SEO & Page Identity Contract is complete.
 - Required components/variants already exist in the registry.
 - required assets/licenses are known.
 
 Then implementation proceeds AR + EN together and exits only at Content C8 / Page QA PASS.
+
+PG01 satisfied the entry gate and is now C7 / QA. Its current page-level QA must complete before PG01 is closed.
 
 ## 8. Change Classification
 
@@ -167,17 +181,17 @@ There is no fifth category called “quick local tweak”.
 
 ## 10. Next Action
 
-Implement M1 in this order:
+Complete PG01 page QA in this order:
 
-1. Bootstrap 5.3.8 local vendor baseline + notices.
-2. ORIGEX tokens / typography / grid / shape / motion.
-3. Icon and pattern assets.
-4. primitives and components.
-5. config engine normalization.
-6. global shell.
-7. Components/Elements foundation page.
-8. AR/EN component QA.
+1. Arabic RTL responsive QA.
+2. English LTR responsive QA.
+3. Header / mega menu / mobile drawer / accordion / floating actions interaction QA.
+4. Content parity and demo-claim/disclosure scan.
+5. SEO/Page Identity contract verification.
+6. local asset/runtime reference scan and console/broken-reference review where available.
+7. close PG01 at Content C8 only after page QA passes.
+8. prepare PG02 through C6 + Page Design Profile + SEO Contract before its code begins.
 
-Only after the M1 Gate passes does PG01 Home 01 enter page-by-page production.
+M1 remains closed unless a verified foundation defect requires a controlled QA fix.
 
 Copyright © ORVEAX.
