@@ -27,15 +27,11 @@
     {
       "step": "category",
       "cards": 0
-    },
-    {
-      "step": "reset",
-      "cards": 4
-    },
-    {
-      "step": "origin",
-      "cards": 1
     }
   ],
-  "exception": null
+  "exception": {
+    "type": "ElementClickInterceptedException",
+    "message": "Message: element click intercepted: Element is not clickable at point (191, 1099)\n  (Session info: chrome=151.0.7922.137); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementclickinterceptedexception\nStacktrace:\n#0 0x55ab58c3a36a <unknown>\n#1 0x55ab585adf49 <unknown>\n#2 0x55ab5860a415 <unknown>\n#3 0x55ab586084f2 <unknown>\n#4 0x55ab58605edc <unknown>\n#5 0x55ab58604fd7 <unknown>\n#6 0x55ab585f8c42 <unknown>\n#7 0x55ab585f8587 <unknown>\n#8 0x55ab5864c0c3 <unknown>\n#9 0x55ab585f6c92 <unknown>\n#10 0x55ab585f7b11 <unknown>\n#11 0x55ab58bff8d0 <unknown>\n#12 0x55ab58bfdf3a <unknown>\n#13 0x55ab58be89b5 <unknown>\n#14 0x55ab58bfec0a <unknown>\n#15 0x55ab58bd0740 <unknown>\n#16 0x55ab58c259a8 <unknown>\n#17 0x55ab58c25b45 <unknown>\n#18 0x55ab58c38f1e <unknown>\n#19 0x7f17d109cb84 <unknown>\n#20 0x7f17d1129d6c <unknown>\n",
+    "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 30, in <module>\n  File \"/home/runner/.local/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py\", line 114, in click\n    self._execute(Command.CLICK_ELEMENT)\n  File \"/home/runner/.local/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py\", line 508, in _execute\n    return self._parent.execute(command, params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/.local/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 504, in execute\n    self.error_handler.check_response(response)\n  File \"/home/runner/.local/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py\", line 232, in check_response\n    raise exception_class(message, screen, stacktrace)\nselenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element is not clickable at point (191, 1099)\n  (Session info: chrome=151.0.7922.137); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementclickinterceptedexception\nStacktrace:\n#0 0x55ab58c3a36a <unknown>\n#1 0x55ab585adf49 <unknown>\n#2 0x55ab5860a415 <unknown>\n#3 0x55ab586084f2 <unknown>\n#4 0x55ab58605edc <unknown>\n#5 0x55ab58604fd7 <unknown>\n#6 0x55ab585f8c42 <unknown>\n#7 0x55ab585f8587 <unknown>\n#8 0x55ab5864c0c3 <unknown>\n#9 0x55ab585f6c92 <unknown>\n#10 0x55ab585f7b11 <unknown>\n#11 0x55ab58bff8d0 <unknown>\n#12 0x55ab58bfdf3a <unknown>\n#13 0x55ab58be89b5 <unknown>\n#14 0x55ab58bfec0a <unknown>\n#15 0x55ab58bd0740 <unknown>\n#16 0x55ab58c259a8 <unknown>\n#17 0x55ab58c25b45 <unknown>\n#18 0x55ab58c38f1e <unknown>\n#19 0x7f17d109cb84 <unknown>\n#20 0x7f17d1129d6c <unknown>\n\n"
+  }
 }
