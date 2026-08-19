@@ -8,6 +8,7 @@ on:
       - 'ar/company-profile.html'
       - 'en/company-profile.html'
       - 'assets/css/origex-company-profile.css'
+      - 'assets/css/origex-shell.css'
       - 'assets/media/demo/company-profile-cover.svg'
       - 'docs/page-design-profiles/pg33-company-profile-v1.md'
       - 'docs/GLOBAL-NAVIGATION-CONTRACT-V1.md'
@@ -75,7 +76,6 @@ jobs:
               source['navigation_output'] = proc.stdout + proc.stderr
 
           (out/'source-report.json').write_text(json.dumps(source, ensure_ascii=False, indent=2), encoding='utf-8')
-
           server = subprocess.Popen(['python','-m','http.server','8765'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
           time.sleep(1)
           rendered = {'failures': [], 'cases': []}
@@ -142,5 +142,3 @@ jobs:
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "PG33 record company profile QA evidence"
           git push origin main
-
-# explicit QA retrigger — 2026-08-19
