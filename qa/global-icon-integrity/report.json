@@ -1,7 +1,7 @@
 {
   "failures": [],
   "summary": {
-    "pagesChecked": 40,
+    "pagesChecked": 41,
     "symbolsRegistered": 33,
     "symbolsReferenced": 28,
     "missingReferences": 0
@@ -395,6 +395,21 @@
         "route",
         "search",
         "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/case-studies.html": {
+      "references": [
+        "arrow-right",
+        "arrow-up",
+        "badge-check",
+        "chevron-down",
+        "file-text",
+        "info",
+        "menu",
+        "message-circle",
+        "route",
         "x"
       ],
       "missing": []
