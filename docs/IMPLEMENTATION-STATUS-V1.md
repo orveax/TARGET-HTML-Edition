@@ -4,7 +4,7 @@ Product ID: ORX-P01
 Owner: ORVEAX  
 Repository: `orveax/origex-html-template`  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-19 — M2 HOME FAMILY IMPLEMENTED / M3 IN PROGRESS / PG05–PG08 + PG14 C7 CI QA PASS
+Last Updated: 2026-08-19 — M2 HOME FAMILY IMPLEMENTED / M3 CODE+CI COMPLETE / PG05–PG08 + PG14–PG15 C7 CI QA PASS
 
 This is the repo-level execution tracker. It records actual current implementation state and must match the active code tree.
 
@@ -39,10 +39,11 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`. Deployment/browser readiness i
 | PG07 Capabilities / Services | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + NAVIGATION QA PASS |
 | PG08 Service Details | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + PARENT-NAVIGATION QA PASS |
 | PG14 Market Access | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + MARKET-NAVIGATION QA PASS |
+| PG15 Markets / Countries | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + FILTER + MARKET-NAVIGATION QA PASS |
 | M3 Shared Navigation IA | ACTIVE — Home + Company + Market families exposed centrally in shared navigation |
 | Cloudflare Test Environment | AVAILABLE VIA MANUAL REBUILD |
 | Cloudflare Git Auto-Deploy | DEFERRED — push trigger does not currently start deployment automatically |
-| Current Build Baseline | M3 IN PROGRESS — PG05–PG08 + PG14 CI-complete; PG15 next |
+| Current Build Baseline | M3 CODE / CI COMPLETE — PG05–PG08 + PG14–PG15; Cloudflare batch review pending |
 
 ## Milestones
 
@@ -75,7 +76,8 @@ ar/
 ├── how-we-work.html               # PG06 — C7 CI PASS
 ├── capabilities.html              # PG07 — C7 CI PASS
 ├── service-details.html           # PG08 — C7 CI PASS
-└── market-access.html             # PG14 — C7 CI PASS
+├── market-access.html             # PG14 — C7 CI PASS
+└── markets.html                   # PG15 — C7 CI PASS
 en/
 ├── index.html                     # PG01 — C8
 ├── home-02.html                   # PG02 — C7 CI PASS
@@ -85,7 +87,8 @@ en/
 ├── how-we-work.html               # PG06 — C7 CI PASS
 ├── capabilities.html              # PG07 — C7 CI PASS
 ├── service-details.html           # PG08 — C7 CI PASS
-└── market-access.html             # PG14 — C7 CI PASS
+├── market-access.html             # PG14 — C7 CI PASS
+└── markets.html                   # PG15 — C7 CI PASS
 assets/
 ├── brand/
 ├── css/
@@ -102,6 +105,7 @@ assets/
 │   ├── origex-capabilities.css
 │   ├── origex-service-details.css
 │   ├── origex-market-access.css
+│   ├── origex-markets.css
 │   └── origex-shell.css
 ├── media/demo/
 ├── fonts/
@@ -110,6 +114,7 @@ assets/
 │   ├── config.js
 │   ├── config-engine.js
 │   ├── origex-ui.js
+│   ├── origex-markets.js
 │   └── origex-landing.js
 ├── patterns/
 └── vendor/bootstrap/
@@ -127,7 +132,8 @@ qa/
 ├── pg06-how-we-work/
 ├── pg07-capabilities/
 ├── pg08-service-details/
-└── pg14-market-access/
+├── pg14-market-access/
+└── pg15-markets/
 docs/
 ├── page-design-profiles/
 │   ├── pg01-home-01-v1.md
@@ -138,7 +144,8 @@ docs/
 │   ├── pg06-how-we-work-v1.md
 │   ├── pg07-capabilities-v1.md
 │   ├── pg08-service-details-v1.md
-│   └── pg14-market-access-v1.md
+│   ├── pg14-market-access-v1.md
+│   └── pg15-markets-v1.md
 └── canonical authorities
 ```
 
@@ -160,7 +167,7 @@ docs/
 | PG12 | Suppliers / Brands Directory | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG13 | Supplier / Brand Details | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG14 | Market Access | C7 — IMPLEMENTED | APPROVED — `pg14-market-access-v1.md` | `ar/market-access.html` + `en/market-access.html` | SOURCE + RENDERED + MARKET-NAVIGATION QA PASS — CLOUDFLARE BATCH REVIEW PENDING |
-| PG15 | Markets / Countries | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
+| PG15 | Markets / Countries | C7 — IMPLEMENTED | APPROVED — `pg15-markets-v1.md` | `ar/markets.html` + `en/markets.html` | SOURCE + RENDERED + FILTER + MARKET-NAVIGATION QA PASS — CLOUDFLARE BATCH REVIEW PENDING |
 | PG16 | For Suppliers | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG17 | Submit Your Product | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG18 | RFQ / Request a Quote | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
@@ -273,6 +280,20 @@ docs/
 - Evidence commit: `ddddbeaf8fa8c2de852e0532c1d669511732fc0e`.
 - Current: C7 pending Cloudflare M3 batch browser review.
 
+### PG15 — Markets / Countries
+- Frozen scope: region/country filters, country cards, schematic market map, channel tags, market overview and CTA.
+- Profile: `docs/page-design-profiles/pg15-markets-v1.md`.
+- Arabic: `ar/markets.html`.
+- English: `en/markets.html`.
+- Composition: `assets/css/origex-markets.css`.
+- Filter runtime: `assets/js/origex-markets.js` — minimal vanilla JS; no external map/data API.
+- Canonical demo markets: Qatar, Saudi Arabia, UAE, Kuwait, Bahrain and Oman. Commercial/channel notes are illustrative only and require verified replacement.
+- Source QA: `qa/pg15-markets/source-report.json` — failures 0.
+- Rendered QA: `qa/pg15-markets/rendered-report.json` — AR/EN × 390/820/1366/1536 = 8/8 PASS; no overflow; touch targets, direction, 6 sections, 6 country cards, 18 channel tags and 6 map nodes PASS.
+- Interaction QA: country filtering and reset PASS; desktop/mobile Market current-state PASS.
+- Final QA status: `qa/pg15-markets/run-status.txt` — PASS.
+- Current: C7 pending Cloudflare M3 batch browser review. M3 page production is code/CI complete.
+
 ## Cloudflare Test Environment Control
 
 Canonical deployment model:
@@ -300,14 +321,15 @@ Current state:
 - PG07 = C7 / CI QA PASS / Cloudflare batch review pending.
 - PG08 = C7 / CI QA PASS / Cloudflare batch review pending.
 - PG14 = C7 / CI QA PASS / Cloudflare batch review pending.
-- **Next build: PG15 — Markets / Countries.**
+- PG15 = C7 / CI QA PASS / Cloudflare batch review pending.
+- **M3 page production = CODE / CI COMPLETE. Next gate: Cloudflare M3 batch browser review.**
 
 ### Next execution actions
 
-1. Prepare PG15 Content/Design/SEO Contract → C6.
-2. Build `ar/markets.html` + `en/markets.html` using the shared system.
-3. Run source/rendered/Market-navigation QA.
-4. Run the M3 Cloudflare batch browser review after PG15.
+1. Run Cloudflare batch browser review for PG05–PG08 + PG14–PG15.
+2. Fix deployment-only defects if any and rerun the affected page QA.
+3. Promote eligible M3 pages to C8 only after deployed-browser acceptance.
+4. Open M4 page production after the M3 batch deployment gate.
 5. Run Cloudflare batch browser review before promoting pending C7 pages to C8.
 6. Keep final aesthetic CSS polish for M7; only functional/responsive/RTL/overflow defects are fixed during page production.
 7. Repair Cloudflare Git auto-deploy in the deferred infrastructure session.
