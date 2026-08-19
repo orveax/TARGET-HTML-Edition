@@ -4,7 +4,7 @@ Product ID: ORX-P01
 Owner: ORVEAX  
 Repository: `orveax/TARGET-HTML-Edition`  
 Status: ACTIVE CONTROL DOCUMENT  
-Last Updated: 2026-08-19 — M2 / PG01 MARKETPLACE BENCHMARK CLOSED / PG02 C7 CI QA PASS / CLOUDFLARE REVIEW PENDING
+Last Updated: 2026-08-19 — M2 HOME FAMILY IMPLEMENTED / PG02–PG04 C7 CI QA PASS / CLOUDFLARE REVIEW PENDING
 
 This is the operational entry point for ORIGEX. If another document conflicts with this HQ, use the authority order below and stop local improvisation.
 
@@ -16,7 +16,8 @@ M1 — GLOBAL SYSTEM & COMPONENT FOUNDATION: PASS / CLOSED
 M2 — GLOBAL SHELL & HOME FAMILY: IN PROGRESS
 PG01 — HOME 01: C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK — AR + EN
 PG02 — HOME 02: C7 / IMPLEMENTED — CI QA PASS — CLOUDFLARE TEST REVIEW PENDING
-PG03–PG04: gated by C6 + Design Profile + SEO Contract
+PG03 — HOME 03: C7 / IMPLEMENTED — CI QA PASS — CLOUDFLARE TEST REVIEW PENDING
+PG04 — LANDING / ONE PAGE: C7 / IMPLEMENTED — CI QA PASS — CLOUDFLARE TEST REVIEW PENDING
 CLOUDFLARE TEST ENVIRONMENT: AVAILABLE VIA MANUAL REBUILD
 CLOUDFLARE AUTO-DEPLOY: DEFERRED — PUSH TRIGGER NEEDS CORRECTION
 M3–M8: NOT STARTED
@@ -24,33 +25,59 @@ M3–M8: NOT STARTED
 
 M1 closure authority is `M1-QA-REPORT-V1.md` plus `M1-COMPONENT-IMPLEMENTATION-MAP.md`, `M1-CLOSURE-2026-08-19.md` and `M1-VENDOR-SHA256.txt`.
 
-PG01 closure authority:
-- Arabic: `ar/index.html`
-- English: `en/index.html`
-- Page contract: `page-design-profiles/pg01-home-01-v1.md`
-- Base closure: `PG01-CLOSURE-2026-08-19.md`
-- Marketplace visual closure: `PG01-MARKETPLACE-VISUAL-POLISH-2026-08-19.md`
-- Final rendered QA: `5ab1edb6fe2a17adc41857790170097dfad57f0f` — 8/8 PASS.
-- Final interaction QA: `b3d12beb103492144f4c5fc690ef15eedd49eef4` — PASS.
+### PG01 authority
+- Arabic: `ar/index.html`.
+- English: `en/index.html`.
+- Page contract: `page-design-profiles/pg01-home-01-v1.md`.
+- Base closure: `PG01-CLOSURE-2026-08-19.md`.
+- Marketplace visual closure: `PG01-MARKETPLACE-VISUAL-POLISH-2026-08-19.md`.
+- Final rendered QA: 8/8 PASS.
+- Final interaction QA: PASS.
+- State: C8 / PASS / CLOSED.
 
-PG02 current authority:
+### PG02 authority
 - Arabic: `ar/home-02.html`.
 - English: `en/home-02.html`.
 - Page contract: `page-design-profiles/pg02-home-02-v1.md`.
 - QA report: `PG02-QA-REPORT-V1.md`.
-- Content: C7 / IMPLEMENTED from frozen C6 contract.
-- Source/content/SEO/assets QA: `c396b2024bb77ba5d39bd47b756a794ab20431cd` — PASS / failures 0.
-- Rendered responsive QA: `f2d25834ac57f2b00c7218cd5bea1376a2ee2d3c` — 8/8 PASS / failures 0.
-- Interaction QA: `a6d7488f96c2a3085f90a7ec319dcb2a468be2f0` — PASS / failures 0.
-- Visual snapshot evidence: `38d4c851f894a27fc88eb7ad36652d46e46e1beb`.
-- Final state: C7 / CI QA PASS; Cloudflare browser review still required before C8.
+- Source/content/SEO/assets: PASS / failures 0.
+- Rendered responsive: 8/8 PASS.
+- Interaction: PASS.
+- State: C7 / CI QA PASS; Cloudflare deployed-browser review required before C8.
+
+### PG03 authority
+- Arabic: `ar/home-03.html`.
+- English: `en/home-03.html`.
+- Page contract: `page-design-profiles/pg03-home-03-v1.md`.
+- Manufacturer composition: `assets/css/origex-manufacturer.css`.
+- Owned media: `assets/media/demo/hero-manufacturer-readiness.svg`.
+- Combined QA authority: `PG03-PG04-HOME-FAMILY-QA-2026-08-19.md`.
+- Source/content/SEO/assets: PASS / failures 0.
+- Rendered responsive: AR/EN × 390/820/1366/1536 = 8/8 PASS.
+- Interaction: desktop mega/announcement + mobile drawer PASS.
+- Demo certification and illustrative export-market safeguards: PASS.
+- State: C7 / CI QA PASS; Cloudflare deployed-browser review required before C8.
+
+### PG04 authority
+- Arabic: `ar/landing.html`.
+- English: `en/landing.html`.
+- Page contract: `page-design-profiles/pg04-landing-v1.md`.
+- Landing composition: `assets/css/origex-landing.css`.
+- Demo-form runtime: `assets/js/origex-landing.js`.
+- Owned media: `assets/media/demo/hero-commercial-enquiry.svg`.
+- Combined QA authority: `PG03-PG04-HOME-FAMILY-QA-2026-08-19.md`.
+- Source/content/SEO/assets: PASS / failures 0.
+- Rendered responsive: AR/EN × 390/820/1366/1536 = 8/8 PASS.
+- Interaction: anchors + validation-only demo form + mobile drawer PASS.
+- Form has no endpoint/network submission.
+- State: C7 / CI QA PASS; Cloudflare deployed-browser review required before C8.
 
 Deployment authority:
 - `STAGING-PREVIEW-GATE-V1.md`.
 - GitHub `main` is the source remote.
 - Cloudflare Test Environment is the deployed test runtime.
 - Manual Rebuild works and is accepted temporarily.
-- Automatic deploy after push is currently degraded and explicitly deferred to the next infrastructure session.
+- Automatic deploy after push is currently degraded and explicitly deferred.
 - GitHub Pages is not part of the ORIGEX deployment model.
 
 The pre-foundation Build 02–05 implementation was removed from the active tree during the 2026-08-19 hard audit. Git history remains the archive. No removed pre-freeze file is an implementation authority.
@@ -82,7 +109,7 @@ When documents overlap, use this order:
 2. `PRODUCT-FOUNDATION-COMPLETE-V1.md` — foundation closure authority.
 3. `SCOPE-FREEZE-V1-FINAL.md` — V1 page/feature scope.
 4. `FOUNDATION-FREEZE-V1.md` — frozen product systems.
-5. Domain authorities: technology, design, content, SEO, assets, QA and staging preview.
+5. Domain authorities: technology, design, content, SEO, assets, QA and deployment preview.
 6. `MILESTONE-PLAN-V1.md` — delivery sequence.
 7. Reference/source-map documents — historical evidence only.
 
@@ -129,6 +156,7 @@ No reference document may override a frozen authority.
 - `M1-QA-REPORT-V1.md`
 - `M1-COMPONENT-IMPLEMENTATION-MAP.md`
 - `PG02-QA-REPORT-V1.md`
+- `PG03-PG04-HOME-FAMILY-QA-2026-08-19.md`
 - `DOCUMENTATION-ARCHITECTURE.md`
 
 ### Reference Only
@@ -141,15 +169,19 @@ No reference document may override a frozen authority.
 
 ```text
 /
-├── index.html                  # Arabic-first language entry
+├── index.html
 ├── README.md
 ├── CHANGELOG.md
 ├── ar/
-│   ├── index.html              # PG01 Arabic
-│   └── home-02.html            # PG02 Arabic — C7
+│   ├── index.html              # PG01
+│   ├── home-02.html            # PG02
+│   ├── home-03.html            # PG03
+│   └── landing.html            # PG04
 ├── en/
-│   ├── index.html              # PG01 English
-│   └── home-02.html            # PG02 English — C7
+│   ├── index.html              # PG01
+│   ├── home-02.html            # PG02
+│   ├── home-03.html            # PG03
+│   └── landing.html            # PG04
 ├── assets/
 │   ├── brand/
 │   ├── css/
@@ -159,29 +191,41 @@ No reference document may override a frozen authority.
 │   │   ├── origex-compositions.css
 │   │   ├── origex-marketplace-polish.css
 │   │   ├── origex-distribution.css
+│   │   ├── origex-manufacturer.css
+│   │   ├── origex-landing.css
 │   │   └── origex-shell.css
 │   ├── media/demo/
 │   │   ├── hero-trade-scene.svg
-│   │   └── hero-distribution-network.svg
+│   │   ├── hero-distribution-network.svg
+│   │   ├── hero-manufacturer-readiness.svg
+│   │   └── hero-commercial-enquiry.svg
 │   ├── fonts/
 │   ├── icons/
 │   ├── js/
+│   │   ├── config.js
+│   │   ├── config-engine.js
+│   │   ├── origex-ui.js
+│   │   └── origex-landing.js
 │   ├── patterns/
 │   └── vendor/bootstrap/
 ├── preview/
 ├── qa/
 │   ├── pg01-*/
-│   └── pg02-*/
+│   ├── pg02-*/
+│   └── pg03-pg04-home-family/
 └── docs/
     ├── PG02-QA-REPORT-V1.md
+    ├── PG03-PG04-HOME-FAMILY-QA-2026-08-19.md
     └── page-design-profiles/
         ├── pg01-home-01-v1.md
-        └── pg02-home-02-v1.md
+        ├── pg02-home-02-v1.md
+        ├── pg03-home-03-v1.md
+        └── pg04-landing-v1.md
 ```
 
 M1 owns the reusable foundation. M2+ pages consume it and may not create competing local systems.
 
-`origex-shell.css` remains the M1 shell. `origex-compositions.css`, `origex-marketplace-polish.css` and `origex-distribution.css` are M2 composition/refinement layers and may not override the frozen architecture with page-local systems.
+`origex-shell.css` remains the M1 shell. M2 page-family composition layers may assemble registered systems without reopening M1.
 
 ## 7. Page Entry and Exit Gate
 
@@ -203,9 +247,11 @@ A page reaches C8 only after:
 - deployed Cloudflare Test Environment smoke/visual review;
 - documentation synchronization.
 
-PG01 is **C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK**.
-
-PG02 is **C7 IMPLEMENTED — CI QA PASS — CLOUDFLARE TEST REVIEW PENDING**. Do not promote it to C8 until the current revision is manually/automatically deployed to Cloudflare and reviewed externally.
+Current states:
+- PG01 = **C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK**.
+- PG02 = **C7 / CI QA PASS — CLOUDFLARE REVIEW PENDING**.
+- PG03 = **C7 / CI QA PASS — CLOUDFLARE REVIEW PENDING**.
+- PG04 = **C7 / CI QA PASS — CLOUDFLARE REVIEW PENDING**.
 
 Cloudflare auto-deploy degradation is an operational issue, not a code-build blocker while Manual Rebuild remains available.
 
@@ -229,13 +275,13 @@ There is no fifth category called “quick local tweak”.
 
 ## 10. Next Action
 
-1. Use Cloudflare Manual Rebuild to deploy the current `main` revision when external review is performed.
-2. Open `/ar/home-02.html` and `/en/home-02.html` through the real Cloudflare Test Environment on mobile + desktop.
-3. Verify deployed assets/base paths, layout hierarchy, RTL/LTR and runtime interactions.
+1. Use Cloudflare Manual Rebuild to deploy current `main`.
+2. Open PG02, PG03 and PG04 AR + EN through the real Cloudflare Test Environment on mobile + desktop.
+3. Verify deployed assets/base paths, hierarchy, RTL/LTR and runtime interactions.
 4. Fix/retest any deployed-environment defect.
-5. Promote PG02 to C8 / PASS / CLOSED only after this review passes.
-6. Repair Cloudflare Git auto-deploy in the deferred infrastructure session.
-7. PG03 Content/Design/SEO preparation may proceed, but PG02 remains open at C7 until Cloudflare review closes it.
+5. Promote each page individually to C8 only after deployed review passes.
+6. When PG01–PG04 all meet the M2 exit criteria, close M2 and open M3.
+7. Repair Cloudflare Git auto-deploy in the deferred infrastructure session.
 
 M1 remains closed unless a verified foundation defect requires a controlled QA fix.
 
