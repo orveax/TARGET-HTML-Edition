@@ -2,7 +2,7 @@
 
 **Product ID:** ORX-P01  
 **Owner / Author:** ORVEAX  
-**Status:** M1 closed — M2 active — PG01 AR/EN in QA
+**Status:** M1 closed — M2 active — PG01 C8 / PASS / CLOSED
 
 ORIGEX is a premium Arabic-first bilingual HTML template product for B2B food trading, import, wholesale, distribution, manufacturers, suppliers and market-access workflows.
 
@@ -20,8 +20,9 @@ Do not start implementation from historical commits or reference/source-map file
 M0 — PRODUCT FOUNDATION: CLOSED / COMPLETE
 M1 — GLOBAL SYSTEM & COMPONENT FOUNDATION: CLOSED / COMPLETE
 M2 — GLOBAL SHELL & HOME FAMILY: IN PROGRESS
-PG01 — HOME 01: C7 IMPLEMENTED / AR + EN / QA IN PROGRESS
-PG02–PG32: gated by their own content/design/SEO entry requirements
+PG01 — HOME 01: C8 / PASS / CLOSED — AR + EN
+PG02 — HOME 02: C0 / ENTRY GATE REQUIRED
+PG03–PG32: gated by their own content/design/SEO entry requirements
 ```
 
 M1 closure authority:
@@ -30,10 +31,15 @@ M1 closure authority:
 - [`docs/M1-CLOSURE-2026-08-19.md`](docs/M1-CLOSURE-2026-08-19.md)
 - [`docs/M1-VENDOR-SHA256.txt`](docs/M1-VENDOR-SHA256.txt)
 
-PG01 authority and implementation:
+PG01 authority, implementation and closure:
 - [`docs/page-design-profiles/pg01-home-01-v1.md`](docs/page-design-profiles/pg01-home-01-v1.md)
+- [`docs/PG01-QA-REPORT-V1.md`](docs/PG01-QA-REPORT-V1.md)
+- [`docs/PG01-CLOSURE-2026-08-19.md`](docs/PG01-CLOSURE-2026-08-19.md)
 - [`ar/index.html`](ar/index.html)
 - [`en/index.html`](en/index.html)
+- [`qa/pg01-rendered/`](qa/pg01-rendered/)
+- [`qa/pg01-interaction/`](qa/pg01-interaction/)
+- [`qa/pg01-visual-review/`](qa/pg01-visual-review/)
 
 A hard audit on 2026-08-19 removed pre-foundation Build 02–05 implementation and superseded planning files from the active tree. Git history remains the archive.
 
@@ -84,9 +90,32 @@ Before a page is built:
 8. build Arabic and English together;
 9. close only after full page QA and Content C8.
 
+## PG01 Closure
+
+PG01 passed the complete page gate on 2026-08-19:
+
+- source/content/SEO/asset QA — PASS;
+- rendered responsive QA — PASS across AR/EN at 390, 820, 1366 and 1536 widths;
+- runtime interaction QA — PASS for mega menu, Escape behavior, FAQ, announcement and mobile drawer;
+- RTL/LTR and local font/runtime checks — PASS;
+- visual refinement completed using the reusable F07 trade-route media composition layer;
+- no TARGET client data/assets or untracked third-party buyer-package assets entered the page.
+
+PG01 is the first closed M2 page benchmark. It does not close M2 itself.
+
 ## Current Next Action
 
-PG01 is implemented in Arabic and English and is now in page QA. Complete responsive, RTL/LTR, interaction, content parity, demo disclosure and SEO checks before moving PG01 from C7 to C8. PG02 may enter coding only after its own C6 + Design Profile + SEO gate is complete.
+Prepare **PG02 — Home 02 — Wholesale & Distribution** through its required entry gate:
+
+1. bilingual Content Contract;
+2. Arabic master + English adaptation;
+3. C6 freeze;
+4. Page Design Profile;
+5. SEO & Page Identity Contract;
+6. registered component/asset mapping;
+7. only then AR + EN implementation.
+
+PG02 remains at C0 until those requirements are complete.
 
 ## Repository Rule
 
