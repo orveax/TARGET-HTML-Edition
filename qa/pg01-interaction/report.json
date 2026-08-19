@@ -1,0 +1,54 @@
+{
+  "generatedAt": "2026-08-19T02:13:15Z",
+  "failures": 0,
+  "results": [
+    {
+      "lang": "ar",
+      "mode": "desktop",
+      "pass": true,
+      "checks": {
+        "mega_present": true,
+        "mega_open": true,
+        "mega_escape_close": true,
+        "faq_present": true,
+        "faq_toggle": true,
+        "announcement_present": true,
+        "announcement_close": true
+      }
+    },
+    {
+      "lang": "ar",
+      "mode": "mobile",
+      "pass": true,
+      "checks": {
+        "drawer_present": true,
+        "drawer_open": true,
+        "drawer_escape_close": true
+      }
+    },
+    {
+      "lang": "en",
+      "mode": "desktop",
+      "pass": true,
+      "checks": {
+        "mega_present": true,
+        "mega_open": true,
+        "mega_escape_close": true,
+        "faq_present": true,
+        "faq_toggle": true,
+        "announcement_present": true,
+        "announcement_close": true
+      }
+    },
+    {
+      "lang": "en",
+      "mode": "mobile",
+      "pass": true,
+      "checks": {
+        "drawer_present": true,
+        "drawer_open": true,
+        "drawer_escape_close": true
+      }
+    }
+  ]
+}
