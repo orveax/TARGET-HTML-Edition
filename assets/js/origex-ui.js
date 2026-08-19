@@ -5,7 +5,7 @@
   const qsa = (selector, root = document) => Array.from(root.querySelectorAll(selector));
   const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Controlled global-navigation defect fix: expose the approved M2 Home Family
+  // Controlled global-navigation layer: expose the approved M2 Home Family
   // consistently from N02/N03 without duplicating page-local navigation markup.
   const hydrateHomeFamilyNavigation = () => {
     const isArabic = document.documentElement.lang.toLowerCase().startsWith('ar');
@@ -77,7 +77,79 @@
     });
   };
 
+  // M3 company/business IA: keep About, How We Work and Capabilities discoverable
+  // from all shared navigation surfaces. Future approved routes may appear before build.
+  const hydrateCompanyNavigation = () => {
+    const isArabic = document.documentElement.lang.toLowerCase().startsWith('ar');
+    const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+    const companyFiles = new Set(['about.html', 'how-we-work.html', 'capabilities.html']);
+    const labels = isArabic
+      ? {
+          title: 'الشركة وطريقة العمل',
+          items: [
+            ['about.html', 'عن الشركة'],
+            ['how-we-work.html', 'كيف نعمل'],
+            ['capabilities.html', 'القدرات والخدمات']
+          ]
+        }
+      : {
+          title: 'Company & Process',
+          items: [
+            ['about.html', 'About'],
+            ['how-we-work.html', 'How We Work'],
+            ['capabilities.html', 'Capabilities & Services']
+          ]
+        };
+
+    qsa('[data-orx-mega-menu]').forEach((menu) => {
+      const grid = menu.querySelector('.orx-mega-menu__grid');
+      if (!grid || grid.querySelector('[data-orx-company-links]')) return;
+
+      const group = document.createElement('div');
+      group.className = 'orx-mega-menu__group';
+      group.dataset.orxCompanyLinks = '';
+
+      const title = document.createElement('span');
+      title.className = 'orx-mega-menu__title';
+      title.textContent = labels.title;
+      group.append(title);
+
+      labels.items.forEach(([href, text]) => {
+        const link = document.createElement('a');
+        link.href = href;
+        link.textContent = text;
+        link.dataset.orxCompanyLink = href;
+        if (href === currentFile) link.setAttribute('aria-current', 'page');
+        group.append(link);
+      });
+
+      grid.append(group);
+    });
+
+    qsa('.orx-mobile-nav').forEach((nav) => {
+      qsa('a', nav).forEach((link) => {
+        const href = (link.getAttribute('href') || '').split('#')[0];
+        if (companyFiles.has(href)) link.remove();
+      });
+
+      const fragment = document.createDocumentFragment();
+      labels.items.forEach(([href, text]) => {
+        const link = document.createElement('a');
+        link.href = href;
+        link.textContent = text;
+        link.dataset.orxCompanyLink = href;
+        if (href === currentFile) link.setAttribute('aria-current', 'page');
+        fragment.append(link);
+      });
+
+      const lastHome = nav.querySelector('[data-orx-home-variant-link]:last-of-type');
+      if (lastHome) lastHome.after(fragment);
+      else nav.prepend(fragment);
+    });
+  };
+
   hydrateHomeFamilyNavigation();
+  hydrateCompanyNavigation();
 
   // Mobile drawer — N03
   const drawer = document.querySelector('[data-orx-mobile-drawer]');
