@@ -1,0 +1,34 @@
+{
+  "failures": [
+    "nav-drift"
+  ],
+  "pages": {
+    "ar": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "categories",
+        "quality",
+        "handling",
+        "traceability",
+        "documents",
+        "guidance",
+        "cta"
+      ]
+    },
+    "en": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "categories",
+        "quality",
+        "handling",
+        "traceability",
+        "documents",
+        "guidance",
+        "cta"
+      ]
+    }
+  },
+  "nav-drift": "DRIFT: ar/certifications-compliance.html\nDRIFT: en/certifications-compliance.html\n"
+}
