@@ -4,13 +4,14 @@ Product ID: ORX-P01
 Page ID: PG01 — Home 01 — Food Trading / Importer  
 Milestone: M2 — Global Shell & Home Family  
 Change Type: **APPROVED COMMERCIAL / VISUAL POLISH CHANGE REQUEST**  
-Date: 2026-08-19
+Date: 2026-08-19  
+Final Result: **PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK**
 
 ## Decision
 
-PG01 was already C8 / PASS from the page/code QA gate. It was reopened only for an approved marketplace-quality visual refinement before it becomes the visual benchmark for the rest of the Home family.
+PG01 was already C8 / PASS from the page/code QA gate. It was reopened only for an approved marketplace-quality visual refinement before becoming the visual benchmark for the rest of the Home family.
 
-This change does **not** reopen M1, change the content architecture, add plugins, alter Bootstrap, or introduce a new runtime dependency.
+This change did **not** reopen M1, change the content architecture, add plugins, alter Bootstrap, or introduce a new runtime dependency.
 
 ## Approved Scope
 
@@ -24,12 +25,13 @@ This change does **not** reopen M1, change the content architecture, add plugins
 
 ## Implementation
 
-### Reusable CSS Layer
+### Reusable M2 CSS Layer
 
 - `assets/css/origex-marketplace-polish.css`
-- loaded after the M2 compositions layer through `assets/css/origex-shell.css`.
+- loaded by `assets/css/origex-compositions.css`.
+- `assets/css/origex-shell.css` remains the closed M1 shell and imports only the M2 compositions layer.
 
-The polish layer is scoped to existing semantic section identities and reuses the frozen ORIGEX token system. It does not override Bootstrap as a visual identity or create a parallel design system.
+This preserves the lifecycle boundary: M1 remains closed while M2 owns the commercial page-composition refinement.
 
 ### ORVEAX-Owned Demo Media
 
@@ -39,7 +41,7 @@ The polish layer is scoped to existing semantic section identities and reuses th
 - `assets/media/demo/product-milk.svg`
 - `assets/media/demo/product-frozen.svg`
 
-These are fictional generic vector compositions created for ORIGEX. They contain no TARGET assets, no third-party brands, no supplier packaging, no people/release risk and no stock-photo dependency.
+These are fictional generic vector compositions created for ORIGEX. They contain no TARGET assets, third-party brands, supplier packaging, people/release risk, or stock-photo dependency.
 
 All five assets are registered in `docs/ASSET-LICENSE-REGISTER-V1.md` as **ORVEAX OWNED**.
 
@@ -47,23 +49,21 @@ All five assets are registered in `docs/ASSET-LICENSE-REGISTER-V1.md` as **ORVEA
 
 ### Hero
 
-- B2B warehouse / cargo / route scene becomes the visual anchor behind the existing Origin → Route → Market composition.
-- Existing information cards remain readable using translucent surfaces and the same component hierarchy.
-- No new JavaScript.
+- B2B warehouse / cargo / route scene is the visual anchor behind the Origin → Route → Market composition.
+- translucent route cards preserve information readability.
+- no new JavaScript.
 
 ### Trust Layer
 
-- five decision inputs retain the same content but receive restrained accent coding and clearer visual separation.
-- the section remains information-first rather than metric/claim-heavy.
+- the five decision inputs retain the same content with restrained accent coding and clearer separation.
 
 ### Process
 
-- the four-step route receives a stronger sequence cue and top progress accent while preserving the current markup and copy.
+- the four-step route receives a stronger sequence cue and progress accent.
 
 ### Product Categories
 
 - six category cards receive distinct token-based visual headers and elevated icon treatment.
-- no stock imagery is introduced.
 
 ### Role-Based Journeys
 
@@ -71,12 +71,26 @@ All five assets are registered in `docs/ASSET-LICENSE-REGISTER-V1.md` as **ORVEA
 
 ### Featured Products
 
-- pattern-only media is replaced visually by four ORVEAX-owned fictional packshots.
-- cards use a 4:3 media ratio on larger screens and a 16:10 ratio on small screens to reduce excessive vertical length.
+- four pattern-only placeholders are replaced visually by ORVEAX-owned fictional packshots.
+- media uses 4:3 on larger screens and 16:10 on small screens.
 
 ### Supplier CTA
 
-- the CTA gains a restrained network/ring composition with no extra assets or runtime cost.
+- the CTA gains a restrained network/ring composition with no extra dependency.
+
+## Defect Found During QA
+
+The first post-polish rendered gate detected four Laptop/Desktop failures. Root cause: the new Hero `min-block-size` combined with the inherited `aspect-ratio: 3/2`, forcing the media box wider than its CSS grid column.
+
+Resolution in M2 only:
+- `inline-size: 100%`;
+- `min-inline-size: 0`;
+- `aspect-ratio: auto`;
+- retained responsive block-size behavior.
+
+Fix commit: `c7398a00c0db22ba6617c63958606c1a8b326ba1`.
+
+M1 was not reopened.
 
 ## Key Commits
 
@@ -86,36 +100,64 @@ All five assets are registered in `docs/ASSET-LICENSE-REGISTER-V1.md` as **ORVEA
 - Milk packshot: `89bedf2f9f5a17878a9fd753bbb08829c2f0b33e`
 - Frozen packshot: `6cb0e366ea37f465db27aad3dd6703b807076023`
 - Marketplace polish CSS: `616b88b33b0fb0bd6eb3532466eba5d069d9fb23`
-- Shared shell loading: `2c33a597121b8b7b5d188a52c187ba53142110b8`
 - Asset register: `565269fc961e9ad362965d1abd03570899e973ff`
-- Visual review rerun trigger: `f605af320cd598eea5bbe94b8181e89f0dedb7e7`
-- Updated visual snapshot evidence: `0c2c3a931c790707f7bf70d46677c45ce941777a`
+- M1/M2 boundary correction: `9999dcd3a153202da1ebcf56090aaacefbad4810` + `63afdcdfeabaa6efa8634ed895ecab955b8b014d`
+- Hero overflow defect fix: `c7398a00c0db22ba6617c63958606c1a8b326ba1`
+- Final rendered QA evidence: `5ab1edb6fe2a17adc41857790170097dfad57f0f`
+- Final visual benchmark snapshots: `e1c09173757defc6992ac162447990f2ffc76f5a`
+- Final interaction QA evidence: `b3d12beb103492144f4c5fc690ef15eedd49eef4`
 
-## Visual Evidence
+## Final QA — PASS
 
-`qa/pg01-visual-review/` was regenerated after the polish. The new snapshot commit updates AR/EN Mobile and Desktop screenshots. Full-page JPEG output sizes increased materially because product/vector media is now present, confirming the browser-rendered output changed.
+### Rendered Responsive Gate
 
-This snapshot evidence is a visual-review aid, not by itself the complete QA gate.
+Evidence: `qa/pg01-rendered/report.json` generated `2026-08-19T04:15:00Z`.
 
-## QA Gate
+Result: **8/8 viewport/language cases PASS — failures: 0**.
 
-PG01 remains in **CHANGE REQUEST QA** until the post-polish reruns confirm:
+Validated:
+- AR 390 / 820 / 1366 / 1536.
+- EN 390 / 820 / 1366 / 1536.
+- correct RTL/LTR direction.
+- no horizontal overflow or offscreen layout defect.
+- touch-target baseline.
+- readable Hero.
+- local fonts loaded.
 
-- rendered responsive matrix: PASS;
-- no horizontal overflow: PASS;
-- AR RTL / EN LTR: PASS;
-- touch target baseline: PASS;
-- fonts/runtime: PASS;
-- mega menu / Escape: PASS;
-- FAQ accordion: PASS;
-- announcement dismiss: PASS;
-- mobile drawer / Escape / scroll lock: PASS;
-- asset/license register: PASS.
+### Runtime Interaction Gate
 
-After those checks pass, PG01 returns to **C8 / PASS / CLOSED** with this polish as the new M2 visual benchmark.
+Evidence: `qa/pg01-interaction/report.json` generated `2026-08-19T04:18:36Z`.
+
+Result: **AR Desktop + AR Mobile + EN Desktop + EN Mobile PASS — failures: 0**.
+
+Validated:
+- mega menu open + Escape close.
+- FAQ toggle.
+- announcement dismiss.
+- mobile drawer open + Escape close.
+
+### Visual Benchmark Evidence
+
+`qa/pg01-visual-review/` was regenerated after the overflow fix.
+
+Final snapshot commit: `e1c09173757defc6992ac162447990f2ffc76f5a`.
+
+### Asset / License Gate
+
+PASS. All new demo media is ORVEAX-owned and registered. No stock image, third-party product packaging, trademark, client asset or external runtime dependency was introduced.
+
+## Closure Decision
+
+**PG01 Marketplace Visual Polish Change Request = PASS / CLOSED.**
+
+PG01 returns to:
+
+> **C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK**
+
+This is now the reference quality level for subsequent ORIGEX Home layouts, while page-specific compositions must still be designed for their own user/commercial intent rather than cloned blindly.
 
 ## Deployment Note
 
-The separate Staging Preview Gate remains BLOCKED until GitHub Pages is enabled in repository Settings → Pages → Source → GitHub Actions. This deployment blocker is independent of the page/code QA state.
+The separate Staging Preview Gate remains **BLOCKED** until GitHub Pages is enabled in repository Settings → Pages → Source → GitHub Actions. This deployment blocker is independent of the page/code QA closure.
 
 Copyright © ORVEAX.
