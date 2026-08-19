@@ -18,35 +18,36 @@ A page is not considered closed until all applicable checks below pass.
 7. Primary/secondary CTA wording follows the approved CTA vocabulary or has a documented exception.
 8. Required empty/loading/success/error/validation microcopy exists where applicable.
 9. Page Design Profile completed.
-10. Registered components/variants only.
-11. Arabic RTL layout pass.
-12. English LTR layout pass.
-13. Mobile pass at 360 / 390 / 412 widths.
-14. Tablet pass at 768 / 820 widths.
-15. Desktop pass at representative 1024+ widths.
-16. No horizontal overflow.
-17. Header/footer/navigation integration correct.
-18. Keyboard navigation pass for interactive elements.
-19. Visible focus states present.
-20. Forms/controls have semantic labels and states.
-21. ARIA/state sync correct where native HTML is insufficient.
-22. `prefers-reduced-motion` behavior respected.
-23. No console errors from ORIGEX code.
-24. No broken internal links/assets.
-25. Images/media use approved frames and ratios.
-26. Asset/license status logged where applicable.
-27. No TARGET/client identity or proprietary asset leakage.
-28. Page-specific CSS does not fork shared components.
-29. No temporary hotfix files or unresolved inline patches.
-30. Search/filter/tabs/accordion/form behavior passes where present.
-31. Empty/error/success states exist where required by the approved feature.
-32. SEO baseline present: title/meta, correct lang/dir, canonical/hreflang placeholders as applicable.
-33. Documentation entry updated where buyer behavior/configuration changed.
-34. Responsive content order reviewed independently in AR and EN.
-35. Performance review: no unnecessary dependency, duplicate CSS/JS, raw oversized media or blocking optional script.
-36. Cross-browser smoke test on supported modern browser set before milestone closure.
-37. Content Status moves from C7 — Implemented to C8 — QA Passed.
-38. Page status explicitly changed to CLOSED/PASS in project tracking.
+10. SEO & Page Identity Contract completed.
+11. Registered components/variants only.
+12. Arabic RTL layout pass.
+13. English LTR layout pass.
+14. Mobile pass at 360 / 390 / 412 widths.
+15. Tablet pass at 768 / 820 widths.
+16. Desktop pass at representative 1024+ widths.
+17. No horizontal overflow.
+18. Header/footer/navigation integration correct.
+19. Keyboard navigation pass for interactive elements.
+20. Visible focus states present.
+21. Forms/controls have semantic labels and states.
+22. ARIA/state sync correct where native HTML is insufficient.
+23. `prefers-reduced-motion` behavior respected.
+24. No console errors from ORIGEX code.
+25. No broken internal links/assets.
+26. Images/media use approved frames and ratios.
+27. Asset/license status logged where applicable.
+28. No TARGET/client identity or proprietary asset leakage.
+29. Page-specific CSS does not fork shared components.
+30. No temporary hotfix files or unresolved inline patches.
+31. Search/filter/tabs/accordion/form behavior passes where present.
+32. Empty/error/success states exist where required by the approved feature.
+33. SEO/metadata baseline passes the dedicated SEO Gate below.
+34. Documentation entry updated where buyer behavior/configuration changed.
+35. Responsive content order reviewed independently in AR and EN.
+36. Performance review: no unnecessary dependency, duplicate CSS/JS, raw oversized media or blocking optional script.
+37. Cross-browser smoke test on supported modern browser set before milestone closure.
+38. Content Status moves from C7 — Implemented to C8 — QA Passed.
+39. Page status explicitly changed to CLOSED/PASS in project tracking.
 
 ## Content Gate
 
@@ -67,6 +68,38 @@ Required checks:
 
 Additional Features use this same gate. A feature is not “ready” because UI copy has been improvised inside code.
 
+## SEO / Metadata Gate
+
+Authority: `SEO-METADATA-PAGE-NAMING-V1.md`.
+
+A page passes SEO/metadata QA only when:
+- page ID matches the canonical PG registry.
+- filename/slug matches the locked naming system.
+- `html[lang]` and `dir` are correct.
+- H1 is unique and aligned with page intent.
+- SEO title exists in AR and EN and is unique within the relevant language set.
+- meta description exists in AR and EN and is page-specific.
+- canonical placeholder/value points to the correct language URL strategy.
+- hreflang AR/EN relationship is reciprocal where implemented.
+- x-default strategy is documented where applicable.
+- Open Graph title/description/image strategy is present for public pages.
+- structured data, when used, matches visible content and contains no fabricated claims.
+- breadcrumb labels and internal links use descriptive wording.
+- indexability state is explicit: INDEX / NOINDEX / ENVIRONMENT-DEPENDENT.
+- demo pages follow `DEMO-VS-PRODUCTION-POLICY-V1.md` and do not hard-code ORIGEX preview values as buyer production values.
+
+## Demo / Production Gate
+
+Authority: `DEMO-VS-PRODUCTION-POLICY-V1.md`.
+
+Before package/release closure:
+- demo-only contact/domain values are identified.
+- preview-only assets are disclosed and excluded from buyer ZIP unless redistribution rights are documented.
+- fictional demo claims are not presented as verified real-world endorsements.
+- no client/personal data, credentials, analytics IDs or private endpoints remain.
+- buyer-facing documentation includes a `Before You Publish` replacement checklist.
+- production SEO/config values are replaceable and not tied to the live demo domain.
+
 ## Component Gate
 
 A component is considered registry-ready only when:
@@ -85,10 +118,24 @@ A component is considered registry-ready only when:
 
 A milestone closes only when:
 - every listed deliverable exists.
-- applicable Content/Page/Component Gates pass.
+- applicable Content/Page/SEO/Demo/Component Gates pass.
 - critical and high-severity defects are zero.
 - documentation and tracking are updated.
 - unresolved scope additions are moved to backlog/change control rather than silently implemented.
+
+## Release Gate
+
+Authority: `RELEASE-VERSIONING-POLICY-V1.md`.
+
+A public package/release requires:
+- QA gates passed for the release scope.
+- zero Critical and zero High defects.
+- correct MAJOR.MINOR.PATCH classification.
+- changelog updated.
+- version identifiers synchronized in buyer documentation/package metadata.
+- changed assets/licenses reviewed.
+- demo and buyer package synchronized where applicable.
+- migration/deprecation notes added when a buyer-facing change requires them.
 
 ## Reopen Rules
 
@@ -99,14 +146,15 @@ A closed page/component/content unit may reopen only for:
 - performance regression.
 - verified factual/content correction.
 - approved commercial-message correction.
-- formal Design System / Architecture / Scope Change Request.
+- verified SEO/metadata defect.
+- formal Design System / Architecture / Scope / Product Governance Change Request.
 
 Preference or visual experimentation alone does not reopen a closed item.
 
 ## Severity
 
 - Critical: blocks use, navigation, submission candidate, or causes major broken layout/data loss/misleading commercial claim.
-- High: major UI/RTL/responsive/accessibility/content-consistency failure without a reasonable workaround.
+- High: major UI/RTL/responsive/accessibility/content-consistency/SEO-indexability failure without a reasonable workaround.
 - Medium: visible issue with workaround or localized quality impact.
 - Low: polish issue that does not impair use.
 
