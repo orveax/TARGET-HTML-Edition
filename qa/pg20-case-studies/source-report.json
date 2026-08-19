@@ -1,0 +1,28 @@
+{
+  "failures": [],
+  "pages": {
+    "ar": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "library",
+        "boundary",
+        "cta"
+      ],
+      "caseCount": 6
+    },
+    "en": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "library",
+        "boundary",
+        "cta"
+      ],
+      "caseCount": 6
+    }
+  },
+  "runtime": {
+    "failures": []
+  }
+}

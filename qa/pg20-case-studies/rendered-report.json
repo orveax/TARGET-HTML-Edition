@@ -1,0 +1,58 @@
+{
+  "failures": [
+    "ar-390:overflow",
+    "en-390:overflow"
+  ],
+  "cases": [
+    {
+      "lang": "ar",
+      "width": 390,
+      "failures": [
+        "overflow"
+      ]
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "width": 1536,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "failures": [
+        "overflow"
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 1536,
+      "failures": []
+    }
+  ],
+  "interaction": {
+    "ar-filter": [],
+    "ar-empty": [],
+    "en-filter": [],
+    "en-empty": []
+  }
+}
