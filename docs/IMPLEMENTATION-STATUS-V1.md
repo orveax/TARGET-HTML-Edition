@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Owner: ORVEAX  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-19 — Hard Audit Closed
+Last Updated: 2026-08-19 — M1 CLOSED / PG01 READY
 
 This is the repo-level execution tracker. It records actual current implementation state and must match the active code tree.
 
@@ -27,16 +27,16 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`.
 | Hard Audit / Legacy Cleanup | PASS / CLOSED |
 | Canonical Authority Map | PASS / CLOSED |
 | Project Rules | PASS / CLOSED |
-| Asset/License Register | ACTIVE |
-| Current Build Baseline | CLEAN M1 START |
+| Asset/License Register | ACTIVE — M1 BASELINE VERIFIED |
+| Current Build Baseline | M1 CLOSED — M2 / PG01 READY |
 
 ## Milestones
 
 | Milestone | Status | Exit Gate |
 |---|---|---|
 | M0 Product Foundation | PASS / CLOSED | Product Foundation Complete |
-| M1 Global System & Component Foundation | READY | Component AR/EN QA |
-| M2 Global Shell & Home Family | NOT STARTED | Home family + shell QA |
+| M1 Global System & Component Foundation | PASS / CLOSED | Component AR/EN foundation QA |
+| M2 Global Shell & Home Family | READY | Home family + shell QA |
 | M3 Company / Business / Market | NOT STARTED | Batch Page QA |
 | M4 Product / Supplier / Conversion | NOT STARTED | Data/forms/conversion QA |
 | M5 Proof / Resources / Compliance / Content | NOT STARTED | Resource/content QA |
@@ -44,52 +44,67 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`.
 | M7 Full QA & Optimization | NOT STARTED | Zero Critical / High defects |
 | M8 Docs / Licensing / Marketplace Package | NOT STARTED | Submission Candidate 1.0.0 |
 
-## M1 Foundation Units
+## M1 Foundation Units — CLOSED
 
-| Unit | Status | Notes |
+| Unit | Status | Evidence / Notes |
 |---|---|---|
 | Bootstrap 5.3.8 exact baseline | PASS / CLOSED | exact version authority locked |
-| Bootstrap local vendor files | READY | package + MIT notice to add |
-| Asset/license register | PASS / CLOSED | register exists; rows evolve with assets |
+| Bootstrap local vendor files | PASS / CLOSED | local LTR/RTL CSS + bundle + MIT notice |
+| Asset/license register | PASS / CLOSED | M1 vendor/font/icon/pattern baseline verified; remains living register for future assets |
 | Design hierarchy / registry normalization | PASS / CLOSED | F01–F07, P01–P11, C01–C28, S01–S06, N01–N04 |
-| Tokens / typography / spacing implementation | READY | frozen specification; code not yet built |
-| Grid / containers / responsive helpers | READY | Bootstrap infrastructure + ORIGEX decisions |
-| Radius / border / elevation implementation | READY | frozen tokens |
-| Motion / reduced-motion implementation | READY | frozen rules |
-| Lucide local icon assets/sprite | READY | exact selected asset subset pending M1 |
-| ORIGEX PT01–PT06 pattern assets | READY | files pending M1 |
-| Primitive code implementation | READY | registry normalized |
-| Component code implementation | READY | registry normalized |
-| Config schema/engine normalization | PASS / CLOSED | hook-based M1 seed retained; core UI not created by JS |
-| Config integration with M1 components | READY | requires M1 HTML/CSS components |
-| Global shell | NOT STARTED | old shell removed |
-| Components / Elements M1 foundation view | NOT STARTED | component QA surface; PG32 final page later |
-| M1 AR/EN component QA | NOT STARTED | required before M2 |
+| Tokens / typography / spacing implementation | PASS / CLOSED | central CSS foundation |
+| Grid / containers / responsive helpers | PASS / CLOSED | Bootstrap infrastructure + ORIGEX container decisions |
+| Radius / border / elevation implementation | PASS / CLOSED | frozen tokens implemented |
+| Motion / reduced-motion implementation | PASS / CLOSED | frozen tokens + accessibility fallback |
+| Lucide local icon assets/sprite | PASS / CLOSED | selected 1.27.0 subset + combined license |
+| ORIGEX PT01–PT06 pattern assets | PASS / CLOSED | six ORVEAX-owned SVGs |
+| Primitive code implementation | PASS / CLOSED | P01–P11 mapped |
+| Component code implementation | PASS / CLOSED | C01–C28 mapped centrally |
+| Config schema/engine normalization | PASS / CLOSED | canonical demo defaults + eligible hooks |
+| Config integration with M1 components | PASS / CLOSED | semantic hook integration |
+| Global shell | PASS / CLOSED | N01–N04 foundation implemented |
+| Components / Elements M1 foundation view | PASS / CLOSED | AR + EN noindex QA surfaces |
+| M1 AR/EN component QA | PASS / CLOSED | structural/component gate; see `M1-QA-REPORT-V1.md` |
 
-## Active Code Tree Before M1 Build
+## Active M1 Foundation Tree
 
 ```text
-README.md
-CHANGELOG.md
 assets/
 ├── brand/
-│   ├── origex-logo.svg
-│   ├── origex-logo-light.svg
-│   └── origex-mark.svg
-└── js/
-    ├── config.js
-    └── config-engine.js
+├── css/
+│   ├── origex-tokens.css
+│   ├── origex-foundation.css
+│   ├── origex-components.css
+│   └── origex-shell.css
+├── fonts/
+│   ├── tajawal/
+│   └── manrope/
+├── icons/
+│   ├── lucide/
+│   └── sprite.svg
+├── js/
+│   ├── config.js
+│   ├── config-engine.js
+│   └── origex-ui.js
+├── patterns/
+│   └── pt01–pt06
+└── vendor/
+    └── bootstrap/
+preview/
+├── m1-components-ar.html
+└── m1-components-en.html
 docs/
-└── canonical authorities + reference-only source maps
+├── M1-COMPONENT-IMPLEMENTATION-MAP.md
+├── M1-QA-REPORT-V1.md
+├── M1-VENDOR-SHA256.txt
+└── canonical authorities
 ```
-
-No active AR/EN page implementation and no old CSS/preview layer remain after the hard audit.
 
 ## 32 V1 Layouts
 
 | PG | Page | Content | Design Profile | Build | QA |
 |---|---|---|---|---|---|
-| PG01 | Home 01 — Food Trading / Importer | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
+| PG01 | Home 01 — Food Trading / Importer | C6 — FROZEN | READY / APPROVED | READY | NOT STARTED |
 | PG02 | Home 02 — Wholesale & Distribution | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG03 | Home 03 — Manufacturer / Supplier | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG04 | Landing / One Page | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
@@ -124,19 +139,22 @@ No active AR/EN page implementation and no old CSS/preview layer remain after th
 
 ## Historical Build Status
 
-Build 02–05 code was removed from the active tree because it predated the frozen Bootstrap/component/icon/content/SEO architecture.
+Build 02–05 code remains removed from the active tree because it predates the frozen Bootstrap/component/icon/content/SEO architecture.
 
 Historical value remains in Git history and selected reference/source-map files. It is not current implementation progress and must not be restored as active code.
 
 ## Page Production Gate
 
-PG01–PG32 are intentionally blocked from implementation until M1 exits with:
-- local Bootstrap foundation;
-- ORIGEX tokens/primitives/components;
-- icon/pattern/media foundations;
-- config integration;
-- global shell baseline;
-- AR/EN component QA.
+**M1 PASSED / CLOSED.** Page production is now open under the normal per-page gates.
+
+PG01 has completed its immediate entry requirements:
+- Content C6 — FROZEN.
+- Page Design Profile prepared and approved for implementation.
+- SEO & Page Identity Contract included in the profile.
+- component map uses the M1 registered system.
+- demo/legal and asset rules are explicit.
+
+Next execution action: build PG01 Arabic + English together, then Content C7 → page QA → C8.
 
 ## Update Rule
 
