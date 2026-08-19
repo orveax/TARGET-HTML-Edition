@@ -1,0 +1,41 @@
+{
+  "steps": [
+    {
+      "step": "ar-390-load",
+      "state": "ready",
+      "cards": 4,
+      "featured": 4
+    },
+    {
+      "step": "drawer-open",
+      "hidden": "false"
+    },
+    {
+      "step": "en-1366-load",
+      "state": "ready",
+      "cards": 4,
+      "featured": 4
+    },
+    {
+      "step": "mega-open",
+      "expanded": "true"
+    },
+    {
+      "step": "search",
+      "cards": 1
+    },
+    {
+      "step": "category",
+      "cards": 0
+    },
+    {
+      "step": "reset",
+      "cards": 4
+    },
+    {
+      "step": "origin",
+      "cards": 1
+    }
+  ],
+  "exception": null
+}
