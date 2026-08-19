@@ -1,0 +1,78 @@
+{
+  "failures": [
+    "ar-390:touch:1",
+    "ar-820:touch:1",
+    "ar-1366:touch:1",
+    "ar-1536:touch:1",
+    "en-390:touch:1",
+    "en-820:touch:1",
+    "en-1366:touch:1",
+    "en-1536:touch:1"
+  ],
+  "cases": [
+    {
+      "lang": "ar",
+      "width": 390,
+      "failures": [
+        "touch:1"
+      ]
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "failures": [
+        "touch:1"
+      ]
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "failures": [
+        "touch:1"
+      ]
+    },
+    {
+      "lang": "ar",
+      "width": 1536,
+      "failures": [
+        "touch:1"
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "failures": [
+        "touch:1"
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "failures": [
+        "touch:1"
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "failures": [
+        "touch:1"
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 1536,
+      "failures": [
+        "touch:1"
+      ]
+    }
+  ],
+  "interaction": {
+    "en-query": [],
+    "ar-query": [],
+    "en-validation": [],
+    "ar-validation": [],
+    "en-file": [],
+    "ar-file": []
+  }
+}
