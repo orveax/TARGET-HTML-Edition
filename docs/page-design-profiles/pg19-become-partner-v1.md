@@ -2,7 +2,7 @@
 
 Product ID: ORX-P01  
 Milestone: M4 — Product / Supplier / Conversion  
-Status: PS6 — FROZEN FOR BUILD  
+Status: PS7 — IMPLEMENTED / CI QA PASS  
 Canonical file: `become-partner.html`
 
 ## Purpose
@@ -250,13 +250,24 @@ Required: self canonical, AR/EN/x-default hreflang, Open Graph baseline, WebPage
 - AR RTL / EN LTR verified independently;
 - reduced-motion inherited globally.
 
-## QA Rerun Note — 2026-08-20
+## QA Evidence — 2026-08-20
 
-The first PG19 source gate found one shared F05 defect: distributed pages referenced `message-circle` for the floating WhatsApp control while the symbol was missing from the canonical sprite. The symbol was added centrally in commit `6af5333ac397fb2895c12fc1d5074de0388d14fe`. PG19 remains PS6 until the full post-fix QA rerun records PASS. A global F05 icon-integrity workflow now guards all distributed AR/EN pages against missing sprite references.
+- AR/EN build: `ar/become-partner.html` + `en/become-partner.html`.
+- Composition: `assets/css/origex-partner.css`.
+- Runtime: `assets/js/origex-partner.js`.
+- Canonical data: `assets/data/markets.json` — six fictional GCC Demo markets.
+- Source/data/runtime QA: `qa/pg19-partner/source-report.json` — failures 0.
+- Rendered QA: `qa/pg19-partner/rendered-report.json` — failures 0; AR/EN × 390/820/1366/1536 = 8/8 PASS.
+- Interaction QA: valid market query prefill, invalid-ID non-fallback, language query preservation, channel/category group validation, successful browser-only Demo confirmation and file type/name behavior PASS in AR/EN.
+- Initial source gate found one shared F05 defect: `message-circle` was referenced by distributed floating WhatsApp controls but missing from the canonical icon sprite. Added centrally in commit `6af5333ac397fb2895c12fc1d5074de0388d14fe`.
+- Global F05 icon-integrity gate added in commit `d5e1dcdc3a2f740570b4cbd3bf42f4a022ac256d`; evidence now checks 40 AR/EN pages with 0 missing sprite references.
+- Final PG19 QA evidence commit: `599b6854eb20555ddb5c6f7b3068e9cd1361f2a0`.
+- Current gate: **PS7 / IMPLEMENTED / CI QA PASS**.
+- PS8 remains gated by deployed Cloudflare browser acceptance.
 
 ## Exit Gate
 
-PS7 only after AR+EN build plus source/SEO/assets/icons/navigation/footer/market-data/query-hydration/group validation/attachment/native validation/consent/confirmation/responsive/interaction QA PASS.
+PS7 gate: **PASSED**.
 
 PS8 remains gated by deployed Cloudflare browser acceptance.
 
