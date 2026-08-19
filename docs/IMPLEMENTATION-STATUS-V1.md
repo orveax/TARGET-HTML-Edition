@@ -4,7 +4,7 @@ Product ID: ORX-P01
 Owner: ORVEAX  
 Repository: `orveax/origex-html-template`  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-20 — M4 PAGE PRODUCTION CODE/CI COMPLETE / PG19 PS7 PASS / PG20 NEXT
+Last Updated: 2026-08-20 — M5 IN PROGRESS / PG20 PS7 CI QA PASS / PG21 NEXT
 
 This file is the concise repo-level execution tracker. Notion `ORIGEX — ORX-P01 | Project HQ` remains the product-state authority; GitHub records implementation and evidence. If this tracker conflicts with Project HQ, reconcile immediately.
 
@@ -22,11 +22,11 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 | M1 Global System & Components | PASS / CLOSED |
 | Global Navigation V1 | LOCKED / centrally normalized |
 | Global Footer V1 | LOCKED / centrally normalized |
-| F05 Icon Integrity | PASS — global automated gate active |
+| F05 Icon Integrity | PASS — global automated gate active; 42 AR/EN pages / 0 missing sprite references at PG20 closure |
 | Cloudflare Test Environment | AVAILABLE VIA MANUAL REBUILD |
 | Cloudflare Auto-Deploy | DEFERRED / repair pending |
-| Active Production Milestone | M5 entry preparation after M4 code/CI completion |
-| Parallel Final Acceptance | M2/M3/M4 PS8 Cloudflare browser review remains open |
+| Active Production Milestone | M5 IN PROGRESS — PG20 PS7; PG21 next |
+| Parallel Final Acceptance | M2/M3/M4 and completed M5 pages require applicable PS8 Cloudflare browser review |
 
 ## Page Production Snapshot
 
@@ -60,8 +60,8 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 **M4 page production is code/CI complete.** M4 remains open for deployed Cloudflare PS8 acceptance.
 
 ### M5 — Proof / Resources / Compliance / Content
-- PG20 Case Studies — **NEXT VALID PAGE PRODUCTION ACTION**.
-- PG21 Case Study Details — NOT STARTED.
+- PG20 Case Studies — **PS7 / IMPLEMENTED / CI QA PASS** — AR+EN; source/runtime failures 0; rendered 8/8; filter/query/language/empty-state interactions PASS; Cloudflare review pending.
+- PG21 Case Study Details — **NEXT VALID PAGE PRODUCTION ACTION**.
 - PG22 Downloads / Resources — NOT STARTED.
 - PG23 Certifications & Compliance — NOT STARTED.
 - PG24 Insights / Blog — NOT STARTED.
@@ -86,27 +86,26 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 - PG18 RFQ uses canonical product selection / query prefill; no live quote, price, stock or submission.
 - PG19 partner flow uses canonical market selection / query prefill and grouped channel/category validation; no appointment, exclusivity, territory reservation or distribution rights.
 
-## PG19 Final Evidence
+## PG20 Final Evidence
 
-- Profile: `docs/page-design-profiles/pg19-become-partner-v1.md`.
-- AR/EN: `ar/become-partner.html` + `en/become-partner.html`.
-- CSS: `assets/css/origex-partner.css`.
-- Runtime: `assets/js/origex-partner.js`.
-- QA: `qa/pg19-partner/` — source/data/runtime failures 0; rendered AR/EN × 390/820/1366/1536 = 8/8 PASS; query/group-validation/file interactions PASS.
-- Final evidence commit: `599b6854eb20555ddb5c6f7b3068e9cd1361f2a0`.
-- QA report: `docs/PG19-QA-REPORT-V1.md`.
+- Profile: `docs/page-design-profiles/pg20-case-studies-v1.md`.
+- AR/EN: `ar/case-studies.html` + `en/case-studies.html`.
+- CSS: `assets/css/origex-case-studies.css`.
+- Runtime: `assets/js/origex-case-studies.js`.
+- Editorial governance: six fictional Demo cases embedded in HTML; no new `cases.json` schema domain.
+- QA: `qa/pg20-case-studies/` — source/runtime failures 0; rendered AR/EN × 390/820/1366/1536 = 8/8 PASS; filter query, language preservation, keyboard reset and empty-state interactions PASS.
+- Initial 390px overflow was corrected in `020097b889ec04df899e414647fcf3d89181d7d4`.
+- Final evidence commit: `d559056fe2b6b6bd88b7d0debf371f19525e0d80`.
+- QA report: `docs/PG20-QA-REPORT-V1.md`.
 
-## Shared F05 Improvement
+## Shared F05 / Shell State
 
-PG19 QA exposed a global missing `message-circle` sprite symbol used by floating WhatsApp controls. It was fixed centrally in commit `6af5333ac397fb2895c12fc1d5074de0388d14fe`.
-
-Permanent guard:
-- workflow: `.github/workflows/global-icon-integrity-qa.yml`;
-- evidence: `qa/global-icon-integrity/`;
-- current result: **40 AR/EN pages checked / 0 missing sprite references / PASS**.
+- Global Footer V1 PASS after PG20 addition; no page-local footer fork.
+- F05 Icon Integrity PASS; active scan reached **42 AR/EN pages / 0 missing sprite references** at PG20 closure.
+- Global Navigation V1 remains locked. PG20 follows the canonical rule: Case Studies is current in the desktop Mega Menu, while the locked flat mobile drawer intentionally does not include Case Studies.
 
 ## Next Action
 
-Prepare **PG20 — Case Studies** through canonical content review → PS6 Page Design Profile / SEO contract → AR+EN implementation → QA. M2/M3/M4 Cloudflare PS8 browser acceptance continues as a parallel closure stream.
+Prepare **PG21 — Case Study Details** through canonical content review → PS6 Page Design Profile / SEO contract → AR+EN implementation → related-case/detail-state QA. Cloudflare PS8 browser acceptance continues as a parallel closure stream.
 
 Copyright © ORVEAX.
