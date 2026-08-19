@@ -1,7 +1,5 @@
 {
-  "failures": [
-    "global-navigation-drift"
-  ],
+  "failures": [],
   "pages": {
     "ar": {
       "failures": []
@@ -16,6 +14,5 @@
     "markets": 6,
     "supplierProductRelations": 12,
     "supplierMarketRelations": 12
-  },
-  "navigation_output": "DRIFT: en/supplier-details.html\n"
+  }
 }
