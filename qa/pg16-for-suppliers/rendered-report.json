@@ -1,8 +1,5 @@
 {
-  "failures": [
-    "en-accordion:exception:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (402, 5820)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://ww",
-    "ar-accordion:exception:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (402, 5585)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://ww"
-  ],
+  "failures": [],
   "cases": [
     {
       "lang": "ar",
@@ -46,11 +43,7 @@
     }
   ],
   "interaction": {
-    "en-accordion": [
-      "exception:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (402, 5820)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://ww"
-    ],
-    "ar-accordion": [
-      "exception:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (402, 5585)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://ww"
-    ]
+    "en-accordion-keyboard": [],
+    "ar-accordion-keyboard": []
   }
 }
