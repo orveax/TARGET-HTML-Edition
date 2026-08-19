@@ -2,7 +2,7 @@
 
 **Product ID:** ORX-P01  
 **Owner / Author:** ORVEAX  
-**Status:** M1 closed — M2 active — PG01 C8 / PASS / CLOSED
+**Status:** M1 closed — M2 active — PG01 C8 / PASS / CLOSED — Staging Preview BLOCKED
 
 ORIGEX is a premium Arabic-first bilingual HTML template product for B2B food trading, import, wholesale, distribution, manufacturers, suppliers and market-access workflows.
 
@@ -21,7 +21,8 @@ M0 — PRODUCT FOUNDATION: CLOSED / COMPLETE
 M1 — GLOBAL SYSTEM & COMPONENT FOUNDATION: CLOSED / COMPLETE
 M2 — GLOBAL SHELL & HOME FAMILY: IN PROGRESS
 PG01 — HOME 01: C8 / PASS / CLOSED — AR + EN
-PG02 — HOME 02: C0 / ENTRY GATE REQUIRED
+PG01 STAGING PREVIEW: BLOCKED — GitHub Pages not enabled
+PG02 — HOME 02: C0 / ENTRY GATE REQUIRED / CODE BLOCKED UNTIL STAGING PASS
 PG03–PG32: gated by their own content/design/SEO entry requirements
 ```
 
@@ -40,6 +41,12 @@ PG01 authority, implementation and closure:
 - [`qa/pg01-rendered/`](qa/pg01-rendered/)
 - [`qa/pg01-interaction/`](qa/pg01-interaction/)
 - [`qa/pg01-visual-review/`](qa/pg01-visual-review/)
+
+Staging authority:
+- [`index.html`](index.html) — Arabic-first root language entry
+- [`docs/STAGING-PREVIEW-GATE-V1.md`](docs/STAGING-PREVIEW-GATE-V1.md)
+- [`.github/workflows/deploy-staging-pages.yml`](.github/workflows/deploy-staging-pages.yml)
+- [`staging/deployment-status.md`](staging/deployment-status.md)
 
 A hard audit on 2026-08-19 removed pre-foundation Build 02–05 implementation and superseded planning files from the active tree. Git history remains the archive.
 
@@ -73,7 +80,8 @@ See [`docs/SCOPE-FREEZE-V1-FINAL.md`](docs/SCOPE-FREEZE-V1-FINAL.md).
 - [`IMPLEMENTATION-STATUS-V1.md`](docs/IMPLEMENTATION-STATUS-V1.md) — live execution tracker
 - [`PRODUCT-FOUNDATION-COMPLETE-V1.md`](docs/PRODUCT-FOUNDATION-COMPLETE-V1.md) — M0 closure
 - [`MILESTONE-PLAN-V1.md`](docs/MILESTONE-PLAN-V1.md) — delivery sequence
-- [`QA-DEFINITION-OF-DONE-V1.md`](docs/QA-DEFINITION-OF-DONE-V1.md) — exit gates
+- [`QA-DEFINITION-OF-DONE-V1.md`](docs/QA-DEFINITION-OF-DONE-V1.md) — page/milestone/release gates
+- [`STAGING-PREVIEW-GATE-V1.md`](docs/STAGING-PREVIEW-GATE-V1.md) — deployed browser-preview gate
 - [`ASSET-LICENSE-REGISTER-V1.md`](docs/ASSET-LICENSE-REGISTER-V1.md) — dependencies/assets/licensing
 
 ## Implementation Rule
@@ -88,7 +96,8 @@ Before a page is built:
 6. use registered components only;
 7. identify asset/license needs;
 8. build Arabic and English together;
-9. close only after full page QA and Content C8.
+9. close page QA only after full page QA and Content C8;
+10. for the first representative page in a page family, pass the Staging Preview Gate before coding the next page in that family.
 
 ## PG01 Closure
 
@@ -101,21 +110,23 @@ PG01 passed the complete page gate on 2026-08-19:
 - visual refinement completed using the reusable F07 trade-route media composition layer;
 - no TARGET client data/assets or untracked third-party buyer-package assets entered the page.
 
-PG01 is the first closed M2 page benchmark. It does not close M2 itself.
+PG01 remains C8 / PASS / CLOSED at page/code level.
+
+Its independent Staging Preview Gate is currently **BLOCKED** because GitHub Pages is not enabled for the repository. The deployment workflow successfully prepared the public artifact but failed at `Configure GitHub Pages`, so no Page URL exists yet.
 
 ## Current Next Action
 
-Prepare **PG02 — Home 02 — Wholesale & Distribution** through its required entry gate:
+Resolve PG01 staging before PG02 code begins:
 
-1. bilingual Content Contract;
-2. Arabic master + English adaptation;
-3. C6 freeze;
-4. Page Design Profile;
-5. SEO & Page Identity Contract;
-6. registered component/asset mapping;
-7. only then AR + EN implementation.
+1. enable GitHub Pages once at `Repository → Settings → Pages`;
+2. set `Build and deployment → Source → GitHub Actions`;
+3. rerun `Deploy ORIGEX Staging`;
+4. verify root + AR + EN externally on mobile and desktop;
+5. mark `STAGING PASS`;
+6. continue PG02 Content Contract → C6 → Design Profile → SEO Contract;
+7. begin PG02 AR+EN code only after its entry gate and PG01 staging gate both pass.
 
-PG02 remains at C0 until those requirements are complete.
+PG02 content/design/SEO preparation may continue while staging is blocked; its code may not.
 
 ## Repository Rule
 
