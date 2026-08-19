@@ -1,0 +1,16 @@
+ORIGEX DEMO RESOURCE — COMPANY PROFILE
+Status: Fictional template example / not a real company profile
+Language: Arabic + English
+Source: ORVEAX original
+
+ARABIC
+الهدف: مثال نصي يوضح نوع المعلومات التي يمكن أن يتضمنها الملف التعريفي لشركة تجارة أغذية B2B.
+يشمل عادة: نبذة الشركة، الدور التجاري، الفئات، الأسواق، القدرات، قنوات التواصل، وحدود الادعاءات.
+هذه البيانات توضيحية ويجب استبدالها بمعلومات موثقة قبل النشر.
+
+ENGLISH
+Purpose: A text-only Demo showing the kind of information a B2B food-trading company profile may contain.
+Typical sections: company overview, commercial role, categories, markets, capabilities, contact routes and claim boundaries.
+This content is illustrative and must be replaced with verified production information before publication.
+
+Copyright © ORVEAX.
