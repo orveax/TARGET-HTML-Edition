@@ -1,0 +1,87 @@
+{
+  "generatedAt": "2026-08-19T15:34:48Z",
+  "failures": 0,
+  "dataChecks": {
+    "twelveProducts": true,
+    "uniqueProductIds": true,
+    "requiredProductSchema": true,
+    "sixCategories": true,
+    "twoPerCategory": true,
+    "controlledAvailability": true,
+    "demoAvailabilityOnRequest": true,
+    "supplierRelations": true,
+    "productImagesExist": true,
+    "pg11CanonicalProduct": true
+  },
+  "pages": [
+    {
+      "page": "ar/products.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "visibleBreadcrumb": true,
+        "demoDisclosure": true,
+        "threeCompositionSections": true,
+        "searchControl": true,
+        "categoryFilter": true,
+        "brandFilter": true,
+        "originFilter": true,
+        "pagination": true,
+        "datasetLinks": true,
+        "productRuntime": true,
+        "sharedRuntime": true,
+        "staticProductCurrent": true,
+        "uniqueIDs": true,
+        "noClientCDNLeakage": true,
+        "iconReferencesResolve": true,
+        "localAssets": true
+      },
+      "sections": [
+        "hero",
+        "catalogue",
+        "cta"
+      ],
+      "missingIcons": [],
+      "pass": true
+    },
+    {
+      "page": "en/products.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "visibleBreadcrumb": true,
+        "demoDisclosure": true,
+        "threeCompositionSections": true,
+        "searchControl": true,
+        "categoryFilter": true,
+        "brandFilter": true,
+        "originFilter": true,
+        "pagination": true,
+        "datasetLinks": true,
+        "productRuntime": true,
+        "sharedRuntime": true,
+        "staticProductCurrent": true,
+        "uniqueIDs": true,
+        "noClientCDNLeakage": true,
+        "iconReferencesResolve": true,
+        "localAssets": true
+      },
+      "sections": [
+        "hero",
+        "catalogue",
+        "cta"
+      ],
+      "missingIcons": [],
+      "pass": true
+    }
+  ],
+  "errors": []
+}

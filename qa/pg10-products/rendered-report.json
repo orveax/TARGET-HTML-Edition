@@ -1,0 +1,240 @@
+{
+  "generatedAt": "2026-08-19T15:35:22Z",
+  "failures": 8,
+  "results": [
+    {
+      "lang": "ar",
+      "viewport": 390,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "threeSections": true,
+        "sixPageCards": true,
+        "datasetLoaded": true,
+        "imagesLoaded": false,
+        "resultCount12": true
+      },
+      "metrics": {
+        "cards": 6,
+        "count": "12 منتج مطابق",
+        "dir": "rtl",
+        "error": false,
+        "h1": true,
+        "images": false,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 3
+      },
+      "pass": false
+    },
+    {
+      "lang": "ar",
+      "viewport": 820,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "threeSections": true,
+        "sixPageCards": true,
+        "datasetLoaded": true,
+        "imagesLoaded": false,
+        "resultCount12": true
+      },
+      "metrics": {
+        "cards": 6,
+        "count": "12 منتج مطابق",
+        "dir": "rtl",
+        "error": false,
+        "h1": true,
+        "images": false,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 3
+      },
+      "pass": false
+    },
+    {
+      "lang": "ar",
+      "viewport": 1366,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "threeSections": true,
+        "sixPageCards": true,
+        "datasetLoaded": true,
+        "imagesLoaded": false,
+        "resultCount12": true
+      },
+      "metrics": {
+        "cards": 6,
+        "count": "12 منتج مطابق",
+        "dir": "rtl",
+        "error": false,
+        "h1": true,
+        "images": false,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 3
+      },
+      "pass": false
+    },
+    {
+      "lang": "ar",
+      "viewport": 1536,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "threeSections": true,
+        "sixPageCards": true,
+        "datasetLoaded": true,
+        "imagesLoaded": false,
+        "resultCount12": true
+      },
+      "metrics": {
+        "cards": 6,
+        "count": "12 منتج مطابق",
+        "dir": "rtl",
+        "error": false,
+        "h1": true,
+        "images": false,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 3
+      },
+      "pass": false
+    },
+    {
+      "lang": "en",
+      "viewport": 390,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "threeSections": true,
+        "sixPageCards": true,
+        "datasetLoaded": true,
+        "imagesLoaded": false,
+        "resultCount12": true
+      },
+      "metrics": {
+        "cards": 6,
+        "count": "12 matching products",
+        "dir": "ltr",
+        "error": false,
+        "h1": true,
+        "images": false,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 3
+      },
+      "pass": false
+    },
+    {
+      "lang": "en",
+      "viewport": 820,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "threeSections": true,
+        "sixPageCards": true,
+        "datasetLoaded": true,
+        "imagesLoaded": false,
+        "resultCount12": true
+      },
+      "metrics": {
+        "cards": 6,
+        "count": "12 matching products",
+        "dir": "ltr",
+        "error": false,
+        "h1": true,
+        "images": false,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 3
+      },
+      "pass": false
+    },
+    {
+      "lang": "en",
+      "viewport": 1366,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "threeSections": true,
+        "sixPageCards": true,
+        "datasetLoaded": true,
+        "imagesLoaded": false,
+        "resultCount12": true
+      },
+      "metrics": {
+        "cards": 6,
+        "count": "12 matching products",
+        "dir": "ltr",
+        "error": false,
+        "h1": true,
+        "images": false,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 3
+      },
+      "pass": false
+    },
+    {
+      "lang": "en",
+      "viewport": 1536,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "threeSections": true,
+        "sixPageCards": true,
+        "datasetLoaded": true,
+        "imagesLoaded": false,
+        "resultCount12": true
+      },
+      "metrics": {
+        "cards": 6,
+        "count": "12 matching products",
+        "dir": "ltr",
+        "error": false,
+        "h1": true,
+        "images": false,
+        "minButton": 44,
+        "off": 0,
+        "overflow": false,
+        "sections": 3
+      },
+      "pass": false
+    }
+  ],
+  "errors": [
+    "ar-390:{'direction': True, 'noOverflow': True, 'touchTargets': True, 'h1': True, 'threeSections': True, 'sixPageCards': True, 'datasetLoaded': True, 'imagesLoaded': False, 'resultCount12': True}:{'cards': 6, 'count': '12 منتج مطابق', 'dir': 'rtl', 'error': False, 'h1': True, 'images': False, 'minButton': 44, 'off': 0, 'overflow': False, 'sections': 3}",
+    "ar-820:{'direction': True, 'noOverflow': True, 'touchTargets': True, 'h1': True, 'threeSections': True, 'sixPageCards': True, 'datasetLoaded': True, 'imagesLoaded': False, 'resultCount12': True}:{'cards': 6, 'count': '12 منتج مطابق', 'dir': 'rtl', 'error': False, 'h1': True, 'images': False, 'minButton': 44, 'off': 0, 'overflow': False, 'sections': 3}",
+    "ar-1366:{'direction': True, 'noOverflow': True, 'touchTargets': True, 'h1': True, 'threeSections': True, 'sixPageCards': True, 'datasetLoaded': True, 'imagesLoaded': False, 'resultCount12': True}:{'cards': 6, 'count': '12 منتج مطابق', 'dir': 'rtl', 'error': False, 'h1': True, 'images': False, 'minButton': 44, 'off': 0, 'overflow': False, 'sections': 3}",
+    "ar-1536:{'direction': True, 'noOverflow': True, 'touchTargets': True, 'h1': True, 'threeSections': True, 'sixPageCards': True, 'datasetLoaded': True, 'imagesLoaded': False, 'resultCount12': True}:{'cards': 6, 'count': '12 منتج مطابق', 'dir': 'rtl', 'error': False, 'h1': True, 'images': False, 'minButton': 44, 'off': 0, 'overflow': False, 'sections': 3}",
+    "en-390:{'direction': True, 'noOverflow': True, 'touchTargets': True, 'h1': True, 'threeSections': True, 'sixPageCards': True, 'datasetLoaded': True, 'imagesLoaded': False, 'resultCount12': True}:{'cards': 6, 'count': '12 matching products', 'dir': 'ltr', 'error': False, 'h1': True, 'images': False, 'minButton': 44, 'off': 0, 'overflow': False, 'sections': 3}",
+    "en-820:{'direction': True, 'noOverflow': True, 'touchTargets': True, 'h1': True, 'threeSections': True, 'sixPageCards': True, 'datasetLoaded': True, 'imagesLoaded': False, 'resultCount12': True}:{'cards': 6, 'count': '12 matching products', 'dir': 'ltr', 'error': False, 'h1': True, 'images': False, 'minButton': 44, 'off': 0, 'overflow': False, 'sections': 3}",
+    "en-1366:{'direction': True, 'noOverflow': True, 'touchTargets': True, 'h1': True, 'threeSections': True, 'sixPageCards': True, 'datasetLoaded': True, 'imagesLoaded': False, 'resultCount12': True}:{'cards': 6, 'count': '12 matching products', 'dir': 'ltr', 'error': False, 'h1': True, 'images': False, 'minButton': 44, 'off': 0, 'overflow': False, 'sections': 3}",
+    "en-1536:{'direction': True, 'noOverflow': True, 'touchTargets': True, 'h1': True, 'threeSections': True, 'sixPageCards': True, 'datasetLoaded': True, 'imagesLoaded': False, 'resultCount12': True}:{'cards': 6, 'count': '12 matching products', 'dir': 'ltr', 'error': False, 'h1': True, 'images': False, 'minButton': 44, 'off': 0, 'overflow': False, 'sections': 3}"
+  ]
+}
