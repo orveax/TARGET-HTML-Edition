@@ -149,8 +149,64 @@
     });
   };
 
+  // M3 market IA: expose Market Access and Markets in desktop/mobile navigation.
+  const hydrateMarketNavigation = () => {
+    const isArabic = document.documentElement.lang.toLowerCase().startsWith('ar');
+    const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+    const marketFiles = new Set(['market-access.html', 'markets.html']);
+    const labels = isArabic
+      ? {
+          items: [
+            ['market-access.html', 'الوصول إلى السوق'],
+            ['markets.html', 'الأسواق والدول']
+          ]
+        }
+      : {
+          items: [
+            ['market-access.html', 'Market Access'],
+            ['markets.html', 'Markets & Countries']
+          ]
+        };
+
+    qsa('[data-orx-mega-menu]').forEach((menu) => {
+      labels.items.forEach(([href, text]) => {
+        const link = menu.querySelector(`a[href="${href}"]`);
+        if (!link) return;
+        link.textContent = text;
+        link.dataset.orxMarketLink = href;
+        link.removeAttribute('aria-current');
+        if (href === currentFile) link.setAttribute('aria-current', 'page');
+      });
+    });
+
+    qsa('.orx-mobile-nav').forEach((nav) => {
+      qsa('a', nav).forEach((link) => {
+        const href = (link.getAttribute('href') || '').split('#')[0];
+        if (marketFiles.has(href)) link.remove();
+      });
+
+      const fragment = document.createDocumentFragment();
+      labels.items.forEach(([href, text]) => {
+        const link = document.createElement('a');
+        link.href = href;
+        link.textContent = text;
+        link.dataset.orxMarketLink = href;
+        if (href === currentFile) link.setAttribute('aria-current', 'page');
+        fragment.append(link);
+      });
+
+      const lastCompany = nav.querySelector('[data-orx-company-link]:last-of-type');
+      const lastHome = nav.querySelector('[data-orx-home-variant-link]:last-of-type');
+      if (lastCompany) lastCompany.after(fragment);
+      else if (lastHome) lastHome.after(fragment);
+      else nav.prepend(fragment);
+    });
+  };
+
   hydrateHomeFamilyNavigation();
+  // Keep this separator so the retired one-time PG14 workflow cannot reapply the patch.
   hydrateCompanyNavigation();
+  hydrateMarketNavigation();
 
   // Mobile drawer — N03
   const drawer = document.querySelector('[data-orx-mobile-drawer]');
