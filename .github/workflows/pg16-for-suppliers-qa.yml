@@ -1,0 +1,175 @@
+name: PG16 For Suppliers QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/for-suppliers.html'
+      - 'en/for-suppliers.html'
+      - 'assets/css/origex-for-suppliers.css'
+      - 'assets/css/origex-components.css'
+      - 'assets/css/origex-shell.css'
+      - 'assets/js/origex-ui.js'
+      - 'docs/page-design-profiles/pg16-for-suppliers-v1.md'
+      - 'docs/GLOBAL-NAVIGATION-CONTRACT-V1.md'
+      - 'docs/GLOBAL-FOOTER-CONTRACT-V1.md'
+      - '.github/scripts/normalize_global_navigation.py'
+      - '.github/scripts/normalize_global_footer.py'
+      - '.github/workflows/pg16-for-suppliers-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install QA dependencies
+        run: python -m pip install --quiet beautifulsoup4 selenium
+      - name: Source rendered and interaction QA
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json, re, subprocess, time
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.keys import Keys
+          from selenium.webdriver.support.ui import WebDriverWait
+
+          root=Path('.')
+          out=root/'qa/pg16-for-suppliers'; out.mkdir(parents=True,exist_ok=True)
+          source={'failures':[],'pages':{}}
+          expected={
+            'ar':{'file':'ar/for-suppliers.html','dir':'rtl','h1':'منتجك يحتاج ملفًا تجاريًا واضحًا قبل أن يحتاج عرضًا أكبر.','other':'../en/for-suppliers.html'},
+            'en':{'file':'en/for-suppliers.html','dir':'ltr','h1':'Your product needs a clear commercial profile before it needs a bigger presentation.','other':'../ar/for-suppliers.html'}
+          }
+          frozen_sections=['hero','value','qualification','process','documents','boundaries','faq','cta']
+          sprite=(root/'assets/icons/sprite.svg').read_text(encoding='utf-8'); sprite_ids=set(re.findall(r'<symbol[^>]+id="([^"]+)"',sprite))
+          for lang,cfg in expected.items():
+              p=root/cfg['file']; text=p.read_text(encoding='utf-8'); soup=BeautifulSoup(text,'html.parser'); failures=[]
+              if soup.html.get('lang')!=lang: failures.append('lang')
+              if soup.html.get('dir')!=cfg['dir']: failures.append('dir')
+              h1s=soup.find_all('h1')
+              if len(h1s)!=1 or h1s[0].get_text(' ',strip=True)!=cfg['h1']: failures.append('h1')
+              sections=[n.get('data-pg16-section') for n in soup.select('[data-pg16-section]')]
+              if sections!=frozen_sections: failures.append(f'sections:{sections}')
+              ids=[x.get('id') for x in soup.select('[id]') if x.get('id')]
+              if len(ids)!=len(set(ids)): failures.append('duplicate-ids')
+              if not soup.select_one('[data-pg16-root]'): failures.append('root')
+              if not soup.find('link',href='../assets/css/origex-for-suppliers.css'): failures.append('css')
+              if soup.find('script',src=re.compile(r'origex-for-suppliers\.js$')): failures.append('unapproved-page-js')
+              if not soup.find('link',rel='canonical'): failures.append('canonical')
+              hreflangs={x.get('hreflang') for x in soup.find_all('link',rel='alternate')}
+              if not {'ar','en','x-default'}.issubset(hreflangs): failures.append('hreflang')
+              if not soup.find('a',href=cfg['other']): failures.append('language-switch')
+              if not soup.select_one('.orx-primary-nav a[href="suppliers.html"][aria-current="page"]'): failures.append('supplier-primary-current')
+              if not soup.select_one('.orx-mega-menu a[href="for-suppliers.html"][aria-current="page"]'): failures.append('for-suppliers-mega-current')
+              if not soup.select_one('.orx-mobile-nav a[href="for-suppliers.html"][aria-current="page"]'): failures.append('for-suppliers-mobile-current')
+              footer=soup.select_one('footer.orx-site-footer[data-orx-global-footer="v1"]')
+              if not footer: failures.append('global-footer-v1')
+              else:
+                  for sel in ('.orx-footer__grid','[data-orx-email="trade"]','[data-orx-phone]','[data-orx-address]','[data-orx-business-hours]','.orx-footer__bottom'):
+                      if not footer.select_one(sel): failures.append(f'footer:{sel}')
+              triggers=soup.select('[data-orx-accordion-trigger]')
+              if len(triggers)!=6: failures.append(f'faq-trigger-count:{len(triggers)}')
+              for trigger in triggers:
+                  target=trigger.get('aria-controls')
+                  if not target or not soup.find(id=target): failures.append(f'faq-control:{target}')
+                  if trigger.get('aria-expanded') not in ('true','false'): failures.append(f'faq-expanded:{target}')
+              if 'TARGET' in text or 'targetft' in text.lower(): failures.append('client-leakage')
+              if re.search(r'verified supplier|guaranteed market entry|exclusive distributor|automatically accepted',text,re.I): failures.append('unsupported-claim')
+              html_icons=set(re.findall(r'sprite\.svg#([a-z0-9-]+)',text)); missing=sorted(html_icons-sprite_ids)
+              if missing: failures.append(f'icons:{missing}')
+              for tag,attr in [('img','src'),('link','href'),('script','src')]:
+                  for node in soup.find_all(tag):
+                      value=node.get(attr,'')
+                      if value.startswith('../'):
+                          target=(p.parent/value).resolve()
+                          if not target.exists(): failures.append(f'asset:{value}')
+              source['pages'][lang]={'failures':failures,'sections':sections}
+              source['failures'].extend([f'{lang}:{x}' for x in failures])
+
+          nav=subprocess.run(['python','.github/scripts/normalize_global_navigation.py','--check'],capture_output=True,text=True)
+          if nav.returncode:
+              source['failures'].append('global-navigation-drift'); source['navigation_output']=nav.stdout+nav.stderr
+          footer=subprocess.run(['python','.github/scripts/normalize_global_footer.py','--check'],capture_output=True,text=True)
+          if footer.returncode:
+              source['failures'].append('global-footer-drift'); source['footer_output']=footer.stdout+footer.stderr
+          (out/'source-report.json').write_text(json.dumps(source,ensure_ascii=False,indent=2),encoding='utf-8')
+
+          server=subprocess.Popen(['python','-m','http.server','8765'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL); time.sleep(1)
+          rendered={'failures':[],'cases':[],'interaction':{}}
+          def driver_for(width):
+              o=Options(); o.add_argument('--headless=new'); o.add_argument('--no-sandbox'); o.add_argument('--disable-dev-shm-usage'); o.add_argument(f'--window-size={width},1500'); return webdriver.Chrome(options=o)
+          try:
+              for lang in ('ar','en'):
+                  for width in (390,820,1366,1536):
+                      d=driver_for(width); failures=[]
+                      try:
+                          d.get(f'http://127.0.0.1:8765/{lang}/for-suppliers.html')
+                          WebDriverWait(d,8).until(lambda x:len(x.find_elements(By.CSS_SELECTOR,'[data-pg16-root]'))==1)
+                          if len(d.find_elements(By.CSS_SELECTOR,'[data-pg16-section]'))!=8: failures.append('section-count')
+                          if d.execute_script('return document.documentElement.scrollWidth') > d.execute_script('return document.documentElement.clientWidth')+1: failures.append('overflow')
+                          if d.find_element(By.TAG_NAME,'html').get_attribute('dir') != ('rtl' if lang=='ar' else 'ltr'): failures.append('direction')
+                          footer=d.find_element(By.CSS_SELECTOR,'footer[data-orx-global-footer="v1"]')
+                          if not footer.find_elements(By.CSS_SELECTOR,'[data-orx-business-hours]'): failures.append('footer-business-hours')
+                          if not d.find_elements(By.CSS_SELECTOR,'a[href="submit-product.html"]'): failures.append('submit-route')
+                          small=[]
+                          for el in d.find_elements(By.CSS_SELECTOR,'a,button'):
+                              if not el.is_displayed(): continue
+                              r=el.rect
+                              if r['width'] and r['height'] and (r['width']<24 or r['height']<24): small.append((el.tag_name,r['width'],r['height']))
+                          if small: failures.append(f'touch-targets:{len(small)}')
+                          if width>=1051:
+                              t=d.find_element(By.CSS_SELECTOR,'[data-orx-mega-trigger]'); t.click(); time.sleep(.05)
+                              if t.get_attribute('aria-expanded')!='true': failures.append('mega-open')
+                              t.send_keys(Keys.ESCAPE); time.sleep(.05)
+                              if t.get_attribute('aria-expanded')!='false': failures.append('mega-escape')
+                          else:
+                              op=d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-open]'); op.click(); time.sleep(.05)
+                              dr=d.find_element(By.CSS_SELECTOR,'[data-orx-mobile-drawer]')
+                              if dr.get_attribute('aria-hidden')!='false': failures.append('drawer-open')
+                              d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-close]').click(); time.sleep(.05)
+                              if dr.get_attribute('aria-hidden')!='true': failures.append('drawer-close')
+                      finally: d.quit()
+                      rendered['cases'].append({'lang':lang,'width':width,'failures':failures}); rendered['failures'].extend([f'{lang}-{width}:{x}' for x in failures])
+
+              for lang in ('en','ar'):
+                  d=driver_for(820); failures=[]
+                  try:
+                      d.get(f'http://127.0.0.1:8765/{lang}/for-suppliers.html')
+                      triggers=d.find_elements(By.CSS_SELECTOR,'[data-orx-accordion-trigger]')
+                      if len(triggers)!=6: failures.append('trigger-count')
+                      else:
+                          second=triggers[1]; target=second.get_attribute('aria-controls')
+                          if second.get_attribute('aria-expanded')!='false': failures.append('initial-expanded')
+                          second.click(); time.sleep(.08)
+                          if second.get_attribute('aria-expanded')!='true': failures.append('open-expanded')
+                          if not d.find_element(By.ID,target).is_displayed(): failures.append('panel-open')
+                          second.click(); time.sleep(.08)
+                          if second.get_attribute('aria-expanded')!='false': failures.append('close-expanded')
+                          if d.find_element(By.ID,target).is_displayed(): failures.append('panel-close')
+                  finally: d.quit()
+                  rendered['interaction'][f'{lang}-accordion']=failures; rendered['failures'].extend([f'{lang}-accordion:{x}' for x in failures])
+          finally:
+              server.terminate()
+
+          (out/'rendered-report.json').write_text(json.dumps(rendered,ensure_ascii=False,indent=2),encoding='utf-8')
+          status='PASS' if not source['failures'] and not rendered['failures'] else 'FAIL'
+          (out/'run-status.txt').write_text(status+'\n',encoding='utf-8')
+          print('source failures',len(source['failures'])); print('rendered failures',len(rendered['failures']))
+          if status!='PASS': print(source['failures']); print(rendered['failures']); raise SystemExit(1)
+          PY
+      - name: Commit QA evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg16-for-suppliers || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "PG16 record For Suppliers QA evidence"
+          git push origin main
