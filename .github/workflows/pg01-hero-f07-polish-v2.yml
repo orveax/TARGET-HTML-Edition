@@ -1,0 +1,106 @@
+name: PG01 F07 Hero Polish Migration V2
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.pg01-hero-polish-v2-trigger'
+      - '.github/workflows/pg01-hero-f07-polish-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Replace legacy hero media composition
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def new_media(lang):
+              if lang == 'ar':
+                  badge = 'مسار تجاري من 3 مراحل'
+                  aria = 'المسار التجاري من المصدر إلى السوق'
+                  items = [
+                      ('01','factory','المصدر','مصنع · مورد · منتج'),
+                      ('02','route','المسار التجاري','بيانات · تقييم · مستندات'),
+                      ('03','earth','السوق','قناة · مشتري · استفسار'),
+                  ]
+                  footer_a = 'بيانات → تقييم → تواصل'
+                  footer_b = 'مسار أوضح للقرار'
+              else:
+                  badge = '3-stage commercial path'
+                  aria = 'Commercial route from source to market'
+                  items = [
+                      ('01','factory','Source','Manufacturer · supplier · product'),
+                      ('02','route','Commercial route','Data · evaluation · documents'),
+                      ('03','earth','Market','Channel · buyer · enquiry'),
+                  ]
+                  footer_a = 'Data → evaluation → conversation'
+                  footer_b = 'A clearer decision route'
+
+              steps = []
+              for index, icon, title, meta in items:
+                  steps.append(f'''            <div class="orx-route-visual__step" role="listitem"><span class="orx-route-visual__index">{index}</span><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#{icon}"></use></svg></div><div class="orx-route-visual__content"><strong class="orx-route-visual__title">{title}</strong><span class="orx-route-visual__meta">{meta}</span></div></div>''')
+
+              return f'''      <div class="orx-media orx-media--hero orx-route-visual orx-pattern" style="--orx-pattern-image:url('../assets/patterns/pt04-market-nodes.svg');--orx-pattern-opacity:.18">
+        <div class="orx-route-visual__inner">
+          <div class="orx-route-visual__head">
+            <span class="orx-eyebrow">Origin → Route → Market</span>
+            <span class="orx-badge">{badge}</span>
+          </div>
+          <div class="orx-route-visual__track" role="list" aria-label="{aria}">
+{chr(10).join(steps)}
+          </div>
+          <div class="orx-route-visual__footer"><span>{footer_a}</span><strong>{footer_b}</strong></div>
+        </div>
+      </div>'''
+
+          for lang in ('ar','en'):
+              path = Path(lang) / 'index.html'
+              text = path.read_text(encoding='utf-8')
+
+              css_marker = '  <link rel="stylesheet" href="../assets/css/origex-components.css">\n'
+              css_link = '  <link rel="stylesheet" href="../assets/css/origex-compositions.css">\n'
+              if 'origex-compositions.css' not in text:
+                  if css_marker not in text:
+                      raise RuntimeError(f'CSS marker missing: {path}')
+                  text = text.replace(css_marker, css_marker + css_link, 1)
+
+              old_start = '      <div class="orx-media orx-media--hero orx-pattern" style="--orx-pattern-image:url(\'../assets/patterns/pt04-market-nodes.svg\');--orx-pattern-opacity:.32">'
+              start = text.find(old_start)
+              if start < 0:
+                  if 'orx-route-visual__track' in text:
+                      path.write_text(text, encoding='utf-8')
+                      continue
+                  raise RuntimeError(f'Legacy hero media start missing: {path}')
+
+              boundary = '\n      </div>\n    </div>\n  </section>'
+              stop = text.find(boundary, start)
+              if stop < 0:
+                  raise RuntimeError(f'Hero media boundary missing: {path}')
+              media_end = stop + len('\n      </div>')
+              text = text[:start] + new_media(lang) + text[media_end:]
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit AR/EN migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'orveax-build'
+          git config user.email 'actions@users.noreply.github.com'
+          git add ar/index.html en/index.html
+          if git diff --cached --quiet; then
+            echo 'No migration changes'
+            exit 0
+          fi
+          git commit -m 'PG01 apply reusable F07 trade route hero composition'
+          git push origin main
