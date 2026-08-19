@@ -34,3 +34,4 @@
 .orx-service-boundary .orx-icon-box{flex:0 0 auto}
 @media (max-width:1199.98px){.orx-service-process{grid-template-columns:repeat(2,minmax(0,1fr))}.orx-related-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:767.98px){.orx-service-hero .orx-media--hero{min-block-size:auto;padding:var(--orx-space-6)}.orx-service-summary__grid,.orx-service-overview,.orx-service-scope-grid,.orx-service-process,.orx-service-deliverables,.orx-service-fit-grid,.orx-related-service-grid{grid-template-columns:1fr}.orx-service-summary__head{flex-direction:column}.orx-service-overview{gap:var(--orx-space-5)}}
+/* QA retrigger: PG08 source + navigation fixes applied. */
