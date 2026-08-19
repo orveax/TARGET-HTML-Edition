@@ -1,0 +1,239 @@
+/* ORIGEX — ORX-P01 | Marketplace Visual Polish | Copyright © ORVEAX
+ * Scoped M2 visual refinement for commercial preview quality.
+ * No content, component IDs, runtime dependencies or M1 tokens are replaced here.
+ */
+
+/* Hero: preserve the trade-route information while giving it a stronger B2B visual anchor. */
+.orx-hero__grid>.orx-media.orx-media--hero{
+  position:relative;
+  min-block-size:500px;
+  background-color:#e9eee9;
+  background-image:
+    linear-gradient(90deg,rgba(250,248,244,.94) 0%,rgba(250,248,244,.82) 48%,rgba(250,248,244,.32) 100%),
+    url("../media/demo/hero-trade-scene.svg");
+  background-size:cover;
+  background-position:center;
+  border-color:rgba(63,111,104,.28);
+  box-shadow:var(--orx-shadow-e2);
+}
+html[dir="rtl"] .orx-hero__grid>.orx-media.orx-media--hero{
+  background-image:
+    linear-gradient(270deg,rgba(250,248,244,.94) 0%,rgba(250,248,244,.82) 48%,rgba(250,248,244,.32) 100%),
+    url("../media/demo/hero-trade-scene.svg");
+}
+.orx-hero__grid>.orx-media.orx-media--hero>.h-100{
+  position:relative;
+  z-index:1;
+}
+.orx-hero__grid>.orx-media.orx-media--hero .orx-stack>.orx-card{
+  background:rgba(255,255,255,.90)!important;
+  backdrop-filter:blur(8px);
+  border-color:rgba(191,201,197,.9)!important;
+  box-shadow:0 10px 34px rgba(13,37,43,.09)!important;
+}
+.orx-hero__grid>.orx-media.orx-media--hero .orx-stack>.orx-card:last-child{
+  border-color:rgba(63,111,104,.62)!important;
+}
+
+/* Trust layer: more decision-oriented and less card-like. */
+section[aria-labelledby="trust-title"] .row{
+  --bs-gutter-x:1rem;
+  --bs-gutter-y:1rem;
+}
+section[aria-labelledby="trust-title"] .orx-trust-item{
+  --orx-trust-accent:var(--orx-secondary);
+  position:relative;
+  min-block-size:100%;
+  padding:1.15rem 1rem 1rem;
+  border-block-start:3px solid var(--orx-trust-accent);
+  border-radius:0 0 var(--orx-radius-sm) var(--orx-radius-sm);
+  background:linear-gradient(180deg,rgba(243,239,232,.76),rgba(255,255,255,.72));
+}
+section[aria-labelledby="trust-title"] .col:nth-child(2) .orx-trust-item{--orx-trust-accent:var(--orx-accent)}
+section[aria-labelledby="trust-title"] .col:nth-child(3) .orx-trust-item{--orx-trust-accent:#356A8A}
+section[aria-labelledby="trust-title"] .col:nth-child(4) .orx-trust-item{--orx-trust-accent:#9A651A}
+section[aria-labelledby="trust-title"] .col:nth-child(5) .orx-trust-item{--orx-trust-accent:var(--orx-primary)}
+section[aria-labelledby="trust-title"] .orx-trust-item .orx-icon-box{
+  border:0;
+  background:transparent;
+  color:var(--orx-trust-accent);
+}
+section[aria-labelledby="trust-title"] .orx-trust-item .orx-card__title{font-size:1rem}
+section[aria-labelledby="trust-title"] .orx-trust-item .orx-card__copy{font-size:.9rem}
+
+/* Process: reinforce sequence without adding JS or new markup. */
+section[aria-labelledby="process-title"] .orx-grid{position:relative}
+section[aria-labelledby="process-title"] .orx-process-card{
+  overflow:hidden;
+  min-block-size:210px;
+  padding-block-start:1.45rem;
+  background:linear-gradient(145deg,#fff 0%,rgba(255,255,255,.78) 100%);
+}
+section[aria-labelledby="process-title"] .orx-process-card::before{
+  content:"";
+  position:absolute;
+  inset-block-start:0;
+  inset-inline:0;
+  block-size:4px;
+  background:linear-gradient(90deg,var(--orx-primary),var(--orx-secondary),var(--orx-accent));
+}
+section[aria-labelledby="process-title"] .orx-process-card__number{
+  inline-size:44px;
+  block-size:44px;
+  margin-block-end:1.1rem;
+  box-shadow:0 8px 18px rgba(13,37,43,.14);
+}
+
+/* Category cards: visual category cue without stock photography. */
+section[aria-labelledby="categories-title"] .orx-feature-card{
+  --orx-cat-a:#15343B;
+  --orx-cat-b:#3F6F68;
+  overflow:hidden;
+  min-block-size:310px;
+  padding-block-start:9.2rem;
+  box-shadow:var(--orx-shadow-e1);
+}
+section[aria-labelledby="categories-title"] .orx-feature-card::before{
+  content:"";
+  position:absolute;
+  inset-block-start:0;
+  inset-inline:0;
+  block-size:7.2rem;
+  background:
+    radial-gradient(circle at 18% 28%,rgba(255,255,255,.38) 0 9%,transparent 10%),
+    radial-gradient(circle at 72% 62%,rgba(255,255,255,.2) 0 14%,transparent 15%),
+    linear-gradient(135deg,var(--orx-cat-a),var(--orx-cat-b));
+  opacity:.96;
+}
+section[aria-labelledby="categories-title"] .orx-feature-card .orx-icon-box{
+  position:absolute;
+  inset-block-start:4.7rem;
+  inset-inline-start:1.35rem;
+  z-index:2;
+  background:#fff;
+  border-color:rgba(255,255,255,.7);
+  box-shadow:var(--orx-shadow-e1);
+}
+section[aria-labelledby="categories-title"] .orx-feature-card__index{
+  inset-block-start:1rem;
+  color:rgba(255,255,255,.72);
+  z-index:2;
+}
+section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(2){--orx-cat-a:#356A8A;--orx-cat-b:#3F6F68}
+section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(3){--orx-cat-a:#3F6F68;--orx-cat-b:#7FA196}
+section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(4){--orx-cat-a:#356A8A;--orx-cat-b:#15343B}
+section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(5){--orx-cat-a:#9A651A;--orx-cat-b:#C47A4A}
+section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(6){--orx-cat-a:#824A27;--orx-cat-b:#15343B}
+
+/* Why ORIGEX: flatter proof blocks so this section does not repeat category-card rhythm. */
+section[aria-labelledby="why-title"] .orx-feature-card{
+  border-inline-start:3px solid var(--orx-secondary);
+  border-block-color:transparent;
+  border-inline-end-color:transparent;
+  border-radius:0 var(--orx-radius-md) var(--orx-radius-md) 0;
+  background:rgba(255,255,255,.64);
+  box-shadow:none;
+}
+html[dir="rtl"] section[aria-labelledby="why-title"] .orx-feature-card{
+  border-inline-start:3px solid var(--orx-secondary);
+  border-radius:var(--orx-radius-md) 0 0 var(--orx-radius-md);
+}
+section[aria-labelledby="why-title"] .orx-feature-card .orx-icon-box{
+  background:rgba(63,111,104,.08);
+  border-color:rgba(63,111,104,.18);
+}
+
+/* Role section: deliberate tonal break between capability proof and product catalogue. */
+section[aria-labelledby="roles-title"]{
+  position:relative;
+  background:var(--orx-primary-strong);
+  color:#fff;
+}
+section[aria-labelledby="roles-title"]::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 12% 18%,rgba(196,122,74,.14),transparent 28%),
+    radial-gradient(circle at 88% 74%,rgba(63,111,104,.24),transparent 34%);
+}
+section[aria-labelledby="roles-title"]>.orx-container{position:relative}
+section[aria-labelledby="roles-title"] :is(h2,.orx-lead){color:#fff}
+section[aria-labelledby="roles-title"] .orx-eyebrow{color:var(--orx-sand)}
+section[aria-labelledby="roles-title"] .orx-feature-card{
+  background:rgba(255,255,255,.96);
+  border-color:rgba(255,255,255,.18);
+  box-shadow:0 16px 42px rgba(0,0,0,.13);
+}
+
+/* Product catalogue preview: owned vector packshots replace pattern-only placeholders. */
+section[aria-labelledby="products-title"] .orx-product-card{
+  border-color:rgba(191,201,197,.78);
+  box-shadow:var(--orx-shadow-e1);
+}
+section[aria-labelledby="products-title"] .orx-product-card__media{
+  aspect-ratio:4/3;
+  background-color:#F7F4EE;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+}
+section[aria-labelledby="products-title"] .orx-product-card:nth-child(1) .orx-product-card__media{background-image:url("../media/demo/product-tomato-sauce.svg")}
+section[aria-labelledby="products-title"] .orx-product-card:nth-child(2) .orx-product-card__media{background-image:url("../media/demo/product-hibiscus.svg")}
+section[aria-labelledby="products-title"] .orx-product-card:nth-child(3) .orx-product-card__media{background-image:url("../media/demo/product-milk.svg")}
+section[aria-labelledby="products-title"] .orx-product-card:nth-child(4) .orx-product-card__media{background-image:url("../media/demo/product-frozen.svg")}
+section[aria-labelledby="products-title"] .orx-product-card__body{padding:1.35rem}
+section[aria-labelledby="products-title"] .orx-product-card .orx-card__title{min-block-size:2.8em}
+
+/* Supplier CTA gets a restrained trade-network surface rather than another plain card. */
+section[aria-labelledby="supplier-cta-title"] .orx-cta-card{
+  overflow:hidden;
+  isolation:isolate;
+  border:0;
+  box-shadow:var(--orx-shadow-e2);
+}
+section[aria-labelledby="supplier-cta-title"] .orx-cta-card::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset-block:-25%;
+  inset-inline-end:-7%;
+  inline-size:min(44vw,520px);
+  aspect-ratio:1;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:50%;
+  box-shadow:0 0 0 55px rgba(255,255,255,.035),0 0 0 110px rgba(255,255,255,.025);
+}
+
+@media(min-width:1100px){
+  section[aria-labelledby="products-title"] .orx-grid--4{gap:1.25rem}
+  section[aria-labelledby="categories-title"] .orx-grid--3{gap:1.35rem}
+}
+
+@media(max-width:899.98px){
+  .orx-hero__grid>.orx-media.orx-media--hero{min-block-size:460px}
+}
+
+@media(max-width:767.98px){
+  .orx-hero__grid>.orx-media.orx-media--hero{
+    min-block-size:430px;
+    background-image:
+      linear-gradient(180deg,rgba(250,248,244,.92),rgba(250,248,244,.70)),
+      url("../media/demo/hero-trade-scene.svg");
+    background-position:center;
+  }
+  section[aria-labelledby="categories-title"] .orx-feature-card{
+    min-block-size:280px;
+    padding-block-start:8.5rem;
+  }
+  section[aria-labelledby="categories-title"] .orx-feature-card::before{block-size:6.7rem}
+  section[aria-labelledby="categories-title"] .orx-feature-card .orx-icon-box{inset-block-start:4.25rem}
+  section[aria-labelledby="roles-title"] .orx-grid{gap:1rem}
+  section[aria-labelledby="products-title"] .orx-product-card__media{aspect-ratio:16/10}
+}
+
+@media(prefers-reduced-motion:reduce){
+  section[aria-labelledby="categories-title"] .orx-feature-card,
+  section[aria-labelledby="products-title"] .orx-product-card{transition:none}
+}
