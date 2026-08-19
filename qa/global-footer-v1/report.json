@@ -43,6 +43,9 @@
     "ar/products.html": {
       "failures": []
     },
+    "ar/rfq.html": {
+      "failures": []
+    },
     "ar/service-details.html": {
       "failures": []
     },
@@ -97,6 +100,9 @@
     "en/products.html": {
       "failures": []
     },
+    "en/rfq.html": {
+      "failures": []
+    },
     "en/service-details.html": {
       "failures": []
     },
@@ -111,7 +117,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 36,
+    "pagesChecked": 38,
     "failures": 0
   }
 }
