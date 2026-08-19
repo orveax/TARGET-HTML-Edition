@@ -30,4 +30,4 @@ jobs:
           git commit -m "fix: unify global navigation across standard pages"
           git push origin main
 
-# R1 navigation normalization retrigger — 2026-08-19
+# PG33 normalization retrigger — 2026-08-19
