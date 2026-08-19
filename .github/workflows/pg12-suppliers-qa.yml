@@ -1,0 +1,208 @@
+name: PG12 Suppliers Directory QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/suppliers.html'
+      - 'en/suppliers.html'
+      - 'assets/css/origex-suppliers.css'
+      - 'assets/css/origex-components.css'
+      - 'assets/css/origex-shell.css'
+      - 'assets/js/origex-suppliers.js'
+      - 'assets/js/origex-ui.js'
+      - 'assets/data/suppliers.json'
+      - 'assets/data/products.json'
+      - 'docs/page-design-profiles/pg12-suppliers-v1.md'
+      - 'docs/GLOBAL-NAVIGATION-CONTRACT-V1.md'
+      - '.github/scripts/normalize_global_navigation.py'
+      - '.github/workflows/pg12-suppliers-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install QA dependencies
+        run: python -m pip install --quiet beautifulsoup4 selenium
+      - name: Source data rendered and interaction QA
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json, re, subprocess, time
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.keys import Keys
+          from selenium.webdriver.support.ui import WebDriverWait
+          from selenium.webdriver.support.ui import Select
+
+          root = Path('.')
+          out = root/'qa/pg12-suppliers'
+          out.mkdir(parents=True, exist_ok=True)
+          source = {'failures': [], 'pages': {}, 'data': {}}
+
+          suppliers = json.loads((root/'assets/data/suppliers.json').read_text(encoding='utf-8'))
+          products = json.loads((root/'assets/data/products.json').read_text(encoding='utf-8'))
+          supplier_by_id = {s['id']: s for s in suppliers}
+          product_by_id = {p['id']: p for p in products}
+          expected_categories = {'ambient','beverages','dairy','frozen','confectionery','ingredients'}
+          if len(suppliers) != 4: source['failures'].append(f'data:supplier-count:{len(suppliers)}')
+          if len([s for s in suppliers if s.get('featured') is True]) != 4: source['failures'].append('data:featured-count')
+          for s in suppliers:
+              sid = s.get('id','?')
+              if not s.get('nameAr') or not s.get('nameEn'): source['failures'].append(f'data:{sid}:localized-name')
+              if not set(s.get('categoryIds',[])).issubset(expected_categories): source['failures'].append(f'data:{sid}:category')
+              if not re.fullmatch(r'[A-Z]{2}', s.get('countryCode','')): source['failures'].append(f'data:{sid}:country-code')
+              linked = [product_by_id.get(pid) for pid in s.get('productIds',[])]
+              if not linked or any(p is None for p in linked): source['failures'].append(f'data:{sid}:product-relation')
+              if any(p and p.get('supplierId') != sid for p in linked): source['failures'].append(f'data:{sid}:reverse-supplier-relation')
+              brands = {p.get('brandId') for p in linked if p}
+              if len(brands) != 1: source['failures'].append(f'data:{sid}:brand-route')
+          for p in products:
+              if p.get('supplierId') not in supplier_by_id: source['failures'].append(f'data:{p.get("id")}:supplier')
+          source['data'] = {'suppliers':len(suppliers),'products':len(products),'featured':len([s for s in suppliers if s.get('featured') is True])}
+
+          expected = {
+              'ar': {'file':'ar/suppliers.html','dir':'rtl','h1':'موردون وعلامات حسب الفئة والمنشأ.','other':'../en/suppliers.html'},
+              'en': {'file':'en/suppliers.html','dir':'ltr','h1':'Suppliers and brands organized by category and origin.','other':'../ar/suppliers.html'}
+          }
+          frozen_sections = ['hero','featured','directory','disclosure','cta']
+          sprite = (root/'assets/icons/sprite.svg').read_text(encoding='utf-8')
+          sprite_ids = set(re.findall(r'<symbol[^>]+id="([^"]+)"', sprite))
+
+          for lang,cfg in expected.items():
+              p = root/cfg['file']; text = p.read_text(encoding='utf-8'); soup = BeautifulSoup(text,'html.parser'); failures=[]
+              if soup.html.get('lang') != lang: failures.append('lang')
+              if soup.html.get('dir') != cfg['dir']: failures.append('dir')
+              h1s=soup.find_all('h1')
+              if len(h1s)!=1 or h1s[0].get_text(' ',strip=True)!=cfg['h1']: failures.append('h1')
+              sections=[n.get('data-pg12-section') for n in soup.select('[data-pg12-section]')]
+              if sections != frozen_sections: failures.append(f'sections:{sections}')
+              if not soup.select_one('[data-pg12-root][data-suppliers-url][data-products-url]'): failures.append('root-contract')
+              if not soup.find('link',href='../assets/css/origex-suppliers.css'): failures.append('css')
+              if not soup.find('script',src='../assets/js/origex-suppliers.js'): failures.append('runtime')
+              if not soup.select_one('[data-pg12-search]') or not soup.select_one('[data-pg12-category]') or not soup.select_one('[data-pg12-origin]'): failures.append('filters')
+              if not soup.find('link',rel='canonical'): failures.append('canonical')
+              hreflangs={x.get('hreflang') for x in soup.find_all('link',rel='alternate')}
+              if not {'ar','en','x-default'}.issubset(hreflangs): failures.append('hreflang')
+              if not soup.find('a',href=cfg['other']): failures.append('language-switch')
+              if not soup.select_one('.orx-primary-nav a[href="suppliers.html"][aria-current="page"]'): failures.append('supplier-primary-current')
+              if not soup.select_one('.orx-mega-menu a[href="suppliers.html"][aria-current="page"]'): failures.append('supplier-mega-current')
+              if not soup.select_one('.orx-mobile-nav a[href="suppliers.html"][aria-current="page"]'): failures.append('supplier-mobile-current')
+              if 'TARGET' in text or 'targetft' in text.lower(): failures.append('client-leakage')
+              if re.search(r'verified supplier|rating|review count|response rate|years in business|exclusive distributor', text, re.I): failures.append('unsupported-claim')
+              html_icons=set(re.findall(r'sprite\.svg#([a-z0-9-]+)',text))
+              missing=sorted(html_icons-sprite_ids)
+              if missing: failures.append(f'icons:{missing}')
+              for tag,attr in [('img','src'),('link','href'),('script','src')]:
+                  for node in soup.find_all(tag):
+                      value=node.get(attr,'')
+                      if value.startswith('../'):
+                          target=(p.parent/value).resolve()
+                          if not target.exists(): failures.append(f'asset:{value}')
+              source['pages'][lang]={'failures':failures,'sections':sections}
+              source['failures'].extend([f'{lang}:{x}' for x in failures])
+
+          nav = subprocess.run(['python','.github/scripts/normalize_global_navigation.py','--check'],capture_output=True,text=True)
+          if nav.returncode:
+              source['failures'].append('global-navigation-drift')
+              source['navigation_output']=nav.stdout+nav.stderr
+          (out/'source-report.json').write_text(json.dumps(source,ensure_ascii=False,indent=2),encoding='utf-8')
+
+          server=subprocess.Popen(['python','-m','http.server','8765'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL); time.sleep(1)
+          rendered={'failures':[],'cases':[],'interaction':{}}
+          def driver_for(width):
+              o=Options(); o.add_argument('--headless=new'); o.add_argument('--no-sandbox'); o.add_argument('--disable-dev-shm-usage'); o.add_argument(f'--window-size={width},1200'); return webdriver.Chrome(options=o)
+          try:
+              for lang in ('ar','en'):
+                  for width in (390,820,1366,1536):
+                      d=driver_for(width); failures=[]
+                      try:
+                          d.get(f'http://127.0.0.1:8765/{lang}/suppliers.html')
+                          WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg12-root]').get_attribute('data-load-state') in ('ready','error'))
+                          pg=d.find_element(By.CSS_SELECTOR,'[data-pg12-root]')
+                          if pg.get_attribute('data-load-state')!='ready': failures.append('data-load')
+                          if pg.get_attribute('data-supplier-count')!='4': failures.append('supplier-count')
+                          if pg.get_attribute('data-featured-count')!='4': failures.append('featured-count')
+                          if len(d.find_elements(By.CSS_SELECTOR,'[data-featured-supplier-id]'))!=4: failures.append('featured-render')
+                          if len(d.find_elements(By.CSS_SELECTOR,'[data-supplier-id]'))!=4: failures.append('directory-count')
+                          if len(d.find_elements(By.CSS_SELECTOR,'[data-pg12-section]'))!=5: failures.append('section-count')
+                          if d.execute_script('return document.documentElement.scrollWidth') > d.execute_script('return document.documentElement.clientWidth')+1: failures.append('overflow')
+                          if d.find_element(By.TAG_NAME,'html').get_attribute('dir') != ('rtl' if lang=='ar' else 'ltr'): failures.append('direction')
+                          if len(d.find_elements(By.CSS_SELECTOR,'a[href^="supplier-details.html?id=supplier-"]'))!=4: failures.append('detail-routes')
+                          if len(d.find_elements(By.CSS_SELECTOR,'a[href^="products.html?brand=brand-"]'))!=4: failures.append('product-routes')
+                          small=[]
+                          for el in d.find_elements(By.CSS_SELECTOR,'a,button,input,select'):
+                              if not el.is_displayed(): continue
+                              r=el.rect
+                              if r['width'] and r['height'] and (r['width']<24 or r['height']<24): small.append((el.tag_name,r['width'],r['height']))
+                          if small: failures.append(f'touch-targets:{len(small)}')
+                          if width>=1051:
+                              t=d.find_element(By.CSS_SELECTOR,'[data-orx-mega-trigger]'); t.click(); time.sleep(.05)
+                              if t.get_attribute('aria-expanded')!='true': failures.append('mega-open')
+                              t.send_keys(Keys.ESCAPE); time.sleep(.05)
+                              if t.get_attribute('aria-expanded')!='false': failures.append('mega-escape')
+                          else:
+                              op=d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-open]'); op.click(); time.sleep(.05)
+                              dr=d.find_element(By.CSS_SELECTOR,'[data-orx-mobile-drawer]')
+                              if dr.get_attribute('aria-hidden')!='false': failures.append('drawer-open')
+                              d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-close]').click(); time.sleep(.05)
+                              if dr.get_attribute('aria-hidden')!='true': failures.append('drawer-close')
+                      finally: d.quit()
+                      rendered['cases'].append({'lang':lang,'width':width,'failures':failures}); rendered['failures'].extend([f'{lang}-{width}:{x}' for x in failures])
+
+              # English interaction: search, category, origin, reset, empty, query params.
+              d=driver_for(1366); failures=[]
+              try:
+                  d.get('http://127.0.0.1:8765/en/suppliers.html')
+                  WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg12-root]').get_attribute('data-load-state')=='ready')
+                  search=d.find_element(By.CSS_SELECTOR,'[data-pg12-search]'); search.send_keys('NordVale'); time.sleep(.08)
+                  if len(d.find_elements(By.CSS_SELECTOR,'[data-supplier-id]'))!=1 or d.find_elements(By.CSS_SELECTOR,'[data-supplier-id]')[0].get_attribute('data-supplier-id')!='supplier-nordvale': failures.append('search')
+                  search.clear(); search.send_keys(Keys.SPACE); search.clear(); time.sleep(.05)
+                  Select(d.find_element(By.CSS_SELECTOR,'[data-pg12-category]')).select_by_value('frozen'); time.sleep(.08)
+                  cards=d.find_elements(By.CSS_SELECTOR,'[data-supplier-id]')
+                  if len(cards)!=1 or cards[0].get_attribute('data-supplier-id')!='supplier-blueport': failures.append('category-filter')
+                  d.find_element(By.CSS_SELECTOR,'[data-pg12-reset]').click(); time.sleep(.08)
+                  if len(d.find_elements(By.CSS_SELECTOR,'[data-supplier-id]'))!=4: failures.append('reset')
+                  Select(d.find_element(By.CSS_SELECTOR,'[data-pg12-origin]')).select_by_value('IT'); time.sleep(.08)
+                  cards=d.find_elements(By.CSS_SELECTOR,'[data-supplier-id]')
+                  if len(cards)!=1 or cards[0].get_attribute('data-supplier-id')!='supplier-noura': failures.append('origin-filter')
+                  search=d.find_element(By.CSS_SELECTOR,'[data-pg12-search]'); search.send_keys('zzzz-no-match'); time.sleep(.08)
+                  if not d.find_elements(By.CSS_SELECTOR,'.orx-suppliers-empty'): failures.append('empty-state')
+              finally: d.quit()
+              rendered['interaction']['en-search-filter-reset-empty']=failures; rendered['failures'].extend([f'en-interaction:{x}' for x in failures])
+
+              d=driver_for(1366); failures=[]
+              try:
+                  d.get('http://127.0.0.1:8765/ar/suppliers.html?category=dairy&origin=NL')
+                  WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg12-root]').get_attribute('data-load-state')=='ready')
+                  cards=d.find_elements(By.CSS_SELECTOR,'[data-supplier-id]')
+                  if len(cards)!=1 or cards[0].get_attribute('data-supplier-id')!='supplier-nordvale': failures.append('deep-link-result')
+                  if Select(d.find_element(By.CSS_SELECTOR,'[data-pg12-category]')).first_selected_option.get_attribute('value')!='dairy': failures.append('deep-link-category')
+                  if Select(d.find_element(By.CSS_SELECTOR,'[data-pg12-origin]')).first_selected_option.get_attribute('value')!='NL': failures.append('deep-link-origin')
+              finally: d.quit()
+              rendered['interaction']['ar-query-params']=failures; rendered['failures'].extend([f'ar-query:{x}' for x in failures])
+          finally:
+              server.terminate()
+
+          (out/'rendered-report.json').write_text(json.dumps(rendered,ensure_ascii=False,indent=2),encoding='utf-8')
+          status='PASS' if not source['failures'] and not rendered['failures'] else 'FAIL'
+          (out/'run-status.txt').write_text(status+'\n',encoding='utf-8')
+          print('source failures',len(source['failures'])); print('rendered failures',len(rendered['failures']))
+          if status!='PASS': print(source['failures']); print(rendered['failures']); raise SystemExit(1)
+          PY
+      - name: Commit QA evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg12-suppliers || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "PG12 record suppliers directory QA evidence"
+          git push origin main
