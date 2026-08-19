@@ -1,7 +1,7 @@
 {
   "failures": [],
   "summary": {
-    "pagesChecked": 42,
+    "pagesChecked": 43,
     "symbolsRegistered": 33,
     "symbolsReferenced": 28,
     "missingReferences": 0
@@ -425,6 +425,17 @@
         "menu",
         "message-circle",
         "route",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/case-study-details.html": {
+      "references": [
+        "arrow-up",
+        "chevron-down",
+        "info",
+        "menu",
+        "message-circle",
         "x"
       ],
       "missing": []
