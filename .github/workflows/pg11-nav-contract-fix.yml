@@ -1,0 +1,42 @@
+name: PG11 Navigation Contract Fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/pg11-nav-contract-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove PG11-specific hooks from canonical navigation
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          for file in ['ar/product-details.html','en/product-details.html']:
+              p = Path(file)
+              s = p.read_text(encoding='utf-8')
+              s = s.replace(' data-pg11-language-link', '')
+              s = s.replace(' data-orx-header-cta data-pg11-rfq-link', ' data-orx-header-cta')
+              p.write_text(s, encoding='utf-8')
+          p = Path('assets/js/origex-product-details.js')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace("quoteLinks: Array.from(document.querySelectorAll('[data-pg11-rfq-link]')),", "quoteLinks: Array.from(document.querySelectorAll('[data-pg11-rfq-link], [data-orx-header-cta]')),")
+          s = s.replace("languageLinks: Array.from(document.querySelectorAll('[data-pg11-language-link]')),", "languageLinks: Array.from(document.querySelectorAll('.orx-lang-switch, .orx-mobile-nav a[lang][href*=\"product-details.html\"]')),")
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Normalize canonical standard navigation
+        run: python .github/scripts/normalize_global_navigation.py
+      - name: Commit fix and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/pg11-nav-contract-fix.yml
+          git add ar/product-details.html en/product-details.html assets/js/origex-product-details.js ar en assets/js/origex-ui.js
+          git commit -m "PG11 align product details with locked global navigation"
+          git push origin main
