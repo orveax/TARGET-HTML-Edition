@@ -4,7 +4,7 @@ Product ID: ORX-P01
 Owner: ORVEAX  
 Repository: `orveax/origex-html-template`  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-19 — GLOBAL NAV V1 LOCKED / V1 = 33 LAYOUTS / PG09–PG11 PS7 CI QA PASS / PG12 NEXT
+Last Updated: 2026-08-19 — GLOBAL NAV V1 LOCKED / V1 = 33 LAYOUTS / PG09–PG12 PS7 CI QA PASS / PG13 NEXT
 
 This is the repo-level execution tracker. It records actual current implementation state and must match the active code tree.
 
@@ -43,10 +43,11 @@ Page lifecycle uses PS0–PS8 from `CONTENT-SYSTEM-V1.md`; `C01–C28` remains r
 | PG09 Product Categories | PS7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + FILTER + PRODUCT-NAVIGATION QA PASS |
 | PG10 Products Grid | PS7 IMPLEMENTED — AR+EN — DATA + SOURCE + RENDERED + SEARCH/FILTER/PAGINATION + PRODUCT-NAVIGATION QA PASS |
 | PG11 Product Details | PS7 IMPLEMENTED — AR+EN — DATA + SOURCE + RENDERED 8/8 + PRODUCT SWITCH + SUPPLIER RELATION + RESOURCE PLACEHOLDERS + RELATED PRODUCTS + RFQ + PRODUCT-NAVIGATION QA PASS |
+| PG12 Suppliers / Brands Directory | PS7 IMPLEMENTED — AR+EN — DATA + SOURCE + RENDERED 8/8 + SEARCH/CATEGORY/ORIGIN FILTER + FEATURED + QUERY-PARAM + SUPPLIER-NAVIGATION QA PASS |
 | Global Navigation V1 | LOCKED — one canonical Standard Header / Mega Menu / Mobile Drawer; only active state varies; PG04 Landing is the intentional compact-header exception |
 | Cloudflare Test Environment | AVAILABLE VIA MANUAL REBUILD |
 | Cloudflare Git Auto-Deploy | DEFERRED — push trigger does not currently start deployment automatically |
-| Current Build Baseline | Global Navigation V1 locked. M4 IN PROGRESS — PG09–PG11 PS7 CI PASS; PG12 Suppliers / Brands Directory next. PG33 Company Profile remains a parallel M3 QA follow-up. |
+| Current Build Baseline | Global Navigation V1 locked. M4 IN PROGRESS — PG09–PG12 PS7 CI PASS; PG13 Supplier / Brand Details next. PG33 Company Profile remains a parallel M3 QA follow-up. |
 
 ## Milestones
 
@@ -56,7 +57,7 @@ Page lifecycle uses PS0–PS8 from `CONTENT-SYSTEM-V1.md`; `C01–C28` remains r
 | M1 Global System & Component Foundation | PASS / CLOSED | Component AR/EN foundation QA |
 | M2 Global Shell & Home Family | IN PROGRESS | PG01–PG04 AR/EN + Cloudflare deployed browser QA |
 | M3 Company / Business / Market | IN PROGRESS | PG05–PG08 + PG14–PG15 + PG33; PG33 QA evidence + Cloudflare batch acceptance remain |
-| M4 Product / Supplier / Conversion | IN PROGRESS | PG09–PG11 PS7 CI PASS; PG12–PG13 + PG16–PG19 remain |
+| M4 Product / Supplier / Conversion | IN PROGRESS | PG09–PG12 PS7 CI PASS; PG13 + PG16–PG19 remain |
 | M5 Proof / Resources / Compliance / Content | NOT STARTED | Resource/content QA |
 | M6 Support / Utility | NOT STARTED | All 33 layouts exist AR/EN |
 | M7 Full QA & Optimization | NOT STARTED | Zero Critical / High defects + final visual polish |
@@ -84,6 +85,7 @@ ar/
 ├── product-categories.html        # PG09 — PS7 CI PASS
 ├── products.html                  # PG10 — PS7 CI PASS
 ├── product-details.html           # PG11 — PS7 CI PASS
+├── suppliers.html                 # PG12 — PS7 CI PASS
 └── company-profile.html           # PG33 — IMPLEMENTED / QA EVIDENCE PENDING
 en/
 ├── index.html                     # PG01 — C8
@@ -99,6 +101,7 @@ en/
 ├── product-categories.html        # PG09 — PS7 CI PASS
 ├── products.html                  # PG10 — PS7 CI PASS
 ├── product-details.html           # PG11 — PS7 CI PASS
+├── suppliers.html                 # PG12 — PS7 CI PASS
 └── company-profile.html           # PG33 — IMPLEMENTED / QA EVIDENCE PENDING
 assets/
 ├── brand/
@@ -120,6 +123,7 @@ assets/
 │   ├── origex-product-categories.css
 │   ├── origex-products.css
 │   ├── origex-product-details.css
+│   ├── origex-suppliers.css
 │   ├── origex-company-profile.css
 │   └── origex-shell.css
 ├── media/demo/
@@ -133,6 +137,7 @@ assets/
 │   ├── origex-product-categories.js
 │   ├── origex-products.js
 │   ├── origex-product-details.js
+│   ├── origex-suppliers.js
 │   └── origex-landing.js
 ├── data/
 │   ├── products.json
@@ -158,6 +163,7 @@ qa/
 ├── pg09-product-categories/
 ├── pg10-products/
 ├── pg11-product-details/
+├── pg12-suppliers/
 └── pg33-company-profile/          # pending evidence until QA workflow records report
 docs/
 ├── page-design-profiles/
@@ -174,6 +180,7 @@ docs/
 │   ├── pg09-product-categories-v1.md
 │   ├── pg10-products-grid-v1.md
 │   ├── pg11-product-details-v1.md
+│   ├── pg12-suppliers-v1.md
 │   └── pg33-company-profile-v1.md
 └── canonical authorities
 ```
@@ -193,7 +200,7 @@ docs/
 | PG09 | Product Categories | PS7 — IMPLEMENTED | APPROVED — `pg09-product-categories-v1.md` | `ar/product-categories.html` + `en/product-categories.html` | SOURCE + RENDERED + FILTER + PRODUCT-NAVIGATION QA PASS — CLOUDFLARE M4 BATCH REVIEW PENDING |
 | PG10 | Products Grid | PS7 — IMPLEMENTED | APPROVED — `pg10-products-grid-v1.md` | `ar/products.html` + `en/products.html` | DATA + SOURCE + RENDERED 8/8 + SEARCH/FILTER/PAGINATION + PRODUCT-NAVIGATION QA PASS — CLOUDFLARE M4 BATCH REVIEW PENDING |
 | PG11 | Product Details | PS7 — IMPLEMENTED | APPROVED — `pg11-product-details-v1.md` | `ar/product-details.html` + `en/product-details.html` | DATA + SOURCE + RENDERED 8/8 + PRODUCT SWITCH + SUPPLIER RELATION + RESOURCE PLACEHOLDER + RELATED PRODUCTS + RFQ + PRODUCT-NAVIGATION QA PASS — CLOUDFLARE M4 BATCH REVIEW PENDING |
-| PG12 | Suppliers / Brands Directory | PS0 | NOT STARTED | NOT STARTED | NOT STARTED |
+| PG12 | Suppliers / Brands Directory | PS7 — IMPLEMENTED | APPROVED — `pg12-suppliers-v1.md` | `ar/suppliers.html` + `en/suppliers.html` | DATA + SOURCE + RENDERED 8/8 + SEARCH/CATEGORY/ORIGIN FILTER + FEATURED + QUERY-PARAM + SUPPLIER-NAVIGATION QA PASS — CLOUDFLARE M4 BATCH REVIEW PENDING |
 | PG13 | Supplier / Brand Details | PS0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG14 | Market Access | PS7 — IMPLEMENTED | APPROVED — `pg14-market-access-v1.md` | `ar/market-access.html` + `en/market-access.html` | SOURCE + RENDERED + MARKET-NAVIGATION QA PASS — CLOUDFLARE BATCH REVIEW PENDING |
 | PG15 | Markets / Countries | PS7 — IMPLEMENTED | APPROVED — `pg15-markets-v1.md` | `ar/markets.html` + `en/markets.html` | SOURCE + RENDERED + FILTER + MARKET-NAVIGATION QA PASS — CLOUDFLARE BATCH REVIEW PENDING |
@@ -355,7 +362,21 @@ docs/
 - Search + category/brand/origin filters + reset + pagination + empty state + `?category=frozen` deep-link + Product Details/RFQ routes + desktop/mobile Product navigation PASS.
 - Earlier rendered report false-failed lazy-loaded images in headless Chrome before viewport exposure; source QA proved all image paths exist. The corrected rendered gate supersedes that QA-tool defect.
 - Final status: `qa/pg10-products/run-status.txt` = PASS.
-- Current: PS7 pending Cloudflare M4 batch browser review. PG12 Suppliers / Brands Directory is next.
+- Current: PS7 pending Cloudflare M4 batch browser review. PG12 is also PS7; PG13 Supplier / Brand Details is next.
+
+## M4 PG12 Evidence
+
+### PG12 — Suppliers / Brands Directory
+- PS6 contract: `docs/page-design-profiles/pg12-suppliers-v1.md`.
+- AR/EN: `ar/suppliers.html` + `en/suppliers.html`.
+- Composition/runtime: `assets/css/origex-suppliers.css` + `assets/js/origex-suppliers.js`.
+- Data authority: `assets/data/suppliers.json` + `assets/data/products.json`; 4 fictional suppliers / 12 linked products / 4 featured demo records.
+- Frozen scope: search, category filter, origin filter, supplier/brand cards, featured suppliers and commercial CTA.
+- Source/data QA: `qa/pg12-suppliers/source-report.json` — failures 0.
+- Rendered/interaction QA: `qa/pg12-suppliers/rendered-report.json` — failures 0; AR/EN × 390/820/1366/1536 = 8/8 PASS; search/category/origin/reset/empty, Arabic deep-link hydration and desktop/mobile Supplier navigation PASS.
+- QA investigation found a Selenium state-event edge case after `clear()`; runtime filter state was hardened in commit `15e7c2efe2344f2324e12e68d4cd8cec6b48647b`, and comprehensive rendered diagnostic commit `88827601664524f1111229d7cce5bd876b72e5b5` passed with zero failures / no exception. Diagnostic artifacts/workflow were then removed.
+- Final QA: `qa/pg12-suppliers/run-status.txt` = PASS.
+- Current: PS7 pending Cloudflare M4 batch browser review. PG13 Supplier / Brand Details is next.
 
 ## Cloudflare Test Environment Control
 
@@ -392,7 +413,7 @@ Current state:
 1. Run Cloudflare batch browser review for PG05–PG08 + PG14–PG15.
 2. Fix deployment-only defects if any and rerun the affected page QA.
 3. Promote eligible M3 pages to C8 only after deployed-browser acceptance.
-4. Open M4 page production after the M3 batch deployment gate.
+4. Continue M4 page production with PG13 Supplier / Brand Details; M3 Cloudflare review remains a parallel PS8 gate.
 5. Run Cloudflare batch browser review before promoting pending C7 pages to C8.
 6. Keep final aesthetic CSS polish for M7; only functional/responsive/RTL/overflow defects are fixed during page production.
 7. Repair Cloudflare Git auto-deploy in the deferred infrastructure session.
