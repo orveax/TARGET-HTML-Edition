@@ -1,7 +1,5 @@
 {
-  "failures": [
-    "nav-drift"
-  ],
+  "failures": [],
   "pages": {
     "ar": {
       "failures": [],
@@ -29,6 +27,5 @@
         "cta"
       ]
     }
-  },
-  "nav-drift": "DRIFT: ar/certifications-compliance.html\nDRIFT: en/certifications-compliance.html\n"
+  }
 }
