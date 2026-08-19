@@ -118,6 +118,9 @@
     "en/products.html": {
       "failures": []
     },
+    "en/resources.html": {
+      "failures": []
+    },
     "en/rfq.html": {
       "failures": []
     },
@@ -135,7 +138,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 44,
+    "pagesChecked": 45,
     "failures": 0
   }
 }
