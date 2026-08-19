@@ -1,0 +1,294 @@
+{
+  "generatedAt": "2026-08-19T05:06:52Z",
+  "failures": 0,
+  "results": [
+    {
+      "lang": "ar",
+      "viewport": {
+        "name": "mobile-390",
+        "width": 390,
+        "height": 844
+      },
+      "requiredTarget": 44,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "criticalSectionsRendered": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "buttonsBelow44": [],
+        "channelsWidth": 335,
+        "clientWidth": 375,
+        "dir": "rtl",
+        "expected": "rtl",
+        "fontsReady": "loaded",
+        "h1Width": 335,
+        "heroHeight": 1071,
+        "horizontalOverflow": false,
+        "mediaHeight": 430,
+        "mediaWidth": 335,
+        "minButtonHeight": 55,
+        "offscreen": [],
+        "routesWidth": 335,
+        "scrollWidth": 375
+      },
+      "screenshot": "qa/pg02-rendered/ar-mobile-390.jpeg"
+    },
+    {
+      "lang": "ar",
+      "viewport": {
+        "name": "tablet-820",
+        "width": 820,
+        "height": 1180
+      },
+      "requiredTarget": 44,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "criticalSectionsRendered": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "buttonsBelow44": [],
+        "channelsWidth": 757,
+        "clientWidth": 805,
+        "dir": "rtl",
+        "expected": "rtl",
+        "fontsReady": "loaded",
+        "h1Width": 757,
+        "heroHeight": 961,
+        "horizontalOverflow": false,
+        "mediaHeight": 460,
+        "mediaWidth": 757,
+        "minButtonHeight": 55,
+        "offscreen": [],
+        "routesWidth": 757,
+        "scrollWidth": 805
+      },
+      "screenshot": "qa/pg02-rendered/ar-tablet-820.jpeg"
+    },
+    {
+      "lang": "ar",
+      "viewport": {
+        "name": "laptop-1366",
+        "width": 1366,
+        "height": 900
+      },
+      "requiredTarget": 40,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "criticalSectionsRendered": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "buttonsBelow44": [],
+        "channelsWidth": 1140,
+        "clientWidth": 1351,
+        "dir": "rtl",
+        "expected": "rtl",
+        "fontsReady": "loaded",
+        "h1Width": 563,
+        "heroHeight": 746,
+        "horizontalOverflow": false,
+        "mediaHeight": 500,
+        "mediaWidth": 509,
+        "minButtonHeight": 46,
+        "offscreen": [],
+        "routesWidth": 1140,
+        "scrollWidth": 1351
+      },
+      "screenshot": "qa/pg02-rendered/ar-laptop-1366.jpeg"
+    },
+    {
+      "lang": "ar",
+      "viewport": {
+        "name": "desktop-1536",
+        "width": 1536,
+        "height": 960
+      },
+      "requiredTarget": 40,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "criticalSectionsRendered": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "buttonsBelow44": [],
+        "channelsWidth": 1140,
+        "clientWidth": 1521,
+        "dir": "rtl",
+        "expected": "rtl",
+        "fontsReady": "loaded",
+        "h1Width": 558,
+        "heroHeight": 756,
+        "horizontalOverflow": false,
+        "mediaHeight": 500,
+        "mediaWidth": 505,
+        "minButtonHeight": 46,
+        "offscreen": [],
+        "routesWidth": 1140,
+        "scrollWidth": 1521
+      },
+      "screenshot": "qa/pg02-rendered/ar-desktop-1536.jpeg"
+    },
+    {
+      "lang": "en",
+      "viewport": {
+        "name": "mobile-390",
+        "width": 390,
+        "height": 844
+      },
+      "requiredTarget": 44,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "criticalSectionsRendered": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "buttonsBelow44": [],
+        "channelsWidth": 335,
+        "clientWidth": 375,
+        "dir": "ltr",
+        "expected": "ltr",
+        "fontsReady": "loaded",
+        "h1Width": 335,
+        "heroHeight": 1193,
+        "horizontalOverflow": false,
+        "mediaHeight": 430,
+        "mediaWidth": 335,
+        "minButtonHeight": 52,
+        "offscreen": [],
+        "routesWidth": 335,
+        "scrollWidth": 375
+      },
+      "screenshot": "qa/pg02-rendered/en-mobile-390.jpeg"
+    },
+    {
+      "lang": "en",
+      "viewport": {
+        "name": "tablet-820",
+        "width": 820,
+        "height": 1180
+      },
+      "requiredTarget": 44,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "criticalSectionsRendered": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "buttonsBelow44": [],
+        "channelsWidth": 757,
+        "clientWidth": 805,
+        "dir": "ltr",
+        "expected": "ltr",
+        "fontsReady": "loaded",
+        "h1Width": 757,
+        "heroHeight": 942,
+        "horizontalOverflow": false,
+        "mediaHeight": 460,
+        "mediaWidth": 757,
+        "minButtonHeight": 52,
+        "offscreen": [],
+        "routesWidth": 757,
+        "scrollWidth": 805
+      },
+      "screenshot": "qa/pg02-rendered/en-tablet-820.jpeg"
+    },
+    {
+      "lang": "en",
+      "viewport": {
+        "name": "laptop-1366",
+        "width": 1366,
+        "height": 900
+      },
+      "requiredTarget": 40,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "criticalSectionsRendered": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "buttonsBelow44": [],
+        "channelsWidth": 1140,
+        "clientWidth": 1351,
+        "dir": "ltr",
+        "expected": "ltr",
+        "fontsReady": "loaded",
+        "h1Width": 563,
+        "heroHeight": 808,
+        "horizontalOverflow": false,
+        "mediaHeight": 500,
+        "mediaWidth": 509,
+        "minButtonHeight": 44,
+        "offscreen": [],
+        "routesWidth": 1140,
+        "scrollWidth": 1351
+      },
+      "screenshot": "qa/pg02-rendered/en-laptop-1366.jpeg"
+    },
+    {
+      "lang": "en",
+      "viewport": {
+        "name": "desktop-1536",
+        "width": 1536,
+        "height": 960
+      },
+      "requiredTarget": 40,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "criticalSectionsRendered": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "buttonsBelow44": [],
+        "channelsWidth": 1140,
+        "clientWidth": 1521,
+        "dir": "ltr",
+        "expected": "ltr",
+        "fontsReady": "loaded",
+        "h1Width": 558,
+        "heroHeight": 930,
+        "horizontalOverflow": false,
+        "mediaHeight": 500,
+        "mediaWidth": 505,
+        "minButtonHeight": 44,
+        "offscreen": [],
+        "routesWidth": 1140,
+        "scrollWidth": 1521
+      },
+      "screenshot": "qa/pg02-rendered/en-desktop-1536.jpeg"
+    }
+  ]
+}
