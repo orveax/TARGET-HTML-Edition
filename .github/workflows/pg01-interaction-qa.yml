@@ -1,0 +1,141 @@
+name: PG01 Rendered Interaction QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.pg01-interaction-trigger'
+      - 'ar/index.html'
+      - 'en/index.html'
+      - 'assets/js/**'
+      - 'assets/css/**'
+      - '.github/workflows/pg01-interaction-qa.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pg01-interaction-qa-main
+  cancel-in-progress: true
+
+jobs:
+  interaction-qa:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start static site and ChromeDriver
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/origex-http.log 2>&1 &
+          chromedriver --port=9515 --allowed-origins='*' >/tmp/origex-chromedriver.log 2>&1 &
+          sleep 2
+          curl -fsS http://127.0.0.1:4173/en/ >/dev/null
+          curl -fsS http://127.0.0.1:9515/status >/dev/null
+
+      - name: Run interaction checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p qa/pg01-interaction
+          cat >/tmp/pg01-interaction.py <<'PY'
+          import json, time, urllib.request
+          from pathlib import Path
+
+          WD='http://127.0.0.1:9515'
+          OUT=Path('qa/pg01-interaction')
+
+          def req(method,path,payload=None):
+              data=None if payload is None else json.dumps(payload).encode()
+              r=urllib.request.Request(WD+path,data=data,method=method,headers={'Content-Type':'application/json'})
+              with urllib.request.urlopen(r,timeout=30) as f: body=json.loads(f.read().decode())
+              value=body.get('value')
+              if isinstance(value,dict) and value.get('error'): raise RuntimeError(value)
+              return value
+
+          def session(w,h):
+              value=req('POST','/session',{'capabilities':{'alwaysMatch':{'browserName':'chrome','goog:chromeOptions':{'args':['--headless=new','--no-sandbox','--disable-dev-shm-usage',f'--window-size={w},{h}']}}}})
+              sid=value['sessionId']
+              req('POST',f'/session/{sid}/window/rect',{'width':w,'height':h,'x':0,'y':0})
+              return sid
+
+          def js(sid,script,args=None):
+              return req('POST',f'/session/{sid}/execute/sync',{'script':script,'args':args or []})
+
+          def key_escape(sid):
+              js(sid,"document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',code:'Escape',bubbles:true})); return true;")
+              time.sleep(.15)
+
+          results=[]
+          failures=0
+
+          for lang in ('ar','en'):
+              # Desktop navigation / FAQ / announcement.
+              sid=session(1366,900)
+              try:
+                  req('POST',f'/session/{sid}/url',{'url':f'http://127.0.0.1:4173/{lang}/'})
+                  time.sleep(.6)
+
+                  desktop={}
+                  desktop['mega_present']=js(sid,"return !!document.querySelector('[data-orx-mega-trigger]');")
+                  desktop['mega_open']=js(sid,"const t=document.querySelector('[data-orx-mega-trigger]'); if(!t)return false; t.click(); const m=document.getElementById(t.getAttribute('aria-controls')); return t.getAttribute('aria-expanded')==='true' && m && !m.hidden;")
+                  key_escape(sid)
+                  desktop['mega_escape_close']=js(sid,"const t=document.querySelector('[data-orx-mega-trigger]'); const m=t&&document.getElementById(t.getAttribute('aria-controls')); return !!t && t.getAttribute('aria-expanded')==='false' && !!m && m.hidden;")
+
+                  desktop['faq_present']=js(sid,"return !!document.querySelector('[data-orx-accordion-trigger]');")
+                  desktop['faq_toggle']=js(sid,"let t=[...document.querySelectorAll('[data-orx-accordion-trigger]')].find(x=>x.getAttribute('aria-expanded')==='false')||document.querySelector('[data-orx-accordion-trigger]'); if(!t)return false; if(t.getAttribute('aria-expanded')==='true')t.click(); const p=document.getElementById(t.getAttribute('aria-controls')); t.click(); const opened=t.getAttribute('aria-expanded')==='true' && p && !p.hidden; t.click(); const closed=t.getAttribute('aria-expanded')==='false' && p && p.hidden; return !!(opened&&closed);")
+
+                  desktop['announcement_present']=js(sid,"return !!document.querySelector('[data-orx-announcement]');")
+                  desktop['announcement_close']=js(sid,"const b=document.querySelector('[data-orx-announcement]'); const c=document.querySelector('[data-orx-announcement-close]'); if(!b||!c)return false; c.click(); return b.hidden===true;")
+
+                  passed=all(desktop.values())
+                  if not passed: failures+=1
+                  results.append({'lang':lang,'mode':'desktop','pass':passed,'checks':desktop})
+              finally:
+                  try:req('DELETE',f'/session/{sid}')
+                  except Exception:pass
+
+              # Mobile drawer behavior.
+              sid=session(390,844)
+              try:
+                  req('POST',f'/session/{sid}/url',{'url':f'http://127.0.0.1:4173/{lang}/'})
+                  time.sleep(.6)
+                  mobile={}
+                  mobile['drawer_present']=js(sid,"return !!document.querySelector('[data-orx-mobile-drawer]') && !!document.querySelector('[data-orx-drawer-open]');")
+                  mobile['drawer_open']=js(sid,"const o=document.querySelector('[data-orx-drawer-open]'); const d=document.querySelector('[data-orx-mobile-drawer]'); if(!o||!d)return false; o.click(); return d.getAttribute('aria-hidden')==='false' && o.getAttribute('aria-expanded')==='true' && document.body.classList.contains('orx-nav-open');")
+                  key_escape(sid)
+                  mobile['drawer_escape_close']=js(sid,"const o=document.querySelector('[data-orx-drawer-open]'); const d=document.querySelector('[data-orx-mobile-drawer]'); return !!o&&!!d&&d.getAttribute('aria-hidden')==='true'&&o.getAttribute('aria-expanded')==='false'&&!document.body.classList.contains('orx-nav-open');")
+                  passed=all(mobile.values())
+                  if not passed: failures+=1
+                  results.append({'lang':lang,'mode':'mobile','pass':passed,'checks':mobile})
+              finally:
+                  try:req('DELETE',f'/session/{sid}')
+                  except Exception:pass
+
+          generated=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime())
+          report={'generatedAt':generated,'failures':failures,'results':results}
+          (OUT/'report.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
+          lines=['# PG01 Rendered Interaction QA','',f'Generated: {generated}','','| Lang | Mode | Result | Checks |','|---|---|---|---|']
+          for r in results:
+              summary=' · '.join(f"{k}={'PASS' if v else 'FAIL'}" for k,v in r['checks'].items())
+              lines.append(f"| {r['lang'].upper()} | {r['mode']} | {'PASS' if r['pass'] else 'FAIL'} | {summary} |")
+          lines += ['', '## Scope', '', '- Desktop: mega menu open + Escape close, FAQ open/close, announcement dismiss.', '- Mobile: drawer open + Escape close + body scroll-lock state.', '- AR and EN are executed independently in rendered Chrome.', '']
+          (OUT/'README.md').write_text('\n'.join(lines),encoding='utf-8')
+          (OUT/'run-status.txt').write_text(('PASS' if failures==0 else f'FAIL — {failures} cases')+'\n',encoding='utf-8')
+          raise SystemExit(1 if failures else 0)
+          PY
+          python3 /tmp/pg01-interaction.py
+
+      - name: Commit interaction QA evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'orveax-build'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A qa/pg01-interaction
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'PG01 record rendered interaction QA evidence'
+          git push origin main
