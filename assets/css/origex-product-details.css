@@ -1,0 +1,236 @@
+/* ORIGEX — ORX-P01 | PG11 Product Details Composition | Copyright © ORVEAX */
+
+.orx-product-detail-hero .orx-hero__grid {
+  align-items: center;
+}
+
+.orx-product-detail-media {
+  min-block-size: clamp(22rem, 42vw, 36rem);
+  display: grid;
+  place-items: center;
+  padding: clamp(var(--orx-space-5), 4vw, var(--orx-space-8));
+  overflow: hidden;
+  background: var(--orx-surface-soft);
+  border: 1px solid var(--orx-border);
+  border-radius: var(--orx-radius-lg);
+}
+
+.orx-product-detail-media img {
+  display: block;
+  inline-size: min(100%, 31rem);
+  block-size: auto;
+  max-block-size: 31rem;
+  object-fit: contain;
+}
+
+.orx-product-detail-identity {
+  display: grid;
+  gap: var(--orx-space-4);
+}
+
+.orx-product-detail-identity__badges,
+.orx-product-detail-hero__actions,
+.orx-product-detail-resource__actions,
+.orx-product-detail-related__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--orx-space-3);
+  align-items: center;
+}
+
+.orx-product-detail-name {
+  margin: 0;
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  line-height: 1.15;
+}
+
+.orx-product-detail-brand {
+  margin: 0;
+  color: var(--orx-text-muted);
+  font-weight: 700;
+}
+
+.orx-product-detail-facts,
+.orx-product-detail-handling,
+.orx-product-detail-document-grid,
+.orx-product-detail-related-grid {
+  display: grid;
+  gap: var(--orx-space-4);
+}
+
+.orx-product-detail-fact {
+  min-block-size: 100%;
+  padding: var(--orx-space-5);
+  border: 1px solid var(--orx-border);
+  border-radius: var(--orx-radius-md);
+  background: var(--orx-surface);
+}
+
+.orx-product-detail-fact dt {
+  margin-block-end: var(--orx-space-2);
+  color: var(--orx-text-muted);
+  font-size: var(--orx-fs-small);
+  font-weight: 800;
+}
+
+.orx-product-detail-fact dd {
+  margin: 0;
+  color: var(--orx-text);
+  font-weight: 700;
+}
+
+.orx-product-detail-panel {
+  block-size: 100%;
+  padding: clamp(var(--orx-space-5), 3vw, var(--orx-space-7));
+  border: 1px solid var(--orx-border);
+  border-radius: var(--orx-radius-lg);
+  background: var(--orx-surface);
+}
+
+.orx-product-detail-panel--strong {
+  background: var(--orx-primary-strong);
+  color: var(--orx-surface);
+  border-color: var(--orx-primary-strong);
+}
+
+.orx-product-detail-panel--strong h2,
+.orx-product-detail-panel--strong h3,
+.orx-product-detail-panel--strong strong {
+  color: var(--orx-surface);
+}
+
+.orx-product-detail-panel--strong p,
+.orx-product-detail-panel--strong .orx-muted {
+  color: color-mix(in srgb, var(--orx-surface) 76%, transparent);
+}
+
+.orx-product-detail-supplier {
+  display: grid;
+  gap: var(--orx-space-5);
+  align-items: start;
+}
+
+.orx-product-detail-supplier__identity {
+  display: grid;
+  gap: var(--orx-space-3);
+}
+
+.orx-product-detail-supplier__mark {
+  inline-size: 3.25rem;
+  block-size: 3.25rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--orx-radius-md);
+  background: var(--orx-surface-soft);
+  color: var(--orx-primary);
+}
+
+.orx-product-detail-cert-list,
+.orx-product-detail-resource-list {
+  display: grid;
+  gap: var(--orx-space-3);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.orx-product-detail-cert,
+.orx-product-detail-resource {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--orx-space-3);
+  align-items: center;
+  padding: var(--orx-space-4);
+  border: 1px solid var(--orx-border);
+  border-radius: var(--orx-radius-md);
+  background: var(--orx-surface);
+}
+
+.orx-product-detail-resource button[disabled] {
+  cursor: not-allowed;
+  opacity: .62;
+}
+
+.orx-product-detail-related-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  min-block-size: 100%;
+}
+
+.orx-product-detail-related-card__media {
+  min-block-size: 13rem;
+  display: grid;
+  place-items: center;
+  padding: var(--orx-space-4);
+  background: var(--orx-surface-soft);
+}
+
+.orx-product-detail-related-card__media img {
+  inline-size: min(100%, 14rem);
+  block-size: 11rem;
+  object-fit: contain;
+}
+
+.orx-product-detail-related-card__body {
+  display: grid;
+  align-content: start;
+  gap: var(--orx-space-3);
+  padding: var(--orx-space-5);
+}
+
+.orx-product-detail-disclosure {
+  display: flex;
+  gap: var(--orx-space-3);
+  align-items: flex-start;
+  padding: var(--orx-space-5);
+  border-inline-start: 4px solid var(--orx-accent);
+  border-radius: var(--orx-radius-sm);
+  background: var(--orx-surface-soft);
+}
+
+.orx-product-detail-status {
+  margin-block-start: var(--orx-space-4);
+}
+
+.orx-product-detail-error {
+  padding: var(--orx-space-6);
+  border: 1px solid var(--orx-border);
+  border-radius: var(--orx-radius-md);
+  background: var(--orx-surface-soft);
+}
+
+@media (min-width: 768px) {
+  .orx-product-detail-facts,
+  .orx-product-detail-handling,
+  .orx-product-detail-document-grid,
+  .orx-product-detail-related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .orx-product-detail-facts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .orx-product-detail-supplier {
+    grid-template-columns: minmax(0, 1.1fr) minmax(18rem, .9fr);
+  }
+
+  .orx-product-detail-related-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767.98px) {
+  .orx-product-detail-cert,
+  .orx-product-detail-resource {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .orx-product-detail-cert > :last-child,
+  .orx-product-detail-resource > :last-child {
+    grid-column: 1 / -1;
+  }
+}
