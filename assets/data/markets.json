@@ -1,0 +1,80 @@
+[
+  {
+    "id": "market-qa",
+    "slug": "qatar-demo",
+    "countryCode": "QA",
+    "nameAr": "قطر — Demo",
+    "nameEn": "Qatar — Demo",
+    "region": "GCC",
+    "summaryAr": "سوق توضيحي داخل القالب لعرض طريقة ربط المورد بالقنوات والأسواق دون ادعاء حقوق توزيع أو علاقة تجارية فعلية.",
+    "summaryEn": "An illustrative template market used to demonstrate supplier-to-market relationships without implying distribution rights or a live commercial relationship.",
+    "channelTagsAr": ["تجزئة", "جملة", "فود سيرفيس"],
+    "channelTagsEn": ["Retail", "Wholesale", "Foodservice"],
+    "featured": true
+  },
+  {
+    "id": "market-sa",
+    "slug": "saudi-arabia-demo",
+    "countryCode": "SA",
+    "nameAr": "السعودية — Demo",
+    "nameEn": "Saudi Arabia — Demo",
+    "region": "GCC",
+    "summaryAr": "سجل سوق توضيحي لاختبار عرض القنوات والعلاقات في تجربة ORIGEX قبل استبداله ببيانات موثقة.",
+    "summaryEn": "An illustrative market record for testing channel and relationship presentation in ORIGEX before replacement with verified data.",
+    "channelTagsAr": ["تجزئة", "توزيع", "فود سيرفيس"],
+    "channelTagsEn": ["Retail", "Distribution", "Foodservice"],
+    "featured": true
+  },
+  {
+    "id": "market-ae",
+    "slug": "uae-demo",
+    "countryCode": "AE",
+    "nameAr": "الإمارات — Demo",
+    "nameEn": "UAE — Demo",
+    "region": "GCC",
+    "summaryAr": "سوق Demo لعرض بنية البيانات التجارية والقنوات المحتملة داخل القالب فقط.",
+    "summaryEn": "A demo market used only to show commercial data structure and possible channel types inside the template.",
+    "channelTagsAr": ["تجزئة", "جملة", "ضيافة"],
+    "channelTagsEn": ["Retail", "Wholesale", "Hospitality"],
+    "featured": true
+  },
+  {
+    "id": "market-kw",
+    "slug": "kuwait-demo",
+    "countryCode": "KW",
+    "nameAr": "الكويت — Demo",
+    "nameEn": "Kuwait — Demo",
+    "region": "GCC",
+    "summaryAr": "مثال سوق توضيحي ضمن بيانات القالب ولا يمثل وجود موزع أو شريك أو حق حصري.",
+    "summaryEn": "An illustrative market example that does not represent a distributor, partner or exclusive right.",
+    "channelTagsAr": ["تجزئة", "جملة"],
+    "channelTagsEn": ["Retail", "Wholesale"],
+    "featured": false
+  },
+  {
+    "id": "market-bh",
+    "slug": "bahrain-demo",
+    "countryCode": "BH",
+    "nameAr": "البحرين — Demo",
+    "nameEn": "Bahrain — Demo",
+    "region": "GCC",
+    "summaryAr": "بيانات سوق توضيحية لاختبار تجربة المورد والأسواق داخل ORIGEX.",
+    "summaryEn": "Illustrative market data used to test supplier and market presentation inside ORIGEX.",
+    "channelTagsAr": ["تجزئة", "فود سيرفيس"],
+    "channelTagsEn": ["Retail", "Foodservice"],
+    "featured": false
+  },
+  {
+    "id": "market-om",
+    "slug": "oman-demo",
+    "countryCode": "OM",
+    "nameAr": "عمان — Demo",
+    "nameEn": "Oman — Demo",
+    "region": "GCC",
+    "summaryAr": "سجل Demo يوضح كيف يمكن ربط المورد بسوق مستهدف عند استخدام بيانات حقيقية موثقة لاحقًا.",
+    "summaryEn": "A demo record showing how a supplier can be linked to a target market when verified real data is configured later.",
+    "channelTagsAr": ["تجزئة", "توزيع"],
+    "channelTagsEn": ["Retail", "Distribution"],
+    "featured": false
+  }
+]
