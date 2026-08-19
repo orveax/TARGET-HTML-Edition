@@ -1,0 +1,104 @@
+name: PG02 Rendered Responsive QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.pg02-rendered-trigger'
+      - 'ar/home-02.html'
+      - 'en/home-02.html'
+      - 'assets/css/origex-distribution.css'
+      - 'assets/media/demo/hero-distribution-network.svg'
+      - '.github/workflows/pg02-rendered-qa.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pg02-rendered-qa-main
+  cancel-in-progress: true
+
+jobs:
+  rendered-qa:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Start static server and ChromeDriver
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/origex-http.log 2>&1 &
+          chromedriver --port=9515 --allowed-origins='*' >/tmp/origex-chromedriver.log 2>&1 &
+          sleep 2
+          curl -fsS http://127.0.0.1:4173/en/home-02.html >/dev/null
+          curl -fsS http://127.0.0.1:9515/status >/dev/null
+
+      - name: Run rendered matrix
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p qa/pg02-rendered
+          python3 - <<'PY'
+          import base64,json,time,urllib.request
+          from pathlib import Path
+          WD='http://127.0.0.1:9515'; OUT=Path('qa/pg02-rendered')
+          def req(method,path,payload=None):
+            data=None if payload is None else json.dumps(payload).encode()
+            r=urllib.request.Request(WD+path,data=data,method=method,headers={'Content-Type':'application/json'})
+            with urllib.request.urlopen(r,timeout=30) as f: body=json.loads(f.read().decode())
+            value=body.get('value')
+            if isinstance(value,dict) and value.get('error'): raise RuntimeError(value)
+            return value
+          def session(w,h):
+            v=req('POST','/session',{'capabilities':{'alwaysMatch':{'browserName':'chrome','goog:chromeOptions':{'args':['--headless=new','--no-sandbox','--disable-dev-shm-usage','--force-device-scale-factor=1',f'--window-size={w},{h}']}}}})
+            sid=v['sessionId']; req('POST',f'/session/{sid}/window/rect',{'width':w,'height':h,'x':0,'y':0}); return sid
+          def js(sid,script,args=None): return req('POST',f'/session/{sid}/execute/sync',{'script':script,'args':args or []})
+          def cdp(sid,cmd,params=None): return req('POST',f'/session/{sid}/goog/cdp/execute',{'cmd':cmd,'params':params or {}})
+          targets=[('ar','/ar/home-02.html','rtl'),('en','/en/home-02.html','ltr')]
+          viewports=[('mobile-390',390,844),('tablet-820',820,1180),('laptop-1366',1366,900),('desktop-1536',1536,960)]
+          metric=r'''
+          const width=arguments[0], expected=arguments[1], doc=document.documentElement;
+          const visible=el=>{const s=getComputedStyle(el),r=el.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0&&!el.closest('[aria-hidden="true"]')};
+          const off=[...document.querySelectorAll('body *')].filter(el=>{if(!visible(el)||getComputedStyle(el).position==='fixed')return false;const r=el.getBoundingClientRect();return r.left < -1 || r.right > width+1}).slice(0,20).map(el=>{const r=el.getBoundingClientRect();return {tag:el.tagName,cls:typeof el.className==='string'?el.className:'',left:Math.round(r.left),right:Math.round(r.right)}});
+          const buttons=[...document.querySelectorAll('.orx-btn')].filter(visible).map(el=>{const r=el.getBoundingClientRect();return {text:(el.textContent||'').trim().slice(0,60),height:Math.round(r.height)}});
+          const hero=document.querySelector('.orx-distribution-hero'), media=document.querySelector('.orx-distribution-hero .orx-media--hero'), h1=document.querySelector('h1');
+          const channels=document.querySelector('.orx-channel-grid'), routes=document.querySelector('.orx-route-market-grid');
+          return {dir:doc.dir,expected,clientWidth:doc.clientWidth,scrollWidth:doc.scrollWidth,horizontalOverflow:doc.scrollWidth>doc.clientWidth+1,offscreen:off,minButtonHeight:buttons.length?Math.min(...buttons.map(x=>x.height)):null,buttonsBelow44:buttons.filter(x=>x.height<44),heroHeight:hero?Math.round(hero.getBoundingClientRect().height):0,mediaWidth:media?Math.round(media.getBoundingClientRect().width):0,mediaHeight:media?Math.round(media.getBoundingClientRect().height):0,h1Width:h1?Math.round(h1.getBoundingClientRect().width):0,channelsWidth:channels?Math.round(channels.getBoundingClientRect().width):0,routesWidth:routes?Math.round(routes.getBoundingClientRect().width):0,fontsReady:document.fonts?document.fonts.status:'unsupported'};
+          '''
+          rows=[]; failures=0
+          for lang,path,direction in targets:
+            for name,w,h in viewports:
+              sid=session(w,h)
+              try:
+                req('POST',f'/session/{sid}/url',{'url':'http://127.0.0.1:4173'+path}); time.sleep(.9)
+                m=js(sid,metric,[w,direction]); minimum=44 if w<=1024 else 40
+                checks={'direction':m['dir']==direction,'noHorizontalOverflow':not m['horizontalOverflow'] and not m['offscreen'],'touchTargets':(m['minButtonHeight'] or 0)>=minimum,'heroReadable':m['heroHeight']>0 and m['mediaWidth']>0 and m['mediaHeight']>0 and m['h1Width']>0,'criticalSectionsRendered':m['channelsWidth']>0 and m['routesWidth']>0,'fontsReady':m['fontsReady'] in ('loaded','unsupported')}
+                passed=all(checks.values()); failures+=0 if passed else 1
+                layout=cdp(sid,'Page.getLayoutMetrics'); size=layout.get('cssContentSize') or layout.get('contentSize')
+                shot=cdp(sid,'Page.captureScreenshot',{'format':'jpeg','quality':34,'fromSurface':True,'captureBeyondViewport':True,'clip':{'x':0,'y':0,'width':size['width'],'height':size['height'],'scale':1}})
+                fn=OUT/f'{lang}-{name}.jpeg'; fn.write_bytes(base64.b64decode(shot['data']))
+                rows.append({'lang':lang,'viewport':{'name':name,'width':w,'height':h},'requiredTarget':minimum,'pass':passed,'checks':checks,'metrics':m,'screenshot':str(fn)})
+              finally:
+                try:req('DELETE',f'/session/{sid}')
+                except:pass
+          report={'generatedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'failures':failures,'results':rows}
+          (OUT/'report.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
+          lines=['# PG02 Rendered Responsive QA','',f"Generated: {report['generatedAt']}",'','| Lang | Viewport | Result | Overflow | Target | Hero | Sections |','|---|---|---|---|---|---|---|']
+          for r in rows: lines.append(f"| {r['lang'].upper()} | {r['viewport']['width']}×{r['viewport']['height']} | {'PASS' if r['pass'] else 'FAIL'} | {'PASS' if r['checks']['noHorizontalOverflow'] else 'FAIL'} | {r['metrics']['minButtonHeight']}px / {r['requiredTarget']}px | {'PASS' if r['checks']['heroReadable'] else 'FAIL'} | {'PASS' if r['checks']['criticalSectionsRendered'] else 'FAIL'} |")
+          (OUT/'README.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          (OUT/'run-status.txt').write_text(('PASS' if failures==0 else f'FAIL — {failures} viewport cases')+'\n',encoding='utf-8')
+          raise SystemExit(1 if failures else 0)
+          PY
+
+      - name: Commit rendered QA evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'orveax-build'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A qa/pg02-rendered
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'PG02 record rendered responsive QA evidence'
+          git push origin main
