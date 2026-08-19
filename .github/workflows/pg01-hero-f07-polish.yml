@@ -1,0 +1,103 @@
+name: PG01 F07 Hero Polish Migration
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.pg01-hero-polish-trigger'
+      - '.github/workflows/pg01-hero-f07-polish.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Apply shared F07 trade-route composition to PG01 AR/EN
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          css_link = '  <link rel="stylesheet" href="../assets/css/origex-compositions.css">\n'
+
+          replacements = {
+              Path('ar/index.html'): ('''      <div class="orx-media orx-media--hero orx-pattern" style="--orx-pattern-image:url('../assets/patterns/pt04-market-nodes.svg');--orx-pattern-opacity:.32">
+        <div class="h-100 d-flex flex-column justify-content-center p-4 p-lg-5">
+          <span class="orx-eyebrow">Origin → Route → Market</span>
+          <div class="orx-stack" style="--orx-stack-gap:.75rem">
+            <div class="orx-card"><div class="orx-cluster"><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#factory"></use></svg></div><div><strong>المصدر</strong><div class="orx-small orx-muted">مصنع / مورد / منتج</div></div></div></div>
+            <div class="orx-card"><div class="orx-cluster"><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#route"></use></svg></div><div><strong>المسار التجاري</strong><div class="orx-small orx-muted">بيانات · تقييم · مستندات</div></div></div></div>
+            <div class="orx-card"><div class="orx-cluster"><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#earth"></use></svg></div><div><strong>السوق</strong><div class="orx-small orx-muted">قناة · مشتري · طلب</div></div></div></div>
+          </div>
+        </div>
+      </div>''', '''      <div class="orx-media orx-media--hero orx-route-visual orx-pattern" style="--orx-pattern-image:url('../assets/patterns/pt04-market-nodes.svg');--orx-pattern-opacity:.18">
+        <div class="orx-route-visual__inner">
+          <div class="orx-route-visual__head">
+            <span class="orx-eyebrow">Origin → Route → Market</span>
+            <span class="orx-badge">مسار تجاري من 3 مراحل</span>
+          </div>
+          <div class="orx-route-visual__track" role="list" aria-label="المسار التجاري من المصدر إلى السوق">
+            <div class="orx-route-visual__step" role="listitem"><span class="orx-route-visual__index">01</span><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#factory"></use></svg></div><div class="orx-route-visual__content"><strong class="orx-route-visual__title">المصدر</strong><span class="orx-route-visual__meta">مصنع · مورد · منتج</span></div></div>
+            <div class="orx-route-visual__step" role="listitem"><span class="orx-route-visual__index">02</span><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#route"></use></svg></div><div class="orx-route-visual__content"><strong class="orx-route-visual__title">المسار التجاري</strong><span class="orx-route-visual__meta">بيانات · تقييم · مستندات</span></div></div>
+            <div class="orx-route-visual__step" role="listitem"><span class="orx-route-visual__index">03</span><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#earth"></use></svg></div><div class="orx-route-visual__content"><strong class="orx-route-visual__title">السوق</strong><span class="orx-route-visual__meta">قناة · مشتري · استفسار</span></div></div>
+          </div>
+          <div class="orx-route-visual__footer"><span>بيانات → تقييم → تواصل</span><strong>مسار أوضح للقرار</strong></div>
+        </div>
+      </div>'''),
+              Path('en/index.html'): ('''      <div class="orx-media orx-media--hero orx-pattern" style="--orx-pattern-image:url('../assets/patterns/pt04-market-nodes.svg');--orx-pattern-opacity:.32">
+        <div class="h-100 d-flex flex-column justify-content-center p-4 p-lg-5">
+          <span class="orx-eyebrow">Origin → Route → Market</span>
+          <div class="orx-stack" style="--orx-stack-gap:.75rem">
+            <div class="orx-card"><div class="orx-cluster"><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#factory"></use></svg></div><div><strong>Source</strong><div class="orx-small orx-muted">Manufacturer / supplier / product</div></div></div></div>
+            <div class="orx-card"><div class="orx-cluster"><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#route"></use></svg></div><div><strong>Commercial route</strong><div class="orx-small orx-muted">Data · evaluation · documents</div></div></div></div>
+            <div class="orx-card"><div class="orx-cluster"><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#earth"></use></svg></div><div><strong>Market</strong><div class="orx-small orx-muted">Channel · buyer · enquiry</div></div></div></div>
+          </div>
+        </div>
+      </div>''', '''      <div class="orx-media orx-media--hero orx-route-visual orx-pattern" style="--orx-pattern-image:url('../assets/patterns/pt04-market-nodes.svg');--orx-pattern-opacity:.18">
+        <div class="orx-route-visual__inner">
+          <div class="orx-route-visual__head">
+            <span class="orx-eyebrow">Origin → Route → Market</span>
+            <span class="orx-badge">3-stage commercial path</span>
+          </div>
+          <div class="orx-route-visual__track" role="list" aria-label="Commercial route from source to market">
+            <div class="orx-route-visual__step" role="listitem"><span class="orx-route-visual__index">01</span><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#factory"></use></svg></div><div class="orx-route-visual__content"><strong class="orx-route-visual__title">Source</strong><span class="orx-route-visual__meta">Manufacturer · supplier · product</span></div></div>
+            <div class="orx-route-visual__step" role="listitem"><span class="orx-route-visual__index">02</span><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#route"></use></svg></div><div class="orx-route-visual__content"><strong class="orx-route-visual__title">Commercial route</strong><span class="orx-route-visual__meta">Data · evaluation · documents</span></div></div>
+            <div class="orx-route-visual__step" role="listitem"><span class="orx-route-visual__index">03</span><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#earth"></use></svg></div><div class="orx-route-visual__content"><strong class="orx-route-visual__title">Market</strong><span class="orx-route-visual__meta">Channel · buyer · enquiry</span></div></div>
+          </div>
+          <div class="orx-route-visual__footer"><span>Data → evaluation → conversation</span><strong>A clearer decision route</strong></div>
+        </div>
+      </div>''')
+          }
+
+          for path, (old, new) in replacements.items():
+              text = path.read_text(encoding='utf-8')
+              if 'origex-compositions.css' not in text:
+                  marker = '  <link rel="stylesheet" href="../assets/css/origex-components.css">\n'
+                  if marker not in text:
+                      raise SystemExit(f'missing stylesheet marker in {path}')
+                  text = text.replace(marker, marker + css_link, 1)
+              if old not in text:
+                  raise SystemExit(f'hero source block changed in {path}')
+              text = text.replace(old, new, 1)
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'orveax-build'
+          git config user.email 'actions@users.noreply.github.com'
+          git add ar/index.html en/index.html
+          if git diff --cached --quiet; then
+            echo 'No changes'
+            exit 0
+          fi
+          git commit -m 'PG01 apply reusable F07 trade route hero composition'
+          git push origin main
