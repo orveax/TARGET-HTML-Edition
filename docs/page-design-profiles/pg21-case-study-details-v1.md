@@ -2,7 +2,7 @@
 
 Product ID: ORX-P01  
 Milestone: M5 — Proof / Resources / Compliance / Content  
-Status: PS6 — FROZEN FOR BUILD  
+Status: **PS7 — IMPLEMENTED / CI QA PASS — AR+EN**  
 Canonical file: `case-study-details.html`
 
 ## Purpose
@@ -47,7 +47,7 @@ The six PG20 Demo case IDs remain stable:
 - `case-005` — Confectionery / Distribution
 - `case-006` — Ingredients / Product Information
 
-PG21 stores all editorial case-detail copy in HTML `<template>` records. JavaScript selects and renders the requested record; it must not own canonical editorial copy.
+PG21 stores all editorial case-detail copy in HTML `<template>` records. JavaScript selects and renders the requested record; it does not own canonical editorial copy.
 
 ## Query / Runtime Contract
 
@@ -84,7 +84,7 @@ Metrics are qualitative review signals only. No revenue, ROI, growth percentage,
 
 ## Proof / Commercial Boundaries
 
-Visible disclosure must state:
+Visible disclosure states:
 - all cases are fictional Demo scenarios;
 - the page is not evidence of a real client engagement;
 - results and metrics are illustrative workflow examples, not measured outcomes;
@@ -146,10 +146,23 @@ Required: self canonical, AR/EN/x-default hreflang, Open Graph baseline, WebPage
 - RTL/LTR independently verified;
 - reduced-motion inherited globally.
 
+## PS7 Closure Evidence — 2026-08-20
+
+- Source/runtime failures: **0**.
+- AR/EN sections: hero / notice / detail / navigation / related / CTA.
+- Six stable Demo case records in each language.
+- Rendered responsive QA: **8/8 PASS** across AR/EN × 390 / 820 / 1366 / 1536.
+- Valid `case-004` query hydration: PASS.
+- Invalid `case-999` fallback to `case-001` with visible status: PASS.
+- AR/EN language switch preserves resolved case ID: PASS.
+- Previous/next navigation: PASS.
+- Related-case exclusion/count: PASS.
+- Global Navigation V1 / Global Footer V1 / F05 Icon Integrity: PASS.
+- Final QA evidence commit: `7b5be6b72985026d003f48da5f7b3674fb84fcf6`.
+- QA authority: `docs/PG21-QA-REPORT-V1.md`.
+
 ## Exit Gate
 
-PS7 only after AR+EN implementation and source/SEO/navigation/footer/icon/client-leak/query/fallback/language-preservation/previous-next/related-case/responsive/interactions QA PASS.
-
-PS8 remains gated by deployed Cloudflare browser acceptance.
+PS7 complete. PS8 remains gated by deployed Cloudflare browser acceptance.
 
 Copyright © ORVEAX.
