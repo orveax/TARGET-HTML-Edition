@@ -42,7 +42,7 @@
     <div class="orx-site-header__actions">
       <a class="orx-lang-switch" href="../ar/supplier-details.html" lang="ar" hreflang="ar">AR</a>
       <a class="orx-btn orx-btn--primary orx-btn--sm" href="rfq.html" data-orx-header-cta>Request a Quote</a>
-      <button class="orx-icon-btn orx-mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-orx-drawer-open><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#menu"></use></svg></button>
+      <button class="orx-icon-btn orx-mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-orx-drawer-open><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#menu"></use></button>
     </div>
     <div class="orx-mega-menu" id="global-mega-en" data-orx-mega-menu hidden>
       <div class="orx-mega-menu__grid">
@@ -65,7 +65,7 @@
 </div>
 
 <main id="main" data-pg13-root data-suppliers-url="../assets/data/suppliers.json" data-products-url="../assets/data/products.json" data-markets-url="../assets/data/markets.json" data-default-supplier-id="supplier-noura" aria-busy="true">
-  <section class="orx-hero orx-supplier-detail-hero" aria-labelledby="pg13-title">
+  <section class="orx-hero orx-supplier-detail-hero" aria-labelledby="pg13-title" data-pg13-section="hero">
     <div class="orx-container orx-container--wide orx-supplier-detail-hero__grid">
       <div class="orx-supplier-detail-identity">
         <nav class="orx-breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><a href="suppliers.html">Suppliers</a><span aria-hidden="true">/</span><span>Supplier Details</span></nav>
@@ -85,30 +85,30 @@
     </div>
   </section>
 
-  <section class="orx-section orx-section--surface" aria-labelledby="pg13-categories-title">
+  <section class="orx-section orx-section--surface" aria-labelledby="pg13-categories-title" data-pg13-section="categories">
     <div class="orx-container orx-container--wide"><header class="orx-section-header"><span class="orx-eyebrow">Category Coverage</span><h2 id="pg13-categories-title">See which product families are connected to this supplier record.</h2><p>Category coverage comes directly from the shared supplier dataset.</p></header><div class="orx-supplier-detail-category-grid" data-pg13-categories></div></div>
   </section>
 
-  <section class="orx-section" aria-labelledby="pg13-products-title">
+  <section class="orx-section" aria-labelledby="pg13-products-title" data-pg13-section="products">
     <div class="orx-container orx-container--wide"><header class="orx-section-header"><span class="orx-eyebrow">Linked Products</span><h2 id="pg13-products-title">Linked products from the same demo dataset.</h2><p>Each card resolves an existing product record; supplier pages do not maintain a second catalogue.</p></header><div class="orx-supplier-detail-product-grid" data-pg13-products></div></div>
   </section>
 
-  <section class="orx-section orx-section--soft" aria-labelledby="pg13-relations-title">
+  <section class="orx-section orx-section--soft" aria-labelledby="pg13-relations-title" data-pg13-section="relationships">
     <div class="orx-container orx-container--wide orx-supplier-detail-two-col">
       <div class="orx-supplier-detail-panel"><span class="orx-eyebrow">Certification References</span><h2 id="pg13-relations-title">Keep demo references separate from verified certification claims.</h2><ul class="orx-supplier-detail-cert-list" data-pg13-certifications></ul></div>
       <div class="orx-supplier-detail-panel"><span class="orx-eyebrow">Relationship Facts</span><h2>Reusable relations, not commercial rights.</h2><p class="orx-muted" data-pg13-relationship-note>These relationships demonstrate the data model only and do not represent agency, exclusivity, distribution rights or a live commercial relationship.</p><div class="orx-supplier-detail-tags"><span class="orx-badge"><span data-pg13-category-count>4</span>&nbsp; categories</span><span class="orx-badge"><span data-pg13-product-count>4</span>&nbsp; products</span><span class="orx-badge"><span data-pg13-market-count>3</span>&nbsp; markets</span></div></div>
     </div>
   </section>
 
-  <section class="orx-section" aria-labelledby="pg13-markets-title">
+  <section class="orx-section" aria-labelledby="pg13-markets-title" data-pg13-section="markets">
     <div class="orx-container orx-container--wide"><header class="orx-section-header"><span class="orx-eyebrow">Target Markets — Demo</span><h2 id="pg13-markets-title">Illustrative target markets, not distribution rights.</h2><p>Market relations demonstrate how supplier data can connect to channels and territories after verified buyer data is configured.</p></header><ul class="orx-supplier-detail-market-list" data-pg13-markets></ul><div class="mt-4"><a class="orx-btn orx-btn--secondary" href="markets.html">Explore Markets & Countries</a></div></div>
   </section>
 
-  <section class="orx-section orx-section--surface" aria-labelledby="pg13-demo-title">
+  <section class="orx-section orx-section--surface" aria-labelledby="pg13-demo-title" data-pg13-section="disclosure">
     <div class="orx-container orx-container--wide"><div class="orx-supplier-detail-disclosure"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#info"></use></svg><div><h2 id="pg13-demo-title" class="h5">Illustrative supplier data</h2><p class="mb-0">Supplier identity, origin, category coverage, product relations, certification references and market links shown here are fictional or illustrative template data. Replace them with verified business data before publication.</p></div></div></div>
   </section>
 
-  <section class="orx-final-cta" aria-labelledby="pg13-cta-title">
+  <section class="orx-final-cta" aria-labelledby="pg13-cta-title" data-pg13-section="cta">
     <div class="orx-container orx-container--wide orx-final-cta__inner"><div><span class="orx-eyebrow">Next Commercial Step</span><h2 id="pg13-cta-title">Have a requirement for this supplier or product family?</h2><p>Move from profile review to a structured enquiry with product, quantity, destination and timing context.</p></div><div class="orx-hero__actions"><a class="orx-btn orx-btn--primary" href="rfq.html?supplier=supplier-noura" data-pg13-enquiry-link>Start a Commercial Enquiry</a><a class="orx-btn orx-btn--secondary" href="suppliers.html">Explore More Suppliers</a></div></div>
   </section>
 </main>
