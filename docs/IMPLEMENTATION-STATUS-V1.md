@@ -4,7 +4,7 @@ Product ID: ORX-P01
 Owner: ORVEAX  
 Repository: `orveax/origex-html-template`  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-20 — M5 IN PROGRESS / PG20–PG22 PS7 CI QA PASS / PG23 NEXT
+Last Updated: 2026-08-20 — M5 IN PROGRESS / PG20–PG23 PS7 CI QA PASS / PG24 NEXT
 
 This file is the concise repo-level execution tracker. Notion `ORIGEX — ORX-P01 | Project HQ` remains the product-state authority; GitHub records implementation and evidence. If this tracker conflicts with Project HQ, reconcile immediately.
 
@@ -22,10 +22,11 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 | M1 Global System & Components | PASS / CLOSED |
 | Global Navigation V1 | LOCKED / centrally normalized |
 | Global Footer V1 | LOCKED / centrally normalized |
-| F05 Icon Integrity | PASS — global automated gate active; 46 AR/EN pages / 0 missing sprite references at PG22 closure |
+| F05 Icon Integrity | PASS — global automated gate active; 48 AR/EN pages / 0 missing sprite references at PG23 closure |
+| Visual Site Map | PASS — `site-map.html`; 33 PG cards / 24 implemented / 9 pending / 48 valid AR+EN page links; internal Preview Utility, not PG34 |
 | Cloudflare Test Environment | AVAILABLE VIA MANUAL REBUILD |
 | Cloudflare Auto-Deploy | DEFERRED / repair pending |
-| Active Production Milestone | M5 IN PROGRESS — PG20–PG22 PS7; PG23 next |
+| Active Production Milestone | M5 IN PROGRESS — PG20–PG23 PS7; PG24 next |
 | Parallel Final Acceptance | M2/M3/M4 and completed M5 pages require applicable PS8 Cloudflare browser review |
 
 ## Page Production Snapshot
@@ -63,8 +64,8 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 - PG20 Case Studies — **PS7 / IMPLEMENTED / CI QA PASS** — AR+EN; source/runtime failures 0; rendered 8/8; filter/query/language/empty-state interactions PASS; Cloudflare review pending.
 - PG21 Case Study Details — **PS7 / IMPLEMENTED / CI QA PASS** — AR+EN; six HTML editorial case records; source/runtime failures 0; rendered 8/8; valid/invalid ID, language preservation, previous/next and related-case interactions PASS; Cloudflare review pending.
 - PG22 Downloads / Resources — **PS7 / IMPLEMENTED / CI QA PASS** — AR+EN; five registered local Demo resources; source/runtime/resource failures 0; rendered 8/8; category query, language preservation, keyboard reset and empty-state interactions PASS; Cloudflare review pending.
-- PG23 Certifications & Compliance — **NEXT VALID PAGE PRODUCTION ACTION**.
-- PG24 Insights / Blog — NOT STARTED.
+- PG23 Certifications & Compliance — **PS7 / IMPLEMENTED / CI QA PASS** — AR+EN; six Demo certification/document categories; claim-safety failures 0; rendered 8/8; no fabricated certificate/issuer/expiry/regulatory claim; Cloudflare review pending.
+- PG24 Insights / Blog — **NEXT VALID PAGE PRODUCTION ACTION**.
 - PG25 Article Details — NOT STARTED.
 
 ### M6 — Support / Utility
@@ -92,10 +93,8 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 - AR/EN: `ar/case-studies.html` + `en/case-studies.html`.
 - CSS: `assets/css/origex-case-studies.css`.
 - Runtime: `assets/js/origex-case-studies.js`.
-- Editorial governance: six fictional Demo cases embedded in HTML; no new `cases.json` schema domain.
-- QA: `qa/pg20-case-studies/` — source/runtime failures 0; rendered AR/EN × 390/820/1366/1536 = 8/8 PASS; filter query, language preservation, keyboard reset and empty-state interactions PASS.
-- Initial 390px overflow was corrected in `020097b889ec04df899e414647fcf3d89181d7d4`.
-- Final evidence commit: `d559056fe2b6b6bd88b7d0debf371f19525e0d80`.
+- QA: `qa/pg20-case-studies/` — source/runtime failures 0; rendered 8/8; filter/query/language/empty-state PASS.
+- Final evidence: `d559056fe2b6b6bd88b7d0debf371f19525e0d80`.
 - QA report: `docs/PG20-QA-REPORT-V1.md`.
 
 ## PG21 Final Evidence
@@ -104,9 +103,8 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 - AR/EN: `ar/case-study-details.html` + `en/case-study-details.html`.
 - CSS: `assets/css/origex-case-study-details.css`.
 - Runtime: `assets/js/origex-case-study-details.js`.
-- Editorial governance: six PG20-aligned case-detail records remain in HTML `<template>` elements; no new `cases.json` schema domain.
-- QA: `qa/pg21-case-study-details/` — source/runtime failures 0; rendered AR/EN × 390/820/1366/1536 = 8/8 PASS; valid/invalid ID, language preservation, previous/next and related-case interactions PASS.
-- Final evidence commit: `7b5be6b72985026d003f48da5f7b3674fb84fcf6`.
+- QA: `qa/pg21-case-study-details/` — source/runtime failures 0; rendered 8/8; valid/invalid ID + language + previous/next + related PASS.
+- Final evidence: `7b5be6b72985026d003f48da5f7b3674fb84fcf6`.
 - QA report: `docs/PG21-QA-REPORT-V1.md`.
 
 ## PG22 Final Evidence
@@ -116,20 +114,40 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 - CSS: `assets/css/origex-resources.css`.
 - Runtime: `assets/js/origex-resources.js`.
 - Resource register: `docs/RESOURCE-ASSET-REGISTER-V1.md`.
-- Five ORVEAX-authored bilingual UTF-8 Demo resource files under `assets/resources/`; no fabricated PDF/certificate/live-market asset.
-- QA: `qa/pg22-resources/` — source/runtime/resource failures 0; rendered AR/EN × 390/820/1366/1536 = 8/8 PASS; category query, language preservation, keyboard reset and empty-state interactions PASS.
-- Download target existence / register parity / TXT-UTF8 type accuracy: PASS.
-- Final evidence commit: `630b626d0180d2c62dd8112531bddb5f419b1bc6`.
+- Five ORVEAX-authored bilingual UTF-8 Demo resources; no fabricated PDF/certificate/live-market asset.
+- QA: `qa/pg22-resources/` — source/runtime/resource failures 0; rendered 8/8; category query/language/keyboard/empty state PASS.
+- Final evidence: `630b626d0180d2c62dd8112531bddb5f419b1bc6`.
 - QA report: `docs/PG22-QA-REPORT-V1.md`.
+
+## PG23 Final Evidence
+
+- Profile: `docs/page-design-profiles/pg23-certifications-compliance-v1.md`.
+- AR/EN: `ar/certifications-compliance.html` + `en/certifications-compliance.html`.
+- CSS: `assets/css/origex-compliance.css`.
+- Delivered: six Demo certification/document categories, four quality steps, four handling principles, four-node traceability Demo and document-status matrix.
+- Claim safety: no fabricated certificate number, issuer, expiry, audit score, approval or regulatory status.
+- Initial QA failed only on canonical `nav-drift`; Global Navigation V1 normalized centrally in `cbb144ac0d431a1f2d0253acaaca8cb7cfa8ac24`.
+- Final QA: `qa/pg23-compliance/` — source/claim failures 0; rendered AR/EN × 390/820/1366/1536 = 8/8 PASS.
+- Final evidence: `2629c2d26a478376c4903771981451bccc4d2003`.
+- QA report: `docs/PG23-QA-REPORT-V1.md`.
+
+## Preview Utility
+
+- `site-map.html` is a noindex internal Visual Site Map / Preview Index.
+- It contains exactly PG01–PG33; it is **not PG34** and does not change V1 scope.
+- Implemented pages receive AR/EN links; pending pages intentionally have no broken destination.
+- Search + Implemented/Pending filters are available.
+- QA: `qa/preview-site-map/` = PASS — 33 cards / 24 implemented / 9 pending / 48 linked language pages.
+- Evidence: `50c0d8e3f9ff2908d736c7312c02774f6e962770`.
 
 ## Shared F05 / Shell State
 
-- Global Footer V1 PASS after PG22 addition; no page-local footer fork.
-- F05 Icon Integrity PASS; active scan reached **46 AR/EN pages / 0 missing sprite references** at PG22 closure.
+- Global Footer V1 remains canonical.
+- F05 Icon Integrity PASS; active scan reached **48 AR/EN pages / 0 missing sprite references** at PG23 closure.
 - Global Navigation V1 remains locked and centrally normalized.
 
 ## Next Action
 
-Prepare **PG23 — Certifications & Compliance** through canonical content review → PS6 Page Design Profile / SEO contract → AR+EN implementation → compliance-claim/document-state/RTL-responsive QA. Cloudflare PS8 browser acceptance continues as a parallel closure stream.
+Prepare **PG24 — Insights / Blog** through canonical content review → PS6 Page Design Profile / SEO/editorial contract → AR+EN implementation → featured/category/search/pagination/responsive QA. Cloudflare PS8 browser acceptance continues as a parallel closure stream.
 
 Copyright © ORVEAX.
