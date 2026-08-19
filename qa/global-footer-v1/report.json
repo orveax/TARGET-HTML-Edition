@@ -85,6 +85,9 @@
     "en/case-study-details.html": {
       "failures": []
     },
+    "en/certifications-compliance.html": {
+      "failures": []
+    },
     "en/company-profile.html": {
       "failures": []
     },
@@ -141,7 +144,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 46,
+    "pagesChecked": 47,
     "failures": 0
   }
 }
