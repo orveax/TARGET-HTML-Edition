@@ -1,0 +1,27 @@
+{
+  "failures": [],
+  "pages": {
+    "ar": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "snapshot",
+        "routes",
+        "resource",
+        "document-info",
+        "cta"
+      ]
+    },
+    "en": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "snapshot",
+        "routes",
+        "resource",
+        "document-info",
+        "cta"
+      ]
+    }
+  }
+}
