@@ -15,6 +15,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: pg01-rendered-qa-main
+  cancel-in-progress: true
+
 jobs:
   rendered-qa:
     runs-on: ubuntu-24.04
@@ -22,12 +26,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Initialize QA evidence
+        shell: bash
+        run: |
+          mkdir -p qa/pg01-rendered
+          printf 'STARTED %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > qa/pg01-rendered/run-status.txt
+
       - name: Verify runner browser baseline
         shell: bash
         run: |
           set -euo pipefail
-          google-chrome --version
-          chromedriver --version
+          {
+            google-chrome --version
+            chromedriver --version
+          } | tee qa/pg01-rendered/browser-baseline.txt
 
       - name: Start static server and ChromeDriver
         shell: bash
@@ -38,12 +50,13 @@ jobs:
           chromedriver --port=9515 --allowed-origins='*' > /tmp/origex-chromedriver.log 2>&1 &
           echo $! > /tmp/origex-chromedriver.pid
           sleep 2
+          curl -fsS http://127.0.0.1:4173/en/ >/dev/null
+          curl -fsS http://127.0.0.1:9515/status | tee qa/pg01-rendered/chromedriver-status.json >/dev/null
 
       - name: Run rendered QA
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p qa/pg01-rendered
           cat > /tmp/pg01-rendered-qa.py <<'PY'
           import base64
           import json
@@ -52,31 +65,29 @@ jobs:
           from pathlib import Path
 
           WD = 'http://127.0.0.1:9515'
+          OUT = Path('qa/pg01-rendered')
 
           def request(method, path, payload=None):
               data = None if payload is None else json.dumps(payload).encode('utf-8')
               req = urllib.request.Request(WD + path, data=data, method=method, headers={'Content-Type': 'application/json'})
               with urllib.request.urlopen(req, timeout=30) as res:
                   body = json.loads(res.read().decode('utf-8'))
-              if isinstance(body, dict) and body.get('value') and isinstance(body['value'], dict) and body['value'].get('error'):
-                  raise RuntimeError(body['value'])
-              return body.get('value') if isinstance(body, dict) else body
+              value = body.get('value') if isinstance(body, dict) else body
+              if isinstance(value, dict) and value.get('error'):
+                  raise RuntimeError(value)
+              return value
 
           def session(width, height):
               value = request('POST', '/session', {
-                  'capabilities': {
-                      'alwaysMatch': {
-                          'browserName': 'chrome',
-                          'goog:chromeOptions': {
-                              'args': [
-                                  '--headless=new', '--no-sandbox', '--disable-dev-shm-usage',
-                                  '--force-device-scale-factor=1', f'--window-size={width},{height}'
-                              ]
-                          }
-                      }
-                  }
+                  'capabilities': {'alwaysMatch': {
+                      'browserName': 'chrome',
+                      'goog:chromeOptions': {'args': [
+                          '--headless=new', '--no-sandbox', '--disable-dev-shm-usage',
+                          '--force-device-scale-factor=1', f'--window-size={width},{height}'
+                      ]}
+                  }}
               })
-              sid = value['sessionId'] if 'sessionId' in value else value.get('session_id')
+              sid = value['sessionId']
               request('POST', f'/session/{sid}/window/rect', {'width': width, 'height': height, 'x': 0, 'y': 0})
               return sid
 
@@ -151,72 +162,72 @@ jobs:
 
           results = []
           failures = 0
-          for target in targets:
-              for vp in viewports:
-                  sid = session(vp['width'], vp['height'])
-                  console_errors = []
-                  page_errors = []
-                  try:
-                      request('POST', f'/session/{sid}/url', {'url': f"http://127.0.0.1:4173{target['path']}"})
-                      time.sleep(1.2)
-                      execute(sid, "return document.fonts ? document.fonts.ready.then(()=>true) : true;")
-                      metrics = execute(sid, metric_script, [vp['width'], target['dir']])
-                      min_target = 44 if vp['width'] <= 1024 else 40
-                      checks = {
-                          'direction': metrics['dir'] == target['dir'],
-                          'noHorizontalOverflow': not metrics['horizontalOverflow'] and len(metrics['offscreen']) == 0,
-                          'touchTargets': (metrics['minButtonHeight'] or 0) >= min_target,
-                          'heroReadable': (metrics['h1Width'] or 0) > 0 and (metrics['heroHeight'] or 0) > 0,
-                          'fontsReady': metrics['fontsReady'] in ('loaded', 'unsupported'),
-                      }
-                      passed = all(checks.values())
-                      if not passed:
-                          failures += 1
-
-                      layout = cdp(sid, 'Page.getLayoutMetrics')
-                      size = layout.get('cssContentSize') or layout.get('contentSize')
-                      shot = cdp(sid, 'Page.captureScreenshot', {
-                          'format': 'jpeg', 'quality': 42, 'fromSurface': True, 'captureBeyondViewport': True,
-                          'clip': {'x': 0, 'y': 0, 'width': size['width'], 'height': size['height'], 'scale': 1}
-                      })
-                      shot_path = Path(f"qa/pg01-rendered/{target['lang']}-{vp['name']}.jpeg")
-                      shot_path.write_bytes(base64.b64decode(shot['data']))
-
-                      results.append({
-                          'target': target['lang'], 'viewport': vp, 'minTarget': min_target,
-                          'pass': passed, 'checks': checks, 'metrics': metrics,
-                          'consoleErrors': console_errors, 'pageErrors': page_errors,
-                          'screenshot': str(shot_path)
-                      })
-                  finally:
+          try:
+              for target in targets:
+                  for vp in viewports:
+                      sid = session(vp['width'], vp['height'])
                       try:
-                          request('DELETE', f'/session/{sid}')
-                      except Exception:
-                          pass
+                          request('POST', f'/session/{sid}/url', {'url': f"http://127.0.0.1:4173{target['path']}"})
+                          time.sleep(1.0)
+                          execute(sid, "return document.fonts ? document.fonts.status : 'unsupported';")
+                          metrics = execute(sid, metric_script, [vp['width'], target['dir']])
+                          min_target = 44 if vp['width'] <= 1024 else 40
+                          checks = {
+                              'direction': metrics['dir'] == target['dir'],
+                              'noHorizontalOverflow': not metrics['horizontalOverflow'] and len(metrics['offscreen']) == 0,
+                              'touchTargets': (metrics['minButtonHeight'] or 0) >= min_target,
+                              'heroReadable': (metrics['h1Width'] or 0) > 0 and (metrics['heroHeight'] or 0) > 0,
+                              'fontsReady': metrics['fontsReady'] in ('loaded', 'unsupported'),
+                          }
+                          passed = all(checks.values())
+                          if not passed:
+                              failures += 1
 
-          report = {'generatedAt': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), 'failures': failures, 'results': results}
-          Path('qa/pg01-rendered/report.json').write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding='utf-8')
+                          layout = cdp(sid, 'Page.getLayoutMetrics')
+                          size = layout.get('cssContentSize') or layout.get('contentSize')
+                          shot = cdp(sid, 'Page.captureScreenshot', {
+                              'format': 'jpeg', 'quality': 42, 'fromSurface': True, 'captureBeyondViewport': True,
+                              'clip': {'x': 0, 'y': 0, 'width': size['width'], 'height': size['height'], 'scale': 1}
+                          })
+                          shot_path = OUT / f"{target['lang']}-{vp['name']}.jpeg"
+                          shot_path.write_bytes(base64.b64decode(shot['data']))
+                          results.append({
+                              'target': target['lang'], 'viewport': vp, 'minTarget': min_target,
+                              'pass': passed, 'checks': checks, 'metrics': metrics,
+                              'screenshot': str(shot_path)
+                          })
+                      finally:
+                          try: request('DELETE', f'/session/{sid}')
+                          except Exception: pass
 
-          lines = [
-              '# PG01 Rendered QA', '', f"Generated: {report['generatedAt']}", '',
-              '| Lang | Viewport | Result | Overflow | Min button | Required | Hero | Fonts |',
-              '|---|---:|---|---|---:|---:|---|---|'
-          ]
-          for r in results:
-              lines.append(
-                  f"| {r['target'].upper()} | {r['viewport']['width']}×{r['viewport']['height']} | "
-                  f"{'PASS' if r['pass'] else 'FAIL'} | {'PASS' if r['checks']['noHorizontalOverflow'] else 'FAIL'} | "
-                  f"{r['metrics']['minButtonHeight'] or 'n/a'}px | {r['minTarget']}px | "
-                  f"{'PASS' if r['checks']['heroReadable'] else 'FAIL'} | {'PASS' if r['checks']['fontsReady'] else 'FAIL'} |"
-              )
-          lines += [
-              '', '## Notes', '',
-              '- Rendered in headless Google Chrome on the GitHub-hosted Ubuntu runner.',
-              '- Screenshots are QA evidence and are not buyer-package assets.',
-              '- This gate checks rendered layout mechanics; human visual review still controls final C8 approval.', ''
-          ]
-          Path('qa/pg01-rendered/README.md').write_text('\n'.join(lines), encoding='utf-8')
-          raise SystemExit(1 if failures else 0)
+              report = {'generatedAt': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), 'failures': failures, 'results': results}
+              (OUT / 'report.json').write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding='utf-8')
+              lines = [
+                  '# PG01 Rendered QA', '', f"Generated: {report['generatedAt']}", '',
+                  '| Lang | Viewport | Result | Overflow | Min button | Required | Hero | Fonts |',
+                  '|---|---:|---|---|---:|---:|---|---|'
+              ]
+              for r in results:
+                  lines.append(
+                      f"| {r['target'].upper()} | {r['viewport']['width']}×{r['viewport']['height']} | "
+                      f"{'PASS' if r['pass'] else 'FAIL'} | {'PASS' if r['checks']['noHorizontalOverflow'] else 'FAIL'} | "
+                      f"{r['metrics']['minButtonHeight'] or 'n/a'}px | {r['minTarget']}px | "
+                      f"{'PASS' if r['checks']['heroReadable'] else 'FAIL'} | {'PASS' if r['checks']['fontsReady'] else 'FAIL'} |"
+                  )
+              lines += [
+                  '', '## Notes', '',
+                  '- Rendered in headless Google Chrome on the GitHub-hosted Ubuntu runner.',
+                  '- Screenshots are QA evidence and are not buyer-package assets.',
+                  '- Human visual review still controls final C8 approval.', ''
+              ]
+              (OUT / 'README.md').write_text('\n'.join(lines), encoding='utf-8')
+              (OUT / 'run-status.txt').write_text(('PASS' if failures == 0 else f'FAIL — {failures} viewport cases') + '\n', encoding='utf-8')
+              raise SystemExit(1 if failures else 0)
+          except SystemExit:
+              raise
+          except Exception as exc:
+              (OUT / 'run-status.txt').write_text(f'ERROR — {type(exc).__name__}: {exc}\n', encoding='utf-8')
+              raise
           PY
           python3 /tmp/pg01-rendered-qa.py
 
@@ -227,7 +238,7 @@ jobs:
           set -euo pipefail
           git config user.name 'orveax-build'
           git config user.email 'actions@users.noreply.github.com'
-          git add qa/pg01-rendered
+          git add -A qa/pg01-rendered
           if git diff --cached --quiet; then
             echo 'No QA evidence changes'
             exit 0
