@@ -2,8 +2,8 @@
 
 Product ID: ORX-P01  
 Owner: ORVEAX  
-Status: APPROVED — M0/M1 CLOSED / M2–M4 FINAL ACCEPTANCE OPEN / M5 PAGE PRODUCTION NEXT  
-Last Alignment: 2026-08-20 — PG19 PS7 / M4 CODE-CI COMPLETE
+Status: APPROVED — M0/M1 CLOSED / M2–M4 FINAL ACCEPTANCE OPEN / M5 IN PROGRESS  
+Last Alignment: 2026-08-20 — PG20 PS7 / PG21 NEXT
 
 ## Project Brief
 
@@ -15,7 +15,7 @@ Submission Candidate 1.0.0 must include:
 - approved/frozen product foundation and 33-layout V1 architecture after CR-001;
 - complete Arabic-first + English LTR page set;
 - one reusable ORIGEX design system and registered component architecture;
-- coherent fictional Demo datasets for products, suppliers, markets, cases and resources;
+- coherent fictional Demo datasets/content for products, suppliers, markets, cases and resources;
 - `config.js` customization layer;
 - SEO/Page Identity contracts, demo-safety rules and licensing controls;
 - responsive/RTL/accessibility/performance QA;
@@ -49,7 +49,7 @@ Implemented:
 - `config.js` + config engine;
 - global shell.
 
-A permanent **Global F05 Icon Integrity QA** gate now scans distributed AR/EN pages against the canonical sprite after PG19 exposed and closed a missing `message-circle` symbol defect.
+A permanent **Global F05 Icon Integrity QA** gate scans distributed AR/EN pages against the canonical sprite. At PG20 closure the gate covered 42 AR/EN pages with zero missing sprite references.
 
 ## M2 — Global Shell & Home Family — FINAL ACCEPTANCE OPEN
 
@@ -95,20 +95,29 @@ PG19 final evidence:
 - rendered AR/EN × 390/820/1366/1536: 8/8 PASS;
 - market query prefill / invalid-ID non-fallback / language preservation: PASS;
 - channel/category grouped validation: PASS;
-- file UI: PASS;
-- final evidence commit: `599b6854eb20555ddb5c6f7b3068e9cd1361f2a0`.
+- file UI: PASS.
 
 **Open M4 gate:** deployed Cloudflare PS8 batch acceptance. M4 is not declared closed until that gate passes.
 
-## M5 — Proof / Resources / Compliance / Content — NEXT PAGE PRODUCTION MILESTONE
+## M5 — Proof / Resources / Compliance / Content — IN PROGRESS
 
 Pages:
-- PG20 Case Studies — **NEXT VALID PAGE PRODUCTION ACTION**.
-- PG21 Case Study Details — NOT STARTED.
+- PG20 Case Studies — **PS7 / IMPLEMENTED / CI QA PASS**.
+- PG21 Case Study Details — **NEXT VALID PAGE PRODUCTION ACTION**.
 - PG22 Downloads / Resources — NOT STARTED.
 - PG23 Certifications & Compliance — NOT STARTED.
 - PG24 Insights / Blog — NOT STARTED.
 - PG25 Article Details — NOT STARTED.
+
+PG20 final evidence:
+- six fictional Demo cases remain editorial HTML; no unapproved `cases.json` schema domain;
+- source/runtime failures: 0;
+- rendered AR/EN × 390/820/1366/1536: 8/8 PASS;
+- filter query hydration / language preservation / keyboard reset / empty state: PASS;
+- Global Navigation V1 and Global Footer V1: PASS;
+- initial 390px AR/EN filter overflow fixed with logical-size-safe bounded horizontal scrolling in commit `020097b889ec04df899e414647fcf3d89181d7d4`;
+- final evidence commit: `d559056fe2b6b6bd88b7d0debf371f19525e0d80`;
+- QA authority: `docs/PG20-QA-REPORT-V1.md`.
 
 Gate: all M5 pages PS8 + SEO + demo-proof/resource/download/licensing controls + zero Critical/High milestone defects.
 
@@ -160,9 +169,9 @@ Gate: Submission Candidate **1.0.0** approved.
 
 ## Current Production Order
 
-1. **PG20 — Case Studies**: content authority → PS6 Page Design Profile / SEO contract → AR/EN build → CI QA.
-2. Continue PG21–PG25 sequentially under M5.
-3. In parallel, close pending Cloudflare PS8 batches for M2/M3/M4 and PG33 QA follow-up.
+1. **PG21 — Case Study Details**: canonical content review → PS6 Page Design Profile / SEO contract → AR/EN build → detail/query/related-case QA.
+2. Continue PG22–PG25 sequentially under M5.
+3. In parallel, close pending Cloudflare PS8 batches for M2/M3/M4 and completed M5 pages, plus PG33 QA follow-up.
 
 ## Change Control
 
