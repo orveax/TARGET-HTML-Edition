@@ -1,7 +1,7 @@
 {
   "failures": [],
   "summary": {
-    "pagesChecked": 46,
+    "pagesChecked": 47,
     "symbolsRegistered": 33,
     "symbolsReferenced": 29,
     "missingReferences": 0
@@ -466,6 +466,23 @@
         "info",
         "menu",
         "message-circle",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/certifications-compliance.html": {
+      "references": [
+        "arrow-up",
+        "badge-check",
+        "chevron-down",
+        "earth",
+        "file-text",
+        "info",
+        "layers",
+        "menu",
+        "message-circle",
+        "package",
+        "shield-check",
         "x"
       ],
       "missing": []
