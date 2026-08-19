@@ -4,7 +4,7 @@ Product ID: ORX-P01
 Owner: ORVEAX  
 Repository: `orveax/TARGET-HTML-Edition`  
 Status: ACTIVE CONTROL DOCUMENT  
-Last Updated: 2026-08-19 — M2 / PG01 MARKETPLACE BENCHMARK CLOSED / STAGING BLOCKED
+Last Updated: 2026-08-19 — M2 / PG01 MARKETPLACE BENCHMARK CLOSED / PG02 C6 READY / CLOUDFLARE AUTO-DEPLOY DEFERRED
 
 This is the operational entry point for ORIGEX. If another document conflicts with this HQ, use the authority order below and stop local improvisation.
 
@@ -15,10 +15,10 @@ M0 — PRODUCT FOUNDATION: PASS / CLOSED
 M1 — GLOBAL SYSTEM & COMPONENT FOUNDATION: PASS / CLOSED
 M2 — GLOBAL SHELL & HOME FAMILY: IN PROGRESS
 PG01 — HOME 01: C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK — AR + EN
-PG01 MARKETPLACE VISUAL POLISH CR: PASS / CLOSED
-PG01 STAGING PREVIEW: BLOCKED — GitHub Pages not enabled
-PG02 — HOME 02: C0 / ENTRY GATE REQUIRED / CODE BLOCKED UNTIL PG01 STAGING PASS
+PG02 — HOME 02: C6 / FROZEN — DESIGN + SEO APPROVED — READY FOR AR+EN BUILD
 PG03–PG04: gated by C6 + Design Profile + SEO Contract
+CLOUDFLARE TEST ENVIRONMENT: AVAILABLE VIA MANUAL REBUILD
+CLOUDFLARE AUTO-DEPLOY: DEFERRED — PUSH TRIGGER NEEDS CORRECTION
 M3–M8: NOT STARTED
 ```
 
@@ -31,21 +31,24 @@ PG01 closure authority:
 - Source/SEO QA: `PG01-QA-REPORT-V1.md`
 - Base closure: `PG01-CLOSURE-2026-08-19.md`
 - Marketplace visual closure: `PG01-MARKETPLACE-VISUAL-POLISH-2026-08-19.md`
-- Rendered evidence: `../qa/pg01-rendered/`
-- Interaction evidence: `../qa/pg01-interaction/`
-- Visual review: `../qa/pg01-visual-review/`
+- Final rendered QA: `5ab1edb6fe2a17adc41857790170097dfad57f0f` — 8/8 PASS.
+- Final interaction QA: `b3d12beb103492144f4c5fc690ef15eedd49eef4` — PASS.
+- Visual snapshots: `e1c09173757defc6992ac162447990f2ffc76f5a`.
 
-Final marketplace-polish evidence:
-- Rendered QA `5ab1edb6fe2a17adc41857790170097dfad57f0f` — 8/8 viewport/language cases PASS.
-- Interaction QA `b3d12beb103492144f4c5fc690ef15eedd49eef4` — AR/EN desktop/mobile PASS.
-- Visual snapshots `e1c09173757defc6992ac162447990f2ffc76f5a`.
+PG02 entry authority:
+- Page contract: `page-design-profiles/pg02-home-02-v1.md`.
+- Content: C6 / FROZEN.
+- SEO/Page Identity Contract: APPROVED.
+- Component map: APPROVED registered V1 units only.
+- Build: NOT STARTED / READY.
 
-PG01 staging authority:
-- Root language entry: `../index.html`
-- Deployment workflow: `../.github/workflows/deploy-staging-pages.yml`
-- Staging gate: `STAGING-PREVIEW-GATE-V1.md`
-- Deployment evidence: `../staging/deployment-status.md`
-- Current deployment state: **BLOCKED — repository GitHub Pages capability is not enabled**.
+Deployment authority:
+- `STAGING-PREVIEW-GATE-V1.md`.
+- GitHub `main` is the source remote.
+- Cloudflare Test Environment is the deployed test runtime.
+- Manual Rebuild works and is accepted temporarily.
+- Automatic deploy after push is currently degraded and explicitly deferred to the next infrastructure session.
+- GitHub Pages is not part of the ORIGEX deployment model.
 
 The pre-foundation Build 02–05 implementation was removed from the active tree during the 2026-08-19 hard audit. Git history remains the archive. No removed pre-freeze file is an implementation authority.
 
@@ -114,9 +117,8 @@ No reference document may override a frozen authority.
 - `MASTER-CONTENT-ARCHITECTURE-V1.md`
 - `DEMO-CONTENT-DATASET-V1.md`
 - `SEO-METADATA-PAGE-NAMING-V1.md`
-- V1.1 Content Pack authorities
 
-### Demo / Assets / QA / Staging
+### Demo / Assets / QA / Deployment
 - `DEMO-VS-PRODUCTION-POLICY-V1.md`
 - `ASSET-LICENSE-REGISTER-V1.md`
 - `QA-DEFINITION-OF-DONE-V1.md`
@@ -131,19 +133,17 @@ No reference document may override a frozen authority.
 - `PAGE-FIDELITY-MATRIX.md`
 - `THEMEFOREST-BENCHMARK-2026-08.md`
 
-Reference files inform fidelity/research; they do not define current architecture.
-
 ## 6. Active Repository Structure
 
 ```text
 /
-├── index.html                  # staging root / Arabic-first language entry
+├── index.html                  # Arabic-first language entry
 ├── README.md
 ├── CHANGELOG.md
 ├── ar/
-│   └── index.html              # PG01 Arabic — C8 / marketplace benchmark
+│   └── index.html              # PG01 Arabic
 ├── en/
-│   └── index.html              # PG01 English — C8 / marketplace benchmark
+│   └── index.html              # PG01 English
 ├── assets/
 │   ├── brand/
 │   ├── css/
@@ -154,40 +154,22 @@ Reference files inform fidelity/research; they do not define current architectur
 │   │   ├── origex-marketplace-polish.css
 │   │   └── origex-shell.css
 │   ├── media/demo/
-│   │   ├── hero-trade-scene.svg
-│   │   ├── product-tomato-sauce.svg
-│   │   ├── product-hibiscus.svg
-│   │   ├── product-milk.svg
-│   │   └── product-frozen.svg
 │   ├── fonts/
 │   ├── icons/
 │   ├── js/
-│   │   ├── config.js
-│   │   ├── config-engine.js
-│   │   └── origex-ui.js
 │   ├── patterns/
 │   └── vendor/bootstrap/
 ├── preview/
-│   ├── m1-components-ar.html
-│   └── m1-components-en.html
 ├── qa/
-│   ├── pg01-rendered/
-│   ├── pg01-interaction/
-│   └── pg01-visual-review/
-├── staging/
-│   └── deployment-status.md
-├── .github/workflows/
-│   └── deploy-staging-pages.yml
 └── docs/
+    └── page-design-profiles/
+        ├── pg01-home-01-v1.md
+        └── pg02-home-02-v1.md
 ```
 
 M1 owns the reusable foundation. M2+ pages consume it and may not create competing local systems.
 
-`origex-shell.css` remains the closed M1 shell. `origex-compositions.css` is the M2 composition entry and loads `origex-marketplace-polish.css`; this keeps the marketplace refinement outside M1.
-
-PG01 demo media is ORVEAX-owned and registered in the Asset & License Register. No stock-photo or client-asset dependency was added.
-
-The staging workflow publishes only `index.html`, `ar/`, `en/` and `assets/`; internal `docs/`, `qa/` and `.github/` content are excluded from the public artifact.
+`origex-shell.css` remains the closed M1 shell. `origex-compositions.css` is the M2 composition entry and may load approved M2 refinements without reopening M1.
 
 ## 7. Page Entry Gate
 
@@ -203,11 +185,11 @@ A page may enter implementation only when all are true:
 
 Then implementation proceeds AR + EN together and exits page QA only at Content C8 / Page QA PASS.
 
-C8 is separate from deployment readiness. For the first representative page in a milestone/page family, `STAGING-PREVIEW-GATE-V1.md` must also pass before the next page in that family enters code implementation.
+PG01 has completed its page lifecycle and is **C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK**.
 
-PG01 has completed its page lifecycle and approved marketplace visual polish and is **C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK**. Its independent **Staging Preview Gate is BLOCKED** because GitHub Pages is not enabled at repository level.
+PG02 has completed its entry preparation and is now **C6 / DESIGN + SEO APPROVED / READY FOR AR+EN BUILD**.
 
-PG02 has not entered implementation. It remains at **C0**. Its content/design/SEO preparation may proceed, but PG02 code is blocked until PG01 staging reaches `STAGING PASS`.
+Cloudflare auto-deploy degradation is an operational issue, not a page-entry blocker while Manual Rebuild remains available. Final browser acceptance still requires the current revision to be deployed through the real Cloudflare Test Environment.
 
 ## 8. Change Classification
 
@@ -226,24 +208,18 @@ There is no fifth category called “quick local tweak”.
 - Do not restore deleted pre-freeze HTML/CSS/JS into the active tree.
 - Do not recreate superseded planning/candidate documents.
 - Historical source maps are reference-only.
-- A filename containing `candidate`, `exploration`, `gate-XX`, `48-hour`, `old`, `final-v2`, or similar temporary lifecycle language must not become a new canonical authority.
+- Temporary lifecycle filenames must not become canonical authorities.
 
 ## 10. Next Action
 
-Resolve the **PG01 Staging Preview Gate** before PG02 code begins:
-
-1. Repository administrator enables GitHub Pages: `Settings → Pages → Build and deployment → Source → GitHub Actions`.
-2. Rerun `Deploy ORIGEX Staging`.
-3. Confirm the workflow reaches Configure → Upload → Deploy PASS and records the generated Page URL.
-4. Open root `/` externally and verify Arabic-first routing.
-5. Open AR and EN through the deployed URL on mobile and desktop.
-6. Confirm deployed assets and base-path behavior.
-7. Mark PG01 `STAGING PASS`.
-8. Continue PG02 Content Contract → Arabic master → English adaptation → C6 → Design Profile → SEO Contract.
-9. Begin PG02 AR+EN code only after both its entry gate and PG01 staging gate pass.
+1. Build PG02 Arabic and English together from `page-design-profiles/pg02-home-02-v1.md`.
+2. Create and register the required ORVEAX-owned distribution hero media.
+3. Run source, rendered responsive and interaction QA.
+4. Deploy the current `main` revision to the Cloudflare Test Environment; Manual Rebuild is acceptable temporarily.
+5. Perform external AR/EN mobile + desktop smoke review.
+6. Close PG02 only at C8 / PASS.
+7. In the deferred infrastructure session, repair Cloudflare Git auto-deploy so push to `main` deploys automatically.
 
 M1 remains closed unless a verified foundation defect requires a controlled QA fix.
-
-PG01 is now the **page/code marketplace visual benchmark** for M2. Its public/staging benchmark status remains pending until the separate Staging Preview Gate passes.
 
 Copyright © ORVEAX.
