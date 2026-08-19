@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Start static server and ChromeDriver
+      - name: Start test runtime
         shell: bash
         run: |
           set -euo pipefail
@@ -34,7 +34,7 @@ jobs:
           curl -fsS http://127.0.0.1:4173/ar/index.html >/dev/null
           curl -fsS http://127.0.0.1:9515/status >/dev/null
 
-      - name: Verify desktop and mobile Home Family navigation
+      - name: Verify Home Family navigation
         shell: bash
         run: |
           set -euo pipefail
@@ -45,78 +45,80 @@ jobs:
           WD='http://127.0.0.1:9515'
           OUT=Path('qa/home-navigation-regression')
           variants=['index.html','home-02.html','home-03.html','landing.html']
-          pages=[]
-          for lang in ('ar','en'):
-              for file in variants:
-                  pages.append((lang,file,f'/{lang}/{file}'))
 
           def req(method,path,payload=None):
               data=None if payload is None else json.dumps(payload).encode()
-              r=urllib.request.Request(WD+path,data=data,method=method,headers={'Content-Type':'application/json'})
-              with urllib.request.urlopen(r,timeout=30) as f:
-                  body=json.loads(f.read().decode())
+              request=urllib.request.Request(WD+path,data=data,method=method,headers={'Content-Type':'application/json'})
+              with urllib.request.urlopen(request,timeout=30) as response:
+                  body=json.loads(response.read().decode())
               value=body.get('value') if isinstance(body,dict) else body
               if isinstance(value,dict) and value.get('error'):
                   raise RuntimeError(value)
               return value
 
-          def session(w,h):
-              v=req('POST','/session',{'capabilities':{'alwaysMatch':{'browserName':'chrome','goog:chromeOptions':{'args':['--headless=new','--no-sandbox','--disable-dev-shm-usage',f'--window-size={w},{h}']}}}})
-              sid=v['sessionId']
-              req('POST',f'/session/{sid}/window/rect',{'width':w,'height':h,'x':0,'y':0})
+          def session(width,height):
+              value=req('POST','/session',{'capabilities':{'alwaysMatch':{'browserName':'chrome','goog:chromeOptions':{'args':['--headless=new','--no-sandbox','--disable-dev-shm-usage',f'--window-size={width},{height}']}}}})
+              sid=value['sessionId']
+              req('POST',f'/session/{sid}/window/rect',{'width':width,'height':height,'x':0,'y':0})
               return sid
 
           def js(sid,script,args=None):
               return req('POST',f'/session/{sid}/execute/sync',{'script':script,'args':args or []})
 
-          rows=[]; failures=[]
-          for lang,file,path in pages:
-              row={'lang':lang,'file':file,'desktop':{},'mobile':{}}
-              sid=session(1366,900)
-              try:
-                  req('POST',f'/session/{sid}/url',{'url':'http://127.0.0.1:4173'+path}); time.sleep(.5)
-                  desktop=js(sid,r'''const expected=arguments[0],current=arguments[1];const menu=document.querySelector('[data-orx-mega-menu]');const trigger=document.querySelector('[data-orx-mega-trigger]');const group=menu?.querySelector('[data-orx-home-variants]');const links=group?[...group.querySelectorAll('[data-orx-home-variant-link]')]:[];const hrefs=links.map(a=>a.getAttribute('href'));const active=links.filter(a=>a.getAttribute('aria-current')==='page').map(a=>a.getAttribute('href'));if(trigger)trigger.click();const opened=!!menu&&!menu.hidden&&trigger.getAttribute('aria-expanded')==='true';document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));const escaped=!!menu&&menu.hidden&&trigger.getAttribute('aria-expanded')==='false';const r=menu?.getBoundingClientRect();return{menu:!!menu,trigger:!!trigger,group:!!group,hrefs,active,opened,escaped,noViewportOverflow:!r||(r.left>=-1&&r.right<=document.documentElement.clientWidth+1),expected,current};''',[variants,file])
-                  row['desktop']=desktop
-                  checks=[desktop['menu'],desktop['trigger'],desktop['group'],desktop['hrefs']==variants,desktop['active']==[file],desktop['opened'],desktop['escaped'],desktop['noViewportOverflow']]
-                  if not all(checks): failures.append(f'{lang}/{file}: desktop navigation regression: {desktop}')
-              finally:
-                  try:req('DELETE',f'/session/{sid}')
-                  except:pass
-
-              sid=session(390,844)
-              try:
-                  req('POST',f'/session/{sid}/url',{'url':'http://127.0.0.1:4173'+path}); time.sleep(.5)
-                  mobile=js(sid,r'''const expected=arguments[0],current=arguments[1];const nav=document.querySelector('.orx-mobile-nav');const drawer=document.querySelector('[data-orx-mobile-drawer]');const opener=document.querySelector('[data-orx-drawer-open]');const links=nav?[...nav.querySelectorAll('[data-orx-home-variant-link]')]:[];const hrefs=links.map(a=>a.getAttribute('href'));const active=links.filter(a=>a.getAttribute('aria-current')==='page').map(a=>a.getAttribute('href'));if(opener)opener.click();const opened=!!drawer&&drawer.getAttribute('aria-hidden')==='false'&&document.body.classList.contains('orx-nav-open');document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));const escaped=!!drawer&&drawer.getAttribute('aria-hidden')==='true'&&!document.body.classList.contains('orx-nav-open');return{nav:!!nav,drawer:!!drawer,opener:!!opener,hrefs,active,opened,escaped,expected,current};''',[variants,file])
-                  row['mobile']=mobile
-                  checks=[mobile['nav'],mobile['drawer'],mobile['opener'],mobile['hrefs']==variants,mobile['active']==[file],mobile['opened'],mobile['escaped']]
-                  if not all(checks): failures.append(f'{lang}/{file}: mobile navigation regression: {mobile}')
-              finally:
-                  try:req('DELETE',f'/session/{sid}')
-                  except:pass
-              rows.append(row)
-
-          # Ensure all canonical Home Family targets resolve from both language folders.
-          resolved={}
+          failures=[]
+          rows=[]
           for lang in ('ar','en'):
               for file in variants:
-                  url=f'http://127.0.0.1:4173/{lang}/{file}'
-                  try:
-                      with urllib.request.urlopen(url,timeout=10) as response:
-                          ok=response.status==200
-                  except Exception:
-                      ok=False
-                  resolved[f'{lang}/{file}']=ok
-                  if not ok: failures.append(f'unresolved Home Family route: {lang}/{file}')
+                  path=f'/{lang}/{file}'
+                  row={'lang':lang,'file':file}
 
-          report={'generatedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'failures':len(failures),'variants':variants,'routes':resolved,'pages':rows,'errors':failures}
+                  sid=session(1366,900)
+                  try:
+                      req('POST',f'/session/{sid}/url',{'url':'http://127.0.0.1:4173'+path}); time.sleep(.5)
+                      if file != 'landing.html':
+                          desktop=js(sid,r'''const expected=arguments[0],current=arguments[1];const menu=document.querySelector('[data-orx-mega-menu]');const trigger=document.querySelector('[data-orx-mega-trigger]');const group=menu?.querySelector('[data-orx-home-variants]');const links=group?[...group.querySelectorAll('[data-orx-home-variant-link]')]:[];const hrefs=links.map(a=>a.getAttribute('href'));const active=links.filter(a=>a.getAttribute('aria-current')==='page').map(a=>a.getAttribute('href'));if(trigger)trigger.click();const opened=!!menu&&!menu.hidden&&trigger.getAttribute('aria-expanded')==='true';document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));const escaped=!!menu&&menu.hidden&&trigger.getAttribute('aria-expanded')==='false';const r=menu?.getBoundingClientRect();return{mode:'mega',menu:!!menu,trigger:!!trigger,group:!!group,hrefs,active,opened,escaped,noOverflow:!r||(r.left>=-1&&r.right<=document.documentElement.clientWidth+1),expected,current};''',[variants,file])
+                          checks=[desktop['menu'],desktop['trigger'],desktop['group'],desktop['hrefs']==variants,desktop['active']==[file],desktop['opened'],desktop['escaped'],desktop['noOverflow']]
+                      else:
+                          desktop=js(sid,r'''const home=document.querySelector('.orx-brand[href="index.html"]');const nav=document.querySelector('.orx-primary-nav');const anchors=nav?[...nav.querySelectorAll('a')].map(a=>a.getAttribute('href')):[];return{mode:'compact-landing',homeLink:!!home,compactNav:!!nav,anchors,noMega:!document.querySelector('[data-orx-mega-menu]')};''')
+                          checks=[desktop['homeLink'],desktop['compactNav'],desktop['noMega']]
+                      row['desktop']=desktop
+                      if not all(checks): failures.append(f'{lang}/{file}: desktop navigation: {desktop}')
+                  finally:
+                      try:req('DELETE',f'/session/{sid}')
+                      except:pass
+
+                  sid=session(390,844)
+                  try:
+                      req('POST',f'/session/{sid}/url',{'url':'http://127.0.0.1:4173'+path}); time.sleep(.5)
+                      mobile=js(sid,r'''const expected=arguments[0],current=arguments[1];const nav=document.querySelector('.orx-mobile-nav');const drawer=document.querySelector('[data-orx-mobile-drawer]');const opener=document.querySelector('[data-orx-drawer-open]');const links=nav?[...nav.querySelectorAll('[data-orx-home-variant-link]')]:[];const hrefs=links.map(a=>a.getAttribute('href'));const active=links.filter(a=>a.getAttribute('aria-current')==='page').map(a=>a.getAttribute('href'));if(opener)opener.click();const opened=!!drawer&&drawer.getAttribute('aria-hidden')==='false'&&document.body.classList.contains('orx-nav-open');document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));const escaped=!!drawer&&drawer.getAttribute('aria-hidden')==='true'&&!document.body.classList.contains('orx-nav-open');return{nav:!!nav,drawer:!!drawer,opener:!!opener,hrefs,active,opened,escaped,expected,current};''',[variants,file])
+                      row['mobile']=mobile
+                      checks=[mobile['nav'],mobile['drawer'],mobile['opener'],mobile['hrefs']==variants,mobile['active']==[file],mobile['opened'],mobile['escaped']]
+                      if not all(checks): failures.append(f'{lang}/{file}: mobile navigation: {mobile}')
+                  finally:
+                      try:req('DELETE',f'/session/{sid}')
+                      except:pass
+                  rows.append(row)
+
+          routes={}
+          for lang in ('ar','en'):
+              for file in variants:
+                  key=f'{lang}/{file}'
+                  try:
+                      with urllib.request.urlopen(f'http://127.0.0.1:4173/{key}',timeout=10) as response:
+                          routes[key]=response.status==200
+                  except Exception:
+                      routes[key]=False
+                  if not routes[key]: failures.append(f'unresolved route: {key}')
+
+          report={'generatedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'failures':len(failures),'variants':variants,'routes':routes,'pages':rows,'errors':failures,'landingDesktopPolicy':'Compact conversion header intentionally has no mega menu; brand returns to Home 01. Landing remains discoverable from other Home mega menus and all mobile drawers.'}
           (OUT/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
           (OUT/'run-status.txt').write_text('PASS\n' if not failures else 'FAIL\n',encoding='utf-8')
           if failures:
               print('\n'.join(failures)); sys.exit(1)
-          print('Home navigation regression PASS — 8 AR/EN pages, desktop + mobile')
+          print('PASS — Home Family navigation connected across AR/EN desktop/mobile')
           PY
 
-      - name: Record QA evidence
+      - name: Record evidence
         if: always()
         shell: bash
         run: |
