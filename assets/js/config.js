@@ -1,11 +1,12 @@
 /*
  * ORIGEX — ORX-P01
- * Simple Customization Config v1.1.0
+ * Simple Customization Config — Schema V1
+ * M1 implementation seed; not a released product version.
  * Designed & developed by ORVEAX
  * Copyright © ORVEAX
  *
- * EDIT THIS FILE for the most common website changes.
- * You do not need to edit config-engine.js.
+ * EDIT THIS FILE for approved common website changes.
+ * Do not use this file as a CMS or page builder.
  */
 
 window.ORIGEX_CONFIG = {
