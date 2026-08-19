@@ -31,6 +31,12 @@ Branch: `main`
 
 Historical references to `orveax/TARGET-HTML-Edition` are superseded and must not be used as the deployment authority.
 
+## Canonical Cloudflare Test URL
+
+`https://origex-html-template.targetftcom.workers.dev/`
+
+This URL was explicitly confirmed by the ORVEAX administrator on 2026-08-19 and is the canonical ORIGEX test-runtime address until changed through deployment control.
+
 ## Required Staging Checks Before PS8
 
 1. Cloudflare test deployment target is configured and reachable.
@@ -72,6 +78,7 @@ Failure of the Git push trigger is an operational automation issue. It does not 
 
 Confirmed operating state:
 - Cloudflare Test Environment exists.
+- canonical test URL is `https://origex-html-template.targetftcom.workers.dev/`.
 - deployed site works when **Rebuild** is triggered manually.
 - GitHub `main` receives ORIGEX commits correctly.
 - current issue: Cloudflare does not automatically start a deployment after each push to `main`.
@@ -82,11 +89,13 @@ Current control states:
 
 ```text
 Cloudflare Test Environment: AVAILABLE VIA MANUAL REBUILD
+Cloudflare Test URL: CONFIRMED / RECORDED
+Cloudflare External Smoke Verification: PENDING
 Cloudflare Auto-Deploy Trigger: DEFERRED / NEEDS CORRECTION
 GitHub Pages: NOT USED
 ```
 
-The exact Cloudflare test URL is not stored in the current canonical repository/Notion records. It must be recorded when explicitly confirmed from the deployment environment.
+The assistant-side external runtime check could not resolve the workers.dev host from the available verification environment, so this record confirms the administrator-supplied URL but does not by itself grant `STAGING PASS` or PS8.
 
 ## Parallel Page-Production Rule
 
@@ -124,7 +133,6 @@ Next Cloudflare infrastructure session should verify:
 - automatic deployments enabled;
 - build watch paths do not exclude normal ORIGEX changes;
 - latest GitHub commit is detected automatically;
-- one harmless test commit produces a Cloudflare deployment without Manual Rebuild;
-- canonical test URL is recorded in Notion and deployment documentation.
+- one harmless test commit produces a Cloudflare deployment without Manual Rebuild.
 
 Copyright © ORVEAX.
