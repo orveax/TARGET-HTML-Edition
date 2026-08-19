@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Owner: ORVEAX  
 Status: APPROVED — M0/M1 CLOSED / M2–M4 FINAL ACCEPTANCE OPEN / M5 IN PROGRESS  
-Last Alignment: 2026-08-20 — PG20–PG21 PS7 / PG22 NEXT
+Last Alignment: 2026-08-20 — PG20–PG22 PS7 / PG23 NEXT
 
 ## Project Brief
 
@@ -49,7 +49,7 @@ Implemented:
 - `config.js` + config engine;
 - global shell.
 
-A permanent **Global F05 Icon Integrity QA** gate scans distributed AR/EN pages against the canonical sprite. At PG21 closure the gate covered **44 AR/EN pages with zero missing sprite references**.
+A permanent **Global F05 Icon Integrity QA** gate scans distributed AR/EN pages against the canonical sprite. At PG22 closure the gate covered **46 AR/EN pages with zero missing sprite references**.
 
 ## M2 — Global Shell & Home Family — FINAL ACCEPTANCE OPEN
 
@@ -89,14 +89,6 @@ Pages:
 
 M4 implementation evidence includes canonical product/supplier/market JSON relationships, search/filter/detail flows, supplier readiness, product submission, RFQ and distributor/partner qualification flows.
 
-PG19 final evidence:
-- source/data/runtime failures: 0;
-- six canonical fictional Demo markets;
-- rendered AR/EN × 390/820/1366/1536: 8/8 PASS;
-- market query prefill / invalid-ID non-fallback / language preservation: PASS;
-- channel/category grouped validation: PASS;
-- file UI: PASS.
-
 **Open M4 gate:** deployed Cloudflare PS8 batch acceptance. M4 is not declared closed until that gate passes.
 
 ## M5 — Proof / Resources / Compliance / Content — IN PROGRESS
@@ -104,8 +96,8 @@ PG19 final evidence:
 Pages:
 - PG20 Case Studies — **PS7 / IMPLEMENTED / CI QA PASS**.
 - PG21 Case Study Details — **PS7 / IMPLEMENTED / CI QA PASS**.
-- PG22 Downloads / Resources — **NEXT VALID PAGE PRODUCTION ACTION**.
-- PG23 Certifications & Compliance — NOT STARTED.
+- PG22 Downloads / Resources — **PS7 / IMPLEMENTED / CI QA PASS**.
+- PG23 Certifications & Compliance — **NEXT VALID PAGE PRODUCTION ACTION**.
 - PG24 Insights / Blog — NOT STARTED.
 - PG25 Article Details — NOT STARTED.
 
@@ -114,8 +106,6 @@ PG20 final evidence:
 - source/runtime failures: 0;
 - rendered AR/EN × 390/820/1366/1536: 8/8 PASS;
 - filter query hydration / language preservation / keyboard reset / empty state: PASS;
-- Global Navigation V1 and Global Footer V1: PASS;
-- initial 390px AR/EN filter overflow fixed with logical-size-safe bounded horizontal scrolling in commit `020097b889ec04df899e414647fcf3d89181d7d4`;
 - final evidence commit: `d559056fe2b6b6bd88b7d0debf371f19525e0d80`;
 - QA authority: `docs/PG20-QA-REPORT-V1.md`.
 
@@ -123,13 +113,20 @@ PG21 final evidence:
 - six PG20-aligned fictional Demo detail records remain editorial HTML `<template>` content; no unapproved `cases.json` domain;
 - source/runtime failures: 0;
 - rendered AR/EN × 390/820/1366/1536: 8/8 PASS;
-- valid and invalid case-ID handling: PASS;
-- AR/EN case-ID preservation: PASS;
-- previous/next case controls: PASS;
-- related-case exclusion/count: PASS;
-- Global Navigation V1 / Global Footer V1 / F05 Icon Integrity: PASS;
+- valid/invalid case-ID handling, AR/EN preservation, previous/next and related-case behavior: PASS;
 - final evidence commit: `7b5be6b72985026d003f48da5f7b3674fb84fcf6`;
 - QA authority: `docs/PG21-QA-REPORT-V1.md`.
+
+PG22 final evidence:
+- five ORVEAX-authored bilingual UTF-8 Demo resources registered in `docs/RESOURCE-ASSET-REGISTER-V1.md`;
+- no fabricated PDF, certificate, regulatory approval, live-market file or third-party redistribution assumption;
+- source/runtime/resource-register failures: 0;
+- download target existence and TXT/UTF-8 type accuracy: PASS;
+- rendered AR/EN × 390/820/1366/1536: 8/8 PASS;
+- category query hydration / language preservation / keyboard reset / empty state: PASS;
+- Global Navigation V1 / Global Footer V1 / F05 Icon Integrity: PASS;
+- final evidence commit: `630b626d0180d2c62dd8112531bddb5f419b1bc6`;
+- QA authority: `docs/PG22-QA-REPORT-V1.md`.
 
 Gate: all M5 pages PS8 + SEO + demo-proof/resource/download/licensing controls + zero Critical/High milestone defects.
 
@@ -181,8 +178,8 @@ Gate: Submission Candidate **1.0.0** approved.
 
 ## Current Production Order
 
-1. **PG22 — Downloads / Resources**: canonical content review → PS6 Page Design Profile / SEO contract → AR/EN build → resource/download-state/language/licensing QA.
-2. Continue PG23–PG25 sequentially under M5.
+1. **PG23 — Certifications & Compliance**: canonical content review → PS6 Page Design Profile / SEO contract → AR/EN build → compliance-claim/document-state/RTL-responsive QA.
+2. Continue PG24–PG25 sequentially under M5.
 3. In parallel, close pending Cloudflare PS8 batches for M2/M3/M4 and completed M5 pages, plus PG33 QA follow-up.
 
 ## Change Control
