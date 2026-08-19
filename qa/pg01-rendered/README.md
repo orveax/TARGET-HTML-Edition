@@ -1,6 +1,6 @@
 # PG01 Rendered QA
 
-Generated: 2026-08-19T01:48:43Z
+Generated: 2026-08-19T01:50:51Z
 
 | Lang | Viewport | Result | Overflow | Min button | Required | Hero | Fonts |
 |---|---:|---|---|---:|---:|---|---|
@@ -17,4 +17,4 @@ Generated: 2026-08-19T01:48:43Z
 
 - Rendered in headless Google Chrome on the GitHub-hosted Ubuntu runner.
 - Screenshots are QA evidence and are not buyer-package assets.
-- This gate checks rendered layout mechanics; human visual review still controls final C8 approval.
+- Human visual review still controls final C8 approval.

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T01:48:43Z",
+  "generatedAt": "2026-08-19T01:50:51Z",
   "failures": 0,
   "results": [
     {
@@ -39,8 +39,6 @@
         "offscreen": [],
         "scrollWidth": 375
       },
-      "consoleErrors": [],
-      "pageErrors": [],
       "screenshot": "qa/pg01-rendered/ar-mobile-390.jpeg"
     },
     {
@@ -80,8 +78,6 @@
         "offscreen": [],
         "scrollWidth": 805
       },
-      "consoleErrors": [],
-      "pageErrors": [],
       "screenshot": "qa/pg01-rendered/ar-tablet-820.jpeg"
     },
     {
@@ -121,8 +117,6 @@
         "offscreen": [],
         "scrollWidth": 1351
       },
-      "consoleErrors": [],
-      "pageErrors": [],
       "screenshot": "qa/pg01-rendered/ar-laptop-1366.jpeg"
     },
     {
@@ -162,8 +156,6 @@
         "offscreen": [],
         "scrollWidth": 1521
       },
-      "consoleErrors": [],
-      "pageErrors": [],
       "screenshot": "qa/pg01-rendered/ar-desktop-1536.jpeg"
     },
     {
@@ -203,8 +195,6 @@
         "offscreen": [],
         "scrollWidth": 375
       },
-      "consoleErrors": [],
-      "pageErrors": [],
       "screenshot": "qa/pg01-rendered/en-mobile-390.jpeg"
     },
     {
@@ -244,8 +234,6 @@
         "offscreen": [],
         "scrollWidth": 805
       },
-      "consoleErrors": [],
-      "pageErrors": [],
       "screenshot": "qa/pg01-rendered/en-tablet-820.jpeg"
     },
     {
@@ -285,8 +273,6 @@
         "offscreen": [],
         "scrollWidth": 1351
       },
-      "consoleErrors": [],
-      "pageErrors": [],
       "screenshot": "qa/pg01-rendered/en-laptop-1366.jpeg"
     },
     {
@@ -326,8 +312,6 @@
         "offscreen": [],
         "scrollWidth": 1521
       },
-      "consoleErrors": [],
-      "pageErrors": [],
       "screenshot": "qa/pg01-rendered/en-desktop-1536.jpeg"
     }
   ]
