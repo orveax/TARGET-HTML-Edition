@@ -2,7 +2,7 @@
 
 Product ID: ORX-P01  
 Owner: ORVEAX  
-Status: ACTIVE REGISTER  
+Status: ACTIVE REGISTER — M1 BASELINE VERIFIED  
 Last Updated: 2026-08-19
 
 No third-party asset or dependency may enter the distributable package without a row in this register.
@@ -17,10 +17,16 @@ No third-party asset or dependency may enter the distributable package without a
 
 ## Dependencies
 
-| Asset ID | Asset | Version | Source / Owner | License | Package Use | Status | Notes |
+| Asset ID | Asset | Version / Snapshot | Source / Owner | License | Package Use | Status | Notes |
 |---|---|---:|---|---|---|---|---|
-| DEP-001 | Bootstrap | 5.3.8 | Bootstrap / twbs | MIT code license | local vendor CSS/JS | APPROVED — DISTRIBUTABLE | exact local files to be added in M1 |
-| DEP-002 | Lucide semantic icons | M1 lock pending exact package snapshot | Lucide | ISC; Feather-derived icons may retain MIT notices | selected local SVG subset/sprite | PENDING VERIFICATION | verify exact selected icon files/names and notices before commit |
+| DEP-001 | Bootstrap | 5.3.8 | Bootstrap / twbs | MIT | local CSS/RTL CSS/JS bundle | APPROVED — DISTRIBUTABLE | `assets/vendor/bootstrap/`; MIT notice included; checksum record in `M1-VENDOR-SHA256.txt` |
+| DEP-002 | Lucide semantic icons | 1.27.0 selected subset | Lucide Icons and Contributors | ISC; Feather-derived subset retains MIT notice | selected local SVG subset + generated sprite | APPROVED — DISTRIBUTABLE | `assets/icons/lucide/` + `assets/icons/sprite.svg`; upstream combined license included |
+
+### M1 Lucide Subset
+
+`arrow-left`, `arrow-right`, `arrow-up`, `menu`, `x`, `search`, `package`, `truck`, `factory`, `earth`, `shield-check`, `file-text`, `download`, `chevron-down`, `chevron-up`, `mail`, `phone`, `map-pin`, `external-link`, `check`, `info`, `triangle-alert`, `upload`, `layers`, `boxes`, `handshake`, `clock`, `building-2`, `badge-check`, `route`, `circle-question-mark`.
+
+`globe-2` is a local registry compatibility alias generated from the selected `earth` icon; it does not introduce a separate third-party source.
 
 ## ORVEAX-Owned Assets
 
@@ -29,14 +35,33 @@ No third-party asset or dependency may enter the distributable package without a
 | ORX-BRAND-001 | ORIGEX primary logo | `assets/brand/origex-logo.svg` | ORVEAX OWNED | active |
 | ORX-BRAND-002 | ORIGEX light logo | `assets/brand/origex-logo-light.svg` | ORVEAX OWNED | active |
 | ORX-BRAND-003 | ORIGEX mark | `assets/brand/origex-mark.svg` | ORVEAX OWNED | active |
-| ORX-PATTERN-001..006 | ORIGEX Pattern System PT01–PT06 | `assets/patterns/` | ORVEAX OWNED | implementation pending M1 |
+| ORX-PATTERN-001 | PT01 Route Lines | `assets/patterns/pt01-route-lines.svg` | ORVEAX OWNED | implemented M1 |
+| ORX-PATTERN-002 | PT02 Trade Grid | `assets/patterns/pt02-trade-grid.svg` | ORVEAX OWNED | implemented M1 |
+| ORX-PATTERN-003 | PT03 Dot Matrix | `assets/patterns/pt03-dot-matrix.svg` | ORVEAX OWNED | implemented M1 |
+| ORX-PATTERN-004 | PT04 Market Nodes | `assets/patterns/pt04-market-nodes.svg` | ORVEAX OWNED | implemented M1 |
+| ORX-PATTERN-005 | PT05 Packaging Geometry | `assets/patterns/pt05-packaging-geometry.svg` | ORVEAX OWNED | implemented M1 |
+| ORX-PATTERN-006 | PT06 Flow Lines | `assets/patterns/pt06-flow-lines.svg` | ORVEAX OWNED | implemented M1 |
 
 ## Fonts
 
-| Asset ID | Font | Delivery | License / Source | Status | Rule |
+Pinned source snapshot for M1: Google Fonts repository commit `e1118da94a8cb00cf6d06cdac9ef13eb1e5c6ab7`.
+
+| Asset ID | Font | Local Delivery | License / Source | Status | Rule |
 |---|---|---|---|---|---|
-| FONT-001 | Tajawal | pending M1 packaging decision | verify official source/license before local packaging | PENDING VERIFICATION | no font file committed until redistribution terms are verified |
-| FONT-002 | Manrope | pending M1 packaging decision | verify official source/license before local packaging | PENDING VERIFICATION | no font file committed until redistribution terms are verified |
+| FONT-001 | Tajawal | Regular / Medium / Bold / ExtraBold TTF | SIL Open Font License 1.1 / Google Fonts | APPROVED — DISTRIBUTABLE | `assets/fonts/tajawal/`; `OFL.txt` shipped with binaries |
+| FONT-002 | Manrope | variable TTF | SIL Open Font License 1.1 / Google Fonts | APPROVED — DISTRIBUTABLE | `assets/fonts/manrope/`; `OFL.txt` shipped with binary |
+
+## M1 Vendor Integrity
+
+Authoritative checksum file: `docs/M1-VENDOR-SHA256.txt`.
+
+Verified local groups:
+- Bootstrap CSS + RTL CSS + bundle JS.
+- Tajawal selected weights.
+- Manrope variable font.
+- Lucide generated sprite.
+
+The vendor packaging commit is `9fd274d0ca5ce0fd7760285e103f2f779ef6f334`.
 
 ## Photography / Images
 
@@ -77,16 +102,18 @@ Preview-only assets must:
 - third-party logos without permission/valid brand-use basis;
 - untracked PDFs;
 - AI-generated assets inside the buyer download when marketplace policy prohibits that use;
-- font binaries with unverified redistribution rights;
+- font binaries without their verified redistribution basis;
 - icon packs not approved by the Icon System.
 
-## M1 Action
+## M1 Closure Record
 
-Before M1 closes:
-1. add local Bootstrap 5.3.8 files and license notice;
-2. verify/package the selected Lucide subset and notices;
-3. resolve font delivery/licensing;
-4. create ORIGEX pattern assets;
-5. log every shipped asset.
+The M1 vendor/license baseline is complete:
+1. Bootstrap 5.3.8 local files + MIT license — verified.
+2. Lucide selected subset + combined ISC/MIT notice — verified.
+3. Tajawal and Manrope local binaries + OFL notices — verified.
+4. ORIGEX PT01–PT06 — implemented and ORVEAX-owned.
+5. Vendor checksums — recorded.
+
+Future page imagery and any additional icon/font/brand asset remain subject to this register before entering the buyer package.
 
 Copyright © ORVEAX.
