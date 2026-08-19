@@ -4,7 +4,7 @@ Product ID: ORX-P01
 Owner: ORVEAX  
 Repository: `orveax/origex-html-template`  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-19 — M2 HOME FAMILY IMPLEMENTED / M3 CODE+CI COMPLETE / PG05–PG08 + PG14–PG15 C7 CI QA PASS
+Last Updated: 2026-08-19 — M4 IN PROGRESS / PG09 C7 CI QA PASS / M3 CODE+CI COMPLETE
 
 This is the repo-level execution tracker. It records actual current implementation state and must match the active code tree.
 
@@ -40,10 +40,11 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`. Deployment/browser readiness i
 | PG08 Service Details | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + PARENT-NAVIGATION QA PASS |
 | PG14 Market Access | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + MARKET-NAVIGATION QA PASS |
 | PG15 Markets / Countries | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + FILTER + MARKET-NAVIGATION QA PASS |
+| PG09 Product Categories | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + FILTER + PRODUCT-NAVIGATION QA PASS |
 | M3 Shared Navigation IA | ACTIVE — Home + Company + Market families exposed centrally in shared navigation |
 | Cloudflare Test Environment | AVAILABLE VIA MANUAL REBUILD |
 | Cloudflare Git Auto-Deploy | DEFERRED — push trigger does not currently start deployment automatically |
-| Current Build Baseline | M3 CODE / CI COMPLETE — PG05–PG08 + PG14–PG15; Cloudflare batch review pending |
+| Current Build Baseline | M4 IN PROGRESS — PG09 C7 CI PASS; PG10 next. M2/M3 Cloudflare closure remains open in parallel |
 
 ## Milestones
 
@@ -53,7 +54,7 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`. Deployment/browser readiness i
 | M1 Global System & Component Foundation | PASS / CLOSED | Component AR/EN foundation QA |
 | M2 Global Shell & Home Family | IN PROGRESS | PG01–PG04 AR/EN + Cloudflare deployed browser QA |
 | M3 Company / Business / Market | IN PROGRESS | PG05–PG08 + PG14–PG15 batch page QA |
-| M4 Product / Supplier / Conversion | NOT STARTED | Data/forms/conversion QA |
+| M4 Product / Supplier / Conversion | IN PROGRESS | PG09 C7 CI PASS; PG10–PG13 + PG16–PG19 remain |
 | M5 Proof / Resources / Compliance / Content | NOT STARTED | Resource/content QA |
 | M6 Support / Utility | NOT STARTED | All 32 layouts exist AR/EN |
 | M7 Full QA & Optimization | NOT STARTED | Zero Critical / High defects + final visual polish |
@@ -77,7 +78,8 @@ ar/
 ├── capabilities.html              # PG07 — C7 CI PASS
 ├── service-details.html           # PG08 — C7 CI PASS
 ├── market-access.html             # PG14 — C7 CI PASS
-└── markets.html                   # PG15 — C7 CI PASS
+├── markets.html                   # PG15 — C7 CI PASS
+└── product-categories.html        # PG09 — C7 CI PASS
 en/
 ├── index.html                     # PG01 — C8
 ├── home-02.html                   # PG02 — C7 CI PASS
@@ -88,7 +90,8 @@ en/
 ├── capabilities.html              # PG07 — C7 CI PASS
 ├── service-details.html           # PG08 — C7 CI PASS
 ├── market-access.html             # PG14 — C7 CI PASS
-└── markets.html                   # PG15 — C7 CI PASS
+├── markets.html                   # PG15 — C7 CI PASS
+└── product-categories.html        # PG09 — C7 CI PASS
 assets/
 ├── brand/
 ├── css/
@@ -106,6 +109,7 @@ assets/
 │   ├── origex-service-details.css
 │   ├── origex-market-access.css
 │   ├── origex-markets.css
+│   ├── origex-product-categories.css
 │   └── origex-shell.css
 ├── media/demo/
 ├── fonts/
@@ -115,6 +119,7 @@ assets/
 │   ├── config-engine.js
 │   ├── origex-ui.js
 │   ├── origex-markets.js
+│   ├── origex-product-categories.js
 │   └── origex-landing.js
 ├── patterns/
 └── vendor/bootstrap/
@@ -133,7 +138,8 @@ qa/
 ├── pg07-capabilities/
 ├── pg08-service-details/
 ├── pg14-market-access/
-└── pg15-markets/
+├── pg15-markets/
+└── pg09-product-categories/
 docs/
 ├── page-design-profiles/
 │   ├── pg01-home-01-v1.md
@@ -145,7 +151,8 @@ docs/
 │   ├── pg07-capabilities-v1.md
 │   ├── pg08-service-details-v1.md
 │   ├── pg14-market-access-v1.md
-│   └── pg15-markets-v1.md
+│   ├── pg15-markets-v1.md
+│   └── pg09-product-categories-v1.md
 └── canonical authorities
 ```
 
@@ -161,7 +168,7 @@ docs/
 | PG06 | How We Work | C7 — IMPLEMENTED | APPROVED — `pg06-how-we-work-v1.md` | `ar/how-we-work.html` + `en/how-we-work.html` | SOURCE + RENDERED + NAVIGATION QA PASS — CLOUDFLARE BATCH REVIEW PENDING |
 | PG07 | Capabilities / Services | C7 — IMPLEMENTED | APPROVED — `pg07-capabilities-v1.md` | `ar/capabilities.html` + `en/capabilities.html` | SOURCE + RENDERED + NAVIGATION QA PASS — CLOUDFLARE BATCH REVIEW PENDING |
 | PG08 | Service Details | C7 — IMPLEMENTED | APPROVED — `pg08-service-details-v1.md` | `ar/service-details.html` + `en/service-details.html` | SOURCE + RENDERED + PARENT-NAVIGATION QA PASS — CLOUDFLARE BATCH REVIEW PENDING |
-| PG09 | Product Categories | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
+| PG09 | Product Categories | C7 — IMPLEMENTED | APPROVED — `pg09-product-categories-v1.md` | `ar/product-categories.html` + `en/product-categories.html` | SOURCE + RENDERED + FILTER + PRODUCT-NAVIGATION QA PASS — CLOUDFLARE M4 BATCH REVIEW PENDING |
 | PG10 | Products Grid | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG11 | Product Details | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG12 | Suppliers / Brands Directory | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
@@ -293,6 +300,22 @@ docs/
 - Interaction QA: country filtering and reset PASS; desktop/mobile Market current-state PASS.
 - Final QA status: `qa/pg15-markets/run-status.txt` — PASS.
 - Current: C7 pending Cloudflare M3 batch browser review. M3 page production is code/CI complete.
+
+## M4 Evidence
+
+### PG09 — Product Categories
+- Frozen scope: hero, category facts, category filters, six category cards and CTA.
+- Profile: `docs/page-design-profiles/pg09-product-categories-v1.md`.
+- Arabic: `ar/product-categories.html`.
+- English: `en/product-categories.html`.
+- Composition: `assets/css/origex-product-categories.css`.
+- Filter adapter: `assets/js/origex-product-categories.js`.
+- Shared Product IA: `assets/js/origex-ui.js` exposes Product Categories + All Products centrally and treats Product Details as a child of Products.
+- Source QA: `qa/pg09-product-categories/source-report.json` — failures 0.
+- Rendered QA: `qa/pg09-product-categories/rendered-report.json` — AR/EN × 390/820/1366/1536 = 8/8 PASS; no overflow; direction and touch targets PASS.
+- Category filter/reset and desktop/mobile Product navigation PASS.
+- Final QA: `qa/pg09-product-categories/run-status.txt` — PASS.
+- Current: C7 pending Cloudflare M4 batch browser review. PG10 is next.
 
 ## Cloudflare Test Environment Control
 
