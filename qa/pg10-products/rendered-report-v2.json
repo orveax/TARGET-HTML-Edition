@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-19T15:46:20Z",
-  "failures": 0,
+  "generatedAt": "2026-08-19T20:36:50Z",
+  "failures": 4,
   "results": [
     {
       "lang": "ar",
@@ -211,5 +211,10 @@
       "pass": true
     }
   ],
-  "errors": []
+  "errors": [
+    "ar:desktop-product-navigation",
+    "ar:mobile-product-navigation",
+    "en:desktop-product-navigation",
+    "en:mobile-product-navigation"
+  ]
 }
