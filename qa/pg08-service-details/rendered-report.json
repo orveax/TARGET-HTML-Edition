@@ -1,0 +1,231 @@
+{
+  "generatedAt": "2026-08-19T13:30:11Z",
+  "failures": 0,
+  "results": [
+    {
+      "lang": "ar",
+      "viewport": 390,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "eightSections": true,
+        "fourSteps": true,
+        "fourDeliverables": true,
+        "fitNotFit": true,
+        "threeRelated": true
+      },
+      "metrics": {
+        "deliverables": 4,
+        "dir": "rtl",
+        "fit": 2,
+        "h1": true,
+        "minButton": 60.375,
+        "off": 0,
+        "overflow": false,
+        "related": 3,
+        "sections": 8,
+        "steps": 4
+      },
+      "pass": true
+    },
+    {
+      "lang": "ar",
+      "viewport": 820,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "eightSections": true,
+        "fourSteps": true,
+        "fourDeliverables": true,
+        "fitNotFit": true,
+        "threeRelated": true
+      },
+      "metrics": {
+        "deliverables": 4,
+        "dir": "rtl",
+        "fit": 2,
+        "h1": true,
+        "minButton": 60.375,
+        "off": 0,
+        "overflow": false,
+        "related": 3,
+        "sections": 8,
+        "steps": 4
+      },
+      "pass": true
+    },
+    {
+      "lang": "ar",
+      "viewport": 1366,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "eightSections": true,
+        "fourSteps": true,
+        "fourDeliverables": true,
+        "fitNotFit": true,
+        "threeRelated": true
+      },
+      "metrics": {
+        "deliverables": 4,
+        "dir": "rtl",
+        "fit": 2,
+        "h1": true,
+        "minButton": 46.234375,
+        "off": 0,
+        "overflow": false,
+        "related": 3,
+        "sections": 8,
+        "steps": 4
+      },
+      "pass": true
+    },
+    {
+      "lang": "ar",
+      "viewport": 1536,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "eightSections": true,
+        "fourSteps": true,
+        "fourDeliverables": true,
+        "fitNotFit": true,
+        "threeRelated": true
+      },
+      "metrics": {
+        "deliverables": 4,
+        "dir": "rtl",
+        "fit": 2,
+        "h1": true,
+        "minButton": 46.234375,
+        "off": 0,
+        "overflow": false,
+        "related": 3,
+        "sections": 8,
+        "steps": 4
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 390,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "eightSections": true,
+        "fourSteps": true,
+        "fourDeliverables": true,
+        "fitNotFit": true,
+        "threeRelated": true
+      },
+      "metrics": {
+        "deliverables": 4,
+        "dir": "ltr",
+        "fit": 2,
+        "h1": true,
+        "minButton": 57.96875,
+        "off": 0,
+        "overflow": false,
+        "related": 3,
+        "sections": 8,
+        "steps": 4
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 820,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "eightSections": true,
+        "fourSteps": true,
+        "fourDeliverables": true,
+        "fitNotFit": true,
+        "threeRelated": true
+      },
+      "metrics": {
+        "deliverables": 4,
+        "dir": "ltr",
+        "fit": 2,
+        "h1": true,
+        "minButton": 57.96875,
+        "off": 0,
+        "overflow": false,
+        "related": 3,
+        "sections": 8,
+        "steps": 4
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 1366,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "eightSections": true,
+        "fourSteps": true,
+        "fourDeliverables": true,
+        "fitNotFit": true,
+        "threeRelated": true
+      },
+      "metrics": {
+        "deliverables": 4,
+        "dir": "ltr",
+        "fit": 2,
+        "h1": true,
+        "minButton": 44.078125,
+        "off": 0,
+        "overflow": false,
+        "related": 3,
+        "sections": 8,
+        "steps": 4
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 1536,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "eightSections": true,
+        "fourSteps": true,
+        "fourDeliverables": true,
+        "fitNotFit": true,
+        "threeRelated": true
+      },
+      "metrics": {
+        "deliverables": 4,
+        "dir": "ltr",
+        "fit": 2,
+        "h1": true,
+        "minButton": 44.078125,
+        "off": 0,
+        "overflow": false,
+        "related": 3,
+        "sections": 8,
+        "steps": 4
+      },
+      "pass": true
+    }
+  ],
+  "errors": []
+}

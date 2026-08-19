@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-19T13:27:10Z",
-  "failures": 2,
+  "generatedAt": "2026-08-19T13:29:45Z",
+  "failures": 0,
   "results": [
     {
       "page": "ar/service-details.html",
@@ -23,12 +23,10 @@
         "parentCapabilityState": true,
         "uniqueIDs": true,
         "noClientCDNLeakage": true,
-        "iconReferencesResolve": false,
+        "iconReferencesResolve": true,
         "localAssets": true
       },
-      "missingIcons": [
-        "message-circle"
-      ],
+      "missingIcons": [],
       "sections": [
         "hero",
         "overview",
@@ -43,7 +41,7 @@
       "deliverables": 4,
       "fitCards": 2,
       "relatedServices": 3,
-      "pass": false
+      "pass": true
     },
     {
       "page": "en/service-details.html",
@@ -66,12 +64,10 @@
         "parentCapabilityState": true,
         "uniqueIDs": true,
         "noClientCDNLeakage": true,
-        "iconReferencesResolve": false,
+        "iconReferencesResolve": true,
         "localAssets": true
       },
-      "missingIcons": [
-        "message-circle"
-      ],
+      "missingIcons": [],
       "sections": [
         "hero",
         "overview",
@@ -86,11 +82,8 @@
       "deliverables": 4,
       "fitCards": 2,
       "relatedServices": 3,
-      "pass": false
+      "pass": true
     }
   ],
-  "errors": [
-    "ar/service-details.html: ['iconReferencesResolve']; missing icons=['message-circle']; sections=['hero', 'overview', 'scope', 'process', 'deliverables', 'fit', 'related', 'cta']",
-    "en/service-details.html: ['iconReferencesResolve']; missing icons=['message-circle']; sections=['hero', 'overview', 'scope', 'process', 'deliverables', 'fit', 'related', 'cta']"
-  ]
+  "errors": []
 }
