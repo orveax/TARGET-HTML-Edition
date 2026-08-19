@@ -1,0 +1,186 @@
+name: PG21 Case Study Details QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/case-study-details.html'
+      - 'en/case-study-details.html'
+      - 'assets/css/origex-case-study-details.css'
+      - 'assets/js/origex-case-study-details.js'
+      - 'assets/css/origex-components.css'
+      - 'assets/css/origex-shell.css'
+      - 'assets/icons/sprite.svg'
+      - 'assets/js/origex-ui.js'
+      - 'docs/page-design-profiles/pg21-case-study-details-v1.md'
+      - '.github/scripts/normalize_global_navigation.py'
+      - '.github/scripts/normalize_global_footer.py'
+      - '.github/workflows/pg21-case-study-details-qa.yml'
+
+concurrency:
+  group: pg21-case-study-details-qa
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --quiet beautifulsoup4 selenium
+      - name: Run PG21 source rendered and interaction QA
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json,re,subprocess,time
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.keys import Keys
+          from selenium.webdriver.support.ui import WebDriverWait
+
+          R=Path('.'); O=R/'qa/pg21-case-study-details'; O.mkdir(parents=True,exist_ok=True)
+          source={'failures':[],'pages':{},'runtime':{}}
+          js=(R/'assets/js/origex-case-study-details.js').read_text(encoding='utf-8'); rf=[]
+          for bad in ('fetch(','XMLHttpRequest','localStorage','sessionStorage'):
+            if bad in js: rf.append('forbidden:'+bad)
+          for required in ('URLSearchParams','case-study-details.html?id=','pg21Ready','data-orx-related-cases'):
+            if required not in js: rf.append('missing:'+required)
+          if 'cases.json' in js: rf.append('schema-drift-cases-json')
+          source['runtime']={'failures':rf}; source['failures']+=rf
+
+          sprite=(R/'assets/icons/sprite.svg').read_text(encoding='utf-8'); sprite_ids=set(re.findall(r'<symbol[^>]+id="([^"]+)"',sprite))
+          specs={
+            'ar':('rtl','تفاصيل دراسة حالة تجارية B2B | ORIGEX','../en/case-study-details.html'),
+            'en':('ltr','B2B Case Study Details | ORIGEX','../ar/case-study-details.html')
+          }
+          expected_sections=['hero','notice','detail','navigation','related','cta']
+          expected_ids=[f'case-{i:03d}' for i in range(1,7)]
+          for lang,(direction,seo_title,other) in specs.items():
+            text=(R/lang/'case-study-details.html').read_text(encoding='utf-8'); s=BeautifulSoup(text,'html.parser'); f=[]
+            if s.html.get('lang')!=lang or s.html.get('dir')!=direction:f.append('lang-dir')
+            hs=s.find_all('h1')
+            if len(hs)!=1:f.append('h1-count:'+str(len(hs)))
+            if not s.title or s.title.get_text(strip=True)!=seo_title:f.append('seo-title')
+            sections=[n.get('data-pg21-section') for n in s.select('[data-pg21-section]')]
+            if sections!=expected_sections:f.append('sections:'+str(sections))
+            templates=s.select('template[data-case-record]')
+            ids=[t.get('data-case-id') for t in templates]
+            if ids!=expected_ids:f.append('case-ids:'+str(ids))
+            if len(set(ids))!=6:f.append('duplicate-case-ids')
+            for t in templates:
+              for attr in ('data-case-label','data-case-title','data-case-category','data-case-focus','data-case-summary'):
+                if not t.get(attr):f.append(t.get('data-case-id','?')+':missing-'+attr)
+            if 'cases.json' in text:f.append('schema-drift-cases-json')
+            if not s.find('a',href=other):f.append('language-switch')
+            if not s.select_one('[data-orx-mega-trigger][aria-current="page"]'):f.append('explore-current')
+            if not s.select_one('.orx-mega-menu a[href="case-studies.html"][aria-current="page"]'):f.append('mega-parent-current')
+            if s.select_one('.orx-mobile-nav a[href="case-studies.html"]'):f.append('mobile-ia-drift')
+            if not s.select_one('footer[data-orx-global-footer="v1"] [data-orx-business-hours]'):f.append('footer')
+            if not s.select_one('[data-orx-case-fallback][role="status"]'):f.append('fallback-status')
+            if not s.select_one('[data-orx-case-prev]') or not s.select_one('[data-orx-case-next]'):f.append('prev-next')
+            if not s.select_one('[data-orx-related-cases]'):f.append('related-target')
+            if 'TARGET' in text or 'targetft' in text.lower():f.append('client-leak')
+            low=text.lower()
+            if lang=='en' and ('not client evidence' not in low and 'not a real client engagement' not in low):f.append('demo-boundary-en')
+            if lang=='ar' and ('ليس دليلًا على مشروع عميل' not in text and 'ليست نتيجة مشروع حقيقي' not in text):f.append('demo-boundary-ar')
+            canonical=s.find('link',rel='canonical')
+            if not canonical or canonical.get('href')!=f'https://example.com/{lang}/case-study-details.html':f.append('canonical')
+            hreflangs={n.get('hreflang') for n in s.find_all('link',rel='alternate')}
+            if not {'ar','en','x-default'}.issubset(hreflangs):f.append('hreflang')
+            try:
+              data=json.loads(s.find('script',attrs={'type':'application/ld+json'}).string)
+              types={x.get('@type') for x in data.get('@graph',[])}
+              if not {'WebPage','BreadcrumbList'}.issubset(types):f.append('schema')
+              if types & {'Review','Rating','Offer','AggregateRating','QuantitativeValue'}:f.append('prohibited-schema')
+            except Exception:f.append('schema-json')
+            icons=set(re.findall(r'sprite\.svg#([a-z0-9-]+)',text)); missing=sorted(icons-sprite_ids)
+            if missing:f.append('icons:'+str(missing))
+            source['pages'][lang]={'failures':f,'sections':sections,'caseCount':len(templates)}; source['failures'] += [lang+':'+x for x in f]
+
+          for script,label in [('.github/scripts/normalize_global_navigation.py','nav-drift'),('.github/scripts/normalize_global_footer.py','footer-drift')]:
+            r=subprocess.run(['python',script,'--check'],capture_output=True,text=True)
+            if r.returncode:
+              source['failures'].append(label);source[label]=r.stdout+r.stderr
+          (O/'source-report.json').write_text(json.dumps(source,ensure_ascii=False,indent=2),encoding='utf-8')
+
+          rendered={'failures':[],'cases':[],'interaction':{}}
+          opts=Options();opts.add_argument('--headless=new');opts.add_argument('--no-sandbox');opts.add_argument('--disable-dev-shm-usage');opts.add_argument('--window-size=820,1800')
+          srv=subprocess.Popen(['python','-m','http.server','8765'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL);time.sleep(1)
+          try:
+            for lang in ('ar','en'):
+              d=webdriver.Chrome(options=opts)
+              try:
+                for w in (390,820,1366,1536):
+                  f=[]
+                  try:
+                    d.set_window_size(w,1800);d.get(f'http://127.0.0.1:8765/{lang}/case-study-details.html?id=case-001')
+                    WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg21-root]').get_attribute('data-pg21-ready')=='true')
+                    if len(d.find_elements(By.CSS_SELECTOR,'h1'))!=1:f.append('h1-count')
+                    if len(d.find_elements(By.CSS_SELECTOR,'[data-orx-case-detail-target] .orx-case-detail-section'))<4:f.append('detail-render')
+                    if len(d.find_elements(By.CSS_SELECTOR,'[data-orx-related-cases] .orx-case-detail-related-card'))!=2:f.append('related-count')
+                    if d.execute_script('return document.documentElement.scrollWidth')>d.execute_script('return document.documentElement.clientWidth')+1:f.append('overflow')
+                    if d.find_element(By.TAG_NAME,'html').get_attribute('dir')!=('rtl' if lang=='ar' else 'ltr'):f.append('direction')
+                    small=[]
+                    for e in d.find_elements(By.CSS_SELECTOR,'a,button,input,select'):
+                      if e.is_displayed() and e.rect['width'] and e.rect['height'] and (e.rect['width']<24 or e.rect['height']<24):small.append({'tag':e.tag_name,'w':round(e.rect['width'],1),'h':round(e.rect['height'],1),'text':e.text[:24]})
+                    if small:f.append('touch:'+json.dumps(small,ensure_ascii=False))
+                    if w>=1051:
+                      t=d.find_element(By.CSS_SELECTOR,'[data-orx-mega-trigger]');t.click();time.sleep(.04)
+                      if t.get_attribute('aria-expanded')!='true':f.append('mega-open')
+                      t.send_keys(Keys.ESCAPE);time.sleep(.04)
+                      if t.get_attribute('aria-expanded')!='false':f.append('mega-escape')
+                    else:
+                      op=d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-open]');op.click();time.sleep(.04);dr=d.find_element(By.CSS_SELECTOR,'[data-orx-mobile-drawer]')
+                      if dr.get_attribute('aria-hidden')!='false':f.append('drawer-open')
+                      d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-close]').click();time.sleep(.04)
+                      if dr.get_attribute('aria-hidden')!='true':f.append('drawer-close')
+                  except Exception as e:f.append(type(e).__name__+':'+str(e)[:150])
+                  rendered['cases'].append({'lang':lang,'width':w,'failures':f});rendered['failures'] += [f'{lang}-{w}:{x}' for x in f]
+
+                f=[]
+                try:
+                  d.set_window_size(820,1800);d.get(f'http://127.0.0.1:8765/{lang}/case-study-details.html?id=case-004');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg21-root]').get_attribute('data-pg21-ready')=='true')
+                  h1=d.find_element(By.CSS_SELECTOR,'[data-orx-case-title]').text
+                  expected='تحويل قائمة منتجات إلى نقطة بداية أفضل لطلب عرض سعر.' if lang=='ar' else 'Turning a product shortlist into a more useful RFQ starting point.'
+                  if h1!=expected:f.append('query-title:'+h1)
+                  if 'id=case-004' not in d.find_element(By.CSS_SELECTOR,'.orx-lang-switch').get_attribute('href'):f.append('language-preserve')
+                  if 'case-003' not in d.find_element(By.CSS_SELECTOR,'[data-orx-case-prev]').get_attribute('href'):f.append('previous')
+                  if 'case-005' not in d.find_element(By.CSS_SELECTOR,'[data-orx-case-next]').get_attribute('href'):f.append('next')
+                  rel=[x.get_attribute('href') for x in d.find_elements(By.CSS_SELECTOR,'[data-orx-related-cases] a')]
+                  if len(rel)!=2 or any('case-004' in x for x in rel):f.append('related-links')
+                  if d.find_element(By.CSS_SELECTOR,'[data-orx-case-fallback]').is_displayed():f.append('unexpected-fallback')
+                except Exception as e:f.append(type(e).__name__+':'+str(e)[:150])
+                rendered['interaction'][lang+'-valid-id']=f;rendered['failures'] += [lang+'-valid-id:'+x for x in f]
+
+                f=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/case-study-details.html?id=case-999');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg21-root]').get_attribute('data-pg21-ready')=='true')
+                  if not d.find_element(By.CSS_SELECTOR,'[data-orx-case-fallback]').is_displayed():f.append('fallback-hidden')
+                  expected='تجهيز منتج غذائي ثابت للتجزئة في سوق جديد.' if lang=='ar' else 'Preparing an ambient food product for a new retail channel.'
+                  if d.find_element(By.CSS_SELECTOR,'[data-orx-case-title]').text!=expected:f.append('fallback-content')
+                  if 'id=case-001' not in d.find_element(By.CSS_SELECTOR,'.orx-lang-switch').get_attribute('href'):f.append('fallback-language-id')
+                except Exception as e:f.append(type(e).__name__+':'+str(e)[:150])
+                rendered['interaction'][lang+'-invalid-id']=f;rendered['failures'] += [lang+'-invalid-id:'+x for x in f]
+              finally:d.quit()
+          finally:srv.terminate()
+
+          (O/'rendered-report.json').write_text(json.dumps(rendered,ensure_ascii=False,indent=2),encoding='utf-8')
+          status='PASS' if not source['failures'] and not rendered['failures'] else 'FAIL';(O/'run-status.txt').write_text(status+'\n',encoding='utf-8')
+          print(status);print(source['failures']);print(rendered['failures'])
+          if status!='PASS':raise SystemExit(1)
+          PY
+      - name: Commit PG21 evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg21-case-study-details || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "PG21 record Case Study Details QA evidence"
+          git pull --rebase origin main || true
+          git push origin main || true
