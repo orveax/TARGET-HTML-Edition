@@ -1,0 +1,28 @@
+ORIGEX DEMO RESOURCE — COMPLIANCE INFORMATION EXAMPLE
+Status: Fictional template example / NOT a certificate or regulatory approval
+Language: Arabic + English
+Source: ORVEAX original
+
+ARABIC
+مثال لطريقة تنظيم معلومات الامتثال فقط:
+- نوع المستند
+- الجهة المصدرة كما تظهر في المستند الحقيقي
+- رقم/مرجع المستند عند التحقق
+- تاريخ الإصدار والانتهاء عند التحقق
+- نطاق التطبيق
+- نسخة الملف الموثقة
+
+هذا الملف ليس شهادة، وليس موافقة تنظيمية، ولا يثبت امتثال أي شركة أو منتج.
+
+ENGLISH
+Example structure for organizing compliance information only:
+- Document type
+- Issuing body exactly as shown on the verified document
+- Reference number when verified
+- Issue/expiry dates when verified
+- Scope
+- Verified source file
+
+This file is not a certificate, regulatory approval or proof of compliance for any company or product.
+
+Copyright © ORVEAX.
