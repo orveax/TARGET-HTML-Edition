@@ -3,9 +3,9 @@
 Product ID: ORX-P01  
 Owner: ORVEAX  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-19
+Last Updated: 2026-08-19 — Hard Audit Closed
 
-This is the repo-level execution tracker. Notion may provide portfolio/project management context; this file records the implementation state that must match the code tree.
+This is the repo-level execution tracker. It records actual current implementation state and must match the active code tree.
 
 ## Status Vocabulary
 
@@ -18,6 +18,17 @@ This is the repo-level execution tracker. Notion may provide portfolio/project m
 - `REFERENCE ONLY`
 
 Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`.
+
+## Project Control
+
+| Control Area | Status |
+|---|---|
+| Product Foundation | PASS / CLOSED |
+| Hard Audit / Legacy Cleanup | PASS / CLOSED |
+| Canonical Authority Map | PASS / CLOSED |
+| Project Rules | PASS / CLOSED |
+| Asset/License Register | ACTIVE |
+| Current Build Baseline | CLEAN M1 START |
 
 ## Milestones
 
@@ -37,20 +48,42 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`.
 
 | Unit | Status | Notes |
 |---|---|---|
-| Bootstrap 5.3.8 local vendor baseline | READY | Exact version locked; local package not yet committed |
-| Vendor/license register | READY | Register created; vendor assets pending |
-| Tokens / typography / spacing | READY | Frozen specification; implementation reset |
+| Bootstrap 5.3.8 exact baseline | PASS / CLOSED | exact version authority locked |
+| Bootstrap local vendor files | READY | package + MIT notice to add |
+| Asset/license register | PASS / CLOSED | register exists; rows evolve with assets |
+| Design hierarchy / registry normalization | PASS / CLOSED | F01–F07, P01–P11, C01–C28, S01–S06, N01–N04 |
+| Tokens / typography / spacing implementation | READY | frozen specification; code not yet built |
 | Grid / containers / responsive helpers | READY | Bootstrap infrastructure + ORIGEX decisions |
-| Radius / border / elevation | READY | Frozen tokens |
-| Motion / reduced-motion | READY | Frozen rules |
-| Lucide local icon system | READY | Assets/sprite pending M1 |
-| ORIGEX PT01–PT06 patterns | READY | Assets pending M1 |
-| Primitive implementation | READY | Registry authority exists |
-| Component implementation | READY | Registry authority exists |
-| Config layer normalization | READY | pre-freeze config seed retained for M1 audit |
+| Radius / border / elevation implementation | READY | frozen tokens |
+| Motion / reduced-motion implementation | READY | frozen rules |
+| Lucide local icon assets/sprite | READY | exact selected asset subset pending M1 |
+| ORIGEX PT01–PT06 pattern assets | READY | files pending M1 |
+| Primitive code implementation | READY | registry normalized |
+| Component code implementation | READY | registry normalized |
+| Config schema/engine normalization | PASS / CLOSED | hook-based M1 seed retained; core UI not created by JS |
+| Config integration with M1 components | READY | requires M1 HTML/CSS components |
 | Global shell | NOT STARTED | old shell removed |
-| Components / Elements foundation | NOT STARTED | PG32 final page later; M1 foundation demo required |
+| Components / Elements M1 foundation view | NOT STARTED | component QA surface; PG32 final page later |
 | M1 AR/EN component QA | NOT STARTED | required before M2 |
+
+## Active Code Tree Before M1 Build
+
+```text
+README.md
+CHANGELOG.md
+assets/
+├── brand/
+│   ├── origex-logo.svg
+│   ├── origex-logo-light.svg
+│   └── origex-mark.svg
+└── js/
+    ├── config.js
+    └── config-engine.js
+docs/
+└── canonical authorities + reference-only source maps
+```
+
+No active AR/EN page implementation and no old CSS/preview layer remain after the hard audit.
 
 ## 32 V1 Layouts
 
@@ -91,12 +124,22 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`.
 
 ## Historical Build Status
 
-Build 02–05 code was removed from the active tree in the 2026-08-19 hard audit because it predated the frozen Bootstrap/component/icon/content/SEO architecture.
+Build 02–05 code was removed from the active tree because it predated the frozen Bootstrap/component/icon/content/SEO architecture.
 
-Historical value remains available in Git history and selected reference/source-map documents. It is not counted as current page progress.
+Historical value remains in Git history and selected reference/source-map files. It is not current implementation progress and must not be restored as active code.
+
+## Page Production Gate
+
+PG01–PG32 are intentionally blocked from implementation until M1 exits with:
+- local Bootstrap foundation;
+- ORIGEX tokens/primitives/components;
+- icon/pattern/media foundations;
+- config integration;
+- global shell baseline;
+- AR/EN component QA.
 
 ## Update Rule
 
-Update this tracker in the same work unit whenever a milestone/page/component changes state.
+Update this tracker in the same work unit whenever a milestone, foundation unit or page changes state.
 
 Copyright © ORVEAX.
