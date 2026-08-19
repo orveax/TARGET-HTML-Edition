@@ -1,0 +1,62 @@
+name: Align CR-001 PG33 Scope
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/align-cr001-pg33-scope.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  align:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Align active V1 scope and tracker
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('docs/IMPLEMENTATION-STATUS-V1.md')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('Last Updated: 2026-08-19 — M4 IN PROGRESS / PG09–PG10 PS7 CI QA PASS / PG11 NEXT', 'Last Updated: 2026-08-19 — GLOBAL NAV V1 LOCKED / V1 = 33 LAYOUTS / PG33 IMPLEMENTED QA PENDING / PG11 NEXT')
+          s = s.replace('| Shared Navigation IA | ACTIVE — Home + Product + Company + Market families exposed centrally in shared navigation |', '| Global Navigation V1 | LOCKED — one canonical Standard Header / Mega Menu / Mobile Drawer; only active state varies; PG04 Landing is the intentional compact-header exception |')
+          s = s.replace('| Current Build Baseline | M4 IN PROGRESS — PG09–PG10 PS7 CI PASS; PG11 next. M2/M3 Cloudflare closure remains open in parallel |', '| Current Build Baseline | Global Navigation V1 locked. PG33 Company Profile added by CR-001 and implemented AR+EN with QA evidence pending. M4 remains IN PROGRESS — PG09–PG10 PS7 CI PASS; PG11 next. |')
+          s = s.replace('| M3 Company / Business / Market | IN PROGRESS | PG05–PG08 + PG14–PG15 batch page QA |', '| M3 Company / Business / Market | IN PROGRESS | PG05–PG08 + PG14–PG15 + PG33; PG33 QA evidence + Cloudflare batch acceptance remain |')
+          s = s.replace('| M6 Support / Utility | NOT STARTED | All 32 layouts exist AR/EN |', '| M6 Support / Utility | NOT STARTED | All 33 layouts exist AR/EN |')
+          s = s.replace('└── products.html                  # PG10 — PS7 CI PASS', '├── products.html                  # PG10 — PS7 CI PASS\n└── company-profile.html           # PG33 — IMPLEMENTED / QA EVIDENCE PENDING')
+          s = s.replace('│   └── origex-shell.css', '│   ├── origex-company-profile.css\n│   └── origex-shell.css')
+          s = s.replace('└── pg10-products/', '├── pg10-products/\n└── pg33-company-profile/          # pending evidence until QA workflow records report')
+          s = s.replace('│   └── pg10-products-grid-v1.md', '│   ├── pg10-products-grid-v1.md\n│   └── pg33-company-profile-v1.md')
+          s = s.replace('## 32 V1 Layouts', '## 33 V1 Layouts')
+          row32 = '| PG32 | Components / Elements Library | PS0 | NOT STARTED | NOT STARTED | NOT STARTED |'
+          row33 = '| PG33 | Company Profile / الملف التعريفي | PS7 — IMPLEMENTED / QA PENDING | APPROVED — `pg33-company-profile-v1.md` / CR-001 | `ar/company-profile.html` + `en/company-profile.html` | GLOBAL NAV V1 + SOURCE/RENDERED QA EVIDENCE PENDING — CLOUDFLARE REQUIRED BEFORE PS8 |'
+          if row33 not in s:
+              if row32 in s:
+                  s = s.replace(row32, row32 + '\n' + row33)
+              else:
+                  s += '\n\n## CR-001 Active Scope Addendum — PG33\n' + row33 + '\n'
+          if '## CR-001 / Global Navigation Addendum' not in s:
+              s += '''\n\n## CR-001 / Global Navigation Addendum — 2026-08-19\n- V1 active scope is **33 unique layouts / approximately 66 AR+EN pages**.\n- PG33 Company Profile was added through approved `CR-001-PG33-COMPANY-PROFILE-2026-08-19.md`.\n- Standard pages use `GLOBAL-NAVIGATION-CONTRACT-V1.md`; `origex-ui.js` controls behavior only and no longer mutates the IA.\n- PG04 Landing remains the only approved compact-header exception.\n- Current PG33 state: AR+EN implementation exists; QA evidence pending. Do not mark PS7 CI PASS until `qa/pg33-company-profile/run-status.txt` is recorded as PASS.\n'''
+          p.write_text(s, encoding='utf-8')
+
+          p = Path('docs/MILESTONE-PLAN-V1.md')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('Status: APPROVED — M1 CLOSED / M2 READY', 'Status: APPROVED — ACTIVE PLAN / CR-001 APPLIED / M4 IN PROGRESS')
+          s = s.replace('- 32 unique page layouts delivered in Arabic and English.', '- 33 unique page layouts delivered in Arabic and English after approved CR-001 (PG33 Company Profile).')
+          s = s.replace('- Markets / Countries.\n\nGate:', '- Markets / Countries.\n- Company Profile (PG33; CR-001).\n\nGate:')
+          s = s.replace('Gate: all 32 unique layouts exist in AR/EN with Content C8 and SEO/Page Identity QA complete.', 'Gate: all 33 unique layouts exist in AR/EN with PS8 page acceptance and SEO/Page Identity QA complete.')
+          if '## CR-001 Scope Addendum' not in s:
+              s += '''\n\n## CR-001 Scope Addendum — 2026-08-19\n- Added PG33 — Company Profile / الملف التعريفي under M3.\n- Active V1 scope is now **33 unique layouts / approximately 66 AR+EN HTML pages**.\n- `GLOBAL-NAVIGATION-CONTRACT-V1.md` is the canonical N01/N02/N03 IA for all Standard Pages.\n- PG04 Landing retains its compact conversion navigation as the documented exception.\n- Historical 32-layout statements in frozen closure evidence describe the pre-CR baseline and are superseded for active delivery by CR-001.\n'''
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit alignment and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/align-cr001-pg33-scope.yml
+          git add docs/IMPLEMENTATION-STATUS-V1.md docs/MILESTONE-PLAN-V1.md
+          git commit -m "docs: align active scope and tracker with PG33"
+          git push origin main
