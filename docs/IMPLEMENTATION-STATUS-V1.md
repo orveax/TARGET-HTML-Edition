@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Owner: ORVEAX  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-19 — M1 CLOSED / M2 ACTIVE / PG01 BENCHMARK CLOSED / PG02 C6 READY / CLOUDFLARE AUTO-DEPLOY DEFERRED
+Last Updated: 2026-08-19 — M1 CLOSED / M2 ACTIVE / PG01 BENCHMARK CLOSED / PG02 C7 CI QA PASS / CLOUDFLARE REVIEW PENDING
 
 This is the repo-level execution tracker. It records actual current implementation state and must match the active code tree.
 
@@ -27,13 +27,15 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`. Deployment readiness uses the 
 | Hard Audit / Legacy Cleanup | PASS / CLOSED |
 | Canonical Authority Map | PASS / CLOSED |
 | Project Rules | PASS / CLOSED |
-| Asset/License Register | ACTIVE — M1 baseline + PG01 ORVEAX-owned demo media verified |
+| Asset/License Register | ACTIVE — M1 baseline + PG01/PG02 ORVEAX-owned demo media verified |
 | PG01 Page/Code QA | C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK |
 | PG01 Marketplace Visual Polish CR | PASS / CLOSED |
+| PG02 Build | C7 IMPLEMENTED — AR + EN |
+| PG02 CI QA | PASS — source + rendered 8/8 + interaction |
+| PG02 Cloudflare Browser Review | PENDING — Manual Rebuild available |
 | Cloudflare Test Environment | AVAILABLE VIA MANUAL REBUILD |
 | Cloudflare Git Auto-Deploy | DEFERRED — push trigger does not currently start deployment automatically |
-| PG02 Entry Preparation | C6 / PASS — Design Profile + SEO Contract approved |
-| Current Build Baseline | M2 IN PROGRESS — PG01 benchmark closed; PG02 READY FOR AR+EN BUILD |
+| Current Build Baseline | M2 IN PROGRESS — PG01 benchmark closed; PG02 C7 pending Cloudflare review |
 
 ## Milestones
 
@@ -76,20 +78,24 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`. Deployment readiness uses the 
 ```text
 index.html                         # Arabic-first language entry
 ar/
-└── index.html                     # PG01 AR
+├── index.html                     # PG01 AR
+└── home-02.html                   # PG02 AR — C7
 en/
-└── index.html                     # PG01 EN
+├── index.html                     # PG01 EN
+└── home-02.html                   # PG02 EN — C7
 assets/
 ├── brand/
 ├── css/
 │   ├── origex-tokens.css
 │   ├── origex-foundation.css
 │   ├── origex-components.css
-│   ├── origex-compositions.css    # M2 composition entry
+│   ├── origex-compositions.css
 │   ├── origex-marketplace-polish.css
-│   └── origex-shell.css           # M1 shell remains closed
+│   ├── origex-distribution.css    # PG02/M2 reusable distribution compositions
+│   └── origex-shell.css           # M1 shell
 ├── media/demo/
 │   ├── hero-trade-scene.svg
+│   ├── hero-distribution-network.svg
 │   ├── product-tomato-sauce.svg
 │   ├── product-hibiscus.svg
 │   ├── product-milk.svg
@@ -101,24 +107,32 @@ assets/
 └── vendor/bootstrap/
 preview/
 qa/
+├── pg01-rendered/
+├── pg01-interaction/
+├── pg01-visual-review/
+├── pg02-source/
+├── pg02-rendered/
+├── pg02-interaction/
+└── pg02-visual-review/
 docs/
 ├── page-design-profiles/
 │   ├── pg01-home-01-v1.md
 │   └── pg02-home-02-v1.md
 ├── PG01-CLOSURE-2026-08-19.md
 ├── PG01-MARKETPLACE-VISUAL-POLISH-2026-08-19.md
+├── PG02-QA-REPORT-V1.md
 ├── STAGING-PREVIEW-GATE-V1.md
 └── canonical authorities
 ```
 
-`origex-compositions.css` is the M2 composition layer and loads the marketplace polish layer. `origex-shell.css` remains the closed M1 shell.
+PG02 uses `origex-distribution.css` as an M2 reusable composition layer. It consumes registered ORIGEX primitives/components and does not reopen M1 or create a competing design system.
 
 ## 32 V1 Layouts
 
 | PG | Page | Content | Design Profile | Build | QA |
 |---|---|---|---|---|---|
 | PG01 | Home 01 — Food Trading / Importer | C8 — CLOSED | APPROVED | `ar/index.html` + `en/index.html` | PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK |
-| PG02 | Home 02 — Wholesale & Distribution | C6 — FROZEN | APPROVED — `pg02-home-02-v1.md` | READY — AR+EN NOT STARTED | NOT STARTED |
+| PG02 | Home 02 — Wholesale & Distribution | C7 — IMPLEMENTED | APPROVED — `pg02-home-02-v1.md` | `ar/home-02.html` + `en/home-02.html` | CI PASS — CLOUDFLARE REVIEW PENDING |
 | PG03 | Home 03 — Manufacturer / Supplier | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG04 | Landing / One Page | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG05 | About | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
@@ -160,20 +174,24 @@ PG01 passed the original page/code gate and the approved marketplace visual poli
 - final interaction QA: `b3d12beb103492144f4c5fc690ef15eedd49eef4` — PASS.
 - final visual snapshots: `e1c09173757defc6992ac162447990f2ffc76f5a`.
 
-## PG02 Entry Evidence
+## PG02 C7 Evidence
 
-Authority: `docs/page-design-profiles/pg02-home-02-v1.md`.
+Authority: `docs/page-design-profiles/pg02-home-02-v1.md`.  
+QA summary: `docs/PG02-QA-REPORT-V1.md`.
 
-PG02 is now C6 / FROZEN with:
-- bilingual Content Contract;
-- eight frozen Main Features only;
-- SEO & Page Identity Contract;
-- registered component map;
-- responsive/accessibility/performance contracts;
-- asset/license requirements;
-- explicit fictional distribution/metric disclosures.
+Implementation:
+- Arabic: `ar/home-02.html` — commit `3d41fc7683ea4c20e50266718f9e6746ac7b8def`.
+- English: `en/home-02.html` — commit `64d34c0dea3d32049b49c1d5bd0d7af5c5a9a651`.
+- distribution media: `assets/media/demo/hero-distribution-network.svg` — ORVEAX OWNED.
+- composition layer: `assets/css/origex-distribution.css`.
 
-PG02 code has not started yet.
+CI QA:
+- source/content/SEO/assets: `c396b2024bb77ba5d39bd47b756a794ab20431cd` — PASS / failures 0.
+- rendered responsive matrix: `f2d25834ac57f2b00c7218cd5bea1376a2ee2d3c` — 8/8 PASS / failures 0.
+- runtime interaction: `a6d7488f96c2a3085f90a7ec319dcb2a468be2f0` — PASS / failures 0.
+- compact visual snapshots: `38d4c851f894a27fc88eb7ad36652d46e46e1beb`.
+
+PG02 remains **C7**, not C8, until its current revision is deployed to the real Cloudflare Test Environment and receives external AR/EN mobile + desktop browser review.
 
 ## Cloudflare Test Environment Control
 
@@ -190,9 +208,9 @@ Current state confirmed by ORVEAX administrator:
 - GitHub commits to `main` are correct.
 - automatic Cloudflare deployment is not being triggered by each push.
 - Auto-Deploy correction is deferred to the next work session.
-- GitHub Pages is not used and the temporary GitHub Pages workflow/status files were removed.
+- GitHub Pages is not used.
 
-Auto-deploy degradation does not block page implementation while Manual Rebuild remains available. Final page browser review must still use the deployed Cloudflare test environment.
+Auto-deploy degradation does not block implementation while Manual Rebuild remains available. Final page browser review must still use the deployed Cloudflare test environment.
 
 ## Historical Build Status
 
@@ -202,16 +220,16 @@ Build 02–05 code remains removed from the active tree because it predates the 
 
 **M1 PASSED / CLOSED.**  
 **PG01 = C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK.**  
-**PG02 = C6 / DESIGN + SEO READY — AR+EN BUILD MAY BEGIN.**
+**PG02 = C7 IMPLEMENTED — CI QA PASS — CLOUDFLARE TEST REVIEW PENDING.**
 
-Next execution action:
-1. build PG02 Arabic + English together from `pg02-home-02-v1.md`;
-2. create/register the ORVEAX-owned distribution hero media;
-3. run source/rendered/interaction QA;
-4. deploy current `main` through the Cloudflare Test Environment (Manual Rebuild acceptable temporarily);
-5. perform browser smoke review;
-6. close PG02 only at C8 / PASS;
-7. repair Cloudflare auto-deploy in the deferred infrastructure work session.
+Next execution actions:
+1. deploy current `main` to the Cloudflare Test Environment using Manual Rebuild if required;
+2. open `/ar/home-02.html` and `/en/home-02.html` through the real test URL on mobile + desktop;
+3. verify deployed assets, base paths, layout, RTL/LTR and interactions;
+4. fix/retest any deployment-only defect;
+5. promote PG02 to C8 / PASS / CLOSED only after Cloudflare review passes;
+6. repair Cloudflare auto-deploy in the deferred infrastructure session;
+7. PG03 preparation may proceed independently, but PG02 is not considered closed until step 5.
 
 ## Update Rule
 
