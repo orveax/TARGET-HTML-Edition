@@ -1,85 +1,93 @@
-# Page Fidelity Matrix
+# ORIGEX — Source Fidelity Matrix
 
-This matrix is the mandatory conversion control for TARGET HTML Edition.
+Product ID: ORX-P01  
+Owner: ORVEAX  
+Status: REFERENCE ONLY — CURRENT BUILD RESET  
+Reset Date: 2026-08-19
 
-## Status vocabulary
+This matrix preserves TARGET-derived source-accounting knowledge without representing current implementation progress.
 
-- `PENDING` — not converted yet
-- `BASELINE` — copied/reproduced for fidelity, not yet fully verified
-- `MATCHED` — section/function verified against the source website
-- `GENERALIZED` — client-specific content/assets replaced without reducing the experience
-- `QA PASS` — responsive, RTL/LTR, interaction and visual QA complete
+The pre-foundation Build 02–05 HTML/CSS/JS was removed from the active tree during the 2026-08-19 hard audit. Historical `BASELINE` work remains in Git history and source maps, but **all current ORIGEX page implementation starts from the frozen Product Foundation and M1 system**.
 
-## Public page inventory
+## Status Vocabulary
 
-| # | Source route | HTML Edition route | Conversion | Visual | Interaction | RTL/LTR | Commercial generalization |
-|---|---|---|---|---|---|---|---|
-| 01 | `index.html` | `ar/index.html` + `en/index.html` | GENERALIZED | BASELINE | BASELINE | BASELINE | GENERALIZED |
-| 02 | `about.html` | `ar/about.html` + `en/about.html` | GENERALIZED | BASELINE | BASELINE | BASELINE | GENERALIZED |
-| 03 | `capabilities.html` | `how-we-work.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
-| 04 | `products-companies.html` | `products-companies.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
-| 05 | `qatar-market.html` | `market.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
-| 06 | `suppliers.html` | `suppliers.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
-| 07 | `contact.html` | `contact.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
-| 08 | `company-profile.html` | `resources.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
-| 09 | `faq.html` | `faq.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
-| 10 | `privacy.html` | `privacy.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
-| 11 | `terms.html` | `terms.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
-| 12 | `404.html` | `404.html` | PENDING | PENDING | PENDING | PENDING | PENDING |
+For source/fidelity research only:
+- `SOURCE MAPPED` — source purpose/sections understood.
+- `REFERENCE READY` — source mapping can inform a new ORIGEX Page Design Profile.
+- `NOT REVIEWED` — no source mapping yet.
 
-## Homepage section control
+Current build progress is tracked only in `IMPLEMENTATION-STATUS-V1.md`.
 
-The homepage cannot be marked `MATCHED` until every source section is accounted for and responsive visual comparison is complete.
+## Source-to-ORIGEX Mapping
 
-| Section / system | Status | Current implementation |
-|---|---|---|
-| Global header | BASELINE | Premium sticky shell exists in AR/EN |
-| Mega menu | BASELINE | Hierarchy and open/close interaction preserved |
-| Language toggle | BASELINE | Dedicated `/ar/` and `/en/` routes; Arabic is primary |
-| Hero | BASELINE | Eyebrow, H1, lead, 2 CTAs, media composition preserved |
-| Commercial route visual | BASELINE | Source → ORIGEX → Market route preserved |
-| Trust strip / facts | BASELINE | 4/4 trust items preserved |
-| How We Work / capability cards | BASELINE | 4/4 cards preserved with number, role and metadata |
-| Product/category section | BASELINE | Editorial panel + 5/5 categories + explore route |
-| Why / differentiation section | BASELINE | 4/4 differentiation cards preserved |
-| Process / steps | BASELINE | 4/4 ordered steps preserved |
-| Supplier/opportunity CTA | BASELINE | RFQ / sales conversion intent generalized |
-| FAQ / supporting conversion | BASELINE | 3/3 accessible accordion items; first open |
-| Final conversion CTA | BASELINE | Kicker, headline, lead, disclaimer and 2 CTAs |
-| Global footer | BASELINE | Full route/contact/legal hierarchy preserved |
-| Contextual utilities | BASELINE | Language, mobile drawer, resource/contact routes preserved |
+| Source Experience | ORIGEX Target | Reference Status | Current Build Status |
+|---|---|---|---|
+| TARGET Home | PG01 Home 01 | SOURCE MAPPED | NOT STARTED |
+| TARGET About | PG05 About | SOURCE MAPPED | NOT STARTED |
+| TARGET capability/process material | PG06 How We Work / PG07 Capabilities | REFERENCE READY | NOT STARTED |
+| TARGET products/company material | PG09–PG13 Product/Supplier family | REFERENCE READY | NOT STARTED |
+| TARGET Qatar/market material | PG14–PG15 Market family | REFERENCE READY | NOT STARTED |
+| TARGET supplier material | PG16–PG17 Supplier conversion | REFERENCE READY | NOT STARTED |
+| TARGET contact material | PG27 Contact | REFERENCE READY | NOT STARTED |
+| TARGET company-profile/resource material | PG22 Resources | REFERENCE READY | NOT STARTED |
+| TARGET FAQ | PG26 FAQ | REFERENCE READY | NOT STARTED |
+| TARGET legal/utility material | PG28 / PG30 / PG31 | REFERENCE READY | NOT STARTED |
 
-## Home 01 Build 04 notes — 2026-08-19
+## Home 01 Source Roles to Preserve
 
-- Arabic and English are separate ready-to-use pages; Arabic remains the default review language.
-- Home 01 now accounts for all H01–H08 source sections.
-- Client-specific Qatar/TARGET copy and identity were generalized while preserving the same UX role and section density.
-- No ecommerce cart/checkout behavior was introduced; conversion remains B2B RFQ/product-enquiry oriented.
-- Static structural QA and JavaScript syntax QA passed locally.
-- `MATCHED` and `QA PASS` remain blocked until full visual/responsive review is completed against the source and the common-screen preview matrix.
+When PG01 reaches implementation, account for the source roles below where they remain compatible with frozen ORIGEX scope/content:
 
-## About Build 05 control — 2026-08-19
+- global shell/navigation;
+- hero and primary commercial proposition;
+- route/source-to-market visual logic;
+- trust/commercial-facts layer;
+- capability/how-we-work overview;
+- product/category discovery;
+- differentiation/clarity layer;
+- ordered commercial process;
+- supplier/opportunity conversion;
+- FAQ/supporting conversion;
+- final CTA;
+- footer/contact/legal recovery.
 
-| Section | Status | Current implementation |
-|---|---|---|
-| A01 Hero | BASELINE | Eyebrow, H1, lead, profile resource link, commercial media and 2 facts |
-| A02 Who We Are | BASELINE | 2 explanatory paragraphs, editorial panel and 4/4 facts |
-| A03 Vision & Mission | BASELINE | 2/2 full content cards |
-| A04 Commercial Role | BASELINE | Source → ORIGEX → Market three-node flow |
-| A05 Commercial Clarity | BASELINE | 4/4 trust cards + boundary note |
-| A06 Final Conversion | BASELINE | Company Profile panel + product/opportunity CTA panel |
+This list preserves **UX/commercial roles**, not old markup, CSS or client copy.
 
-- Arabic and English are separate ready-to-use pages; Arabic remains primary.
-- TARGET/Qatar client identity and owned imagery were removed and replaced with reusable B2B demo content/CSS artwork without reducing the source section roles.
-- Static HTML structure, section counts, AR/EN pairing and client-data leakage checks passed locally.
-- Visual screenshot QA remains pending because the current Chromium environment does not produce a stable screenshot session; no false `MATCHED`/`QA PASS` status is recorded.
+## About Source Roles to Preserve
 
-## Non-negotiable rule
+When PG05 reaches implementation, account for:
+- hero/context;
+- who-we-are explanation;
+- meaningful facts;
+- vision/mission;
+- commercial role/flow;
+- clarity/trust boundaries;
+- final conversion/resource CTA.
 
-A section may only be removed when:
+## Non-Negotiable Fidelity Rule
 
-1. it contains client-only information that cannot legally or commercially ship, **and**
-2. an equivalent generic component preserves the same UX role, **or**
-3. the removal is explicitly documented as a marketplace product decision.
+Source material may influence:
+- purpose;
+- hierarchy;
+- content density;
+- section roles;
+- useful interaction patterns.
 
-No section is removed merely to make the code shorter.
+Source material may not restore:
+- TARGET identity;
+- client contacts/domains;
+- proprietary supplier/product information;
+- client-owned imagery/files;
+- unsupported client claims;
+- old pre-freeze implementation architecture.
+
+## Visual Match Rule
+
+No ORIGEX page may be called `MATCHED` merely because it resembles a historical build. If fidelity comparison is used, it must compare the new frozen-system implementation against the intended source experience and record evidence during QA.
+
+## Related References
+
+- `HOMEPAGE-SOURCE-MAP.md`
+- `ABOUT-SOURCE-MAP.md`
+- `REFERENCE-INDEX-V1.md`
+
+Copyright © ORVEAX.
