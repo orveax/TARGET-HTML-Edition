@@ -2,7 +2,7 @@
 
 **Product ID:** ORX-P01  
 **Owner / Author:** ORVEAX  
-**Status:** Product Foundation complete — M1 clean implementation start
+**Status:** M1 closed — M2 / PG01 ready for page production
 
 ORIGEX is a premium Arabic-first bilingual HTML template product for B2B food trading, import, wholesale, distribution, manufacturers, suppliers and market-access workflows.
 
@@ -18,9 +18,19 @@ Do not start implementation from historical commits or reference/source-map file
 
 ```text
 M0 — PRODUCT FOUNDATION: CLOSED / COMPLETE
-M1 — GLOBAL SYSTEM & COMPONENT FOUNDATION: CLEAN START / READY
-M2–M8: NOT STARTED
+M1 — GLOBAL SYSTEM & COMPONENT FOUNDATION: CLOSED / COMPLETE
+M2 — GLOBAL SHELL & HOME FAMILY: READY
+PG01 — HOME 01: C6 FROZEN / DESIGN PROFILE READY / BUILD READY
+PG02–PG32: gated by their own content/design/SEO entry requirements
 ```
+
+M1 closure authority:
+- [`docs/M1-QA-REPORT-V1.md`](docs/M1-QA-REPORT-V1.md)
+- [`docs/M1-COMPONENT-IMPLEMENTATION-MAP.md`](docs/M1-COMPONENT-IMPLEMENTATION-MAP.md)
+- [`docs/M1-VENDOR-SHA256.txt`](docs/M1-VENDOR-SHA256.txt)
+
+PG01 entry authority:
+- [`docs/page-design-profiles/pg01-home-01-v1.md`](docs/page-design-profiles/pg01-home-01-v1.md)
 
 A hard audit on 2026-08-19 removed pre-foundation Build 02–05 implementation and superseded planning files from the active tree. Git history remains the archive.
 
@@ -28,7 +38,7 @@ A hard audit on 2026-08-19 removed pre-foundation Build 02–05 implementation a
 
 - HTML5
 - CSS3
-- Bootstrap 5.3.8 — infrastructure/layout foundation
+- Bootstrap 5.3.8 — infrastructure/layout foundation, packaged locally
 - Vanilla JavaScript
 - ORIGEX Design System
 - `config.js` customization layer
@@ -52,7 +62,7 @@ See [`docs/SCOPE-FREEZE-V1-FINAL.md`](docs/SCOPE-FREEZE-V1-FINAL.md).
 - [`PROJECT-HQ-V1.md`](docs/PROJECT-HQ-V1.md) — current state and authority map
 - [`PROJECT-RULES-V1.md`](docs/PROJECT-RULES-V1.md) — implementation rules
 - [`IMPLEMENTATION-STATUS-V1.md`](docs/IMPLEMENTATION-STATUS-V1.md) — live execution tracker
-- [`PRODUCT-FOUNDATION-COMPLETE-V1.md`](docs/PRODUCT-FOUNDATION-COMPLETE-V1.md) — foundation closure
+- [`PRODUCT-FOUNDATION-COMPLETE-V1.md`](docs/PRODUCT-FOUNDATION-COMPLETE-V1.md) — M0 closure
 - [`MILESTONE-PLAN-V1.md`](docs/MILESTONE-PLAN-V1.md) — delivery sequence
 - [`QA-DEFINITION-OF-DONE-V1.md`](docs/QA-DEFINITION-OF-DONE-V1.md) — exit gates
 - [`ASSET-LICENSE-REGISTER-V1.md`](docs/ASSET-LICENSE-REGISTER-V1.md) — dependencies/assets/licensing
