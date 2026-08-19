@@ -1,0 +1,43 @@
+name: PG10 QA Lazy Image Fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/pg10-qa-lazy-image-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Make rendered image check lazy-loading safe
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('.github/workflows/pg10-products-grid-qa.yml')
+          s=p.read_text(encoding='utf-8')
+          old="images:[...document.querySelectorAll('[data-product-id] img')].every(i=>i.complete&&i.naturalWidth>0)"
+          new="firstImageLoaded:(()=>{const i=document.querySelector('[data-product-id] img');return !!i&&i.complete&&i.naturalWidth>0})()"
+          if old not in s: raise SystemExit('image metric marker not found')
+          s=s.replace(old,new,1)
+          old2="'imagesLoaded':m['images']"
+          new2="'firstImageLoaded':m['firstImageLoaded']"
+          if old2 not in s: raise SystemExit('image check marker not found')
+          s=s.replace(old2,new2,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '4189822+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/pg10-products-grid-qa.yml
+          git rm .github/workflows/pg10-qa-lazy-image-fix.yml
+          git commit -m 'PG10 make rendered image QA lazy-loading safe'
+          git pull --rebase origin main
+          git push origin HEAD:main
