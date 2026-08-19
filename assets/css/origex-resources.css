@@ -2,6 +2,7 @@
 [data-pg22-root]{background:var(--orx-bg)}
 .orx-resource-hero{padding-block:clamp(3.75rem,7vw,6.25rem);background:linear-gradient(180deg,var(--orx-surface-soft),var(--orx-bg))}
 .orx-resource-hero__grid{display:grid;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.orx-resource-hero__actions,.orx-case-hero__actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-block-start:1.5rem}
 .orx-resource-boundary{display:grid;gap:1rem;padding:clamp(1.35rem,3vw,2rem);border:1px solid var(--orx-border);border-radius:var(--orx-radius-lg);background:var(--orx-surface);box-shadow:var(--orx-shadow-e1)}
 .orx-resource-boundary h2,.orx-resource-boundary p{margin:0}.orx-resource-boundary p{color:var(--orx-text-muted)}
 .orx-resource-boundary__list{display:grid;gap:.8rem;list-style:none;padding:0;margin:0}.orx-resource-boundary__item{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.75rem;align-items:start}.orx-resource-boundary__item .orx-icon{color:var(--orx-accent);margin-block-start:.15rem}
@@ -14,4 +15,4 @@
 .orx-resource-guidance{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.9rem;padding:1.15rem 1.2rem;border:1px solid rgba(196,122,74,.32);border-radius:var(--orx-radius-md);background:rgba(196,122,74,.07)}.orx-resource-guidance p{margin:.25rem 0 0;color:var(--orx-text-muted)}.orx-resource-guidance .orx-icon{color:var(--orx-accent);margin-block-start:.15rem}.orx-resource-empty[hidden]{display:none!important}
 @media(min-width:700px){.orx-resource-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:1050px){.orx-resource-hero__grid{grid-template-columns:minmax(0,1.08fr) minmax(340px,.72fr)}.orx-resource-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:767.98px){.orx-resource-filter-row{align-items:flex-start;flex-direction:column}.orx-resource-filter-row .orx-filter-group{inline-size:100%}.orx-resource-filter-meta{inline-size:100%}.orx-resource-card__actions>.orx-btn{inline-size:100%;justify-content:center}.orx-resource-card__actions>.orx-text-action{inline-size:100%}}
+@media(max-width:767.98px){.orx-resource-filter-row{align-items:flex-start;flex-direction:column}.orx-resource-filter-row .orx-filter-group{inline-size:100%}.orx-resource-filter-meta{inline-size:100%}.orx-resource-hero__actions>.orx-btn,.orx-case-hero__actions>.orx-btn{inline-size:100%}.orx-resource-card__actions>.orx-btn{inline-size:100%;justify-content:center}.orx-resource-card__actions>.orx-text-action{inline-size:100%}}
