@@ -1,0 +1,44 @@
+name: PG11 Breadcrumb Accessibility Fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/pg11-breadcrumb-accessibility-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix shared breadcrumb target size and QA dependency
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('assets/css/origex-components.css')
+          s = p.read_text(encoding='utf-8')
+          needle = '.orx-breadcrumb{font-size:.88rem;color:var(--orx-text-muted)}'
+          replacement = needle + '.orx-breadcrumb a{display:inline-flex;align-items:center;min-block-size:24px}'
+          if '.orx-breadcrumb a{display:inline-flex;align-items:center;min-block-size:24px}' not in s:
+              s = s.replace(needle, replacement)
+          p.write_text(s, encoding='utf-8')
+
+          q = Path('.github/workflows/pg11-product-details-qa.yml')
+          qs = q.read_text(encoding='utf-8')
+          qneedle = "      - 'assets/css/origex-product-details.css'\n"
+          addition = qneedle + "      - 'assets/css/origex-components.css'\n"
+          if "      - 'assets/css/origex-components.css'\n" not in qs:
+              qs = qs.replace(qneedle, addition)
+          q.write_text(qs, encoding='utf-8')
+          PY
+      - name: Commit shared fix and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/pg11-breadcrumb-accessibility-fix.yml
+          git add assets/css/origex-components.css .github/workflows/pg11-product-details-qa.yml
+          git commit -m "fix: enforce accessible breadcrumb target size"
+          git push origin main
