@@ -3,79 +3,109 @@
 Product ID: ORX-P01  
 Owner: ORVEAX  
 Audit Date: 2026-08-19  
-Status: CLOSED
+Status: **PASS / CLOSED**
 
 ## Objective
 
-Clean the project before page-by-page implementation so the active repository contains one coherent set of authorities and no pre-foundation implementation can silently override the frozen Product Foundation.
+Clean and normalize ORIGEX before M1/page production so the active repository contains one coherent authority chain, no pre-foundation implementation can silently override the frozen systems, and every future session has an obvious starting point.
 
-## Audit Result
+## Audit Conclusion
 
-The project foundation decisions were strong, but the repository contained two generations at once:
+The Product Foundation itself was strong. The main risk was repository drift: pre-freeze Build 02–05 implementation/planning existed beside post-freeze architecture/content/SEO/governance.
 
-1. pre-freeze Build 02–05 implementation and planning documents;
-2. post-freeze canonical ORIGEX architecture/content/SEO/governance documents.
+The hard audit removed that dual-state condition.
 
-The coexistence created material rework risk.
+ORIGEX now has:
+- one operational Project HQ;
+- one final V1 scope;
+- one normalized Foundation authority;
+- one Design-System hierarchy/registry;
+- one Content/SEO mechanism;
+- one implementation tracker;
+- one asset/license register;
+- explicit reference-only historical documents;
+- a clean active code tree ready for M1.
 
-## Critical Findings
+## Findings & Resolution
 
-### F01 — Root README was obsolete
-It still described the product as `TARGET HTML Edition`, used an old M0–M9 conversion sequence, omitted Bootstrap and stated an obsolete current stage.
+### F01 — Root README obsolete — RESOLVED
+Old README described `TARGET HTML Edition`, obsolete milestones and an old implementation stage.
 
-**Action:** replace README with ORIGEX Project HQ entry point.
+**Resolution:** replaced with ORIGEX entry point pointing to `PROJECT-HQ-V1.md`.
 
-### F02 — Multiple scope authorities existed
-Old `PRODUCT-SCOPE-V1.md`, `SCOPE-FREEZE-CANDIDATE-V1.md` and the final scope coexisted. The old scope contained approximately 30 pages including Team/Careers and obsolete gates.
+### F02 — Multiple scope authorities — RESOLVED
+Old `PRODUCT-SCOPE-V1.md` and `SCOPE-FREEZE-CANDIDATE-V1.md` conflicted with the 32-layout final scope.
 
-**Action:** obsolete/candidate scope documents deleted. `SCOPE-FREEZE-V1-FINAL.md` remains authority.
+**Resolution:** obsolete/candidate scope docs deleted; `SCOPE-FREEZE-V1-FINAL.md` is scope authority.
 
-### F03 — 48-hour / Optional-Feature V1 assumptions remained
-`48-HOUR-THEMEFOREST-LAUNCH.md` and `MASTER-PAGE-FEATURE-MATRIX.md` represented an earlier launch strategy in which Additional Features were intended to ship within V1.
+### F03 — 48-hour / old Optional-Feature assumptions — RESOLVED
+Earlier launch/matrix files treated Additional Features as V1 deliverables.
 
-**Action:** deleted. V1 Main Features / V1.1 Additional Features separation remains canonical.
+**Resolution:** obsolete docs deleted; V1 Main Features / V1.1 Additional Features separation remains canonical.
 
-### F04 — Old brand/design gates remained beside locked systems
-Brand exploration and numbered gate documents remained after `BRAND-SYSTEM-V1.md` and the unified component architecture were frozen.
+### F04 — Old brand/design gates — RESOLVED
+Exploration/gate docs remained beside approved brand/design systems.
 
-**Action:** exploration/gate documents deleted.
+**Resolution:** obsolete exploration/gate docs deleted; Brand System and Design-System authorities normalized.
 
-### F05 — Old page-build rules conflicted with Content/Scope governance
-`PAGE-BUILD-RULES.md` instructed page-time feature discovery and Optional Feature slots, conflicting with the frozen Content Contract and V1 scope.
+### F05 — Old page-build rules — RESOLVED
+Old rules encouraged page-time feature discovery/optional slots, conflicting with Content C6 and frozen scope.
 
-**Action:** deleted and replaced by `PROJECT-RULES-V1.md`.
+**Resolution:** deleted; replaced by `PROJECT-RULES-V1.md`.
 
-### F06 — Preview policy duplicated newer demo/QA governance
-The old preview policy belonged to the removed pre-freeze responsive frame.
+### F06 — Old preview policy/infrastructure — RESOLVED
+Preview policy and frame belonged to removed pre-freeze build.
 
-**Action:** policy and preview implementation removed. Future preview infrastructure will be rebuilt under M1/M7 and governed by QA + Demo-vs-Production policies.
+**Resolution:** old preview policy/frame deleted. Future QA preview infrastructure is development-only and rebuilt under current QA/Demo governance.
 
-### F07 — Active HTML/CSS/JS predated the frozen architecture
-The previous Home/About builds:
-- did not use Bootstrap as the frozen foundation;
+### F07 — Active HTML/CSS/JS predated frozen architecture — RESOLVED
+Old Home/About implementation:
+- did not use frozen Bootstrap infrastructure;
 - loaded Google Fonts at runtime;
-- contained text placeholders used as icons (`IMP`, `SUP`, `SRC`, etc.);
-- contained old route assumptions such as `company-profile.html`;
-- used pre-registry/pre-icon-system component styling.
+- used text placeholders for icons;
+- contained obsolete route assumptions;
+- predated current component/content/SEO contracts.
 
-**Action:** all old AR/EN page files, old page/global CSS, old navigation/home JavaScript and preview experiments were removed from the active tree. Git history is the archive.
+**Resolution:** all pre-freeze AR/EN pages, CSS, navigation/home JS and preview experiments removed from active tree. Git history is the archive.
 
-### F08 — Asset/license register was specified but missing
-Multiple documents required asset tracking, but no single active register existed.
+### F08 — Asset/license register missing — RESOLVED
+**Resolution:** `ASSET-LICENSE-REGISTER-V1.md` created and made mandatory.
 
-**Action:** `ASSET-LICENSE-REGISTER-V1.md` created.
+### F09 — Execution state distributed — RESOLVED
+**Resolution:** `IMPLEMENTATION-STATUS-V1.md` created. Historical Build 02–05 is no longer counted as current progress.
 
-### F09 — Execution state was distributed across documents
-No single repo-level implementation tracker separated historical Build 02–05 work from the current clean start.
+### F10 — Operational entry point missing — RESOLVED
+**Resolution:** `PROJECT-HQ-V1.md` created with authority order, current state, clean tree, gates and next action.
 
-**Action:** `IMPLEMENTATION-STATUS-V1.md` created. Historical builds no longer count as current progress.
+### F11 — Configuration docs/engine drift — RESOLVED
+Old Configuration documentation referenced deleted `config-ui.css`, old class-coupled selectors and JS-created UI.
 
-### F10 — Operational entry point was missing
-The repo lacked one authority map explaining which document wins when files overlap.
+**Resolution:**
+- `CONFIGURATION.md` rewritten as the V1 Config Contract;
+- `config.js` relabeled as Schema V1 M1 seed, not release `v1.1.0`;
+- `config-engine.js` refactored to enhance existing semantic HTML through `data-orx-*` hooks;
+- config JS no longer creates core UI or text-glyph icons;
+- reduced-motion-safe back-to-top behavior included.
 
-**Action:** `PROJECT-HQ-V1.md` created with authority order, active structure, page gate and next action.
+### F12 — Component Registry / Hierarchy drift — RESOLVED
+Registry still contained pre-Lucide text-icon samples; hierarchy omitted Bootstrap infrastructure and required a documentation shape the registry no longer followed.
 
-## Files Removed — Documentation
+**Resolution:**
+- `COMPONENT-REGISTRY-V1.md` normalized;
+- preserved established IDs C01–C28 / S01–S06 / N01–N04;
+- added F04 Shape/Elevation, F05 Icon System, F06 Motion, F07 Media/Pattern and P11 Icon Container without renumbering existing units;
+- production text-icon placeholders prohibited;
+- `DESIGN-SYSTEM-HIERARCHY-V1.md` normalized to Bootstrap 5.3.8 → ORIGEX Foundations → Primitives → Components → Patterns → Sections → Page Profiles.
+
+### F13 — Brand/Docs stale file assumptions — RESOLVED
+Brand/docs referred to implementation files/preview behavior as if already active.
+
+**Resolution:** Brand System and Documentation Architecture rewritten as frozen specifications/planned M1–M8 delivery rather than claims about removed files.
+
+### F14 — Repository hygiene — RESOLVED
+**Resolution:** root `.gitignore` added for editor/OS noise, secrets, logs, optional local build output, QA artifacts and packaging archives.
+
+## Files Removed — Superseded Documentation
 
 - `docs/48-HOUR-THEMEFOREST-LAUNCH.md`
 - `docs/BRAND-EXPLORATION-01.md`
@@ -117,44 +147,93 @@ The repo lacked one authority map explaining which document wins when files over
 - `preview/_frame/preview-frame.css`
 - `preview/_frame/preview-frame.js`
 
-## Files Retained Intentionally
+## Active Code Tree After Cleanup
 
-### Brand
-`assets/brand/` SVGs remain active ORVEAX-owned brand assets.
+```text
+/
+├── .gitignore
+├── README.md
+├── CHANGELOG.md
+├── assets/
+│   ├── brand/
+│   │   ├── origex-logo.svg
+│   │   ├── origex-logo-light.svg
+│   │   └── origex-mark.svg
+│   └── js/
+│       ├── config.js
+│       └── config-engine.js
+└── docs/
+    ├── canonical control/foundation authorities
+    ├── V1.1 backlog/content packs
+    └── explicitly indexed reference-only source/research docs
+```
 
-### Config Seed
-`assets/js/config.js` and `assets/js/config-engine.js` are retained as an M1 implementation seed because the configuration architecture is frozen and documented. They are not yet a released implementation and must be normalized against the M1 icon/component layer before M1 closes.
+No active AR/EN pages, old CSS, old navigation JS or old preview layer remain.
 
-### Source/Fidelity References
-`ABOUT-SOURCE-MAP.md`, `HOMEPAGE-SOURCE-MAP.md` and `PAGE-FIDELITY-MATRIX.md` remain as reference only. They are indexed by `REFERENCE-INDEX-V1.md` and do not count as current build state.
+## New / Normalized Control Layer
 
-## New Control Files
-
+Created:
 - `PROJECT-HQ-V1.md`
 - `PROJECT-RULES-V1.md`
 - `IMPLEMENTATION-STATUS-V1.md`
 - `ASSET-LICENSE-REGISTER-V1.md`
 - `REFERENCE-INDEX-V1.md`
-- this audit closure record
+- root `CHANGELOG.md`
+- root `.gitignore`
+
+Major normalized authorities:
+- `README.md`
+- `PRODUCT-FOUNDATION-COMPLETE-V1.md`
+- `FOUNDATION-FREEZE-V1.md`
+- `TECH-STACK-V1.md`
+- `BRAND-SYSTEM-V1.md`
+- `DESIGN-SYSTEM-HIERARCHY-V1.md`
+- `COMPONENT-REGISTRY-V1.md`
+- `CONFIGURATION.md`
+- `DOCUMENTATION-ARCHITECTURE.md`
+- `PAGE-FIDELITY-MATRIX.md` → reference-only/current-build reset
+- `IMPLEMENTATION-STATUS-V1.md`
 
 ## Technology Normalization
 
-Bootstrap exact V1 baseline is fixed to **5.3.8**. M1 must package the local compiled distribution and license notice before component implementation closes.
+Exact Bootstrap V1 baseline: **5.3.8**.
 
-## Closure State
+M1 must still add the local compiled distribution + MIT notice before its gate closes. Locking the version is complete; packaging the runtime is M1 implementation work.
+
+## Legacy Marker Verification
+
+Final active-repository searches returned no hits for:
+- obsolete `48-HOUR` planning marker;
+- deleted `config-ui.css` reference;
+- obsolete `company-profile.html` route;
+- old `orx-card-icon IMP` text icon example;
+- obsolete config release label `v1.1.0`.
+
+## Current State
 
 ```text
-PRODUCT FOUNDATION: COMPLETE
-LEGACY / PRE-FREEZE ACTIVE CODE: REMOVED
-CANONICAL DOC AUTHORITY: NORMALIZED
-IMPLEMENTATION TRACKER: CREATED
-ASSET REGISTER: CREATED
-M1: CLEAN START / READY
-PAGE PRODUCTION: BLOCKED UNTIL M1 GATE PASSES
+PRODUCT FOUNDATION: PASS / CLOSED
+HARD AUDIT / LEGACY CLEANUP: PASS / CLOSED
+CANONICAL AUTHORITY CHAIN: PASS / CLOSED
+CONFIG / REGISTRY / HIERARCHY CONSISTENCY: PASS / CLOSED
+ACTIVE CODE BASELINE: CLEAN
+M1: READY
+PG01–PG32 PAGE PRODUCTION: NOT STARTED / BLOCKED UNTIL M1 PASS
 ```
 
-## Next Work
+## Next Valid Work
 
-No more planning cleanup is required before M1. The next valid work is implementation of the frozen global system, then PG01 Home 01 and subsequent pages one by one.
+There is no remaining planning/legacy cleanup gate before M1.
+
+Next work is implementation:
+1. local Bootstrap 5.3.8 + license;
+2. ORIGEX tokens/grid/shape/motion;
+3. Lucide asset subset/sprite;
+4. PT01–PT06 pattern files;
+5. primitives/components;
+6. config integration;
+7. global shell;
+8. M1 AR/EN component QA;
+9. then PG01 Home 01 page-by-page production.
 
 Copyright © ORVEAX.
