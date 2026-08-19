@@ -1,0 +1,32 @@
+name: Global Navigation Regression
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/**.html'
+      - 'en/**.html'
+      - 'assets/js/origex-ui.js'
+      - '.github/scripts/normalize_global_navigation.py'
+      - 'docs/GLOBAL-NAVIGATION-CONTRACT-V1.md'
+
+jobs:
+  navigation-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify canonical standard navigation
+        run: python .github/scripts/normalize_global_navigation.py --check
+      - name: Verify Landing exception remains explicit
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          for path in [Path('ar/landing.html'), Path('en/landing.html')]:
+              if not path.exists():
+                  continue
+              text = path.read_text(encoding='utf-8')
+              if 'data-orx-mega-menu' in text:
+                  raise SystemExit(f'{path}: landing must retain compact conversion header without mega menu')
+          print('Landing exception PASS')
+          PY
