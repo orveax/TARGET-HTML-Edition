@@ -2,7 +2,7 @@
 
 Product ID: ORX-P01  
 Milestone: M4 — Product / Supplier / Conversion  
-Status: PS6 — FROZEN / BUILD IMPLEMENTED / QA GATE OPEN  
+Status: PS7 — IMPLEMENTED / CI QA PASS  
 Canonical file: `for-suppliers.html`
 
 ## Purpose
@@ -39,7 +39,7 @@ Four value blocks:
 1. `ملف منتج أوضح` — اجمع بيانات المنتج الأساسية في مسار واحد بدل بدء التواصل بمعلومات ناقصة.
 2. `مراجعة أولية أسهل` — تساعد البيانات المنظمة على فهم المنتج والفئة والمنشأ قبل الانتقال للخطوة التجارية التالية.
 3. `سياق سوق وقناة أفضل` — اربط المنتج بالسوق أو القناة المستهدفة كمعلومة تقييم، وليس كضمان دخول أو توزيع.
-4. `مسار تواصل مناسب` — إذا كانت المعلومات كافية، يمكن الانتقال إلى طلب معلومات إضافية أو مناقشة فرصة تجارية مناسبة.
+4. `مسار تواصل مناسب` — إذا كانت المعلومات كافية، يمكن الانتقال إلى طلب بيانات إضافية أو مناقشة فرصة تجارية مناسبة.
 
 ### Qualification Criteria
 
@@ -110,7 +110,7 @@ English preserves the Arabic commercial meaning without stronger claims.
 1. `Clearer product profile` — bring core product information into one route instead of starting with incomplete context.
 2. `Easier initial review` — structured data helps clarify product, category and origin before the next commercial step.
 3. `Better market/channel context` — identify intended markets or channels for evaluation, never as a guarantee of entry or distribution.
-4. `Appropriate conversation route` — sufficiently complete information can lead to a request for more data or the relevant commercial discussion.
+4. `Appropriate next route` — sufficiently complete information can lead to a request for more data or the relevant commercial discussion.
 
 ### Commercial Boundaries
 
@@ -194,11 +194,20 @@ Required: self canonical, AR/EN/x-default hreflang, Open Graph baseline, WebPage
 
 - Workflow: `.github/workflows/pg16-for-suppliers-qa.yml`.
 - Evidence directory: `qa/pg16-for-suppliers/`.
-- Source gate also checks `normalize_global_navigation.py --check` and `normalize_global_footer.py --check` so PG16 cannot pass with shared-shell drift.
-- Rendered gate: AR/EN × 390 / 820 / 1366 / 1536, navigation interaction, footer N04 presence, touch targets and C14 accordion interaction.
+- Source gate checks `normalize_global_navigation.py --check` and `normalize_global_footer.py --check` so PG16 cannot pass with shared-shell drift.
+- Final source QA: failures 0 in AR and EN.
+- Final rendered QA: AR/EN × 390 / 820 / 1366 / 1536 = **8/8 PASS**.
+- Desktop mega-menu, mobile drawer, touch-target floor and Global Footer N04 presence PASS.
+- C14 FAQ interaction is verified through keyboard activation after viewport-centering: Enter opens, Space closes, `aria-expanded` and panel visibility PASS in AR and EN.
+- Final evidence commit: `85298bb66688e66b95bb66c5a4313264b2761c5a`.
+- QA authority: `docs/PG16-QA-REPORT-V1.md`.
 
 ## Exit Gate
 
-PS7 only after AR+EN build plus source/SEO/assets/icons/navigation/global-footer/accordion/responsive/interaction QA PASS. PS8 remains gated by deployed Cloudflare browser acceptance.
+**PS7 PASS achieved.** Cloudflare deployed-browser acceptance remains gated separately before PS8.
+
+## Next M4 Page
+
+PG17 — Submit Your Product.
 
 Copyright © ORVEAX.
