@@ -11,7 +11,7 @@
     "summaryEn": "A fictional demo manufacturer and brand used to demonstrate product and commercial relationship data in the template.",
     "categoryIds": ["ambient", "beverages", "confectionery", "ingredients"],
     "productIds": ["prod-001", "prod-004", "prod-010", "prod-011"],
-    "marketIds": [],
+    "marketIds": ["market-qa", "market-sa", "market-ae"],
     "certifications": ["demo-cert-01"],
     "featured": true,
     "website": "#"
@@ -28,7 +28,7 @@
     "summaryEn": "A fictional demo supplier covering ambient foods, beverages, confectionery and ingredients.",
     "categoryIds": ["ambient", "beverages", "confectionery", "ingredients"],
     "productIds": ["prod-002", "prod-003", "prod-009", "prod-012"],
-    "marketIds": [],
+    "marketIds": ["market-qa", "market-sa", "market-kw"],
     "certifications": [],
     "featured": true,
     "website": "#"
@@ -45,7 +45,7 @@
     "summaryEn": "A fictional demo dairy manufacturer used to demonstrate chilled and packaged dairy data.",
     "categoryIds": ["dairy"],
     "productIds": ["prod-005", "prod-006"],
-    "marketIds": [],
+    "marketIds": ["market-qa", "market-ae", "market-bh"],
     "certifications": ["demo-cert-02"],
     "featured": true,
     "website": "#"
@@ -62,7 +62,7 @@
     "summaryEn": "A fictional demo frozen-food supplier used to demonstrate cold-chain and pack data.",
     "categoryIds": ["frozen"],
     "productIds": ["prod-007", "prod-008"],
-    "marketIds": [],
+    "marketIds": ["market-qa", "market-sa", "market-om"],
     "certifications": [],
     "featured": true,
     "website": "#"
