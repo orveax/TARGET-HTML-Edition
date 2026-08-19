@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-19T12:14:49Z",
-  "failures": 2,
+  "generatedAt": "2026-08-19T12:16:55Z",
+  "failures": 0,
   "variants": [
     "index.html",
     "home-02.html",
@@ -41,7 +41,8 @@
           "landing.html"
         ],
         "menu": true,
-        "noViewportOverflow": true,
+        "mode": "mega",
+        "noOverflow": true,
         "opened": true,
         "trigger": true
       },
@@ -92,7 +93,8 @@
           "landing.html"
         ],
         "menu": true,
-        "noViewportOverflow": true,
+        "mode": "mega",
+        "noOverflow": true,
         "opened": true,
         "trigger": true
       },
@@ -143,7 +145,8 @@
           "landing.html"
         ],
         "menu": true,
-        "noViewportOverflow": true,
+        "mode": "mega",
+        "noOverflow": true,
         "opened": true,
         "trigger": true
       },
@@ -175,21 +178,16 @@
       "lang": "ar",
       "file": "landing.html",
       "desktop": {
-        "active": [],
-        "current": "landing.html",
-        "escaped": false,
-        "expected": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
+        "anchors": [
+          "#benefits",
+          "#categories",
+          "#process",
+          "#enquiry"
         ],
-        "group": false,
-        "hrefs": [],
-        "menu": false,
-        "noViewportOverflow": true,
-        "opened": false,
-        "trigger": false
+        "compactNav": true,
+        "homeLink": true,
+        "mode": "compact-landing",
+        "noMega": true
       },
       "mobile": {
         "active": [
@@ -238,7 +236,8 @@
           "landing.html"
         ],
         "menu": true,
-        "noViewportOverflow": true,
+        "mode": "mega",
+        "noOverflow": true,
         "opened": true,
         "trigger": true
       },
@@ -289,7 +288,8 @@
           "landing.html"
         ],
         "menu": true,
-        "noViewportOverflow": true,
+        "mode": "mega",
+        "noOverflow": true,
         "opened": true,
         "trigger": true
       },
@@ -340,7 +340,8 @@
           "landing.html"
         ],
         "menu": true,
-        "noViewportOverflow": true,
+        "mode": "mega",
+        "noOverflow": true,
         "opened": true,
         "trigger": true
       },
@@ -372,21 +373,16 @@
       "lang": "en",
       "file": "landing.html",
       "desktop": {
-        "active": [],
-        "current": "landing.html",
-        "escaped": false,
-        "expected": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
+        "anchors": [
+          "#benefits",
+          "#categories",
+          "#process",
+          "#enquiry"
         ],
-        "group": false,
-        "hrefs": [],
-        "menu": false,
-        "noViewportOverflow": true,
-        "opened": false,
-        "trigger": false
+        "compactNav": true,
+        "homeLink": true,
+        "mode": "compact-landing",
+        "noMega": true
       },
       "mobile": {
         "active": [
@@ -413,8 +409,6 @@
       }
     }
   ],
-  "errors": [
-    "ar/landing.html: desktop navigation regression: {'active': [], 'current': 'landing.html', 'escaped': False, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'group': False, 'hrefs': [], 'menu': False, 'noViewportOverflow': True, 'opened': False, 'trigger': False}",
-    "en/landing.html: desktop navigation regression: {'active': [], 'current': 'landing.html', 'escaped': False, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'group': False, 'hrefs': [], 'menu': False, 'noViewportOverflow': True, 'opened': False, 'trigger': False}"
-  ]
+  "errors": [],
+  "landingDesktopPolicy": "Compact conversion header intentionally has no mega menu; brand returns to Home 01. Landing remains discoverable from other Home mega menus and all mobile drawers."
 }
