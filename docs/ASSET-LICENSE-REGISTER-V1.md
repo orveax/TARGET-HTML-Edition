@@ -41,6 +41,11 @@ No third-party asset or dependency may enter the distributable package without a
 | ORX-PATTERN-004 | PT04 Market Nodes | `assets/patterns/pt04-market-nodes.svg` | ORVEAX OWNED | implemented M1 |
 | ORX-PATTERN-005 | PT05 Packaging Geometry | `assets/patterns/pt05-packaging-geometry.svg` | ORVEAX OWNED | implemented M1 |
 | ORX-PATTERN-006 | PT06 Flow Lines | `assets/patterns/pt06-flow-lines.svg` | ORVEAX OWNED | implemented M1 |
+| ORX-MEDIA-001 | Trade logistics hero scene | `assets/media/demo/hero-trade-scene.svg` | ORVEAX OWNED | M2 marketplace preview + distributable demo media; abstract warehouse, route, cargo and market composition |
+| ORX-MEDIA-002 | Tomato sauce demo packshot | `assets/media/demo/product-tomato-sauce.svg` | ORVEAX OWNED | fictional generic packaging; no third-party brand/trademark |
+| ORX-MEDIA-003 | Hibiscus drink demo packshot | `assets/media/demo/product-hibiscus.svg` | ORVEAX OWNED | fictional generic packaging; no third-party brand/trademark |
+| ORX-MEDIA-004 | UHT milk demo packshot | `assets/media/demo/product-milk.svg` | ORVEAX OWNED | fictional generic packaging; no third-party brand/trademark |
+| ORX-MEDIA-005 | Frozen vegetables demo packshot | `assets/media/demo/product-frozen.svg` | ORVEAX OWNED | fictional generic packaging; no third-party brand/trademark |
 
 ## Fonts
 
@@ -71,6 +76,8 @@ Primary demo sourcing strategy:
 - Pixabay: special-case preview candidate only after per-asset source/license logging.
 
 Default buyer ZIP rule: no third-party stock photography unless redistribution rights for that exact asset are verified and logged.
+
+**PG01 marketplace polish decision:** the first Home benchmark uses ORVEAX-owned vector demo media instead of third-party stock photography. These files are distributable, self-contained, fictional, and intentionally free from supplier packaging, trademarks, people/release risk or external attribution requirements.
 
 Image rows must include:
 - Asset ID
