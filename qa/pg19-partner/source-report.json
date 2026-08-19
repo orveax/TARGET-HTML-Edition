@@ -1,13 +1,8 @@
 {
-  "failures": [
-    "ar:icons:['message-circle']",
-    "en:icons:['message-circle']"
-  ],
+  "failures": [],
   "pages": {
     "ar": {
-      "failures": [
-        "icons:['message-circle']"
-      ],
+      "failures": [],
       "sections": [
         "hero",
         "value",
@@ -18,9 +13,7 @@
       ]
     },
     "en": {
-      "failures": [
-        "icons:['message-circle']"
-      ],
+      "failures": [],
       "sections": [
         "hero",
         "value",
