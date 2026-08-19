@@ -2,7 +2,7 @@
 
 **Product ID:** ORX-P01  
 **Owner / Author:** ORVEAX  
-**Status:** M1 closed — M2 active — PG01 C8 / PASS / CLOSED — Staging Preview BLOCKED
+**Status:** M1 closed — M2 active — PG01 C8 / PASS / MARKETPLACE VISUAL BENCHMARK — Staging Preview BLOCKED
 
 ORIGEX is a premium Arabic-first bilingual HTML template product for B2B food trading, import, wholesale, distribution, manufacturers, suppliers and market-access workflows.
 
@@ -20,7 +20,8 @@ Do not start implementation from historical commits or reference/source-map file
 M0 — PRODUCT FOUNDATION: CLOSED / COMPLETE
 M1 — GLOBAL SYSTEM & COMPONENT FOUNDATION: CLOSED / COMPLETE
 M2 — GLOBAL SHELL & HOME FAMILY: IN PROGRESS
-PG01 — HOME 01: C8 / PASS / CLOSED — AR + EN
+PG01 — HOME 01: C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK — AR + EN
+PG01 MARKETPLACE VISUAL POLISH CR: PASS / CLOSED
 PG01 STAGING PREVIEW: BLOCKED — GitHub Pages not enabled
 PG02 — HOME 02: C0 / ENTRY GATE REQUIRED / CODE BLOCKED UNTIL STAGING PASS
 PG03–PG32: gated by their own content/design/SEO entry requirements
@@ -36,6 +37,7 @@ PG01 authority, implementation and closure:
 - [`docs/page-design-profiles/pg01-home-01-v1.md`](docs/page-design-profiles/pg01-home-01-v1.md)
 - [`docs/PG01-QA-REPORT-V1.md`](docs/PG01-QA-REPORT-V1.md)
 - [`docs/PG01-CLOSURE-2026-08-19.md`](docs/PG01-CLOSURE-2026-08-19.md)
+- [`docs/PG01-MARKETPLACE-VISUAL-POLISH-2026-08-19.md`](docs/PG01-MARKETPLACE-VISUAL-POLISH-2026-08-19.md)
 - [`ar/index.html`](ar/index.html)
 - [`en/index.html`](en/index.html)
 - [`qa/pg01-rendered/`](qa/pg01-rendered/)
@@ -99,20 +101,33 @@ Before a page is built:
 9. close page QA only after full page QA and Content C8;
 10. for the first representative page in a page family, pass the Staging Preview Gate before coding the next page in that family.
 
-## PG01 Closure
+## PG01 Marketplace Benchmark
 
-PG01 passed the complete page gate on 2026-08-19:
+PG01 passed the original page gate and the approved Marketplace Visual Polish Change Request on 2026-08-19.
 
+Final benchmark includes:
+- stronger B2B trade/logistics Hero visual;
+- differentiated category presentation;
+- clearer trust/process hierarchy;
+- dark role-based tonal break;
+- four ORVEAX-owned fictional product packshots;
+- refined supplier CTA;
+- no stock-photo dependency or new runtime plugin.
+
+Final QA:
 - source/content/SEO/asset QA — PASS;
-- rendered responsive QA — PASS across AR/EN at 390, 820, 1366 and 1536 widths;
-- runtime interaction QA — PASS for mega menu, Escape behavior, FAQ, announcement and mobile drawer;
-- RTL/LTR and local font/runtime checks — PASS;
-- visual refinement completed using the reusable F07 trade-route media composition layer;
-- no TARGET client data/assets or untracked third-party buyer-package assets entered the page.
+- rendered responsive QA — **8/8 PASS** across AR/EN at 390, 820, 1366 and 1536 widths;
+- runtime interaction QA — **PASS** for AR/EN desktop/mobile mega menu, Escape behavior, FAQ, announcement and mobile drawer;
+- final rendered evidence: `5ab1edb6fe2a17adc41857790170097dfad57f0f`;
+- final interaction evidence: `b3d12beb103492144f4c5fc690ef15eedd49eef4`;
+- final visual snapshots: `e1c09173757defc6992ac162447990f2ffc76f5a`;
+- all new demo media is registered as ORVEAX-owned.
 
-PG01 remains C8 / PASS / CLOSED at page/code level.
+The QA cycle caught a Hero grid overflow caused by the inherited aspect ratio; it was corrected in the M2 polish layer before closure. M1 remained closed.
 
-Its independent Staging Preview Gate is currently **BLOCKED** because GitHub Pages is not enabled for the repository. The deployment workflow successfully prepared the public artifact but failed at `Configure GitHub Pages`, so no Page URL exists yet.
+PG01 is now **C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK** at page/code level.
+
+Its independent Staging Preview Gate is currently **BLOCKED** because GitHub Pages is not enabled for the repository. The deployment workflow successfully prepares the public artifact but cannot configure/deploy Pages yet, so no public Page URL exists.
 
 ## Current Next Action
 
