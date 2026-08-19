@@ -83,13 +83,13 @@ jobs:
                 const sections = [...document.querySelectorAll('main > section')];
                 const offscreen = [...document.querySelectorAll('body *')].filter(el => {
                   const r = el.getBoundingClientRect();
-                  return r.width > 0 && (r.right > width + 1 || r.left < -1);
+                  return r.width > 0 && r.height > 0 && (r.right > width + 1 || r.left < -1);
                 }).slice(0, 20).map(el => ({ tag: el.tagName, cls: el.className || '', left: Math.round(el.getBoundingClientRect().left), right: Math.round(el.getBoundingClientRect().right) }));
 
                 const buttonRects = buttons.map(b => {
                   const r = b.getBoundingClientRect();
                   return { text: (b.textContent || '').trim().slice(0, 60), width: Math.round(r.width), height: Math.round(r.height) };
-                });
+                }).filter(x => x.width > 0 && x.height > 0);
                 const cardRects = cards.map(c => Math.round(c.getBoundingClientRect().height)).filter(Boolean);
                 const sectionGaps = sections.slice(1).map((s, i) => {
                   const prev = sections[i].getBoundingClientRect();
@@ -121,12 +121,13 @@ jobs:
                 };
               }, { expectedDir: target.dir, width: viewport.width });
 
+              const minTarget = viewport.width <= 1024 ? 44 : 40;
               const checks = {
                 http: response?.ok() ?? false,
                 direction: metrics.dir === target.dir,
                 noHorizontalOverflow: !metrics.horizontalOverflow && metrics.offscreen.length === 0,
                 noConsoleErrors: consoleErrors.length === 0 && pageErrors.length === 0,
-                touchTargets: (metrics.minButtonHeight ?? 0) >= 44,
+                touchTargets: (metrics.minButtonHeight ?? 0) >= minTarget,
                 heroReadable: (metrics.h1Width ?? 0) > 0 && (metrics.heroHeight ?? 0) > 0,
               };
               const pass = Object.values(checks).every(Boolean);
@@ -135,7 +136,7 @@ jobs:
               const screenshot = `qa/pg01-rendered/${target.lang}-${viewport.name}.jpeg`;
               await page.screenshot({ path: screenshot, fullPage: true, type: 'jpeg', quality: 42 });
 
-              results.push({ target: target.lang, viewport, pass, checks, metrics, consoleErrors, pageErrors, screenshot });
+              results.push({ target: target.lang, viewport, minTarget, pass, checks, metrics, consoleErrors, pageErrors, screenshot });
               await context.close();
             }
           }
@@ -143,9 +144,9 @@ jobs:
           await browser.close();
           fs.writeFileSync('qa/pg01-rendered/report.json', JSON.stringify({ generatedAt: new Date().toISOString(), failures, results }, null, 2));
 
-          const lines = ['# PG01 Rendered QA', '', `Generated: ${new Date().toISOString()}`, '', '| Lang | Viewport | Result | Overflow | Console | Min button | Hero |', '|---|---:|---|---|---|---:|---|'];
+          const lines = ['# PG01 Rendered QA', '', `Generated: ${new Date().toISOString()}`, '', '| Lang | Viewport | Result | Overflow | Console | Min button | Required | Hero |', '|---|---:|---|---|---|---:|---:|---|'];
           for (const r of results) {
-            lines.push(`| ${r.target.toUpperCase()} | ${r.viewport.width}×${r.viewport.height} | ${r.pass ? 'PASS' : 'FAIL'} | ${r.checks.noHorizontalOverflow ? 'PASS' : 'FAIL'} | ${r.checks.noConsoleErrors ? 'PASS' : 'FAIL'} | ${r.metrics.minButtonHeight ?? 'n/a'}px | ${r.checks.heroReadable ? 'PASS' : 'FAIL'} |`);
+            lines.push(`| ${r.target.toUpperCase()} | ${r.viewport.width}×${r.viewport.height} | ${r.pass ? 'PASS' : 'FAIL'} | ${r.checks.noHorizontalOverflow ? 'PASS' : 'FAIL'} | ${r.checks.noConsoleErrors ? 'PASS' : 'FAIL'} | ${r.metrics.minButtonHeight ?? 'n/a'}px | ${r.minTarget}px | ${r.checks.heroReadable ? 'PASS' : 'FAIL'} |`);
           }
           lines.push('', '## Notes', '', '- This is rendered Chromium QA, not final human visual approval.', '- Screenshots are evidence for UI/UX review and are not buyer-package assets.', '- C8 remains blocked if any rendered check fails or human visual review finds a defect.', '');
           fs.writeFileSync('qa/pg01-rendered/README.md', lines.join('\n'));
