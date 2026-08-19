@@ -190,6 +190,13 @@ Required: self canonical, AR/EN/x-default hreflang, Open Graph baseline, WebPage
 - keyboard access for all links and accordion controls;
 - reduced-motion behavior inherited from the global system.
 
+## Automated QA Gate
+
+- Workflow: `.github/workflows/pg16-for-suppliers-qa.yml`.
+- Evidence directory: `qa/pg16-for-suppliers/`.
+- Source gate also checks `normalize_global_navigation.py --check` and `normalize_global_footer.py --check` so PG16 cannot pass with shared-shell drift.
+- Rendered gate: AR/EN × 390 / 820 / 1366 / 1536, navigation interaction, footer N04 presence, touch targets and C14 accordion interaction.
+
 ## Exit Gate
 
 PS7 only after AR+EN build plus source/SEO/assets/icons/navigation/global-footer/accordion/responsive/interaction QA PASS. PS8 remains gated by deployed Cloudflare browser acceptance.
