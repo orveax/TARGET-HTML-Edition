@@ -1,0 +1,36 @@
+{
+  "failures": [],
+  "pages": {
+    "ar": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "facts",
+        "handling",
+        "supplier",
+        "documents",
+        "related",
+        "disclosure",
+        "cta"
+      ]
+    },
+    "en": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "facts",
+        "handling",
+        "supplier",
+        "documents",
+        "related",
+        "disclosure",
+        "cta"
+      ]
+    }
+  },
+  "data": {
+    "products": 12,
+    "suppliers": 4,
+    "default": "prod-001"
+  }
+}

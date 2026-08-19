@@ -1,0 +1,75 @@
+{
+  "failures": [
+    "ar-390:touch-targets:2",
+    "ar-820:touch-targets:2",
+    "ar-1366:touch-targets:2",
+    "ar-1536:touch-targets:2",
+    "en-390:touch-targets:2",
+    "en-820:touch-targets:2",
+    "en-1366:touch-targets:2",
+    "en-1536:touch-targets:2"
+  ],
+  "cases": [
+    {
+      "lang": "ar",
+      "width": 390,
+      "failures": [
+        "touch-targets:2"
+      ]
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "failures": [
+        "touch-targets:2"
+      ]
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "failures": [
+        "touch-targets:2"
+      ]
+    },
+    {
+      "lang": "ar",
+      "width": 1536,
+      "failures": [
+        "touch-targets:2"
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "failures": [
+        "touch-targets:2"
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "failures": [
+        "touch-targets:2"
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "failures": [
+        "touch-targets:2"
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 1536,
+      "failures": [
+        "touch-targets:2"
+      ]
+    }
+  ],
+  "interaction": {
+    "ar-product-switch": [],
+    "en-product-switch": [],
+    "invalid-id-fallback": []
+  }
+}
