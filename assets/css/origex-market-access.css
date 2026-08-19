@@ -1,0 +1,32 @@
+/* ORIGEX — ORX-P01 | PG14 Market Access composition | Copyright © ORVEAX */
+.orx-market-hero .orx-media--hero{min-block-size:460px;overflow:hidden;background:linear-gradient(145deg,var(--orx-primary-strong),var(--orx-primary));color:#fff;display:grid;place-items:center;padding:var(--orx-space-8)}
+.orx-market-matrix{inline-size:min(100%,640px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--orx-space-3)}
+.orx-market-matrix__core{grid-column:1/-1;padding:var(--orx-space-5);border:1px solid rgba(255,255,255,.22);border-radius:var(--orx-radius-lg);background:rgba(255,255,255,.1);display:flex;align-items:flex-start;justify-content:space-between;gap:var(--orx-space-4)}
+.orx-market-matrix__core strong{display:block;font-size:clamp(1.2rem,2vw,1.65rem)}
+.orx-market-matrix__core span{display:block;opacity:.78;font-size:var(--orx-fs-small);margin-block-start:.25rem}
+.orx-market-matrix__item{min-inline-size:0;padding:var(--orx-space-4);border:1px solid rgba(255,255,255,.16);border-radius:var(--orx-radius-md);background:rgba(255,255,255,.07);display:flex;align-items:flex-start;gap:var(--orx-space-3)}
+.orx-market-matrix__item .orx-icon{flex:0 0 auto;margin-block-start:.15rem}.orx-market-matrix__item strong{display:block}.orx-market-matrix__item span{display:block;opacity:.72;font-size:var(--orx-fs-small);margin-block-start:.2rem}
+.orx-market-model{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--orx-space-4)}
+.orx-market-model__item{block-size:100%;padding:var(--orx-space-5);border:1px solid var(--orx-border);border-radius:var(--orx-radius-lg);background:var(--orx-surface);position:relative;overflow:hidden}
+.orx-market-model__item::before{content:"";position:absolute;inset-block-start:0;inset-inline-start:0;inline-size:4px;block-size:100%;background:var(--orx-accent)}
+.orx-market-model__item h3{margin-block:var(--orx-space-4) var(--orx-space-2)}.orx-market-model__item p{margin:0;color:var(--orx-text-muted)}
+.orx-channel-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--orx-space-3)}
+.orx-channel-card{block-size:100%;padding:var(--orx-space-5);border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);background:var(--orx-surface);text-align:start}
+.orx-channel-card h3{margin-block:var(--orx-space-3) var(--orx-space-2);font-size:1rem}.orx-channel-card p{margin:0;color:var(--orx-text-muted);font-size:var(--orx-fs-small)}
+.orx-market-fit{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.8fr);gap:var(--orx-space-8);align-items:start}
+.orx-market-fit__criteria{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--orx-space-3)}
+.orx-market-fit__item{display:flex;gap:var(--orx-space-3);align-items:flex-start;padding:var(--orx-space-4);border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);background:var(--orx-surface)}
+.orx-market-fit__item .orx-icon-box{flex:0 0 auto}.orx-market-fit__item strong{display:block}.orx-market-fit__item span{display:block;color:var(--orx-text-muted);font-size:var(--orx-fs-small);margin-block-start:.2rem}
+.orx-market-fit__boundary{padding:var(--orx-space-6);border:1px solid var(--orx-border);border-radius:var(--orx-radius-lg);background:var(--orx-surface-soft)}
+.orx-market-fit__boundary ul{margin:var(--orx-space-4) 0 0;padding-inline-start:1.25rem;display:grid;gap:var(--orx-space-2)}
+.orx-rtm-process{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--orx-space-4)}
+.orx-rtm-step{min-inline-size:0;block-size:100%;padding:var(--orx-space-5);border:1px solid var(--orx-border);border-radius:var(--orx-radius-lg);background:var(--orx-surface)}
+.orx-rtm-step__number{display:inline-grid;place-items:center;inline-size:2.4rem;block-size:2.4rem;border-radius:999px;background:var(--orx-primary);color:#fff;font-weight:800;margin-block-end:var(--orx-space-4)}
+.orx-rtm-step p{margin:0;color:var(--orx-text-muted)}
+.orx-opportunity-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--orx-space-4)}
+.orx-opportunity-card{block-size:100%;padding:var(--orx-space-5);border:1px solid var(--orx-border);border-radius:var(--orx-radius-lg);background:var(--orx-surface)}
+.orx-opportunity-card h3{margin-block:var(--orx-space-4) var(--orx-space-2)}.orx-opportunity-card p{margin:0;color:var(--orx-text-muted)}
+.orx-market-disclosure{display:flex;gap:var(--orx-space-4);align-items:flex-start;padding:var(--orx-space-5);border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);background:var(--orx-surface-soft)}
+.orx-market-disclosure .orx-icon-box{flex:0 0 auto}
+@media(max-width:1199.98px){.orx-market-model{grid-template-columns:repeat(2,minmax(0,1fr))}.orx-channel-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.orx-rtm-process{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:767.98px){.orx-market-hero .orx-media--hero{min-block-size:auto;padding:var(--orx-space-6)}.orx-market-matrix,.orx-market-model,.orx-channel-grid,.orx-market-fit,.orx-market-fit__criteria,.orx-rtm-process,.orx-opportunity-grid{grid-template-columns:1fr}.orx-market-matrix__core{grid-column:auto;flex-direction:column}.orx-market-fit{gap:var(--orx-space-5)}}
