@@ -1,0 +1,146 @@
+name: PG33 Company Profile QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/company-profile.html'
+      - 'en/company-profile.html'
+      - 'assets/css/origex-company-profile.css'
+      - 'assets/media/demo/company-profile-cover.svg'
+      - 'docs/page-design-profiles/pg33-company-profile-v1.md'
+      - 'docs/GLOBAL-NAVIGATION-CONTRACT-V1.md'
+      - '.github/scripts/normalize_global_navigation.py'
+      - '.github/workflows/pg33-company-profile-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install QA dependencies
+        run: python -m pip install --quiet beautifulsoup4 selenium
+      - name: Source and rendered QA
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json, os, subprocess, time
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.keys import Keys
+
+          root = Path('.')
+          out = root / 'qa/pg33-company-profile'
+          out.mkdir(parents=True, exist_ok=True)
+          source = {'failures': [], 'pages': {}}
+          expected = {
+              'ar': {'dir':'rtl','file':'ar/company-profile.html','other':'../en/company-profile.html'},
+              'en': {'dir':'ltr','file':'en/company-profile.html','other':'../ar/company-profile.html'},
+          }
+          for lang, cfg in expected.items():
+              p = root / cfg['file']
+              text = p.read_text(encoding='utf-8')
+              soup = BeautifulSoup(text, 'html.parser')
+              failures = []
+              if soup.html.get('lang') != lang: failures.append('lang')
+              if soup.html.get('dir') != cfg['dir']: failures.append('dir')
+              if len(soup.find_all('h1')) != 1: failures.append('h1-count')
+              if not soup.find('link', href='../assets/css/origex-company-profile.css'): failures.append('profile-css')
+              if 'company-profile-cover.svg' not in text: failures.append('cover-asset')
+              if 'TARGET' in text or 'targetft' in text.lower(): failures.append('client-leakage')
+              if '.pdf' in text.lower(): failures.append('fake-pdf-link')
+              sections = [x.get('data-pg33-section') for x in soup.select('[data-pg33-section]')]
+              needed = ['hero','snapshot','routes','resource','document-info','cta']
+              if sections != needed: failures.append(f'sections:{sections}')
+              nav = soup.select_one('[data-orx-global-nav="v1"].orx-site-header')
+              if not nav: failures.append('global-nav-v1')
+              if not soup.find('a', href=cfg['other']): failures.append('language-switch')
+              for href in ['about.html','how-we-work.html','products.html','market-access.html']:
+                  if not soup.find('a', href=href): failures.append(f'route:{href}')
+              for img in soup.find_all('img'):
+                  src = img.get('src','')
+                  if src.startswith('../') and not (p.parent / src).resolve().exists(): failures.append(f'asset:{src}')
+              source['pages'][lang] = {'failures': failures, 'sections': sections}
+              source['failures'].extend([f'{lang}:{f}' for f in failures])
+
+          # canonical navigation drift check
+          proc = subprocess.run(['python','.github/scripts/normalize_global_navigation.py','--check'], text=True, capture_output=True)
+          if proc.returncode:
+              source['failures'].append('global-navigation-drift')
+              source['navigation_output'] = proc.stdout + proc.stderr
+
+          (out/'source-report.json').write_text(json.dumps(source, ensure_ascii=False, indent=2), encoding='utf-8')
+
+          server = subprocess.Popen(['python','-m','http.server','8765'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+          time.sleep(1)
+          rendered = {'failures': [], 'cases': []}
+          try:
+              for lang in ['ar','en']:
+                  for width in [390,820,1366,1536]:
+                      options = Options()
+                      options.add_argument('--headless=new')
+                      options.add_argument('--no-sandbox')
+                      options.add_argument('--disable-dev-shm-usage')
+                      options.add_argument(f'--window-size={width},1100')
+                      driver = webdriver.Chrome(options=options)
+                      case_failures = []
+                      try:
+                          driver.get(f'http://127.0.0.1:8765/{lang}/company-profile.html')
+                          time.sleep(.35)
+                          scroll_width = driver.execute_script('return document.documentElement.scrollWidth')
+                          client_width = driver.execute_script('return document.documentElement.clientWidth')
+                          if scroll_width > client_width + 1: case_failures.append(f'overflow:{scroll_width}>{client_width}')
+                          if len(driver.find_elements(By.TAG_NAME,'h1')) != 1: case_failures.append('h1')
+                          if len(driver.find_elements(By.CSS_SELECTOR,'[data-pg33-section]')) != 6: case_failures.append('section-count')
+                          if width >= 992:
+                              trigger = driver.find_element(By.CSS_SELECTOR,'[data-orx-mega-trigger]')
+                              trigger.click(); time.sleep(.1)
+                              if trigger.get_attribute('aria-expanded') != 'true': case_failures.append('mega-open')
+                              trigger.send_keys(Keys.ESCAPE); time.sleep(.1)
+                              if trigger.get_attribute('aria-expanded') != 'false': case_failures.append('mega-escape')
+                          else:
+                              opener = driver.find_element(By.CSS_SELECTOR,'[data-orx-drawer-open]')
+                              opener.click(); time.sleep(.1)
+                              drawer = driver.find_element(By.CSS_SELECTOR,'[data-orx-mobile-drawer]')
+                              if drawer.get_attribute('aria-hidden') != 'false': case_failures.append('drawer-open')
+                              driver.find_element(By.CSS_SELECTOR,'[data-orx-drawer-close]').click(); time.sleep(.1)
+                              if drawer.get_attribute('aria-hidden') != 'true': case_failures.append('drawer-close')
+                          targets = driver.find_elements(By.CSS_SELECTOR,'a,button,input,select,textarea')
+                          small = []
+                          for el in targets:
+                              if not el.is_displayed(): continue
+                              r = el.rect
+                              if r['width'] and r['height'] and (r['width'] < 24 or r['height'] < 24): small.append((el.tag_name,r['width'],r['height']))
+                          if small: case_failures.append(f'touch-targets:{len(small)}')
+                      finally:
+                          driver.quit()
+                      rendered['cases'].append({'lang':lang,'width':width,'failures':case_failures})
+                      rendered['failures'].extend([f'{lang}-{width}:{f}' for f in case_failures])
+          finally:
+              server.terminate()
+
+          (out/'rendered-report.json').write_text(json.dumps(rendered, ensure_ascii=False, indent=2), encoding='utf-8')
+          status = 'PASS' if not source['failures'] and not rendered['failures'] else 'FAIL'
+          (out/'run-status.txt').write_text(status+'\n', encoding='utf-8')
+          print('source failures', len(source['failures']))
+          print('rendered failures', len(rendered['failures']))
+          if status != 'PASS':
+              print(source['failures'])
+              print(rendered['failures'])
+              raise SystemExit(1)
+          PY
+      - name: Commit QA evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg33-company-profile || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "PG33 record company profile QA evidence"
+          git push origin main
