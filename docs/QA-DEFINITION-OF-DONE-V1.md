@@ -2,15 +2,25 @@
 
 Product ID: ORX-P01  
 Owner: ORVEAX  
-Status: APPROVED & FROZEN — STAGING GATE AMENDMENT 2026-08-19  
+Status: APPROVED & FROZEN — R1 GOVERNANCE ALIGNMENT 2026-08-19  
 Approval Date: 2026-08-19
 
-A page is not considered closed until all applicable checks below pass.
+A page is not considered finally accepted until all applicable checks below pass.
+
+## Canonical Page Stage Naming
+
+`PS0–PS8` is the canonical page-production lifecycle. `C01–C28` is reserved for Component IDs. Historical C0–C8 references remain historical evidence only.
+
+- `PS6` — FROZEN / implementation-ready.
+- `PS7` — Implemented with applicable source/CI/rendered interaction QA.
+- `PS8` — Final Page Acceptance after applicable page QA **and deployed Cloudflare browser acceptance**.
+
+Authority for the final transition: `PS8-CLOSURE-MATRIX-V1.md`.
 
 ## Page Gate
 
 1. Content Contract exists and follows `CONTENT-SYSTEM-V1.md`.
-2. Content reached C6 — FROZEN before implementation.
+2. Page reached PS6 — FROZEN before implementation.
 3. Arabic master copy is complete for approved Main Features.
 4. English adaptation is complete and commercially equivalent, not merely literal translation.
 5. Required demo/factual/legal disclaimers are present.
@@ -22,12 +32,12 @@ A page is not considered closed until all applicable checks below pass.
 11. Registered components/variants only.
 12. Arabic RTL layout pass.
 13. English LTR layout pass.
-14. Mobile pass at 360 / 390 / 412 widths.
-15. Tablet pass at 768 / 820 widths.
+14. Mobile pass at 360 / 390 / 412 widths before final milestone/release closure; representative PS7 CI may use the approved reduced matrix when documented.
+15. Tablet pass at 768 / 820 widths before final milestone/release closure; representative PS7 CI may use the approved reduced matrix when documented.
 16. Desktop pass at representative 1024+ widths.
 17. No horizontal overflow.
 18. Header/footer/navigation integration correct.
-19. Keyboard navigation pass for interactive elements.
+19. Keyboard navigation pass for interactive elements before final closure.
 20. Visible focus states present.
 21. Forms/controls have semantic labels and states.
 22. ARIA/state sync correct where native HTML is insufficient.
@@ -45,33 +55,33 @@ A page is not considered closed until all applicable checks below pass.
 34. Documentation entry updated where buyer behavior/configuration changed.
 35. Responsive content order reviewed independently in AR and EN.
 36. Performance review: no unnecessary dependency, duplicate CSS/JS, raw oversized media or blocking optional script.
-37. Cross-browser smoke test on supported modern browser set before milestone closure.
-38. Content Status moves from C7 — Implemented to C8 — QA Passed.
-39. Page status explicitly changed to CLOSED/PASS in project tracking.
+37. Cross-browser smoke test on supported modern browser set before milestone/release closure.
+38. Page Stage moves from PS7 — Implemented to PS8 — Final Page Acceptance only when the applicable PS8 Closure Matrix is satisfied.
+39. Page status explicitly changes to PASS/CLOSED in project tracking only after PS8.
 
 ## Staging Preview Gate
 
 Authority: `STAGING-PREVIEW-GATE-V1.md`.
 
-C8 / PASS / CLOSED means page implementation and page QA have passed. It does not by itself prove that the page is reachable through an external browser URL.
+Cloudflare Test Environment is the deployed review runtime. The current operating model is:
 
-Before a page is described as staging-ready, used for owner browser review, or used as the benchmark that authorizes coding of the next page in the same family:
-- a staging target must be enabled and configured.
+`GitHub main → Cloudflare Test Environment → deployed AR/EN browser review.`
+
+Before PS8 Final Page Acceptance:
 - deployment must originate from canonical `main`.
-- root `/` must resolve and provide the approved language-entry behavior.
-- AR and EN deployed routes must resolve.
-- deployed CSS/JS/fonts/icons/patterns/assets must load from the real deployment base path.
-- the staging artifact must exclude internal `docs/`, `qa/` and `.github/` content.
-- staging indexability must be explicit; default is `noindex` unless separately approved.
-- at least one external mobile and one external desktop browser smoke check must pass.
-- AR RTL and EN LTR must both be opened via the deployed URL.
-- deployment source commit, run result and generated URL must be recorded.
+- current revision must be deployed to Cloudflare Test Environment.
+- root and applicable AR/EN routes must resolve.
+- deployed CSS/JS/fonts/icons/patterns/media/data must load from the real deployment base path.
+- staging indexability must be controlled appropriately.
+- at least one external mobile and one external desktop browser smoke check must pass for the applicable page/family batch.
+- AR RTL and EN LTR must both be opened through the deployed URL.
+- deployed revision must be traceable to Git commit evidence.
 
-For the first representative page in each milestone/page family, this gate must pass before the next page in that family enters code implementation. Content/design/SEO preparation for the next page may continue while staging is blocked.
+**Parallel-production rule:** Cloudflare browser acceptance is a PS8/final-acceptance gate. When Manual Rebuild remains functional, pending Cloudflare review does **not** block continued PS6/PS7 production of subsequent pages. Auto-deploy degradation is an infrastructure issue and does not invalidate valid PS7 code/CI evidence.
 
 ## Content Gate
 
-A content unit is considered implementation-ready only at C6 — FROZEN.
+A content unit is considered implementation-ready only at PS6 — FROZEN.
 
 Required checks:
 - audience and commercial goal are explicit.
@@ -138,7 +148,7 @@ A component is considered registry-ready only when:
 
 A milestone closes only when:
 - every listed deliverable exists.
-- applicable Content/Page/SEO/Demo/Component/Staging Preview Gates pass.
+- applicable Content/Page/SEO/Demo/Component/Cloudflare Preview Gates pass.
 - critical and high-severity defects are zero.
 - documentation and tracking are updated.
 - unresolved scope additions are moved to backlog/change control rather than silently implemented.
@@ -169,7 +179,7 @@ A closed page/component/content unit may reopen only for:
 - verified SEO/metadata defect.
 - formal Design System / Architecture / Scope / Product Governance Change Request.
 
-A staging/deployment failure does not automatically reopen C8 when the page code itself remains valid. It creates or reopens the independent Staging Preview Gate.
+A later staging/deployment regression after PS8 does not automatically invalidate the underlying page code when the page code itself remains valid. It creates a staging regression that must be corrected and reverified before release.
 
 Preference or visual experimentation alone does not reopen a closed item.
 
