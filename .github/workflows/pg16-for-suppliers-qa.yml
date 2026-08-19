@@ -44,8 +44,8 @@ jobs:
           out=root/'qa/pg16-for-suppliers'; out.mkdir(parents=True,exist_ok=True)
           source={'failures':[],'pages':{}}
           expected={
-            'ar':{'file':'ar/for-suppliers.html','dir':'rtl','h1':'منتجك يحتاج ملفًا تجاريًا واضحًا قبل أن يحتاج عرضًا أكبر.','other':'../en/for-suppliers.html'},
-            'en':{'file':'en/for-suppliers.html','dir':'ltr','h1':'Your product needs a clear commercial profile before it needs a bigger presentation.','other':'../ar/for-suppliers.html'}
+            'ar':{'file':'ar/for-suppliers.html','dir':'rtl','h1':'منتجك يحتاج ملفًا تجاريًا واضحًا قبل أن يحتاج عرضًا أكبر.','other':'../en/for-suppliers.html','boundary':'لا ضمان لدخول السوق'},
+            'en':{'file':'en/for-suppliers.html','dir':'ltr','h1':'Your product needs a clear commercial profile before it needs a bigger presentation.','other':'../ar/for-suppliers.html','boundary':'No guaranteed market entry'}
           }
           frozen_sections=['hero','value','qualification','process','documents','boundaries','faq','cta']
           sprite=(root/'assets/icons/sprite.svg').read_text(encoding='utf-8'); sprite_ids=set(re.findall(r'<symbol[^>]+id="([^"]+)"',sprite))
@@ -80,8 +80,9 @@ jobs:
                   target=trigger.get('aria-controls')
                   if not target or not soup.find(id=target): failures.append(f'faq-control:{target}')
                   if trigger.get('aria-expanded') not in ('true','false'): failures.append(f'faq-expanded:{target}')
+              if cfg['boundary'] not in text: failures.append('mandatory-market-entry-boundary')
               if 'TARGET' in text or 'targetft' in text.lower(): failures.append('client-leakage')
-              if re.search(r'verified supplier|guaranteed market entry|exclusive distributor|automatically accepted',text,re.I): failures.append('unsupported-claim')
+              if re.search(r'verified supplier|exclusive distributor|automatically accepted',text,re.I): failures.append('unsupported-claim')
               html_icons=set(re.findall(r'sprite\.svg#([a-z0-9-]+)',text)); missing=sorted(html_icons-sprite_ids)
               if missing: failures.append(f'icons:{missing}')
               for tag,attr in [('img','src'),('link','href'),('script','src')]:
