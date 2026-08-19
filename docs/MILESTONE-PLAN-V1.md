@@ -14,7 +14,7 @@ Build a premium Arabic-first bilingual HTML template for B2B food trading, impor
 Submission Candidate 1.0.0 must include:
 - Approved/frozen scope and product architecture.
 - Frozen foundation/design-system/content/SEO/product-governance architecture.
-- 32 unique page layouts delivered in Arabic and English.
+- 33 unique page layouts delivered in Arabic and English after approved CR-001 (PG33 Company Profile).
 - V1 Main Features only; Additional Features remain in V1.1 Expansion Backlog.
 - Complete Content Contract for every V1 page.
 - Complete SEO & Page Identity Contract for every V1 page.
@@ -222,3 +222,11 @@ After Product Foundation closure:
 - Normal implementation must conform to `PRODUCT-FOUNDATION-COMPLETE-V1.md` and its canonical authorities.
 
 Copyright © ORVEAX.
+
+
+## CR-001 Scope Addendum — 2026-08-19
+- Added PG33 — Company Profile / الملف التعريفي under M3.
+- Active V1 scope is now **33 unique layouts / approximately 66 AR+EN HTML pages**.
+- `GLOBAL-NAVIGATION-CONTRACT-V1.md` is the canonical N01/N02/N03 IA for all Standard Pages.
+- PG04 Landing retains its compact conversion navigation as the documented exception.
+- Historical 32-layout statements in frozen closure evidence describe the pre-CR baseline and are superseded for active delivery by CR-001.

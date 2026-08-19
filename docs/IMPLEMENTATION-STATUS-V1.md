@@ -4,7 +4,7 @@ Product ID: ORX-P01
 Owner: ORVEAX  
 Repository: `orveax/origex-html-template`  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-19 — M4 IN PROGRESS / PG09–PG10 PS7 CI QA PASS / PG11 NEXT
+Last Updated: 2026-08-19 — GLOBAL NAV V1 LOCKED / V1 = 33 LAYOUTS / PG33 IMPLEMENTED QA PENDING / PG11 NEXT
 
 This is the repo-level execution tracker. It records actual current implementation state and must match the active code tree.
 
@@ -42,10 +42,10 @@ Page lifecycle uses PS0–PS8 from `CONTENT-SYSTEM-V1.md`; `C01–C28` remains r
 | PG15 Markets / Countries | PS7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + FILTER + MARKET-NAVIGATION QA PASS |
 | PG09 Product Categories | PS7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + FILTER + PRODUCT-NAVIGATION QA PASS |
 | PG10 Products Grid | PS7 IMPLEMENTED — AR+EN — DATA + SOURCE + RENDERED + SEARCH/FILTER/PAGINATION + PRODUCT-NAVIGATION QA PASS |
-| Shared Navigation IA | ACTIVE — Home + Product + Company + Market families exposed centrally in shared navigation |
+| Global Navigation V1 | LOCKED — one canonical Standard Header / Mega Menu / Mobile Drawer; only active state varies; PG04 Landing is the intentional compact-header exception |
 | Cloudflare Test Environment | AVAILABLE VIA MANUAL REBUILD |
 | Cloudflare Git Auto-Deploy | DEFERRED — push trigger does not currently start deployment automatically |
-| Current Build Baseline | M4 IN PROGRESS — PG09–PG10 PS7 CI PASS; PG11 next. M2/M3 Cloudflare closure remains open in parallel |
+| Current Build Baseline | Global Navigation V1 locked. PG33 Company Profile added by CR-001 and implemented AR+EN with QA evidence pending. M4 remains IN PROGRESS — PG09–PG10 PS7 CI PASS; PG11 next. |
 
 ## Milestones
 
@@ -54,10 +54,10 @@ Page lifecycle uses PS0–PS8 from `CONTENT-SYSTEM-V1.md`; `C01–C28` remains r
 | M0 Product Foundation | PASS / CLOSED | Product Foundation Complete |
 | M1 Global System & Component Foundation | PASS / CLOSED | Component AR/EN foundation QA |
 | M2 Global Shell & Home Family | IN PROGRESS | PG01–PG04 AR/EN + Cloudflare deployed browser QA |
-| M3 Company / Business / Market | IN PROGRESS | PG05–PG08 + PG14–PG15 batch page QA |
+| M3 Company / Business / Market | IN PROGRESS | PG05–PG08 + PG14–PG15 + PG33; PG33 QA evidence + Cloudflare batch acceptance remain |
 | M4 Product / Supplier / Conversion | IN PROGRESS | PG09–PG10 PS7 CI PASS; PG11–PG13 + PG16–PG19 remain |
 | M5 Proof / Resources / Compliance / Content | NOT STARTED | Resource/content QA |
-| M6 Support / Utility | NOT STARTED | All 32 layouts exist AR/EN |
+| M6 Support / Utility | NOT STARTED | All 33 layouts exist AR/EN |
 | M7 Full QA & Optimization | NOT STARTED | Zero Critical / High defects + final visual polish |
 | M8 Docs / Licensing / Marketplace Package | NOT STARTED | Submission Candidate 1.0.0 |
 
@@ -81,7 +81,8 @@ ar/
 ├── market-access.html             # PG14 — PS7 CI PASS
 ├── markets.html                   # PG15 — PS7 CI PASS
 ├── product-categories.html        # PG09 — PS7 CI PASS
-└── products.html                  # PG10 — PS7 CI PASS
+├── products.html                  # PG10 — PS7 CI PASS
+└── company-profile.html           # PG33 — IMPLEMENTED / QA EVIDENCE PENDING
 en/
 ├── index.html                     # PG01 — C8
 ├── home-02.html                   # PG02 — PS7 CI PASS
@@ -94,7 +95,8 @@ en/
 ├── market-access.html             # PG14 — PS7 CI PASS
 ├── markets.html                   # PG15 — PS7 CI PASS
 ├── product-categories.html        # PG09 — PS7 CI PASS
-└── products.html                  # PG10 — PS7 CI PASS
+├── products.html                  # PG10 — PS7 CI PASS
+└── company-profile.html           # PG33 — IMPLEMENTED / QA EVIDENCE PENDING
 assets/
 ├── brand/
 ├── css/
@@ -114,6 +116,7 @@ assets/
 │   ├── origex-markets.css
 │   ├── origex-product-categories.css
 │   ├── origex-products.css
+│   ├── origex-company-profile.css
 │   └── origex-shell.css
 ├── media/demo/
 ├── fonts/
@@ -148,7 +151,8 @@ qa/
 ├── pg14-market-access/
 ├── pg15-markets/
 ├── pg09-product-categories/
-└── pg10-products/
+├── pg10-products/
+└── pg33-company-profile/          # pending evidence until QA workflow records report
 docs/
 ├── page-design-profiles/
 │   ├── pg01-home-01-v1.md
@@ -162,11 +166,12 @@ docs/
 │   ├── pg14-market-access-v1.md
 │   ├── pg15-markets-v1.md
 │   ├── pg09-product-categories-v1.md
-│   └── pg10-products-grid-v1.md
+│   ├── pg10-products-grid-v1.md
+│   └── pg33-company-profile-v1.md
 └── canonical authorities
 ```
 
-## 32 V1 Layouts
+## 33 V1 Layouts
 
 | PG | Page | Content | Design Profile | Build | QA |
 |---|---|---|---|---|---|
@@ -202,6 +207,7 @@ docs/
 | PG30 | Privacy | PS0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG31 | Terms | PS0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG32 | Components / Elements Library | PS0 | NOT STARTED | NOT STARTED | NOT STARTED |
+| PG33 | Company Profile / الملف التعريفي | PS7 — IMPLEMENTED / QA PENDING | APPROVED — `pg33-company-profile-v1.md` / CR-001 | `ar/company-profile.html` + `en/company-profile.html` | GLOBAL NAV V1 + SOURCE/RENDERED QA EVIDENCE PENDING — CLOUDFLARE REQUIRED BEFORE PS8 |
 
 ## M2 Home Family Evidence
 
@@ -389,3 +395,11 @@ Current state:
 Update this tracker in the same work unit whenever a milestone, foundation unit, page, or deployment state changes.
 
 Copyright © ORVEAX.
+
+
+## CR-001 / Global Navigation Addendum — 2026-08-19
+- V1 active scope is **33 unique layouts / approximately 66 AR+EN pages**.
+- PG33 Company Profile was added through approved `CR-001-PG33-COMPANY-PROFILE-2026-08-19.md`.
+- Standard pages use `GLOBAL-NAVIGATION-CONTRACT-V1.md`; `origex-ui.js` controls behavior only and no longer mutates the IA.
+- PG04 Landing remains the only approved compact-header exception.
+- Current PG33 state: AR+EN implementation exists; QA evidence pending. Do not mark PS7 CI PASS until `qa/pg33-company-profile/run-status.txt` is recorded as PASS.
