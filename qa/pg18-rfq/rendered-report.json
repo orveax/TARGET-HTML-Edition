@@ -1,70 +1,45 @@
 {
-  "failures": [
-    "ar-390:touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 16}]",
-    "ar-820:touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 16}]",
-    "ar-1366:touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 16}]",
-    "ar-1536:touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 16}]",
-    "en-390:touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 22}]",
-    "en-820:touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 22}]",
-    "en-1366:touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 22}]",
-    "en-1536:touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 22}]"
-  ],
+  "failures": [],
   "cases": [
     {
       "lang": "ar",
       "width": 390,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 16}]"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
       "width": 820,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 16}]"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
       "width": 1366,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 16}]"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
       "width": 1536,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 16}]"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
       "width": 390,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 22}]"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
       "width": 820,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 22}]"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
       "width": 1366,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 22}]"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
       "width": 1536,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"name\": \"\", \"w\": 20, \"h\": 22}]"
-      ]
+      "failures": []
     }
   ],
   "interaction": {
