@@ -1,0 +1,37 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Local environment / secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs / temp
+*.log
+.tmp/
+tmp/
+temp/
+
+# Optional local tooling/build output — not part of V1 buyer source
+node_modules/
+dist/
+build/
+.cache/
+coverage/
+
+# Local QA artifacts
+screenshots/
+playwright-report/
+test-results/
+
+# Archives generated during packaging
+*.zip
+*.tar
+*.tar.gz
