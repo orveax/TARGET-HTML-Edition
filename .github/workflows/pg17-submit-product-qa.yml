@@ -1,0 +1,224 @@
+name: PG17 Submit Product QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/submit-product.html'
+      - 'en/submit-product.html'
+      - 'assets/css/origex-submit-product.css'
+      - 'assets/js/origex-submit-product.js'
+      - 'assets/css/origex-components.css'
+      - 'assets/css/origex-shell.css'
+      - 'assets/js/origex-ui.js'
+      - 'docs/page-design-profiles/pg17-submit-product-v1.md'
+      - 'docs/GLOBAL-NAVIGATION-CONTRACT-V1.md'
+      - 'docs/GLOBAL-FOOTER-CONTRACT-V1.md'
+      - '.github/scripts/normalize_global_navigation.py'
+      - '.github/scripts/normalize_global_footer.py'
+      - '.github/workflows/pg17-submit-product-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install QA dependencies
+        run: python -m pip install --quiet beautifulsoup4 selenium
+      - name: Source rendered and form interaction QA
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json, re, subprocess, time, tempfile
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.keys import Keys
+          from selenium.webdriver.support.ui import WebDriverWait
+
+          root=Path('.')
+          out=root/'qa/pg17-submit-product'; out.mkdir(parents=True,exist_ok=True)
+          source={'failures':[],'pages':{},'runtime':{}}
+          expected={
+            'ar':{'file':'ar/submit-product.html','dir':'rtl','h1':'قدّم منتجك بمعلومات تجارية قابلة للمراجعة.','other':'../en/submit-product.html'},
+            'en':{'file':'en/submit-product.html','dir':'ltr','h1':'Submit your product with commercial information that can be reviewed.','other':'../ar/submit-product.html'}
+          }
+          frozen_sections=['hero','disclosure','form','review','cta']
+          required_names=['companyName','companyRole','contactName','email','productName','category','origin','packSize','packaging','moq','consent']
+          sprite=(root/'assets/icons/sprite.svg').read_text(encoding='utf-8'); sprite_ids=set(re.findall(r'<symbol[^>]+id="([^"]+)"',sprite))
+          runtime=(root/'assets/js/origex-submit-product.js').read_text(encoding='utf-8')
+          runtime_fail=[]
+          for forbidden in ('fetch(', 'XMLHttpRequest', 'localStorage', 'sessionStorage'):
+              if forbidden in runtime: runtime_fail.append(f'forbidden-runtime:{forbidden}')
+          if '10 * 1024 * 1024' not in runtime: runtime_fail.append('max-size-contract')
+          for ext in ('pdf','jpg','jpeg','png','doc','docx'):
+              if f"'{ext}'" not in runtime: runtime_fail.append(f'file-extension:{ext}')
+          if "event.preventDefault()" not in runtime: runtime_fail.append('prevent-real-submit')
+          source['runtime']={'failures':runtime_fail}; source['failures'].extend(runtime_fail)
+
+          for lang,cfg in expected.items():
+              p=root/cfg['file']; text=p.read_text(encoding='utf-8'); soup=BeautifulSoup(text,'html.parser'); failures=[]
+              if soup.html.get('lang')!=lang: failures.append('lang')
+              if soup.html.get('dir')!=cfg['dir']: failures.append('dir')
+              h1s=soup.find_all('h1')
+              if len(h1s)!=1 or h1s[0].get_text(' ',strip=True)!=cfg['h1']: failures.append('h1')
+              sections=[n.get('data-pg17-section') for n in soup.select('[data-pg17-section]')]
+              if sections!=frozen_sections: failures.append(f'sections:{sections}')
+              if not soup.select_one('[data-pg17-root]'): failures.append('root')
+              if not soup.find('link',href='../assets/css/origex-submit-product.css'): failures.append('css')
+              if not soup.find('script',src='../assets/js/origex-submit-product.js'): failures.append('runtime')
+              ids=[n.get('id') for n in soup.select('[id]') if n.get('id')]
+              if len(ids)!=len(set(ids)): failures.append('duplicate-ids')
+              hreflangs={x.get('hreflang') for x in soup.find_all('link',rel='alternate')}
+              if not {'ar','en','x-default'}.issubset(hreflangs): failures.append('hreflang')
+              if not soup.find('link',rel='canonical'): failures.append('canonical')
+              if not soup.find('a',href=cfg['other']): failures.append('language-switch')
+              if not soup.select_one('.orx-primary-nav a[href="suppliers.html"][aria-current="page"]'): failures.append('supplier-primary-current')
+              if not soup.select_one('.orx-mega-menu a[href="submit-product.html"][aria-current="page"]'): failures.append('submit-mega-current')
+              if not soup.select_one('.orx-mobile-nav a[href="submit-product.html"][aria-current="page"]'): failures.append('submit-mobile-current')
+              footer=soup.select_one('footer.orx-site-footer[data-orx-global-footer="v1"]')
+              if not footer: failures.append('global-footer-v1')
+              form=soup.select_one('form[data-orx-submit-product-form]')
+              if not form: failures.append('form')
+              else:
+                  for name in required_names:
+                      field=form.find(attrs={'name':name})
+                      if not field or not field.has_attr('required'): failures.append(f'required:{name}')
+                  file_input=form.select_one('[data-orx-submit-file]')
+                  if not file_input or file_input.get('type')!='file': failures.append('file-input')
+                  else:
+                      accept=file_input.get('accept','')
+                      for ext in ('.pdf','.jpg','.jpeg','.png','.doc','.docx'):
+                          if ext not in accept: failures.append(f'accept:{ext}')
+                  if not form.select_one('[data-orx-submit-success][role="status"]'): failures.append('success-status')
+                  if not form.select_one('[data-orx-submit-error][role="alert"]'): failures.append('error-status')
+              if 'TARGET' in text or 'targetft' in text.lower(): failures.append('client-leakage')
+              if re.search(r'automatic approval|guaranteed entry|verified supplier|exclusive distributor',text,re.I): failures.append('unsupported-claim')
+              if 'does not transmit' not in text and 'لا يتم إرسال' not in text: failures.append('demo-backend-disclosure')
+              html_icons=set(re.findall(r'sprite\.svg#([a-z0-9-]+)',text)); missing=sorted(html_icons-sprite_ids)
+              if missing: failures.append(f'icons:{missing}')
+              for tag,attr in [('img','src'),('link','href'),('script','src')]:
+                  for node in soup.find_all(tag):
+                      value=node.get(attr,'')
+                      if value.startswith('../'):
+                          target=(p.parent/value).resolve()
+                          if not target.exists(): failures.append(f'asset:{value}')
+              source['pages'][lang]={'failures':failures,'sections':sections}
+              source['failures'].extend([f'{lang}:{x}' for x in failures])
+
+          nav=subprocess.run(['python','.github/scripts/normalize_global_navigation.py','--check'],capture_output=True,text=True)
+          if nav.returncode:
+              source['failures'].append('global-navigation-drift'); source['navigation_output']=nav.stdout+nav.stderr
+          footer=subprocess.run(['python','.github/scripts/normalize_global_footer.py','--check'],capture_output=True,text=True)
+          if footer.returncode:
+              source['failures'].append('global-footer-drift'); source['footer_output']=footer.stdout+footer.stderr
+          (out/'source-report.json').write_text(json.dumps(source,ensure_ascii=False,indent=2),encoding='utf-8')
+
+          rendered={'failures':[],'cases':[],'interaction':{}}
+          def driver_for(width):
+              o=Options(); o.add_argument('--headless=new'); o.add_argument('--no-sandbox'); o.add_argument('--disable-dev-shm-usage'); o.add_argument(f'--window-size={width},1500'); return webdriver.Chrome(options=o)
+          server=None
+          try:
+              server=subprocess.Popen(['python','-m','http.server','8765'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL); time.sleep(1)
+              for lang in ('ar','en'):
+                  for width in (390,820,1366,1536):
+                      d=None; failures=[]
+                      try:
+                          d=driver_for(width); d.get(f'http://127.0.0.1:8765/{lang}/submit-product.html')
+                          WebDriverWait(d,8).until(lambda x:len(x.find_elements(By.CSS_SELECTOR,'[data-pg17-root]'))==1)
+                          if len(d.find_elements(By.CSS_SELECTOR,'[data-pg17-section]'))!=5: failures.append('section-count')
+                          if d.execute_script('return document.documentElement.scrollWidth') > d.execute_script('return document.documentElement.clientWidth')+1: failures.append('overflow')
+                          if d.find_element(By.TAG_NAME,'html').get_attribute('dir') != ('rtl' if lang=='ar' else 'ltr'): failures.append('direction')
+                          if len(d.find_elements(By.CSS_SELECTOR,'form[data-orx-submit-product-form]'))!=1: failures.append('form-count')
+                          if len(d.find_elements(By.CSS_SELECTOR,'[data-orx-submit-file]'))!=1: failures.append('upload-count')
+                          if not d.find_elements(By.CSS_SELECTOR,'footer[data-orx-global-footer="v1"] [data-orx-business-hours]'): failures.append('footer')
+                          small=[]
+                          for el in d.find_elements(By.CSS_SELECTOR,'a,button,input,select'):
+                              if not el.is_displayed(): continue
+                              r=el.rect
+                              if r['width'] and r['height'] and (r['width']<24 or r['height']<24): small.append((el.tag_name,r['width'],r['height']))
+                          if small: failures.append(f'touch-targets:{len(small)}')
+                          if width>=1051:
+                              t=d.find_element(By.CSS_SELECTOR,'[data-orx-mega-trigger]'); t.click(); time.sleep(.05)
+                              if t.get_attribute('aria-expanded')!='true': failures.append('mega-open')
+                              t.send_keys(Keys.ESCAPE); time.sleep(.05)
+                              if t.get_attribute('aria-expanded')!='false': failures.append('mega-escape')
+                          else:
+                              op=d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-open]'); op.click(); time.sleep(.05)
+                              dr=d.find_element(By.CSS_SELECTOR,'[data-orx-mobile-drawer]')
+                              if dr.get_attribute('aria-hidden')!='false': failures.append('drawer-open')
+                              d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-close]').click(); time.sleep(.05)
+                              if dr.get_attribute('aria-hidden')!='true': failures.append('drawer-close')
+                      except Exception as exc: failures.append(f'exception:{type(exc).__name__}:{str(exc)[:180]}')
+                      finally:
+                          if d:
+                              try:d.quit()
+                              except Exception:pass
+                      rendered['cases'].append({'lang':lang,'width':width,'failures':failures}); rendered['failures'].extend([f'{lang}-{width}:{x}' for x in failures])
+
+              for lang in ('en','ar'):
+                  d=None; failures=[]
+                  try:
+                      d=driver_for(820); d.get(f'http://127.0.0.1:8765/{lang}/submit-product.html')
+                      form=d.find_element(By.CSS_SELECTOR,'[data-orx-submit-product-form]')
+                      submit=d.find_element(By.CSS_SELECTOR,'button[type="submit"]')
+                      d.execute_script("arguments[0].scrollIntoView({block:'center'});",submit); submit.send_keys(Keys.ENTER); time.sleep(.1)
+                      if d.find_element(By.CSS_SELECTOR,'[data-orx-submit-success]').is_displayed(): failures.append('empty-form-success')
+                      values={
+                        'companyName':'Demo Foods LLC','contactName':'Demo Contact','email':'demo@example.com','productName':'Demo Product','origin':'Demo Origin','packSize':'400 g','packaging':'24 units / carton','moq':'On request'
+                      }
+                      for name,value in values.items(): d.find_element(By.NAME,name).send_keys(value)
+                      d.find_element(By.NAME,'companyRole').send_keys('Manufacturer' if lang=='en' else 'مصنع')
+                      d.find_element(By.NAME,'category').send_keys('Ambient Foods' if lang=='en' else 'أغذية جافة')
+                      d.find_element(By.NAME,'consent').click()
+                      d.execute_script("arguments[0].scrollIntoView({block:'center'});",submit); submit.send_keys(Keys.ENTER); time.sleep(.12)
+                      if not d.find_element(By.CSS_SELECTOR,'[data-orx-submit-success]').is_displayed(): failures.append('valid-form-no-success')
+                      if d.execute_script("return performance.getEntriesByType('resource').filter(x=>x.initiatorType==='fetch'||x.initiatorType==='xmlhttprequest').length") != 0: failures.append('network-request')
+                  except Exception as exc: failures.append(f'exception:{type(exc).__name__}:{str(exc)[:180]}')
+                  finally:
+                      if d:
+                          try:d.quit()
+                          except Exception:pass
+                  rendered['interaction'][f'{lang}-validation']=failures; rendered['failures'].extend([f'{lang}-validation:{x}' for x in failures])
+
+              tmp=Path(tempfile.gettempdir()); valid=tmp/'pg17-sample.pdf'; invalid=tmp/'pg17-sample.exe'; valid.write_bytes(b'%PDF-1.4 demo'); invalid.write_bytes(b'demo')
+              for lang in ('en','ar'):
+                  d=None; failures=[]
+                  try:
+                      d=driver_for(820); d.get(f'http://127.0.0.1:8765/{lang}/submit-product.html')
+                      inp=d.find_element(By.CSS_SELECTOR,'[data-orx-submit-file]'); inp.send_keys(str(invalid)); time.sleep(.1)
+                      if not d.find_element(By.CSS_SELECTOR,'[data-orx-submit-error]').is_displayed(): failures.append('invalid-file-no-error')
+                      inp.send_keys(str(valid)); time.sleep(.1)
+                      if valid.name not in d.find_element(By.CSS_SELECTOR,'[data-orx-submit-file-name]').text: failures.append('valid-file-name')
+                  except Exception as exc: failures.append(f'exception:{type(exc).__name__}:{str(exc)[:180]}')
+                  finally:
+                      if d:
+                          try:d.quit()
+                          except Exception:pass
+                  rendered['interaction'][f'{lang}-file']=failures; rendered['failures'].extend([f'{lang}-file:{x}' for x in failures])
+          except Exception as exc: rendered['failures'].append(f'harness-exception:{type(exc).__name__}:{str(exc)[:180]}')
+          finally:
+              if server:
+                  try:server.terminate()
+                  except Exception:pass
+
+          (out/'rendered-report.json').write_text(json.dumps(rendered,ensure_ascii=False,indent=2),encoding='utf-8')
+          status='PASS' if not source['failures'] and not rendered['failures'] else 'FAIL'
+          (out/'run-status.txt').write_text(status+'\n',encoding='utf-8')
+          print('source failures',len(source['failures'])); print('rendered failures',len(rendered['failures']))
+          if status!='PASS': print(source['failures']); print(rendered['failures']); raise SystemExit(1)
+          PY
+      - name: Commit QA evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg17-submit-product || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "PG17 record Submit Product QA evidence"
+          git push origin main
