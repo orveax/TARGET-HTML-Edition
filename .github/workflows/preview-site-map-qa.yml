@@ -1,0 +1,64 @@
+name: Preview Site Map QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'site-map.html'
+      - 'ar/**.html'
+      - 'en/**.html'
+      - '.github/workflows/preview-site-map-qa.yml'
+
+concurrency:
+  group: preview-site-map-qa
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --quiet beautifulsoup4
+      - name: Verify visual site map
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json
+          R=Path('.');O=R/'qa/preview-site-map';O.mkdir(parents=True,exist_ok=True)
+          s=BeautifulSoup((R/'site-map.html').read_text(encoding='utf-8'),'html.parser');f=[]
+          cards=s.select('.card');ids=[c.select_one('.pg').get_text(strip=True) for c in cards]
+          if len(cards)!=33:f.append('card-count:'+str(len(cards)))
+          expected={f'PG{i:02d}' for i in range(1,34)}
+          if set(ids)!=expected:f.append('pg-id-set')
+          if len(ids)!=len(set(ids)):f.append('duplicate-pg')
+          implemented=[c for c in cards if c.get('data-status')=='implemented'];pending=[c for c in cards if c.get('data-status')=='pending']
+          if len(implemented)!=24:f.append('implemented-count:'+str(len(implemented)))
+          if len(pending)!=9:f.append('pending-count:'+str(len(pending)))
+          for c in implemented:
+            links=c.select('.actions a.btn')
+            if len(links)!=2:f.append('implemented-links:'+c.select_one('.pg').get_text(strip=True));continue
+            for a in links:
+              p=R/a.get('href','')
+              if not p.exists():f.append('missing-target:'+a.get('href',''))
+          for c in pending:
+            if c.select('.actions a'):f.append('pending-link:'+c.select_one('.pg').get_text(strip=True))
+          robots=s.find('meta',attrs={'name':'robots'})
+          if not robots or 'noindex' not in robots.get('content',''):f.append('noindex')
+          report={'failures':f,'cards':len(cards),'implemented':len(implemented),'pending':len(pending),'linkedLanguagePages':len(implemented)*2}
+          (O/'report.json').write_text(json.dumps(report,indent=2),encoding='utf-8');(O/'run-status.txt').write_text(('PASS' if not f else 'FAIL')+'\n',encoding='utf-8')
+          print(report)
+          if f:raise SystemExit(1)
+          PY
+      - name: Commit site map evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/preview-site-map || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record visual site map QA evidence"
+          git pull --rebase origin main || true
+          git push origin main || true
