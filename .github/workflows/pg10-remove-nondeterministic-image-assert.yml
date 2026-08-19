@@ -37,3 +37,4 @@ jobs:
           git commit -m 'PG10 remove nondeterministic headless lazy-image assertion'
           git pull --rebase origin main
           git push origin HEAD:main
+# retrigger 2026-08-19
