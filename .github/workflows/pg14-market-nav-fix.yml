@@ -1,0 +1,93 @@
+name: PG14 Market Navigation Alignment
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/pg14-market-nav-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  align:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Add reusable Market navigation hydration
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('assets/js/origex-ui.js')
+          s=p.read_text(encoding='utf-8')
+          marker="  hydrateHomeFamilyNavigation();\n  hydrateCompanyNavigation();"
+          if marker not in s:
+              raise SystemExit('navigation hydration marker not found')
+          block=r'''  // M3 market IA: expose Market Access and Markets in desktop/mobile navigation.
+  const hydrateMarketNavigation = () => {
+    const isArabic = document.documentElement.lang.toLowerCase().startsWith('ar');
+    const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+    const marketFiles = new Set(['market-access.html', 'markets.html']);
+    const labels = isArabic
+      ? {
+          items: [
+            ['market-access.html', 'الوصول إلى السوق'],
+            ['markets.html', 'الأسواق والدول']
+          ]
+        }
+      : {
+          items: [
+            ['market-access.html', 'Market Access'],
+            ['markets.html', 'Markets & Countries']
+          ]
+        };
+
+    qsa('[data-orx-mega-menu]').forEach((menu) => {
+      labels.items.forEach(([href, text]) => {
+        const link = menu.querySelector(`a[href="${href}"]`);
+        if (!link) return;
+        link.textContent = text;
+        link.dataset.orxMarketLink = href;
+        link.removeAttribute('aria-current');
+        if (href === currentFile) link.setAttribute('aria-current', 'page');
+      });
+    });
+
+    qsa('.orx-mobile-nav').forEach((nav) => {
+      qsa('a', nav).forEach((link) => {
+        const href = (link.getAttribute('href') || '').split('#')[0];
+        if (marketFiles.has(href)) link.remove();
+      });
+
+      const fragment = document.createDocumentFragment();
+      labels.items.forEach(([href, text]) => {
+        const link = document.createElement('a');
+        link.href = href;
+        link.textContent = text;
+        link.dataset.orxMarketLink = href;
+        if (href === currentFile) link.setAttribute('aria-current', 'page');
+        fragment.append(link);
+      });
+
+      const lastCompany = nav.querySelector('[data-orx-company-link]:last-of-type');
+      const lastHome = nav.querySelector('[data-orx-home-variant-link]:last-of-type');
+      if (lastCompany) lastCompany.after(fragment);
+      else if (lastHome) lastHome.after(fragment);
+      else nav.prepend(fragment);
+    });
+  };
+
+'''
+          s=s.replace(marker,block+"  hydrateHomeFamilyNavigation();\n  hydrateCompanyNavigation();\n  hydrateMarketNavigation();",1)
+          p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '4189822+github-actions[bot]@users.noreply.github.com'
+          git add assets/js/origex-ui.js
+          git commit -m 'PG14 add shared Market navigation IA'
+          git pull --rebase origin main
+          git push origin HEAD:main
