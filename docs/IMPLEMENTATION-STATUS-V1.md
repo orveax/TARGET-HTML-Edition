@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Owner: ORVEAX  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-19 — M2 HOME FAMILY IMPLEMENTED / M3 IN PROGRESS / PG05–PG06 C7 CI QA PASS
+Last Updated: 2026-08-19 — M2 HOME FAMILY IMPLEMENTED / M3 IN PROGRESS / PG05–PG07 C7 CI QA PASS
 
 This is the repo-level execution tracker. It records actual current implementation state and must match the active code tree.
 
@@ -35,10 +35,11 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`. Deployment/browser readiness i
 | PG02–PG04 Cloudflare Browser Review | PENDING — Manual Rebuild available |
 | PG05 About | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + NAVIGATION QA PASS |
 | PG06 How We Work | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + NAVIGATION QA PASS |
+| PG07 Capabilities / Services | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + NAVIGATION QA PASS |
 | M3 Company Navigation IA | ACTIVE — About + How We Work + Capabilities exposed centrally in shared navigation |
 | Cloudflare Test Environment | AVAILABLE VIA MANUAL REBUILD |
 | Cloudflare Git Auto-Deploy | DEFERRED — push trigger does not currently start deployment automatically |
-| Current Build Baseline | M3 IN PROGRESS — PG05/PG06 CI-complete; PG07 next |
+| Current Build Baseline | M3 IN PROGRESS — PG05/PG06/PG07 CI-complete; PG08 next |
 
 ## Milestones
 
@@ -68,14 +69,16 @@ ar/
 ├── home-03.html                   # PG03 — C7 CI PASS
 ├── landing.html                   # PG04 — C7 CI PASS
 ├── about.html                     # PG05 — C7 CI PASS
-└── how-we-work.html               # PG06 — C7 CI PASS
+├── how-we-work.html               # PG06 — C7 CI PASS
+└── capabilities.html              # PG07 — C7 CI PASS
 en/
 ├── index.html                     # PG01 — C8
 ├── home-02.html                   # PG02 — C7 CI PASS
 ├── home-03.html                   # PG03 — C7 CI PASS
 ├── landing.html                   # PG04 — C7 CI PASS
 ├── about.html                     # PG05 — C7 CI PASS
-└── how-we-work.html               # PG06 — C7 CI PASS
+├── how-we-work.html               # PG06 — C7 CI PASS
+└── capabilities.html              # PG07 — C7 CI PASS
 assets/
 ├── brand/
 ├── css/
@@ -89,6 +92,7 @@ assets/
 │   ├── origex-landing.css
 │   ├── origex-about.css
 │   ├── origex-how-we-work.css
+│   ├── origex-capabilities.css
 │   └── origex-shell.css
 ├── media/demo/
 ├── fonts/
@@ -111,7 +115,8 @@ qa/
 ├── pg02-visual-review/
 ├── pg03-pg04-home-family/
 ├── pg05-about/
-└── pg06-how-we-work/
+├── pg06-how-we-work/
+└── pg07-capabilities/
 docs/
 ├── page-design-profiles/
 │   ├── pg01-home-01-v1.md
@@ -119,7 +124,8 @@ docs/
 │   ├── pg03-home-03-v1.md
 │   ├── pg04-landing-v1.md
 │   ├── pg05-about-v1.md
-│   └── pg06-how-we-work-v1.md
+│   ├── pg06-how-we-work-v1.md
+│   └── pg07-capabilities-v1.md
 └── canonical authorities
 ```
 
@@ -133,7 +139,7 @@ docs/
 | PG04 | Landing / One Page | C7 — IMPLEMENTED | APPROVED | AR+EN | CI PASS — CLOUDFLARE REVIEW PENDING |
 | PG05 | About | C7 — IMPLEMENTED | APPROVED — `pg05-about-v1.md` | `ar/about.html` + `en/about.html` | SOURCE + RENDERED + NAVIGATION QA PASS — CLOUDFLARE BATCH REVIEW PENDING |
 | PG06 | How We Work | C7 — IMPLEMENTED | APPROVED — `pg06-how-we-work-v1.md` | `ar/how-we-work.html` + `en/how-we-work.html` | SOURCE + RENDERED + NAVIGATION QA PASS — CLOUDFLARE BATCH REVIEW PENDING |
-| PG07 | Capabilities / Services | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
+| PG07 | Capabilities / Services | C7 — IMPLEMENTED | APPROVED — `pg07-capabilities-v1.md` | `ar/capabilities.html` + `en/capabilities.html` | SOURCE + RENDERED + NAVIGATION QA PASS — CLOUDFLARE BATCH REVIEW PENDING |
 | PG08 | Service Details | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG09 | Product Categories | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG10 | Products Grid | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
@@ -214,6 +220,18 @@ docs/
 - Final evidence commit: `46233f52acb64973b3307376a3028764b30ffba1`.
 - Current: C7 pending Cloudflare batch browser review.
 
+### PG07 — Capabilities / Services
+- Frozen scope: capability grid, service families, market-entry support, product/supplier support, channel/distribution support and CTA.
+- Profile: `docs/page-design-profiles/pg07-capabilities-v1.md`.
+- Arabic: `ar/capabilities.html`.
+- English: `en/capabilities.html`.
+- Composition: `assets/css/origex-capabilities.css`.
+- Five canonical service families only; no V1.1 deferred feature enabled.
+- Source QA: `qa/pg07-capabilities/source-report.json` — failures 0.
+- Rendered QA: `qa/pg07-capabilities/rendered-report.json` — AR/EN × 390/820/1366/1536 = 8/8 PASS; no overflow; touch targets and direction PASS.
+- Navigation/language checks PASS; evidence commit `1d4eb3d9718e544e0d641773fdf16777d6b8ac9c`.
+- Current: C7 pending Cloudflare batch browser review.
+
 ## Cloudflare Test Environment Control
 
 Canonical deployment model:
@@ -238,14 +256,15 @@ Current state:
 - M3 = IN PROGRESS.
 - PG05 = C7 / CI QA PASS / Cloudflare batch review pending.
 - PG06 = C7 / CI QA PASS / Cloudflare batch review pending.
-- **Next build: PG07 — Capabilities / Services.**
+- PG07 = C7 / CI QA PASS / Cloudflare batch review pending.
+- **Next build: PG08 — Service Details.**
 
 ### Next execution actions
 
-1. PG07 Content/Design/SEO Contract → C6.
-2. Build `ar/capabilities.html` + `en/capabilities.html` using the shared system.
+1. Prepare PG08 Content/Design/SEO Contract → C6.
+2. Build `ar/service-details.html` + `en/service-details.html` using the shared system.
 3. Run source/rendered/navigation QA.
-4. Continue PG08, then PG14–PG15 under M3.
+4. Continue PG14–PG15 under M3.
 5. Run Cloudflare batch browser review before promoting pending C7 pages to C8.
 6. Keep final aesthetic CSS polish for M7; only functional/responsive/RTL/overflow defects are fixed during page production.
 7. Repair Cloudflare Git auto-deploy in the deferred infrastructure session.
