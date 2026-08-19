@@ -1,10 +1,14 @@
 {
-  "failures": [],
+  "failures": [
+    "ar-390:drawer-close"
+  ],
   "cases": [
     {
       "lang": "ar",
       "width": 390,
-      "failures": []
+      "failures": [
+        "drawer-close"
+      ]
     },
     {
       "lang": "ar",
