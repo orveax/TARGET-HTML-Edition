@@ -61,8 +61,13 @@ jobs:
                       for sel in required[1:]:
                           if not footer.select_one(sel): failures.append(f'missing:{sel}')
                       if footer.select_one('.orx-site-footer__grid'): failures.append('legacy-grid-class')
-                      links=[a.get('href') for a in footer.select('.orx-footer__links a')]
-                      if links!=['products.html','suppliers.html','markets.html','resources.html']: failures.append(f'explore-links:{links}')
+                      grid=footer.select_one('.orx-footer__grid')
+                      columns=grid.find_all(recursive=False) if grid else []
+                      if len(columns)!=4:
+                          failures.append(f'column-count:{len(columns)}')
+                      else:
+                          links=[a.get('href') for a in columns[1].select('.orx-footer__links a')]
+                          if links!=['products.html','suppliers.html','markets.html','resources.html']: failures.append(f'explore-links:{links}')
                       if lang=='ar':
                           email=footer.select_one('[data-orx-email="trade"]'); phone=footer.select_one('[data-orx-phone]')
                           if email and 'orx-bidi' not in email.get('class',[]): failures.append('ar-email-bidi')
