@@ -1,0 +1,43 @@
+name: PG10 Pre-QA Alignment
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/pg10-preqa-alignment.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  align:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Align PG10 registered media and icon reference
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          html=Path('en/products.html')
+          s=html.read_text(encoding='utf-8').replace('sprite.svg#arrow-down','sprite.svg#chevron-down')
+          html.write_text(s,encoding='utf-8')
+          reg=Path('docs/ASSET-LICENSE-REGISTER-V1.md')
+          s=reg.read_text(encoding='utf-8')
+          marker='| ORX-MEDIA-008 | Commercial enquiry hero scene | `assets/media/demo/hero-commercial-enquiry.svg` | ORVEAX OWNED | PG04 landing demo media; abstract product-information-enquiry route; no client, brand, performance or conversion claim |'
+          addition='''| ORX-MEDIA-009 | Confectionery demo packshot | `assets/media/demo/product-confectionery.svg` | ORVEAX OWNED | PG10 fictional generic confectionery packaging; no third-party brand/trademark |\n| ORX-MEDIA-010 | Ingredients demo packshot | `assets/media/demo/product-ingredients.svg` | ORVEAX OWNED | PG10 fictional generic B2B ingredient packaging; no third-party brand/trademark |'''
+          if 'ORX-MEDIA-009' not in s:
+            if marker not in s: raise SystemExit('asset register marker missing')
+            s=s.replace(marker,marker+'\n'+addition,1)
+          reg.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '4189822+github-actions[bot]@users.noreply.github.com'
+          git add en/products.html docs/ASSET-LICENSE-REGISTER-V1.md
+          git rm .github/workflows/pg10-preqa-alignment.yml
+          git commit -m 'PG10 align registered media and icon reference'
+          git pull --rebase origin main
+          git push origin HEAD:main
