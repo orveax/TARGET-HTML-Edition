@@ -1,0 +1,123 @@
+name: PG10 Products Rendered QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/products.html'
+      - 'en/products.html'
+      - 'assets/css/origex-products.css'
+      - 'assets/js/origex-products.js'
+      - 'assets/js/origex-ui.js'
+      - 'assets/data/products.json'
+      - 'assets/data/suppliers.json'
+      - '.github/workflows/pg10-products-rendered-qa.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pg10-products-rendered-main
+  cancel-in-progress: true
+
+jobs:
+  rendered:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Start local test services
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p qa/pg10-products
+          google-chrome --version | tee qa/pg10-products/browser-baseline-v2.txt
+          chromedriver --version | tee -a qa/pg10-products/browser-baseline-v2.txt
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/origex-http.log 2>&1 &
+          chromedriver --port=9515 --allowed-origins='*' >/tmp/origex-chromedriver.log 2>&1 &
+          sleep 2
+          curl -fsS http://127.0.0.1:4173/en/products.html >/dev/null
+          curl -fsS http://127.0.0.1:9515/status >/dev/null
+      - name: Responsive interaction and lazy-media-safe QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,time,urllib.request,sys
+          from pathlib import Path
+          WD='http://127.0.0.1:9515';OUT=Path('qa/pg10-products')
+          def req(method,path,payload=None):
+            data=None if payload is None else json.dumps(payload).encode();r=urllib.request.Request(WD+path,data=data,method=method,headers={'Content-Type':'application/json'})
+            with urllib.request.urlopen(r,timeout=30) as f:b=json.loads(f.read().decode())
+            return b.get('value') if isinstance(b,dict) else b
+          def session(w,h):
+            v=req('POST','/session',{'capabilities':{'alwaysMatch':{'browserName':'chrome','goog:chromeOptions':{'args':['--headless=new','--no-sandbox','--disable-dev-shm-usage','--force-device-scale-factor=1',f'--window-size={w},{h}']}}}});sid=v['sessionId'];req('POST',f'/session/{sid}/window/rect',{'width':w,'height':h,'x':0,'y':0});return sid
+          def js(sid,s,args=None):return req('POST',f'/session/{sid}/execute/sync',{'script':s,'args':args or []})
+          def load(sid,url,delay=.9):req('POST',f'/session/{sid}/url',{'url':url});time.sleep(delay)
+          pages=[('ar','/ar/products.html','rtl','كركديه'),('en','/en/products.html','ltr','Hibiscus')];views=[(390,844),(820,1180),(1366,900),(1536,960)];results=[];errors=[]
+          metric="""const w=arguments[0],doc=document.documentElement;const vis=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>0&&r.height>0&&!e.closest('[aria-hidden=\"true\"]')};const off=[...document.querySelectorAll('body *')].filter(e=>{if(!vis(e)||getComputedStyle(e).position==='fixed')return false;const r=e.getBoundingClientRect();return r.right>w+1||r.left<-1}).length;const b=[...document.querySelectorAll('button,.orx-btn')].filter(vis).map(e=>e.getBoundingClientRect().height);const first=document.querySelector('[data-product-id] img');return{dir:doc.dir,overflow:doc.scrollWidth>doc.clientWidth+1,off,minButton:b.length?Math.min(...b):0,h1:!!document.querySelector('h1'),sections:document.querySelectorAll('[data-pg10-section]').length,cards:document.querySelectorAll('[data-product-id]').length,count:document.querySelector('[data-pg10-count]')?.textContent||'',error:!!document.querySelector('.orx-products-error'),firstImageLoaded:!!first&&first.complete&&first.naturalWidth>0};"""
+          for lang,path,dirn,term in pages:
+            for w,h in views:
+              sid=session(w,h)
+              try:
+                load(sid,'http://127.0.0.1:4173'+path);m=js(sid,metric,[w]);required=44 if w<=1024 else 40
+                checks={'direction':m['dir']==dirn,'noOverflow':not m['overflow'] and m['off']==0,'touchTargets':m['minButton']>=required,'h1':m['h1'],'threeSections':m['sections']==3,'sixPageCards':m['cards']==6,'datasetLoaded':not m['error'],'firstVisibleImageLoaded':m['firstImageLoaded'],'resultCount12':'12' in m['count']}
+                if not all(checks.values()):errors.append(f'{lang}-{w}:{checks}:{m}')
+                results.append({'lang':lang,'viewport':w,'checks':checks,'metrics':m,'pass':all(checks.values())})
+              finally:
+                try:req('DELETE',f'/session/{sid}')
+                except:pass
+
+            sid=session(1366,900)
+            try:
+              base='http://127.0.0.1:4173'+path;load(sid,base)
+              interaction=js(sid,"""const cat=document.querySelector('[data-pg10-category]'),brand=document.querySelector('[data-pg10-brand]'),origin=document.querySelector('[data-pg10-origin]'),search=document.querySelector('[data-pg10-search]'),reset=document.querySelector('[data-pg10-reset]');const visible=()=>document.querySelectorAll('[data-product-id]').length;cat.value='beverages';cat.dispatchEvent(new Event('change',{bubbles:true}));const catOk=visible()===2;reset.click();brand.value='brand-nordvale';brand.dispatchEvent(new Event('change',{bubbles:true}));const brandOk=visible()===2;reset.click();origin.value='NL';origin.dispatchEvent(new Event('change',{bubbles:true}));const originOk=visible()===2;reset.click();search.value=arguments[0];search.dispatchEvent(new Event('input',{bubbles:true}));return new Promise(r=>setTimeout(()=>r({catOk,brandOk,originOk,searchCards:visible(),count:document.querySelector('[data-pg10-count]').textContent}),250));""",[term])
+              if not (interaction['catOk'] and interaction['brandOk'] and interaction['originOk'] and interaction['searchCards']==1 and '1' in interaction['count']):errors.append(f'{lang}:filter/search:{interaction}')
+              reset=js(sid,"""document.querySelector('[data-pg10-reset]').click();return {cards:document.querySelectorAll('[data-product-id]').length,count:document.querySelector('[data-pg10-count]').textContent};""")
+              if reset['cards']!=6 or '12' not in reset['count']:errors.append(f'{lang}:reset:{reset}')
+              pagination=js(sid,"""const nav=document.querySelector('[data-pg10-pagination]'),buttons=[...nav.querySelectorAll('button')],second=buttons.find(b=>b.textContent.trim()==='2');if(!second)return false;second.click();return document.querySelector('[data-product-id]')?.dataset.productId==='prod-007'&&nav.querySelector('[aria-current=\"page\"]')?.textContent.trim()==='2';""")
+              if not pagination:errors.append(f'{lang}:pagination')
+              empty=js(sid,"""document.querySelector('[data-pg10-reset]').click();const s=document.querySelector('[data-pg10-search]');s.value='zz-no-product-zz';s.dispatchEvent(new Event('input',{bubbles:true}));return new Promise(r=>setTimeout(()=>r(!!document.querySelector('.orx-products-empty')&&document.querySelectorAll('[data-product-id]').length===0),250));""")
+              if not empty:errors.append(f'{lang}:empty-state')
+              js(sid,"document.querySelector('[data-pg10-reset]').click();")
+              nav=js(sid,"""const t=document.querySelector('[data-orx-mega-trigger]');t.click();const m=document.getElementById(t.getAttribute('aria-controls'));return !!m?.querySelector('a[data-orx-product-link=\"products.html\"][aria-current=\"page\"]')&&!!m?.querySelector('a[data-orx-product-link=\"product-categories.html\"]')&&!m.hidden;""")
+              if not nav:errors.append(f'{lang}:desktop-product-navigation')
+              routes=js(sid,"""const c=document.querySelector('[data-product-id]');return c?{details:c.querySelector('a[href^=\"product-details.html?id=\"]')?.getAttribute('href'),rfq:c.querySelector('a[href^=\"rfq.html?product=\"]')?.getAttribute('href')}:null;""")
+              if not routes or not routes['details'] or not routes['rfq']:errors.append(f'{lang}:routes:{routes}')
+            finally:
+              try:req('DELETE',f'/session/{sid}')
+              except:pass
+
+            sid=session(390,844)
+            try:
+              load(sid,'http://127.0.0.1:4173'+path)
+              bnav=js(sid,"""document.querySelector('[data-orx-drawer-open]').click();const d=document.querySelector('[data-orx-mobile-drawer]');const ok=d.getAttribute('aria-hidden')==='false'&&d.querySelector('a[data-orx-product-link=\"products.html\"][aria-current=\"page\"]')&&d.querySelector('a[data-orx-product-link=\"product-categories.html\"]');document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));return !!ok&&d.getAttribute('aria-hidden')==='true';""")
+              if not bnav:errors.append(f'{lang}:mobile-product-navigation')
+            finally:
+              try:req('DELETE',f'/session/{sid}')
+              except:pass
+
+            sid=session(820,1180)
+            try:
+              load(sid,'http://127.0.0.1:4173'+path+'?category=frozen')
+              deep=js(sid,"""return {category:document.querySelector('[data-pg10-category]')?.value,cards:document.querySelectorAll('[data-product-id]').length,count:document.querySelector('[data-pg10-count]')?.textContent||'',allFrozen:[...document.querySelectorAll('[data-product-id]')].every(c=>c.dataset.category==='frozen')};""")
+              if not (deep['category']=='frozen' and deep['cards']==2 and deep['allFrozen'] and '2' in deep['count']):errors.append(f'{lang}:category-deep-link:{deep}')
+            finally:
+              try:req('DELETE',f'/session/{sid}')
+              except:pass
+          report={'generatedAt':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'failures':len(errors),'results':results,'errors':errors}
+          (OUT/'rendered-report-v2.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8');(OUT/'run-status.txt').write_text('PASS\n' if not errors else 'FAIL\n',encoding='utf-8')
+          if errors:print('\n'.join(errors));sys.exit(1)
+          PY
+      - name: Record QA evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '4189822+github-actions[bot]@users.noreply.github.com'
+          git add qa/pg10-products
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'PG10 record rendered Products Grid QA V2'
+          git pull --rebase origin main
+          git push origin HEAD:main
