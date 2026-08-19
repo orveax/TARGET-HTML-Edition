@@ -1,32 +1,42 @@
-# ORIGEX — Simple Customization Guide
+# ORIGEX — Configuration Contract V1
 
-Product: ORX-P01  
+Product ID: ORX-P01  
 Owner / Author: ORVEAX  
-Status: V1 FOUNDATION
+Status: APPROVED CONFIG CONTRACT — M1 SEED
 
-ORIGEX supports two customization paths:
+ORIGEX provides a small global customization layer for common repeated settings. It is intentionally not a CMS, page builder or replacement for page content/data architecture.
 
-1. **Direct HTML/CSS editing** for developers and advanced buyers.
-2. **Simple Config editing** for buyers who want to change common global settings from one file.
+## 1. Active Files
 
-The simple path is powered by:
+```text
+assets/js/config.js
+assets/js/config-engine.js
+```
 
-- `assets/js/config.js` — buyer-editable settings.
-- `assets/js/config-engine.js` — applies the settings; normally do not edit.
-- `assets/css/config-ui.css` — styles config-driven UI such as the announcement bar and floating actions.
+- `config.js` — buyer-editable global/repeated settings.
+- `config-engine.js` — applies approved settings to existing semantic HTML; normally not buyer-edited.
 
-## 1. Start here
+There is no dedicated `config-ui.css`. Config-driven UI is styled by the registered ORIGEX component/global CSS implemented during M1.
 
-Open:
+## 2. Core Principle
 
-`assets/js/config.js`
+The engine **enhances existing HTML**. It does not construct the site's core components, navigation, announcement bar, floating actions or page meaning from JavaScript.
 
-Only change values on the right side of each setting. Keep text values inside quotes and Boolean values as `true` or `false`.
+Every important piece of UI must exist as valid semantic HTML first, with config hooks attached where useful.
 
-## 2. Theme colors
+## 3. Buyer-Editable Domains
 
-The `theme` section controls the principal global color tokens:
+### `site`
+- `name`
+- `nameAr`
+- `email`
+- `partnersEmail`
+- `phone`
+- `whatsapp`
+- `addressAr`
+- `addressEn`
 
+### `theme`
 - `primary`
 - `primaryStrong`
 - `secondary`
@@ -37,178 +47,177 @@ The `theme` section controls the principal global color tokens:
 - `text`
 - `textMuted`
 
-Use six-digit HEX values such as `#15343B`.
+Colors use six-digit HEX values. The engine validates them before applying CSS variables.
 
-Example:
+### `ui`
+- sticky header
+- mega-menu availability
+- header CTA
+- announcement bar
+- floating WhatsApp
+- back to top
 
-```js
-theme: {
-  primary: "#15343B",
-  accent: "#C47A4A"
-}
-```
+### `social`
+- LinkedIn
+- Instagram
+- Facebook
+- X
+- YouTube
+- TikTok
 
-The config engine validates color values before applying them.
+Use `#` for an unused social link. Registered social markup hides unusable placeholders.
 
-## 3. Company information
+### `businessHours`
+Arabic and English rows are maintained separately so language/direction remain correct.
 
-The `site` section centralizes common information:
+### `features`
+Approved simple visibility flags for repeated/global UI only.
 
-- English company name.
-- Arabic company name.
-- Main email.
-- Partner/supplier email.
-- Phone.
-- WhatsApp number.
-- Arabic address.
-- English address.
+## 4. Generic Config Hooks
 
-Pages may expose these values using config hooks so the buyer does not need to search across multiple HTML files.
-
-## 4. Header controls
-
-The `ui` section can control:
-
-- Sticky header on/off.
-- Mega menu on/off.
-- Header CTA on/off.
-- Header CTA Arabic label.
-- Header CTA English label.
-- Header CTA destination.
-
-Example:
-
-```js
-headerCta: {
-  enabled: true,
-  labelAr: "اطلب عرض سعر",
-  labelEn: "Request a Quote",
-  link: "rfq.html"
-}
-```
-
-## 5. Announcement / Top Bar
-
-The announcement bar can be enabled or disabled without deleting HTML.
-
-Controls include:
-
-- `enabled`
-- `dismissible`
-- Arabic text.
-- English text.
-- Optional link.
-- Arabic/English link labels.
-
-Set `enabled: false` or `features.showAnnouncementBar: false` to disable it.
-
-## 6. Social media links
-
-Edit links under `social`:
-
-- LinkedIn.
-- Instagram.
-- Facebook.
-- X.
-- YouTube.
-- TikTok.
-
-Use `#` for an unused network. Config-rendered social areas automatically skip placeholder links.
-
-## 7. Business hours
-
-Business hours are maintained separately for Arabic and English so direction and wording remain correct.
-
-Example:
-
-```js
-ar: [
-  { days: "الأحد — الخميس", hours: "09:00 — 18:00" },
-  { days: "الجمعة — السبت", hours: "مغلق" }
-]
-```
-
-Equivalent English rows are defined under `en`.
-
-## 8. Floating WhatsApp
-
-Set the number under:
-
-`site.whatsapp`
-
-Then enable or disable using:
-
-- `ui.floatingWhatsApp`
-- `features.showFloatingWhatsApp`
-
-The engine generates the `wa.me` URL automatically after removing spaces and punctuation from the number.
-
-## 9. Back to top
-
-Enable/disable with:
-
-`features.showBackToTop`
-
-The button appears only after the visitor scrolls down the page.
-
-## 10. Config hooks for template developers
-
-Reusable HTML can read config values through these attributes:
-
+### Text
 ```html
-<span data-config-text="site.phone"></span>
-<a data-config-href="ui.headerCta.link">...</a>
+<span data-config-text="site.phone">+000 0000 0000</span>
+```
+
+### Href
+```html
+<a data-config-href="ui.headerCta.link" href="rfq.html">...</a>
+```
+
+### Visibility
+```html
 <div data-config-visible="features.showBusinessHours">...</div>
 ```
 
-Special render targets:
+The HTML fallback remains valid if JavaScript is unavailable.
 
+## 5. Registered Semantic Hooks
+
+These hooks are the V1 contract used by shared components.
+
+### Site identity
 ```html
-<div class="orx-config-hours" data-orx-business-hours></div>
-<nav class="orx-config-social" data-orx-social-links></nav>
+<span data-orx-site-name>ORIGEX</span>
 ```
 
-All new global/contact/footer components should use these hooks where practical.
+### Header
+```html
+<header data-orx-site-header>...</header>
+<div data-orx-mega-menu>...</div>
+<a data-orx-header-cta href="rfq.html">Request a Quote</a>
+```
 
-## 11. What config.js should NOT control
+### Announcement
+```html
+<div data-orx-announcement>
+  <span data-orx-announcement-text>...</span>
+  <a data-orx-announcement-link href="contact.html">...</a>
+  <button data-orx-announcement-close type="button" aria-label="Close announcement">...</button>
+</div>
+```
 
-To keep ORIGEX simple, fast and maintainable, `config.js` is not a page builder or CMS.
+The close control uses the registered Lucide/Icon Button component during M1; the config engine does not create an icon itself.
 
-Do not place these responsibilities in the global config:
+### Email
+```html
+<a data-orx-email="sales" href="mailto:sales@example.com">sales@example.com</a>
+<a data-orx-email="partners" href="mailto:partners@example.com">partners@example.com</a>
+```
 
-- Long page content.
-- Complete About/Services copy.
-- Product catalog records.
-- Supplier/brand records.
-- Blog articles.
-- Page layout construction.
-- Complex animation timelines.
+### Phone
+```html
+<a data-orx-phone href="tel:+0000000000">+000 0000 0000</a>
+```
 
-Structured product/supplier/market content should use dedicated data files where appropriate, while page-specific copy remains editable HTML.
+### Address
+```html
+<span data-orx-address>City, Country</span>
+```
 
-## 12. Progressive enhancement rule
+### Business hours
+```html
+<div data-orx-business-hours>
+  <!-- valid fallback rows may exist here -->
+</div>
+```
 
-ORIGEX pages must remain readable and structurally usable without the config engine. Config enhances common customization but must not be the only source of essential page content.
+### Social links
+Each link owns its network key:
+```html
+<a data-orx-social-link="linkedin" href="#">LinkedIn</a>
+<a data-orx-social-link="instagram" href="#">Instagram</a>
+```
 
-## 13. Arabic-first rule
+Brand/social marks use separately approved official/licensed assets; they are not Lucide semantic icons.
 
-The config layer must preserve the product language contract:
+### Floating WhatsApp
+```html
+<a data-orx-floating-whatsapp href="#" aria-label="Contact via WhatsApp">...</a>
+```
 
-- Arabic is primary/default.
-- English is secondary/full.
-- Arabic and English labels are stored separately when language-specific wording is required.
-- The config layer must never force one language string into both directions.
+The component exists in HTML; config only controls its URL/visibility.
 
-## 14. Recommended buyer workflow
+### Back to top
+```html
+<button data-orx-back-to-top type="button" aria-label="Back to top">...</button>
+```
 
-1. Duplicate the original package before editing.
-2. Update `config.js` first.
-3. Replace logo and image assets.
-4. Edit page-specific HTML copy.
-5. Replace product/supplier demo data.
-6. Test Arabic RTL.
-7. Test English LTR.
-8. Test responsive layouts.
-9. Deploy.
+The engine uses smooth scrolling unless `prefers-reduced-motion: reduce` is active.
+
+## 6. What `config.js` Must Not Control
+
+Do not put these into global config:
+- long page copy;
+- complete About/Services sections;
+- page layout construction;
+- product catalog records;
+- supplier/brand records;
+- market records;
+- blog/article bodies;
+- complex per-page state;
+- animation timelines.
+
+Page editorial copy stays in HTML. Approved structured repeated business data follows `DATA-SCHEMA-V1.md`.
+
+## 7. Content / SEO Boundary
+
+`config.js` may supply repeated company identity/contact values, but it does not replace:
+- Page Content Contracts;
+- H1/page copy;
+- registered SEO title/meta/canonical/hreflang contracts;
+- demo-data governance.
+
+Those remain controlled by the Content/SEO authorities.
+
+## 8. Progressive Enhancement
+
+A page must remain readable, navigable and commercially understandable without the config engine.
+
+Config may replace repeated values and enable/disable approved global utilities; it may not be the only source of essential meaning.
+
+## 9. Arabic / English Rule
+
+- Arabic is the master commercial language.
+- English is complete and professionally adapted.
+- Language-specific labels are stored separately when needed.
+- The config layer never forces one language string into both directions.
+- phone/email/SKU-like values remain bidi-safe in markup/CSS.
+
+## 10. M1 Implementation Rule
+
+Before M1 closes:
+1. all global components that use config expose only the documented hooks;
+2. old class-coupled config selectors are prohibited;
+3. Lucide icons live in the Icon System, never generated as text glyphs by config JS;
+4. config engine has no page-specific dependency;
+5. AR/EN fallback HTML is tested with config JS disabled;
+6. buyer documentation reflects the exact shipped hooks.
+
+## 11. Change Control
+
+Adding a genuinely repeated global setting is allowed only after checking that it reduces buyer editing effort without turning config into a content management layer.
+
+A page-specific value does not become global merely because it is convenient to access from JavaScript.
 
 Copyright © ORVEAX.
