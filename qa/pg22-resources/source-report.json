@@ -1,0 +1,32 @@
+{
+  "failures": [],
+  "pages": {
+    "ar": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "library",
+        "guidance",
+        "cta"
+      ],
+      "resourceCount": 5
+    },
+    "en": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "library",
+        "guidance",
+        "cta"
+      ],
+      "resourceCount": 5
+    }
+  },
+  "runtime": {
+    "failures": []
+  },
+  "resources": {
+    "failures": [],
+    "count": 5
+  }
+}
