@@ -2,7 +2,7 @@
 
 **Product ID:** ORX-P01  
 **Owner / Author:** ORVEAX  
-**Status:** M1 closed — M2 / PG01 ready for page production
+**Status:** M1 closed — M2 active — PG01 AR/EN in QA
 
 ORIGEX is a premium Arabic-first bilingual HTML template product for B2B food trading, import, wholesale, distribution, manufacturers, suppliers and market-access workflows.
 
@@ -19,18 +19,21 @@ Do not start implementation from historical commits or reference/source-map file
 ```text
 M0 — PRODUCT FOUNDATION: CLOSED / COMPLETE
 M1 — GLOBAL SYSTEM & COMPONENT FOUNDATION: CLOSED / COMPLETE
-M2 — GLOBAL SHELL & HOME FAMILY: READY
-PG01 — HOME 01: C6 FROZEN / DESIGN PROFILE READY / BUILD READY
+M2 — GLOBAL SHELL & HOME FAMILY: IN PROGRESS
+PG01 — HOME 01: C7 IMPLEMENTED / AR + EN / QA IN PROGRESS
 PG02–PG32: gated by their own content/design/SEO entry requirements
 ```
 
 M1 closure authority:
 - [`docs/M1-QA-REPORT-V1.md`](docs/M1-QA-REPORT-V1.md)
 - [`docs/M1-COMPONENT-IMPLEMENTATION-MAP.md`](docs/M1-COMPONENT-IMPLEMENTATION-MAP.md)
+- [`docs/M1-CLOSURE-2026-08-19.md`](docs/M1-CLOSURE-2026-08-19.md)
 - [`docs/M1-VENDOR-SHA256.txt`](docs/M1-VENDOR-SHA256.txt)
 
-PG01 entry authority:
+PG01 authority and implementation:
 - [`docs/page-design-profiles/pg01-home-01-v1.md`](docs/page-design-profiles/pg01-home-01-v1.md)
+- [`ar/index.html`](ar/index.html)
+- [`en/index.html`](en/index.html)
 
 A hard audit on 2026-08-19 removed pre-foundation Build 02–05 implementation and superseded planning files from the active tree. Git history remains the archive.
 
@@ -75,10 +78,15 @@ Before a page is built:
 2. confirm V1 Main Features;
 3. freeze content at C6;
 4. complete the Page Design Profile;
-5. use registered components only;
-6. identify asset/license needs;
-7. build Arabic and English together;
-8. close only after full QA and Content C8.
+5. complete the SEO & Page Identity Contract;
+6. use registered components only;
+7. identify asset/license needs;
+8. build Arabic and English together;
+9. close only after full page QA and Content C8.
+
+## Current Next Action
+
+PG01 is implemented in Arabic and English and is now in page QA. Complete responsive, RTL/LTR, interaction, content parity, demo disclosure and SEO checks before moving PG01 from C7 to C8. PG02 may enter coding only after its own C6 + Design Profile + SEO gate is complete.
 
 ## Repository Rule
 
