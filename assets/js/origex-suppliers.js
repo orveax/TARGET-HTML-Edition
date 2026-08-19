@@ -210,10 +210,14 @@
     if (els.origin) els.origin.value = state.origin;
   };
 
+  const syncSearchFromControl = () => {
+    if (els.search) state.search = els.search.value;
+  };
+
   const bind = () => {
     els.search?.addEventListener('input', () => { state.search = els.search.value; render(); });
-    els.category?.addEventListener('change', () => { state.category = els.category.value; render(); });
-    els.origin?.addEventListener('change', () => { state.origin = els.origin.value; render(); });
+    els.category?.addEventListener('change', () => { syncSearchFromControl(); state.category = els.category.value; render(); });
+    els.origin?.addEventListener('change', () => { syncSearchFromControl(); state.origin = els.origin.value; render(); });
     els.reset?.addEventListener('click', () => {
       state = { search: '', category: 'all', origin: 'all' };
       if (els.search) els.search.value = '';
