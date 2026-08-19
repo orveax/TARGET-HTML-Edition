@@ -1,0 +1,334 @@
+{
+  "generatedAt": "2026-08-19T01:48:43Z",
+  "failures": 0,
+  "results": [
+    {
+      "target": "ar",
+      "viewport": {
+        "name": "mobile-390",
+        "width": 390,
+        "height": 844
+      },
+      "minTarget": 44,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "bodyBg": "rgb(250, 248, 244)",
+        "bodyColor": "rgb(32, 40, 44)",
+        "buttonsBelow44": [],
+        "cardHeightMax": 553,
+        "cardHeightMin": 105,
+        "clientWidth": 375,
+        "dir": "rtl",
+        "expectedDir": "rtl",
+        "fontsReady": "loaded",
+        "h1FontSize": "36px",
+        "h1LineHeight": "46.08px",
+        "h1Width": 335,
+        "headerHeight": 77,
+        "heroHeight": 1060,
+        "horizontalOverflow": false,
+        "lang": "ar",
+        "minButtonHeight": 55,
+        "offscreen": [],
+        "scrollWidth": 375
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "qa/pg01-rendered/ar-mobile-390.jpeg"
+    },
+    {
+      "target": "ar",
+      "viewport": {
+        "name": "tablet-820",
+        "width": 820,
+        "height": 1180
+      },
+      "minTarget": 44,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "bodyBg": "rgb(250, 248, 244)",
+        "bodyColor": "rgb(32, 40, 44)",
+        "buttonsBelow44": [],
+        "cardHeightMax": 584,
+        "cardHeightMin": 105,
+        "clientWidth": 805,
+        "dir": "rtl",
+        "expectedDir": "rtl",
+        "fontsReady": "loaded",
+        "h1FontSize": "36px",
+        "h1LineHeight": "46.08px",
+        "h1Width": 757,
+        "headerHeight": 77,
+        "heroHeight": 960,
+        "horizontalOverflow": false,
+        "lang": "ar",
+        "minButtonHeight": 55,
+        "offscreen": [],
+        "scrollWidth": 805
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "qa/pg01-rendered/ar-tablet-820.jpeg"
+    },
+    {
+      "target": "ar",
+      "viewport": {
+        "name": "laptop-1366",
+        "width": 1366,
+        "height": 900
+      },
+      "minTarget": 40,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "bodyBg": "rgb(250, 248, 244)",
+        "bodyColor": "rgb(32, 40, 44)",
+        "buttonsBelow44": [],
+        "cardHeightMax": 535,
+        "cardHeightMin": 105,
+        "clientWidth": 1351,
+        "dir": "rtl",
+        "expectedDir": "rtl",
+        "fontsReady": "loaded",
+        "h1FontSize": "54.64px",
+        "h1LineHeight": "69.9392px",
+        "h1Width": 563,
+        "headerHeight": 77,
+        "heroHeight": 619,
+        "horizontalOverflow": false,
+        "lang": "ar",
+        "minButtonHeight": 46,
+        "offscreen": [],
+        "scrollWidth": 1351
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "qa/pg01-rendered/ar-laptop-1366.jpeg"
+    },
+    {
+      "target": "ar",
+      "viewport": {
+        "name": "desktop-1536",
+        "width": 1536,
+        "height": 960
+      },
+      "minTarget": 40,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "bodyBg": "rgb(250, 248, 244)",
+        "bodyColor": "rgb(32, 40, 44)",
+        "buttonsBelow44": [],
+        "cardHeightMax": 535,
+        "cardHeightMin": 105,
+        "clientWidth": 1521,
+        "dir": "rtl",
+        "expectedDir": "rtl",
+        "fontsReady": "loaded",
+        "h1FontSize": "61.44px",
+        "h1LineHeight": "78.6432px",
+        "h1Width": 558,
+        "headerHeight": 77,
+        "heroHeight": 730,
+        "horizontalOverflow": false,
+        "lang": "ar",
+        "minButtonHeight": 46,
+        "offscreen": [],
+        "scrollWidth": 1521
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "qa/pg01-rendered/ar-desktop-1536.jpeg"
+    },
+    {
+      "target": "en",
+      "viewport": {
+        "name": "mobile-390",
+        "width": 390,
+        "height": 844
+      },
+      "minTarget": 44,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "bodyBg": "rgb(250, 248, 244)",
+        "bodyColor": "rgb(32, 40, 44)",
+        "buttonsBelow44": [],
+        "cardHeightMax": 564,
+        "cardHeightMin": 101,
+        "clientWidth": 375,
+        "dir": "ltr",
+        "expectedDir": "ltr",
+        "fontsReady": "loaded",
+        "h1FontSize": "36px",
+        "h1LineHeight": "40.32px",
+        "h1Width": 335,
+        "headerHeight": 77,
+        "heroHeight": 1131,
+        "horizontalOverflow": false,
+        "lang": "en",
+        "minButtonHeight": 52,
+        "offscreen": [],
+        "scrollWidth": 375
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "qa/pg01-rendered/en-mobile-390.jpeg"
+    },
+    {
+      "target": "en",
+      "viewport": {
+        "name": "tablet-820",
+        "width": 820,
+        "height": 1180
+      },
+      "minTarget": 44,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "bodyBg": "rgb(250, 248, 244)",
+        "bodyColor": "rgb(32, 40, 44)",
+        "buttonsBelow44": [],
+        "cardHeightMax": 575,
+        "cardHeightMin": 101,
+        "clientWidth": 805,
+        "dir": "ltr",
+        "expectedDir": "ltr",
+        "fontsReady": "loaded",
+        "h1FontSize": "36px",
+        "h1LineHeight": "40.32px",
+        "h1Width": 757,
+        "headerHeight": 77,
+        "heroHeight": 987,
+        "horizontalOverflow": false,
+        "lang": "en",
+        "minButtonHeight": 52,
+        "offscreen": [],
+        "scrollWidth": 805
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "qa/pg01-rendered/en-tablet-820.jpeg"
+    },
+    {
+      "target": "en",
+      "viewport": {
+        "name": "laptop-1366",
+        "width": 1366,
+        "height": 900
+      },
+      "minTarget": 40,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "bodyBg": "rgb(250, 248, 244)",
+        "bodyColor": "rgb(32, 40, 44)",
+        "buttonsBelow44": [],
+        "cardHeightMax": 524,
+        "cardHeightMin": 101,
+        "clientWidth": 1351,
+        "dir": "ltr",
+        "expectedDir": "ltr",
+        "fontsReady": "loaded",
+        "h1FontSize": "54.64px",
+        "h1LineHeight": "61.1968px",
+        "h1Width": 563,
+        "headerHeight": 77,
+        "heroHeight": 747,
+        "horizontalOverflow": false,
+        "lang": "en",
+        "minButtonHeight": 44,
+        "offscreen": [],
+        "scrollWidth": 1351
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "qa/pg01-rendered/en-laptop-1366.jpeg"
+    },
+    {
+      "target": "en",
+      "viewport": {
+        "name": "desktop-1536",
+        "width": 1536,
+        "height": 960
+      },
+      "minTarget": 40,
+      "pass": true,
+      "checks": {
+        "direction": true,
+        "noHorizontalOverflow": true,
+        "touchTargets": true,
+        "heroReadable": true,
+        "fontsReady": true
+      },
+      "metrics": {
+        "bodyBg": "rgb(250, 248, 244)",
+        "bodyColor": "rgb(32, 40, 44)",
+        "buttonsBelow44": [],
+        "cardHeightMax": 524,
+        "cardHeightMin": 101,
+        "clientWidth": 1521,
+        "dir": "ltr",
+        "expectedDir": "ltr",
+        "fontsReady": "loaded",
+        "h1FontSize": "61.44px",
+        "h1LineHeight": "68.8128px",
+        "h1Width": 558,
+        "headerHeight": 77,
+        "heroHeight": 793,
+        "horizontalOverflow": false,
+        "lang": "en",
+        "minButtonHeight": 44,
+        "offscreen": [],
+        "scrollWidth": 1521
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "qa/pg01-rendered/en-desktop-1536.jpeg"
+    }
+  ]
+}
