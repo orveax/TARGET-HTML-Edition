@@ -5,6 +5,80 @@
   const qsa = (selector, root = document) => Array.from(root.querySelectorAll(selector));
   const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Controlled global-navigation defect fix: expose the approved M2 Home Family
+  // consistently from N02/N03 without duplicating page-local navigation markup.
+  const hydrateHomeFamilyNavigation = () => {
+    const isArabic = document.documentElement.lang.toLowerCase().startsWith('ar');
+    const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+    const homeFiles = new Set(['index.html', 'home-02.html', 'home-03.html', 'landing.html']);
+    const labels = isArabic
+      ? {
+          title: 'نماذج الرئيسية',
+          items: [
+            ['index.html', 'الرئيسية 01 — التجارة والاستيراد'],
+            ['home-02.html', 'الرئيسية 02 — الجملة والتوزيع'],
+            ['home-03.html', 'الرئيسية 03 — المصنع والمورد'],
+            ['landing.html', 'Landing — صفحة مركزة']
+          ]
+        }
+      : {
+          title: 'Home Variants',
+          items: [
+            ['index.html', 'Home 01 — Trading & Import'],
+            ['home-02.html', 'Home 02 — Wholesale & Distribution'],
+            ['home-03.html', 'Home 03 — Manufacturer & Supplier'],
+            ['landing.html', 'Landing — One Page']
+          ]
+        };
+
+    qsa('[data-orx-mega-menu]').forEach((menu) => {
+      const grid = menu.querySelector('.orx-mega-menu__grid');
+      if (!grid || grid.querySelector('[data-orx-home-variants]')) return;
+
+      const group = document.createElement('div');
+      group.className = 'orx-mega-menu__group';
+      group.dataset.orxHomeVariants = '';
+      group.style.gridColumn = '1 / -1';
+      group.style.gridTemplateColumns = 'repeat(4, minmax(0, 1fr))';
+
+      const title = document.createElement('strong');
+      title.textContent = labels.title;
+      title.style.gridColumn = '1 / -1';
+      group.append(title);
+
+      labels.items.forEach(([href, text]) => {
+        const link = document.createElement('a');
+        link.href = href;
+        link.textContent = text;
+        link.dataset.orxHomeVariantLink = href;
+        if (href === currentFile) link.setAttribute('aria-current', 'page');
+        group.append(link);
+      });
+
+      grid.prepend(group);
+    });
+
+    qsa('.orx-mobile-nav').forEach((nav) => {
+      qsa('a', nav).forEach((link) => {
+        const href = (link.getAttribute('href') || '').split('#')[0];
+        if (homeFiles.has(href)) link.remove();
+      });
+
+      const fragment = document.createDocumentFragment();
+      labels.items.forEach(([href, text]) => {
+        const link = document.createElement('a');
+        link.href = href;
+        link.textContent = text;
+        link.dataset.orxHomeVariantLink = href;
+        if (href === currentFile) link.setAttribute('aria-current', 'page');
+        fragment.append(link);
+      });
+      nav.prepend(fragment);
+    });
+  };
+
+  hydrateHomeFamilyNavigation();
+
   // Mobile drawer — N03
   const drawer = document.querySelector('[data-orx-mobile-drawer]');
   const openers = qsa('[data-orx-drawer-open]');
