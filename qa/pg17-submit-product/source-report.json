@@ -1,0 +1,34 @@
+{
+  "failures": [
+    "en:unsupported-claim",
+    "global-footer-drift"
+  ],
+  "pages": {
+    "ar": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "disclosure",
+        "form",
+        "review",
+        "cta"
+      ]
+    },
+    "en": {
+      "failures": [
+        "unsupported-claim"
+      ],
+      "sections": [
+        "hero",
+        "disclosure",
+        "form",
+        "review",
+        "cta"
+      ]
+    }
+  },
+  "runtime": {
+    "failures": []
+  },
+  "footer_output": "DRIFT: ar/submit-product.html\nDRIFT: en/submit-product.html\n"
+}
