@@ -1,0 +1,87 @@
+{
+  "generatedAt": "2026-08-19T14:08:39Z",
+  "failures": 0,
+  "results": [
+    {
+      "page": "ar/market-access.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "visibleBreadcrumb": true,
+        "demoDisclosure": true,
+        "sevenFrozenSections": true,
+        "fourEntryInputs": true,
+        "fiveChannels": true,
+        "fourRouteSteps": true,
+        "threeOpportunityStates": true,
+        "marketCSS": true,
+        "runtime": true,
+        "staticMarketCurrent": true,
+        "uniqueIDs": true,
+        "noClientCDNLeakage": true,
+        "iconReferencesResolve": true,
+        "localAssets": true
+      },
+      "missingIcons": [],
+      "sections": [
+        "hero",
+        "entry-model",
+        "channel-model",
+        "fit-criteria",
+        "route-to-market",
+        "opportunity-review",
+        "cta"
+      ],
+      "entryInputs": 4,
+      "channels": 5,
+      "routeSteps": 4,
+      "opportunityStates": 3,
+      "pass": true
+    },
+    {
+      "page": "en/market-access.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "visibleBreadcrumb": true,
+        "demoDisclosure": true,
+        "sevenFrozenSections": true,
+        "fourEntryInputs": true,
+        "fiveChannels": true,
+        "fourRouteSteps": true,
+        "threeOpportunityStates": true,
+        "marketCSS": true,
+        "runtime": true,
+        "staticMarketCurrent": true,
+        "uniqueIDs": true,
+        "noClientCDNLeakage": true,
+        "iconReferencesResolve": true,
+        "localAssets": true
+      },
+      "missingIcons": [],
+      "sections": [
+        "hero",
+        "entry-model",
+        "channel-model",
+        "fit-criteria",
+        "route-to-market",
+        "opportunity-review",
+        "cta"
+      ],
+      "entryInputs": 4,
+      "channels": 5,
+      "routeSteps": 4,
+      "opportunityStates": 3,
+      "pass": true
+    }
+  ],
+  "errors": []
+}
