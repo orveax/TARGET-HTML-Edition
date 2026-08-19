@@ -1,0 +1,212 @@
+name: PG22 Downloads Resources QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/resources.html'
+      - 'en/resources.html'
+      - 'assets/css/origex-resources.css'
+      - 'assets/js/origex-resources.js'
+      - 'assets/resources/**'
+      - 'docs/RESOURCE-ASSET-REGISTER-V1.md'
+      - 'docs/page-design-profiles/pg22-resources-v1.md'
+      - 'assets/css/origex-components.css'
+      - 'assets/css/origex-shell.css'
+      - 'assets/icons/sprite.svg'
+      - 'assets/js/origex-ui.js'
+      - '.github/scripts/normalize_global_navigation.py'
+      - '.github/scripts/normalize_global_footer.py'
+      - '.github/workflows/pg22-resources-qa.yml'
+
+concurrency:
+  group: pg22-resources-qa
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --quiet beautifulsoup4 selenium
+      - name: Run PG22 source resource rendered and interaction QA
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json,re,subprocess,time
+          from urllib.parse import urlparse
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.keys import Keys
+          from selenium.webdriver.support.ui import WebDriverWait
+
+          R=Path('.'); O=R/'qa/pg22-resources'; O.mkdir(parents=True,exist_ok=True)
+          source={'failures':[],'pages':{},'runtime':{},'resources':{}}
+          js=(R/'assets/js/origex-resources.js').read_text(encoding='utf-8'); rf=[]
+          for bad in ('fetch(','XMLHttpRequest','localStorage','sessionStorage'):
+            if bad in js: rf.append('forbidden-runtime:'+bad)
+          for required in ('history.replaceState','aria-pressed','pg22Filter','pg22Visible','pg22Ready'):
+            if required not in js: rf.append('runtime-missing:'+required)
+          source['runtime']={'failures':rf}; source['failures']+=rf
+
+          expected_files=[
+            'assets/resources/origex-demo-company-profile.txt',
+            'assets/resources/origex-demo-product-datasheet.txt',
+            'assets/resources/origex-demo-supplier-checklist.txt',
+            'assets/resources/origex-demo-compliance-example.txt',
+            'assets/resources/origex-demo-market-brief.txt'
+          ]
+          register=(R/'docs/RESOURCE-ASSET-REGISTER-V1.md').read_text(encoding='utf-8')
+          resource_fail=[]
+          for rel in expected_files:
+            p=R/rel
+            if not p.exists(): resource_fail.append('missing-file:'+rel); continue
+            txt=p.read_text(encoding='utf-8')
+            if rel not in register: resource_fail.append('unregistered:'+rel)
+            if 'ORVEAX' not in txt: resource_fail.append('source-marker:'+rel)
+            if 'Demo' not in txt and 'DEMO' not in txt: resource_fail.append('demo-marker:'+rel)
+          if '.pdf' in register.lower(): resource_fail.append('register-pdf-claim')
+          source['resources']={'failures':resource_fail,'count':len(expected_files)}; source['failures']+=resource_fail
+
+          sprite=(R/'assets/icons/sprite.svg').read_text(encoding='utf-8'); sprite_ids=set(re.findall(r'<symbol[^>]+id="([^"]+)"',sprite))
+          specs={
+            'ar':('rtl','ملفات ومعلومات يمكن الرجوع إليها قبل التواصل.','../en/resources.html'),
+            'en':('ltr','Commercial files and information available before the conversation.','../ar/resources.html')
+          }
+          expected_sections=['hero','library','guidance','cta']
+          expected_categories=['all','company','product','supplier','compliance','market']
+          for lang,(direction,h1,other) in specs.items():
+            text=(R/lang/'resources.html').read_text(encoding='utf-8'); s=BeautifulSoup(text,'html.parser'); f=[]
+            if s.html.get('lang')!=lang or s.html.get('dir')!=direction:f.append('lang-dir')
+            hs=s.find_all('h1')
+            if len(hs)!=1 or hs[0].get_text(' ',strip=True)!=h1:f.append('h1')
+            sections=[n.get('data-pg22-section') for n in s.select('[data-pg22-section]')]
+            if sections!=expected_sections:f.append('sections:'+str(sections))
+            cards=s.select('[data-orx-resource-card]')
+            if len(cards)!=5:f.append('resource-count:'+str(len(cards)))
+            categories=[b.get('data-orx-resource-filter') for b in s.select('[data-orx-resource-filter]')]
+            if categories!=expected_categories:f.append('categories:'+str(categories))
+            download_links=s.select('[data-orx-resource-card] a[download]')
+            if len(download_links)!=5:f.append('download-count:'+str(len(download_links)))
+            for a in download_links:
+              href=a.get('href','')
+              if not href.startswith('../assets/resources/') or not href.endswith('.txt'):f.append('download-type:'+href)
+              target=(R/lang/href).resolve()
+              try: target.relative_to(R.resolve())
+              except Exception: f.append('download-path-escape:'+href); continue
+              if not target.exists():f.append('download-missing:'+href)
+            if not all(c.select_one('.orx-badge') for c in cards):f.append('status-badges')
+            for c in cards:
+              labels=[x.get_text(' ',strip=True) for x in c.select('.orx-resource-card__tags .orx-badge')]
+              if 'AR' not in labels or 'EN' not in labels:f.append('language-tags')
+              if 'TXT / UTF-8' not in c.get_text(' ',strip=True):f.append('file-type-claim')
+            count=s.select_one('[data-orx-resource-count]')
+            if not count or not count.parent or count.parent.get('aria-live')!='polite':f.append('live-count')
+            if not s.select_one('[data-orx-resource-empty][hidden]'):f.append('empty-state')
+            if not s.find('a',href=other):f.append('language-switch')
+            if not s.select_one('[data-orx-mega-trigger][aria-current="page"]'):f.append('explore-current')
+            if not s.select_one('.orx-mega-menu a[href="resources.html"][aria-current="page"]'):f.append('mega-current')
+            if not s.select_one('.orx-mobile-nav a[href="resources.html"][aria-current="page"]'):f.append('mobile-current')
+            if not s.select_one('footer[data-orx-global-footer="v1"] [data-orx-business-hours]'):f.append('footer')
+            if 'TARGET' in text or 'targetft' in text.lower():f.append('client-leak')
+            if '.pdf' in text.lower():f.append('fabricated-pdf-ui-claim')
+            canonical=s.find('link',rel='canonical')
+            if not canonical or canonical.get('href')!=f'https://example.com/{lang}/resources.html':f.append('canonical')
+            hreflangs={n.get('hreflang') for n in s.find_all('link',rel='alternate')}
+            if not {'ar','en','x-default'}.issubset(hreflangs):f.append('hreflang')
+            try:
+              data=json.loads(s.find('script',attrs={'type':'application/ld+json'}).string)
+              types={x.get('@type') for x in data.get('@graph',[])}
+              if not {'WebPage','BreadcrumbList'}.issubset(types):f.append('schema')
+              if types & {'Product','Offer','Certification','Review','Rating','AggregateRating'}:f.append('prohibited-schema')
+            except Exception:f.append('schema-json')
+            icons=set(re.findall(r'sprite\.svg#([a-z0-9-]+)',text)); missing=sorted(icons-sprite_ids)
+            if missing:f.append('icons:'+str(missing))
+            source['pages'][lang]={'failures':f,'sections':sections,'resourceCount':len(cards)}; source['failures'] += [lang+':'+x for x in f]
+
+          for script,label in [('.github/scripts/normalize_global_navigation.py','nav-drift'),('.github/scripts/normalize_global_footer.py','footer-drift')]:
+            r=subprocess.run(['python',script,'--check'],capture_output=True,text=True)
+            if r.returncode:
+              source['failures'].append(label);source[label]=r.stdout+r.stderr
+          (O/'source-report.json').write_text(json.dumps(source,ensure_ascii=False,indent=2),encoding='utf-8')
+
+          rendered={'failures':[],'cases':[],'interaction':{}}
+          opts=Options();opts.add_argument('--headless=new');opts.add_argument('--no-sandbox');opts.add_argument('--disable-dev-shm-usage');opts.add_argument('--window-size=820,1800')
+          srv=subprocess.Popen(['python','-m','http.server','8765'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL);time.sleep(1)
+          try:
+            for lang in ('ar','en'):
+              d=webdriver.Chrome(options=opts)
+              try:
+                for w in (390,820,1366,1536):
+                  f=[]
+                  try:
+                    d.set_window_size(w,1800);d.get(f'http://127.0.0.1:8765/{lang}/resources.html')
+                    WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg22-root]').get_attribute('data-pg22-ready')=='true')
+                    if len(d.find_elements(By.CSS_SELECTOR,'[data-orx-resource-card]:not([hidden])'))!=5:f.append('visible-count')
+                    if d.find_element(By.CSS_SELECTOR,'[data-orx-resource-count]').text!='5':f.append('count-text')
+                    if d.execute_script('return document.documentElement.scrollWidth')>d.execute_script('return document.documentElement.clientWidth')+1:f.append('overflow')
+                    if d.find_element(By.TAG_NAME,'html').get_attribute('dir')!=('rtl' if lang=='ar' else 'ltr'):f.append('direction')
+                    small=[]
+                    for e in d.find_elements(By.CSS_SELECTOR,'a,button,input,select'):
+                      if e.is_displayed() and e.rect['width'] and e.rect['height'] and (e.rect['width']<24 or e.rect['height']<24):small.append({'tag':e.tag_name,'w':round(e.rect['width'],1),'h':round(e.rect['height'],1),'text':e.text[:24],'href':e.get_attribute('href') or ''})
+                    if small:f.append('touch:'+json.dumps(small,ensure_ascii=False))
+                    if w>=1051:
+                      t=d.find_element(By.CSS_SELECTOR,'[data-orx-mega-trigger]');t.click();time.sleep(.04)
+                      if t.get_attribute('aria-expanded')!='true':f.append('mega-open')
+                      t.send_keys(Keys.ESCAPE);time.sleep(.04)
+                      if t.get_attribute('aria-expanded')!='false':f.append('mega-escape')
+                    else:
+                      op=d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-open]');op.click();time.sleep(.04);dr=d.find_element(By.CSS_SELECTOR,'[data-orx-mobile-drawer]')
+                      if dr.get_attribute('aria-hidden')!='false':f.append('drawer-open')
+                      d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-close]').click();time.sleep(.04)
+                      if dr.get_attribute('aria-hidden')!='true':f.append('drawer-close')
+                  except Exception as e:f.append(type(e).__name__+':'+str(e)[:160])
+                  rendered['cases'].append({'lang':lang,'width':w,'failures':f});rendered['failures'] += [f'{lang}-{w}:{x}' for x in f]
+
+                f=[]
+                try:
+                  d.set_window_size(820,1800);d.get(f'http://127.0.0.1:8765/{lang}/resources.html?category=product');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg22-root]').get_attribute('data-pg22-ready')=='true')
+                  if len(d.find_elements(By.CSS_SELECTOR,'[data-orx-resource-card]:not([hidden])'))!=1:f.append('product-count')
+                  if d.find_element(By.CSS_SELECTOR,'[data-orx-resource-count]').text!='1':f.append('product-count-text')
+                  active=d.find_element(By.CSS_SELECTOR,'[data-orx-resource-filter="product"]')
+                  if active.get_attribute('aria-pressed')!='true':f.append('product-active')
+                  if 'category=product' not in d.find_element(By.CSS_SELECTOR,'.orx-lang-switch').get_attribute('href'):f.append('language-preserve')
+                  allb=d.find_element(By.CSS_SELECTOR,'[data-orx-resource-filter="all"]');d.execute_script("arguments[0].scrollIntoView({block:'center'});arguments[0].focus();",allb);allb.send_keys(Keys.ENTER);time.sleep(.05)
+                  if len(d.find_elements(By.CSS_SELECTOR,'[data-orx-resource-card]:not([hidden])'))!=5:f.append('all-keyboard')
+                  if 'category=' in d.current_url:f.append('all-query-clear')
+                except Exception as e:f.append(type(e).__name__+':'+str(e)[:160])
+                rendered['interaction'][lang+'-filter']=f;rendered['failures'] += [lang+'-filter:'+x for x in f]
+
+                f=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/resources.html');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg22-root]').get_attribute('data-pg22-ready')=='true')
+                  d.execute_script("document.querySelectorAll('[data-orx-resource-card]').forEach(x=>x.dataset.resourceCategory='future-category')")
+                  b=d.find_element(By.CSS_SELECTOR,'[data-orx-resource-filter="product"]');d.execute_script("arguments[0].scrollIntoView({block:'center'});",b);b.click();time.sleep(.05)
+                  if len(d.find_elements(By.CSS_SELECTOR,'[data-orx-resource-card]:not([hidden])'))!=0:f.append('empty-visible-cards')
+                  if not d.find_element(By.CSS_SELECTOR,'[data-orx-resource-empty]').is_displayed():f.append('empty-state-hidden')
+                  if d.find_element(By.CSS_SELECTOR,'[data-orx-resource-count]').text!='0':f.append('empty-count')
+                except Exception as e:f.append(type(e).__name__+':'+str(e)[:160])
+                rendered['interaction'][lang+'-empty']=f;rendered['failures'] += [lang+'-empty:'+x for x in f]
+              finally:d.quit()
+          finally:srv.terminate()
+          (O/'rendered-report.json').write_text(json.dumps(rendered,ensure_ascii=False,indent=2),encoding='utf-8')
+          status='PASS' if not source['failures'] and not rendered['failures'] else 'FAIL';(O/'run-status.txt').write_text(status+'\n',encoding='utf-8')
+          print(status);print(source['failures']);print(rendered['failures'])
+          if status!='PASS':raise SystemExit(1)
+          PY
+      - name: Commit PG22 evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg22-resources || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "PG22 record Resources QA evidence"
+          git pull --rebase origin main || true
+          git push origin main || true
