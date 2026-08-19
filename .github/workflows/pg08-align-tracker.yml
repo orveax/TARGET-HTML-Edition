@@ -1,0 +1,55 @@
+name: PG08 Align Tracker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/pg08-align-tracker.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  align:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Align implementation tracker for PG08
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('docs/IMPLEMENTATION-STATUS-V1.md')
+          s=p.read_text(encoding='utf-8')
+          replacements=[
+            ('Last Updated: 2026-08-19 — M2 HOME FAMILY IMPLEMENTED / M3 IN PROGRESS / PG05–PG07 C7 CI QA PASS','Last Updated: 2026-08-19 — M2 HOME FAMILY IMPLEMENTED / M3 IN PROGRESS / PG05–PG08 C7 CI QA PASS'),
+            ('| PG07 Capabilities / Services | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + NAVIGATION QA PASS |\n| M3 Company Navigation IA |','| PG07 Capabilities / Services | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + NAVIGATION QA PASS |\n| PG08 Service Details | C7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + PARENT-NAVIGATION QA PASS |\n| M3 Company Navigation IA |'),
+            ('| Current Build Baseline | M3 IN PROGRESS — PG05/PG06/PG07 CI-complete; PG08 next |','| Current Build Baseline | M3 IN PROGRESS — PG05–PG08 CI-complete; PG14 next |'),
+            ('├── how-we-work.html               # PG06 — C7 CI PASS\n└── capabilities.html              # PG07 — C7 CI PASS','├── how-we-work.html               # PG06 — C7 CI PASS\n├── capabilities.html              # PG07 — C7 CI PASS\n└── service-details.html           # PG08 — C7 CI PASS'),
+            ('├── how-we-work.html               # PG06 — C7 CI PASS\n└── capabilities.html              # PG07 — C7 CI PASS','├── how-we-work.html               # PG06 — C7 CI PASS\n├── capabilities.html              # PG07 — C7 CI PASS\n└── service-details.html           # PG08 — C7 CI PASS'),
+            ('│   ├── origex-capabilities.css\n│   └── origex-shell.css','│   ├── origex-capabilities.css\n│   ├── origex-service-details.css\n│   └── origex-shell.css'),
+            ('├── pg06-how-we-work/\n└── pg07-capabilities/','├── pg06-how-we-work/\n├── pg07-capabilities/\n└── pg08-service-details/'),
+            ('│   ├── pg06-how-we-work-v1.md\n│   └── pg07-capabilities-v1.md','│   ├── pg06-how-we-work-v1.md\n│   ├── pg07-capabilities-v1.md\n│   └── pg08-service-details-v1.md'),
+            ('| PG08 | Service Details | C0 | NOT STARTED | NOT STARTED | NOT STARTED |','| PG08 | Service Details | C7 — IMPLEMENTED | APPROVED — `pg08-service-details-v1.md` | `ar/service-details.html` + `en/service-details.html` | SOURCE + RENDERED + PARENT-NAVIGATION QA PASS — CLOUDFLARE BATCH REVIEW PENDING |'),
+            ('- PG07 = C7 / CI QA PASS / Cloudflare batch review pending.\n- **Next build: PG08 — Service Details.**','- PG07 = C7 / CI QA PASS / Cloudflare batch review pending.\n- PG08 = C7 / CI QA PASS / Cloudflare batch review pending.\n- **Next build: PG14 — Market Access.**'),
+            ('1. Prepare PG08 Content/Design/SEO Contract → C6.\n2. Build `ar/service-details.html` + `en/service-details.html` using the shared system.\n3. Run source/rendered/navigation QA.\n4. Continue PG14–PG15 under M3.','1. Prepare PG14 Content/Design/SEO Contract → C6.\n2. Build `ar/market-access.html` + `en/market-access.html` using the shared system.\n3. Run source/rendered/navigation QA.\n4. Continue PG15 under M3.')
+          ]
+          for old,new in replacements:
+            if old not in s:
+              raise SystemExit(f'missing expected tracker text: {old[:100]}')
+            s=s.replace(old,new,1)
+          marker='## Cloudflare Test Environment Control'
+          section='''### PG08 — Service Details\n- Demo service: Product Market-Readiness Review / مراجعة جاهزية المنتج للسوق.\n- Frozen scope: hero, overview, scope, process, deliverables, fit/not-fit guidance, related services and CTA.\n- Profile: `docs/page-design-profiles/pg08-service-details-v1.md`.\n- Arabic: `ar/service-details.html`.\n- English: `en/service-details.html`.\n- Composition: `assets/css/origex-service-details.css`.\n- Parent IA: Service Details remains a child of Capabilities; shared `origex-ui.js` preserves Capabilities active state on desktop mega menu and mobile drawer.\n- Initial source QA found one unresolved `message-circle` icon; replaced with registered `phone` icon without changing M1 sprite scope.\n- Source QA: `qa/pg08-service-details/source-report.json` — failures 0.\n- Rendered QA: `qa/pg08-service-details/rendered-report.json` — AR/EN × 390/820/1366/1536 = 8/8 PASS; no overflow; touch targets, direction, 8 sections, 4 steps, 4 deliverables, fit/not-fit and related services PASS.\n- Final QA status: `qa/pg08-service-details/run-status.txt` — PASS.\n- Current: C7 pending Cloudflare M3 batch browser review.\n\n'''
+          if '### PG08 — Service Details' not in s:
+            s=s.replace(marker,section+marker,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/IMPLEMENTATION-STATUS-V1.md
+          git commit -m 'M3 align tracker after PG08 CI QA pass'
+          git pull --rebase origin main
+          git push origin HEAD:main
