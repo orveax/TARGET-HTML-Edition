@@ -76,6 +76,9 @@
     "en/case-studies.html": {
       "failures": []
     },
+    "en/case-study-details.html": {
+      "failures": []
+    },
     "en/company-profile.html": {
       "failures": []
     },
@@ -129,7 +132,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 42,
+    "pagesChecked": 43,
     "failures": 0
   }
 }
