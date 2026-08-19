@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2026-08-19T13:09:55Z",
+  "failures": 0,
+  "results": [
+    {
+      "page": "ar/capabilities.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "demoDisclosure": true,
+        "sixFrozenSections": true,
+        "fiveServiceFamilies": true,
+        "capCSS": true,
+        "runtime": true,
+        "uniqueIDs": true,
+        "noClientCDNLeakage": true,
+        "iconReferencesResolve": true,
+        "localAssets": true
+      },
+      "missingIcons": [],
+      "serviceCards": 5,
+      "pass": true
+    },
+    {
+      "page": "en/capabilities.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "demoDisclosure": true,
+        "sixFrozenSections": true,
+        "fiveServiceFamilies": true,
+        "capCSS": true,
+        "runtime": true,
+        "uniqueIDs": true,
+        "noClientCDNLeakage": true,
+        "iconReferencesResolve": true,
+        "localAssets": true
+      },
+      "missingIcons": [],
+      "serviceCards": 5,
+      "pass": true
+    }
+  ],
+  "errors": []
+}
