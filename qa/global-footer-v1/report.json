@@ -37,6 +37,9 @@
     "ar/index.html": {
       "failures": []
     },
+    "ar/insights.html": {
+      "failures": []
+    },
     "ar/landing.html": {
       "failures": []
     },
@@ -147,7 +150,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 48,
+    "pagesChecked": 49,
     "failures": 0
   }
 }
