@@ -1,0 +1,64 @@
+{
+  "generatedAt": "2026-08-19T12:50:16Z",
+  "failures": 2,
+  "results": [
+    {
+      "page": "ar/how-we-work.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "demoDisclosure": true,
+        "sevenFrozenSections": true,
+        "fourStepProcess": true,
+        "responsibilityColumns": true,
+        "decisionStates": true,
+        "howCSS": true,
+        "runtime": true,
+        "uniqueIDs": true,
+        "noClientCDNLeakage": true,
+        "iconReferencesResolve": false,
+        "localAssets": true
+      },
+      "missingIcons": [
+        "files",
+        "store"
+      ],
+      "pass": false
+    },
+    {
+      "page": "en/how-we-work.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "demoDisclosure": true,
+        "sevenFrozenSections": true,
+        "fourStepProcess": true,
+        "responsibilityColumns": true,
+        "decisionStates": true,
+        "howCSS": true,
+        "runtime": true,
+        "uniqueIDs": true,
+        "noClientCDNLeakage": true,
+        "iconReferencesResolve": false,
+        "localAssets": true
+      },
+      "missingIcons": [
+        "files",
+        "store"
+      ],
+      "pass": false
+    }
+  ],
+  "errors": [
+    "ar/how-we-work.html: ['iconReferencesResolve']; missing icons=['files', 'store']",
+    "en/how-we-work.html: ['iconReferencesResolve']; missing icons=['files', 'store']"
+  ]
+}
