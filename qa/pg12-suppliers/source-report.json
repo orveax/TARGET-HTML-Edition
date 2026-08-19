@@ -1,0 +1,30 @@
+{
+  "failures": [],
+  "pages": {
+    "ar": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "featured",
+        "directory",
+        "disclosure",
+        "cta"
+      ]
+    },
+    "en": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "featured",
+        "directory",
+        "disclosure",
+        "cta"
+      ]
+    }
+  },
+  "data": {
+    "suppliers": 4,
+    "products": 12,
+    "featured": 4
+  }
+}
