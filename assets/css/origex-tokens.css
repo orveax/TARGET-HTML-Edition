@@ -1,0 +1,80 @@
+/* ORIGEX — ORX-P01 | M1 Design Tokens | Copyright © ORVEAX */
+:root {
+  --orx-primary: #15343B;
+  --orx-primary-strong: #0D252B;
+  --orx-secondary: #3F6F68;
+  --orx-accent: #C47A4A;
+  --orx-sand: #E8DFD0;
+  --orx-bg: #FAF8F4;
+  --orx-surface: #FFFFFF;
+  --orx-surface-soft: #F3EFE8;
+  --orx-text: #20282C;
+  --orx-text-muted: #667278;
+  --orx-border: #D8DEDB;
+  --orx-border-strong: #BFC9C5;
+  --orx-success: #256B4A;
+  --orx-warning: #9A651A;
+  --orx-danger: #A63D40;
+  --orx-info: #356A8A;
+
+  --orx-font-ar: "Tajawal", Arial, sans-serif;
+  --orx-font-en: "Manrope", Arial, sans-serif;
+
+  --orx-fs-display: clamp(2.75rem, 5vw, 5rem);
+  --orx-fs-h1: clamp(2.25rem, 4vw, 4rem);
+  --orx-fs-h2: clamp(1.875rem, 3vw, 3rem);
+  --orx-fs-h3: clamp(1.375rem, 2vw, 2rem);
+  --orx-fs-h4: 1.125rem;
+  --orx-fs-body-lg: 1.125rem;
+  --orx-fs-body: 1rem;
+  --orx-fs-small: .875rem;
+  --orx-fs-label: .75rem;
+
+  --orx-space-1: .25rem;
+  --orx-space-2: .5rem;
+  --orx-space-3: .75rem;
+  --orx-space-4: 1rem;
+  --orx-space-5: 1.25rem;
+  --orx-space-6: 1.5rem;
+  --orx-space-8: 2rem;
+  --orx-space-10: 2.5rem;
+  --orx-space-12: 3rem;
+  --orx-space-16: 4rem;
+  --orx-space-20: 5rem;
+  --orx-space-24: 6rem;
+
+  --orx-gutter: 20px;
+  --orx-container-narrow: 840px;
+  --orx-container-standard: 1140px;
+  --orx-container-wide: 1320px;
+
+  --orx-radius-xs: 8px;
+  --orx-radius-sm: 12px;
+  --orx-radius-md: 16px;
+  --orx-radius-lg: 24px;
+  --orx-radius-pill: 999px;
+
+  --orx-shadow-e0: none;
+  --orx-shadow-e1: 0 8px 28px rgba(13, 37, 43, .06);
+  --orx-shadow-e2: 0 16px 44px rgba(13, 37, 43, .10);
+  --orx-shadow-e3: 0 24px 64px rgba(13, 37, 43, .16);
+
+  --orx-motion-fast: 150ms;
+  --orx-motion-standard: 250ms;
+  --orx-motion-slow: 400ms;
+  --orx-ease: cubic-bezier(.2,.7,.2,1);
+
+  --orx-header-height: 76px;
+  --orx-focus-ring: 0 0 0 3px rgba(196, 122, 74, .32);
+}
+
+@media (min-width: 768px) { :root { --orx-gutter: 24px; } }
+@media (min-width: 1200px) { :root { --orx-gutter: 32px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --orx-motion-fast: 1ms;
+    --orx-motion-standard: 1ms;
+    --orx-motion-slow: 1ms;
+  }
+}
