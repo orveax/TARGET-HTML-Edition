@@ -1,0 +1,168 @@
+/* ORIGEX — ORX-P01 | PG05 About Composition | Copyright © ORVEAX */
+
+.orx-about-hero .orx-media--hero {
+  min-block-size: clamp(22rem, 44vw, 38rem);
+  overflow: hidden;
+  padding: 0;
+}
+
+.orx-about-hero .orx-media--hero img,
+.orx-about-editorial-media img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.orx-about-hero__facts {
+  position: absolute;
+  inset-inline: var(--orx-space-5);
+  inset-block-end: var(--orx-space-5);
+  display: grid;
+  gap: var(--orx-space-3);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.orx-about-hero__fact {
+  background: color-mix(in srgb, var(--orx-primary-strong) 88%, transparent);
+  color: var(--orx-surface);
+  border: 1px solid color-mix(in srgb, var(--orx-surface) 20%, transparent);
+  border-radius: var(--orx-radius-sm);
+  padding: var(--orx-space-4);
+  backdrop-filter: blur(8px);
+}
+
+.orx-about-hero__fact span {
+  display: block;
+  margin-block-start: var(--orx-space-1);
+  font-size: var(--orx-fs-small);
+  opacity: .8;
+}
+
+.orx-about-who__grid {
+  display: grid;
+  gap: var(--orx-space-8);
+}
+
+.orx-about-editorial-media {
+  min-block-size: 20rem;
+  overflow: hidden;
+  border-radius: var(--orx-radius-lg);
+  background: var(--orx-surface-soft);
+}
+
+.orx-about-facts {
+  display: grid;
+  gap: var(--orx-space-3);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-block-start: var(--orx-space-5);
+}
+
+.orx-about-fact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--orx-space-3);
+  border-block-start: 1px solid var(--orx-border);
+  padding-block-start: var(--orx-space-3);
+}
+
+.orx-about-values,
+.orx-about-trust-grid,
+.orx-about-final-grid {
+  display: grid;
+  gap: var(--orx-space-5);
+}
+
+.orx-about-value-card,
+.orx-about-final-panel {
+  block-size: 100%;
+}
+
+.orx-about-flow {
+  display: grid;
+  gap: var(--orx-space-4);
+  align-items: stretch;
+}
+
+.orx-about-flow__node {
+  min-block-size: 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.orx-about-flow__node--brand {
+  background: var(--orx-primary);
+  color: var(--orx-surface);
+  border-color: var(--orx-primary);
+}
+
+.orx-about-flow__node--brand .orx-card__copy {
+  color: color-mix(in srgb, var(--orx-surface) 74%, transparent);
+}
+
+.orx-about-flow__arrow {
+  display: grid;
+  place-items: center;
+  min-block-size: 2rem;
+  color: var(--orx-accent);
+}
+
+.orx-about-flow__arrow .orx-icon {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+}
+
+[dir="rtl"] .orx-about-flow__arrow .orx-icon {
+  transform: rotate(180deg);
+}
+
+.orx-about-boundary {
+  margin-block-start: var(--orx-space-6);
+  border-inline-start: 4px solid var(--orx-accent);
+  background: var(--orx-surface-soft);
+  border-radius: var(--orx-radius-sm);
+  padding: var(--orx-space-5);
+}
+
+.orx-about-demo-note {
+  margin-block-start: var(--orx-space-6);
+  color: var(--orx-text-muted);
+  font-size: var(--orx-fs-small);
+}
+
+@media (min-width: 768px) {
+  .orx-about-values,
+  .orx-about-final-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .orx-about-trust-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .orx-about-who__grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(20rem, .95fr);
+    align-items: center;
+  }
+  .orx-about-flow {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+  .orx-about-trust-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767.98px) {
+  .orx-about-hero__facts,
+  .orx-about-facts {
+    grid-template-columns: 1fr;
+  }
+  .orx-about-hero__facts {
+    position: static;
+    padding: var(--orx-space-4);
+    background: var(--orx-primary-strong);
+  }
+}
