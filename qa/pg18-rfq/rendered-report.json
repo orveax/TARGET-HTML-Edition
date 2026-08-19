@@ -43,11 +43,11 @@
     }
   ],
   "interaction": {
-    "ar-query": [],
-    "ar-validation": [],
-    "ar-file": [],
     "en-query": [],
+    "ar-query": [],
     "en-validation": [],
-    "en-file": []
+    "ar-validation": [],
+    "en-file": [],
+    "ar-file": []
   }
 }
