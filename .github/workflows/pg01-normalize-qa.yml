@@ -40,8 +40,8 @@ jobs:
 
           for path, meta in pages.items():
               text = path.read_text(encoding='utf-8')
-              text = text.replace('categories.html', 'product-categories.html')
-              text = text.replace('partner.html', 'become-partner.html')
+              text = text.replace('href="categories.html', 'href="product-categories.html')
+              text = text.replace('href="partner.html', 'href="become-partner.html')
               text = text.replace('data-orx-email="sales"', 'data-orx-email="trade"')
 
               if '<meta name="theme-color"' not in text:
@@ -72,7 +72,7 @@ jobs:
           from pathlib import Path
           from html.parser import HTMLParser
           from urllib.parse import urlparse
-          import json, re, sys
+          import sys
 
           ROOT = Path('.')
           page_specs = {
@@ -90,6 +90,7 @@ jobs:
 
           forbidden = ['targetft', 'target.targetft', 'cdn.jsdelivr', 'unpkg.com', 'cdnjs.cloudflare', 'fonts.googleapis.com', 'fonts.gstatic.com']
           canonical_files = {'product-categories.html','products.html','product-details.html','suppliers.html','market-access.html','markets.html','for-suppliers.html','submit-product.html','rfq.html','become-partner.html','about.html','contact.html','faq.html','resources.html'}
+          legacy_files = {'categories.html','partner.html'}
 
           class Parser(HTMLParser):
             def __init__(self):
@@ -114,7 +115,7 @@ jobs:
             path=ROOT/rel; text=path.read_text(encoding='utf-8'); p=Parser(); p.feed(text)
             checks=[]
             def check(name, ok, detail=''):
-              checks.append((name,ok,detail));
+              checks.append((name,ok,detail))
               if not ok: failures.append(f'{rel}: {name} {detail}')
             check('language/direction', p.html_attrs.get('lang')==spec['lang'] and p.html_attrs.get('dir')==spec['dir'])
             check('single canonical H1', len(p.h1)==1 and p.h1[0]==spec['h1'], repr(p.h1))
@@ -125,7 +126,8 @@ jobs:
             check('structured data baseline', p.jsonld >= 1)
             check('unique IDs', len(p.ids)==len(set(p.ids)))
             check('no forbidden client/CDN leakage', not any(x.lower() in text.lower() for x in forbidden))
-            check('canonical file names', 'categories.html' not in text and 'partner.html' not in text)
+            used_basenames={urlparse(h).path.split('/')[-1] for h in p.links}
+            check('no legacy canonical filenames', not bool(used_basenames & legacy_files), str(sorted(used_basenames & legacy_files)))
             check('future route names valid', all((urlparse(h).path.split('/')[-1] in canonical_files or urlparse(h).path.split('/')[-1] in ('','index.html') or h.startswith('#') or h.startswith('../')) for h in p.links if not h.startswith(('mailto:','tel:','http://','https://'))), str(p.links))
             local_assets=[]
             for asset in p.assets:
@@ -138,7 +140,7 @@ jobs:
             check('local Bootstrap runtime', '../assets/vendor/bootstrap/' in text)
             check('M1 runtime present', all(x in text for x in ('../assets/js/config.js','../assets/js/config-engine.js','../assets/js/origex-ui.js')))
             check('FAQ disclosure interaction', text.count('data-orx-accordion-trigger') >= 3)
-            check('featured demo products', all(x in text for x in ('Tomato','Hibiscus','UHT','Frozen') ) if spec['lang']=='en' else all(x in text for x in ('طماطم','كركديه','UHT','مجمدة')))
+            check('featured demo products', all(x in text for x in ('Tomato','Hibiscus','UHT','Frozen')) if spec['lang']=='en' else all(x in text for x in ('طماطم','كركديه','UHT','مجمدة')))
             report.append((rel,checks))
 
           lines=['# ORIGEX — PG01 Home 01 QA Report V1','', 'Product ID: ORX-P01  ', 'Page: PG01 — Home 01 — Food Trading / Importer  ', 'Date: 2026-08-19  ', 'Gate: SOURCE / STRUCTURE / CONTENT / SEO / ASSET INTEGRITY', '']
