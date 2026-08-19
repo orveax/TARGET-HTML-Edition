@@ -17,148 +17,214 @@ permissions:
 
 jobs:
   rendered-qa:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Install Playwright
+      - name: Verify runner browser baseline
+        shell: bash
         run: |
-          npm install --no-save playwright@1.62.0
-          npx playwright install --with-deps chromium
+          set -euo pipefail
+          google-chrome --version
+          chromedriver --version
 
-      - name: Start static server
+      - name: Start static server and ChromeDriver
+        shell: bash
         run: |
+          set -euo pipefail
           python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/origex-http.log 2>&1 &
           echo $! > /tmp/origex-http.pid
+          chromedriver --port=9515 --allowed-origins='*' > /tmp/origex-chromedriver.log 2>&1 &
+          echo $! > /tmp/origex-chromedriver.pid
           sleep 2
 
       - name: Run rendered QA
+        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p qa/pg01-rendered
-          cat > /tmp/pg01-rendered-qa.mjs <<'EOF'
-          import { chromium } from 'playwright';
-          import fs from 'node:fs';
+          cat > /tmp/pg01-rendered-qa.py <<'PY'
+          import base64
+          import json
+          import time
+          import urllib.request
+          from pathlib import Path
 
-          const browser = await chromium.launch({ headless: true });
-          const targets = [
-            { lang: 'ar', path: '/ar/', dir: 'rtl' },
-            { lang: 'en', path: '/en/', dir: 'ltr' },
-          ];
-          const viewports = [
-            { name: 'mobile-390', width: 390, height: 844 },
-            { name: 'tablet-820', width: 820, height: 1180 },
-            { name: 'laptop-1366', width: 1366, height: 900 },
-            { name: 'desktop-1536', width: 1536, height: 960 },
-          ];
+          WD = 'http://127.0.0.1:9515'
 
-          const results = [];
-          let failures = 0;
+          def request(method, path, payload=None):
+              data = None if payload is None else json.dumps(payload).encode('utf-8')
+              req = urllib.request.Request(WD + path, data=data, method=method, headers={'Content-Type': 'application/json'})
+              with urllib.request.urlopen(req, timeout=30) as res:
+                  body = json.loads(res.read().decode('utf-8'))
+              if isinstance(body, dict) and body.get('value') and isinstance(body['value'], dict) and body['value'].get('error'):
+                  raise RuntimeError(body['value'])
+              return body.get('value') if isinstance(body, dict) else body
 
-          for (const target of targets) {
-            for (const viewport of viewports) {
-              const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
-              const page = await context.newPage();
-              const consoleErrors = [];
-              const pageErrors = [];
-              page.on('console', msg => { if (msg.type() === 'error') consoleErrors.push(msg.text()); });
-              page.on('pageerror', err => pageErrors.push(String(err)));
+          def session(width, height):
+              value = request('POST', '/session', {
+                  'capabilities': {
+                      'alwaysMatch': {
+                          'browserName': 'chrome',
+                          'goog:chromeOptions': {
+                              'args': [
+                                  '--headless=new', '--no-sandbox', '--disable-dev-shm-usage',
+                                  '--force-device-scale-factor=1', f'--window-size={width},{height}'
+                              ]
+                          }
+                      }
+                  }
+              })
+              sid = value['sessionId'] if 'sessionId' in value else value.get('session_id')
+              request('POST', f'/session/{sid}/window/rect', {'width': width, 'height': height, 'x': 0, 'y': 0})
+              return sid
 
-              const response = await page.goto(`http://127.0.0.1:4173${target.path}`, { waitUntil: 'networkidle' });
-              await page.emulateMedia({ reducedMotion: 'reduce' });
+          def execute(sid, script, args=None):
+              return request('POST', f'/session/{sid}/execute/sync', {'script': script, 'args': args or []})
 
-              const metrics = await page.evaluate(({ expectedDir, width }) => {
-                const doc = document.documentElement;
-                const body = document.body;
-                const header = document.querySelector('.orx-site-header');
-                const hero = document.querySelector('.orx-hero');
-                const h1 = document.querySelector('h1');
-                const heroActions = document.querySelector('.orx-hero__actions');
-                const buttons = [...document.querySelectorAll('.orx-btn')];
-                const cards = [...document.querySelectorAll('.orx-card')];
-                const sections = [...document.querySelectorAll('main > section')];
-                const offscreen = [...document.querySelectorAll('body *')].filter(el => {
-                  const r = el.getBoundingClientRect();
-                  return r.width > 0 && r.height > 0 && (r.right > width + 1 || r.left < -1);
-                }).slice(0, 20).map(el => ({ tag: el.tagName, cls: el.className || '', left: Math.round(el.getBoundingClientRect().left), right: Math.round(el.getBoundingClientRect().right) }));
+          def cdp(sid, cmd, params=None):
+              return request('POST', f'/session/{sid}/goog/cdp/execute', {'cmd': cmd, 'params': params or {}})
 
-                const buttonRects = buttons.map(b => {
-                  const r = b.getBoundingClientRect();
-                  return { text: (b.textContent || '').trim().slice(0, 60), width: Math.round(r.width), height: Math.round(r.height) };
-                }).filter(x => x.width > 0 && x.height > 0);
-                const cardRects = cards.map(c => Math.round(c.getBoundingClientRect().height)).filter(Boolean);
-                const sectionGaps = sections.slice(1).map((s, i) => {
-                  const prev = sections[i].getBoundingClientRect();
-                  const cur = s.getBoundingClientRect();
-                  return Math.round(cur.top - prev.bottom);
-                });
-                return {
-                  lang: doc.lang,
-                  dir: doc.dir,
-                  expectedDir,
-                  scrollWidth: Math.round(doc.scrollWidth),
-                  clientWidth: Math.round(doc.clientWidth),
-                  horizontalOverflow: doc.scrollWidth > doc.clientWidth + 1,
-                  offscreen,
-                  headerHeight: header ? Math.round(header.getBoundingClientRect().height) : null,
-                  heroHeight: hero ? Math.round(hero.getBoundingClientRect().height) : null,
-                  h1FontSize: h1 ? getComputedStyle(h1).fontSize : null,
-                  h1LineHeight: h1 ? getComputedStyle(h1).lineHeight : null,
-                  h1Width: h1 ? Math.round(h1.getBoundingClientRect().width) : null,
-                  heroActionsDisplay: heroActions ? getComputedStyle(heroActions).display : null,
-                  minButtonHeight: buttonRects.length ? Math.min(...buttonRects.map(x => x.height)) : null,
-                  buttonsBelow44: buttonRects.filter(x => x.height < 44),
-                  cardHeightMin: cardRects.length ? Math.min(...cardRects) : null,
-                  cardHeightMax: cardRects.length ? Math.max(...cardRects) : null,
-                  sectionGapMin: sectionGaps.length ? Math.min(...sectionGaps) : null,
-                  sectionGapMax: sectionGaps.length ? Math.max(...sectionGaps) : null,
-                  bodyBg: getComputedStyle(body).backgroundColor,
-                  bodyColor: getComputedStyle(body).color,
-                };
-              }, { expectedDir: target.dir, width: viewport.width });
+          targets = [
+              {'lang': 'ar', 'path': '/ar/', 'dir': 'rtl'},
+              {'lang': 'en', 'path': '/en/', 'dir': 'ltr'},
+          ]
+          viewports = [
+              {'name': 'mobile-390', 'width': 390, 'height': 844},
+              {'name': 'tablet-820', 'width': 820, 'height': 1180},
+              {'name': 'laptop-1366', 'width': 1366, 'height': 900},
+              {'name': 'desktop-1536', 'width': 1536, 'height': 960},
+          ]
 
-              const minTarget = viewport.width <= 1024 ? 44 : 40;
-              const checks = {
-                http: response?.ok() ?? false,
-                direction: metrics.dir === target.dir,
-                noHorizontalOverflow: !metrics.horizontalOverflow && metrics.offscreen.length === 0,
-                noConsoleErrors: consoleErrors.length === 0 && pageErrors.length === 0,
-                touchTargets: (metrics.minButtonHeight ?? 0) >= minTarget,
-                heroReadable: (metrics.h1Width ?? 0) > 0 && (metrics.heroHeight ?? 0) > 0,
-              };
-              const pass = Object.values(checks).every(Boolean);
-              if (!pass) failures += 1;
+          metric_script = r'''
+          const width = arguments[0];
+          const expectedDir = arguments[1];
+          const doc = document.documentElement;
+          const body = document.body;
+          const visible = el => {
+            const cs = getComputedStyle(el);
+            const r = el.getBoundingClientRect();
+            return cs.display !== 'none' && cs.visibility !== 'hidden' && r.width > 0 && r.height > 0 && !el.closest('[aria-hidden="true"]');
+          };
+          const header = document.querySelector('.orx-site-header');
+          const hero = document.querySelector('.orx-hero');
+          const h1 = document.querySelector('h1');
+          const buttons = [...document.querySelectorAll('.orx-btn')].filter(visible);
+          const cards = [...document.querySelectorAll('.orx-card')].filter(visible);
+          const offscreen = [...document.querySelectorAll('body *')].filter(el => {
+            if (!visible(el)) return false;
+            if (getComputedStyle(el).position === 'fixed') return false;
+            const r = el.getBoundingClientRect();
+            return r.right > width + 1 || r.left < -1;
+          }).slice(0, 20).map(el => {
+            const r = el.getBoundingClientRect();
+            return {tag: el.tagName, cls: typeof el.className === 'string' ? el.className : '', left: Math.round(r.left), right: Math.round(r.right)};
+          });
+          const buttonRects = buttons.map(b => {
+            const r = b.getBoundingClientRect();
+            return {text:(b.textContent||'').trim().slice(0,60), width:Math.round(r.width), height:Math.round(r.height)};
+          });
+          const cardRects = cards.map(c => Math.round(c.getBoundingClientRect().height));
+          return {
+            lang: doc.lang,
+            dir: doc.dir,
+            expectedDir,
+            scrollWidth: Math.round(doc.scrollWidth),
+            clientWidth: Math.round(doc.clientWidth),
+            horizontalOverflow: doc.scrollWidth > doc.clientWidth + 1,
+            offscreen,
+            headerHeight: header ? Math.round(header.getBoundingClientRect().height) : null,
+            heroHeight: hero ? Math.round(hero.getBoundingClientRect().height) : null,
+            h1FontSize: h1 ? getComputedStyle(h1).fontSize : null,
+            h1LineHeight: h1 ? getComputedStyle(h1).lineHeight : null,
+            h1Width: h1 ? Math.round(h1.getBoundingClientRect().width) : null,
+            minButtonHeight: buttonRects.length ? Math.min(...buttonRects.map(x => x.height)) : null,
+            buttonsBelow44: buttonRects.filter(x => x.height < 44),
+            cardHeightMin: cardRects.length ? Math.min(...cardRects) : null,
+            cardHeightMax: cardRects.length ? Math.max(...cardRects) : null,
+            bodyBg: getComputedStyle(body).backgroundColor,
+            bodyColor: getComputedStyle(body).color,
+            fontsReady: document.fonts ? document.fonts.status : 'unsupported'
+          };
+          '''
 
-              const screenshot = `qa/pg01-rendered/${target.lang}-${viewport.name}.jpeg`;
-              await page.screenshot({ path: screenshot, fullPage: true, type: 'jpeg', quality: 42 });
+          results = []
+          failures = 0
+          for target in targets:
+              for vp in viewports:
+                  sid = session(vp['width'], vp['height'])
+                  console_errors = []
+                  page_errors = []
+                  try:
+                      request('POST', f'/session/{sid}/url', {'url': f"http://127.0.0.1:4173{target['path']}"})
+                      time.sleep(1.2)
+                      execute(sid, "return document.fonts ? document.fonts.ready.then(()=>true) : true;")
+                      metrics = execute(sid, metric_script, [vp['width'], target['dir']])
+                      min_target = 44 if vp['width'] <= 1024 else 40
+                      checks = {
+                          'direction': metrics['dir'] == target['dir'],
+                          'noHorizontalOverflow': not metrics['horizontalOverflow'] and len(metrics['offscreen']) == 0,
+                          'touchTargets': (metrics['minButtonHeight'] or 0) >= min_target,
+                          'heroReadable': (metrics['h1Width'] or 0) > 0 and (metrics['heroHeight'] or 0) > 0,
+                          'fontsReady': metrics['fontsReady'] in ('loaded', 'unsupported'),
+                      }
+                      passed = all(checks.values())
+                      if not passed:
+                          failures += 1
 
-              results.push({ target: target.lang, viewport, minTarget, pass, checks, metrics, consoleErrors, pageErrors, screenshot });
-              await context.close();
-            }
-          }
+                      layout = cdp(sid, 'Page.getLayoutMetrics')
+                      size = layout.get('cssContentSize') or layout.get('contentSize')
+                      shot = cdp(sid, 'Page.captureScreenshot', {
+                          'format': 'jpeg', 'quality': 42, 'fromSurface': True, 'captureBeyondViewport': True,
+                          'clip': {'x': 0, 'y': 0, 'width': size['width'], 'height': size['height'], 'scale': 1}
+                      })
+                      shot_path = Path(f"qa/pg01-rendered/{target['lang']}-{vp['name']}.jpeg")
+                      shot_path.write_bytes(base64.b64decode(shot['data']))
 
-          await browser.close();
-          fs.writeFileSync('qa/pg01-rendered/report.json', JSON.stringify({ generatedAt: new Date().toISOString(), failures, results }, null, 2));
+                      results.append({
+                          'target': target['lang'], 'viewport': vp, 'minTarget': min_target,
+                          'pass': passed, 'checks': checks, 'metrics': metrics,
+                          'consoleErrors': console_errors, 'pageErrors': page_errors,
+                          'screenshot': str(shot_path)
+                      })
+                  finally:
+                      try:
+                          request('DELETE', f'/session/{sid}')
+                      except Exception:
+                          pass
 
-          const lines = ['# PG01 Rendered QA', '', `Generated: ${new Date().toISOString()}`, '', '| Lang | Viewport | Result | Overflow | Console | Min button | Required | Hero |', '|---|---:|---|---|---|---:|---:|---|'];
-          for (const r of results) {
-            lines.push(`| ${r.target.toUpperCase()} | ${r.viewport.width}×${r.viewport.height} | ${r.pass ? 'PASS' : 'FAIL'} | ${r.checks.noHorizontalOverflow ? 'PASS' : 'FAIL'} | ${r.checks.noConsoleErrors ? 'PASS' : 'FAIL'} | ${r.metrics.minButtonHeight ?? 'n/a'}px | ${r.minTarget}px | ${r.checks.heroReadable ? 'PASS' : 'FAIL'} |`);
-          }
-          lines.push('', '## Notes', '', '- This is rendered Chromium QA, not final human visual approval.', '- Screenshots are evidence for UI/UX review and are not buyer-package assets.', '- C8 remains blocked if any rendered check fails or human visual review finds a defect.', '');
-          fs.writeFileSync('qa/pg01-rendered/README.md', lines.join('\n'));
+          report = {'generatedAt': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), 'failures': failures, 'results': results}
+          Path('qa/pg01-rendered/report.json').write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding='utf-8')
 
-          if (failures) process.exitCode = 1;
-          EOF
-          node /tmp/pg01-rendered-qa.mjs
+          lines = [
+              '# PG01 Rendered QA', '', f"Generated: {report['generatedAt']}", '',
+              '| Lang | Viewport | Result | Overflow | Min button | Required | Hero | Fonts |',
+              '|---|---:|---|---|---:|---:|---|---|'
+          ]
+          for r in results:
+              lines.append(
+                  f"| {r['target'].upper()} | {r['viewport']['width']}×{r['viewport']['height']} | "
+                  f"{'PASS' if r['pass'] else 'FAIL'} | {'PASS' if r['checks']['noHorizontalOverflow'] else 'FAIL'} | "
+                  f"{r['metrics']['minButtonHeight'] or 'n/a'}px | {r['minTarget']}px | "
+                  f"{'PASS' if r['checks']['heroReadable'] else 'FAIL'} | {'PASS' if r['checks']['fontsReady'] else 'FAIL'} |"
+              )
+          lines += [
+              '', '## Notes', '',
+              '- Rendered in headless Google Chrome on the GitHub-hosted Ubuntu runner.',
+              '- Screenshots are QA evidence and are not buyer-package assets.',
+              '- This gate checks rendered layout mechanics; human visual review still controls final C8 approval.', ''
+          ]
+          Path('qa/pg01-rendered/README.md').write_text('\n'.join(lines), encoding='utf-8')
+          raise SystemExit(1 if failures else 0)
+          PY
+          python3 /tmp/pg01-rendered-qa.py
 
       - name: Commit QA evidence
         if: always()
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name 'orveax-build'
           git config user.email 'actions@users.noreply.github.com'
           git add qa/pg01-rendered
