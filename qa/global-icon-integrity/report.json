@@ -1,7 +1,7 @@
 {
   "failures": [],
   "summary": {
-    "pagesChecked": 45,
+    "pagesChecked": 46,
     "symbolsRegistered": 33,
     "symbolsReferenced": 29,
     "missingReferences": 0
@@ -296,6 +296,25 @@
         "chevron-down",
         "menu",
         "search",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/resources.html": {
+      "references": [
+        "arrow-up",
+        "badge-check",
+        "building-2",
+        "chevron-down",
+        "download",
+        "earth",
+        "factory",
+        "file-text",
+        "info",
+        "menu",
+        "message-circle",
+        "package",
+        "shield-check",
         "x"
       ],
       "missing": []
