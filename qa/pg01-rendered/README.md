@@ -1,6 +1,6 @@
 # PG01 Rendered QA
 
-Generated: 2026-08-19T18:04:24Z
+Generated: 2026-08-19T21:03:40Z
 
 | Lang | Viewport | Result | Overflow | Min button | Required | Hero | Fonts |
 |---|---:|---|---|---:|---:|---|---|
