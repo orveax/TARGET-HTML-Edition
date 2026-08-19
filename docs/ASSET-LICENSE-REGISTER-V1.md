@@ -46,6 +46,7 @@ No third-party asset or dependency may enter the distributable package without a
 | ORX-MEDIA-003 | Hibiscus drink demo packshot | `assets/media/demo/product-hibiscus.svg` | ORVEAX OWNED | fictional generic packaging; no third-party brand/trademark |
 | ORX-MEDIA-004 | UHT milk demo packshot | `assets/media/demo/product-milk.svg` | ORVEAX OWNED | fictional generic packaging; no third-party brand/trademark |
 | ORX-MEDIA-005 | Frozen vegetables demo packshot | `assets/media/demo/product-frozen.svg` | ORVEAX OWNED | fictional generic packaging; no third-party brand/trademark |
+| ORX-MEDIA-006 | Distribution network hero scene | `assets/media/demo/hero-distribution-network.svg` | ORVEAX OWNED | PG02 wholesale/distribution demo media; abstract warehouse, inventory, route and channel nodes; no real fleet/property/coverage claim |
 
 ## Fonts
 
@@ -77,7 +78,7 @@ Primary demo sourcing strategy:
 
 Default buyer ZIP rule: no third-party stock photography unless redistribution rights for that exact asset are verified and logged.
 
-**PG01 marketplace polish decision:** the first Home benchmark uses ORVEAX-owned vector demo media instead of third-party stock photography. These files are distributable, self-contained, fictional, and intentionally free from supplier packaging, trademarks, people/release risk or external attribution requirements.
+**M2 Home decision:** PG01 and PG02 use ORVEAX-owned vector demo media instead of third-party stock photography. These files are distributable, self-contained, fictional, and intentionally free from supplier packaging, trademarks, people/release risk or external attribution requirements.
 
 Image rows must include:
 - Asset ID
