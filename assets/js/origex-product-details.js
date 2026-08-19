@@ -72,8 +72,8 @@
     certifications: root.querySelector('[data-pg11-certifications]'),
     resources: root.querySelector('[data-pg11-resources]'),
     related: root.querySelector('[data-pg11-related]'),
-    quoteLinks: Array.from(document.querySelectorAll('[data-pg11-rfq-link]')),
-    languageLinks: Array.from(document.querySelectorAll('[data-pg11-language-link]')),
+    quoteLinks: Array.from(document.querySelectorAll('[data-pg11-rfq-link], [data-orx-header-cta]')),
+    languageLinks: Array.from(document.querySelectorAll('.orx-lang-switch, .orx-mobile-nav a[lang][href*="product-details.html"]')),
     productSchema: document.getElementById('pg11-product-schema')
   };
 
