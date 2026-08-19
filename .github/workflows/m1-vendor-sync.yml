@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/m1-vendor-sync.yml'
+      - '.m1-vendor-trigger'
 
 permissions:
   contents: write
