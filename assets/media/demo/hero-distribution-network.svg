@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">ORIGEX distribution network demo composition</title>
+  <desc id="desc">Abstract warehouse, inventory, route and sales-channel nodes for template demonstration.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7F4EE"/>
+      <stop offset="1" stop-color="#E6ECE8"/>
+    </linearGradient>
+    <linearGradient id="warehouse" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#15343B"/>
+      <stop offset="1" stop-color="#28555B"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#0D252B" flood-opacity=".12"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="900" rx="54" fill="url(#bg)"/>
+  <circle cx="1000" cy="128" r="170" fill="#C47A4A" opacity=".08"/>
+  <circle cx="170" cy="760" r="210" fill="#3F6F68" opacity=".08"/>
+
+  <g opacity=".34" fill="none" stroke="#6F8E86" stroke-width="3" stroke-dasharray="10 13">
+    <path d="M386 438 C560 336 710 306 932 256"/>
+    <path d="M386 462 C600 454 760 490 990 506"/>
+    <path d="M386 492 C560 588 726 646 930 674"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <path d="M155 340 340 240 525 340v280H155z" fill="url(#warehouse)"/>
+    <path d="m155 340 185-100 185 100" fill="none" stroke="#F7F4EE" stroke-width="18" stroke-linejoin="round" opacity=".96"/>
+    <rect x="205" y="396" width="270" height="180" rx="18" fill="#F7F4EE" opacity=".96"/>
+    <rect x="235" y="438" width="80" height="108" rx="10" fill="#C47A4A"/>
+    <rect x="330" y="418" width="114" height="128" rx="10" fill="#D7E1DC"/>
+    <path d="M252 470h46M252 492h46M350 452h74M350 476h74M350 500h74" stroke="#15343B" stroke-width="8" stroke-linecap="round" opacity=".72"/>
+  </g>
+
+  <g transform="translate(458 535)" filter="url(#shadow)">
+    <rect width="230" height="92" rx="24" fill="#FFFFFF"/>
+    <path d="M32 57h98V22h42l34 35v12H32z" fill="#3F6F68"/>
+    <rect x="145" y="31" width="30" height="20" rx="5" fill="#D7E1DC"/>
+    <circle cx="74" cy="70" r="15" fill="#15343B"/>
+    <circle cx="169" cy="70" r="15" fill="#15343B"/>
+  </g>
+
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(858 176)" filter="url(#shadow)">
+      <rect width="220" height="148" rx="28" fill="#FFFFFF"/>
+      <circle cx="52" cy="50" r="25" fill="#C47A4A" opacity=".18"/>
+      <path d="M40 51h24M52 39v24" stroke="#C47A4A" stroke-width="6" stroke-linecap="round"/>
+      <rect x="91" y="35" width="86" height="12" rx="6" fill="#15343B" opacity=".72"/>
+      <rect x="91" y="58" width="60" height="9" rx="4.5" fill="#6F8E86" opacity=".55"/>
+      <rect x="36" y="102" width="148" height="10" rx="5" fill="#D7E1DC"/>
+    </g>
+    <g transform="translate(900 430)" filter="url(#shadow)">
+      <rect width="220" height="148" rx="28" fill="#FFFFFF"/>
+      <circle cx="52" cy="50" r="25" fill="#356A8A" opacity=".16"/>
+      <path d="M38 58h28l-7-26H45z" fill="#356A8A" opacity=".9"/>
+      <rect x="91" y="35" width="86" height="12" rx="6" fill="#15343B" opacity=".72"/>
+      <rect x="91" y="58" width="68" height="9" rx="4.5" fill="#6F8E86" opacity=".55"/>
+      <rect x="36" y="102" width="148" height="10" rx="5" fill="#D7E1DC"/>
+    </g>
+    <g transform="translate(838 646)" filter="url(#shadow)">
+      <rect width="220" height="148" rx="28" fill="#FFFFFF"/>
+      <circle cx="52" cy="50" r="25" fill="#3F6F68" opacity=".16"/>
+      <path d="M40 58h24V42H40zM44 36h16" fill="none" stroke="#3F6F68" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="91" y="35" width="86" height="12" rx="6" fill="#15343B" opacity=".72"/>
+      <rect x="91" y="58" width="72" height="9" rx="4.5" fill="#6F8E86" opacity=".55"/>
+      <rect x="36" y="102" width="148" height="10" rx="5" fill="#D7E1DC"/>
+    </g>
+  </g>
+
+  <g fill="#15343B">
+    <circle cx="808" cy="256" r="10"/>
+    <circle cx="848" cy="506" r="10"/>
+    <circle cx="794" cy="674" r="10"/>
+  </g>
+  <g fill="#C47A4A">
+    <circle cx="386" cy="438" r="13"/>
+    <circle cx="386" cy="462" r="13"/>
+    <circle cx="386" cy="492" r="13"/>
+  </g>
+</svg>
