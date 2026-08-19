@@ -1,0 +1,32 @@
+{
+  "failures": [],
+  "pages": {
+    "ar": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "notice",
+        "detail",
+        "navigation",
+        "related",
+        "cta"
+      ],
+      "caseCount": 6
+    },
+    "en": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "notice",
+        "detail",
+        "navigation",
+        "related",
+        "cta"
+      ],
+      "caseCount": 6
+    }
+  },
+  "runtime": {
+    "failures": []
+  }
+}
