@@ -2,7 +2,7 @@
 
 Product ID: ORX-P01  
 Milestone: M5 — Proof / Resources / Compliance / Content  
-Status: PS6 — FROZEN FOR BUILD  
+Status: PS7 — IMPLEMENTED / CI QA PASS — PS8 CLOUDFLARE REVIEW PENDING  
 Canonical file: `case-studies.html`
 
 ## Purpose
@@ -122,7 +122,7 @@ Breadcrumb → Hero / Proof Boundary → Filter Toolbar → Case Study Grid → 
 - Strong content hierarchy over decorative imagery.
 - Cards use restrained category/focus tags, challenge statement, action summary and highlighted illustrative result.
 - Grid: 1 column mobile, 2 columns tablet, 3 columns desktop where content remains readable.
-- Filter toolbar may horizontally scroll on narrow screens without causing page overflow.
+- Filter toolbar horizontally scrolls inside its own bounded container on narrow screens without creating page overflow.
 - Result highlight uses the existing accent/surface vocabulary; no success-green visual that could imply verified achievement.
 - Reuse M1 tokens/components; page CSS is composition-only.
 
@@ -131,7 +131,7 @@ Breadcrumb → Hero / Proof Boundary → Filter Toolbar → Case Study Grid → 
 - Standard Global Navigation V1.
 - `Explore` is the current desktop top-level state.
 - `Case Studies` is current in the canonical Mega Menu.
-- The locked Global Navigation V1 mobile drawer intentionally does **not** include Case Studies; PG20 therefore preserves the canonical flat mobile order without introducing a page-local navigation variant or current marker.
+- The locked Global Navigation V1 mobile drawer intentionally does **not** include Case Studies; PG20 preserves the canonical flat mobile order without introducing a page-local navigation variant or current marker.
 - Language switch preserves a valid `focus` query parameter.
 - Footer consumes N04 Global Footer V1 exactly; no local footer variant.
 
@@ -166,14 +166,20 @@ Required: self canonical, AR/EN/x-default hreflang, Open Graph baseline, WebPage
 - hidden cards use the `hidden` attribute;
 - case-detail actions have descriptive labels;
 - all interactive controls meet the global touch-target baseline;
-- no horizontal page overflow at 390 / 820 / 1366 / 1536;
+- no horizontal overflow at 390 / 820 / 1366 / 1536;
 - Arabic RTL and English LTR verified independently;
 - reduced-motion inherited globally.
 
+## Final PS7 Evidence — 2026-08-20
+
+- Source/runtime report: `qa/pg20-case-studies/source-report.json` — failures 0.
+- Rendered/interaction report: `qa/pg20-case-studies/rendered-report.json` — failures 0; AR/EN × 390/820/1366/1536 = 8/8 PASS.
+- Filter query hydration, language preservation, keyboard reset and empty-state behavior PASS in both languages.
+- Global Footer V1 PASS and F05 Icon Integrity PASS across the active AR/EN page set.
+- Initial rendered run found horizontal overflow only at 390px in AR/EN. The filter row was constrained with logical-size-safe flex/grid rules and a bounded horizontal-scroll filter group in commit `020097b889ec04df899e414647fcf3d89181d7d4`; final QA evidence commit `d559056fe2b6b6bd88b7d0debf371f19525e0d80` passed.
+
 ## Exit Gate
 
-PS7 only after AR+EN implementation and source/SEO/navigation/footer/icon/client-leak/filter-query/language-preservation/responsive/filter-interaction/empty-state QA PASS.
-
-PS8 remains gated by deployed Cloudflare browser acceptance.
+PS7 PASSED. PS8 remains gated by deployed Cloudflare browser acceptance.
 
 Copyright © ORVEAX.
