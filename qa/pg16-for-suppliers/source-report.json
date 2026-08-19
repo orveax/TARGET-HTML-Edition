@@ -1,0 +1,37 @@
+{
+  "failures": [
+    "en:unsupported-claim",
+    "global-navigation-drift"
+  ],
+  "pages": {
+    "ar": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "value",
+        "qualification",
+        "process",
+        "documents",
+        "boundaries",
+        "faq",
+        "cta"
+      ]
+    },
+    "en": {
+      "failures": [
+        "unsupported-claim"
+      ],
+      "sections": [
+        "hero",
+        "value",
+        "qualification",
+        "process",
+        "documents",
+        "boundaries",
+        "faq",
+        "cta"
+      ]
+    }
+  },
+  "navigation_output": "DRIFT: ar/for-suppliers.html\nDRIFT: en/for-suppliers.html\n"
+}
