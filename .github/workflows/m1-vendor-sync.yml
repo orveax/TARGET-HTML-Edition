@@ -1,0 +1,90 @@
+name: M1 Vendor Baseline Sync
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/m1-vendor-sync.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  vendor-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download pinned Bootstrap 5.3.8
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/vendor/bootstrap/css assets/vendor/bootstrap/js assets/vendor/bootstrap
+          curl -fsSL https://raw.githubusercontent.com/twbs/bootstrap/v5.3.8/dist/css/bootstrap.min.css -o assets/vendor/bootstrap/css/bootstrap.min.css
+          curl -fsSL https://raw.githubusercontent.com/twbs/bootstrap/v5.3.8/dist/css/bootstrap.rtl.min.css -o assets/vendor/bootstrap/css/bootstrap.rtl.min.css
+          curl -fsSL https://raw.githubusercontent.com/twbs/bootstrap/v5.3.8/dist/js/bootstrap.bundle.min.js -o assets/vendor/bootstrap/js/bootstrap.bundle.min.js
+          curl -fsSL https://raw.githubusercontent.com/twbs/bootstrap/v5.3.8/LICENSE -o assets/vendor/bootstrap/LICENSE
+
+      - name: Download pinned fonts and OFL licenses
+        shell: bash
+        run: |
+          set -euo pipefail
+          GF_REF=e1118da94a8cb00cf6d06cdac9ef13eb1e5c6ab7
+          mkdir -p assets/fonts/tajawal assets/fonts/manrope
+          for weight in Regular Medium Bold ExtraBold; do
+            curl -fsSL "https://raw.githubusercontent.com/google/fonts/${GF_REF}/ofl/tajawal/Tajawal-${weight}.ttf" -o "assets/fonts/tajawal/Tajawal-${weight}.ttf"
+          done
+          curl -fsSL "https://raw.githubusercontent.com/google/fonts/${GF_REF}/ofl/tajawal/OFL.txt" -o assets/fonts/tajawal/OFL.txt
+          curl -fsSL "https://raw.githubusercontent.com/google/fonts/${GF_REF}/ofl/manrope/Manrope%5Bwght%5D.ttf" -o 'assets/fonts/manrope/Manrope[wght].ttf'
+          curl -fsSL "https://raw.githubusercontent.com/google/fonts/${GF_REF}/ofl/manrope/OFL.txt" -o assets/fonts/manrope/OFL.txt
+
+      - name: Download selected Lucide 1.27.0 icons and build local sprite
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/icons/lucide
+          icons=(arrow-left arrow-right arrow-up menu x search package truck factory globe-2 shield-check file-text download chevron-down chevron-up mail phone map-pin external-link check info triangle-alert upload layers boxes handshake clock building-2 badge-check route circle-help)
+          for icon in "${icons[@]}"; do
+            curl -fsSL "https://raw.githubusercontent.com/lucide-icons/lucide/1.27.0/icons/${icon}.svg" -o "assets/icons/lucide/${icon}.svg"
+          done
+          curl -fsSL https://raw.githubusercontent.com/lucide-icons/lucide/1.27.0/LICENSE -o assets/icons/lucide/LICENSE
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          base = Path('assets/icons/lucide')
+          symbols=[]
+          for p in sorted(base.glob('*.svg')):
+              text=p.read_text()
+              inner=re.sub(r'^.*?<svg[^>]*>', '', text, count=1, flags=re.S)
+              inner=re.sub(r'</svg>\s*$', '', inner, flags=re.S)
+              symbols.append(f'<symbol id="{p.stem}" viewBox="0 0 24 24">{inner.strip()}</symbol>')
+          out='<svg xmlns="http://www.w3.org/2000/svg" style="display:none">\n'+'\n'.join(symbols)+'\n</svg>\n'
+          Path('assets/icons/sprite.svg').write_text(out)
+          PY
+
+      - name: Record exact dependency checksums
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha256sum \
+            assets/vendor/bootstrap/css/bootstrap.min.css \
+            assets/vendor/bootstrap/css/bootstrap.rtl.min.css \
+            assets/vendor/bootstrap/js/bootstrap.bundle.min.js \
+            assets/fonts/tajawal/*.ttf \
+            'assets/fonts/manrope/Manrope[wght].ttf' \
+            assets/icons/sprite.svg > docs/M1-VENDOR-SHA256.txt
+
+      - name: Commit vendor baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "orveax-build"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets/vendor assets/fonts assets/icons docs/M1-VENDOR-SHA256.txt
+          if git diff --cached --quiet; then
+            echo "No vendor changes"
+            exit 0
+          fi
+          git commit -m "M1 package local vendor baseline"
+          git push origin main
