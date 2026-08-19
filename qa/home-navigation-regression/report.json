@@ -1,0 +1,420 @@
+{
+  "generatedAt": "2026-08-19T12:14:49Z",
+  "failures": 2,
+  "variants": [
+    "index.html",
+    "home-02.html",
+    "home-03.html",
+    "landing.html"
+  ],
+  "routes": {
+    "ar/index.html": true,
+    "ar/home-02.html": true,
+    "ar/home-03.html": true,
+    "ar/landing.html": true,
+    "en/index.html": true,
+    "en/home-02.html": true,
+    "en/home-03.html": true,
+    "en/landing.html": true
+  },
+  "pages": [
+    {
+      "lang": "ar",
+      "file": "index.html",
+      "desktop": {
+        "active": [
+          "index.html"
+        ],
+        "current": "index.html",
+        "escaped": true,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "group": true,
+        "hrefs": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "menu": true,
+        "noViewportOverflow": true,
+        "opened": true,
+        "trigger": true
+      },
+      "mobile": {
+        "active": [
+          "index.html"
+        ],
+        "current": "index.html",
+        "drawer": true,
+        "escaped": true,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "hrefs": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "nav": true,
+        "opened": true,
+        "opener": true
+      }
+    },
+    {
+      "lang": "ar",
+      "file": "home-02.html",
+      "desktop": {
+        "active": [
+          "home-02.html"
+        ],
+        "current": "home-02.html",
+        "escaped": true,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "group": true,
+        "hrefs": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "menu": true,
+        "noViewportOverflow": true,
+        "opened": true,
+        "trigger": true
+      },
+      "mobile": {
+        "active": [
+          "home-02.html"
+        ],
+        "current": "home-02.html",
+        "drawer": true,
+        "escaped": true,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "hrefs": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "nav": true,
+        "opened": true,
+        "opener": true
+      }
+    },
+    {
+      "lang": "ar",
+      "file": "home-03.html",
+      "desktop": {
+        "active": [
+          "home-03.html"
+        ],
+        "current": "home-03.html",
+        "escaped": true,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "group": true,
+        "hrefs": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "menu": true,
+        "noViewportOverflow": true,
+        "opened": true,
+        "trigger": true
+      },
+      "mobile": {
+        "active": [
+          "home-03.html"
+        ],
+        "current": "home-03.html",
+        "drawer": true,
+        "escaped": true,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "hrefs": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "nav": true,
+        "opened": true,
+        "opener": true
+      }
+    },
+    {
+      "lang": "ar",
+      "file": "landing.html",
+      "desktop": {
+        "active": [],
+        "current": "landing.html",
+        "escaped": false,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "group": false,
+        "hrefs": [],
+        "menu": false,
+        "noViewportOverflow": true,
+        "opened": false,
+        "trigger": false
+      },
+      "mobile": {
+        "active": [
+          "landing.html"
+        ],
+        "current": "landing.html",
+        "drawer": true,
+        "escaped": true,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "hrefs": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "nav": true,
+        "opened": true,
+        "opener": true
+      }
+    },
+    {
+      "lang": "en",
+      "file": "index.html",
+      "desktop": {
+        "active": [
+          "index.html"
+        ],
+        "current": "index.html",
+        "escaped": true,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "group": true,
+        "hrefs": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "menu": true,
+        "noViewportOverflow": true,
+        "opened": true,
+        "trigger": true
+      },
+      "mobile": {
+        "active": [
+          "index.html"
+        ],
+        "current": "index.html",
+        "drawer": true,
+        "escaped": true,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "hrefs": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "nav": true,
+        "opened": true,
+        "opener": true
+      }
+    },
+    {
+      "lang": "en",
+      "file": "home-02.html",
+      "desktop": {
+        "active": [
+          "home-02.html"
+        ],
+        "current": "home-02.html",
+        "escaped": true,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "group": true,
+        "hrefs": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "menu": true,
+        "noViewportOverflow": true,
+        "opened": true,
+        "trigger": true
+      },
+      "mobile": {
+        "active": [
+          "home-02.html"
+        ],
+        "current": "home-02.html",
+        "drawer": true,
+        "escaped": true,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "hrefs": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "nav": true,
+        "opened": true,
+        "opener": true
+      }
+    },
+    {
+      "lang": "en",
+      "file": "home-03.html",
+      "desktop": {
+        "active": [
+          "home-03.html"
+        ],
+        "current": "home-03.html",
+        "escaped": true,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "group": true,
+        "hrefs": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "menu": true,
+        "noViewportOverflow": true,
+        "opened": true,
+        "trigger": true
+      },
+      "mobile": {
+        "active": [
+          "home-03.html"
+        ],
+        "current": "home-03.html",
+        "drawer": true,
+        "escaped": true,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "hrefs": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "nav": true,
+        "opened": true,
+        "opener": true
+      }
+    },
+    {
+      "lang": "en",
+      "file": "landing.html",
+      "desktop": {
+        "active": [],
+        "current": "landing.html",
+        "escaped": false,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "group": false,
+        "hrefs": [],
+        "menu": false,
+        "noViewportOverflow": true,
+        "opened": false,
+        "trigger": false
+      },
+      "mobile": {
+        "active": [
+          "landing.html"
+        ],
+        "current": "landing.html",
+        "drawer": true,
+        "escaped": true,
+        "expected": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "hrefs": [
+          "index.html",
+          "home-02.html",
+          "home-03.html",
+          "landing.html"
+        ],
+        "nav": true,
+        "opened": true,
+        "opener": true
+      }
+    }
+  ],
+  "errors": [
+    "ar/landing.html: desktop navigation regression: {'active': [], 'current': 'landing.html', 'escaped': False, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'group': False, 'hrefs': [], 'menu': False, 'noViewportOverflow': True, 'opened': False, 'trigger': False}",
+    "en/landing.html: desktop navigation regression: {'active': [], 'current': 'landing.html', 'escaped': False, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'group': False, 'hrefs': [], 'menu': False, 'noViewportOverflow': True, 'opened': False, 'trigger': False}"
+  ]
+}
