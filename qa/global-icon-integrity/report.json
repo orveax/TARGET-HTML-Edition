@@ -1,0 +1,681 @@
+{
+  "failures": [],
+  "summary": {
+    "pagesChecked": 40,
+    "symbolsRegistered": 33,
+    "symbolsReferenced": 28,
+    "missingReferences": 0
+  },
+  "pages": {
+    "ar/about.html": {
+      "references": [
+        "arrow-left",
+        "boxes",
+        "chevron-down",
+        "earth",
+        "factory",
+        "file-text",
+        "menu",
+        "package",
+        "route",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/become-partner.html": {
+      "references": [
+        "arrow-up",
+        "badge-check",
+        "boxes",
+        "building-2",
+        "chevron-down",
+        "file-text",
+        "globe-2",
+        "handshake",
+        "info",
+        "map-pin",
+        "menu",
+        "message-circle",
+        "package",
+        "route",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/capabilities.html": {
+      "references": [
+        "arrow-left",
+        "arrow-up",
+        "boxes",
+        "building-2",
+        "chevron-down",
+        "earth",
+        "file-text",
+        "handshake",
+        "layers",
+        "map-pin",
+        "menu",
+        "package",
+        "route",
+        "search",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/company-profile.html": {
+      "references": [
+        "arrow-left",
+        "badge-check",
+        "building-2",
+        "chevron-down",
+        "factory",
+        "file-text",
+        "info",
+        "layers",
+        "menu",
+        "package",
+        "route",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/for-suppliers.html": {
+      "references": [
+        "arrow-up",
+        "badge-check",
+        "boxes",
+        "chevron-down",
+        "earth",
+        "factory",
+        "file-text",
+        "info",
+        "map-pin",
+        "menu",
+        "package",
+        "phone",
+        "route",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/home-02.html": {
+      "references": [
+        "arrow-left",
+        "arrow-up",
+        "boxes",
+        "building-2",
+        "chevron-down",
+        "file-text",
+        "info",
+        "layers",
+        "map-pin",
+        "menu",
+        "package",
+        "phone",
+        "search",
+        "triangle-alert",
+        "truck",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/home-03.html": {
+      "references": [
+        "arrow-left",
+        "arrow-up",
+        "badge-check",
+        "boxes",
+        "chevron-down",
+        "factory",
+        "file-text",
+        "info",
+        "map-pin",
+        "menu",
+        "package",
+        "phone",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/how-we-work.html": {
+      "references": [
+        "arrow-left",
+        "boxes",
+        "building-2",
+        "check",
+        "chevron-down",
+        "factory",
+        "file-text",
+        "handshake",
+        "map-pin",
+        "menu",
+        "package",
+        "route",
+        "search",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/index.html": {
+      "references": [
+        "arrow-left",
+        "arrow-up",
+        "badge-check",
+        "boxes",
+        "chevron-down",
+        "clock",
+        "earth",
+        "factory",
+        "file-text",
+        "handshake",
+        "info",
+        "layers",
+        "map-pin",
+        "menu",
+        "package",
+        "phone",
+        "route",
+        "search",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/landing.html": {
+      "references": [
+        "arrow-left",
+        "boxes",
+        "clock",
+        "file-text",
+        "info",
+        "layers",
+        "map-pin",
+        "menu",
+        "package",
+        "route",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/market-access.html": {
+      "references": [
+        "arrow-left",
+        "arrow-up",
+        "boxes",
+        "building-2",
+        "check",
+        "chevron-down",
+        "earth",
+        "factory",
+        "handshake",
+        "info",
+        "menu",
+        "package",
+        "phone",
+        "route",
+        "search",
+        "shield-check",
+        "triangle-alert",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/markets.html": {
+      "references": [
+        "arrow-left",
+        "arrow-up",
+        "chevron-down",
+        "earth",
+        "info",
+        "map-pin",
+        "menu",
+        "route",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/product-categories.html": {
+      "references": [
+        "arrow-left",
+        "badge-check",
+        "boxes",
+        "chevron-down",
+        "factory",
+        "layers",
+        "menu",
+        "package",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/product-details.html": {
+      "references": [
+        "chevron-down",
+        "factory",
+        "info",
+        "menu",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/products.html": {
+      "references": [
+        "chevron-down",
+        "menu",
+        "search",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/rfq.html": {
+      "references": [
+        "arrow-up",
+        "building-2",
+        "chevron-down",
+        "file-text",
+        "info",
+        "map-pin",
+        "menu",
+        "message-circle",
+        "package",
+        "upload",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/service-details.html": {
+      "references": [
+        "arrow-left",
+        "arrow-up",
+        "boxes",
+        "chevron-down",
+        "earth",
+        "file-text",
+        "handshake",
+        "menu",
+        "package",
+        "phone",
+        "route",
+        "search",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/submit-product.html": {
+      "references": [
+        "arrow-up",
+        "building-2",
+        "chevron-down",
+        "file-text",
+        "info",
+        "map-pin",
+        "menu",
+        "package",
+        "phone",
+        "upload",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/supplier-details.html": {
+      "references": [
+        "chevron-down",
+        "info",
+        "menu",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/suppliers.html": {
+      "references": [
+        "chevron-down",
+        "menu",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/about.html": {
+      "references": [
+        "arrow-left",
+        "boxes",
+        "chevron-down",
+        "earth",
+        "factory",
+        "file-text",
+        "menu",
+        "package",
+        "route",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/become-partner.html": {
+      "references": [
+        "arrow-up",
+        "badge-check",
+        "boxes",
+        "building-2",
+        "chevron-down",
+        "file-text",
+        "globe-2",
+        "handshake",
+        "info",
+        "map-pin",
+        "menu",
+        "message-circle",
+        "package",
+        "route",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/capabilities.html": {
+      "references": [
+        "arrow-right",
+        "arrow-up",
+        "boxes",
+        "building-2",
+        "chevron-down",
+        "earth",
+        "file-text",
+        "handshake",
+        "layers",
+        "map-pin",
+        "menu",
+        "package",
+        "route",
+        "search",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/company-profile.html": {
+      "references": [
+        "arrow-right",
+        "badge-check",
+        "building-2",
+        "chevron-down",
+        "factory",
+        "file-text",
+        "info",
+        "layers",
+        "menu",
+        "package",
+        "route",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/for-suppliers.html": {
+      "references": [
+        "arrow-up",
+        "badge-check",
+        "boxes",
+        "chevron-down",
+        "earth",
+        "factory",
+        "file-text",
+        "info",
+        "map-pin",
+        "menu",
+        "package",
+        "phone",
+        "route",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/home-02.html": {
+      "references": [
+        "arrow-right",
+        "arrow-up",
+        "boxes",
+        "building-2",
+        "chevron-down",
+        "file-text",
+        "info",
+        "layers",
+        "map-pin",
+        "menu",
+        "package",
+        "phone",
+        "search",
+        "triangle-alert",
+        "truck",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/home-03.html": {
+      "references": [
+        "arrow-right",
+        "arrow-up",
+        "badge-check",
+        "boxes",
+        "chevron-down",
+        "factory",
+        "file-text",
+        "info",
+        "map-pin",
+        "menu",
+        "package",
+        "phone",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/how-we-work.html": {
+      "references": [
+        "arrow-right",
+        "boxes",
+        "building-2",
+        "check",
+        "chevron-down",
+        "factory",
+        "file-text",
+        "handshake",
+        "map-pin",
+        "menu",
+        "package",
+        "route",
+        "search",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/index.html": {
+      "references": [
+        "arrow-right",
+        "arrow-up",
+        "badge-check",
+        "boxes",
+        "chevron-down",
+        "clock",
+        "earth",
+        "factory",
+        "file-text",
+        "handshake",
+        "info",
+        "layers",
+        "map-pin",
+        "menu",
+        "package",
+        "phone",
+        "route",
+        "search",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/landing.html": {
+      "references": [
+        "arrow-right",
+        "boxes",
+        "clock",
+        "file-text",
+        "info",
+        "layers",
+        "map-pin",
+        "menu",
+        "package",
+        "route",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/market-access.html": {
+      "references": [
+        "arrow-right",
+        "arrow-up",
+        "boxes",
+        "building-2",
+        "check",
+        "chevron-down",
+        "earth",
+        "factory",
+        "handshake",
+        "info",
+        "menu",
+        "package",
+        "phone",
+        "route",
+        "search",
+        "shield-check",
+        "triangle-alert",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/markets.html": {
+      "references": [
+        "arrow-right",
+        "arrow-up",
+        "chevron-down",
+        "earth",
+        "info",
+        "map-pin",
+        "menu",
+        "route",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/product-categories.html": {
+      "references": [
+        "arrow-right",
+        "badge-check",
+        "boxes",
+        "chevron-down",
+        "factory",
+        "layers",
+        "menu",
+        "package",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/product-details.html": {
+      "references": [
+        "chevron-down",
+        "factory",
+        "info",
+        "menu",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/products.html": {
+      "references": [
+        "chevron-down",
+        "menu",
+        "search",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/rfq.html": {
+      "references": [
+        "arrow-up",
+        "building-2",
+        "chevron-down",
+        "file-text",
+        "info",
+        "map-pin",
+        "menu",
+        "message-circle",
+        "package",
+        "upload",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/service-details.html": {
+      "references": [
+        "arrow-right",
+        "arrow-up",
+        "boxes",
+        "chevron-down",
+        "earth",
+        "file-text",
+        "handshake",
+        "menu",
+        "package",
+        "phone",
+        "route",
+        "search",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/submit-product.html": {
+      "references": [
+        "arrow-up",
+        "building-2",
+        "chevron-down",
+        "file-text",
+        "info",
+        "map-pin",
+        "menu",
+        "package",
+        "phone",
+        "upload",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/supplier-details.html": {
+      "references": [
+        "chevron-down",
+        "info",
+        "menu",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/suppliers.html": {
+      "references": [
+        "chevron-down",
+        "menu",
+        "x"
+      ],
+      "missing": []
+    }
+  }
+}
