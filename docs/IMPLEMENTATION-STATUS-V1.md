@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Owner: ORVEAX  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-19 — M1 CLOSED / M2 ACTIVE / PG01 C8 CLOSED / STAGING BLOCKED
+Last Updated: 2026-08-19 — M1 CLOSED / M2 ACTIVE / PG01 MARKETPLACE BENCHMARK CLOSED / STAGING BLOCKED
 
 This is the repo-level execution tracker. It records actual current implementation state and must match the active code tree.
 
@@ -27,10 +27,11 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`. Deployment readiness uses the 
 | Hard Audit / Legacy Cleanup | PASS / CLOSED |
 | Canonical Authority Map | PASS / CLOSED |
 | Project Rules | PASS / CLOSED |
-| Asset/License Register | ACTIVE — M1 BASELINE VERIFIED |
-| PG01 Page/Code QA | C8 / PASS / CLOSED |
+| Asset/License Register | ACTIVE — M1 baseline + PG01 ORVEAX-owned demo media verified |
+| PG01 Page/Code QA | C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK |
+| PG01 Marketplace Visual Polish CR | PASS / CLOSED |
 | PG01 Staging Preview | BLOCKED — GitHub Pages not enabled; Configure Pages failed |
-| Current Build Baseline | M2 IN PROGRESS — PG01 closed; PG02 C0; PG02 code blocked until PG01 STAGING PASS |
+| Current Build Baseline | M2 IN PROGRESS — PG01 benchmark closed; PG02 C0; PG02 code blocked until PG01 STAGING PASS |
 
 ## Milestones
 
@@ -82,8 +83,15 @@ assets/
 │   ├── origex-tokens.css
 │   ├── origex-foundation.css
 │   ├── origex-components.css
-│   ├── origex-compositions.css
-│   └── origex-shell.css
+│   ├── origex-compositions.css    # M2 composition entry
+│   ├── origex-marketplace-polish.css
+│   └── origex-shell.css           # M1 shell remains closed
+├── media/demo/
+│   ├── hero-trade-scene.svg
+│   ├── product-tomato-sauce.svg
+│   ├── product-hibiscus.svg
+│   ├── product-milk.svg
+│   └── product-frozen.svg
 ├── fonts/
 │   ├── tajawal/
 │   └── manrope/
@@ -114,12 +122,13 @@ docs/
 ├── M1-QA-REPORT-V1.md
 ├── M1-CLOSURE-2026-08-19.md
 ├── PG01-CLOSURE-2026-08-19.md
+├── PG01-MARKETPLACE-VISUAL-POLISH-2026-08-19.md
 ├── STAGING-PREVIEW-GATE-V1.md
 ├── M1-VENDOR-SHA256.txt
 └── canonical authorities
 ```
 
-`origex-compositions.css` is an M2 reusable F07 media-composition extension built on the frozen M1 foundation. It does not reopen M1 or introduce a new component-registry ID.
+`origex-compositions.css` is the M2 composition layer and loads the marketplace polish layer. `origex-shell.css` remains the closed M1 shell. The visual polish therefore does not reopen M1 or create a competing foundation.
 
 The staging deployment artifact intentionally includes only `index.html`, `ar/`, `en/` and `assets/`. Internal governance, QA evidence and workflow files are not part of the public staging artifact.
 
@@ -127,7 +136,7 @@ The staging deployment artifact intentionally includes only `index.html`, `ar/`,
 
 | PG | Page | Content | Design Profile | Build | QA |
 |---|---|---|---|---|---|
-| PG01 | Home 01 — Food Trading / Importer | C8 — CLOSED | APPROVED | `ar/index.html` + `en/index.html` | PASS / CLOSED; STAGING BLOCKED |
+| PG01 | Home 01 — Food Trading / Importer | C8 — CLOSED | APPROVED | `ar/index.html` + `en/index.html` | PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK; STAGING BLOCKED |
 | PG02 | Home 02 — Wholesale & Distribution | C0 | NOT STARTED | NOT STARTED — CODE BLOCKED UNTIL PG01 STAGING PASS | NOT STARTED |
 | PG03 | Home 03 — Manufacturer / Supplier | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG04 | Landing / One Page | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
@@ -162,16 +171,20 @@ The staging deployment artifact intentionally includes only `index.html`, `ar/`,
 
 ## PG01 Closure Evidence
 
-PG01 passed its complete page/code gate on 2026-08-19.
+PG01 passed the original page/code gate and the approved marketplace visual polish Change Request on 2026-08-19.
 
-Evidence:
-- `docs/PG01-QA-REPORT-V1.md` — source/content/SEO/asset gate.
-- `qa/pg01-rendered/` — AR/EN rendered responsive evidence at 390, 820, 1366 and 1536 widths.
-- `qa/pg01-interaction/` — rendered mega menu, drawer, Escape, FAQ and announcement behavior.
-- `qa/pg01-visual-review/` — compact visual review snapshots.
-- `docs/PG01-CLOSURE-2026-08-19.md` — closure decision and evidence map.
+Base closure evidence:
+- `docs/PG01-QA-REPORT-V1.md`.
+- `docs/PG01-CLOSURE-2026-08-19.md`.
 
-One visual QA issue was found and fixed before closure: the source-to-market hero media composition was too sparse on wide screens. The correction was implemented as a reusable F07 media composition / shared compatibility layer rather than a page-local patch.
+Marketplace benchmark closure:
+- `docs/PG01-MARKETPLACE-VISUAL-POLISH-2026-08-19.md`.
+- final rendered QA: `5ab1edb6fe2a17adc41857790170097dfad57f0f` — 8/8 AR/EN viewport cases PASS, failures 0.
+- final interaction QA: `b3d12beb103492144f4c5fc690ef15eedd49eef4` — AR/EN desktop/mobile PASS, failures 0.
+- final visual snapshots: `e1c09173757defc6992ac162447990f2ffc76f5a`.
+- asset/license register: new demo media registered as ORVEAX OWNED.
+
+QA found a Hero grid overflow after the first marketplace-polish pass. It was fixed in M2 by removing the inherited Hero aspect-ratio constraint and allowing the media to shrink within its grid column (`c7398a00c0db22ba6617c63958606c1a8b326ba1`). Final rendered QA then returned zero failures.
 
 ## Staging Preview Control
 
@@ -204,9 +217,8 @@ Historical value remains in Git history and selected reference/source-map files.
 
 ## Page Production Gate
 
-**M1 PASSED / CLOSED.** Page production is open under the normal per-page gates.
-
-**PG01 page/code = C8 / PASS / CLOSED.**  
+**M1 PASSED / CLOSED.**  
+**PG01 page/code = C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK.**  
 **PG01 staging = BLOCKED.**
 
 PG02 remains at C0. Its Content Contract, Arabic/English content work, Design Profile and SEO Contract may be prepared while staging is blocked. PG02 AR/EN code must not begin until:
