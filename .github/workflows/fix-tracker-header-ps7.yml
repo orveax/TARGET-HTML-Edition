@@ -1,0 +1,29 @@
+name: Fix Tracker Header PS7
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/fix-tracker-header-ps7.yml']
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('docs/IMPLEMENTATION-STATUS-V1.md')
+          s=p.read_text(encoding='utf-8').replace('PG09–PG10 C7 CI QA PASS','PG09–PG10 PS7 CI QA PASS')
+          p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '4189822+github-actions[bot]@users.noreply.github.com'
+          git add docs/IMPLEMENTATION-STATUS-V1.md
+          git rm .github/workflows/fix-tracker-header-ps7.yml
+          git commit -m 'Fix active tracker header to PS7 naming'
+          git pull --rebase origin main
+          git push origin HEAD:main
