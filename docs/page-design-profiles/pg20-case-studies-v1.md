@@ -130,7 +130,8 @@ Breadcrumb → Hero / Proof Boundary → Filter Toolbar → Case Study Grid → 
 
 - Standard Global Navigation V1.
 - `Explore` is the current desktop top-level state.
-- `Case Studies` is current in Mega Menu and mobile drawer.
+- `Case Studies` is current in the canonical Mega Menu.
+- The locked Global Navigation V1 mobile drawer intentionally does **not** include Case Studies; PG20 therefore preserves the canonical flat mobile order without introducing a page-local navigation variant or current marker.
 - Language switch preserves a valid `focus` query parameter.
 - Footer consumes N04 Global Footer V1 exactly; no local footer variant.
 
