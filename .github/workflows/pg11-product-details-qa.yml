@@ -1,0 +1,237 @@
+name: PG11 Product Details QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/product-details.html'
+      - 'en/product-details.html'
+      - 'assets/css/origex-product-details.css'
+      - 'assets/css/origex-shell.css'
+      - 'assets/js/origex-product-details.js'
+      - 'assets/js/origex-ui.js'
+      - 'assets/data/products.json'
+      - 'assets/data/suppliers.json'
+      - 'docs/page-design-profiles/pg11-product-details-v1.md'
+      - 'docs/GLOBAL-NAVIGATION-CONTRACT-V1.md'
+      - '.github/scripts/normalize_global_navigation.py'
+      - '.github/workflows/pg11-product-details-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install QA dependencies
+        run: python -m pip install --quiet beautifulsoup4 selenium
+      - name: Source and rendered QA
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json, re, subprocess, time
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.keys import Keys
+          from selenium.webdriver.support.ui import WebDriverWait
+
+          root = Path('.')
+          out = root / 'qa/pg11-product-details'
+          out.mkdir(parents=True, exist_ok=True)
+          source = {'failures': [], 'pages': {}, 'data': {}}
+
+          products = json.loads((root/'assets/data/products.json').read_text(encoding='utf-8'))
+          suppliers = json.loads((root/'assets/data/suppliers.json').read_text(encoding='utf-8'))
+          product_by_id = {p['id']: p for p in products}
+          supplier_by_id = {s['id']: s for s in suppliers}
+          allowed_availability = {'available','limited','on-request','unavailable'}
+          default = product_by_id.get('prod-001')
+          if not default: source['failures'].append('data:missing-prod-001')
+          elif default.get('nameAr') != 'صلصة طماطم مركزة — 400 جم' or default.get('nameEn') != 'Concentrated Tomato Sauce — 400 g': source['failures'].append('data:prod-001-name')
+
+          for product in products:
+              pid = product.get('id','?')
+              if product.get('supplierId') not in supplier_by_id: source['failures'].append(f'data:{pid}:supplier-relation')
+              if product.get('availability') not in allowed_availability: source['failures'].append(f'data:{pid}:availability')
+              for image in product.get('images',[]):
+                  if not (root/'assets/media/demo'/image).exists(): source['failures'].append(f'data:{pid}:image:{image}')
+          source['data'] = {'products': len(products), 'suppliers': len(suppliers), 'default': default.get('id') if default else None}
+
+          expected = {
+              'ar': {'file':'ar/product-details.html','dir':'rtl','h1':'منتجك يحتاج ملفًا تجاريًا واضحًا قبل أن يحتاج عرضًا أكبر.','other':'../en/product-details.html'},
+              'en': {'file':'en/product-details.html','dir':'ltr','h1':'Your product needs a clear commercial profile before it needs a bigger presentation.','other':'../ar/product-details.html'},
+          }
+          frozen_sections = ['hero','facts','handling','supplier','documents','related','disclosure','cta']
+          sprite = (root/'assets/icons/sprite.svg').read_text(encoding='utf-8')
+          sprite_ids = set(re.findall(r'<symbol[^>]+id="([^"]+)"', sprite))
+          js_text = (root/'assets/js/origex-product-details.js').read_text(encoding='utf-8')
+          js_icon_ids = set(re.findall(r"svg\('([^']+)'\)", js_text))
+
+          for lang, cfg in expected.items():
+              p = root/cfg['file']
+              text = p.read_text(encoding='utf-8')
+              soup = BeautifulSoup(text, 'html.parser')
+              failures = []
+              if soup.html.get('lang') != lang: failures.append('lang')
+              if soup.html.get('dir') != cfg['dir']: failures.append('dir')
+              h1s = soup.find_all('h1')
+              if len(h1s) != 1 or h1s[0].get_text(' ', strip=True) != cfg['h1']: failures.append('h1')
+              sections = [node.get('data-pg11-section') for node in soup.select('[data-pg11-section]')]
+              if sections != frozen_sections: failures.append(f'sections:{sections}')
+              if not soup.select_one('[data-pg11-root][data-default-product-id="prod-001"]'): failures.append('root-contract')
+              if not soup.find('link', href='../assets/css/origex-product-details.css'): failures.append('css')
+              if not soup.find('script', src='../assets/js/origex-product-details.js'): failures.append('runtime')
+              if not soup.find('link', rel='canonical'): failures.append('canonical')
+              hreflangs = {x.get('hreflang') for x in soup.find_all('link', rel='alternate')}
+              if not {'ar','en','x-default'}.issubset(hreflangs): failures.append('hreflang')
+              if not soup.find('a', href=cfg['other']): failures.append('language-switch')
+              if not soup.select_one('.orx-site-header[data-orx-global-nav="v1"]'): failures.append('global-nav-v1')
+              if not soup.select_one('.orx-primary-nav a[href="products.html"][aria-current="page"]'): failures.append('products-parent-current')
+              if not soup.select_one('.orx-mega-menu a[href="products.html"][aria-current="page"]'): failures.append('products-mega-current')
+              if 'TARGET' in text or 'targetft' in text.lower(): failures.append('client-leakage')
+              if re.search(r'aggregateRating|"offers"|itemprop="price"|add to cart', text, re.I): failures.append('ecommerce-claim')
+              product_schema = soup.find('script', id='pg11-product-schema')
+              try:
+                  schema = json.loads(product_schema.string if product_schema else '{}')
+              except Exception:
+                  schema = {}
+              if schema.get('@type') != 'Product': failures.append('product-schema')
+              if 'offers' in schema or 'aggregateRating' in schema: failures.append('product-schema-commercial-claim')
+              for tag, attr in [('img','src'),('link','href'),('script','src')]:
+                  for node in soup.find_all(tag):
+                      value = node.get(attr,'')
+                      if value.startswith('../'):
+                          target = (p.parent/value).resolve()
+                          if not target.exists(): failures.append(f'asset:{value}')
+              html_icon_ids = set(re.findall(r'sprite\.svg#([a-z0-9-]+)', text))
+              missing_icons = sorted((html_icon_ids | js_icon_ids) - sprite_ids)
+              if missing_icons: failures.append(f'icons:{missing_icons}')
+              source['pages'][lang] = {'failures': failures, 'sections': sections}
+              source['failures'].extend([f'{lang}:{x}' for x in failures])
+
+          proc = subprocess.run(['python','.github/scripts/normalize_global_navigation.py','--check'], capture_output=True, text=True)
+          if proc.returncode:
+              source['failures'].append('global-navigation-drift')
+              source['navigation_output'] = proc.stdout + proc.stderr
+
+          (out/'source-report.json').write_text(json.dumps(source, ensure_ascii=False, indent=2), encoding='utf-8')
+
+          server = subprocess.Popen(['python','-m','http.server','8765'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+          time.sleep(1)
+          rendered = {'failures': [], 'cases': [], 'interaction': {}}
+
+          def driver_for(width):
+              options = Options()
+              options.add_argument('--headless=new')
+              options.add_argument('--no-sandbox')
+              options.add_argument('--disable-dev-shm-usage')
+              options.add_argument(f'--window-size={width},1200')
+              return webdriver.Chrome(options=options)
+
+          try:
+              for lang in ('ar','en'):
+                  for width in (390,820,1366,1536):
+                      driver = driver_for(width)
+                      failures = []
+                      try:
+                          driver.get(f'http://127.0.0.1:8765/{lang}/product-details.html?id=prod-001')
+                          WebDriverWait(driver, 8).until(lambda d: d.find_element(By.CSS_SELECTOR,'[data-pg11-root]').get_attribute('data-load-state') in ('ready','error'))
+                          pg = driver.find_element(By.CSS_SELECTOR,'[data-pg11-root]')
+                          if pg.get_attribute('data-load-state') != 'ready': failures.append('data-load')
+                          if pg.get_attribute('data-product-id') != 'prod-001': failures.append('product-id')
+                          if driver.execute_script('return document.documentElement.scrollWidth') > driver.execute_script('return document.documentElement.clientWidth') + 1: failures.append('overflow')
+                          if driver.find_element(By.TAG_NAME,'html').get_attribute('dir') != ('rtl' if lang == 'ar' else 'ltr'): failures.append('direction')
+                          if len(driver.find_elements(By.CSS_SELECTOR,'[data-pg11-section]')) != 8: failures.append('section-count')
+                          if len(driver.find_elements(By.CSS_SELECTOR,'[data-pg11-facts] .orx-product-detail-fact')) != 6: failures.append('fact-count')
+                          if len(driver.find_elements(By.CSS_SELECTOR,'[data-pg11-handling] .orx-product-detail-fact')) != 3: failures.append('handling-count')
+                          if len(driver.find_elements(By.CSS_SELECTOR,'[data-pg11-resources] .orx-product-detail-resource')) != 2: failures.append('resource-count')
+                          if len(driver.find_elements(By.CSS_SELECTOR,'[data-pg11-resources] button:disabled')) != 2: failures.append('resource-placeholders')
+                          if len(driver.find_elements(By.CSS_SELECTOR,'[data-pg11-related] [data-related-product-id]')) != 3: failures.append('related-count')
+                          rfq = driver.find_elements(By.CSS_SELECTOR,'a[href*="rfq.html?product=prod-001"]')
+                          if len(rfq) < 2: failures.append('rfq-route')
+                          visible_small = []
+                          for el in driver.find_elements(By.CSS_SELECTOR,'a,button'):
+                              if not el.is_displayed(): continue
+                              r = el.rect
+                              if r['width'] and r['height'] and (r['width'] < 24 or r['height'] < 24): visible_small.append((el.tag_name,r['width'],r['height']))
+                          if visible_small: failures.append(f'touch-targets:{len(visible_small)}')
+                          if width >= 1051:
+                              trigger = driver.find_element(By.CSS_SELECTOR,'[data-orx-mega-trigger]')
+                              trigger.click(); time.sleep(.08)
+                              if trigger.get_attribute('aria-expanded') != 'true': failures.append('mega-open')
+                              trigger.send_keys(Keys.ESCAPE); time.sleep(.08)
+                              if trigger.get_attribute('aria-expanded') != 'false': failures.append('mega-escape')
+                          else:
+                              opener = driver.find_element(By.CSS_SELECTOR,'[data-orx-drawer-open]')
+                              opener.click(); time.sleep(.08)
+                              drawer = driver.find_element(By.CSS_SELECTOR,'[data-orx-mobile-drawer]')
+                              if drawer.get_attribute('aria-hidden') != 'false': failures.append('drawer-open')
+                              driver.find_element(By.CSS_SELECTOR,'[data-orx-drawer-close]').click(); time.sleep(.08)
+                              if drawer.get_attribute('aria-hidden') != 'true': failures.append('drawer-close')
+                      finally:
+                          driver.quit()
+                      rendered['cases'].append({'lang':lang,'width':width,'failures':failures})
+                      rendered['failures'].extend([f'{lang}-{width}:{x}' for x in failures])
+
+              for lang, expected_name, expected_supplier, expected_image in (
+                  ('ar','حليب كامل الدسم UHT — 1 لتر','نوردفيل ديري — Demo','product-milk.svg'),
+                  ('en','UHT Full Cream Milk — 1 L','NordVale Dairy Demo','product-milk.svg'),
+              ):
+                  driver = driver_for(1366)
+                  failures = []
+                  try:
+                      driver.get(f'http://127.0.0.1:8765/{lang}/product-details.html?id=prod-005')
+                      WebDriverWait(driver, 8).until(lambda d: d.find_element(By.CSS_SELECTOR,'[data-pg11-root]').get_attribute('data-load-state') == 'ready')
+                      if driver.find_element(By.CSS_SELECTOR,'[data-pg11-root]').get_attribute('data-product-id') != 'prod-005': failures.append('switch-id')
+                      if driver.find_element(By.CSS_SELECTOR,'[data-pg11-product-name]').text != expected_name: failures.append('switch-name')
+                      if driver.find_element(By.CSS_SELECTOR,'[data-pg11-supplier-name]').text != expected_supplier: failures.append('switch-supplier')
+                      if expected_image not in driver.find_element(By.CSS_SELECTOR,'[data-pg11-image]').get_attribute('src'): failures.append('switch-image')
+                      if not driver.find_elements(By.CSS_SELECTOR,'a[href*="rfq.html?product=prod-005"]'): failures.append('switch-rfq')
+                      lang_link = driver.find_element(By.CSS_SELECTOR,'.orx-lang-switch').get_attribute('href')
+                      if 'id=prod-005' not in lang_link: failures.append('switch-language')
+                      schema = json.loads(driver.find_element(By.ID,'pg11-product-schema').get_attribute('textContent'))
+                      if schema.get('name') != expected_name or 'offers' in schema or 'aggregateRating' in schema: failures.append('switch-schema')
+                  finally:
+                      driver.quit()
+                  rendered['interaction'][f'{lang}-product-switch'] = failures
+                  rendered['failures'].extend([f'{lang}-switch:{x}' for x in failures])
+
+              driver = driver_for(1366)
+              failures = []
+              try:
+                  driver.get('http://127.0.0.1:8765/en/product-details.html?id=missing-product')
+                  WebDriverWait(driver, 8).until(lambda d: d.find_element(By.CSS_SELECTOR,'[data-pg11-root]').get_attribute('data-load-state') == 'ready')
+                  if driver.find_element(By.CSS_SELECTOR,'[data-pg11-root]').get_attribute('data-product-id') != 'prod-001': failures.append('fallback-id')
+                  status = driver.find_element(By.CSS_SELECTOR,'[data-pg11-status]')
+                  if not status.is_displayed() or 'prod-001' not in status.text: failures.append('fallback-message')
+              finally:
+                  driver.quit()
+              rendered['interaction']['invalid-id-fallback'] = failures
+              rendered['failures'].extend([f'fallback:{x}' for x in failures])
+          finally:
+              server.terminate()
+
+          (out/'rendered-report.json').write_text(json.dumps(rendered, ensure_ascii=False, indent=2), encoding='utf-8')
+          status = 'PASS' if not source['failures'] and not rendered['failures'] else 'FAIL'
+          (out/'run-status.txt').write_text(status+'\n', encoding='utf-8')
+          print('source failures', len(source['failures']))
+          print('rendered failures', len(rendered['failures']))
+          if status != 'PASS':
+              print(source['failures'])
+              print(rendered['failures'])
+              raise SystemExit(1)
+          PY
+      - name: Commit QA evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg11-product-details || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "PG11 record product details QA evidence"
+          git push origin main
