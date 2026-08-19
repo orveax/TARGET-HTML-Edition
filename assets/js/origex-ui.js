@@ -82,6 +82,7 @@
   const hydrateCompanyNavigation = () => {
     const isArabic = document.documentElement.lang.toLowerCase().startsWith('ar');
     const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+    const activeCompanyFile = currentFile === 'service-details.html' ? 'capabilities.html' : currentFile;
     const companyFiles = new Set(['about.html', 'how-we-work.html', 'capabilities.html']);
     const labels = isArabic
       ? {
@@ -119,7 +120,7 @@
         link.href = href;
         link.textContent = text;
         link.dataset.orxCompanyLink = href;
-        if (href === currentFile) link.setAttribute('aria-current', 'page');
+        if (href === activeCompanyFile) link.setAttribute('aria-current', 'page');
         group.append(link);
       });
 
@@ -138,7 +139,7 @@
         link.href = href;
         link.textContent = text;
         link.dataset.orxCompanyLink = href;
-        if (href === currentFile) link.setAttribute('aria-current', 'page');
+        if (href === activeCompanyFile) link.setAttribute('aria-current', 'page');
         fragment.append(link);
       });
 
