@@ -1,0 +1,47 @@
+/* ORIGEX — ORX-P01 | PG15 Markets / Countries composition | Copyright © ORVEAX */
+.orx-markets-hero .orx-media--hero{min-block-size:440px;overflow:hidden;background:linear-gradient(145deg,var(--orx-primary-strong),var(--orx-primary));color:#fff;display:grid;place-items:center;padding:var(--orx-space-8)}
+.orx-markets-hero__panel{inline-size:min(100%,620px);display:grid;gap:var(--orx-space-4)}
+.orx-markets-hero__headline{padding:var(--orx-space-5);border:1px solid rgba(255,255,255,.22);border-radius:var(--orx-radius-lg);background:rgba(255,255,255,.1)}
+.orx-markets-hero__headline strong{display:block;font-size:clamp(1.2rem,2vw,1.7rem)}
+.orx-markets-hero__headline span{display:block;opacity:.78;margin-block-start:.35rem}
+.orx-markets-hero__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--orx-space-3)}
+.orx-markets-hero__node{padding:var(--orx-space-4);border:1px solid rgba(255,255,255,.16);border-radius:var(--orx-radius-md);background:rgba(255,255,255,.07);text-align:center;font-weight:700}
+.orx-market-overview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--orx-space-4)}
+.orx-market-overview-card{block-size:100%;padding:var(--orx-space-5);border:1px solid var(--orx-border);border-radius:var(--orx-radius-lg);background:var(--orx-surface)}
+.orx-market-overview-card h3{margin-block:var(--orx-space-4) var(--orx-space-2)}
+.orx-market-overview-card p{margin:0;color:var(--orx-text-muted)}
+.orx-market-filter-panel{display:grid;grid-template-columns:minmax(220px,.35fr) minmax(0,1fr);gap:var(--orx-space-5);align-items:end;padding:var(--orx-space-5);border:1px solid var(--orx-border);border-radius:var(--orx-radius-lg);background:var(--orx-surface)}
+.orx-market-filter-panel label{display:grid;gap:var(--orx-space-2);font-weight:700}
+.orx-market-filter-panel select{inline-size:100%;min-block-size:46px;border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);background:var(--orx-surface);color:var(--orx-text);padding-inline:var(--orx-space-3)}
+.orx-market-filter-chips{display:flex;flex-wrap:wrap;gap:var(--orx-space-2)}
+.orx-market-filter-chip{min-block-size:44px;padding:.65rem 1rem;border:1px solid var(--orx-border);border-radius:999px;background:var(--orx-surface);color:var(--orx-text);font-weight:700;cursor:pointer}
+.orx-market-filter-chip[aria-pressed="true"]{background:var(--orx-primary);border-color:var(--orx-primary);color:#fff}
+.orx-market-map{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:var(--orx-space-6);align-items:stretch}
+.orx-market-map__canvas{min-block-size:390px;position:relative;overflow:hidden;border:1px solid var(--orx-border);border-radius:var(--orx-radius-xl);background:linear-gradient(145deg,var(--orx-surface-soft),var(--orx-surface));padding:var(--orx-space-6)}
+.orx-market-map__core{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);inline-size:150px;block-size:150px;border-radius:50%;display:grid;place-items:center;text-align:center;padding:var(--orx-space-4);background:var(--orx-primary);color:#fff;box-shadow:var(--orx-shadow-lg)}
+.orx-market-map__node{position:absolute;inline-size:110px;min-block-size:72px;padding:var(--orx-space-3);border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);background:var(--orx-surface);display:grid;place-items:center;text-align:center;font-weight:800;box-shadow:var(--orx-shadow-sm)}
+.orx-market-map__node::after{content:"";position:absolute;inline-size:34px;block-size:1px;background:var(--orx-border-strong);inset-block-start:50%}
+.orx-market-map__node[data-pos="1"]{inset-block-start:8%;inset-inline-start:8%}.orx-market-map__node[data-pos="1"]::after{inset-inline-start:100%}
+.orx-market-map__node[data-pos="2"]{inset-block-start:8%;inset-inline-end:8%}.orx-market-map__node[data-pos="2"]::after{inset-inline-end:100%}
+.orx-market-map__node[data-pos="3"]{inset-block-start:42%;inset-inline-start:4%}.orx-market-map__node[data-pos="3"]::after{inset-inline-start:100%}
+.orx-market-map__node[data-pos="4"]{inset-block-start:42%;inset-inline-end:4%}.orx-market-map__node[data-pos="4"]::after{inset-inline-end:100%}
+.orx-market-map__node[data-pos="5"]{inset-block-end:8%;inset-inline-start:12%}.orx-market-map__node[data-pos="5"]::after{inset-inline-start:100%}
+.orx-market-map__node[data-pos="6"]{inset-block-end:8%;inset-inline-end:12%}.orx-market-map__node[data-pos="6"]::after{inset-inline-end:100%}
+.orx-market-map__notes{padding:var(--orx-space-6);border:1px solid var(--orx-border);border-radius:var(--orx-radius-xl);background:var(--orx-surface-soft)}
+.orx-market-map__notes ul{margin:var(--orx-space-4) 0 0;padding-inline-start:1.25rem;display:grid;gap:var(--orx-space-2)}
+.orx-country-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--orx-space-4)}
+.orx-country-card{block-size:100%;padding:var(--orx-space-5);border:1px solid var(--orx-border);border-radius:var(--orx-radius-lg);background:var(--orx-surface);display:grid;gap:var(--orx-space-4)}
+.orx-country-card[hidden]{display:none!important}
+.orx-country-card__head{display:flex;justify-content:space-between;gap:var(--orx-space-3);align-items:flex-start}
+.orx-country-card__head h3{margin:0}.orx-country-card__head .orx-icon-box{flex:0 0 auto}
+.orx-country-card p{margin:0;color:var(--orx-text-muted)}
+.orx-country-card__channels{display:flex;flex-wrap:wrap;gap:.45rem}
+.orx-country-card__tag{display:inline-flex;align-items:center;min-block-size:30px;padding:.3rem .65rem;border-radius:999px;background:var(--orx-surface-soft);border:1px solid var(--orx-border);font-size:var(--orx-fs-small);font-weight:700}
+.orx-country-card__meta{display:grid;gap:.35rem;padding-block-start:var(--orx-space-3);border-block-start:1px solid var(--orx-border)}
+.orx-country-card__meta span{font-size:var(--orx-fs-small);color:var(--orx-text-muted)}
+.orx-markets-empty{padding:var(--orx-space-6);border:1px dashed var(--orx-border-strong);border-radius:var(--orx-radius-lg);background:var(--orx-surface-soft);text-align:center}
+.orx-markets-disclosure{display:flex;gap:var(--orx-space-4);align-items:flex-start;padding:var(--orx-space-5);border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);background:var(--orx-surface-soft)}
+.orx-markets-disclosure .orx-icon-box{flex:0 0 auto}
+@media(max-width:1199.98px){.orx-country-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.orx-market-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:991.98px){.orx-market-map{grid-template-columns:1fr}.orx-market-filter-panel{grid-template-columns:1fr}.orx-market-map__canvas{min-block-size:430px}}
+@media(max-width:767.98px){.orx-markets-hero .orx-media--hero{min-block-size:auto;padding:var(--orx-space-6)}.orx-markets-hero__grid,.orx-market-overview-grid,.orx-country-grid{grid-template-columns:1fr}.orx-market-map__canvas{min-block-size:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--orx-space-3)}.orx-market-map__core,.orx-market-map__node{position:static;transform:none;inline-size:auto;min-block-size:74px}.orx-market-map__core{grid-column:1/-1;border-radius:var(--orx-radius-lg)}.orx-market-map__node::after{display:none}.orx-country-card__head{align-items:center}}
