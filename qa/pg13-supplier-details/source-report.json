@@ -1,24 +1,11 @@
 {
-  "status": "SOURCE_PASS_RENDERED_PENDING",
   "failures": [],
   "pages": {
     "ar": {
-      "failures": [],
-      "lang": "ar",
-      "dir": "rtl",
-      "h1Count": 1,
-      "duplicateIds": 0,
-      "sections": ["hero", "categories", "products", "relationships", "markets", "disclosure", "cta"],
-      "contracts": ["canonical", "hreflang-ar", "hreflang-en", "hreflang-x-default", "WebPage", "BreadcrumbList", "Organization-demo-schema", "supplier-current-nav", "language-id-preservation-hook"]
+      "failures": []
     },
     "en": {
-      "failures": [],
-      "lang": "en",
-      "dir": "ltr",
-      "h1Count": 1,
-      "duplicateIds": 0,
-      "sections": ["hero", "categories", "products", "relationships", "markets", "disclosure", "cta"],
-      "contracts": ["canonical", "hreflang-ar", "hreflang-en", "hreflang-x-default", "WebPage", "BreadcrumbList", "Organization-demo-schema", "supplier-current-nav", "language-id-preservation-hook"]
+      "failures": []
     }
   },
   "data": {
@@ -26,21 +13,6 @@
     "products": 12,
     "markets": 6,
     "supplierProductRelations": 12,
-    "missingSupplierProductRelations": 0,
-    "supplierMarketRelations": 12,
-    "missingSupplierMarketRelations": 0,
-    "defaultSupplier": "supplier-noura"
-  },
-  "runtime": {
-    "javascriptSyntax": "PASS",
-    "supplierQueryParam": "id",
-    "invalidIdFallback": "supplier-noura",
-    "loads": ["suppliers.json", "products.json", "markets.json"],
-    "renderedBrowserQA": "PENDING"
-  },
-  "notes": [
-    "The source/data gate does not claim responsive or deployed-browser acceptance.",
-    "markets.json was added to close an existing canonical data-domain gap declared by DATA-SCHEMA-V1.md.",
-    "Supplier market links are illustrative Demo relations and do not represent distribution rights or live commercial relationships."
-  ]
+    "supplierMarketRelations": 12
+  }
 }
