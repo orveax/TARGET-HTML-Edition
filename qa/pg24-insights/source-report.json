@@ -1,0 +1,33 @@
+{
+  "failures": [
+    "footer-drift"
+  ],
+  "pages": {
+    "ar": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "featured",
+        "library",
+        "guidance",
+        "cta"
+      ],
+      "articleCount": 8
+    },
+    "en": {
+      "failures": [],
+      "sections": [
+        "hero",
+        "featured",
+        "library",
+        "guidance",
+        "cta"
+      ],
+      "articleCount": 8
+    }
+  },
+  "runtime": {
+    "failures": []
+  },
+  "footer-drift": "DRIFT: en/insights.html\n"
+}
