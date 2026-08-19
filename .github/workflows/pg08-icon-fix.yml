@@ -1,0 +1,38 @@
+name: PG08 Icon Fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/pg08-icon-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Replace unresolved floating-contact icon
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          for rel in ('ar/service-details.html','en/service-details.html'):
+              p=Path(rel);s=p.read_text(encoding='utf-8')
+              old='sprite.svg#message-circle'
+              new='sprite.svg#phone'
+              if old not in s:
+                  raise SystemExit(f'expected icon reference missing in {rel}')
+              p.write_text(s.replace(old,new,1),encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ar/service-details.html en/service-details.html
+          git commit -m 'PG08 resolve floating contact icon reference'
+          git pull --rebase origin main
+          git push origin HEAD:main
