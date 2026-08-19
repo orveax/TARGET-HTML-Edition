@@ -4,7 +4,7 @@ Product ID: ORX-P01
 Owner: ORVEAX  
 Repository: `orveax/origex-html-template`  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-19 — GLOBAL NAV V1 LOCKED / V1 = 33 LAYOUTS / PG33 IMPLEMENTED QA PENDING / PG11 NEXT
+Last Updated: 2026-08-19 — GLOBAL NAV V1 LOCKED / V1 = 33 LAYOUTS / PG09–PG11 PS7 CI QA PASS / PG12 NEXT
 
 This is the repo-level execution tracker. It records actual current implementation state and must match the active code tree.
 
@@ -42,10 +42,11 @@ Page lifecycle uses PS0–PS8 from `CONTENT-SYSTEM-V1.md`; `C01–C28` remains r
 | PG15 Markets / Countries | PS7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + FILTER + MARKET-NAVIGATION QA PASS |
 | PG09 Product Categories | PS7 IMPLEMENTED — AR+EN — SOURCE + RENDERED + FILTER + PRODUCT-NAVIGATION QA PASS |
 | PG10 Products Grid | PS7 IMPLEMENTED — AR+EN — DATA + SOURCE + RENDERED + SEARCH/FILTER/PAGINATION + PRODUCT-NAVIGATION QA PASS |
+| PG11 Product Details | PS7 IMPLEMENTED — AR+EN — DATA + SOURCE + RENDERED 8/8 + PRODUCT SWITCH + SUPPLIER RELATION + RESOURCE PLACEHOLDERS + RELATED PRODUCTS + RFQ + PRODUCT-NAVIGATION QA PASS |
 | Global Navigation V1 | LOCKED — one canonical Standard Header / Mega Menu / Mobile Drawer; only active state varies; PG04 Landing is the intentional compact-header exception |
 | Cloudflare Test Environment | AVAILABLE VIA MANUAL REBUILD |
 | Cloudflare Git Auto-Deploy | DEFERRED — push trigger does not currently start deployment automatically |
-| Current Build Baseline | Global Navigation V1 locked. PG33 Company Profile added by CR-001 and implemented AR+EN with QA evidence pending. M4 remains IN PROGRESS — PG09–PG10 PS7 CI PASS; PG11 next. |
+| Current Build Baseline | Global Navigation V1 locked. M4 IN PROGRESS — PG09–PG11 PS7 CI PASS; PG12 Suppliers / Brands Directory next. PG33 Company Profile remains a parallel M3 QA follow-up. |
 
 ## Milestones
 
@@ -55,7 +56,7 @@ Page lifecycle uses PS0–PS8 from `CONTENT-SYSTEM-V1.md`; `C01–C28` remains r
 | M1 Global System & Component Foundation | PASS / CLOSED | Component AR/EN foundation QA |
 | M2 Global Shell & Home Family | IN PROGRESS | PG01–PG04 AR/EN + Cloudflare deployed browser QA |
 | M3 Company / Business / Market | IN PROGRESS | PG05–PG08 + PG14–PG15 + PG33; PG33 QA evidence + Cloudflare batch acceptance remain |
-| M4 Product / Supplier / Conversion | IN PROGRESS | PG09–PG10 PS7 CI PASS; PG11–PG13 + PG16–PG19 remain |
+| M4 Product / Supplier / Conversion | IN PROGRESS | PG09–PG11 PS7 CI PASS; PG12–PG13 + PG16–PG19 remain |
 | M5 Proof / Resources / Compliance / Content | NOT STARTED | Resource/content QA |
 | M6 Support / Utility | NOT STARTED | All 33 layouts exist AR/EN |
 | M7 Full QA & Optimization | NOT STARTED | Zero Critical / High defects + final visual polish |
@@ -82,6 +83,7 @@ ar/
 ├── markets.html                   # PG15 — PS7 CI PASS
 ├── product-categories.html        # PG09 — PS7 CI PASS
 ├── products.html                  # PG10 — PS7 CI PASS
+├── product-details.html           # PG11 — PS7 CI PASS
 └── company-profile.html           # PG33 — IMPLEMENTED / QA EVIDENCE PENDING
 en/
 ├── index.html                     # PG01 — C8
@@ -96,6 +98,7 @@ en/
 ├── markets.html                   # PG15 — PS7 CI PASS
 ├── product-categories.html        # PG09 — PS7 CI PASS
 ├── products.html                  # PG10 — PS7 CI PASS
+├── product-details.html           # PG11 — PS7 CI PASS
 └── company-profile.html           # PG33 — IMPLEMENTED / QA EVIDENCE PENDING
 assets/
 ├── brand/
@@ -116,6 +119,7 @@ assets/
 │   ├── origex-markets.css
 │   ├── origex-product-categories.css
 │   ├── origex-products.css
+│   ├── origex-product-details.css
 │   ├── origex-company-profile.css
 │   └── origex-shell.css
 ├── media/demo/
@@ -128,6 +132,7 @@ assets/
 │   ├── origex-markets.js
 │   ├── origex-product-categories.js
 │   ├── origex-products.js
+│   ├── origex-product-details.js
 │   └── origex-landing.js
 ├── data/
 │   ├── products.json
@@ -152,6 +157,7 @@ qa/
 ├── pg15-markets/
 ├── pg09-product-categories/
 ├── pg10-products/
+├── pg11-product-details/
 └── pg33-company-profile/          # pending evidence until QA workflow records report
 docs/
 ├── page-design-profiles/
@@ -167,6 +173,7 @@ docs/
 │   ├── pg15-markets-v1.md
 │   ├── pg09-product-categories-v1.md
 │   ├── pg10-products-grid-v1.md
+│   ├── pg11-product-details-v1.md
 │   └── pg33-company-profile-v1.md
 └── canonical authorities
 ```
@@ -185,7 +192,7 @@ docs/
 | PG08 | Service Details | PS7 — IMPLEMENTED | APPROVED — `pg08-service-details-v1.md` | `ar/service-details.html` + `en/service-details.html` | SOURCE + RENDERED + PARENT-NAVIGATION QA PASS — CLOUDFLARE BATCH REVIEW PENDING |
 | PG09 | Product Categories | PS7 — IMPLEMENTED | APPROVED — `pg09-product-categories-v1.md` | `ar/product-categories.html` + `en/product-categories.html` | SOURCE + RENDERED + FILTER + PRODUCT-NAVIGATION QA PASS — CLOUDFLARE M4 BATCH REVIEW PENDING |
 | PG10 | Products Grid | PS7 — IMPLEMENTED | APPROVED — `pg10-products-grid-v1.md` | `ar/products.html` + `en/products.html` | DATA + SOURCE + RENDERED 8/8 + SEARCH/FILTER/PAGINATION + PRODUCT-NAVIGATION QA PASS — CLOUDFLARE M4 BATCH REVIEW PENDING |
-| PG11 | Product Details | PS0 | NOT STARTED | NOT STARTED | NOT STARTED |
+| PG11 | Product Details | PS7 — IMPLEMENTED | APPROVED — `pg11-product-details-v1.md` | `ar/product-details.html` + `en/product-details.html` | DATA + SOURCE + RENDERED 8/8 + PRODUCT SWITCH + SUPPLIER RELATION + RESOURCE PLACEHOLDER + RELATED PRODUCTS + RFQ + PRODUCT-NAVIGATION QA PASS — CLOUDFLARE M4 BATCH REVIEW PENDING |
 | PG12 | Suppliers / Brands Directory | PS0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG13 | Supplier / Brand Details | PS0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG14 | Market Access | PS7 — IMPLEMENTED | APPROVED — `pg14-market-access-v1.md` | `ar/market-access.html` + `en/market-access.html` | SOURCE + RENDERED + MARKET-NAVIGATION QA PASS — CLOUDFLARE BATCH REVIEW PENDING |
@@ -348,7 +355,7 @@ docs/
 - Search + category/brand/origin filters + reset + pagination + empty state + `?category=frozen` deep-link + Product Details/RFQ routes + desktop/mobile Product navigation PASS.
 - Earlier rendered report false-failed lazy-loaded images in headless Chrome before viewport exposure; source QA proved all image paths exist. The corrected rendered gate supersedes that QA-tool defect.
 - Final status: `qa/pg10-products/run-status.txt` = PASS.
-- Current: PS7 pending Cloudflare M4 batch browser review. PG11 Product Details is next.
+- Current: PS7 pending Cloudflare M4 batch browser review. PG12 Suppliers / Brands Directory is next.
 
 ## Cloudflare Test Environment Control
 
@@ -403,3 +410,17 @@ Copyright © ORVEAX.
 - Standard pages use `GLOBAL-NAVIGATION-CONTRACT-V1.md`; `origex-ui.js` controls behavior only and no longer mutates the IA.
 - PG04 Landing remains the only approved compact-header exception.
 - Current PG33 state: AR+EN implementation exists; QA evidence pending. Do not mark PS7 CI PASS until `qa/pg33-company-profile/run-status.txt` is recorded as PASS.
+
+## PG11 Evidence — Product Details
+
+- PS6 contract: `docs/page-design-profiles/pg11-product-details-v1.md`.
+- AR/EN: `ar/product-details.html` + `en/product-details.html`.
+- Composition/runtime: `assets/css/origex-product-details.css` + `assets/js/origex-product-details.js`.
+- Data authority: `assets/data/products.json` + `assets/data/suppliers.json`; default `prod-001`, reusable `?id=<product-id>` switching.
+- Source/data QA: `qa/pg11-product-details/source-report.json` — failures 0.
+- Rendered/interaction QA: `qa/pg11-product-details/rendered-report.json` — failures 0; AR/EN × 390/820/1366/1536 = 8/8 PASS.
+- `prod-005` switch, supplier/media/RFQ/schema update, language query preservation and invalid-ID fallback PASS.
+- First run identified a shared breadcrumb touch-target defect; fixed centrally in `assets/css/origex-components.css` (`e7bcf047f58156c3210dbb2abd5a517625a5a649`), then rerun PASS.
+- Final QA evidence: `qa/pg11-product-details/run-status.txt` = PASS; commit `695b2f0e610c7115a61e382077c84d3b417c26a2`.
+- Closure record: `docs/PG11-PRODUCT-DETAILS-QA-2026-08-19.md`.
+- Current: PS7 pending Cloudflare M4 batch browser acceptance before PS8. PG12 is next.
