@@ -71,7 +71,7 @@ Required: canonical, AR/EN/x-default hreflang, Open Graph baseline, WebPage + Br
 Category filter chips use the existing C17 filter behavior plus a minimal PG09 vanilla-JS adapter to show/hide category cards by family. `All` resets the six-card grid. No external data/API.
 
 ## Navigation Contract
-PG09 is part of the Product family. Desktop mega menu must expose Product Categories + All Products and mark Product Categories current. Mobile drawer must expose both routes and mark PG09 current.
+PG09 is part of the Product family. Desktop mega menu must expose Product Categories + All Products and mark Product Categories current. Mobile drawer must expose both routes and mark PG09 current. Shared Product-family hydration is implemented centrally in `assets/js/origex-ui.js` and treats PG11 Product Details as a child of PG10 Products for current-state semantics.
 
 ## Responsive / Accessibility
 - no horizontal overflow at 390 / 820 / 1366 / 1536
@@ -84,3 +84,5 @@ PG09 is part of the Product family. Desktop mega menu must expose Product Catego
 
 ## Exit Gate
 C7 only after AR+EN build and source/SEO/assets/icons/filter/navigation/responsive QA PASS. C8 remains gated by deployed Cloudflare browser acceptance.
+
+QA retrigger note: shared Product navigation was fixed centrally before the final C7 evidence run.
