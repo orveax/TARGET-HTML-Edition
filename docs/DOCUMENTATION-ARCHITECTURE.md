@@ -1,76 +1,79 @@
-# ORIGEX — Documentation Architecture
+# ORIGEX — Documentation Architecture V1
 
-**Product:** ORIGEX / ORX-P01  
-**Owner:** ORVEAX  
-**Goal:** Beginner-friendly, public, buyer-oriented documentation suitable for ThemeForest submission.
+Product ID: ORX-P01  
+Owner: ORVEAX  
+Status: APPROVED STRUCTURE — IMPLEMENTATION IN M8
 
-## Documentation Principle
+Documentation is part of the product. V1 documentation must explain the shipped V1 Main Features only; deferred V1.1 Additional Features are not documented as if they ship in V1.
 
-Documentation is part of the product, not an afterthought.
+## 1. Documentation Goals
 
-A buyer should be able to install, understand, customize, extend, and deploy ORIGEX without needing to inspect the entire source or contact support for routine changes.
+A buyer should be able to:
+- open the package locally;
+- understand the file structure;
+- choose Arabic or English;
+- change common company data through `config.js`;
+- edit page content safely;
+- edit product/supplier/market data where applicable;
+- understand forms and backend integration points;
+- replace demo assets/data;
+- configure SEO metadata/hreflang;
+- deploy to standard static hosting;
+- understand licenses/credits and support boundaries.
 
-## Planned Documentation Structure
+## 2. Planned Buyer Documentation Structure
 
 ```text
 documentation/
 ├── index.html
-├── assets/
-│   ├── css/
-│   ├── js/
-│   └── images/
 ├── getting-started/
+│   ├── quick-start.html
 │   ├── installation.html
 │   ├── file-structure.html
-│   ├── choose-language.html
 │   └── deployment.html
-├── brand/
-│   ├── logo.html
-│   ├── colors.html
-│   ├── typography.html
-│   └── icons.html
+├── customization/
+│   ├── config.html
+│   ├── brand.html
+│   ├── content.html
+│   └── demo-to-production.html
 ├── languages/
 │   ├── arabic-rtl.html
 │   ├── english-ltr.html
-│   └── mixed-content.html
+│   └── mixed-direction-data.html
 ├── pages/
-│   ├── page-overview.html
-│   ├── home-demos.html
-│   ├── products.html
-│   ├── suppliers.html
-│   ├── market-access.html
-│   └── utility-pages.html
-├── customization/
-│   ├── header-footer.html
-│   ├── navigation.html
-│   ├── forms.html
-│   ├── product-data.html
-│   ├── supplier-data.html
-│   └── optional-sections.html
+│   ├── page-index.html
+│   ├── home-family.html
+│   ├── company-market.html
+│   ├── products-suppliers.html
+│   ├── conversion.html
+│   └── support-utility.html
 ├── components/
 │   ├── overview.html
-│   ├── timeline.html
-│   ├── stats.html
-│   ├── certifications.html
-│   ├── logo-wall.html
-│   ├── testimonials.html
-│   ├── process.html
-│   ├── tables.html
-│   └── downloads.html
+│   ├── buttons-cards.html
+│   ├── forms.html
+│   ├── navigation-disclosure.html
+│   ├── tables-data.html
+│   └── media-icons-patterns.html
+├── data/
+│   ├── products.html
+│   ├── suppliers.html
+│   └── markets.html
 ├── forms/
 │   ├── contact.html
 │   ├── rfq.html
 │   ├── submit-product.html
+│   ├── partner.html
 │   └── backend-integration.html
 ├── seo/
 │   ├── metadata.html
-│   ├── hreflang.html
-│   └── structured-data.html
+│   ├── canonical-hreflang.html
+│   ├── structured-data.html
+│   └── indexing.html
 ├── accessibility/
 │   └── accessibility.html
 ├── assets-licenses/
-│   ├── fonts.html
-│   ├── icons.html
+│   ├── dependencies.html
+│   ├── fonts-icons.html
 │   ├── images.html
 │   └── credits.html
 └── support/
@@ -79,110 +82,74 @@ documentation/
     └── support-policy.html
 ```
 
-## Required Buyer Guides
+## 3. Required Guides
 
-### Getting Started
-- What ORIGEX is
-- Package contents
-- Open locally
-- Select Arabic or English starting page
-- Basic hosting deployment
-- Editing workflow
+### Quick Start
+Target: a beginner can get the template open and make first changes quickly.
 
 ### File Structure
-Explain `/ar`, `/en`, `/assets`, `/documentation`, and supporting files. Root-level clutter must be avoided.
+Explain `/ar`, `/en`, `/assets`, `/documentation` and all distributable support files. Root clutter is prohibited.
+
+### Config Guide
+Explain only approved global/repeated settings. Explicitly state that `config.js` is not a CMS/page builder.
 
 ### Arabic RTL Guide
-- `lang="ar" dir="rtl"`
-- Tajawal
-- logical spacing properties
-- directional icon behavior
-- mixed LTR data such as email, SKU, phone and product codes
-- forms and tables
+Cover `lang="ar" dir="rtl"`, logical properties, mixed LTR data, forms/tables, directional icons and responsive ordering.
 
 ### English LTR Guide
-- `lang="en" dir="ltr"`
-- Manrope
-- language counterpart conventions
+Cover counterpart rules and content parity.
 
-### Optional Sections Guide
-For every Additional Feature:
-1. Purpose
-2. Compatible pages
-3. Copy HTML
-4. CSS requirements
-5. JS requirements if any
-6. Arabic behavior
-7. English behavior
-8. Responsive behavior
-9. Accessibility
-10. Removal instructions
+### Demo-to-Production Guide
+Use `DEMO-VS-PRODUCTION-POLICY-V1.md` as authority and provide a mandatory replacement checklist.
 
-### Product System Guide
-Explain how to add/edit:
-- product name
-- brand
-- category
-- country of origin
-- packaging
-- pack size
-- shelf life
-- storage
-- MOQ
-- availability
-- certifications
-- datasheet / brochure
-- RFQ links
-
-### Supplier System Guide
-Explain supplier cards, supplier detail pages, country/category metadata, documents and related products.
+### Product / Supplier / Market Data Guides
+Use `DATA-SCHEMA-V1.md` and explain fields, relationships and examples.
 
 ### Forms Guide
-Static HTML forms are UI templates unless a working backend is explicitly bundled. Documentation must explain integration points clearly and must not imply server-side functionality that is not included.
+Static forms are UI templates unless a backend integration is explicitly bundled. Never imply server-side submission exists when it does not.
 
 ### SEO Guide
-- title / description
-- canonical
-- hreflang ar/en/x-default
-- Open Graph
-- structured-data placeholders
-- sitemap guidance
+Use `SEO-METADATA-PAGE-NAMING-V1.md` as authority for page names, titles, descriptions, canonical, hreflang, OG, indexing and structured data.
 
 ### Deployment Guide
-At minimum:
-- shared hosting / cPanel-style upload
-- Cloudflare Pages / static host concept
-- Netlify / static host concept
-- local relative-path checks
+At minimum cover generic shared hosting/static upload and static-host concepts. Do not make a third-party hosting platform a required dependency.
 
-## Documentation UX Standard
+## 4. V1.1 Documentation Boundary
 
-The documentation itself must be responsive and bilingual-friendly, but English may be the operational documentation default if needed for marketplace buyers. Arabic guidance must receive a dedicated, first-class RTL section.
+The V1.1 Additional Feature backlog and content packs are internal product-planning assets during V1.
 
-Documentation should include:
-- left/sidebar navigation on LTR docs
-- search-ready heading structure
-- copy-code controls where useful
-- visual examples
-- callouts for warnings and licensing
-- Previous / Next navigation
+When a V1.1 feature is actually implemented, its buyer documentation must include:
+1. purpose;
+2. compatible pages;
+3. markup/dependencies;
+4. Arabic/English behavior;
+5. responsive/accessibility behavior;
+6. configuration/data requirements;
+7. removal/disable instructions.
 
-## ThemeForest / Envato Preparation Notes
+Do not publish instructions for unshipped Additional Features inside V1 buyer docs.
 
-- Documentation must be publicly accessible online before submission.
-- Treat the buyer as a beginner and explain routine customization without assuming advanced coding knowledge.
-- Preview-only assets must be explicitly disclosed as not included.
-- Downloadable assets must have redistribution-compatible licenses.
+## 5. Documentation Quality Gate
 
-## Package Documentation Files
+Documentation must:
+- match the actual package tree;
+- use exact filenames/API hooks;
+- contain no obsolete routes or screenshots;
+- distinguish preview-only assets from distributable assets;
+- explain licenses/credits;
+- be responsive and accessible;
+- use copyable examples where useful;
+- be reviewed after final packaging, not before only.
 
-The final item package must also include:
+## 6. Final Package Support Files
+
+Submission Candidate must include:
 - `README.md`
 - `CHANGELOG.md`
 - `CREDITS.md`
 - `LICENSE-NOTICE.txt`
 - `documentation/`
 
-## ORVEAX Standard
+These are created/finalized in M8 from the current canonical registers, not copied from old builds.
 
-Every documentation page footer should identify ORIGEX and ORVEAX without forcing visible ORVEAX credit into buyer websites. Product ownership is carried through documentation, source headers, versioning, package notices, and marketplace authorship.
+Copyright © ORVEAX.
