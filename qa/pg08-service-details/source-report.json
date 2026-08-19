@@ -1,0 +1,96 @@
+{
+  "generatedAt": "2026-08-19T13:27:10Z",
+  "failures": 2,
+  "results": [
+    {
+      "page": "ar/service-details.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "visibleBreadcrumb": true,
+        "demoDisclosure": true,
+        "eightFrozenSections": true,
+        "fourStepProcess": true,
+        "fourDeliverables": true,
+        "fitNotFit": true,
+        "threeRelatedServices": true,
+        "serviceCSS": true,
+        "runtime": true,
+        "parentCapabilityState": true,
+        "uniqueIDs": true,
+        "noClientCDNLeakage": true,
+        "iconReferencesResolve": false,
+        "localAssets": true
+      },
+      "missingIcons": [
+        "message-circle"
+      ],
+      "sections": [
+        "hero",
+        "overview",
+        "scope",
+        "process",
+        "deliverables",
+        "fit",
+        "related",
+        "cta"
+      ],
+      "steps": 4,
+      "deliverables": 4,
+      "fitCards": 2,
+      "relatedServices": 3,
+      "pass": false
+    },
+    {
+      "page": "en/service-details.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "visibleBreadcrumb": true,
+        "demoDisclosure": true,
+        "eightFrozenSections": true,
+        "fourStepProcess": true,
+        "fourDeliverables": true,
+        "fitNotFit": true,
+        "threeRelatedServices": true,
+        "serviceCSS": true,
+        "runtime": true,
+        "parentCapabilityState": true,
+        "uniqueIDs": true,
+        "noClientCDNLeakage": true,
+        "iconReferencesResolve": false,
+        "localAssets": true
+      },
+      "missingIcons": [
+        "message-circle"
+      ],
+      "sections": [
+        "hero",
+        "overview",
+        "scope",
+        "process",
+        "deliverables",
+        "fit",
+        "related",
+        "cta"
+      ],
+      "steps": 4,
+      "deliverables": 4,
+      "fitCards": 2,
+      "relatedServices": 3,
+      "pass": false
+    }
+  ],
+  "errors": [
+    "ar/service-details.html: ['iconReferencesResolve']; missing icons=['message-circle']; sections=['hero', 'overview', 'scope', 'process', 'deliverables', 'fit', 'related', 'cta']",
+    "en/service-details.html: ['iconReferencesResolve']; missing icons=['message-circle']; sections=['hero', 'overview', 'scope', 'process', 'deliverables', 'fit', 'related', 'cta']"
+  ]
+}
