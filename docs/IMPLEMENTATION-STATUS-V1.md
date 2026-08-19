@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Owner: ORVEAX  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-19 — M1 CLOSED / M2 ACTIVE / PG01 QA
+Last Updated: 2026-08-19 — M1 CLOSED / M2 ACTIVE / PG01 CLOSED
 
 This is the repo-level execution tracker. It records actual current implementation state and must match the active code tree.
 
@@ -28,7 +28,7 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`.
 | Canonical Authority Map | PASS / CLOSED |
 | Project Rules | PASS / CLOSED |
 | Asset/License Register | ACTIVE — M1 BASELINE VERIFIED |
-| Current Build Baseline | M2 IN PROGRESS — PG01 AR/EN IN QA |
+| Current Build Baseline | M2 IN PROGRESS — PG01 C8 / PASS / CLOSED; PG02 gated |
 
 ## Milestones
 
@@ -66,7 +66,7 @@ Content uses C0–C8 from `CONTENT-SYSTEM-V1.md`.
 | Components / Elements M1 foundation view | PASS / CLOSED | AR + EN noindex QA surfaces |
 | M1 AR/EN component QA | PASS / CLOSED | structural/component gate; see `M1-QA-REPORT-V1.md` and `M1-CLOSURE-2026-08-19.md` |
 
-## Active M1 Foundation Tree
+## Active Shared Implementation Tree
 
 ```text
 assets/
@@ -75,6 +75,7 @@ assets/
 │   ├── origex-tokens.css
 │   ├── origex-foundation.css
 │   ├── origex-components.css
+│   ├── origex-compositions.css
 │   └── origex-shell.css
 ├── fonts/
 │   ├── tajawal/
@@ -93,19 +94,26 @@ assets/
 preview/
 ├── m1-components-ar.html
 └── m1-components-en.html
+qa/
+├── pg01-rendered/
+├── pg01-interaction/
+└── pg01-visual-review/
 docs/
 ├── M1-COMPONENT-IMPLEMENTATION-MAP.md
 ├── M1-QA-REPORT-V1.md
 ├── M1-CLOSURE-2026-08-19.md
+├── PG01-CLOSURE-2026-08-19.md
 ├── M1-VENDOR-SHA256.txt
 └── canonical authorities
 ```
+
+`origex-compositions.css` is an M2 reusable F07 media-composition extension built on the frozen M1 foundation. It does not reopen M1 or introduce a new component-registry ID.
 
 ## 32 V1 Layouts
 
 | PG | Page | Content | Design Profile | Build | QA |
 |---|---|---|---|---|---|
-| PG01 | Home 01 — Food Trading / Importer | C7 — IMPLEMENTED | READY / APPROVED | QA — `ar/index.html` + `en/index.html` | IN PROGRESS |
+| PG01 | Home 01 — Food Trading / Importer | C8 — CLOSED | APPROVED | `ar/index.html` + `en/index.html` | PASS / CLOSED |
 | PG02 | Home 02 — Wholesale & Distribution | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG03 | Home 03 — Manufacturer / Supplier | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG04 | Landing / One Page | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
@@ -138,6 +146,19 @@ docs/
 | PG31 | Terms | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 | PG32 | Components / Elements Library | C0 | NOT STARTED | NOT STARTED | NOT STARTED |
 
+## PG01 Closure Evidence
+
+PG01 passed its complete page gate on 2026-08-19.
+
+Evidence:
+- `docs/PG01-QA-REPORT-V1.md` — source/content/SEO/asset gate.
+- `qa/pg01-rendered/` — AR/EN rendered responsive evidence at 390, 820, 1366 and 1536 widths.
+- `qa/pg01-interaction/` — rendered mega menu, drawer, Escape, FAQ and announcement behavior.
+- `qa/pg01-visual-review/` — compact visual review snapshots.
+- `docs/PG01-CLOSURE-2026-08-19.md` — closure decision and evidence map.
+
+One visual QA issue was found and fixed before closure: the source-to-market hero media composition was too sparse on wide screens. The correction was implemented as a reusable F07 media composition / shared compatibility layer rather than a page-local patch.
+
 ## Historical Build Status
 
 Build 02–05 code remains removed from the active tree because it predates the frozen Bootstrap/component/icon/content/SEO architecture.
@@ -148,15 +169,17 @@ Historical value remains in Git history and selected reference/source-map files.
 
 **M1 PASSED / CLOSED.** Page production is open under the normal per-page gates.
 
-PG01 has entered implementation and QA:
-- Content C6 was frozen before coding.
-- Page Design Profile and SEO & Page Identity Contract were completed before coding.
-- Arabic and English implementations were created together using the M1 registered system.
-- Canonical fictional demo data and disclosure are used; no TARGET client data/assets entered PG01.
-- local Bootstrap, fonts, icons, patterns, config and runtime are used.
-- PG01 is now Content C7 — IMPLEMENTED and remains in page QA before C8 closure.
+**PG01 = C8 / PASS / CLOSED.**
 
-Next execution action: PG01 responsive / interaction / content / SEO QA → C8. After PG01 closure, prepare and build PG02 under the same gate sequence.
+The next page is not automatically build-ready. PG02 remains at C0 and must pass the same entry sequence before code begins:
+- define/freeze its bilingual Content Contract to C6;
+- complete Page Design Profile;
+- complete SEO & Page Identity Contract;
+- confirm registered component/asset requirements;
+- then build AR + EN together;
+- close only after page QA and C8.
+
+Next execution action: prepare PG02 — Home 02 — Wholesale & Distribution for its M2 entry gate.
 
 ## Update Rule
 
