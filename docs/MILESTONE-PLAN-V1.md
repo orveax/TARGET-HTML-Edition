@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Owner: ORVEAX  
 Status: APPROVED — M0/M1 CLOSED / M2–M4 FINAL ACCEPTANCE OPEN / M5 IN PROGRESS  
-Last Alignment: 2026-08-20 — PG20–PG22 PS7 / PG23 NEXT
+Last Alignment: 2026-08-20 — PG20–PG23 PS7 / PG24 NEXT
 
 ## Project Brief
 
@@ -49,7 +49,7 @@ Implemented:
 - `config.js` + config engine;
 - global shell.
 
-A permanent **Global F05 Icon Integrity QA** gate scans distributed AR/EN pages against the canonical sprite. At PG22 closure the gate covered **46 AR/EN pages with zero missing sprite references**.
+A permanent **Global F05 Icon Integrity QA** gate scans distributed AR/EN pages against the canonical sprite. At PG23 closure the gate covered **48 AR/EN pages with zero missing sprite references**.
 
 ## M2 — Global Shell & Home Family — FINAL ACCEPTANCE OPEN
 
@@ -97,8 +97,8 @@ Pages:
 - PG20 Case Studies — **PS7 / IMPLEMENTED / CI QA PASS**.
 - PG21 Case Study Details — **PS7 / IMPLEMENTED / CI QA PASS**.
 - PG22 Downloads / Resources — **PS7 / IMPLEMENTED / CI QA PASS**.
-- PG23 Certifications & Compliance — **NEXT VALID PAGE PRODUCTION ACTION**.
-- PG24 Insights / Blog — NOT STARTED.
+- PG23 Certifications & Compliance — **PS7 / IMPLEMENTED / CI QA PASS**.
+- PG24 Insights / Blog — **NEXT VALID PAGE PRODUCTION ACTION**.
 - PG25 Article Details — NOT STARTED.
 
 PG20 final evidence:
@@ -124,9 +124,20 @@ PG22 final evidence:
 - download target existence and TXT/UTF-8 type accuracy: PASS;
 - rendered AR/EN × 390/820/1366/1536: 8/8 PASS;
 - category query hydration / language preservation / keyboard reset / empty state: PASS;
-- Global Navigation V1 / Global Footer V1 / F05 Icon Integrity: PASS;
 - final evidence commit: `630b626d0180d2c62dd8112531bddb5f419b1bc6`;
 - QA authority: `docs/PG22-QA-REPORT-V1.md`.
+
+PG23 final evidence:
+- six Demo certification/document categories, four quality steps, four storage/handling principles, four-node traceability Demo and document-status matrix;
+- no fabricated certificate number, issuer, expiry date, audit result, approval or regulatory status;
+- initial QA failed only on canonical navigation drift; fixed centrally by Global Navigation V1 commit `cbb144ac0d431a1f2d0253acaaca8cb7cfa8ac24`;
+- source/claim failures: 0;
+- rendered AR/EN × 390/820/1366/1536: 8/8 PASS;
+- final evidence commit: `2629c2d26a478376c4903771981451bccc4d2003`;
+- QA authority: `docs/PG23-QA-REPORT-V1.md`.
+
+### Preview Utility
+`site-map.html` is a noindex internal Visual Site Map showing all **PG01–PG33**. It is not a new product layout and does not modify the 33-layout scope. Current QA: 33 cards / 24 implemented / 9 pending / 48 linked AR+EN pages / PASS. Evidence: `50c0d8e3f9ff2908d736c7312c02774f6e962770`.
 
 Gate: all M5 pages PS8 + SEO + demo-proof/resource/download/licensing controls + zero Critical/High milestone defects.
 
@@ -178,8 +189,8 @@ Gate: Submission Candidate **1.0.0** approved.
 
 ## Current Production Order
 
-1. **PG23 — Certifications & Compliance**: canonical content review → PS6 Page Design Profile / SEO contract → AR/EN build → compliance-claim/document-state/RTL-responsive QA.
-2. Continue PG24–PG25 sequentially under M5.
+1. **PG24 — Insights / Blog**: canonical content review → PS6 Page Design Profile / SEO + editorial contract → AR/EN build → featured/category/search/pagination/responsive QA.
+2. Continue PG25 sequentially under M5.
 3. In parallel, close pending Cloudflare PS8 batches for M2/M3/M4 and completed M5 pages, plus PG33 QA follow-up.
 
 ## Change Control
