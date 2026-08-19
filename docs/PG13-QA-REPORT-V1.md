@@ -4,7 +4,8 @@
 **Milestone:** M4 — Product / Supplier / Conversion  
 **Page:** PG13 — Supplier / Brand Details  
 **Canonical file:** `supplier-details.html`  
-**Current gate:** BUILD IMPLEMENTED / SOURCE + DATA QA PASS / RENDERED QA PENDING
+**Final CI gate:** **PS7 / IMPLEMENTED / DATA + SOURCE + RENDERED + INTERACTION QA PASS**  
+**PS8:** Cloudflare deployed-browser acceptance still pending.
 
 ## 1. Build Evidence
 
@@ -12,15 +13,15 @@
 - Canonical Markets dataset: `assets/data/markets.json` — `9fdd7a423f398ba5c09eb9838a28b19a3401184c`
 - Supplier market relations: `assets/data/suppliers.json` — `ea79dfd33987353638891213474183e9a20a710b`
 - Composition: `assets/css/origex-supplier-details.css` — initial `a8eae4f7d8b6a89f0a67858a9796533b3694791c`, UX refinement `8d32df40fd869549080a377a4f88073ad17f4551`
-- Runtime: `assets/js/origex-supplier-details.js` — `819d6f372ec53ed5365822784085f919786a6f38`
-- English: `en/supplier-details.html` — build `23786c819030cb7e1bc678f15980e21dec01e00b`, navigation alignment `5caef1625337c5b28bb27c1ef1ded1eda3ce832b`
-- Arabic: `ar/supplier-details.html` — build `a654f526302bb90aebfc45f4a6c85cba8291c508`, navigation alignment `44f485be1a2047d43823a8ea11848deb539a0651`
-- Source evidence: `qa/pg13-supplier-details/source-report.json` — initial `b076c19c90c8690e0b9e54ba98bca428323128bd`
-- Gate status: `qa/pg13-supplier-details/run-status.txt`
+- Runtime: `assets/js/origex-supplier-details.js` — initial `819d6f372ec53ed5365822784085f919786a6f38`, QA observability `43bab72f14e28c2978c06f3671e05c45d420bb45`
+- English: build `23786c819030cb7e1bc678f15980e21dec01e00b`; navigation alignment `5caef1625337c5b28bb27c1ef1ded1eda3ce832b`; section QA hooks / final correction `401850aef97a6eadf00a8f293dab602be47d64c8` + `a89cf2f3c836b0dbc07b8a9b8313228370108150`
+- Arabic: build `a654f526302bb90aebfc45f4a6c85cba8291c508`; navigation alignment `44f485be1a2047d43823a8ea11848deb539a0651`; section QA hooks `bb41d519845dcd55c2d38ab3621e70e3b876bee4`
+- QA workflow: `.github/workflows/pg13-supplier-details-qa.yml` — `cacece8c9cc1883415d58eaf037da92dca52f253`
+- Final QA evidence commit: `d16e8d86279de5242f15a71535248a40fe878c4c`
 
 ## 2. Data Contract Completion — Improvement Added During Build
 
-`docs/DATA-SCHEMA-V1.md` already declared `assets/data/markets.json` as a canonical structured-data domain, but that file did not exist in the repository before PG13.
+`docs/DATA-SCHEMA-V1.md` already declared `assets/data/markets.json` as a canonical structured-data domain, but the repository did not contain the file before PG13.
 
 PG13 closed that implementation gap without changing the approved schema:
 
@@ -31,115 +32,116 @@ PG13 closed that implementation gap without changing the approved schema:
 
 This is a backward-compatible data completion, not an Architecture Change Request.
 
-## 3. Data Integrity QA
+## 3. Data Integrity QA — PASS
 
-PASS:
-
-- 4 supplier records.
-- 12 product records.
-- 6 market records.
-- 12 supplier → product relation references checked.
-- Missing supplier → product relations: 0.
-- 12 supplier → market relation references checked.
-- Missing supplier → market relations: 0.
+- Suppliers: 4.
+- Products: 12.
+- Markets: 6.
+- Supplier → product relations: 12; missing = 0.
+- Supplier → market relations: 12; missing = 0.
 - Default supplier `supplier-noura` exists.
 - Product records remain canonical in `products.json`; no duplicate supplier-level product objects were introduced.
 - Market records remain canonical in `markets.json`; no duplicated market objects were introduced in supplier records.
 
-## 4. Source / Page Contract QA
+Canonical evidence: `qa/pg13-supplier-details/source-report.json` — failures 0.
 
-Arabic and English source review PASS for:
+## 4. Source / Page Contract QA — PASS
 
-- one semantic H1 per page;
-- correct `lang` and `dir` (`ar/rtl`, `en/ltr`);
-- no duplicate HTML IDs found in the source review;
+Arabic and English source checks pass for:
+
+- one semantic H1;
+- `ar/rtl` and `en/ltr`;
+- duplicate HTML IDs = 0;
 - self canonical;
 - AR / EN / x-default hreflang;
 - Open Graph baseline;
-- WebPage JSON-LD;
-- BreadcrumbList JSON-LD;
-- demo Organization JSON-LD with no Offer, rating, verified certification, legal identifier or territory-right claims;
-- canonical data hooks for suppliers, products and markets;
-- visible loading, error, noscript and disclosure states;
-- Supplier family parent navigation state;
-- supplier ID language-preservation runtime hook;
-- product-detail and RFQ route generation;
-- category deep links to the existing products grid.
+- WebPage + BreadcrumbList + demo Organization JSON-LD;
+- canonical supplier/product/market data hooks;
+- loading, error, noscript and explicit demo disclosure states;
+- Supplier parent navigation current-state on desktop, mega-menu and mobile;
+- local asset and icon references;
+- no TARGET/client leakage;
+- JavaScript syntax;
+- Global Navigation V1 normalization check.
 
-## 5. Runtime Contract QA
+## 5. Rendered Responsive QA — PASS
 
-Source-level runtime inspection PASS:
+`qa/pg13-supplier-details/rendered-report.json` reports **0 failures** for all eight cases:
 
-- Vanilla JavaScript only.
-- Parallel load of `suppliers.json`, `products.json`, `markets.json`.
-- `?id=<supplier-id>` active-supplier contract.
-- Missing / invalid supplier ID visibly falls back to `supplier-noura` rather than fabricating a record.
-- Active supplier ID is preserved on the language switch.
-- Header CTA remains structurally canonical; PG13 runtime may update its RFQ query after supplier resolution.
-- Linked products resolve from the canonical product dataset.
-- Linked markets resolve from the canonical market dataset.
-- Certification IDs render as Demo references only.
-- Organization JSON-LD updates from the selected fictional record without commercial rights or ecommerce claims.
+| Language | Width | Result |
+|---|---:|---|
+| Arabic | 390 | PASS |
+| Arabic | 820 | PASS |
+| Arabic | 1366 | PASS |
+| Arabic | 1536 | PASS |
+| English | 390 | PASS |
+| English | 820 | PASS |
+| English | 1366 | PASS |
+| English | 1536 | PASS |
 
-## 6. Navigation Governance Defect Found and Corrected
+The rendered gate validates:
 
-During QA, the initial PG13 build placed the supplier query directly into the static Global Header CTA. The page worked, but this created structural drift from `GLOBAL-NAVIGATION-CONTRACT-V1` / `normalize_global_navigation.py`.
+- successful canonical JSON load;
+- default Noura supplier state;
+- product/category/market/certification counts;
+- linked product and category routes;
+- no horizontal overflow;
+- RTL/LTR direction;
+- supplier-aware header RFQ synchronization;
+- minimum displayed touch-target threshold;
+- desktop mega-menu open/Escape behavior;
+- mobile drawer open/close behavior.
+
+## 6. Interaction QA — PASS
+
+The workflow separately validates:
+
+- `supplier-nordvale` query-param switch;
+- linked product/category/market counts after supplier switch;
+- localized supplier name update;
+- supplier ID preservation on language switch;
+- supplier-aware RFQ route;
+- Organization JSON-LD identifier update;
+- BluePort zero-certification empty state;
+- invalid supplier ID fallback to `supplier-noura` with visible fallback state;
+- Arabic supplier query + RTL + language preservation.
+
+All interaction failure arrays are empty.
+
+## 7. Navigation Governance Defect Found and Corrected
+
+The initial PG13 build placed the supplier query directly into the static Global Header CTA. This worked functionally but created structural drift from `GLOBAL-NAVIGATION-CONTRACT-V1`.
 
 Correction:
 
-- Restored the static header CTA to the canonical `rfq.html` + `data-orx-header-cta` structure in AR and EN.
-- Kept supplier query synchronization inside the PG13 runtime after data resolution.
-- Supplier Details already exists in the centralized navigation family mapping and correctly inherits `Suppliers` / `Suppliers & Brands` as its parent current state.
+- Restored the static header CTA to canonical `rfq.html` + `data-orx-header-cta` in AR and EN.
+- Kept supplier-aware query synchronization in PG13 runtime after data resolution.
+- Final `normalize_global_navigation.py --check` = PASS.
 
-This removes page-local navigation drift while preserving the supplier-aware conversion route.
+The first GitHub Actions run correctly detected `global-navigation-drift` in English. After correction, the rerun returned source failures 0 and final `run-status.txt = PASS`. This defect is therefore closed with automated regression evidence.
 
-## 7. UX Improvements Added During Build
+## 8. UX / Maintainability Improvements Added During Build
 
-Two non-scope-expanding refinements were added:
+1. **Canonical market data completion** — implemented the missing `markets.json` domain already declared by the frozen schema.
+2. **Category interaction targets** — increased minimum interactive height/padding for mobile/tablet usability.
+3. **Market information density** — responsive three-column market grid on suitable widths.
+4. **Global navigation governance** — removed page-local header structure drift and kept the header canonical.
+5. **Runtime QA observability** — added `loading / ready / error`, active supplier ID and relation counts to the page root for deterministic CI testing.
+6. **Section QA hooks** — added stable `data-pg13-section` markers for page-level regression testing and future maintenance.
 
-1. **Category touch targets** — category links now have a larger minimum interaction height and padding for clearer mobile/tablet interaction.
-2. **Market information density** — the market block becomes a three-column grid on suitable widths while remaining single-column on smaller screens.
+None of these changes expands the frozen V1 commercial scope.
 
-These changes improve usability and information scanning without adding new product features or changing the data contract.
+## 9. Final Decision
 
-## 8. QA Not Yet Claimed
+**PG13 is promoted to PS7 / IMPLEMENTED / CI QA PASS.**
 
-The following are **not yet marked PASS**:
+Canonical evidence:
 
-- rendered AR/EN QA at 390 / 820 / 1366 / 1536;
-- horizontal overflow inspection in a real browser;
-- computed touch-target dimensions;
-- runtime supplier switch to another supplier such as `supplier-nordvale`;
-- invalid-ID fallback observation in a rendered browser;
-- language switch query preservation in a rendered browser;
-- keyboard / mobile drawer / mega-menu interaction observation;
-- final deployed Cloudflare browser acceptance.
+- `qa/pg13-supplier-details/source-report.json` — failures 0.
+- `qa/pg13-supplier-details/rendered-report.json` — failures 0; responsive 8/8 PASS; interaction suites PASS.
+- `qa/pg13-supplier-details/run-status.txt` — PASS.
+- Evidence commit: `d16e8d86279de5242f15a71535248a40fe878c4c`.
 
-The available execution environment could not clone / resolve GitHub for a browser-based local checkout, so source/data QA is intentionally separated from rendered acceptance.
+## 10. Remaining Gate
 
-## 9. Current Decision
-
-**Do not promote PG13 to PS7 yet.**
-
-Current status:
-
-`PS6 / BUILD IMPLEMENTED / DATA + SOURCE QA PASS / RENDERED-RESPONSIVE QA PENDING`
-
-## 10. Next Gate
-
-Run rendered QA for AR + EN at 390 / 820 / 1366 / 1536 and verify:
-
-- no horizontal overflow;
-- category and CTA touch targets;
-- Noura default load;
-- `supplier-nordvale` switch;
-- invalid supplier fallback;
-- product relation cards and routes;
-- market relation cards;
-- certification empty/non-empty states;
-- active supplier preserved across language switch;
-- Supplier parent current-state in desktop and mobile navigation;
-- RFQ query synchronization;
-- keyboard interaction.
-
-After those pass, promote PG13 to **PS7 / CI QA PASS**. Cloudflare deployed-browser review remains required before PS8.
+PG13 is **not PS8** yet. Final acceptance still requires the current revision to pass deployed Cloudflare AR/EN mobile + desktop browser review under the project-wide PS8 closure matrix.
