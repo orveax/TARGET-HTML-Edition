@@ -42,3 +42,5 @@ jobs:
           git add assets/css/origex-components.css .github/workflows/pg11-product-details-qa.yml
           git commit -m "fix: enforce accessible breadcrumb target size"
           git push origin main
+
+# explicit retrigger — 2026-08-19
