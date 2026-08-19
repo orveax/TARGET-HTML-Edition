@@ -4,7 +4,7 @@ Product ID: ORX-P01
 Owner: ORVEAX  
 Repository: `orveax/TARGET-HTML-Edition`  
 Status: ACTIVE CONTROL DOCUMENT  
-Last Updated: 2026-08-19 — M2 / PG01 CLOSED / STAGING BLOCKED
+Last Updated: 2026-08-19 — M2 / PG01 MARKETPLACE BENCHMARK CLOSED / STAGING BLOCKED
 
 This is the operational entry point for ORIGEX. If another document conflicts with this HQ, use the authority order below and stop local improvisation.
 
@@ -14,7 +14,8 @@ This is the operational entry point for ORIGEX. If another document conflicts wi
 M0 — PRODUCT FOUNDATION: PASS / CLOSED
 M1 — GLOBAL SYSTEM & COMPONENT FOUNDATION: PASS / CLOSED
 M2 — GLOBAL SHELL & HOME FAMILY: IN PROGRESS
-PG01 — HOME 01: C8 / PASS / CLOSED — AR + EN
+PG01 — HOME 01: C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK — AR + EN
+PG01 MARKETPLACE VISUAL POLISH CR: PASS / CLOSED
 PG01 STAGING PREVIEW: BLOCKED — GitHub Pages not enabled
 PG02 — HOME 02: C0 / ENTRY GATE REQUIRED / CODE BLOCKED UNTIL PG01 STAGING PASS
 PG03–PG04: gated by C6 + Design Profile + SEO Contract
@@ -28,10 +29,16 @@ PG01 closure authority:
 - English: `en/index.html`
 - Page contract: `page-design-profiles/pg01-home-01-v1.md`
 - Source/SEO QA: `PG01-QA-REPORT-V1.md`
-- Closure: `PG01-CLOSURE-2026-08-19.md`
+- Base closure: `PG01-CLOSURE-2026-08-19.md`
+- Marketplace visual closure: `PG01-MARKETPLACE-VISUAL-POLISH-2026-08-19.md`
 - Rendered evidence: `../qa/pg01-rendered/`
 - Interaction evidence: `../qa/pg01-interaction/`
 - Visual review: `../qa/pg01-visual-review/`
+
+Final marketplace-polish evidence:
+- Rendered QA `5ab1edb6fe2a17adc41857790170097dfad57f0f` — 8/8 viewport/language cases PASS.
+- Interaction QA `b3d12beb103492144f4c5fc690ef15eedd49eef4` — AR/EN desktop/mobile PASS.
+- Visual snapshots `e1c09173757defc6992ac162447990f2ffc76f5a`.
 
 PG01 staging authority:
 - Root language entry: `../index.html`
@@ -134,9 +141,9 @@ Reference files inform fidelity/research; they do not define current architectur
 ├── README.md
 ├── CHANGELOG.md
 ├── ar/
-│   └── index.html              # PG01 Arabic — C8 / CLOSED
+│   └── index.html              # PG01 Arabic — C8 / marketplace benchmark
 ├── en/
-│   └── index.html              # PG01 English — C8 / CLOSED
+│   └── index.html              # PG01 English — C8 / marketplace benchmark
 ├── assets/
 │   ├── brand/
 │   ├── css/
@@ -144,7 +151,14 @@ Reference files inform fidelity/research; they do not define current architectur
 │   │   ├── origex-foundation.css
 │   │   ├── origex-components.css
 │   │   ├── origex-compositions.css
+│   │   ├── origex-marketplace-polish.css
 │   │   └── origex-shell.css
+│   ├── media/demo/
+│   │   ├── hero-trade-scene.svg
+│   │   ├── product-tomato-sauce.svg
+│   │   ├── product-hibiscus.svg
+│   │   ├── product-milk.svg
+│   │   └── product-frozen.svg
 │   ├── fonts/
 │   ├── icons/
 │   ├── js/
@@ -169,7 +183,9 @@ Reference files inform fidelity/research; they do not define current architectur
 
 M1 owns the reusable foundation. M2+ pages consume it and may not create competing local systems.
 
-`origex-compositions.css` is an M2 reusable F07 media-composition layer built on top of the frozen M1 foundation; it does not reopen M1 or create an unregistered component family.
+`origex-shell.css` remains the closed M1 shell. `origex-compositions.css` is the M2 composition entry and loads `origex-marketplace-polish.css`; this keeps the marketplace refinement outside M1.
+
+PG01 demo media is ORVEAX-owned and registered in the Asset & License Register. No stock-photo or client-asset dependency was added.
 
 The staging workflow publishes only `index.html`, `ar/`, `en/` and `assets/`; internal `docs/`, `qa/` and `.github/` content are excluded from the public artifact.
 
@@ -189,7 +205,7 @@ Then implementation proceeds AR + EN together and exits page QA only at Content 
 
 C8 is separate from deployment readiness. For the first representative page in a milestone/page family, `STAGING-PREVIEW-GATE-V1.md` must also pass before the next page in that family enters code implementation.
 
-PG01 has completed its page lifecycle and is **C8 / PASS / CLOSED**, but its independent **Staging Preview Gate is BLOCKED** because GitHub Pages is not enabled at repository level.
+PG01 has completed its page lifecycle and approved marketplace visual polish and is **C8 / PASS / CLOSED — MARKETPLACE VISUAL BENCHMARK**. Its independent **Staging Preview Gate is BLOCKED** because GitHub Pages is not enabled at repository level.
 
 PG02 has not entered implementation. It remains at **C0**. Its content/design/SEO preparation may proceed, but PG02 code is blocked until PG01 staging reaches `STAGING PASS`.
 
@@ -228,6 +244,6 @@ Resolve the **PG01 Staging Preview Gate** before PG02 code begins:
 
 M1 remains closed unless a verified foundation defect requires a controlled QA fix.
 
-PG01 is the current M2 implementation benchmark for shell behavior and QA discipline only after its staging gate passes; page/code C8 remains valid independently.
+PG01 is now the **page/code marketplace visual benchmark** for M2. Its public/staging benchmark status remains pending until the separate Staging Preview Gate passes.
 
 Copyright © ORVEAX.
