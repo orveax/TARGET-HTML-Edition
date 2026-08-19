@@ -1,0 +1,223 @@
+{
+  "generatedAt": "2026-08-19T14:26:38Z",
+  "failures": 0,
+  "results": [
+    {
+      "lang": "ar",
+      "viewport": 390,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "sixSections": true,
+        "sixCards": true,
+        "channelTags": true,
+        "sixMapNodes": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "rtl",
+        "h1": true,
+        "mapNodes": 6,
+        "minButton": 52.375,
+        "off": 0,
+        "overflow": false,
+        "sections": 6,
+        "tags": 18,
+        "visibleCards": 6
+      },
+      "pass": true
+    },
+    {
+      "lang": "ar",
+      "viewport": 820,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "sixSections": true,
+        "sixCards": true,
+        "channelTags": true,
+        "sixMapNodes": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "rtl",
+        "h1": true,
+        "mapNodes": 6,
+        "minButton": 52.375,
+        "off": 0,
+        "overflow": false,
+        "sections": 6,
+        "tags": 18,
+        "visibleCards": 6
+      },
+      "pass": true
+    },
+    {
+      "lang": "ar",
+      "viewport": 1366,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "sixSections": true,
+        "sixCards": true,
+        "channelTags": true,
+        "sixMapNodes": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "rtl",
+        "h1": true,
+        "mapNodes": 6,
+        "minButton": 46.234375,
+        "off": 0,
+        "overflow": false,
+        "sections": 6,
+        "tags": 18,
+        "visibleCards": 6
+      },
+      "pass": true
+    },
+    {
+      "lang": "ar",
+      "viewport": 1536,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "sixSections": true,
+        "sixCards": true,
+        "channelTags": true,
+        "sixMapNodes": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "rtl",
+        "h1": true,
+        "mapNodes": 6,
+        "minButton": 46.234375,
+        "off": 0,
+        "overflow": false,
+        "sections": 6,
+        "tags": 18,
+        "visibleCards": 6
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 390,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "sixSections": true,
+        "sixCards": true,
+        "channelTags": true,
+        "sixMapNodes": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "ltr",
+        "h1": true,
+        "mapNodes": 6,
+        "minButton": 49.96875,
+        "off": 0,
+        "overflow": false,
+        "sections": 6,
+        "tags": 18,
+        "visibleCards": 6
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 820,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "sixSections": true,
+        "sixCards": true,
+        "channelTags": true,
+        "sixMapNodes": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "ltr",
+        "h1": true,
+        "mapNodes": 6,
+        "minButton": 49.96875,
+        "off": 0,
+        "overflow": false,
+        "sections": 6,
+        "tags": 18,
+        "visibleCards": 6
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 1366,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "sixSections": true,
+        "sixCards": true,
+        "channelTags": true,
+        "sixMapNodes": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "ltr",
+        "h1": true,
+        "mapNodes": 6,
+        "minButton": 44.078125,
+        "off": 0,
+        "overflow": false,
+        "sections": 6,
+        "tags": 18,
+        "visibleCards": 6
+      },
+      "pass": true
+    },
+    {
+      "lang": "en",
+      "viewport": 1536,
+      "checks": {
+        "direction": true,
+        "noOverflow": true,
+        "touchTargets": true,
+        "h1": true,
+        "sixSections": true,
+        "sixCards": true,
+        "channelTags": true,
+        "sixMapNodes": true
+      },
+      "metrics": {
+        "cards": 6,
+        "dir": "ltr",
+        "h1": true,
+        "mapNodes": 6,
+        "minButton": 44.078125,
+        "off": 0,
+        "overflow": false,
+        "sections": 6,
+        "tags": 18,
+        "visibleCards": 6
+      },
+      "pass": true
+    }
+  ],
+  "errors": []
+}

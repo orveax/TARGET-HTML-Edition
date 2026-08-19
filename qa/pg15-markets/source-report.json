@@ -1,0 +1,103 @@
+{
+  "generatedAt": "2026-08-19T14:26:16Z",
+  "failures": 0,
+  "results": [
+    {
+      "page": "ar/markets.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "visibleBreadcrumb": true,
+        "demoDisclosure": true,
+        "sixFrozenSections": true,
+        "sixCountryCards": true,
+        "channelTags": true,
+        "countryFilters": true,
+        "regionFilter": true,
+        "marketMap": true,
+        "filterRuntime": true,
+        "marketsCSS": true,
+        "sharedRuntime": true,
+        "staticMarketCurrent": true,
+        "uniqueIDs": true,
+        "noClientCDNLeakage": true,
+        "iconReferencesResolve": true,
+        "localAssets": true
+      },
+      "missingIcons": [],
+      "sections": [
+        "hero",
+        "market-overview",
+        "filters",
+        "market-map",
+        "country-cards",
+        "cta"
+      ],
+      "countries": [
+        "qatar",
+        "saudi",
+        "uae",
+        "kuwait",
+        "bahrain",
+        "oman"
+      ],
+      "channelTags": 18,
+      "filters": 7,
+      "mapNodes": 6,
+      "pass": true
+    },
+    {
+      "page": "en/markets.html",
+      "checks": {
+        "languageDirection": true,
+        "singleH1": true,
+        "canonical": true,
+        "hreflang": true,
+        "openGraph": true,
+        "structuredData": true,
+        "visibleBreadcrumb": true,
+        "demoDisclosure": true,
+        "sixFrozenSections": true,
+        "sixCountryCards": true,
+        "channelTags": true,
+        "countryFilters": true,
+        "regionFilter": true,
+        "marketMap": true,
+        "filterRuntime": true,
+        "marketsCSS": true,
+        "sharedRuntime": true,
+        "staticMarketCurrent": true,
+        "uniqueIDs": true,
+        "noClientCDNLeakage": true,
+        "iconReferencesResolve": true,
+        "localAssets": true
+      },
+      "missingIcons": [],
+      "sections": [
+        "hero",
+        "market-overview",
+        "filters",
+        "market-map",
+        "country-cards",
+        "cta"
+      ],
+      "countries": [
+        "qatar",
+        "saudi",
+        "uae",
+        "kuwait",
+        "bahrain",
+        "oman"
+      ],
+      "channelTags": 18,
+      "filters": 7,
+      "mapNodes": 6,
+      "pass": true
+    }
+  ],
+  "errors": []
+}
