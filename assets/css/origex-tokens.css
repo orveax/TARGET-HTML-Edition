@@ -1,25 +1,40 @@
 /* ORIGEX — ORX-P01 | M1 Design Tokens | Copyright © ORVEAX */
 :root {
-  /* Raw brand palette */
-  --orx-primary: #15343B;
-  --orx-primary-strong: #0D252B;
-  --orx-secondary: #3F6F68;
-  --orx-accent: #C47A4A;
-  --orx-sand: #E8DFD0;
-  --orx-bg: #FAF8F4;
-  --orx-surface: #FFFFFF;
-  --orx-surface-soft: #F3EFE8;
-  --orx-text: #20282C;
-  --orx-text-muted: #667278;
-  --orx-border: #D8DEDB;
+  /* ORIGEX Brand System v1.2 — canonical raw palette */
+  --orx-ink-950: #082A2F;
+  --orx-ink-800: #123D42;
+  --orx-emerald-700: #0E7567;
+  --orx-emerald-300: #80CDBE;
+  --orx-brass-600: #C18A42;
+  --orx-brass-300: #E7BC77;
+  --orx-ivory-100: #F5F1E8;
+  --orx-canvas-50: #FCFAF6;
+  --orx-graphite-800: #263438;
+  --orx-slate-600: #657579;
+  --orx-line-200: #DCE1DB;
+  --orx-white: #FFFFFF;
+
+  /* Compatibility aliases — preserve the existing component/page API while consuming v1.2. */
+  --orx-primary: var(--orx-ink-800);
+  --orx-primary-strong: var(--orx-ink-950);
+  --orx-secondary: var(--orx-emerald-700);
+  --orx-accent: var(--orx-brass-600);
+  --orx-sand: var(--orx-ivory-100);
+  --orx-bg: var(--orx-canvas-50);
+  --orx-surface: var(--orx-white);
+  --orx-surface-soft: var(--orx-ivory-100);
+  --orx-text: var(--orx-graphite-800);
+  --orx-text-muted: var(--orx-slate-600);
+  --orx-border: var(--orx-line-200);
   --orx-border-strong: #BFC9C5;
+
+  /* Functional status colors remain semantic UI colors, not brand identity colors. */
   --orx-success: #256B4A;
   --orx-warning: #9A651A;
   --orx-danger: #A63D40;
   --orx-info: #356A8A;
 
-  /* STD-COL01 — semantic surface / foreground relationships.
-     Raw palette tokens remain available for brand identity; UI consumes these roles. */
+  /* STD-COL01 — semantic surface / foreground relationships. */
   --orx-surface-base: var(--orx-bg);
   --orx-surface-raised: var(--orx-surface);
   --orx-surface-subtle: var(--orx-surface-soft);
@@ -28,17 +43,17 @@
   --orx-surface-accent: var(--orx-accent);
   --orx-on-light-primary: var(--orx-primary-strong);
   --orx-on-light-body: var(--orx-text);
-  --orx-on-light-muted: #5F6B70;
-  --orx-on-dark-primary: #FFFFFF;
-  --orx-on-dark-muted: var(--orx-sand);
+  --orx-on-light-muted: var(--orx-slate-600);
+  --orx-on-dark-primary: var(--orx-white);
+  --orx-on-dark-muted: var(--orx-ivory-100);
   --orx-on-accent: var(--orx-primary-strong);
   --orx-on-status-success: var(--orx-success);
   --orx-on-status-warning: var(--orx-warning);
   --orx-on-status-danger: var(--orx-danger);
   --orx-on-status-info: var(--orx-info);
 
-  --orx-font-ar: "Tajawal", Arial, sans-serif;
-  --orx-font-en: "Manrope", Arial, sans-serif;
+  --orx-font-ar: "Tajawal", "Noto Sans Arabic", Arial, sans-serif;
+  --orx-font-en: "Manrope", "Noto Sans", Arial, sans-serif;
 
   --orx-fs-display: clamp(2.75rem, 5vw, 5rem);
   --orx-fs-h1: clamp(2.25rem, 4vw, 4rem);
@@ -75,9 +90,9 @@
   --orx-radius-pill: 999px;
 
   --orx-shadow-e0: none;
-  --orx-shadow-e1: 0 8px 28px rgba(13, 37, 43, .06);
-  --orx-shadow-e2: 0 16px 44px rgba(13, 37, 43, .10);
-  --orx-shadow-e3: 0 24px 64px rgba(13, 37, 43, .16);
+  --orx-shadow-e1: 0 8px 28px rgba(8, 42, 47, .06);
+  --orx-shadow-e2: 0 16px 44px rgba(8, 42, 47, .10);
+  --orx-shadow-e3: 0 24px 64px rgba(8, 42, 47, .16);
 
   --orx-motion-fast: 150ms;
   --orx-motion-standard: 250ms;
@@ -99,7 +114,7 @@
   --orx-icon-container-2xl: 64px;
 
   --orx-header-height: 76px;
-  --orx-focus-ring: 0 0 0 3px rgba(196, 122, 74, .32);
+  --orx-focus-ring: 0 0 0 3px rgba(193, 138, 66, .34);
 }
 
 @media (min-width: 768px) { :root { --orx-gutter: 24px; } }
