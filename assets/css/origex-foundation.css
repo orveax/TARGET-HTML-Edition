@@ -6,8 +6,8 @@
 @font-face{font-family:"Manrope";src:url("../fonts/manrope/Manrope[wght].ttf") format("truetype");font-weight:400 800;font-style:normal;font-display:swap}
 
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;background:var(--orx-bg)}
-body{margin:0;background:var(--orx-bg);color:var(--orx-text);font-size:var(--orx-fs-body);line-height:1.7;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;background:var(--orx-surface-base)}
+body{margin:0;background:var(--orx-surface-base);color:var(--orx-on-light-body);font-size:var(--orx-fs-body);line-height:1.7;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
 html[lang^="ar"] body{font-family:var(--orx-font-ar);line-height:1.85}
 html[lang^="en"] body{font-family:var(--orx-font-en);line-height:1.7}
 img,svg,video{max-inline-size:100%;height:auto}
@@ -16,9 +16,9 @@ button,input,select,textarea{font:inherit}
 button,a,input,select,textarea,[tabindex]:not([tabindex="-1"]){outline:none}
 :focus-visible{box-shadow:var(--orx-focus-ring);border-radius:var(--orx-radius-xs)}
 [hidden]{display:none!important}
-::selection{background:var(--orx-sand);color:var(--orx-primary-strong)}
+::selection{background:var(--orx-sand);color:var(--orx-on-light-primary)}
 
-.orx-skip-link{position:fixed;inset-block-start:8px;inset-inline-start:8px;z-index:9999;padding:.75rem 1rem;background:var(--orx-primary-strong);color:#fff;border-radius:var(--orx-radius-sm);transform:translateY(-160%)}
+.orx-skip-link{position:fixed;inset-block-start:8px;inset-inline-start:8px;z-index:9999;padding:.75rem 1rem;background:var(--orx-surface-brand-strong);color:var(--orx-on-dark-primary);border-radius:var(--orx-radius-sm);transform:translateY(-160%)}
 .orx-skip-link:focus{transform:none}
 
 .orx-container{width:min(calc(100% - (var(--orx-gutter)*2)),var(--orx-container-standard));margin-inline:auto}
@@ -28,11 +28,11 @@ button,a,input,select,textarea,[tabindex]:not([tabindex="-1"]){outline:none}
 
 .orx-section{padding-block:clamp(4rem,8vw,7.5rem)}
 .orx-section--compact{padding-block:clamp(3rem,6vw,5rem)}
-.orx-section--soft{background:var(--orx-surface-soft)}
-.orx-section--surface{background:var(--orx-surface)}
-.orx-section--dark{background:var(--orx-primary-strong);color:#fff}
+.orx-section--soft{background:var(--orx-surface-subtle)}
+.orx-section--surface{background:var(--orx-surface-raised)}
+.orx-section--dark{background:var(--orx-surface-brand-strong);color:var(--orx-on-dark-primary)}
 
-.orx-display,.orx-h1,.orx-h2,.orx-h3,.orx-h4,h1,h2,h3,h4{margin-block:0 .7em;color:var(--orx-primary-strong);font-weight:800;line-height:1.12;text-wrap:balance}
+.orx-display,.orx-h1,.orx-h2,.orx-h3,.orx-h4,h1,h2,h3,h4{margin-block:0 .7em;color:var(--orx-on-light-primary);font-weight:800;line-height:1.12;text-wrap:balance}
 html[lang^="ar"] :is(.orx-display,.orx-h1,.orx-h2,h1,h2){line-height:1.28}
 .orx-display{font-size:var(--orx-fs-display)}
 .orx-h1,h1{font-size:var(--orx-fs-h1)}
@@ -40,11 +40,11 @@ html[lang^="ar"] :is(.orx-display,.orx-h1,.orx-h2,h1,h2){line-height:1.28}
 .orx-h3,h3{font-size:var(--orx-fs-h3)}
 .orx-h4,h4{font-size:var(--orx-fs-h4)}
 p{margin-block:0 1rem}
-.orx-lead{font-size:var(--orx-fs-body-lg);color:var(--orx-text-muted);max-width:66ch}
+.orx-lead{font-size:var(--orx-fs-body-lg);color:var(--orx-on-light-muted);max-width:66ch}
 .orx-small{font-size:var(--orx-fs-small)}
 .orx-eyebrow{display:inline-flex;align-items:center;gap:.5rem;margin-block-end:1rem;color:var(--orx-secondary);font-size:var(--orx-fs-label);font-weight:800;text-transform:uppercase;letter-spacing:.12em}
 html[lang^="ar"] .orx-eyebrow{text-transform:none;letter-spacing:0}
-.orx-muted{color:var(--orx-text-muted)}
+.orx-muted{color:var(--orx-on-light-muted)}
 .orx-bidi{direction:ltr;unicode-bidi:isolate}
 
 .orx-stack{display:flex;flex-direction:column;gap:var(--orx-stack-gap,1.5rem)}
@@ -53,15 +53,15 @@ html[lang^="ar"] .orx-eyebrow{text-transform:none;letter-spacing:0}
 @media(min-width:768px){.orx-grid--2{--orx-grid-cols:2}.orx-grid--3{--orx-grid-cols:2}.orx-grid--4{--orx-grid-cols:2}}
 @media(min-width:1100px){.orx-grid--3{--orx-grid-cols:3}.orx-grid--4{--orx-grid-cols:4}}
 
-.orx-surface{background:var(--orx-surface);border:1px solid var(--orx-border);border-radius:var(--orx-radius-md)}
+.orx-surface{background:var(--orx-surface-raised);border:1px solid var(--orx-border);border-radius:var(--orx-radius-md)}
 .orx-e1{box-shadow:var(--orx-shadow-e1)}.orx-e2{box-shadow:var(--orx-shadow-e2)}.orx-e3{box-shadow:var(--orx-shadow-e3)}
 
 .orx-icon{inline-size:1.25rem;block-size:1.25rem;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
 .orx-icon--xs{inline-size:.875rem;block-size:.875rem}.orx-icon--sm{inline-size:1rem;block-size:1rem}.orx-icon--lg{inline-size:1.5rem;block-size:1.5rem}.orx-icon--xl{inline-size:2rem;block-size:2rem}
-.orx-icon-box{display:inline-grid;place-items:center;inline-size:48px;block-size:48px;border:1px solid var(--orx-border);border-radius:var(--orx-radius-sm);background:var(--orx-surface-soft);color:var(--orx-primary)}
-.orx-icon-box--md{inline-size:56px;block-size:56px}.orx-icon-box--lg{inline-size:64px;block-size:64px}
+.orx-icon-box{display:inline-grid;place-items:center;inline-size:var(--orx-icon-container-l);block-size:var(--orx-icon-container-l);border:1px solid var(--orx-border);border-radius:var(--orx-radius-sm);background:var(--orx-surface-subtle);color:var(--orx-primary)}
+.orx-icon-box--md{inline-size:var(--orx-icon-container-xl);block-size:var(--orx-icon-container-xl)}.orx-icon-box--lg{inline-size:var(--orx-icon-container-2xl);block-size:var(--orx-icon-container-2xl)}
 
-.orx-media{overflow:hidden;background:var(--orx-surface-soft);border-radius:var(--orx-radius-md);border:1px solid var(--orx-border)}
+.orx-media{overflow:hidden;background:var(--orx-surface-subtle);border-radius:var(--orx-radius-md);border:1px solid var(--orx-border)}
 .orx-media>img{display:block;width:100%;height:100%;object-fit:cover}
 .orx-media--hero{aspect-ratio:3/2}.orx-media--product{aspect-ratio:1}.orx-media--brand{aspect-ratio:4/3}.orx-media--editorial{aspect-ratio:16/10}.orx-media--blog{aspect-ratio:16/9}
 
