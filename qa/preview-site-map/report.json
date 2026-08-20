@@ -1,9 +1,13 @@
 {
-  "failures": [],
+  "failures": [
+    "implemented-count:33",
+    "pending-count:0",
+    "pg32-next"
+  ],
   "cards": 33,
-  "implemented": 32,
-  "pending": 1,
-  "linkedLanguagePages": 64,
+  "implemented": 33,
+  "pending": 0,
+  "linkedLanguagePages": 66,
   "pg31": "PS7",
   "next": "PG32"
 }
