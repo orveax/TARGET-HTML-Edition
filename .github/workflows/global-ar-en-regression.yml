@@ -8,6 +8,8 @@ on:
       - 'assets/css/origex-tokens.css'
       - 'assets/css/origex-foundation.css'
       - 'assets/css/origex-components.css'
+      - 'assets/css/origex-compositions.css'
+      - 'assets/css/origex-marketplace-polish.css'
       - 'assets/css/origex-shell.css'
       - 'assets/js/origex-ui.js'
       - 'ar/**.html'
