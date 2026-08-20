@@ -1,6 +1,5 @@
 @import url("./origex-compositions.css");
 @import url("./origex-pg01-visual-v2.css");
-@import url("./origex-pg01-global-trade-gateway.css");
 
 /* ORIGEX — ORX-P01 | M1 Global Shell | Copyright © ORVEAX */
 .orx-announcement{background:var(--orx-surface-brand-strong);color:var(--orx-on-dark-primary);font-size:.9rem}.orx-announcement__inner{display:flex;align-items:center;justify-content:center;gap:.8rem;min-height:var(--orx-control-s);padding-block:.35rem}.orx-announcement a{font-weight:800}.orx-announcement__link{display:inline-flex;align-items:center;min-block-size:24px}.orx-announcement__close{margin-inline-start:auto;border:0;background:transparent;color:var(--orx-on-dark-primary)}
