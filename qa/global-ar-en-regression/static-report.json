@@ -1,0 +1,272 @@
+{
+  "failures": [],
+  "arCount": 33,
+  "enCount": 33,
+  "filenameParity": true,
+  "pages": {
+    "ar/404.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "ar/about.html": {
+      "failures": [],
+      "localTargetsChecked": 38
+    },
+    "ar/article-details.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "ar/become-partner.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "ar/capabilities.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "ar/case-studies.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "ar/case-study-details.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "ar/certifications-compliance.html": {
+      "failures": [],
+      "localTargetsChecked": 35
+    },
+    "ar/coming-soon.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "ar/company-profile.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "ar/components.html": {
+      "failures": [],
+      "localTargetsChecked": 40
+    },
+    "ar/contact.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "ar/faq.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "ar/for-suppliers.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "ar/home-02.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "ar/home-03.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "ar/how-we-work.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "ar/index.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "ar/insights.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "ar/landing.html": {
+      "failures": [],
+      "localTargetsChecked": 21
+    },
+    "ar/market-access.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "ar/markets.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "ar/privacy.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "ar/product-categories.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "ar/product-details.html": {
+      "failures": [],
+      "localTargetsChecked": 38
+    },
+    "ar/products.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "ar/resources.html": {
+      "failures": [],
+      "localTargetsChecked": 42
+    },
+    "ar/rfq.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "ar/service-details.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "ar/submit-product.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "ar/supplier-details.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "ar/suppliers.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "ar/terms.html": {
+      "failures": [],
+      "localTargetsChecked": 38
+    },
+    "en/404.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "en/about.html": {
+      "failures": [],
+      "localTargetsChecked": 38
+    },
+    "en/article-details.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "en/become-partner.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "en/capabilities.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "en/case-studies.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "en/case-study-details.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "en/certifications-compliance.html": {
+      "failures": [],
+      "localTargetsChecked": 35
+    },
+    "en/coming-soon.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "en/company-profile.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "en/components.html": {
+      "failures": [],
+      "localTargetsChecked": 40
+    },
+    "en/contact.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "en/faq.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "en/for-suppliers.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "en/home-02.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "en/home-03.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "en/how-we-work.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "en/index.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "en/insights.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "en/landing.html": {
+      "failures": [],
+      "localTargetsChecked": 21
+    },
+    "en/market-access.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "en/markets.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "en/privacy.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "en/product-categories.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "en/product-details.html": {
+      "failures": [],
+      "localTargetsChecked": 38
+    },
+    "en/products.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "en/resources.html": {
+      "failures": [],
+      "localTargetsChecked": 42
+    },
+    "en/rfq.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "en/service-details.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "en/submit-product.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "en/supplier-details.html": {
+      "failures": [],
+      "localTargetsChecked": 36
+    },
+    "en/suppliers.html": {
+      "failures": [],
+      "localTargetsChecked": 37
+    },
+    "en/terms.html": {
+      "failures": [],
+      "localTargetsChecked": 38
+    }
+  }
+}

@@ -1,0 +1,2204 @@
+{
+  "failures": [
+    "ar/home-02.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "ar/home-02.html:820:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "ar/home-02.html:1366:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "ar/home-02.html:1536:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "ar/home-03.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "ar/home-03.html:820:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "ar/home-03.html:1366:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "ar/home-03.html:1536:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "ar/how-we-work.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "ar/index.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt03-dot-matrix.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "ar/index.html:820:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "ar/index.html:1366:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "ar/index.html:1536:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "ar/insights.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "en/home-02.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "en/home-02.html:820:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "en/home-02.html:1366:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "en/home-02.html:1536:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "en/home-03.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "en/home-03.html:820:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "en/home-03.html:1366:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "en/home-03.html:1536:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "en/how-we-work.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "en/index.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "en/index.html:820:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt03-dot-matrix.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "en/index.html:1366:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "en/index.html:1536:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
+    "en/insights.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+  ],
+  "caseCount": 264,
+  "expectedCases": 264,
+  "cases": [
+    {
+      "lang": "ar",
+      "page": "404.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "404.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "404.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "404.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "about.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "about.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "about.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "about.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "article-details.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "article-details.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "article-details.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "article-details.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "become-partner.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "become-partner.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "become-partner.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "become-partner.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "capabilities.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "capabilities.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "capabilities.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "capabilities.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "case-studies.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "case-studies.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "case-studies.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "case-studies.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "case-study-details.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "case-study-details.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "case-study-details.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "case-study-details.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "certifications-compliance.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "certifications-compliance.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "certifications-compliance.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "certifications-compliance.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "coming-soon.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "coming-soon.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "coming-soon.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "coming-soon.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "company-profile.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "company-profile.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "company-profile.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "company-profile.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "components.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "components.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "components.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "components.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "contact.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "contact.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "contact.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "contact.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "faq.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "faq.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "faq.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "faq.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "for-suppliers.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "for-suppliers.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "for-suppliers.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "for-suppliers.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "home-02.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "ar",
+      "page": "home-02.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "ar",
+      "page": "home-02.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "ar",
+      "page": "home-02.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "ar",
+      "page": "home-03.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "ar",
+      "page": "home-03.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "ar",
+      "page": "home-03.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "ar",
+      "page": "home-03.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "ar",
+      "page": "how-we-work.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "ar",
+      "page": "how-we-work.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "how-we-work.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "how-we-work.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "index.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt03-dot-matrix.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "ar",
+      "page": "index.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "ar",
+      "page": "index.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "ar",
+      "page": "index.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "ar",
+      "page": "insights.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "ar",
+      "page": "insights.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "insights.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "insights.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "landing.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "landing.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "landing.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "landing.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "market-access.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "market-access.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "market-access.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "market-access.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "markets.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "markets.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "markets.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "markets.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "privacy.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "privacy.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "privacy.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "privacy.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "product-categories.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "product-categories.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "product-categories.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "product-categories.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "product-details.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "product-details.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "product-details.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "product-details.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "products.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "products.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "products.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "products.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "resources.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "resources.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "resources.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "resources.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "rfq.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "rfq.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "rfq.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "rfq.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "service-details.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "service-details.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "service-details.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "service-details.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "submit-product.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "submit-product.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "submit-product.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "submit-product.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "supplier-details.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "supplier-details.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "supplier-details.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "supplier-details.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "suppliers.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "suppliers.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "suppliers.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "suppliers.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "terms.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "terms.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "terms.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "page": "terms.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "404.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "404.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "404.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "404.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "about.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "about.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "about.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "about.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "article-details.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "article-details.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "article-details.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "article-details.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "become-partner.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "become-partner.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "become-partner.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "become-partner.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "capabilities.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "capabilities.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "capabilities.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "capabilities.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "case-studies.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "case-studies.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "case-studies.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "case-studies.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "case-study-details.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "case-study-details.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "case-study-details.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "case-study-details.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "certifications-compliance.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "certifications-compliance.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "certifications-compliance.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "certifications-compliance.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "coming-soon.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "coming-soon.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "coming-soon.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "coming-soon.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "company-profile.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "company-profile.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "company-profile.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "company-profile.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "components.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "components.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "components.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "components.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "contact.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "contact.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "contact.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "contact.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "faq.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "faq.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "faq.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "faq.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "for-suppliers.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "for-suppliers.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "for-suppliers.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "for-suppliers.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "home-02.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "en",
+      "page": "home-02.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "en",
+      "page": "home-02.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "en",
+      "page": "home-02.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "en",
+      "page": "home-03.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "en",
+      "page": "home-03.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "en",
+      "page": "home-03.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "en",
+      "page": "home-03.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "en",
+      "page": "how-we-work.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "en",
+      "page": "how-we-work.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "how-we-work.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "how-we-work.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "index.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "en",
+      "page": "index.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt03-dot-matrix.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "en",
+      "page": "index.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "en",
+      "page": "index.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "en",
+      "page": "insights.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": [
+        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
+      ]
+    },
+    {
+      "lang": "en",
+      "page": "insights.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "insights.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "insights.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "landing.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "landing.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "landing.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "landing.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "market-access.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "market-access.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "market-access.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "market-access.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "markets.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "markets.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "markets.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "markets.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "privacy.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "privacy.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "privacy.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "privacy.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "product-categories.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "product-categories.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "product-categories.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "product-categories.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "product-details.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "product-details.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "product-details.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "product-details.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "products.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "products.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "products.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "products.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "resources.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "resources.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "resources.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "resources.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "rfq.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "rfq.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "rfq.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "rfq.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "service-details.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "service-details.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "service-details.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "service-details.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "submit-product.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "submit-product.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "submit-product.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "submit-product.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "supplier-details.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "supplier-details.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "supplier-details.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "supplier-details.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "suppliers.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "suppliers.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "suppliers.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "suppliers.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "terms.html",
+      "width": 390,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "terms.html",
+      "width": 820,
+      "scrollWidth": 805,
+      "clientWidth": 805,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "terms.html",
+      "width": 1366,
+      "scrollWidth": 1351,
+      "clientWidth": 1351,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "page": "terms.html",
+      "width": 1536,
+      "scrollWidth": 1521,
+      "clientWidth": 1521,
+      "failures": []
+    }
+  ]
+}
