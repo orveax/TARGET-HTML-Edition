@@ -38,12 +38,12 @@ jobs:
           if set(ids)!=expected:f.append('pg-id-set')
           if len(ids)!=len(set(ids)):f.append('duplicate-pg')
           implemented=[c for c in cards if c.get('data-status')=='implemented'];pending=[c for c in cards if c.get('data-status')=='pending']
-          if len(implemented)!=30:f.append('implemented-count:'+str(len(implemented)))
-          if len(pending)!=3:f.append('pending-count:'+str(len(pending)))
-          pg29=next((c for c in cards if c.select_one('.pg').get_text(strip=True)=='PG29'),None)
-          if not pg29 or pg29.get('data-status')!='implemented' or 'PS7' not in pg29.get_text(' ',strip=True):f.append('pg29-status')
+          if len(implemented)!=31:f.append('implemented-count:'+str(len(implemented)))
+          if len(pending)!=2:f.append('pending-count:'+str(len(pending)))
           pg30=next((c for c in cards if c.select_one('.pg').get_text(strip=True)=='PG30'),None)
-          if not pg30 or pg30.get('data-status')!='pending' or 'NEXT' not in pg30.get_text(' ',strip=True):f.append('pg30-next')
+          if not pg30 or pg30.get('data-status')!='implemented' or 'PS7' not in pg30.get_text(' ',strip=True):f.append('pg30-status')
+          pg31=next((c for c in cards if c.select_one('.pg').get_text(strip=True)=='PG31'),None)
+          if not pg31 or pg31.get('data-status')!='pending' or 'NEXT' not in pg31.get_text(' ',strip=True):f.append('pg31-next')
           for c in implemented:
             links=c.select('.actions a.btn')
             if len(links)!=2:f.append('implemented-links:'+c.select_one('.pg').get_text(strip=True));continue
@@ -55,7 +55,7 @@ jobs:
             if c.select('.actions a'):f.append('pending-link:'+c.select_one('.pg').get_text(strip=True))
           robots=s.find('meta',attrs={'name':'robots'})
           if not robots or 'noindex' not in robots.get('content',''):f.append('noindex')
-          report={'failures':f,'cards':len(cards),'implemented':len(implemented),'pending':len(pending),'linkedLanguagePages':len(implemented)*2,'pg29':'PS7','next':'PG30'}
+          report={'failures':f,'cards':len(cards),'implemented':len(implemented),'pending':len(pending),'linkedLanguagePages':len(implemented)*2,'pg30':'PS7','next':'PG31'}
           (O/'report.json').write_text(json.dumps(report,indent=2),encoding='utf-8');(O/'run-status.txt').write_text(('PASS' if not f else 'FAIL')+'\n',encoding='utf-8')
           print(report)
           if f:raise SystemExit(1)
@@ -67,6 +67,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add site-map.html qa/preview-site-map || true
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Record visual site map QA through PG29"
+          git commit -m "Record visual site map QA through PG30"
           git pull --rebase origin main || true
           git push origin main || true
