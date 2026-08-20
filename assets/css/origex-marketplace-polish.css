@@ -1,6 +1,6 @@
 /* ORIGEX — ORX-P01 | Marketplace Visual Polish | Copyright © ORVEAX
  * Scoped M2 visual refinement for commercial preview quality.
- * No content, component IDs, runtime dependencies or M1 tokens are replaced here.
+ * Brand color decisions consume ORIGEX Brand System v1.2 tokens/relationships.
  */
 
 /* Hero: preserve the trade-route information while giving it a stronger B2B visual anchor. */
@@ -10,18 +10,18 @@
   min-inline-size:0;
   min-block-size:500px;
   aspect-ratio:auto;
-  background-color:#e9eee9;
+  background-color:var(--orx-ivory-100);
   background-image:
-    linear-gradient(90deg,rgba(250,248,244,.94) 0%,rgba(250,248,244,.82) 48%,rgba(250,248,244,.32) 100%),
+    linear-gradient(90deg,rgba(252,250,246,.94) 0%,rgba(252,250,246,.82) 48%,rgba(252,250,246,.32) 100%),
     url("../media/demo/hero-trade-scene.svg");
   background-size:cover;
   background-position:center;
-  border-color:rgba(63,111,104,.28);
+  border-color:rgba(14,117,103,.28);
   box-shadow:var(--orx-shadow-e2);
 }
 html[dir="rtl"] .orx-hero__grid>.orx-media.orx-media--hero{
   background-image:
-    linear-gradient(270deg,rgba(250,248,244,.94) 0%,rgba(250,248,244,.82) 48%,rgba(250,248,244,.32) 100%),
+    linear-gradient(270deg,rgba(252,250,246,.94) 0%,rgba(252,250,246,.82) 48%,rgba(252,250,246,.32) 100%),
     url("../media/demo/hero-trade-scene.svg");
 }
 .orx-hero__grid>.orx-media.orx-media--hero>.h-100{
@@ -31,11 +31,11 @@ html[dir="rtl"] .orx-hero__grid>.orx-media.orx-media--hero{
 .orx-hero__grid>.orx-media.orx-media--hero .orx-stack>.orx-card{
   background:rgba(255,255,255,.90)!important;
   backdrop-filter:blur(8px);
-  border-color:rgba(191,201,197,.9)!important;
-  box-shadow:0 10px 34px rgba(13,37,43,.09)!important;
+  border-color:rgba(220,225,219,.9)!important;
+  box-shadow:0 10px 34px rgba(8,42,47,.09)!important;
 }
 .orx-hero__grid>.orx-media.orx-media--hero .orx-stack>.orx-card:last-child{
-  border-color:rgba(63,111,104,.62)!important;
+  border-color:rgba(14,117,103,.62)!important;
 }
 
 /* Trust layer: more decision-oriented and less card-like. */
@@ -50,11 +50,11 @@ section[aria-labelledby="trust-title"] .orx-trust-item{
   padding:1.15rem 1rem 1rem;
   border-block-start:3px solid var(--orx-trust-accent);
   border-radius:0 0 var(--orx-radius-sm) var(--orx-radius-sm);
-  background:linear-gradient(180deg,rgba(243,239,232,.76),rgba(255,255,255,.72));
+  background:linear-gradient(180deg,rgba(245,241,232,.76),rgba(255,255,255,.72));
 }
 section[aria-labelledby="trust-title"] .col:nth-child(2) .orx-trust-item{--orx-trust-accent:var(--orx-accent)}
-section[aria-labelledby="trust-title"] .col:nth-child(3) .orx-trust-item{--orx-trust-accent:#356A8A}
-section[aria-labelledby="trust-title"] .col:nth-child(4) .orx-trust-item{--orx-trust-accent:#9A651A}
+section[aria-labelledby="trust-title"] .col:nth-child(3) .orx-trust-item{--orx-trust-accent:var(--orx-info)}
+section[aria-labelledby="trust-title"] .col:nth-child(4) .orx-trust-item{--orx-trust-accent:var(--orx-warning)}
 section[aria-labelledby="trust-title"] .col:nth-child(5) .orx-trust-item{--orx-trust-accent:var(--orx-primary)}
 section[aria-labelledby="trust-title"] .orx-trust-item .orx-icon-box{
   border:0;
@@ -70,7 +70,7 @@ section[aria-labelledby="process-title"] .orx-process-card{
   overflow:hidden;
   min-block-size:210px;
   padding-block-start:1.45rem;
-  background:linear-gradient(145deg,#fff 0%,rgba(255,255,255,.78) 100%);
+  background:linear-gradient(145deg,var(--orx-white) 0%,rgba(255,255,255,.78) 100%);
 }
 section[aria-labelledby="process-title"] .orx-process-card::before{
   content:"";
@@ -84,13 +84,13 @@ section[aria-labelledby="process-title"] .orx-process-card__number{
   inline-size:var(--orx-icon-container-l);
   block-size:var(--orx-icon-container-l);
   margin-block-end:1.1rem;
-  box-shadow:0 8px 18px rgba(13,37,43,.14);
+  box-shadow:0 8px 18px rgba(8,42,47,.14);
 }
 
 /* Category cards: registered visual-header variant without stock photography. */
 section[aria-labelledby="categories-title"] .orx-feature-card{
-  --orx-cat-a:#15343B;
-  --orx-cat-b:#3F6F68;
+  --orx-cat-a:var(--orx-ink-800);
+  --orx-cat-b:var(--orx-emerald-700);
   grid-template-columns:1fr;
   overflow:hidden;
   min-block-size:310px;
@@ -119,7 +119,7 @@ section[aria-labelledby="categories-title"] .orx-feature-card .orx-icon-box{
   inset-block-start:4.7rem;
   inset-inline-start:1.35rem;
   z-index:2;
-  background:#fff;
+  background:var(--orx-white);
   border-color:rgba(255,255,255,.7);
   box-shadow:var(--orx-shadow-e1);
 }
@@ -130,11 +130,11 @@ section[aria-labelledby="categories-title"] .orx-feature-card__index{
   color:rgba(255,255,255,.72);
   z-index:2;
 }
-section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(2){--orx-cat-a:#356A8A;--orx-cat-b:#3F6F68}
-section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(3){--orx-cat-a:#3F6F68;--orx-cat-b:#7FA196}
-section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(4){--orx-cat-a:#356A8A;--orx-cat-b:#15343B}
-section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(5){--orx-cat-a:#9A651A;--orx-cat-b:#C47A4A}
-section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(6){--orx-cat-a:#824A27;--orx-cat-b:#15343B}
+section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(2){--orx-cat-a:var(--orx-ink-950);--orx-cat-b:var(--orx-emerald-700)}
+section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(3){--orx-cat-a:var(--orx-emerald-700);--orx-cat-b:var(--orx-emerald-300)}
+section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(4){--orx-cat-a:var(--orx-ink-800);--orx-cat-b:var(--orx-ink-950)}
+section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(5){--orx-cat-a:var(--orx-brass-600);--orx-cat-b:var(--orx-brass-300)}
+section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(6){--orx-cat-a:var(--orx-brass-600);--orx-cat-b:var(--orx-ink-800)}
 
 /* Why ORIGEX: flatter proof blocks so this section does not repeat category-card rhythm. */
 section[aria-labelledby="why-title"] .orx-feature-card{
@@ -150,15 +150,15 @@ html[dir="rtl"] section[aria-labelledby="why-title"] .orx-feature-card{
   border-radius:var(--orx-radius-md) 0 0 var(--orx-radius-md);
 }
 section[aria-labelledby="why-title"] .orx-feature-card .orx-icon-box{
-  background:rgba(63,111,104,.08);
-  border-color:rgba(63,111,104,.18);
+  background:rgba(14,117,103,.08);
+  border-color:rgba(14,117,103,.18);
 }
 
 /* Role section: deliberate tonal break between capability proof and product catalogue. */
 section[aria-labelledby="roles-title"]{
   position:relative;
   background:var(--orx-primary-strong);
-  color:#fff;
+  color:var(--orx-white);
 }
 section[aria-labelledby="roles-title"]::before{
   content:"";
@@ -166,11 +166,11 @@ section[aria-labelledby="roles-title"]::before{
   inset:0;
   pointer-events:none;
   background:
-    radial-gradient(circle at 12% 18%,rgba(196,122,74,.14),transparent 28%),
-    radial-gradient(circle at 88% 74%,rgba(63,111,104,.24),transparent 34%);
+    radial-gradient(circle at 12% 18%,rgba(193,138,66,.14),transparent 28%),
+    radial-gradient(circle at 88% 74%,rgba(14,117,103,.24),transparent 34%);
 }
 section[aria-labelledby="roles-title"]>.orx-container{position:relative}
-section[aria-labelledby="roles-title"] :is(h2,.orx-lead){color:#fff}
+section[aria-labelledby="roles-title"] :is(h2,.orx-lead){color:var(--orx-white)}
 section[aria-labelledby="roles-title"] .orx-eyebrow{color:var(--orx-sand)}
 section[aria-labelledby="roles-title"] .orx-feature-card{
   background:rgba(255,255,255,.96);
@@ -180,12 +180,12 @@ section[aria-labelledby="roles-title"] .orx-feature-card{
 
 /* Product catalogue preview: owned vector packshots replace pattern-only placeholders. */
 section[aria-labelledby="products-title"] .orx-product-card{
-  border-color:rgba(191,201,197,.78);
+  border-color:rgba(220,225,219,.78);
   box-shadow:var(--orx-shadow-e1);
 }
 section[aria-labelledby="products-title"] .orx-product-card__media{
   aspect-ratio:4/3;
-  background-color:#F7F4EE;
+  background-color:var(--orx-ivory-100);
   background-repeat:no-repeat;
   background-position:center;
   background-size:contain;
@@ -230,7 +230,7 @@ section[aria-labelledby="supplier-cta-title"] .orx-cta-card::after{
   .orx-hero__grid>.orx-media.orx-media--hero{
     min-block-size:430px;
     background-image:
-      linear-gradient(180deg,rgba(250,248,244,.92),rgba(250,248,244,.70)),
+      linear-gradient(180deg,rgba(252,250,246,.92),rgba(252,250,246,.70)),
       url("../media/demo/hero-trade-scene.svg");
     background-position:center;
   }
