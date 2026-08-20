@@ -1,0 +1,41 @@
+name: PG30 Privacy QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/privacy.html'
+      - 'en/privacy.html'
+      - 'assets/css/origex-legal.css'
+      - 'docs/page-design-profiles/pg30-privacy-v1.md'
+      - '.github/scripts/qa_pg30_privacy.py'
+      - '.github/workflows/pg30-privacy-qa.yml'
+      - '.github/scripts/normalize_global_navigation.py'
+      - '.github/scripts/normalize_global_footer.py'
+
+concurrency:
+  group: pg30-privacy-qa
+  cancel-in-progress: true
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install QA dependencies
+        run: python -m pip install --quiet beautifulsoup4 selenium
+      - name: Run PG30 source, rendered and accessibility QA
+        run: python .github/scripts/qa_pg30_privacy.py
+      - name: Commit PG30 QA evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg30-privacy || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "PG30 record Privacy QA evidence"
+          git pull --rebase origin main || true
+          git push origin main || true
