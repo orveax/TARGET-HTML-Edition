@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Milestone: M6 — Support / Utility / Components  
 Canonical file: `components.html`  
-Status: PS6 — FROZEN FOR BUILD
+Status: **PS7 — IMPLEMENTED / CI QA PASS — AR+EN**
 
 ## Purpose
 Create the final V1 Components / Elements Library as both a buyer-facing component reference and the ORIGEX Design System QA Laboratory. PG32 must demonstrate the frozen V1 component system with realistic B2B food-trading content, while intentionally exposing current systemic reconciliation targets instead of hiding them with page-local overrides.
@@ -216,25 +216,36 @@ Verify AR + EN at 390 / 820 / 1366 / 1536:
 - icons are registered through F05;
 - reduced-motion foundation remains respected.
 
-## PS7 Gate
-Promote only after:
-- canonical AR H1 + Support PASS;
-- canonical EN H1 PASS;
-- original frozen PG32 Main Features represented;
-- F01–F07 / P01–P11 / C01–C28 / S01–S06 / N01–N04 coverage contract PASS;
-- Product / Supplier / Market / Certification / Resource / RFQ / Alert sample coverage PASS;
-- dimension diagnostic reports expected current ALIGNED/BACKFIT states without mutating components;
-- semantic surface reference PASS;
-- forms/state matrix PASS;
-- localization/market separation PASS;
-- overlay/drawer/navigation proof PASS;
-- buyer customization + Do/Don’t guidance PASS;
-- no client/TARGET leakage;
-- no network/storage runtime;
-- Source / Content / Registry / Diagnostic QA failures 0;
-- Rendered AR/EN × 390/820/1366/1536 = 8/8 PASS;
-- interaction suite PASS;
-- Global Navigation V1 + Global Footer V1 PASS;
-- F05 Icon Integrity PASS.
+## PS7 Closure Evidence — 2026-08-20
+PASS.
 
-PS8 remains deployed Cloudflare browser acceptance. After PG32 reaches PS7, proceed to the approved systemic backfit → global AR/EN regression → sequential PG01→PG33 second-pass review.
+- Canonical AR H1 + Support: PASS.
+- Canonical EN H1: PASS.
+- Frozen PG32 Main Features represented: PASS.
+- Registry coverage: 11/11 card families, 17/17 C12–C28 references, 11/11 primitives, 9/9 dimension diagnostics per language.
+- Source / Content / Registry / Diagnostic failures: **0**.
+- Rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
+- Document horizontal overflow: **0** in all eight final cases.
+- Mega Menu / Mobile Drawer / Tabs keyboard / Accordion / Demo form / Modal dismissal / language route: PASS.
+- Runtime remains non-mutating and zero-network/storage.
+- Global Navigation V1 + Global Footer V1: PASS.
+- F05 Icon Integrity: **66 AR/EN pages / 0 missing sprite references**.
+- Final isolated V4 gate: `95d8cf97557b2787fca293bb2f661d1481101787` → PASS.
+- QA report: `docs/PG32-QA-REPORT-V1.md`.
+
+### QA Root-Cause Findings
+PG32 successfully exposed and helped close page-blocking issues at their correct ownership layer:
+- N03 closed Mobile Drawer document-overflow defect corrected centrally in `origex-shell.css`.
+- PG32 narrow specimen/form/file containment corrected in the lab composition layer without overriding reusable component contracts.
+- Modal verification hardened against brittle auto-scroll geometry while preserving keyboard/accessibility checks.
+
+### Diagnostic Outcome
+The lab intentionally continues to report shared component dimension mismatches as `BACKFIT`. Those are not hidden or page-patched. They now become direct inputs to the approved post-PG32 **systemic backfit**.
+
+## PS8 Boundary
+PS8 remains deployed Cloudflare browser acceptance. PG32 is not claimed PS8 by this profile.
+
+## Next Sequence
+`Systemic Backfit → Global AR/EN Regression → Sequential PG01→PG33 Second-Pass Review → M7 Full QA / Optimization`
+
+Copyright © ORVEAX.
