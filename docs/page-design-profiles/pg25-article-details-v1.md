@@ -2,7 +2,7 @@
 
 Product ID: ORX-P01  
 Milestone: M5 — Proof / Resources / Compliance / Content  
-Status: PS6 — FROZEN FOR BUILD  
+Status: PS7 — IMPLEMENTED / CI QA PASS  
 Canonical file: `article-details.html`
 
 ## Purpose
@@ -114,9 +114,9 @@ Required: self canonical, AR/EN/x-default hreflang, Open Graph baseline, `Articl
 - Arabic RTL / English LTR tested independently;
 - reduced-motion foundation inherited.
 
-## Exit Gate
-PS7 only after source/editorial-safety/runtime/navigation/footer/icon/client-leak QA + rendered AR/EN 390/820/1366/1536 + valid/default/invalid ID + language preservation + copy/share + previous/next + related-article interaction QA all PASS. PS8 remains gated by deployed Cloudflare browser acceptance.
+## Exit Gate — PASS
+Final source/editorial/runtime failures: 0. Rendered AR/EN × 390/820/1366/1536: 8/8 PASS. Default/invalid ID, language preservation, copy/share, previous/next and related-article interaction checks all PASS. Initial `nav-drift` was corrected centrally by Global Navigation V1 commit `83275a173a12066af58654c2fda82b42e281d2fa`; final evidence commit `d6f9f74b4ef9352ab631fdd8f372d1963bb6852a`. QA authority: `docs/PG25-QA-REPORT-V1.md`.
 
-QA rerun trigger: canonical Global Navigation V1 normalized after initial `nav-drift` evidence; PG25 must pass again on the normalized shell before PS7 promotion.
+PS8 remains gated by deployed Cloudflare browser acceptance.
 
 Copyright © ORVEAX.
