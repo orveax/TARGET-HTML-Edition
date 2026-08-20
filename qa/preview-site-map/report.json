@@ -1,9 +1,15 @@
 {
-  "failures": [],
+  "failures": [
+    "implemented-count:26",
+    "pending-count:7",
+    "pg25-status",
+    "missing-target:ar/article-details.html?id=article-001",
+    "missing-target:en/article-details.html?id=article-001"
+  ],
   "cards": 33,
-  "implemented": 25,
-  "pending": 8,
-  "linkedLanguagePages": 50,
+  "implemented": 26,
+  "pending": 7,
+  "linkedLanguagePages": 52,
   "pg24": "PS7",
   "next": "PG25"
 }
