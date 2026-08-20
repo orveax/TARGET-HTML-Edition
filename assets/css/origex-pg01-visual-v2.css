@@ -1,0 +1,481 @@
+/* ORIGEX — PG01 Visual Direction V2 | 2026-08-20
+ * Approved scope: Hero + section-heading cue + category cards + role-route cards.
+ * No IA/content changes. Selectors are intentionally scoped to PG01's pt01 hero.
+ */
+
+/* --------------------------------------------------------------------------
+   PG01 flagship hero — Brand / Trade Gateway
+   -------------------------------------------------------------------------- */
+main > .orx-hero[style*="pt01-route-lines.svg"]{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  padding-block:clamp(4.75rem,7vw,7.25rem);
+  background:
+    radial-gradient(circle at 88% 18%,rgba(193,138,66,.18),transparent 28%),
+    radial-gradient(circle at 14% 86%,rgba(14,117,103,.24),transparent 30%),
+    linear-gradient(118deg,#061f24 0%,#082a2f 52%,#0a3f43 100%);
+  color:var(--orx-white);
+}
+main > .orx-hero[style*="pt01-route-lines.svg"]::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    linear-gradient(115deg,transparent 0 49.8%,rgba(245,241,232,.055) 50%,transparent 50.2%),
+    linear-gradient(24deg,transparent 0 69.8%,rgba(14,117,103,.12) 70%,transparent 70.2%);
+  background-size:150px 150px,220px 220px;
+  opacity:.5;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"]::after{
+  content:"";
+  position:absolute;
+  inset-inline-start:-8%;
+  inset-block-end:-45%;
+  z-index:-1;
+  inline-size:48vw;
+  aspect-ratio:1;
+  border:1px solid rgba(245,241,232,.08);
+  border-radius:50%;
+  box-shadow:0 0 0 70px rgba(245,241,232,.025),0 0 0 140px rgba(14,117,103,.035);
+  pointer-events:none;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid{
+  position:relative;
+  z-index:1;
+  align-items:center;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid>div:first-child{
+  max-inline-size:650px;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] .orx-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:.65rem;
+  margin-block-end:1.25rem;
+  color:var(--orx-brass-300);
+  letter-spacing:.04em;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] .orx-eyebrow::before{
+  content:"";
+  inline-size:28px;
+  block-size:2px;
+  border-radius:999px;
+  background:var(--orx-brass-500);
+  box-shadow:12px 0 0 -4px var(--orx-brass-300);
+}
+html[dir="rtl"] main > .orx-hero[style*="pt01-route-lines.svg"] .orx-eyebrow::before{
+  box-shadow:-12px 0 0 -4px var(--orx-brass-300);
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] h1{
+  max-inline-size:12ch;
+  margin-block-end:1.4rem;
+  color:var(--orx-white);
+  font-size:clamp(3.15rem,5.4vw,5.75rem);
+  line-height:1.06;
+  letter-spacing:-.035em;
+}
+html[dir="rtl"] main > .orx-hero[style*="pt01-route-lines.svg"] h1{
+  letter-spacing:0;
+  line-height:1.16;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] .orx-lead{
+  max-inline-size:54ch;
+  color:rgba(245,241,232,.76);
+  font-size:clamp(1rem,1.35vw,1.16rem);
+  line-height:1.85;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] .orx-hero__actions{
+  margin-block-start:2rem;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] .orx-btn--primary{
+  border-color:var(--orx-emerald-700);
+  background:var(--orx-emerald-700);
+  color:var(--orx-white);
+  box-shadow:0 12px 30px rgba(0,0,0,.18);
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] .orx-btn--primary:hover{
+  border-color:var(--orx-emerald-600);
+  background:var(--orx-emerald-600);
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] .orx-btn--secondary{
+  border-color:rgba(245,241,232,.34);
+  background:rgba(245,241,232,.045);
+  color:var(--orx-white);
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] .orx-btn--secondary:hover{
+  border-color:rgba(245,241,232,.7);
+  background:rgba(245,241,232,.09);
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] .orx-media.orx-media--hero{
+  min-block-size:590px;
+  overflow:visible;
+  border:0;
+  border-radius:0;
+  background-color:transparent;
+  background-image:url("../media/demo/hero-main-gateway.svg")!important;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+  box-shadow:none;
+  filter:drop-shadow(0 28px 42px rgba(0,0,0,.18));
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] .orx-media.orx-media--hero>.h-100{
+  display:none!important;
+}
+
+/* --------------------------------------------------------------------------
+   Reusable visual cue demonstrated on PG01 section headers
+   -------------------------------------------------------------------------- */
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section .orx-section-header{
+  position:relative;
+  max-inline-size:780px;
+  margin-block-end:clamp(2rem,3.2vw,3rem);
+  padding-inline-start:1.35rem;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section .orx-section-header::before{
+  content:"";
+  position:absolute;
+  inset-block:.2rem .15rem;
+  inset-inline-start:0;
+  inline-size:2px;
+  border-radius:999px;
+  background:linear-gradient(to bottom,var(--orx-brass-500),var(--orx-emerald-700));
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section .orx-section-header::after{
+  content:"";
+  position:absolute;
+  inset-block-start:.15rem;
+  inset-inline-start:-4px;
+  inline-size:10px;
+  block-size:10px;
+  border:2px solid var(--orx-surface-base);
+  border-radius:50%;
+  background:var(--orx-brass-500);
+  box-shadow:0 0 0 4px rgba(193,138,66,.12);
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section .orx-section-header .orx-eyebrow{
+  margin-block-end:.7rem;
+  color:var(--orx-secondary);
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.06em;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section .orx-section-header h2{
+  max-inline-size:18ch;
+  margin-block-end:.7rem;
+  font-size:clamp(2rem,3vw,3.2rem);
+  line-height:1.15;
+}
+html[dir="rtl"] main > .orx-hero[style*="pt01-route-lines.svg"] ~ section .orx-section-header h2{
+  line-height:1.32;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section .orx-section-header .orx-lead{
+  max-inline-size:64ch;
+  margin-block-end:0;
+}
+
+/* --------------------------------------------------------------------------
+   Category Discovery Cards — branded graphic header + category imagery
+   -------------------------------------------------------------------------- */
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-grid{
+  gap:1.35rem;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card{
+  --orx-cat-image:none;
+  --orx-cat-a:var(--orx-ink-950);
+  --orx-cat-b:var(--orx-emerald-700);
+  grid-template-columns:56px minmax(0,1fr);
+  column-gap:1rem;
+  row-gap:.95rem;
+  min-block-size:310px;
+  overflow:hidden;
+  padding:9.65rem 1.35rem 1.35rem;
+  border:1px solid rgba(8,42,47,.10);
+  border-radius:var(--orx-radius-lg);
+  background:var(--orx-surface-raised);
+  box-shadow:0 16px 36px rgba(8,42,47,.08);
+  transition:transform var(--orx-motion-standard) var(--orx-ease),box-shadow var(--orx-motion-standard) var(--orx-ease),border-color var(--orx-motion-standard) var(--orx-ease);
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card::before{
+  content:"";
+  position:absolute;
+  inset-block-start:0;
+  inset-inline:0;
+  block-size:7.7rem;
+  background-image:
+    linear-gradient(100deg,rgba(6,31,36,.88) 0%,rgba(8,42,47,.48) 52%,rgba(14,117,103,.10) 100%),
+    var(--orx-cat-image),
+    radial-gradient(circle at 18% 24%,rgba(245,241,232,.34) 0 8%,transparent 9%),
+    linear-gradient(135deg,var(--orx-cat-a),var(--orx-cat-b));
+  background-repeat:no-repeat;
+  background-position:center,right .8rem center,center,center;
+  background-size:cover,auto 80%,cover,cover;
+  opacity:1;
+}
+html[dir="rtl"] main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card::before{
+  background-position:center,left .8rem center,center,center;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card::after{
+  content:"";
+  position:absolute;
+  inset-block-start:6.75rem;
+  inset-inline:1.35rem;
+  block-size:1px;
+  background:linear-gradient(to var(--orx-inline-end,right),rgba(193,138,66,.75),transparent);
+  opacity:.55;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(1){--orx-cat-image:url("../media/demo/product-tomato-sauce.svg")}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(2){--orx-cat-image:url("../media/demo/product-hibiscus.svg")}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(3){--orx-cat-image:url("../media/demo/product-milk.svg")}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(4){--orx-cat-image:url("../media/demo/product-frozen.svg")}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(5){--orx-cat-image:url("../media/demo/product-confectionery.svg")}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(6){--orx-cat-image:url("../media/demo/product-ingredients.svg")}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card .orx-icon-box{
+  position:static;
+  z-index:2;
+  grid-column:1;
+  grid-row:1;
+  inline-size:56px;
+  block-size:56px;
+  border:1px solid rgba(14,117,103,.16);
+  background:rgba(14,117,103,.08);
+  color:var(--orx-emerald-700);
+  box-shadow:none;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card>.orx-card__title{
+  grid-column:2;
+  grid-row:1;
+  align-self:center;
+  margin:0;
+  font-size:1.08rem;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card>.orx-card__copy{
+  grid-column:1/-1;
+  margin:0;
+  color:var(--orx-on-light-muted);
+  line-height:1.7;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card__index{
+  position:absolute;
+  inset-block-start:1rem;
+  inset-inline-start:1rem;
+  z-index:3;
+  color:rgba(245,241,232,.82);
+  font-size:.72rem;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.08em;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(14,117,103,.28);
+  box-shadow:0 22px 48px rgba(8,42,47,.13);
+}
+
+/* --------------------------------------------------------------------------
+   Role Route Cards — equal-priority decision cards with premium presence
+   -------------------------------------------------------------------------- */
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"]{
+  position:relative;
+  overflow:hidden;
+  padding-block:clamp(4.75rem,7vw,6.75rem);
+  background:
+    radial-gradient(circle at 14% 18%,rgba(193,138,66,.15),transparent 26%),
+    radial-gradient(circle at 88% 74%,rgba(14,117,103,.28),transparent 32%),
+    linear-gradient(120deg,#061f24,#082a2f 62%,#0a3c40);
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"]::after{
+  content:"";
+  position:absolute;
+  inset:-25% -12%;
+  pointer-events:none;
+  background:
+    linear-gradient(32deg,transparent 0 49.8%,rgba(245,241,232,.045) 50%,transparent 50.2%);
+  background-size:180px 180px;
+  opacity:.6;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"]>.orx-container{
+  position:relative;
+  z-index:1;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-section-header::after{
+  border-color:#082a2f;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-section-header :is(h2,.orx-lead){
+  color:var(--orx-white);
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-section-header .orx-eyebrow{
+  color:var(--orx-brass-300);
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-grid{
+  counter-reset:orx-role;
+  gap:1.25rem;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-feature-card{
+  counter-increment:orx-role;
+  position:relative;
+  grid-template-columns:64px minmax(0,1fr);
+  column-gap:1rem;
+  row-gap:.8rem;
+  min-block-size:210px;
+  overflow:hidden;
+  padding:1.5rem;
+  border:1px solid rgba(245,241,232,.16);
+  border-radius:var(--orx-radius-lg);
+  background:linear-gradient(145deg,rgba(255,255,255,.99),rgba(245,241,232,.96));
+  box-shadow:0 18px 46px rgba(0,0,0,.16);
+  transition:transform var(--orx-motion-standard) var(--orx-ease),box-shadow var(--orx-motion-standard) var(--orx-ease);
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-feature-card::before{
+  content:"";
+  position:absolute;
+  inset-block-start:0;
+  inset-inline:0;
+  block-size:4px;
+  background:linear-gradient(90deg,var(--orx-brass-500),var(--orx-emerald-700));
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-feature-card::after{
+  content:"0" counter(orx-role);
+  position:absolute;
+  inset-block-start:1.15rem;
+  inset-inline-end:1.25rem;
+  color:rgba(8,42,47,.15);
+  font-family:var(--orx-font-en);
+  font-size:2.6rem;
+  font-weight:800;
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-feature-card .orx-icon-box{
+  grid-column:1;
+  grid-row:1;
+  inline-size:64px;
+  block-size:64px;
+  border:0;
+  background:var(--orx-ink-950);
+  color:var(--orx-white);
+  box-shadow:inset 0 0 0 1px rgba(245,241,232,.08);
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-feature-card:nth-child(even) .orx-icon-box{
+  background:var(--orx-emerald-700);
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-feature-card>.orx-card__title{
+  grid-column:2;
+  grid-row:1;
+  align-self:center;
+  margin:0;
+  padding-inline-end:2.5rem;
+  font-size:1.2rem;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-feature-card>.orx-card__copy{
+  grid-column:1/-1;
+  margin:0;
+  color:var(--orx-on-light-muted);
+  font-size:.94rem;
+  line-height:1.65;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-feature-card>.orx-text-action{
+  grid-column:1/-1;
+  align-self:end;
+  justify-content:space-between;
+  min-block-size:48px;
+  margin-block-start:.35rem;
+  padding:.75rem .9rem;
+  border-block-start:1px solid var(--orx-border);
+  color:var(--orx-primary);
+  text-decoration:none;
+}
+main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-feature-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 24px 56px rgba(0,0,0,.22);
+}
+
+@media(min-width:900px){
+  main > .orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid{
+    grid-template-columns:minmax(0,.88fr) minmax(540px,1.12fr);
+    gap:clamp(3rem,5vw,6rem);
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-grid--4{
+    --orx-grid-cols:2;
+  }
+}
+
+@media(max-width:899.98px){
+  main > .orx-hero[style*="pt01-route-lines.svg"]{
+    padding-block:4rem;
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] .orx-media.orx-media--hero{
+    min-block-size:420px;
+  }
+}
+
+@media(max-width:767.98px){
+  main > .orx-hero[style*="pt01-route-lines.svg"]{
+    padding-block:3.25rem 3.75rem;
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] h1{
+    max-inline-size:13ch;
+    font-size:clamp(2.55rem,11vw,3.55rem);
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] .orx-hero__actions{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:.75rem;
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] .orx-hero__actions .orx-btn{
+    inline-size:100%;
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] .orx-media.orx-media--hero{
+    min-block-size:330px;
+    margin-block-start:.25rem;
+    background-size:118% auto;
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] ~ section .orx-section-header{
+    padding-inline-start:1rem;
+    margin-block-end:1.8rem;
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] ~ section .orx-section-header h2{
+    max-inline-size:20ch;
+    font-size:clamp(1.75rem,7vw,2.25rem);
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-grid{
+    gap:1rem;
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card{
+    min-block-size:250px;
+    grid-template-columns:48px minmax(0,1fr);
+    padding:8.2rem 1.1rem 1.1rem;
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card::before{
+    block-size:6.35rem;
+    background-size:cover,auto 72%,cover,cover;
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card .orx-icon-box{
+    inline-size:48px;
+    block-size:48px;
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"]{
+    padding-block:4rem;
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-grid{
+    gap:1rem;
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-feature-card{
+    grid-template-columns:56px minmax(0,1fr);
+    min-block-size:190px;
+    padding:1.25rem;
+  }
+  main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-feature-card .orx-icon-box{
+    inline-size:56px;
+    block-size:56px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="categories-title"] .orx-feature-card,
+  main > .orx-hero[style*="pt01-route-lines.svg"] ~ section[aria-labelledby="roles-title"] .orx-feature-card{
+    transition:none;
+  }
+}
