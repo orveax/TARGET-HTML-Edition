@@ -61,7 +61,10 @@ def rendered_qa():
             step="modal"
             mt=d.find_element(By.CSS_SELECTOR,"[data-bs-toggle='modal']"); d.execute_script("arguments[0].scrollIntoView({block:'center'}); arguments[0].click();",mt); time.sleep(.4); modal=d.find_element(By.CSS_SELECTOR,".orx-lab-modal")
             if "show" not in (modal.get_attribute("class") or ""): f.append("modal-open")
-            close=modal.find_element(By.CSS_SELECTOR,"[data-bs-dismiss='modal']"); d.execute_script("arguments[0].click();",close); time.sleep(.5)
+            close=modal.find_element(By.CSS_SELECTOR,"[data-bs-dismiss='modal']"); close.click()
+            for _ in range(20):
+              if "show" not in (modal.get_attribute("class") or ""): break
+              time.sleep(.1)
             if "show" in (modal.get_attribute("class") or ""): f.append("modal-close")
 
             step="language"
