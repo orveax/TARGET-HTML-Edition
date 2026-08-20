@@ -1,0 +1,55 @@
+{
+  "failures": [],
+  "cases": [
+    {
+      "lang": "ar",
+      "width": 390,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "width": 1536,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 1536,
+      "failures": []
+    }
+  ],
+  "interaction": {
+    "ar-default": [],
+    "ar-invalid": [],
+    "ar-state-share": [],
+    "ar-last": [],
+    "en-default": [],
+    "en-invalid": [],
+    "en-state-share": [],
+    "en-last": []
+  }
+}

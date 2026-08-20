@@ -1,0 +1,19 @@
+{
+  "failures": [
+    "nav-drift"
+  ],
+  "pages": {
+    "ar": {
+      "failures": [],
+      "templateCount": 8
+    },
+    "en": {
+      "failures": [],
+      "templateCount": 8
+    }
+  },
+  "runtime": {
+    "failures": []
+  },
+  "nav-drift": "DRIFT: ar/article-details.html\nDRIFT: en/article-details.html\n"
+}
