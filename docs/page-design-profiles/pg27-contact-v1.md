@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Milestone: M6 — Support / Utility / Components  
 Canonical file: `contact.html`  
-Status: PS6 — FROZEN FOR BUILD
+Status: **PS7 — IMPLEMENTED / CI QA PASS — AR+EN**
 
 ## Purpose
 Provide a professional contact-routing page that helps a visitor choose the correct commercial route before submitting an enquiry. The page is not a live CRM or ticketing system in the V1 demo package.
@@ -117,16 +117,17 @@ Required:
 - `assets/js/origex-contact.js`
 - local `assets/icons/sprite.svg`
 
-## PS7 Gate
-Promote only after:
-- AR/EN source/content/SEO/config-route contract PASS
-- form Demo truthfulness and zero network submission PASS
-- topic/query/language state PASS
-- config email/phone/address/business-hours/social hooks PASS
-- rendered AR/EN 390/820/1366/1536 PASS
-- form validation + route selection + invalid topic + Demo confirmation interaction PASS
-- Global Navigation V1 + Global Footer V1 PASS
-- F05 Icon Integrity PASS
-- zero TARGET/client leakage
+## PS7 Gate — PASS
+- AR/EN source/content/SEO/config-route contract: PASS
+- form Demo truthfulness and zero network submission: PASS
+- topic/query/language state: PASS
+- config email/phone/address/business-hours/social hooks: PASS
+- rendered AR/EN 390/820/1366/1536: **8/8 PASS**
+- form validation + route selection + invalid topic + Demo confirmation/reset: PASS
+- Global Navigation V1 + Global Footer V1: PASS
+- F05 Icon Integrity: **56 AR/EN pages / 0 missing references**
+- zero TARGET/client leakage: PASS
+- QA evidence: `docs/PG27-QA-REPORT-V1.md` + `qa/pg27-contact/`
+- final evidence commit: `7cfffde78233c087ee2381247470bb024d3689e1`
 
 PS8 remains deployed Cloudflare browser acceptance and is not claimed by CI alone.
