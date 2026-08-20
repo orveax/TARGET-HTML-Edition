@@ -1,0 +1,349 @@
+name: PG26 FAQ QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/faq.html'
+      - 'en/faq.html'
+      - 'assets/css/origex-faq.css'
+      - 'assets/js/origex-faq.js'
+      - 'assets/js/origex-ui.js'
+      - 'assets/icons/sprite.svg'
+      - 'docs/page-design-profiles/pg26-faq-v1.md'
+      - '.github/scripts/normalize_global_navigation.py'
+      - '.github/scripts/normalize_global_footer.py'
+      - '.github/workflows/pg26-faq-qa.yml'
+
+concurrency:
+  group: pg26-faq-qa
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --quiet beautifulsoup4 selenium
+      - name: Run PG26 source content SEO runtime rendered interaction QA
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json,re,subprocess,time
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.keys import Keys
+          from selenium.webdriver.support.ui import WebDriverWait
+
+          R=Path('.')
+          O=R/'qa/pg26-faq'
+          O.mkdir(parents=True,exist_ok=True)
+          source={'failures':[],'pages':{},'runtime':{}}
+
+          js=(R/'assets/js/origex-faq.js').read_text(encoding='utf-8')
+          runtime_failures=[]
+          for bad in ('fetch(','XMLHttpRequest','localStorage','sessionStorage'):
+            if bad in js:
+              runtime_failures.append('forbidden-runtime:'+bad)
+          for required in ('history.replaceState','data-pg26-category','data-faq-item','data-pg26-empty','data-pg26-ready','orx-mobile-nav a[lang]'):
+            if required not in js:
+              runtime_failures.append('runtime-missing:'+required)
+          source['runtime']={'failures':runtime_failures}
+          source['failures'] += runtime_failures
+
+          sprite=(R/'assets/icons/sprite.svg').read_text(encoding='utf-8')
+          sprite_ids=set(re.findall(r'<symbol[^>]+id="([^"]+)"',sprite))
+          expected_groups=['buyers','suppliers','products','rfq','distribution','demo']
+          specs={
+            'ar':('rtl','إجابات أوضح قبل أن تبدأ المحادثة التجارية.','https://example.com/ar/faq.html','../en/faq.html'),
+            'en':('ltr','Clearer answers before the commercial conversation starts.','https://example.com/en/faq.html','../ar/faq.html')
+          }
+
+          for lang,(direction,h1,canonical,other) in specs.items():
+            p=R/lang/'faq.html'
+            text=p.read_text(encoding='utf-8')
+            s=BeautifulSoup(text,'html.parser')
+            failures=[]
+            if s.html.get('lang')!=lang or s.html.get('dir')!=direction:
+              failures.append('lang-dir')
+            h1s=s.find_all('h1')
+            if len(h1s)!=1 or h1s[0].get_text(' ',strip=True)!=h1:
+              failures.append('h1')
+            items=s.select('[data-faq-item]')
+            if len(items)!=18:
+              failures.append('faq-count:'+str(len(items)))
+            groups=[x.get('data-faq-group') for x in s.select('[data-faq-group]')]
+            if groups!=expected_groups:
+              failures.append('groups:'+str(groups))
+            for group in expected_groups:
+              c=len(s.select(f'[data-faq-item][data-faq-category="{group}"]'))
+              if c!=3:
+                failures.append(f'group-count:{group}:{c}')
+            triggers=s.select('[data-orx-accordion-trigger]')
+            if len(triggers)!=18:
+              failures.append('accordion-trigger-count:'+str(len(triggers)))
+            controls=[]
+            for trigger in triggers:
+              if trigger.name!='button':
+                failures.append('accordion-not-button')
+              cid=trigger.get('aria-controls')
+              controls.append(cid)
+              panel=s.find(id=cid) if cid else None
+              if not cid or not panel:
+                failures.append('accordion-control')
+                continue
+              if panel.get('role')!='region' or panel.get('aria-labelledby')!=trigger.get('id'):
+                failures.append('accordion-region:'+cid)
+            if len(controls)!=len(set(controls)):
+              failures.append('accordion-control-duplicate')
+            if len(s.select('[data-pg26-category]'))!=7:
+              failures.append('category-button-count')
+            if not s.select_one('[data-pg26-search]'):
+              failures.append('search')
+            if not s.select_one('[data-pg26-result-count][aria-live="polite"]'):
+              failures.append('result-live')
+            if not s.select_one('[data-pg26-empty][hidden]') or not s.select_one('[data-pg26-reset]'):
+              failures.append('empty-reset')
+            if not s.select_one('[data-orx-mega-trigger][aria-current="page"]'):
+              failures.append('explore-current')
+            if not s.select_one('.orx-mega-menu a[href="faq.html"][aria-current="page"]'):
+              failures.append('mega-faq-current')
+            if not s.select_one('.orx-mobile-nav a[href="faq.html"][aria-current="page"]'):
+              failures.append('mobile-faq-current')
+            if not s.find('a',class_='orx-lang-switch',href=lambda x:x and other in x):
+              failures.append('language-switch')
+            footer=s.select('footer[data-orx-global-footer="v1"]')
+            if len(footer)!=1 or not footer[0].select_one('[data-orx-business-hours]'):
+              failures.append('footer')
+            c=s.find('link',rel='canonical')
+            if not c or c.get('href')!=canonical:
+              failures.append('canonical')
+            hreflangs={x.get('hreflang') for x in s.find_all('link',rel='alternate')}
+            if not {'ar','en','x-default'}.issubset(hreflangs):
+              failures.append('hreflang')
+            try:
+              data=json.loads(s.find('script',attrs={'type':'application/ld+json'}).string)
+              types={x.get('@type') for x in data.get('@graph',[])}
+              if not {'WebPage','BreadcrumbList'}.issubset(types):
+                failures.append('schema')
+              if types & {'Product','Offer','Review','Rating','AggregateRating'}:
+                failures.append('prohibited-schema:'+str(sorted(types)))
+            except Exception:
+              failures.append('schema-json')
+            if 'TARGET' in text or 'targetft' in text.lower():
+              failures.append('client-leak')
+            combined=s.get_text(' ',strip=True).lower()
+            if 'demo' not in combined:
+              failures.append('demo-boundary')
+            if any(x in combined for x in ('guaranteed roi','guaranteed result','100% guaranteed','نتيجة مضمونة','مضمون 100%')):
+              failures.append('inflated-claim')
+            if (R/'assets/data/faq.json').exists():
+              failures.append('unapproved-faq-json')
+            icons=set(re.findall(r'sprite\.svg#([a-z0-9-]+)',text))
+            missing=sorted(icons-sprite_ids)
+            if missing:
+              failures.append('icons:'+str(missing))
+
+            if lang=='ar':
+              exact_q='هل إرسال المنتج يعني قبوله؟'
+              exact_a='لا. التقديم يتيح مراجعة المعلومات فقط، ولا يعني قبول المنتج أو تمثيله أو توزيعه.'
+              exact_price_q='هل الأسعار موجودة داخل القالب؟'
+              exact_price_a='يمكن إضافتها حسب نموذج العمل، لكن Demo يركز على RFQ لأن الأسعار التجارية تعتمد غالبًا على الكمية والسوق والشروط.'
+              if exact_q not in text or exact_a not in text:
+                failures.append('canonical-submission-qa')
+              if exact_price_q not in text or exact_price_a not in text:
+                failures.append('canonical-price-qa')
+
+            source['pages'][lang]={'failures':failures,'faqItems':len(items),'groups':groups}
+            source['failures'] += [lang+':'+x for x in failures]
+
+          for script,label in [('.github/scripts/normalize_global_navigation.py','nav-drift'),('.github/scripts/normalize_global_footer.py','footer-drift')]:
+            r=subprocess.run(['python',script,'--check'],capture_output=True,text=True)
+            if r.returncode:
+              source['failures'].append(label)
+              source[label]=r.stdout+r.stderr
+
+          (O/'source-report.json').write_text(json.dumps(source,ensure_ascii=False,indent=2),encoding='utf-8')
+
+          rendered={'failures':[],'cases':[],'interaction':{}}
+          opts=Options()
+          opts.add_argument('--headless=new')
+          opts.add_argument('--no-sandbox')
+          opts.add_argument('--disable-dev-shm-usage')
+          opts.add_argument('--window-size=820,1900')
+          srv=subprocess.Popen(['python','-m','http.server','8765'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+          time.sleep(1)
+          try:
+            for lang in ('ar','en'):
+              d=webdriver.Chrome(options=opts)
+              try:
+                for width in (390,820,1366,1536):
+                  failures=[]
+                  try:
+                    d.set_window_size(width,1900)
+                    d.get(f'http://127.0.0.1:8765/{lang}/faq.html')
+                    WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg26-root]').get_attribute('data-pg26-ready')=='true')
+                    root=d.find_element(By.CSS_SELECTOR,'[data-pg26-root]')
+                    if root.get_attribute('data-pg26-results')!='18':
+                      failures.append('initial-results')
+                    visible_items=[x for x in d.find_elements(By.CSS_SELECTOR,'[data-faq-item]') if x.is_displayed()]
+                    if len(visible_items)!=18:
+                      failures.append('visible-items:'+str(len(visible_items)))
+                    if d.execute_script('return document.documentElement.scrollWidth')>d.execute_script('return document.documentElement.clientWidth')+1:
+                      failures.append('overflow')
+                    if d.find_element(By.TAG_NAME,'html').get_attribute('dir')!=('rtl' if lang=='ar' else 'ltr'):
+                      failures.append('direction')
+                    small=[]
+                    for e in d.find_elements(By.CSS_SELECTOR,'a,button,input,select'):
+                      if e.is_displayed() and e.rect['width'] and e.rect['height'] and (e.rect['width']<24 or e.rect['height']<24):
+                        small.append({'tag':e.tag_name,'w':round(e.rect['width'],1),'h':round(e.rect['height'],1),'text':e.text[:20]})
+                    if small:
+                      failures.append('touch:'+json.dumps(small,ensure_ascii=False))
+                    if width>=1051:
+                      t=d.find_element(By.CSS_SELECTOR,'[data-orx-mega-trigger]')
+                      t.click();time.sleep(.04)
+                      if t.get_attribute('aria-expanded')!='true':
+                        failures.append('mega-open')
+                      t.send_keys(Keys.ESCAPE);time.sleep(.04)
+                      if t.get_attribute('aria-expanded')!='false':
+                        failures.append('mega-escape')
+                    else:
+                      op=d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-open]')
+                      op.click();time.sleep(.04)
+                      drawer=d.find_element(By.CSS_SELECTOR,'[data-orx-mobile-drawer]')
+                      if drawer.get_attribute('aria-hidden')!='false':
+                        failures.append('drawer-open')
+                      d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-close]').click();time.sleep(.04)
+                      if drawer.get_attribute('aria-hidden')!='true':
+                        failures.append('drawer-close')
+                  except Exception as e:
+                    failures.append(type(e).__name__+':'+str(e)[:180])
+                  rendered['cases'].append({'lang':lang,'width':width,'failures':failures})
+                  rendered['failures'] += [f'{lang}-{width}:{x}' for x in failures]
+
+                # Accordion keyboard/native behavior.
+                failures=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/faq.html')
+                  WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg26-root]').get_attribute('data-pg26-ready')=='true')
+                  q2=d.find_element(By.ID,f'faq-{lang}-q02')
+                  a2=d.find_element(By.ID,f'faq-{lang}-a02')
+                  q2.send_keys(Keys.ENTER);time.sleep(.05)
+                  if q2.get_attribute('aria-expanded')!='true' or not a2.is_displayed():
+                    failures.append('accordion-enter-open')
+                  q2.send_keys(Keys.SPACE);time.sleep(.05)
+                  if q2.get_attribute('aria-expanded')!='false' or a2.is_displayed():
+                    failures.append('accordion-space-close')
+                except Exception as e:
+                  failures.append(type(e).__name__+':'+str(e)[:180])
+                rendered['interaction'][lang+'-accordion']=failures
+                rendered['failures'] += [lang+'-accordion:'+x for x in failures]
+
+                # Category filter.
+                failures=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/faq.html')
+                  WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg26-root]').get_attribute('data-pg26-ready')=='true')
+                  d.find_element(By.CSS_SELECTOR,'[data-pg26-category="rfq"]').click();time.sleep(.05)
+                  root=d.find_element(By.CSS_SELECTOR,'[data-pg26-root]')
+                  if root.get_attribute('data-pg26-category')!='rfq' or root.get_attribute('data-pg26-results')!='3':
+                    failures.append('rfq-filter')
+                  visible_groups=[x.get_attribute('data-faq-group') for x in d.find_elements(By.CSS_SELECTOR,'[data-faq-group]') if x.is_displayed()]
+                  if visible_groups!=['rfq']:
+                    failures.append('rfq-visible-groups:'+str(visible_groups))
+                  if 'category=rfq' not in d.current_url:
+                    failures.append('rfq-url')
+                except Exception as e:
+                  failures.append(type(e).__name__+':'+str(e)[:180])
+                rendered['interaction'][lang+'-category']=failures
+                rendered['failures'] += [lang+'-category:'+x for x in failures]
+
+                # Query hydration + combined filter + language preservation.
+                failures=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/faq.html?category=rfq&q=endpoint')
+                  WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg26-root]').get_attribute('data-pg26-ready')=='true')
+                  root=d.find_element(By.CSS_SELECTOR,'[data-pg26-root]')
+                  if root.get_attribute('data-pg26-category')!='rfq' or root.get_attribute('data-pg26-query')!='endpoint' or root.get_attribute('data-pg26-results')!='1':
+                    failures.append('query-hydration')
+                  links=d.find_elements(By.CSS_SELECTOR,'.orx-lang-switch,.orx-mobile-nav a[lang]')
+                  if len(links)<2:
+                    failures.append('language-links-count')
+                  if any('category=rfq' not in a.get_attribute('href') or 'q=endpoint' not in a.get_attribute('href') for a in links):
+                    failures.append('language-state')
+                except Exception as e:
+                  failures.append(type(e).__name__+':'+str(e)[:180])
+                rendered['interaction'][lang+'-query-language']=failures
+                rendered['failures'] += [lang+'-query-language:'+x for x in failures]
+
+                # Invalid category normalization.
+                failures=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/faq.html?category=invalid')
+                  WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg26-root]').get_attribute('data-pg26-ready')=='true')
+                  root=d.find_element(By.CSS_SELECTOR,'[data-pg26-root]')
+                  if root.get_attribute('data-pg26-category')!='all' or root.get_attribute('data-pg26-results')!='18':
+                    failures.append('invalid-category-state')
+                  if 'category=' in d.current_url:
+                    failures.append('invalid-category-url')
+                except Exception as e:
+                  failures.append(type(e).__name__+':'+str(e)[:180])
+                rendered['interaction'][lang+'-invalid-category']=failures
+                rendered['failures'] += [lang+'-invalid-category:'+x for x in failures]
+
+                # Empty state + reset + Escape clear.
+                failures=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/faq.html?q=zzzzzz')
+                  WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg26-root]').get_attribute('data-pg26-ready')=='true')
+                  root=d.find_element(By.CSS_SELECTOR,'[data-pg26-root]')
+                  empty=d.find_element(By.CSS_SELECTOR,'[data-pg26-empty]')
+                  if root.get_attribute('data-pg26-results')!='0' or not empty.is_displayed():
+                    failures.append('empty-state')
+                  d.find_element(By.CSS_SELECTOR,'[data-pg26-reset]').click();time.sleep(.05)
+                  if root.get_attribute('data-pg26-results')!='18' or empty.is_displayed():
+                    failures.append('reset')
+                  search=d.find_element(By.CSS_SELECTOR,'[data-pg26-search]')
+                  search.send_keys('endpoint');time.sleep(.05)
+                  if not root.get_attribute('data-pg26-query'):
+                    failures.append('search-input')
+                  search.send_keys(Keys.ESCAPE);time.sleep(.05)
+                  if root.get_attribute('data-pg26-query')!='' or search.get_attribute('value')!='':
+                    failures.append('escape-clear')
+                except Exception as e:
+                  failures.append(type(e).__name__+':'+str(e)[:180])
+                rendered['interaction'][lang+'-empty-reset-escape']=failures
+                rendered['failures'] += [lang+'-empty-reset-escape:'+x for x in failures]
+              finally:
+                d.quit()
+          finally:
+            srv.terminate()
+
+          (O/'rendered-report.json').write_text(json.dumps(rendered,ensure_ascii=False,indent=2),encoding='utf-8')
+          status='PASS' if not source['failures'] and not rendered['failures'] else 'FAIL'
+          (O/'run-status.txt').write_text(status+'\n',encoding='utf-8')
+          print(status)
+          print('source:',source['failures'])
+          print('rendered:',rendered['failures'])
+          if status!='PASS':
+            raise SystemExit(1)
+          PY
+      - name: Commit PG26 evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg26-faq || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "PG26 record FAQ QA evidence"
+          for i in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then exit 0; fi
+            sleep 2
+          done
+          exit 1
