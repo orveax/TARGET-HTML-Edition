@@ -1,6 +1,6 @@
 /* ORIGEX — PG32 Components / Elements QA Laboratory
    Diagnostics only: measures current registered components and never mutates their contracts.
-   QA V2 trigger: source contract and diagnostic behavior unchanged. */
+   QA V2 rerun after central N03 closed-drawer overflow correction. */
 (() => {
   'use strict';
 
