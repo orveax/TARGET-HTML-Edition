@@ -1,0 +1,62 @@
+name: Brand System v1.2 QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - m7-brand-system-backfit
+    paths:
+      - 'assets/brand/**'
+      - 'assets/css/origex-tokens.css'
+      - 'assets/css/origex-marketplace-polish.css'
+      - 'ar/*.html'
+      - 'en/*.html'
+      - '.github/scripts/normalize_global_navigation.py'
+      - '.github/scripts/normalize_global_footer.py'
+      - '.github/scripts/normalize_brand_system_v12.py'
+      - '.github/workflows/brand-system-v12-qa.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: brand-system-v12-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  brand-system:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Normalize canonical navigation and footer
+        run: |
+          python .github/scripts/normalize_global_navigation.py
+          python .github/scripts/normalize_global_footer.py
+
+      - name: Normalize Brand System v1.2
+        id: brand_normalize
+        continue-on-error: true
+        run: python .github/scripts/normalize_brand_system_v12.py
+
+      - name: Commit normalized brand state and evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- ar en qa/brand-system-v12 assets/brand assets/css/origex-tokens.css assets/css/origex-marketplace-polish.css .github/scripts/normalize_global_navigation.py .github/scripts/normalize_global_footer.py .github/scripts/normalize_brand_system_v12.py || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Normalize ORIGEX Brand System v1.2"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Verify navigation contract is stable
+        run: python .github/scripts/normalize_global_navigation.py --check
+
+      - name: Verify footer contract is stable
+        run: python .github/scripts/normalize_global_footer.py --check
+
+      - name: Verify Brand System v1.2
+        run: python .github/scripts/normalize_brand_system_v12.py --check
