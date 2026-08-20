@@ -1,6 +1,9 @@
 {
   "failures": [],
   "pages": {
+    "ar/404.html": {
+      "failures": []
+    },
     "ar/about.html": {
       "failures": []
     },
@@ -83,6 +86,9 @@
       "failures": []
     },
     "ar/suppliers.html": {
+      "failures": []
+    },
+    "en/404.html": {
       "failures": []
     },
     "en/about.html": {
@@ -171,7 +177,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 56,
+    "pagesChecked": 58,
     "failures": 0
   }
 }
