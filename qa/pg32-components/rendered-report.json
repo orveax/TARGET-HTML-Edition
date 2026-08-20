@@ -1,8 +1,8 @@
 {
   "failures": [
     "ar-390:document-overflow",
-    "ar-desktop:modal-close",
-    "en-390:document-overflow"
+    "en-390:document-overflow",
+    "en-desktop:modal-close"
   ],
   "cases": [
     {
@@ -263,11 +263,11 @@
     }
   ],
   "interaction": {
-    "ar-desktop": [
+    "ar-desktop": [],
+    "ar-mobile": [],
+    "en-desktop": [
       "modal-close"
     ],
-    "ar-mobile": [],
-    "en-desktop": [],
     "en-mobile": []
   },
   "diagnostics": {
