@@ -1,0 +1,37 @@
+name: PG32 Components Final Gate
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/pg32-components-final-gate.yml'
+
+concurrency:
+  group: pg32-components-final-gate
+  cancel-in-progress: false
+permissions:
+  contents: write
+
+jobs:
+  final-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install QA dependencies
+        run: python -m pip install --quiet beautifulsoup4 selenium
+      - name: Run stabilized PG32 V3 gate
+        run: python .github/scripts/qa_pg32_components_v3.py
+      - name: Commit isolated PG32 final evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg32-components || true
+          if git diff --cached --quiet; then
+            echo "No evidence diff; current evidence already matches this run."
+            exit 0
+          fi
+          git commit -m "PG32 record isolated final gate evidence"
+          git pull --rebase origin main || true
+          git push origin main || true
