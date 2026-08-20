@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Milestone: M6 — Support / Utility / Components  
 Canonical file: `coming-soon.html`  
-Status: PS6 — FROZEN FOR BUILD
+Status: PS7 — IMPLEMENTED / CI QA PASS
 
 ## Purpose
 Provide a premium bilingual under-construction / prelaunch state that keeps the visitor oriented, exposes verified contact paths, and supports an optional buyer-configured launch date without fabricating dates, countdowns, subscriptions, or social availability.
@@ -49,15 +49,15 @@ English Adaptation:
 ## Subscribe UI Contract
 - V1 includes subscription UI, not a subscription backend.
 - Form validates email locally and never sends network requests.
-- Success state must state that Demo validation passed and that a real email/marketing endpoint must be connected before production.
+- Success state states that Demo validation passed and that a real email/marketing endpoint must be connected before production.
 - No subscriber count, CRM list, newsletter-delivery or consent-record claim is fabricated.
-- Form submission must not use fetch, XHR, external action URL, localStorage or sessionStorage.
+- Form submission does not use fetch, XHR, external action URL, localStorage or sessionStorage.
 
 ## Social Contract
 - Existing `ORIGEX_CONFIG.social` is authoritative.
 - Links with `#`, empty, invalid or disabled values remain hidden.
 - No social platform follower/count/availability claims.
-- Use generic text links + local icons only; do not add third-party logo assets.
+- Generic text links + local icons only; no third-party logo assets.
 
 ## SEO / Page Identity Contract
 Classification: **NOINDEX / ENVIRONMENT-DEPENDENT UTILITY**.
@@ -86,7 +86,7 @@ Page identity:
 - Exactly one H1.
 - Status message is text, not color-only.
 - Countdown units have visible labels and an accessible aggregate status line.
-- Timer updates must not create a high-frequency live-region announcement.
+- Timer updates do not create a high-frequency live-region announcement.
 - Subscribe field has an explicit label, correct email input type, local validation, clear error/success states and keyboard-accessible controls.
 - Reduced motion follows the global system.
 - Responsive verification: 390 / 820 / 1366 / 1536.
@@ -94,7 +94,7 @@ Page identity:
 ## Design Direction
 - Premium, minimal launch-state composition rather than a generic maintenance screen.
 - Strong brand field, large status typography, compact utility modules.
-- Use ORIGEX tokens, Tajawal/Manrope and local icon sprite only.
+- ORIGEX tokens, Tajawal/Manrope and local icon sprite only.
 - No third-party image, animation library, date library or background video.
 
 ## Dependencies
@@ -109,20 +109,21 @@ Page identity:
 - `assets/js/origex-coming-soon.js`
 - `assets/icons/sprite.svg`
 
-## PS7 Gate
-Promote only after:
-- exact Arabic canonical H1/support/CTA intent PASS
-- English meaning parity PASS
-- NOINDEX utility contract PASS
-- default no-date state PASS
-- valid future configured date countdown PASS
-- invalid/past date no-fabrication behavior PASS
-- Demo subscribe local validation + zero-network behavior PASS
-- configured social visibility / placeholder hiding PASS
-- contact link + configured email fallback PASS
-- rendered AR/EN 390/820/1366/1536 PASS
-- Global Navigation V1 + Global Footer V1 PASS
-- F05 Icon Integrity PASS
-- zero TARGET/client leakage
+## PS7 Evidence
+- Arabic canonical content: PASS.
+- English meaning parity: PASS.
+- NOINDEX utility contract: PASS.
+- Default no-date state: PASS.
+- Valid future configured date countdown: PASS.
+- Invalid/past date no-fabrication behavior: PASS.
+- Demo subscribe local validation + zero-network behavior: PASS.
+- Configured social visibility / placeholder hiding: PASS.
+- Contact link + configured email fallback: PASS.
+- Rendered AR/EN 390/820/1366/1536: **8/8 PASS**.
+- Global Navigation V1 + Global Footer V1: PASS.
+- F05 Icon Integrity: **60 AR/EN pages / 0 missing references**.
+- TARGET/client leakage: 0.
+- Final QA evidence commit: `cf91343ff95c66ba544387e26506c60076610f74`.
+- QA report: `docs/PG29-QA-REPORT-V1.md`.
 
 PS8 remains deployed browser acceptance and must verify the configured buyer/demo deployment state rather than assuming a launch date exists.
