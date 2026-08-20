@@ -1,14 +1,8 @@
 {
-  "failures": [
-    "runtime-missing:data-pg26-ready",
-    "ar:result-live",
-    "en:result-live"
-  ],
+  "failures": [],
   "pages": {
     "ar": {
-      "failures": [
-        "result-live"
-      ],
+      "failures": [],
       "faqItems": 18,
       "groups": [
         "buyers",
@@ -20,9 +14,7 @@
       ]
     },
     "en": {
-      "failures": [
-        "result-live"
-      ],
+      "failures": [],
       "faqItems": 18,
       "groups": [
         "buyers",
@@ -35,8 +27,6 @@
     }
   },
   "runtime": {
-    "failures": [
-      "runtime-missing:data-pg26-ready"
-    ]
+    "failures": []
   }
 }
