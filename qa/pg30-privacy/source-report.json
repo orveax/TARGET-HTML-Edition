@@ -1,7 +1,5 @@
 {
-  "failures": [
-    "en:cookie-boundary-copy"
-  ],
+  "failures": [],
   "pages": {
     "ar": {
       "failures": [],
@@ -10,9 +8,7 @@
       "iconCount": 8
     },
     "en": {
-      "failures": [
-        "cookie-boundary-copy"
-      ],
+      "failures": [],
       "sections": 8,
       "tocLinks": 8,
       "iconCount": 8
