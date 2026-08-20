@@ -1,0 +1,197 @@
+/* ORIGEX — PG01 Global Trade Gateway Hero | 2026-08-20
+ * Flagship sales hero for the main marketplace gate.
+ * Keeps live HTML copy/actions; cinematic media is presentation only.
+ */
+
+/* Hero — one integrated cinematic scene, not a split UI mockup. */
+main>.orx-hero[style*="pt01-route-lines.svg"]{
+  position:relative;
+  isolation:isolate;
+  min-block-size:clamp(680px,74vh,840px);
+  padding-block:clamp(5rem,8vw,7.5rem);
+  background-color:#061f24;
+  background-image:
+    linear-gradient(90deg,rgba(6,31,36,.97) 0%,rgba(6,31,36,.90) 29%,rgba(6,31,36,.58) 53%,rgba(6,31,36,.10) 78%),
+    url("../media/demo/hero-global-trade-gateway.webp")!important;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:cover;
+  color:var(--orx-white);
+}
+html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"]{
+  background-image:
+    linear-gradient(270deg,rgba(6,31,36,.97) 0%,rgba(6,31,36,.90) 29%,rgba(6,31,36,.58) 53%,rgba(6,31,36,.10) 78%),
+    url("../media/demo/hero-global-trade-gateway.webp")!important;
+}
+main>.orx-hero[style*="pt01-route-lines.svg"]::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    linear-gradient(to bottom,rgba(4,21,25,.08) 0%,transparent 52%,rgba(4,21,25,.42) 100%),
+    radial-gradient(circle at 72% 24%,rgba(193,138,66,.10),transparent 26%);
+  opacity:1;
+}
+main>.orx-hero[style*="pt01-route-lines.svg"]::after{display:none}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid{
+  position:relative;
+  z-index:2;
+  min-block-size:clamp(520px,58vh,660px);
+  grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  align-items:center;
+  gap:clamp(2rem,5vw,6rem);
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid>div:first-child{
+  max-inline-size:690px;
+  padding-block:1.5rem;
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-eyebrow{
+  color:var(--orx-brass-300);
+  text-shadow:0 2px 18px rgba(0,0,0,.36);
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] h1{
+  max-inline-size:11.5ch;
+  margin-block-end:1.45rem;
+  color:var(--orx-white);
+  font-size:clamp(3.3rem,5.8vw,6rem);
+  line-height:1.03;
+  text-wrap:balance;
+  text-shadow:0 4px 26px rgba(0,0,0,.34);
+}
+html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"] h1{line-height:1.16}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-lead{
+  max-inline-size:52ch;
+  color:rgba(255,255,255,.82);
+  font-size:clamp(1.04rem,1.35vw,1.2rem);
+  line-height:1.9;
+  text-shadow:0 2px 18px rgba(0,0,0,.30);
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.85rem;
+  margin-block-start:2.15rem;
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-btn--primary{
+  border-color:var(--orx-accent);
+  background:var(--orx-accent);
+  color:var(--orx-on-accent);
+  box-shadow:0 16px 40px rgba(0,0,0,.24);
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-btn--primary:hover{
+  border-color:var(--orx-brass-300);
+  background:var(--orx-brass-300);
+  color:var(--orx-on-accent);
+  transform:translateY(-2px);
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-btn--secondary{
+  border-color:rgba(255,255,255,.42);
+  background:rgba(6,31,36,.38);
+  color:var(--orx-white);
+  backdrop-filter:blur(8px);
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-btn--secondary:hover{
+  border-color:rgba(255,255,255,.78);
+  background:rgba(255,255,255,.10);
+}
+/* Preserve the visual side of the grid for art direction, but remove the old boxed media treatment. */
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-media.orx-media--hero{
+  min-block-size:540px;
+  border:0;
+  background:none!important;
+  box-shadow:none;
+  filter:none;
+  opacity:0;
+  pointer-events:none;
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-media.orx-media--hero>.h-100{display:none!important}
+
+/* PG01 header visually joins the hero. :has() is enhancement-only; fallback remains the normal light header. */
+body:has(main>.orx-hero[style*="pt01-route-lines.svg"]) .orx-site-header{
+  background:rgba(6,31,36,.94);
+  border-block-end-color:rgba(255,255,255,.10);
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+body:has(main>.orx-hero[style*="pt01-route-lines.svg"]) .orx-primary-nav>.orx-nav-link,
+body:has(main>.orx-hero[style*="pt01-route-lines.svg"]) .orx-lang-switch{
+  color:rgba(255,255,255,.86);
+}
+body:has(main>.orx-hero[style*="pt01-route-lines.svg"]) .orx-primary-nav>.orx-nav-link:hover,
+body:has(main>.orx-hero[style*="pt01-route-lines.svg"]) .orx-primary-nav>.orx-nav-link[aria-current="page"]{
+  background:rgba(255,255,255,.08);
+  color:var(--orx-brass-300);
+}
+body:has(main>.orx-hero[style*="pt01-route-lines.svg"]) .orx-site-header__actions>.orx-btn--primary{
+  border-color:var(--orx-accent);
+  background:var(--orx-accent);
+  color:var(--orx-on-accent);
+}
+body:has(main>.orx-hero[style*="pt01-route-lines.svg"]) .orx-mobile-toggle{
+  border-color:rgba(255,255,255,.24);
+  color:var(--orx-white);
+}
+html[lang="ar"] body:has(main>.orx-hero[style*="pt01-route-lines.svg"]) .orx-site-header .orx-brand img{
+  content:url("../brand/origex-logo-ar-reverse.svg");
+}
+html[lang="en"] body:has(main>.orx-hero[style*="pt01-route-lines.svg"]) .orx-site-header .orx-brand img{
+  content:url("../brand/origex-logo-light.svg");
+}
+/* Mega menu stays a light information surface even when the header is dark. */
+body:has(main>.orx-hero[style*="pt01-route-lines.svg"]) .orx-mega-menu{color:var(--orx-on-light-body)}
+body:has(main>.orx-hero[style*="pt01-route-lines.svg"]) .orx-mega-menu a{color:var(--orx-on-light-body)}
+
+@media(max-width:1050px){
+  main>.orx-hero[style*="pt01-route-lines.svg"]{
+    min-block-size:640px;
+    padding-block:5rem;
+    background-position:66% center;
+  }
+  html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"]{
+    background-image:
+      linear-gradient(270deg,rgba(6,31,36,.96) 0%,rgba(6,31,36,.88) 40%,rgba(6,31,36,.48) 68%,rgba(6,31,36,.14) 100%),
+      url("../media/demo/hero-global-trade-gateway.webp")!important;
+  }
+  html[dir="ltr"] main>.orx-hero[style*="pt01-route-lines.svg"]{
+    background-image:
+      linear-gradient(90deg,rgba(6,31,36,.96) 0%,rgba(6,31,36,.88) 40%,rgba(6,31,36,.48) 68%,rgba(6,31,36,.14) 100%),
+      url("../media/demo/hero-global-trade-gateway.webp")!important;
+  }
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid{grid-template-columns:minmax(0,1fr) minmax(260px,.55fr);min-block-size:500px;gap:1.5rem}
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-media.orx-media--hero{min-block-size:360px}
+}
+
+@media(max-width:767.98px){
+  main>.orx-hero[style*="pt01-route-lines.svg"]{
+    min-block-size:660px;
+    padding-block:4.5rem 4rem;
+    background-position:64% center;
+  }
+  html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"],
+  html[dir="ltr"] main>.orx-hero[style*="pt01-route-lines.svg"]{
+    background-image:
+      linear-gradient(to bottom,rgba(6,31,36,.91) 0%,rgba(6,31,36,.82) 52%,rgba(6,31,36,.70) 100%),
+      url("../media/demo/hero-global-trade-gateway.webp")!important;
+  }
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid{
+    display:block;
+    min-block-size:auto;
+  }
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid>div:first-child{
+    max-inline-size:620px;
+    padding-block:0;
+  }
+  main>.orx-hero[style*="pt01-route-lines.svg"] h1{
+    max-inline-size:12ch;
+    font-size:clamp(2.65rem,11.5vw,4rem);
+  }
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-lead{font-size:1rem;line-height:1.75}
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__actions{display:grid;grid-template-columns:1fr;gap:.75rem}
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__actions .orx-btn{inline-size:100%}
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-media.orx-media--hero{display:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-btn{transition:none}
+}
