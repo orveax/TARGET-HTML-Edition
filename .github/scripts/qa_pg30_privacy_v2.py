@@ -83,8 +83,7 @@ def source_qa():
             if banned in lowered: failures.append("named-law:" + banned)
         for marker in ("data-cookie-consent", "localstorage", "sessionstorage"):
             if marker in lowered: failures.append("fake-consent-tech:" + marker)
-        if "cookie consent banner" not in text and "Cookie Consent Banner" not in text:
-            # The page must explicitly explain why a banner is not assumed.
+        if "cookie consent banner" not in lowered and "cookie-consent banner" not in lowered:
             failures.append("cookie-boundary-copy")
 
         if not soup.select_one('[data-orx-mega-trigger][aria-current="page"]'): failures.append("explore-current")
@@ -143,7 +142,6 @@ def rendered_qa():
                         if driver.find_element(By.CSS_SELECTOR, '[data-pg30-updated]').text.strip() not in ("Replace before production", "يُستبدل قبل النشر"): failures.append("updated")
                         if driver.find_element(By.CSS_SELECTOR, '[data-orx-email="trade"]').get_attribute("href") != "mailto:trade@example.com": failures.append("contact-config")
 
-                        # Touch-target QA applies to controls and navigation targets, not normal inline prose links.
                         controls = "button,.orx-btn,.orx-lang-switch,.orx-legal-toc a,[data-orx-drawer-open],[data-orx-drawer-close]"
                         small = []
                         for el in driver.find_elements(By.CSS_SELECTOR, controls):
