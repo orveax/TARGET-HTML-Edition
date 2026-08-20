@@ -1,80 +1,49 @@
 {
-  "failures": [
-    "ar-390:touch:[{\"tag\": \"a\", \"w\": 137, \"h\": 16, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 100, \"h\": 16, \"text\": \"صفحة التواصل\"}]",
-    "ar-820:touch:[{\"tag\": \"a\", \"w\": 137, \"h\": 16, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 100, \"h\": 16, \"text\": \"صفحة التواصل\"}]",
-    "ar-1366:touch:[{\"tag\": \"a\", \"w\": 137, \"h\": 16, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 100, \"h\": 16, \"text\": \"صفحة التواصل\"}]",
-    "ar-1536:touch:[{\"tag\": \"a\", \"w\": 137, \"h\": 16, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 100, \"h\": 16, \"text\": \"صفحة التواصل\"}]",
-    "ar-toc-language:language-switch",
-    "en-390:touch:[{\"tag\": \"a\", \"w\": 152, \"h\": 22, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 101, \"h\": 22, \"text\": \"Contact page\"}]",
-    "en-820:touch:[{\"tag\": \"a\", \"w\": 152, \"h\": 22, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 101, \"h\": 22, \"text\": \"Contact page\"}]",
-    "en-1366:touch:[{\"tag\": \"a\", \"w\": 152, \"h\": 22, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 101, \"h\": 22, \"text\": \"Contact page\"}]",
-    "en-1536:touch:[{\"tag\": \"a\", \"w\": 152, \"h\": 22, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 101, \"h\": 22, \"text\": \"Contact page\"}]",
-    "en-toc-language:language-switch"
-  ],
+  "failures": [],
   "cases": [
     {
       "lang": "ar",
       "width": 390,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"w\": 137, \"h\": 16, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 100, \"h\": 16, \"text\": \"صفحة التواصل\"}]"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
       "width": 820,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"w\": 137, \"h\": 16, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 100, \"h\": 16, \"text\": \"صفحة التواصل\"}]"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
       "width": 1366,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"w\": 137, \"h\": 16, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 100, \"h\": 16, \"text\": \"صفحة التواصل\"}]"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
       "width": 1536,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"w\": 137, \"h\": 16, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 100, \"h\": 16, \"text\": \"صفحة التواصل\"}]"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
       "width": 390,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"w\": 152, \"h\": 22, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 101, \"h\": 22, \"text\": \"Contact page\"}]"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
       "width": 820,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"w\": 152, \"h\": 22, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 101, \"h\": 22, \"text\": \"Contact page\"}]"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
       "width": 1366,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"w\": 152, \"h\": 22, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 101, \"h\": 22, \"text\": \"Contact page\"}]"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
       "width": 1536,
-      "failures": [
-        "touch:[{\"tag\": \"a\", \"w\": 152, \"h\": 22, \"text\": \"trade@example.com\"}, {\"tag\": \"a\", \"w\": 101, \"h\": 22, \"text\": \"Contact page\"}]"
-      ]
+      "failures": []
     }
   ],
   "interaction": {
-    "ar-toc-language": [
-      "language-switch"
-    ],
-    "en-toc-language": [
-      "language-switch"
-    ]
+    "ar-toc-language": [],
+    "en-toc-language": []
   }
 }
