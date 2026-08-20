@@ -1,6 +1,7 @@
 {
   "failures": [
-    "ar-390:document-overflow",
+    "ar-390:ReadTimeoutError:HTTPConnectionPool(host='localhost', port=43263): Read timed out. (read timeout=120)",
+    "ar-820:ReadTimeoutError:HTTPConnectionPool(host='localhost', port=43263): Read timed out. (read timeout=120)",
     "ar-desktop:modal-close",
     "en-390:document-overflow",
     "en-desktop:modal-close"
@@ -10,115 +11,15 @@
       "lang": "ar",
       "width": 390,
       "failures": [
-        "document-overflow"
-      ],
-      "scrollWidth": 421,
-      "clientWidth": 375,
-      "offenders": [
-        {
-          "cls": "orx-lab-table",
-          "left": -366,
-          "right": 354,
-          "scroll": 720,
-          "tag": "table",
-          "width": 720
-        },
-        {
-          "cls": "",
-          "left": -366,
-          "right": 354,
-          "scroll": 720,
-          "tag": "caption",
-          "width": 720
-        },
-        {
-          "cls": "",
-          "left": -366,
-          "right": 354,
-          "scroll": 720,
-          "tag": "thead",
-          "width": 720
-        },
-        {
-          "cls": "",
-          "left": -366,
-          "right": 354,
-          "scroll": 720,
-          "tag": "tr",
-          "width": 720
-        },
-        {
-          "cls": "",
-          "left": -51,
-          "right": 47,
-          "scroll": 98,
-          "tag": "th",
-          "width": 98
-        },
-        {
-          "cls": "",
-          "left": -157,
-          "right": -51,
-          "scroll": 106,
-          "tag": "th",
-          "width": 106
-        },
-        {
-          "cls": "",
-          "left": -366,
-          "right": -157,
-          "scroll": 209,
-          "tag": "th",
-          "width": 209
-        },
-        {
-          "cls": "",
-          "left": -366,
-          "right": 354,
-          "scroll": 720,
-          "tag": "tbody",
-          "width": 720
-        },
-        {
-          "cls": "orx-lab-diagnostic-row",
-          "left": -366,
-          "right": 354,
-          "scroll": 720,
-          "tag": "tr",
-          "width": 720
-        },
-        {
-          "cls": "",
-          "left": -51,
-          "right": 47,
-          "scroll": 98,
-          "tag": "td",
-          "width": 98
-        },
-        {
-          "cls": "",
-          "left": -157,
-          "right": -51,
-          "scroll": 106,
-          "tag": "td",
-          "width": 106
-        },
-        {
-          "cls": "orx-lab-status",
-          "left": -138,
-          "right": -67,
-          "scroll": 69,
-          "tag": "span",
-          "width": 71
-        }
+        "ReadTimeoutError:HTTPConnectionPool(host='localhost', port=43263): Read timed out. (read timeout=120)"
       ]
     },
     {
       "lang": "ar",
       "width": 820,
-      "failures": [],
-      "scrollWidth": 805,
-      "clientWidth": 805
+      "failures": [
+        "ReadTimeoutError:HTTPConnectionPool(host='localhost', port=43263): Read timed out. (read timeout=120)"
+      ]
     },
     {
       "lang": "ar",
