@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-19T14:48:06Z",
-  "failures": 0,
+  "generatedAt": "2026-08-20T15:16:52Z",
+  "failures": 4,
   "results": [
     {
       "lang": "ar",
@@ -20,7 +20,7 @@
         "dir": "rtl",
         "filters": 7,
         "h1": true,
-        "minButton": 44,
+        "minButton": 48,
         "off": 0,
         "overflow": false,
         "sections": 5,
@@ -46,7 +46,7 @@
         "dir": "rtl",
         "filters": 7,
         "h1": true,
-        "minButton": 44,
+        "minButton": 48,
         "off": 0,
         "overflow": false,
         "sections": 5,
@@ -72,7 +72,7 @@
         "dir": "rtl",
         "filters": 7,
         "h1": true,
-        "minButton": 44,
+        "minButton": 40,
         "off": 0,
         "overflow": false,
         "sections": 5,
@@ -98,7 +98,7 @@
         "dir": "rtl",
         "filters": 7,
         "h1": true,
-        "minButton": 44,
+        "minButton": 40,
         "off": 0,
         "overflow": false,
         "sections": 5,
@@ -124,7 +124,7 @@
         "dir": "ltr",
         "filters": 7,
         "h1": true,
-        "minButton": 44,
+        "minButton": 48,
         "off": 0,
         "overflow": false,
         "sections": 5,
@@ -150,7 +150,7 @@
         "dir": "ltr",
         "filters": 7,
         "h1": true,
-        "minButton": 44,
+        "minButton": 48,
         "off": 0,
         "overflow": false,
         "sections": 5,
@@ -176,7 +176,7 @@
         "dir": "ltr",
         "filters": 7,
         "h1": true,
-        "minButton": 44,
+        "minButton": 40,
         "off": 0,
         "overflow": false,
         "sections": 5,
@@ -202,7 +202,7 @@
         "dir": "ltr",
         "filters": 7,
         "h1": true,
-        "minButton": 44,
+        "minButton": 40,
         "off": 0,
         "overflow": false,
         "sections": 5,
@@ -211,5 +211,10 @@
       "pass": true
     }
   ],
-  "errors": []
+  "errors": [
+    "ar: mobile Product navigation",
+    "ar: desktop Product navigation",
+    "en: mobile Product navigation",
+    "en: desktop Product navigation"
+  ]
 }
