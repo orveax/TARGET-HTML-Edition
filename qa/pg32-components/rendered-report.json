@@ -1,8 +1,7 @@
 {
   "failures": [
     "ar-desktop:no-backfit",
-    "en-desktop:no-backfit",
-    "en-desktop:modal-close"
+    "en-desktop:no-backfit"
   ],
   "cases": [
     {
@@ -68,8 +67,7 @@
     ],
     "ar-mobile": [],
     "en-desktop": [
-      "no-backfit",
-      "modal-close"
+      "no-backfit"
     ],
     "en-mobile": []
   },
