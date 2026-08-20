@@ -1,7 +1,7 @@
 {
   "failures": [],
   "summary": {
-    "pagesChecked": 61,
+    "pagesChecked": 62,
     "symbolsRegistered": 33,
     "symbolsReferenced": 31,
     "missingReferences": 0
@@ -367,6 +367,19 @@
         "map-pin",
         "menu",
         "route",
+        "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/privacy.html": {
+      "references": [
+        "arrow-up",
+        "check",
+        "chevron-down",
+        "info",
+        "menu",
+        "phone",
         "shield-check",
         "x"
       ],
