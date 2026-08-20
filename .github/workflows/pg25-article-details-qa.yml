@@ -1,0 +1,196 @@
+name: PG25 Article Details QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/article-details.html'
+      - 'en/article-details.html'
+      - 'assets/css/origex-article-details.css'
+      - 'assets/js/origex-article-details.js'
+      - 'docs/page-design-profiles/pg25-article-details-v1.md'
+      - 'assets/css/origex-components.css'
+      - 'assets/css/origex-shell.css'
+      - 'assets/icons/sprite.svg'
+      - 'assets/js/origex-ui.js'
+      - '.github/scripts/normalize_global_navigation.py'
+      - '.github/scripts/normalize_global_footer.py'
+      - '.github/workflows/pg25-article-details-qa.yml'
+
+concurrency:
+  group: pg25-article-details-qa
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --quiet beautifulsoup4 selenium
+      - name: Run PG25 source editorial runtime rendered interaction QA
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json,re,subprocess,time
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.keys import Keys
+          from selenium.webdriver.support.ui import WebDriverWait
+
+          R=Path('.');O=R/'qa/pg25-article-details';O.mkdir(parents=True,exist_ok=True)
+          source={'failures':[],'pages':{},'runtime':{}}
+          js=(R/'assets/js/origex-article-details.js').read_text(encoding='utf-8');rf=[]
+          for bad in ('fetch(','XMLHttpRequest','localStorage','sessionStorage'):
+            if bad in js:rf.append('forbidden-runtime:'+bad)
+          for required in ('data-article-template','navigator.clipboard','article-details.html?id=','orx-mobile-nav a[lang]','pg25Ready','pg25Article'):
+            if required not in js:rf.append('runtime-missing:'+required)
+          source['runtime']={'failures':rf};source['failures']+=rf
+          sprite=(R/'assets/icons/sprite.svg').read_text(encoding='utf-8');sprite_ids=set(re.findall(r'<symbol[^>]+id="([^"]+)"',sprite))
+          specs={
+            'ar':('rtl','ما المعلومات التي يحتاجها المشتري قبل طلب السعر؟','../en/article-details.html'),
+            'en':('ltr','What Information Does a Buyer Need Before Requesting a Quote?','../ar/article-details.html')
+          }
+          for lang,(direction,h1,other) in specs.items():
+            p=R/lang/'article-details.html';text=p.read_text(encoding='utf-8');s=BeautifulSoup(text,'html.parser');f=[]
+            if s.html.get('lang')!=lang or s.html.get('dir')!=direction:f.append('lang-dir')
+            hs=s.find_all('h1')
+            if len(hs)!=1 or hs[0].get_text(' ',strip=True)!=h1:f.append('h1')
+            templates=s.select('template[data-article-template]')
+            ids=['article-001']+[t.get('data-article-template') for t in templates]
+            if ids!=[f'article-{i:03d}' for i in range(1,10)]:f.append('article-ids:'+str(ids))
+            if len(set(ids))!=9:f.append('article-id-unique')
+            for t in templates:
+              for attr in ('data-title','data-category','data-date','data-read','data-deck','data-excerpt'):
+                if not t.get(attr):f.append('template-meta:'+t.get('data-article-template','?')+':'+attr)
+            if not s.select_one('[data-orx-article-body] .orx-prose'):f.append('default-body')
+            if not s.select_one('[data-orx-share-copy]') or not s.select_one('[data-orx-share-email]') or not s.select_one('[data-orx-share-linkedin]') or not s.select_one('[data-orx-share-whatsapp]'):f.append('share-actions')
+            if not s.select_one('[data-orx-share-status][aria-live="polite"]'):f.append('share-status')
+            if not s.select_one('[data-orx-article-prev]') or not s.select_one('[data-orx-article-next]'):f.append('adjacent')
+            if len(s.select('[data-orx-related-articles] .orx-related-card'))!=3:f.append('related-static')
+            if not s.select_one('[data-orx-article-invalid][hidden]'):f.append('invalid-state')
+            combined=s.get_text(' ',strip=True).lower()
+            if 'demo' not in combined:f.append('demo-boundary')
+            if 'TARGET' in text or 'targetft' in text.lower():f.append('client-leak')
+            if any(x in combined for x in ('guaranteed result','guaranteed roi','مضمون 100%','نتيجة مضمونة')):f.append('inflated-claim')
+            if not s.find('a',class_='orx-lang-switch',href=lambda x:x and other.split('?')[0] in x):f.append('language-switch')
+            if not s.select_one('[data-orx-mega-trigger][aria-current="page"]'):f.append('explore-current')
+            if not s.select_one('.orx-mega-menu a[href="insights.html"][aria-current="page"]'):f.append('mega-parent-current')
+            if not s.select_one('.orx-mobile-nav a[href="insights.html"][aria-current="page"]'):f.append('mobile-parent-current')
+            if not s.select_one('footer[data-orx-global-footer="v1"] [data-orx-business-hours]'):f.append('footer')
+            canonical=s.find('link',rel='canonical')
+            if not canonical or canonical.get('href')!=f'https://example.com/{lang}/article-details.html':f.append('canonical')
+            hreflangs={n.get('hreflang') for n in s.find_all('link',rel='alternate')}
+            if not {'ar','en','x-default'}.issubset(hreflangs):f.append('hreflang')
+            try:
+              data=json.loads(s.find('script',attrs={'type':'application/ld+json'}).string);types={x.get('@type') for x in data.get('@graph',[])}
+              if not {'Article','BreadcrumbList'}.issubset(types):f.append('schema')
+              if types & {'Product','Offer','Review','Rating','AggregateRating'}:f.append('prohibited-schema:'+str(sorted(types)))
+            except Exception:f.append('schema-json')
+            icons=set(re.findall(r'sprite\.svg#([a-z0-9-]+)',text));missing=sorted(icons-sprite_ids)
+            if missing:f.append('icons:'+str(missing))
+            source['pages'][lang]={'failures':f,'templateCount':len(templates)};source['failures'] += [lang+':'+x for x in f]
+          if (R/'assets/data/articles.json').exists():source['failures'].append('unapproved-articles-json')
+          for script,label in [('.github/scripts/normalize_global_navigation.py','nav-drift'),('.github/scripts/normalize_global_footer.py','footer-drift')]:
+            r=subprocess.run(['python',script,'--check'],capture_output=True,text=True)
+            if r.returncode:source['failures'].append(label);source[label]=r.stdout+r.stderr
+          (O/'source-report.json').write_text(json.dumps(source,ensure_ascii=False,indent=2),encoding='utf-8')
+
+          rendered={'failures':[],'cases':[],'interaction':{}}
+          opts=Options();opts.add_argument('--headless=new');opts.add_argument('--no-sandbox');opts.add_argument('--disable-dev-shm-usage');opts.add_argument('--window-size=820,1800')
+          srv=subprocess.Popen(['python','-m','http.server','8765'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL);time.sleep(1)
+          expected5={'ar':'اختيار قناة التوزيع يبدأ من طبيعة المنتج','en':'Distribution-channel choice starts with the product'}
+          try:
+            for lang in ('ar','en'):
+              d=webdriver.Chrome(options=opts)
+              try:
+                for w in (390,820,1366,1536):
+                  f=[]
+                  try:
+                    d.set_window_size(w,1900);d.get(f'http://127.0.0.1:8765/{lang}/article-details.html?id=article-005')
+                    WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg25-root]').get_attribute('data-pg25-ready')=='true')
+                    root=d.find_element(By.CSS_SELECTOR,'[data-pg25-root]')
+                    if root.get_attribute('data-pg25-article')!='article-005':f.append('article-state')
+                    if d.find_element(By.CSS_SELECTOR,'[data-orx-article-title]').text!=expected5[lang]:f.append('title')
+                    if len(d.find_elements(By.CSS_SELECTOR,'[data-orx-related-articles] .orx-related-card'))!=3:f.append('related-count')
+                    if any('id=article-005' in a.get_attribute('href') for a in d.find_elements(By.CSS_SELECTOR,'[data-orx-related-articles] .orx-related-card')):f.append('related-current')
+                    if d.execute_script('return document.documentElement.scrollWidth')>d.execute_script('return document.documentElement.clientWidth')+1:f.append('overflow')
+                    if d.find_element(By.TAG_NAME,'html').get_attribute('dir')!=('rtl' if lang=='ar' else 'ltr'):f.append('direction')
+                    small=[]
+                    for e in d.find_elements(By.CSS_SELECTOR,'a,button,input,select'):
+                      if e.is_displayed() and e.rect['width'] and e.rect['height'] and (e.rect['width']<24 or e.rect['height']<24):small.append({'tag':e.tag_name,'w':round(e.rect['width'],1),'h':round(e.rect['height'],1),'text':e.text[:24]})
+                    if small:f.append('touch:'+json.dumps(small,ensure_ascii=False))
+                    if w>=1051:
+                      t=d.find_element(By.CSS_SELECTOR,'[data-orx-mega-trigger]');t.click();time.sleep(.04)
+                      if t.get_attribute('aria-expanded')!='true':f.append('mega-open')
+                      t.send_keys(Keys.ESCAPE);time.sleep(.04)
+                      if t.get_attribute('aria-expanded')!='false':f.append('mega-escape')
+                    else:
+                      op=d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-open]');op.click();time.sleep(.04);dr=d.find_element(By.CSS_SELECTOR,'[data-orx-mobile-drawer]')
+                      if dr.get_attribute('aria-hidden')!='false':f.append('drawer-open')
+                      d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-close]').click();time.sleep(.04)
+                      if dr.get_attribute('aria-hidden')!='true':f.append('drawer-close')
+                  except Exception as e:f.append(type(e).__name__+':'+str(e)[:180])
+                  rendered['cases'].append({'lang':lang,'width':w,'failures':f});rendered['failures'] += [f'{lang}-{w}:{x}' for x in f]
+
+                f=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/article-details.html');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg25-root]').get_attribute('data-pg25-ready')=='true')
+                  if d.find_element(By.CSS_SELECTOR,'[data-pg25-root]').get_attribute('data-pg25-article')!='article-001':f.append('default-id')
+                  if d.find_element(By.CSS_SELECTOR,'[data-orx-article-invalid]').is_displayed():f.append('default-invalid')
+                  if d.find_element(By.CSS_SELECTOR,'[data-orx-article-prev]').is_displayed():f.append('first-prev')
+                  if 'id=article-002' not in d.find_element(By.CSS_SELECTOR,'[data-orx-article-next]').get_attribute('href'):f.append('first-next')
+                except Exception as e:f.append(type(e).__name__+':'+str(e)[:180])
+                rendered['interaction'][lang+'-default']=f;rendered['failures'] += [lang+'-default:'+x for x in f]
+
+                f=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/article-details.html?id=article-999');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg25-root]').get_attribute('data-pg25-ready')=='true')
+                  if d.find_element(By.CSS_SELECTOR,'[data-pg25-root]').get_attribute('data-pg25-article')!='article-001':f.append('invalid-fallback')
+                  if not d.find_element(By.CSS_SELECTOR,'[data-orx-article-invalid]').is_displayed():f.append('invalid-notice')
+                except Exception as e:f.append(type(e).__name__+':'+str(e)[:180])
+                rendered['interaction'][lang+'-invalid']=f;rendered['failures'] += [lang+'-invalid:'+x for x in f]
+
+                f=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/article-details.html?id=article-006');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg25-root]').get_attribute('data-pg25-ready')=='true')
+                  language=d.find_elements(By.CSS_SELECTOR,'.orx-lang-switch,.orx-mobile-nav a[lang]')
+                  if len(language)<2:f.append('language-links-count')
+                  if any('id=article-006' not in a.get_attribute('href') for a in language):f.append('language-preservation')
+                  if 'id=article-005' not in d.find_element(By.CSS_SELECTOR,'[data-orx-article-prev]').get_attribute('href'):f.append('prev')
+                  if 'id=article-007' not in d.find_element(By.CSS_SELECTOR,'[data-orx-article-next]').get_attribute('href'):f.append('next')
+                  if 'article-006' not in d.find_element(By.CSS_SELECTOR,'[data-orx-share-copy]').get_attribute('data-copy-url'):f.append('copy-url')
+                  for sel in ('[data-orx-share-email]','[data-orx-share-linkedin]','[data-orx-share-whatsapp]'):
+                    if 'article-006' not in d.find_element(By.CSS_SELECTOR,sel).get_attribute('href'):f.append('share-url:'+sel)
+                  d.find_element(By.CSS_SELECTOR,'[data-orx-share-copy]').click();time.sleep(.15)
+                  if not d.find_element(By.CSS_SELECTOR,'[data-orx-share-status]').text.strip():f.append('copy-feedback')
+                except Exception as e:f.append(type(e).__name__+':'+str(e)[:180])
+                rendered['interaction'][lang+'-state-share']=f;rendered['failures'] += [lang+'-state-share:'+x for x in f]
+
+                f=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/article-details.html?id=article-009');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg25-root]').get_attribute('data-pg25-ready')=='true')
+                  if d.find_element(By.CSS_SELECTOR,'[data-orx-article-next]').is_displayed():f.append('last-next')
+                  if 'id=article-008' not in d.find_element(By.CSS_SELECTOR,'[data-orx-article-prev]').get_attribute('href'):f.append('last-prev')
+                except Exception as e:f.append(type(e).__name__+':'+str(e)[:180])
+                rendered['interaction'][lang+'-last']=f;rendered['failures'] += [lang+'-last:'+x for x in f]
+              finally:d.quit()
+          finally:srv.terminate()
+          (O/'rendered-report.json').write_text(json.dumps(rendered,ensure_ascii=False,indent=2),encoding='utf-8')
+          status='PASS' if not source['failures'] and not rendered['failures'] else 'FAIL';(O/'run-status.txt').write_text(status+'\n',encoding='utf-8')
+          print(status);print(source['failures']);print(rendered['failures'])
+          if status!='PASS':raise SystemExit(1)
+          PY
+      - name: Commit PG25 evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg25-article-details || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "PG25 record Article Details QA evidence"
+          git pull --rebase origin main || true
+          git push origin main || true
