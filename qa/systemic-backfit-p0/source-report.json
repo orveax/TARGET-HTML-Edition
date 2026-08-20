@@ -1,0 +1,13 @@
+{
+  "failures": [],
+  "contrast": {
+    "mutedOnSoft": 4.79,
+    "deepOnAccent": 4.73
+  },
+  "systems": {
+    "SYS-01": "PASS",
+    "SYS-02": "PASS",
+    "SYS-03": "PASS",
+    "SYS-04": "PASS"
+  }
+}
