@@ -1,0 +1,16 @@
+{
+  "page": "PG01 Home 01",
+  "gate": "M7 Composition & CSS Ownership",
+  "pagesChecked": 2,
+  "rules": [
+    "CTA colors/states owned by shared component CSS",
+    "No redundant local CTA foreground/border overrides",
+    "One primary + one secondary action in final CTA",
+    "Featured product cards use contextual Product Details routes"
+  ],
+  "failures": [],
+  "pageFailures": {
+    "ar/index.html": [],
+    "en/index.html": []
+  }
+}
