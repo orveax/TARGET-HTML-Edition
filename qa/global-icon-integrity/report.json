@@ -1,7 +1,7 @@
 {
   "failures": [],
   "summary": {
-    "pagesChecked": 55,
+    "pagesChecked": 56,
     "symbolsRegistered": 33,
     "symbolsReferenced": 31,
     "missingReferences": 0
@@ -136,6 +136,24 @@
         "package",
         "route",
         "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/contact.html": {
+      "references": [
+        "arrow-up",
+        "chevron-down",
+        "clock",
+        "external-link",
+        "file-text",
+        "handshake",
+        "info",
+        "mail",
+        "map-pin",
+        "menu",
+        "package",
+        "phone",
         "x"
       ],
       "missing": []
