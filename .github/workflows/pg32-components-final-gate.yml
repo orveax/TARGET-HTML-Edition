@@ -8,7 +8,7 @@ on:
       - '.github/workflows/pg32-components-final-gate.yml'
 
 concurrency:
-  group: pg32-components-final-gate-self-report
+  group: pg32-components-final-gate-self-report-r2
   cancel-in-progress: false
 permissions:
   contents: write
@@ -40,3 +40,5 @@ jobs:
       - name: Enforce PG32 gate outcome
         if: steps.pg32.outcome == 'failure'
         run: exit 1
+
+# R2 after mobile semantic-table fit and real Bootstrap dismiss interaction.
