@@ -10,6 +10,7 @@ on:
       - 'assets/css/origex-components.css'
       - 'assets/css/origex-shell.css'
       - 'assets/js/origex-ui.js'
+      - 'assets/js/origex-components-lab.js'
       - 'ar/components.html'
       - 'en/components.html'
       - '.github/scripts/qa_systemic_backfit_p0.py'
