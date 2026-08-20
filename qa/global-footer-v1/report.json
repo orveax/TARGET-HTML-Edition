@@ -31,6 +31,9 @@
     "ar/company-profile.html": {
       "failures": []
     },
+    "ar/components.html": {
+      "failures": []
+    },
     "ar/contact.html": {
       "failures": []
     },
@@ -127,6 +130,9 @@
     "en/company-profile.html": {
       "failures": []
     },
+    "en/components.html": {
+      "failures": []
+    },
     "en/contact.html": {
       "failures": []
     },
@@ -195,7 +201,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 64,
+    "pagesChecked": 66,
     "failures": 0
   }
 }
