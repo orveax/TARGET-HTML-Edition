@@ -1,0 +1,54 @@
+{
+  "failures": [
+    "runtime-missing:data-pg27-ready",
+    "en:response-claim"
+  ],
+  "pages": {
+    "ar": {
+      "failures": [],
+      "routes": [
+        "general",
+        "rfq",
+        "supplier",
+        "partner"
+      ],
+      "formFields": [
+        "company",
+        "consent",
+        "contactName",
+        "email",
+        "message",
+        "phone",
+        "topic"
+      ]
+    },
+    "en": {
+      "failures": [
+        "response-claim"
+      ],
+      "routes": [
+        "general",
+        "rfq",
+        "supplier",
+        "partner"
+      ],
+      "formFields": [
+        "company",
+        "consent",
+        "contactName",
+        "email",
+        "message",
+        "phone",
+        "topic"
+      ]
+    }
+  },
+  "runtime": {
+    "failures": [
+      "runtime-missing:data-pg27-ready"
+    ]
+  },
+  "config": {
+    "failures": []
+  }
+}

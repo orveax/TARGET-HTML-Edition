@@ -1,0 +1,86 @@
+{
+  "failures": [
+    "ar-390:touch:[{\"tag\": \"a\", \"w\": 110, \"h\": 16, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]",
+    "ar-820:touch:[{\"tag\": \"a\", \"w\": 110, \"h\": 16, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]",
+    "ar-1366:touch:[{\"tag\": \"a\", \"w\": 110, \"h\": 16, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]",
+    "ar-1536:touch:[{\"tag\": \"a\", \"w\": 110, \"h\": 16, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]",
+    "ar-form:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1193, 3581)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://w",
+    "en-390:touch:[{\"tag\": \"a\", \"w\": 120, \"h\": 22, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]",
+    "en-820:touch:[{\"tag\": \"a\", \"w\": 120, \"h\": 22, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]",
+    "en-1366:touch:[{\"tag\": \"a\", \"w\": 120, \"h\": 22, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]",
+    "en-1536:touch:[{\"tag\": \"a\", \"w\": 120, \"h\": 22, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]",
+    "en-form:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (334, 3481)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://ww"
+  ],
+  "cases": [
+    {
+      "lang": "ar",
+      "width": 390,
+      "failures": [
+        "touch:[{\"tag\": \"a\", \"w\": 110, \"h\": 16, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]"
+      ]
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "failures": [
+        "touch:[{\"tag\": \"a\", \"w\": 110, \"h\": 16, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]"
+      ]
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "failures": [
+        "touch:[{\"tag\": \"a\", \"w\": 110, \"h\": 16, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]"
+      ]
+    },
+    {
+      "lang": "ar",
+      "width": 1536,
+      "failures": [
+        "touch:[{\"tag\": \"a\", \"w\": 110, \"h\": 16, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]"
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "failures": [
+        "touch:[{\"tag\": \"a\", \"w\": 120, \"h\": 22, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]"
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "failures": [
+        "touch:[{\"tag\": \"a\", \"w\": 120, \"h\": 22, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]"
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "failures": [
+        "touch:[{\"tag\": \"a\", \"w\": 120, \"h\": 22, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]"
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 1536,
+      "failures": [
+        "touch:[{\"tag\": \"a\", \"w\": 120, \"h\": 22, \"text\": \"+974 0000 0000\"}, {\"tag\": \"input\", \"w\": 13, \"h\": 13, \"text\": \"\"}]"
+      ]
+    }
+  ],
+  "interaction": {
+    "ar-route": [],
+    "ar-query-language": [],
+    "ar-invalid-topic": [],
+    "ar-form": [
+      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1193, 3581)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://w"
+    ],
+    "en-route": [],
+    "en-query-language": [],
+    "en-invalid-topic": [],
+    "en-form": [
+      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (334, 3481)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://ww"
+    ]
+  }
+}
