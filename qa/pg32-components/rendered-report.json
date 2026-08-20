@@ -1,5 +1,7 @@
 {
-  "failures": [],
+  "failures": [
+    "en-desktop:modal-close"
+  ],
   "cases": [
     {
       "lang": "ar",
@@ -61,7 +63,9 @@
   "interaction": {
     "ar-desktop": [],
     "ar-mobile": [],
-    "en-desktop": [],
+    "en-desktop": [
+      "modal-close"
+    ],
     "en-mobile": []
   },
   "diagnostics": {
@@ -87,9 +91,5 @@
       "upload": "backfit",
       "pagination": "backfit"
     }
-  },
-  "modalDismissal": {
-    "ar": "PASS — alternate dismiss button",
-    "en": "PASS — alternate dismiss button"
   }
 }
