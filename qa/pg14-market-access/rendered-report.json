@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-19T14:46:34Z",
-  "failures": 0,
+  "generatedAt": "2026-08-20T10:37:21Z",
+  "failures": 4,
   "results": [
     {
       "lang": "ar",
@@ -227,5 +227,10 @@
       "pass": true
     }
   ],
-  "errors": []
+  "errors": [
+    "ar: desktop Market navigation",
+    "ar: mobile Market navigation/language",
+    "en: desktop Market navigation",
+    "en: mobile Market navigation/language"
+  ]
 }
