@@ -106,6 +106,12 @@
     "en/company-profile.html": {
       "failures": []
     },
+    "en/contact.html": {
+      "failures": []
+    },
+    "en/faq.html": {
+      "failures": []
+    },
     "en/for-suppliers.html": {
       "failures": []
     },
@@ -162,7 +168,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 53,
+    "pagesChecked": 55,
     "failures": 0
   }
 }
