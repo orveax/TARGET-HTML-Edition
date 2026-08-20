@@ -1,8 +1,5 @@
 {
-  "failures": [
-    "ar-form:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (986, 1871)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementclickinterc",
-    "en-form:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (523, 3277)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementclickinterc"
-  ],
+  "failures": [],
   "cases": [
     {
       "lang": "ar",
@@ -49,14 +46,10 @@
     "ar-route": [],
     "ar-query-language": [],
     "ar-invalid-topic": [],
-    "ar-form": [
-      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (986, 1871)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementclickinterc"
-    ],
+    "ar-form": [],
     "en-route": [],
     "en-query-language": [],
     "en-invalid-topic": [],
-    "en-form": [
-      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (523, 3277)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementclickinterc"
-    ]
+    "en-form": []
   }
 }
