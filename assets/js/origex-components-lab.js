@@ -1,5 +1,6 @@
 /* ORIGEX — PG32 Components / Elements QA Laboratory
-   Diagnostics only: measures current registered components and never mutates their contracts. */
+   Diagnostics only: measures current registered components and never mutates their contracts.
+   QA V2 trigger: source contract and diagnostic behavior unchanged. */
 (() => {
   'use strict';
 
