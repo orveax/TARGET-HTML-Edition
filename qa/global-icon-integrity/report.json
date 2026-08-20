@@ -1,7 +1,7 @@
 {
   "failures": [],
   "summary": {
-    "pagesChecked": 58,
+    "pagesChecked": 60,
     "symbolsRegistered": 33,
     "symbolsReferenced": 31,
     "missingReferences": 0
@@ -136,6 +136,20 @@
         "message-circle",
         "package",
         "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/coming-soon.html": {
+      "references": [
+        "arrow-up",
+        "chevron-down",
+        "external-link",
+        "info",
+        "mail",
+        "menu",
+        "message-circle",
+        "phone",
         "x"
       ],
       "missing": []
@@ -608,6 +622,20 @@
         "message-circle",
         "package",
         "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/coming-soon.html": {
+      "references": [
+        "arrow-up",
+        "chevron-down",
+        "external-link",
+        "info",
+        "mail",
+        "menu",
+        "message-circle",
+        "phone",
         "x"
       ],
       "missing": []
