@@ -10,7 +10,7 @@ on:
       - 'assets/css/origex-components-lab.css'
       - 'assets/js/origex-components-lab.js'
       - 'docs/page-design-profiles/pg32-components-v1.md'
-      - '.github/scripts/qa_pg32_components.py'
+      - '.github/scripts/qa_pg32_components_v2.py'
       - '.github/workflows/pg32-components-qa.yml'
       - '.github/scripts/normalize_global_navigation.py'
       - '.github/scripts/normalize_global_footer.py'
@@ -29,7 +29,7 @@ jobs:
       - name: Install QA dependencies
         run: python -m pip install --quiet beautifulsoup4 selenium
       - name: Run PG32 source, registry, rendered and interaction QA
-        run: python .github/scripts/qa_pg32_components.py
+        run: python .github/scripts/qa_pg32_components_v2.py
       - name: Commit PG32 QA evidence
         if: always()
         run: |
@@ -41,4 +41,4 @@ jobs:
           git pull --rebase origin main || true
           git push origin main || true
 
-# PG32 final gate trigger — build complete / QA in progress.
+# PG32 QA V2 — registry-aware semantics and explicit overflow diagnostics.
