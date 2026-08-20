@@ -1,6 +1,6 @@
 /* ORIGEX — PG32 Components / Elements QA Laboratory
    Diagnostics only: measures current registered components and never mutates their contracts.
-   QA V2 rerun after central N03 closed-drawer overflow correction. */
+   P09 checkbox diagnostic explicitly measures the registered .orx-check input specimen. */
 (() => {
   'use strict';
 
@@ -11,7 +11,7 @@
     'input': { label: 'Control M', target: 48, prop: 'height', mode: 'equal' },
     'select': { label: 'Control M', target: 48, prop: 'height', mode: 'equal' },
     'textarea': { label: 'Textarea min', target: 144, prop: 'height', mode: 'minimum' },
-    'checkbox': { label: 'Visual control', target: 20, prop: 'square', mode: 'equal' },
+    'checkbox': { label: 'Visual control', target: 20, prop: 'square', mode: 'equal', selector: '.orx-check input' },
     'upload': { label: 'Dropzone min', target: 144, prop: 'height', mode: 'minimum' },
     'pagination': { label: 'Pagination target', target: 48, prop: 'square', mode: 'equal' }
   };
@@ -40,7 +40,7 @@
 
   function runDiagnostics() {
     Object.entries(targets).forEach(([key, config]) => {
-      const probe = document.querySelector(`[data-lab-probe="${key}"]`);
+      const probe = document.querySelector(config.selector || `[data-lab-probe="${key}"]`);
       const row = document.querySelector(`[data-lab-diagnostic-row="${key}"]`);
       if (!probe || !row) return;
 
