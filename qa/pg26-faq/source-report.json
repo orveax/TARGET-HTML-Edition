@@ -1,0 +1,42 @@
+{
+  "failures": [
+    "runtime-missing:data-pg26-ready",
+    "ar:result-live",
+    "en:result-live"
+  ],
+  "pages": {
+    "ar": {
+      "failures": [
+        "result-live"
+      ],
+      "faqItems": 18,
+      "groups": [
+        "buyers",
+        "suppliers",
+        "products",
+        "rfq",
+        "distribution",
+        "demo"
+      ]
+    },
+    "en": {
+      "failures": [
+        "result-live"
+      ],
+      "faqItems": 18,
+      "groups": [
+        "buyers",
+        "suppliers",
+        "products",
+        "rfq",
+        "distribution",
+        "demo"
+      ]
+    }
+  },
+  "runtime": {
+    "failures": [
+      "runtime-missing:data-pg26-ready"
+    ]
+  }
+}
