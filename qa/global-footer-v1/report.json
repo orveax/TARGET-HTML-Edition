@@ -25,6 +25,9 @@
     "ar/company-profile.html": {
       "failures": []
     },
+    "ar/faq.html": {
+      "failures": []
+    },
     "ar/for-suppliers.html": {
       "failures": []
     },
@@ -159,7 +162,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 52,
+    "pagesChecked": 53,
     "failures": 0
   }
 }
