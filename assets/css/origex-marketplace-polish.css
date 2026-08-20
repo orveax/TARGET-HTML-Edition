@@ -1,18 +1,34 @@
-/* ORIGEX — ORX-P01 | Marketplace Visual Polish | Copyright © ORVEAX
- * Scoped M2 visual refinement for commercial preview quality.
+/* ORIGEX — ORX-P01 | PG01 Marketplace Premium Composition | Copyright © ORVEAX
+ * M7 second-pass refinement for the Marketplace Visual Benchmark.
+ * Scope: composition only. No IA/content contract changes and no new component family.
  * Brand color decisions consume ORIGEX Brand System v1.2 tokens/relationships.
  */
 
-/* Hero: preserve the trade-route information while giving it a stronger B2B visual anchor. */
+/* --------------------------------------------------------------------------
+   Hero — stronger balance, less empty mass, clearer commercial visual anchor
+   -------------------------------------------------------------------------- */
+.orx-hero{
+  padding-block:clamp(4rem,7vw,6.75rem);
+}
+.orx-hero__grid>div:first-child{
+  position:relative;
+  z-index:2;
+}
+.orx-hero__grid>div:first-child h1{
+  max-inline-size:13ch;
+}
+.orx-hero__grid>div:first-child .orx-lead{
+  max-inline-size:58ch;
+}
 .orx-hero__grid>.orx-media.orx-media--hero{
   position:relative;
   inline-size:100%;
   min-inline-size:0;
-  min-block-size:500px;
+  min-block-size:520px;
   aspect-ratio:auto;
   background-color:var(--orx-ivory-100);
   background-image:
-    linear-gradient(90deg,rgba(252,250,246,.94) 0%,rgba(252,250,246,.82) 48%,rgba(252,250,246,.32) 100%),
+    linear-gradient(90deg,rgba(252,250,246,.96) 0%,rgba(252,250,246,.78) 44%,rgba(252,250,246,.22) 100%),
     url("../media/demo/hero-trade-scene.svg");
   background-size:cover;
   background-position:center;
@@ -21,15 +37,18 @@
 }
 html[dir="rtl"] .orx-hero__grid>.orx-media.orx-media--hero{
   background-image:
-    linear-gradient(270deg,rgba(252,250,246,.94) 0%,rgba(252,250,246,.82) 48%,rgba(252,250,246,.32) 100%),
+    linear-gradient(270deg,rgba(252,250,246,.96) 0%,rgba(252,250,246,.78) 44%,rgba(252,250,246,.22) 100%),
     url("../media/demo/hero-trade-scene.svg");
 }
 .orx-hero__grid>.orx-media.orx-media--hero>.h-100{
   position:relative;
   z-index:1;
 }
+.orx-hero__grid>.orx-media.orx-media--hero .orx-stack{
+  max-inline-size:430px;
+}
 .orx-hero__grid>.orx-media.orx-media--hero .orx-stack>.orx-card{
-  background:rgba(255,255,255,.90)!important;
+  background:rgba(255,255,255,.92)!important;
   backdrop-filter:blur(8px);
   border-color:rgba(220,225,219,.9)!important;
   box-shadow:0 10px 34px rgba(8,42,47,.09)!important;
@@ -38,56 +57,120 @@ html[dir="rtl"] .orx-hero__grid>.orx-media.orx-media--hero{
   border-color:rgba(14,117,103,.62)!important;
 }
 
-/* Trust layer: more decision-oriented and less card-like. */
+/* --------------------------------------------------------------------------
+   Trust strip — compact commercial facts, not another card family
+   -------------------------------------------------------------------------- */
+section[aria-labelledby="trust-title"]{
+  padding-block:clamp(2.75rem,4.5vw,4rem);
+}
+section[aria-labelledby="trust-title"] .orx-section-header{
+  margin-block-end:1.75rem;
+}
 section[aria-labelledby="trust-title"] .row{
-  --bs-gutter-x:1rem;
-  --bs-gutter-y:1rem;
+  --bs-gutter-x:0;
+  --bs-gutter-y:0;
+  overflow:hidden;
+  border-block:1px solid var(--orx-border);
+}
+section[aria-labelledby="trust-title"] .col{
+  min-inline-size:0;
+}
+section[aria-labelledby="trust-title"] .col+.col{
+  border-inline-start:1px solid var(--orx-border);
 }
 section[aria-labelledby="trust-title"] .orx-trust-item{
   --orx-trust-accent:var(--orx-secondary);
-  position:relative;
   min-block-size:100%;
-  padding:1.15rem 1rem 1rem;
-  border-block-start:3px solid var(--orx-trust-accent);
-  border-radius:0 0 var(--orx-radius-sm) var(--orx-radius-sm);
-  background:linear-gradient(180deg,rgba(245,241,232,.76),rgba(255,255,255,.72));
+  grid-template-columns:40px minmax(0,1fr);
+  align-items:center;
+  gap:.75rem;
+  padding:1rem 1.1rem;
+  border:0;
+  border-radius:0;
+  background:transparent;
 }
 section[aria-labelledby="trust-title"] .col:nth-child(2) .orx-trust-item{--orx-trust-accent:var(--orx-accent)}
 section[aria-labelledby="trust-title"] .col:nth-child(3) .orx-trust-item{--orx-trust-accent:var(--orx-info)}
 section[aria-labelledby="trust-title"] .col:nth-child(4) .orx-trust-item{--orx-trust-accent:var(--orx-warning)}
 section[aria-labelledby="trust-title"] .col:nth-child(5) .orx-trust-item{--orx-trust-accent:var(--orx-primary)}
 section[aria-labelledby="trust-title"] .orx-trust-item .orx-icon-box{
+  inline-size:40px;
+  block-size:40px;
   border:0;
   background:transparent;
   color:var(--orx-trust-accent);
 }
-section[aria-labelledby="trust-title"] .orx-trust-item .orx-card__title{font-size:1rem}
-section[aria-labelledby="trust-title"] .orx-trust-item .orx-card__copy{font-size:.9rem}
-
-/* Process: reinforce sequence without adding JS or new markup. */
-section[aria-labelledby="process-title"] .orx-grid{position:relative}
-section[aria-labelledby="process-title"] .orx-process-card{
-  overflow:hidden;
-  min-block-size:210px;
-  padding-block-start:1.45rem;
-  background:linear-gradient(145deg,var(--orx-white) 0%,rgba(255,255,255,.78) 100%);
+section[aria-labelledby="trust-title"] .orx-trust-item .orx-card__title{
+  margin:0 0 .12rem;
+  font-size:.96rem;
 }
-section[aria-labelledby="process-title"] .orx-process-card::before{
+section[aria-labelledby="trust-title"] .orx-trust-item .orx-card__copy{
+  margin:0;
+  font-size:.82rem;
+  line-height:1.45;
+}
+
+/* --------------------------------------------------------------------------
+   Process — one connected sequence rather than four independent cards
+   -------------------------------------------------------------------------- */
+section[aria-labelledby="process-title"]{
+  padding-block:clamp(4rem,6vw,5.5rem);
+}
+section[aria-labelledby="process-title"] .orx-section-header{
+  margin-block-end:2.25rem;
+}
+section[aria-labelledby="process-title"] .orx-grid{
+  position:relative;
+  gap:0;
+}
+section[aria-labelledby="process-title"] .orx-grid::before{
   content:"";
   position:absolute;
-  inset-block-start:0;
-  inset-inline:0;
-  block-size:4px;
-  background:linear-gradient(90deg,var(--orx-primary),var(--orx-secondary),var(--orx-accent));
+  inset-block-start:24px;
+  inset-inline:12.5%;
+  block-size:1px;
+  background:linear-gradient(90deg,var(--orx-border-strong),var(--orx-secondary),var(--orx-border-strong));
+}
+section[aria-labelledby="process-title"] .orx-process-card{
+  position:relative;
+  min-block-size:190px;
+  padding:4.6rem 1.25rem 1.35rem;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  text-align:center;
+}
+section[aria-labelledby="process-title"] .orx-process-card+.orx-process-card{
+  border-inline-start:1px solid rgba(220,225,219,.72);
+}
+section[aria-labelledby="process-title"] .orx-process-card::before{
+  content:none;
 }
 section[aria-labelledby="process-title"] .orx-process-card__number{
+  position:absolute;
+  inset-block-start:0;
+  left:50%;
+  z-index:2;
   inline-size:var(--orx-icon-container-l);
   block-size:var(--orx-icon-container-l);
-  margin-block-end:1.1rem;
-  box-shadow:0 8px 18px rgba(8,42,47,.14);
+  margin:0;
+  transform:translateX(-50%);
+  border:6px solid var(--orx-surface-subtle);
+  background:var(--orx-surface-brand-strong);
+  box-shadow:0 8px 18px rgba(8,42,47,.12);
+}
+section[aria-labelledby="process-title"] .orx-process-card .orx-card__title{
+  margin-block-end:.55rem;
+}
+section[aria-labelledby="process-title"] .orx-process-card .orx-card__copy{
+  max-inline-size:26ch;
+  margin-inline:auto;
 }
 
-/* Category cards: registered visual-header variant without stock photography. */
+/* --------------------------------------------------------------------------
+   Categories — controlled visual-header card variant
+   -------------------------------------------------------------------------- */
 section[aria-labelledby="categories-title"] .orx-feature-card{
   --orx-cat-a:var(--orx-ink-800);
   --orx-cat-b:var(--orx-emerald-700);
@@ -136,14 +219,23 @@ section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(4){--orx
 section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(5){--orx-cat-a:var(--orx-brass-600);--orx-cat-b:var(--orx-brass-300)}
 section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(6){--orx-cat-a:var(--orx-brass-600);--orx-cat-b:var(--orx-ink-800)}
 
-/* Why ORIGEX: flatter proof blocks so this section does not repeat category-card rhythm. */
+/* --------------------------------------------------------------------------
+   Why ORIGEX — larger proof units, not a tiny utility-card row
+   -------------------------------------------------------------------------- */
+section[aria-labelledby="why-title"]{
+  padding-block:clamp(4rem,6vw,5.5rem);
+}
+section[aria-labelledby="why-title"] .orx-grid{
+  gap:1rem 1.25rem;
+}
 section[aria-labelledby="why-title"] .orx-feature-card{
+  border:0;
   border-inline-start:3px solid var(--orx-secondary);
-  border-block-color:transparent;
-  border-inline-end-color:transparent;
   border-radius:0 var(--orx-radius-md) var(--orx-radius-md) 0;
-  background:rgba(255,255,255,.64);
+  background:rgba(255,255,255,.72);
   box-shadow:none;
+  min-block-size:132px;
+  padding:1.35rem 1.4rem;
 }
 html[dir="rtl"] section[aria-labelledby="why-title"] .orx-feature-card{
   border-inline-start:3px solid var(--orx-secondary);
@@ -154,9 +246,12 @@ section[aria-labelledby="why-title"] .orx-feature-card .orx-icon-box{
   border-color:rgba(14,117,103,.18);
 }
 
-/* Role section: deliberate tonal break between capability proof and product catalogue. */
+/* --------------------------------------------------------------------------
+   Role routes — stronger decision cards inside the deliberate dark break
+   -------------------------------------------------------------------------- */
 section[aria-labelledby="roles-title"]{
   position:relative;
+  padding-block:clamp(4.25rem,6vw,5.75rem);
   background:var(--orx-primary-strong);
   color:var(--orx-white);
 }
@@ -172,19 +267,31 @@ section[aria-labelledby="roles-title"]::before{
 section[aria-labelledby="roles-title"]>.orx-container{position:relative}
 section[aria-labelledby="roles-title"] :is(h2,.orx-lead){color:var(--orx-white)}
 section[aria-labelledby="roles-title"] .orx-eyebrow{color:var(--orx-sand)}
+section[aria-labelledby="roles-title"] .orx-grid{gap:1rem}
 section[aria-labelledby="roles-title"] .orx-feature-card{
-  background:rgba(255,255,255,.96);
+  min-block-size:205px;
+  padding:1.45rem;
+  background:rgba(255,255,255,.97);
   border-color:rgba(255,255,255,.18);
   box-shadow:0 16px 42px rgba(0,0,0,.13);
 }
+section[aria-labelledby="roles-title"] .orx-feature-card .orx-text-action{
+  align-self:end;
+  margin-block-start:.35rem;
+}
 
-/* Product catalogue preview: owned vector packshots replace pattern-only placeholders. */
+/* --------------------------------------------------------------------------
+   Products — B2B merchandising, larger media and clearer commercial scan
+   -------------------------------------------------------------------------- */
+section[aria-labelledby="products-title"]{
+  padding-block:clamp(4.5rem,6.5vw,6rem);
+}
 section[aria-labelledby="products-title"] .orx-product-card{
-  border-color:rgba(220,225,219,.78);
+  border-color:rgba(220,225,219,.82);
   box-shadow:var(--orx-shadow-e1);
+  background:var(--orx-surface-raised);
 }
 section[aria-labelledby="products-title"] .orx-product-card__media{
-  aspect-ratio:4/3;
   background-color:var(--orx-ivory-100);
   background-repeat:no-repeat;
   background-position:center;
@@ -194,14 +301,36 @@ section[aria-labelledby="products-title"] .orx-product-card:nth-child(1) .orx-pr
 section[aria-labelledby="products-title"] .orx-product-card:nth-child(2) .orx-product-card__media{background-image:url("../media/demo/product-hibiscus.svg")}
 section[aria-labelledby="products-title"] .orx-product-card:nth-child(3) .orx-product-card__media{background-image:url("../media/demo/product-milk.svg")}
 section[aria-labelledby="products-title"] .orx-product-card:nth-child(4) .orx-product-card__media{background-image:url("../media/demo/product-frozen.svg")}
-section[aria-labelledby="products-title"] .orx-product-card__body{padding:1.35rem}
-section[aria-labelledby="products-title"] .orx-product-card .orx-card__title{min-block-size:2.8em}
+section[aria-labelledby="products-title"] .orx-product-card__body{
+  display:flex;
+  min-inline-size:0;
+  flex-direction:column;
+  padding:1.45rem;
+}
+section[aria-labelledby="products-title"] .orx-product-card .orx-card__title{
+  min-block-size:auto;
+  margin-block-end:.65rem;
+}
+section[aria-labelledby="products-title"] .orx-product-card .orx-card__copy{
+  font-size:.9rem;
+  line-height:1.65;
+}
+section[aria-labelledby="products-title"] .orx-product-card .orx-text-action{
+  margin-block-start:auto;
+  padding-block-start:1rem;
+}
 
-/* Supplier CTA gets a restrained trade-network surface rather than another plain card. */
+/* --------------------------------------------------------------------------
+   Supplier CTA — conversion block, not another content card
+   -------------------------------------------------------------------------- */
+section[aria-labelledby="supplier-cta-title"]{
+  padding-block:clamp(3.75rem,5.5vw,5rem);
+}
 section[aria-labelledby="supplier-cta-title"] .orx-cta-card{
   overflow:hidden;
   isolation:isolate;
   border:0;
+  padding:clamp(2rem,4vw,3.25rem);
   box-shadow:var(--orx-shadow-e2);
 }
 section[aria-labelledby="supplier-cta-title"] .orx-cta-card::after{
@@ -217,31 +346,143 @@ section[aria-labelledby="supplier-cta-title"] .orx-cta-card::after{
   box-shadow:0 0 0 55px rgba(255,255,255,.035),0 0 0 110px rgba(255,255,255,.025);
 }
 
+/* End-of-page rhythm: keep utility content readable without excessive length. */
+section[aria-labelledby="faq-title"]{
+  padding-block:clamp(4rem,6vw,5.25rem);
+}
+.orx-final-cta{
+  padding-block:clamp(3.75rem,5.5vw,5rem);
+}
+
+@media(min-width:900px){
+  .orx-hero__grid{
+    grid-template-columns:minmax(0,.92fr) minmax(440px,1.08fr);
+    gap:clamp(2.75rem,4.5vw,4.75rem);
+  }
+  section[aria-labelledby="why-title"] .orx-grid--4{
+    --orx-grid-cols:2;
+  }
+  section[aria-labelledby="products-title"] .orx-grid--4{
+    --orx-grid-cols:2;
+    gap:1.25rem;
+  }
+  section[aria-labelledby="products-title"] .orx-product-card{
+    display:grid;
+    grid-template-columns:minmax(150px,36%) minmax(0,1fr);
+    min-block-size:235px;
+  }
+  section[aria-labelledby="products-title"] .orx-product-card__media{
+    min-block-size:235px;
+    aspect-ratio:auto;
+    border-block-end:0;
+    border-inline-end:1px solid var(--orx-border);
+  }
+  section[aria-labelledby="supplier-cta-title"] .orx-cta-card{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    column-gap:2.5rem;
+    align-items:center;
+  }
+  section[aria-labelledby="supplier-cta-title"] .orx-cta-card>:not(.orx-btn){
+    grid-column:1;
+  }
+  section[aria-labelledby="supplier-cta-title"] .orx-cta-card>.orx-btn{
+    grid-column:2;
+    grid-row:1/4;
+    align-self:center;
+  }
+}
+
 @media(min-width:1100px){
-  section[aria-labelledby="products-title"] .orx-grid--4{gap:1.25rem}
   section[aria-labelledby="categories-title"] .orx-grid--3{gap:1.35rem}
 }
 
 @media(max-width:899.98px){
-  .orx-hero__grid>.orx-media.orx-media--hero{min-block-size:460px}
+  .orx-hero__grid>.orx-media.orx-media--hero{
+    min-block-size:430px;
+  }
+  section[aria-labelledby="process-title"] .orx-grid{
+    gap:0;
+  }
+  section[aria-labelledby="products-title"] .orx-product-card__media{
+    aspect-ratio:16/10;
+  }
 }
 
 @media(max-width:767.98px){
+  .orx-hero{
+    padding-block:3.25rem 3.75rem;
+  }
+  .orx-hero__grid{
+    gap:2.25rem;
+  }
   .orx-hero__grid>.orx-media.orx-media--hero{
-    min-block-size:430px;
+    min-block-size:360px;
     background-image:
-      linear-gradient(180deg,rgba(252,250,246,.92),rgba(252,250,246,.70)),
+      linear-gradient(180deg,rgba(252,250,246,.94),rgba(252,250,246,.70)),
       url("../media/demo/hero-trade-scene.svg");
     background-position:center;
   }
+  .orx-hero__grid>.orx-media.orx-media--hero .orx-stack{
+    max-inline-size:none;
+  }
+
+  section[aria-labelledby="trust-title"] .row{
+    border-block:1px solid var(--orx-border);
+  }
+  section[aria-labelledby="trust-title"] .col+.col{
+    border-inline-start:0;
+    border-block-start:1px solid var(--orx-border);
+  }
+  section[aria-labelledby="trust-title"] .orx-trust-item{
+    grid-template-columns:40px minmax(0,1fr);
+    padding:.9rem .8rem;
+  }
+
+  section[aria-labelledby="process-title"] .orx-grid::before{
+    inset-block:24px 24px;
+    inset-inline-start:24px;
+    inline-size:1px;
+    block-size:auto;
+  }
+  html[dir="rtl"] section[aria-labelledby="process-title"] .orx-grid::before{
+    inset-inline-start:auto;
+    inset-inline-end:24px;
+  }
+  section[aria-labelledby="process-title"] .orx-process-card,
+  html[dir="rtl"] section[aria-labelledby="process-title"] .orx-process-card{
+    min-block-size:0;
+    padding:0 4.5rem 1.5rem 0;
+    border:0;
+    text-align:start;
+  }
+  html[dir="rtl"] section[aria-labelledby="process-title"] .orx-process-card{
+    padding:0 0 1.5rem 4.5rem;
+  }
+  section[aria-labelledby="process-title"] .orx-process-card__number{
+    position:absolute;
+    inset-block-start:0;
+    left:auto;
+    inset-inline-start:0;
+    transform:none;
+  }
+  section[aria-labelledby="process-title"] .orx-process-card .orx-card__copy{
+    max-inline-size:none;
+    margin-inline:0;
+  }
+
   section[aria-labelledby="categories-title"] .orx-feature-card{
     min-block-size:280px;
     padding-block-start:8.5rem;
   }
   section[aria-labelledby="categories-title"] .orx-feature-card::before{block-size:6.7rem}
   section[aria-labelledby="categories-title"] .orx-feature-card .orx-icon-box{inset-block-start:4.25rem}
-  section[aria-labelledby="roles-title"] .orx-grid{gap:1rem}
+
+  section[aria-labelledby="roles-title"] .orx-grid{gap:.9rem}
+  section[aria-labelledby="roles-title"] .orx-feature-card{min-block-size:180px}
+
   section[aria-labelledby="products-title"] .orx-product-card__media{aspect-ratio:16/10}
+  section[aria-labelledby="supplier-cta-title"] .orx-cta-card>.orx-btn{margin-block-start:.5rem}
 }
 
 @media(prefers-reduced-motion:reduce){
