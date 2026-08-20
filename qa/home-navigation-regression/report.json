@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-19T14:46:37Z",
-  "failures": 0,
+  "generatedAt": "2026-08-20T10:37:57Z",
+  "failures": 14,
   "variants": [
     "index.html",
     "home-02.html",
@@ -22,9 +22,7 @@
       "lang": "ar",
       "file": "index.html",
       "desktop": {
-        "active": [
-          "index.html"
-        ],
+        "active": [],
         "current": "index.html",
         "escaped": true,
         "expected": [
@@ -33,13 +31,8 @@
           "home-03.html",
           "landing.html"
         ],
-        "group": true,
-        "hrefs": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
-        ],
+        "group": false,
+        "hrefs": [],
         "menu": true,
         "mode": "mega",
         "noOverflow": true,
@@ -47,9 +40,7 @@
         "trigger": true
       },
       "mobile": {
-        "active": [
-          "index.html"
-        ],
+        "active": [],
         "current": "index.html",
         "drawer": true,
         "escaped": true,
@@ -59,12 +50,7 @@
           "home-03.html",
           "landing.html"
         ],
-        "hrefs": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
-        ],
+        "hrefs": [],
         "nav": true,
         "opened": true,
         "opener": true
@@ -74,9 +60,7 @@
       "lang": "ar",
       "file": "home-02.html",
       "desktop": {
-        "active": [
-          "home-02.html"
-        ],
+        "active": [],
         "current": "home-02.html",
         "escaped": true,
         "expected": [
@@ -85,13 +69,8 @@
           "home-03.html",
           "landing.html"
         ],
-        "group": true,
-        "hrefs": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
-        ],
+        "group": false,
+        "hrefs": [],
         "menu": true,
         "mode": "mega",
         "noOverflow": true,
@@ -99,9 +78,7 @@
         "trigger": true
       },
       "mobile": {
-        "active": [
-          "home-02.html"
-        ],
+        "active": [],
         "current": "home-02.html",
         "drawer": true,
         "escaped": true,
@@ -111,12 +88,7 @@
           "home-03.html",
           "landing.html"
         ],
-        "hrefs": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
-        ],
+        "hrefs": [],
         "nav": true,
         "opened": true,
         "opener": true
@@ -126,9 +98,7 @@
       "lang": "ar",
       "file": "home-03.html",
       "desktop": {
-        "active": [
-          "home-03.html"
-        ],
+        "active": [],
         "current": "home-03.html",
         "escaped": true,
         "expected": [
@@ -137,13 +107,8 @@
           "home-03.html",
           "landing.html"
         ],
-        "group": true,
-        "hrefs": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
-        ],
+        "group": false,
+        "hrefs": [],
         "menu": true,
         "mode": "mega",
         "noOverflow": true,
@@ -151,9 +116,7 @@
         "trigger": true
       },
       "mobile": {
-        "active": [
-          "home-03.html"
-        ],
+        "active": [],
         "current": "home-03.html",
         "drawer": true,
         "escaped": true,
@@ -163,12 +126,7 @@
           "home-03.html",
           "landing.html"
         ],
-        "hrefs": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
-        ],
+        "hrefs": [],
         "nav": true,
         "opened": true,
         "opener": true
@@ -190,9 +148,7 @@
         "noMega": true
       },
       "mobile": {
-        "active": [
-          "landing.html"
-        ],
+        "active": [],
         "current": "landing.html",
         "drawer": true,
         "escaped": true,
@@ -202,12 +158,7 @@
           "home-03.html",
           "landing.html"
         ],
-        "hrefs": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
-        ],
+        "hrefs": [],
         "nav": true,
         "opened": true,
         "opener": true
@@ -217,9 +168,7 @@
       "lang": "en",
       "file": "index.html",
       "desktop": {
-        "active": [
-          "index.html"
-        ],
+        "active": [],
         "current": "index.html",
         "escaped": true,
         "expected": [
@@ -228,13 +177,8 @@
           "home-03.html",
           "landing.html"
         ],
-        "group": true,
-        "hrefs": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
-        ],
+        "group": false,
+        "hrefs": [],
         "menu": true,
         "mode": "mega",
         "noOverflow": true,
@@ -242,9 +186,7 @@
         "trigger": true
       },
       "mobile": {
-        "active": [
-          "index.html"
-        ],
+        "active": [],
         "current": "index.html",
         "drawer": true,
         "escaped": true,
@@ -254,12 +196,7 @@
           "home-03.html",
           "landing.html"
         ],
-        "hrefs": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
-        ],
+        "hrefs": [],
         "nav": true,
         "opened": true,
         "opener": true
@@ -269,9 +206,7 @@
       "lang": "en",
       "file": "home-02.html",
       "desktop": {
-        "active": [
-          "home-02.html"
-        ],
+        "active": [],
         "current": "home-02.html",
         "escaped": true,
         "expected": [
@@ -280,13 +215,8 @@
           "home-03.html",
           "landing.html"
         ],
-        "group": true,
-        "hrefs": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
-        ],
+        "group": false,
+        "hrefs": [],
         "menu": true,
         "mode": "mega",
         "noOverflow": true,
@@ -294,9 +224,7 @@
         "trigger": true
       },
       "mobile": {
-        "active": [
-          "home-02.html"
-        ],
+        "active": [],
         "current": "home-02.html",
         "drawer": true,
         "escaped": true,
@@ -306,12 +234,7 @@
           "home-03.html",
           "landing.html"
         ],
-        "hrefs": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
-        ],
+        "hrefs": [],
         "nav": true,
         "opened": true,
         "opener": true
@@ -321,9 +244,7 @@
       "lang": "en",
       "file": "home-03.html",
       "desktop": {
-        "active": [
-          "home-03.html"
-        ],
+        "active": [],
         "current": "home-03.html",
         "escaped": true,
         "expected": [
@@ -332,13 +253,8 @@
           "home-03.html",
           "landing.html"
         ],
-        "group": true,
-        "hrefs": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
-        ],
+        "group": false,
+        "hrefs": [],
         "menu": true,
         "mode": "mega",
         "noOverflow": true,
@@ -346,9 +262,7 @@
         "trigger": true
       },
       "mobile": {
-        "active": [
-          "home-03.html"
-        ],
+        "active": [],
         "current": "home-03.html",
         "drawer": true,
         "escaped": true,
@@ -358,12 +272,7 @@
           "home-03.html",
           "landing.html"
         ],
-        "hrefs": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
-        ],
+        "hrefs": [],
         "nav": true,
         "opened": true,
         "opener": true
@@ -385,9 +294,7 @@
         "noMega": true
       },
       "mobile": {
-        "active": [
-          "landing.html"
-        ],
+        "active": [],
         "current": "landing.html",
         "drawer": true,
         "escaped": true,
@@ -397,18 +304,28 @@
           "home-03.html",
           "landing.html"
         ],
-        "hrefs": [
-          "index.html",
-          "home-02.html",
-          "home-03.html",
-          "landing.html"
-        ],
+        "hrefs": [],
         "nav": true,
         "opened": true,
         "opener": true
       }
     }
   ],
-  "errors": [],
+  "errors": [
+    "ar/index.html: desktop navigation: {'active': [], 'current': 'index.html', 'escaped': True, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'group': False, 'hrefs': [], 'menu': True, 'mode': 'mega', 'noOverflow': True, 'opened': True, 'trigger': True}",
+    "ar/index.html: mobile navigation: {'active': [], 'current': 'index.html', 'drawer': True, 'escaped': True, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'hrefs': [], 'nav': True, 'opened': True, 'opener': True}",
+    "ar/home-02.html: desktop navigation: {'active': [], 'current': 'home-02.html', 'escaped': True, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'group': False, 'hrefs': [], 'menu': True, 'mode': 'mega', 'noOverflow': True, 'opened': True, 'trigger': True}",
+    "ar/home-02.html: mobile navigation: {'active': [], 'current': 'home-02.html', 'drawer': True, 'escaped': True, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'hrefs': [], 'nav': True, 'opened': True, 'opener': True}",
+    "ar/home-03.html: desktop navigation: {'active': [], 'current': 'home-03.html', 'escaped': True, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'group': False, 'hrefs': [], 'menu': True, 'mode': 'mega', 'noOverflow': True, 'opened': True, 'trigger': True}",
+    "ar/home-03.html: mobile navigation: {'active': [], 'current': 'home-03.html', 'drawer': True, 'escaped': True, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'hrefs': [], 'nav': True, 'opened': True, 'opener': True}",
+    "ar/landing.html: mobile navigation: {'active': [], 'current': 'landing.html', 'drawer': True, 'escaped': True, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'hrefs': [], 'nav': True, 'opened': True, 'opener': True}",
+    "en/index.html: desktop navigation: {'active': [], 'current': 'index.html', 'escaped': True, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'group': False, 'hrefs': [], 'menu': True, 'mode': 'mega', 'noOverflow': True, 'opened': True, 'trigger': True}",
+    "en/index.html: mobile navigation: {'active': [], 'current': 'index.html', 'drawer': True, 'escaped': True, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'hrefs': [], 'nav': True, 'opened': True, 'opener': True}",
+    "en/home-02.html: desktop navigation: {'active': [], 'current': 'home-02.html', 'escaped': True, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'group': False, 'hrefs': [], 'menu': True, 'mode': 'mega', 'noOverflow': True, 'opened': True, 'trigger': True}",
+    "en/home-02.html: mobile navigation: {'active': [], 'current': 'home-02.html', 'drawer': True, 'escaped': True, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'hrefs': [], 'nav': True, 'opened': True, 'opener': True}",
+    "en/home-03.html: desktop navigation: {'active': [], 'current': 'home-03.html', 'escaped': True, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'group': False, 'hrefs': [], 'menu': True, 'mode': 'mega', 'noOverflow': True, 'opened': True, 'trigger': True}",
+    "en/home-03.html: mobile navigation: {'active': [], 'current': 'home-03.html', 'drawer': True, 'escaped': True, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'hrefs': [], 'nav': True, 'opened': True, 'opener': True}",
+    "en/landing.html: mobile navigation: {'active': [], 'current': 'landing.html', 'drawer': True, 'escaped': True, 'expected': ['index.html', 'home-02.html', 'home-03.html', 'landing.html'], 'hrefs': [], 'nav': True, 'opened': True, 'opener': True}"
+  ],
   "landingDesktopPolicy": "Compact conversion header intentionally has no mega menu; brand returns to Home 01. Landing remains discoverable from other Home mega menus and all mobile drawers."
 }
