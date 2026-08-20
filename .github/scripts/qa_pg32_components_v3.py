@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PG32 QA V3 — reuses V2 source contract and hardens browser interaction semantics."""
+"""PG32 QA V3 — V2 source contract + hardened interactions; rerun after N03 containment fix."""
 from urllib.parse import urlparse
 import json, subprocess, time
 from selenium import webdriver
