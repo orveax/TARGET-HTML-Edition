@@ -9,7 +9,7 @@ on:
       - 'en/privacy.html'
       - 'assets/css/origex-legal.css'
       - 'docs/page-design-profiles/pg30-privacy-v1.md'
-      - '.github/scripts/qa_pg30_privacy.py'
+      - '.github/scripts/qa_pg30_privacy_v2.py'
       - '.github/workflows/pg30-privacy-qa.yml'
       - '.github/scripts/normalize_global_navigation.py'
       - '.github/scripts/normalize_global_footer.py'
@@ -28,7 +28,7 @@ jobs:
       - name: Install QA dependencies
         run: python -m pip install --quiet beautifulsoup4 selenium
       - name: Run PG30 source, rendered and accessibility QA
-        run: python .github/scripts/qa_pg30_privacy.py
+        run: python .github/scripts/qa_pg30_privacy_v2.py
       - name: Commit PG30 QA evidence
         if: always()
         run: |
