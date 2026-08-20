@@ -72,24 +72,24 @@
     "ar": {
       "button-default": "backfit",
       "button-large": "backfit",
-      "icon-button": "backfit",
+      "icon-button": "aligned",
       "input": "backfit",
       "select": "aligned",
-      "textarea": "backfit",
+      "textarea": "aligned",
       "checkbox": "backfit",
-      "upload": "backfit",
-      "pagination": "backfit"
+      "upload": "aligned",
+      "pagination": "aligned"
     },
     "en": {
       "button-default": "backfit",
       "button-large": "backfit",
-      "icon-button": "backfit",
+      "icon-button": "aligned",
       "input": "backfit",
       "select": "backfit",
-      "textarea": "backfit",
+      "textarea": "aligned",
       "checkbox": "backfit",
-      "upload": "backfit",
-      "pagination": "backfit"
+      "upload": "aligned",
+      "pagination": "aligned"
     }
   }
 }
