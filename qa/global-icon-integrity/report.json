@@ -1,12 +1,30 @@
 {
   "failures": [],
   "summary": {
-    "pagesChecked": 56,
+    "pagesChecked": 58,
     "symbolsRegistered": 33,
     "symbolsReferenced": 31,
     "missingReferences": 0
   },
   "pages": {
+    "ar/404.html": {
+      "references": [
+        "arrow-left",
+        "arrow-up",
+        "chevron-down",
+        "factory",
+        "file-text",
+        "info",
+        "mail",
+        "menu",
+        "package",
+        "phone",
+        "route",
+        "search",
+        "x"
+      ],
+      "missing": []
+    },
     "ar/about.html": {
       "references": [
         "arrow-left",
@@ -457,6 +475,24 @@
       "references": [
         "chevron-down",
         "menu",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/404.html": {
+      "references": [
+        "arrow-right",
+        "arrow-up",
+        "chevron-down",
+        "factory",
+        "file-text",
+        "info",
+        "mail",
+        "menu",
+        "package",
+        "phone",
+        "route",
+        "search",
         "x"
       ],
       "missing": []
