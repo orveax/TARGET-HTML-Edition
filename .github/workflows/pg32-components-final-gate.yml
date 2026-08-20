@@ -8,7 +8,7 @@ on:
       - '.github/workflows/pg32-components-final-gate.yml'
 
 concurrency:
-  group: pg32-components-final-gate-self-report-r3
+  group: pg32-components-final-gate-v4
   cancel-in-progress: false
 permissions:
   contents: write
@@ -21,9 +21,9 @@ jobs:
       - name: Install QA dependencies
         run: python -m pip install --quiet beautifulsoup4 selenium
       - id: pg32
-        name: Run stabilized PG32 V3 gate
+        name: Run PG32 V4 final gate
         continue-on-error: true
-        run: python .github/scripts/qa_pg32_components_v3.py
+        run: python .github/scripts/qa_pg32_components_v4.py
       - name: Record and commit isolated PG32 final evidence
         if: always()
         env:
@@ -34,11 +34,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add qa/pg32-components
-          git commit -m "PG32 record self-reported final gate evidence"
+          git commit -m "PG32 record V4 isolated final gate evidence"
           git pull --rebase origin main || true
           git push origin main || true
       - name: Enforce PG32 gate outcome
         if: steps.pg32.outcome == 'failure'
         run: exit 1
 
-# R3 after final mobile specimen-track constraints.
+# V4 after final form containment and explicit keyboard modal-dismiss verification.
