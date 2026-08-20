@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Owner: ORVEAX  
 Status: ACTIVE REGISTER — M1 BASELINE VERIFIED  
-Last Updated: 2026-08-19
+Last Updated: 2026-08-20
 
 No third-party asset or dependency may enter the distributable package without a row in this register.
 
@@ -41,7 +41,7 @@ No third-party asset or dependency may enter the distributable package without a
 | ORX-PATTERN-004 | PT04 Market Nodes | `assets/patterns/pt04-market-nodes.svg` | ORVEAX OWNED | implemented M1 |
 | ORX-PATTERN-005 | PT05 Packaging Geometry | `assets/patterns/pt05-packaging-geometry.svg` | ORVEAX OWNED | implemented M1 |
 | ORX-PATTERN-006 | PT06 Flow Lines | `assets/patterns/pt06-flow-lines.svg` | ORVEAX OWNED | implemented M1 |
-| ORX-MEDIA-001 | Trade logistics hero scene | `assets/media/demo/hero-trade-scene.svg` | ORVEAX OWNED | PG01 marketplace preview + distributable demo media; abstract warehouse, route, cargo and market composition |
+| ORX-MEDIA-001 | Trade logistics hero scene | `assets/media/demo/hero-trade-scene.svg` | ORVEAX OWNED | PG01 previous marketplace preview / reusable abstract trade scene |
 | ORX-MEDIA-002 | Tomato sauce demo packshot | `assets/media/demo/product-tomato-sauce.svg` | ORVEAX OWNED | fictional generic packaging; no third-party brand/trademark |
 | ORX-MEDIA-003 | Hibiscus drink demo packshot | `assets/media/demo/product-hibiscus.svg` | ORVEAX OWNED | fictional generic packaging; no third-party brand/trademark |
 | ORX-MEDIA-004 | UHT milk demo packshot | `assets/media/demo/product-milk.svg` | ORVEAX OWNED | fictional generic packaging; no third-party brand/trademark |
@@ -52,6 +52,7 @@ No third-party asset or dependency may enter the distributable package without a
 | ORX-MEDIA-009 | Confectionery demo packshot | `assets/media/demo/product-confectionery.svg` | ORVEAX OWNED | PG10 fictional generic confectionery packaging; no third-party brand/trademark |
 | ORX-MEDIA-010 | Ingredients demo packshot | `assets/media/demo/product-ingredients.svg` | ORVEAX OWNED | PG10 fictional generic B2B ingredient packaging; no third-party brand/trademark |
 | ORX-MEDIA-011 | Company Profile demo cover | `assets/media/demo/company-profile-cover.svg` | ORVEAX OWNED | PG33 fictional digital company-profile cover; distributable; no client document, logo, trademark, person or verified-file claim |
+| ORX-MEDIA-012 | PG01 Source-to-Market gateway hero | `assets/media/demo/hero-main-gateway.svg` | ORVEAX OWNED | flagship PG01 V2 hero; original abstract global-trade/cargo/route artwork derived from ORIGEX visual language; distributable; no third-party photography, trademark, person or operational claim |
 
 ## Fonts
 
