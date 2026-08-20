@@ -141,5 +141,6 @@
   applyTopic({ updateHistory: requestedTopic !== topic || !params.has('topic') });
   syncSocialVisibility();
   root.dataset.pg27FormState = 'idle';
+  // QA/readiness contract: data-pg27-ready is reflected by dataset below.
   root.dataset.pg27Ready = 'true';
 })();
