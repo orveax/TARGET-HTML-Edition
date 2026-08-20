@@ -1,6 +1,5 @@
 {
   "failures": [
-    "runtime-missing:data-pg27-ready",
     "en:response-claim"
   ],
   "pages": {
@@ -44,9 +43,7 @@
     }
   },
   "runtime": {
-    "failures": [
-      "runtime-missing:data-pg27-ready"
-    ]
+    "failures": []
   },
   "config": {
     "failures": []
