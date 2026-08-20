@@ -2,8 +2,8 @@
 
 Product ID: ORX-P01  
 Owner: ORVEAX  
-Status: APPROVED — M0/M1 CLOSED / M2–M5 FINAL ACCEPTANCE OPEN / M6 IN PROGRESS  
-Last Alignment: 2026-08-20 — PG26–PG31 PS7 CI QA PASS / PG32 COMPONENTS NEXT
+Status: APPROVED — M0/M1 CLOSED / M2–M6 FINAL ACCEPTANCE OPEN  
+Last Alignment: 2026-08-20 — **PG26–PG32 PS7 CI QA PASS / M6 PAGE PRODUCTION CODE/CI COMPLETE / SYSTEMIC BACKFIT NEXT**
 
 ## Project Brief
 Build a premium Arabic-first bilingual HTML template for B2B food trading, import, distribution, suppliers and manufacturers, structured as reusable ORVEAX commercial IP for ThemeForest and independent distribution.
@@ -11,13 +11,13 @@ Build a premium Arabic-first bilingual HTML template for B2B food trading, impor
 ## Page Stage Lifecycle
 `PS0 Brief → PS1 Arabic Draft → PS2 Commercial Review → PS3 English Adaptation → PS4 UI Fit → PS5 Demo/Claim Review → PS6 FROZEN → PS7 Implemented / CI QA → PS8 Final Page Acceptance`
 
-No page enters implementation before PS6. PS8 requires applicable page QA plus deployed Cloudflare browser acceptance. Cloudflare review is a parallel final-acceptance gate and does not block continued PS6/PS7 production.
+No page enters implementation before PS6. PS8 requires applicable page QA plus deployed Cloudflare browser acceptance. Cloudflare review is a parallel final-acceptance gate and does not block continued quality engineering.
 
 ## M0 — Product Foundation Freeze — PASS / CLOSED
 Scope, architecture, content, SEO, demo policy, data schema, release policy and QA governance are frozen.
 
 ## M1 — Global System & Component Foundation — PASS / CLOSED
-Bootstrap 5.3.8 local foundation, Tajawal/Manrope, tokens, components, icon sprite, patterns, RTL/LTR, config runtime and global shell are implemented. F05 Icon Integrity covers **64 AR/EN pages with zero missing sprite references** after PG31.
+Bootstrap 5.3.8 local foundation, Tajawal/Manrope, tokens, components, icon sprite, patterns, RTL/LTR, config runtime and global shell are implemented. F05 Icon Integrity covers **66 AR/EN pages with zero missing sprite references** after PG32.
 
 ## M2 — Global Shell & Home Family — FINAL ACCEPTANCE OPEN
 - PG01 Home 01 — **PS8 / PASS / CLOSED**.
@@ -42,14 +42,14 @@ PG09–PG13 and PG16–PG19 are **PS7 / CI QA PASS**. Canonical product/supplier
 ## M5 — Proof / Resources / Compliance / Content — PAGE PRODUCTION CODE/CI COMPLETE
 PG20–PG25 are **PS7 / CI QA PASS**. M5 remains open only for applicable PS8/deployed-browser acceptance plus any verified Critical/High closure defects.
 
-## M6 — Support / Utility / Components — IN PROGRESS
+## M6 — Support / Utility / Components — PAGE PRODUCTION CODE/CI COMPLETE
 - PG26 FAQ — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
 - PG27 Contact — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
 - PG28 404 — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
 - PG29 Coming Soon — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
 - PG30 Privacy — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
 - PG31 Terms — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
-- PG32 Components / Elements Library — **NEXT VALID PAGE PRODUCTION ACTION**.
+- PG32 Components / Elements Library — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
 
 ### PG26 Evidence
 - Final source/content/SEO/runtime failures: **0**.
@@ -97,20 +97,42 @@ PG20–PG25 are **PS7 / CI QA PASS**. M5 remains open only for applicable PS8/de
 - Shared contextual legal navigation Privacy / Terms: PASS.
 - Shared legal shell normalized to the **STD-DIM01 48px Control M** tier for legal TOC/context controls.
 - Semantic 4-row customization matrix follows **STD-DATA01**, preserving table relationships with internal horizontal scrolling on narrow screens.
-- No fabricated effective date, liability cap, warranty exclusion, governing jurisdiction, venue or arbitration forum.
-- `robots=noindex,follow`; no legal structured-data claim; no PG31-specific JavaScript.
 - Final source/legal/standards failures: **0**.
 - Rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
-- TOC / context navigation / language switch / table focus interactions: PASS.
 - Final evidence: `d626862192626418ed806101dd60288d69456d09`.
-- PS7 promotion: `db4d36867c9a00eecf079f4ac5089de7d59411c4`.
 - QA report: `docs/PG31-QA-REPORT-V1.md`.
-- Global F05: **64 AR/EN pages / 0 missing references**.
+
+### PG32 Evidence
+- Buyer-facing Components / Elements Library + Design System QA Laboratory implemented in AR/EN.
+- Exact canonical Arabic H1/support and English meaning-equivalent H1: PASS.
+- Frozen scope represented: buttons, cards, badges, headings, tabs, accordions, forms, tables, alerts, stats, timeline/process composition, CTA blocks, Product/Supplier/Market UI and utility states.
+- Coverage per language: **11/11 card families, 17/17 C12–C28 references, 11/11 primitives, 9/9 dimension diagnostic rows**.
+- Diagnostic runtime is non-mutating; current shared-system target mismatches are surfaced as `BACKFIT` rather than hidden with page-local CSS.
+- Source / Registry / Diagnostic failures: **0**.
+- Rendered AR/EN × 390/820/1366/1536: **8/8 PASS** with zero final document overflow.
+- Mega Menu / Mobile Drawer / Tabs keyboard / Accordion / Demo form / Bootstrap modal dismissal / language route: PASS.
+- PG32 QA exposed the closed N03 Mobile Drawer overflow defect and it was corrected centrally in the shared shell.
+- Final isolated V4 gate: `95d8cf97557b2787fca293bb2f661d1481101787` — PASS.
+- PS7 promotion: `9f28810fd258652c8cb0eac81afad20bbff683eb`.
+- QA report: `docs/PG32-QA-REPORT-V1.md`.
+- Global F05: **66 AR/EN pages / 0 missing references**.
 
 ### Preview Utility
-`site-map.html` remains a noindex internal Preview Utility outside the 33-layout product scope. Target approved state after PG31 is **33 cards / 32 implemented / 1 pending / 64 AR+EN page links**. PG32 Components / Elements is NEXT. `.github/scripts/sync_preview_site_map.py` synchronizes approved PS7 preview state before Preview QA.
+`site-map.html` remains a noindex internal Preview Utility outside the 33-layout product scope. Final V1 page-production state is **33 cards / 33 implemented / 0 pending / 66 AR+EN page links**. PG32 is PS7. `.github/scripts/sync_preview_site_map.py` synchronizes the approved final PS7 state and Preview QA is **0 failures**.
 
-M6 page-production gate after PG32: all seven support/utility layouts implemented in AR/EN and page-level CI gates pass. Final milestone closure still additionally requires applicable PS8 acceptance, utility/legal/demo boundaries, post-PG32 systemic backfit/regression and zero Critical/High defects.
+### M6 Remaining Closure Conditions
+M6 page production is complete, but final milestone acceptance remains open for:
+- applicable deployed Cloudflare PS8 acceptance;
+- approved post-PG32 systemic backfit and global AR/EN regression;
+- page-specific second-pass review where required;
+- zero unresolved Critical/High defects.
+
+## Post-PG32 Systemic Backfit — NEXT
+Use the canonical VQ1 / Website Standards gap register. Fix repeated defects at the correct shared ownership layer before page-specific work:
+
+`Token → Foundation → Component → Shell/Runtime → Global AR/EN Regression → PG01→PG33 Second-Pass Review`
+
+Initial priority follows the approved gap register, beginning with the systemic P0 items such as semantic contrast/surface pairings, dimension-tier normalization, shared mobile touch targets and overlay/focus behavior. Do not patch repeated gaps independently inside pages.
 
 ## M7 — Full QA & Optimization — NOT STARTED
 Full AR/EN parity, claim/disclaimer, data, SEO, broken-link, responsive, accessibility, performance, cross-browser and leakage QA. Gate: zero Critical / High defects.
@@ -119,14 +141,16 @@ Full AR/EN parity, claim/disclaimer, data, SEO, broken-link, responsive, accessi
 Buyer documentation, customization/deployment guides, licenses/credits, changelog, preview/listing material, final ZIP and ThemeForest submission checklist. Gate: Submission Candidate 1.0.0.
 
 ## Current Production Order
-1. **M6 / PG32 — Components / Elements Library**: build as the **Design System QA Laboratory + Buyer Component Reference**, consuming frozen standards from first implementation.
-2. After PG32: execute the approved systemic backfit order → global AR/EN regression → sequential PG01→PG33 second-pass review.
-3. In parallel, close applicable Cloudflare PS8 batches and PG33 QA follow-up.
+1. **Post-PG32 systemic backfit** from VQ1 / frozen Website Standards.
+2. Global AR/EN regression after shared fixes.
+3. Sequential PG01→PG33 second-pass review for page-specific visual/UX/content issues only.
+4. In parallel, close applicable Cloudflare PS8 batches and PG33 QA follow-up.
+5. Enter M7 only after the pre-M7 systemic/reconciliation sequence is stable.
 
 ## Change Control
 New page or Main Feature family requires Scope Change or V1.1+. QA/accessibility/performance/responsive/RTL fixes may be corrected centrally without reopening scope.
 
 ## CR-001 Scope Addendum
-PG33 Company Profile expanded active V1 to **33 unique layouts / approximately 66 AR+EN HTML pages**.
+PG33 Company Profile expanded active V1 to **33 unique layouts / 66 AR+EN HTML pages**.
 
 Copyright © ORVEAX.
