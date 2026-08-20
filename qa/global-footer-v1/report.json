@@ -64,6 +64,9 @@
     "ar/markets.html": {
       "failures": []
     },
+    "ar/privacy.html": {
+      "failures": []
+    },
     "ar/product-categories.html": {
       "failures": []
     },
@@ -186,7 +189,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 61,
+    "pagesChecked": 62,
     "failures": 0
   }
 }
