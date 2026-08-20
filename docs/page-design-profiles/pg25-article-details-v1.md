@@ -117,4 +117,6 @@ Required: self canonical, AR/EN/x-default hreflang, Open Graph baseline, `Articl
 ## Exit Gate
 PS7 only after source/editorial-safety/runtime/navigation/footer/icon/client-leak QA + rendered AR/EN 390/820/1366/1536 + valid/default/invalid ID + language preservation + copy/share + previous/next + related-article interaction QA all PASS. PS8 remains gated by deployed Cloudflare browser acceptance.
 
+QA rerun trigger: canonical Global Navigation V1 normalized after initial `nav-drift` evidence; PG25 must pass again on the normalized shell before PS7 promotion.
+
 Copyright © ORVEAX.
