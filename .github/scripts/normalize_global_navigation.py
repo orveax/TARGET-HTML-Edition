@@ -78,6 +78,7 @@ def canonical_header(lang: str, filename: str) -> str:
     current = current_target(filename)
     mega_id = f'global-mega-{lang}'
     brand_label = 'ORIGEX — الرئيسية' if lang == 'ar' else 'ORIGEX — Home'
+    brand_src = '../assets/brand/origex-logo-ar.svg' if lang == 'ar' else '../assets/brand/origex-logo.svg'
     other_lang = 'en' if lang == 'ar' else 'ar'
     other_label = 'EN' if lang == 'ar' else 'AR'
 
@@ -93,7 +94,7 @@ def canonical_header(lang: str, filename: str) -> str:
 
     return f'''<header class="orx-site-header" data-orx-site-header data-orx-global-nav="v1">
   <div class="orx-container orx-container--wide orx-site-header__inner">
-    <a class="orx-brand" href="index.html" aria-label="{brand_label}"><img src="../assets/brand/origex-logo.svg" alt="ORIGEX" width="140" height="40"></a>
+    <a class="orx-brand" href="index.html" aria-label="{brand_label}"><img src="{brand_src}" alt="ORIGEX" width="178" height="40"></a>
     <nav class="orx-primary-nav" aria-label="{t['nav_label']}">
 {chr(10).join(primary)}
     </nav>
@@ -120,7 +121,7 @@ def canonical_drawer(lang: str, filename: str) -> str:
     return f'''<div class="orx-mobile-drawer" data-orx-mobile-drawer aria-hidden="true" data-orx-global-nav="v1">
   <div class="orx-mobile-drawer__backdrop" data-orx-drawer-backdrop></div>
   <aside class="orx-mobile-drawer__panel" aria-label="{t['mobile_label']}">
-    <div class="orx-mobile-drawer__head"><img src="../assets/brand/origex-logo.svg" alt="ORIGEX" width="128" height="37"><button class="orx-icon-btn" type="button" aria-label="{t['close']}" data-orx-drawer-close><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#x"></use></svg></button></div>
+    <div class="orx-mobile-drawer__head"><img src="../assets/brand/origex-mark.svg" alt="ORIGEX" width="40" height="40"><button class="orx-icon-btn" type="button" aria-label="{t['close']}" data-orx-drawer-close><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#x"></use></svg></button></div>
     <nav class="orx-mobile-nav">{links}</nav>
   </aside>
 </div>'''
