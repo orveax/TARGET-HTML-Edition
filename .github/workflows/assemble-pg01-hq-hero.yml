@@ -1,0 +1,39 @@
+name: Assemble PG01 HQ Hero
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.hero-upload/pg01.part4'
+
+permissions:
+  contents: write
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Assemble production hero asset
+        shell: bash
+        run: |
+          mkdir -p assets/media/demo
+          cat .hero-upload/pg01.part1 .hero-upload/pg01.part2 .hero-upload/pg01.part3 .hero-upload/pg01.part4 | base64 -d > assets/media/demo/hero-pg01-hq.webp
+          bytes=$(wc -c < assets/media/demo/hero-pg01-hq.webp)
+          echo "PG01 hero bytes: $bytes"
+          test "$bytes" -ge 150000
+
+      - name: Commit generated asset
+        shell: bash
+        run: |
+          rm -rf .hero-upload
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Add production-quality PG01 hero media'
+          git pull --rebase origin main
+          git push origin HEAD:main
