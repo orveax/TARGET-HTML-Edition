@@ -1,9 +1,9 @@
 {
   "failures": [
     "ar-390:document-overflow",
-    "ar-desktop:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1182, 7989)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/erro",
+    "ar-desktop:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1182, 7980)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#element",
     "en-390:document-overflow",
-    "en-desktop:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (177, 8192)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/error"
+    "en-desktop:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (177, 8190)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementc"
   ],
   "cases": [
     {
@@ -11,53 +11,265 @@
       "width": 390,
       "failures": [
         "document-overflow"
+      ],
+      "scrollWidth": 421,
+      "clientWidth": 375,
+      "offenders": [
+        {
+          "cls": "orx-mobile-drawer__panel",
+          "left": 392,
+          "right": 735,
+          "scroll": 343,
+          "tag": "aside",
+          "width": 343
+        },
+        {
+          "cls": "orx-mobile-drawer__head",
+          "left": 408,
+          "right": 719,
+          "scroll": 311,
+          "tag": "div",
+          "width": 311
+        },
+        {
+          "cls": "",
+          "left": 591,
+          "right": 719,
+          "scroll": 128,
+          "tag": "img",
+          "width": 128
+        },
+        {
+          "cls": "orx-icon-btn",
+          "left": 408,
+          "right": 452,
+          "scroll": 42,
+          "tag": "button",
+          "width": 44
+        },
+        {
+          "cls": "",
+          "left": 420,
+          "right": 440,
+          "scroll": 20,
+          "tag": "svg",
+          "width": 20
+        },
+        {
+          "cls": "",
+          "left": 425,
+          "right": 435,
+          "scroll": 0,
+          "tag": "use",
+          "width": 10
+        },
+        {
+          "cls": "orx-mobile-nav",
+          "left": 408,
+          "right": 719,
+          "scroll": 311,
+          "tag": "nav",
+          "width": 311
+        },
+        {
+          "cls": "",
+          "left": 408,
+          "right": 719,
+          "scroll": 311,
+          "tag": "a",
+          "width": 311
+        },
+        {
+          "cls": "",
+          "left": 408,
+          "right": 719,
+          "scroll": 311,
+          "tag": "a",
+          "width": 311
+        },
+        {
+          "cls": "",
+          "left": 408,
+          "right": 719,
+          "scroll": 311,
+          "tag": "a",
+          "width": 311
+        },
+        {
+          "cls": "",
+          "left": 408,
+          "right": 719,
+          "scroll": 311,
+          "tag": "a",
+          "width": 311
+        },
+        {
+          "cls": "",
+          "left": 408,
+          "right": 719,
+          "scroll": 311,
+          "tag": "a",
+          "width": 311
+        }
       ]
     },
     {
       "lang": "ar",
       "width": 820,
-      "failures": []
+      "failures": [],
+      "scrollWidth": 805,
+      "clientWidth": 805
     },
     {
       "lang": "ar",
       "width": 1366,
-      "failures": []
+      "failures": [],
+      "scrollWidth": 1351,
+      "clientWidth": 1351
     },
     {
       "lang": "ar",
       "width": 1536,
-      "failures": []
+      "failures": [],
+      "scrollWidth": 1521,
+      "clientWidth": 1521
     },
     {
       "lang": "en",
       "width": 390,
       "failures": [
         "document-overflow"
+      ],
+      "scrollWidth": 452,
+      "clientWidth": 375,
+      "offenders": [
+        {
+          "cls": "orx-mobile-drawer__panel",
+          "left": -360,
+          "right": -17,
+          "scroll": 343,
+          "tag": "aside",
+          "width": 343
+        },
+        {
+          "cls": "orx-mobile-drawer__head",
+          "left": -344,
+          "right": -33,
+          "scroll": 311,
+          "tag": "div",
+          "width": 311
+        },
+        {
+          "cls": "",
+          "left": -344,
+          "right": -216,
+          "scroll": 128,
+          "tag": "img",
+          "width": 128
+        },
+        {
+          "cls": "orx-icon-btn",
+          "left": -77,
+          "right": -33,
+          "scroll": 42,
+          "tag": "button",
+          "width": 44
+        },
+        {
+          "cls": "",
+          "left": -65,
+          "right": -45,
+          "scroll": 20,
+          "tag": "svg",
+          "width": 20
+        },
+        {
+          "cls": "",
+          "left": -60,
+          "right": -50,
+          "scroll": 0,
+          "tag": "use",
+          "width": 10
+        },
+        {
+          "cls": "orx-mobile-nav",
+          "left": -344,
+          "right": -33,
+          "scroll": 311,
+          "tag": "nav",
+          "width": 311
+        },
+        {
+          "cls": "",
+          "left": -344,
+          "right": -33,
+          "scroll": 311,
+          "tag": "a",
+          "width": 311
+        },
+        {
+          "cls": "",
+          "left": -344,
+          "right": -33,
+          "scroll": 311,
+          "tag": "a",
+          "width": 311
+        },
+        {
+          "cls": "",
+          "left": -344,
+          "right": -33,
+          "scroll": 311,
+          "tag": "a",
+          "width": 311
+        },
+        {
+          "cls": "",
+          "left": -344,
+          "right": -33,
+          "scroll": 311,
+          "tag": "a",
+          "width": 311
+        },
+        {
+          "cls": "",
+          "left": -344,
+          "right": -33,
+          "scroll": 311,
+          "tag": "a",
+          "width": 311
+        }
       ]
     },
     {
       "lang": "en",
       "width": 820,
-      "failures": []
+      "failures": [],
+      "scrollWidth": 805,
+      "clientWidth": 805
     },
     {
       "lang": "en",
       "width": 1366,
-      "failures": []
+      "failures": [],
+      "scrollWidth": 1351,
+      "clientWidth": 1351
     },
     {
       "lang": "en",
       "width": 1536,
-      "failures": []
+      "failures": [],
+      "scrollWidth": 1521,
+      "clientWidth": 1521
     }
   ],
   "interaction": {
     "ar-desktop": [
-      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1182, 7989)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/erro"
+      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1182, 7980)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#element"
     ],
     "ar-mobile": [],
     "en-desktop": [
-      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (177, 8192)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/error"
+      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (177, 8190)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementc"
     ],
     "en-mobile": []
   },

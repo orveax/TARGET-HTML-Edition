@@ -1,18 +1,8 @@
 {
-  "failures": [
-    "missing:data-pg32-diagnostics",
-    "ar:sample:Certification",
-    "ar:sample:Resource",
-    "ar:sample:Alert",
-    "en:sample:Alert"
-  ],
+  "failures": [],
   "pages": {
     "ar": {
-      "failures": [
-        "sample:Certification",
-        "sample:Resource",
-        "sample:Alert"
-      ],
+      "failures": [],
       "cards": 11,
       "coreComponents": 17,
       "primitives": 11,
@@ -20,9 +10,7 @@
       "iconCount": 20
     },
     "en": {
-      "failures": [
-        "sample:Alert"
-      ],
+      "failures": [],
       "cards": 11,
       "coreComponents": 17,
       "primitives": 11,
@@ -30,12 +18,6 @@
       "iconCount": 20
     }
   },
-  "labCss": {
-    "failures": []
-  },
-  "labJs": {
-    "failures": [
-      "missing:data-pg32-diagnostics"
-    ]
-  }
+  "labCss": [],
+  "labJs": []
 }
