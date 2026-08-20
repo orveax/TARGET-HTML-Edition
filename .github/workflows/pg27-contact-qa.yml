@@ -1,0 +1,292 @@
+name: PG27 Contact QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'ar/contact.html'
+      - 'en/contact.html'
+      - 'assets/css/origex-contact.css'
+      - 'assets/js/origex-contact.js'
+      - 'assets/js/config.js'
+      - 'assets/js/config-engine.js'
+      - 'assets/js/origex-ui.js'
+      - 'assets/icons/sprite.svg'
+      - 'docs/page-design-profiles/pg27-contact-v1.md'
+      - '.github/scripts/normalize_global_navigation.py'
+      - '.github/scripts/normalize_global_footer.py'
+      - '.github/workflows/pg27-contact-qa.yml'
+
+concurrency:
+  group: pg27-contact-qa
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --quiet beautifulsoup4 selenium
+      - name: Run PG27 source config SEO rendered interaction QA
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json,re,subprocess,time
+          from selenium import webdriver
+          from selenium.webdriver.chrome.options import Options
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.keys import Keys
+          from selenium.webdriver.support.ui import WebDriverWait
+
+          R=Path('.')
+          O=R/'qa/pg27-contact'
+          O.mkdir(parents=True,exist_ok=True)
+          source={'failures':[],'pages':{},'runtime':{},'config':{}}
+
+          js=(R/'assets/js/origex-contact.js').read_text(encoding='utf-8')
+          runtime_failures=[]
+          for bad in ('fetch(','XMLHttpRequest','localStorage','sessionStorage'):
+            if bad in js:
+              runtime_failures.append('forbidden-runtime:'+bad)
+          for required in ("'general'", "'rfq'", "'supplier'", "'partner'", 'history.replaceState', 'data-pg27-route', 'data-pg27-topic-select', 'data-pg27-ready', 'orx-mobile-nav a[lang]', 'preventDefault'):
+            if required not in js:
+              runtime_failures.append('runtime-missing:'+required)
+          source['runtime']={'failures':runtime_failures}
+          source['failures'] += runtime_failures
+
+          config=(R/'assets/js/config.js').read_text(encoding='utf-8')
+          config_failures=[]
+          for required in ('email:', 'rfqEmail:', 'suppliersEmail:', 'partnersEmail:', 'phone:', 'addressAr:', 'addressEn:', 'social:', 'businessHours:'):
+            if required not in config:
+              config_failures.append('config-missing:'+required)
+          source['config']={'failures':config_failures}
+          source['failures'] += config_failures
+
+          sprite=(R/'assets/icons/sprite.svg').read_text(encoding='utf-8')
+          sprite_ids=set(re.findall(r'<symbol[^>]+id="([^"]+)"',sprite))
+          specs={
+            'ar':{
+              'dir':'rtl','h1':'اختر قناة التواصل المناسبة لطلبك.','canonical':'https://example.com/ar/contact.html','other':'../en/contact.html',
+              'support':'للمنتجات، الموردين، طلبات الأسعار أو الشراكات، شارك نوع الطلب والمعلومات الأساسية حتى يصل إلى المسار الصحيح.'
+            },
+            'en':{
+              'dir':'ltr','h1':'Choose the right contact route for your enquiry.','canonical':'https://example.com/en/contact.html','other':'../ar/contact.html'
+            }
+          }
+          expected_routes=['general','rfq','supplier','partner']
+          required_names={'topic','contactName','email','message','consent'}
+          optional_names={'company','phone'}
+
+          for lang,spec in specs.items():
+            p=R/lang/'contact.html'
+            text=p.read_text(encoding='utf-8')
+            s=BeautifulSoup(text,'html.parser')
+            f=[]
+            if s.html.get('lang')!=lang or s.html.get('dir')!=spec['dir']:f.append('lang-dir')
+            h1s=s.find_all('h1')
+            if len(h1s)!=1 or h1s[0].get_text(' ',strip=True)!=spec['h1']:f.append('h1')
+            if lang=='ar' and spec['support'] not in text:f.append('canonical-support')
+            cards=s.select('[data-pg27-route-card]')
+            routes=[x.get('data-pg27-route-card') for x in cards]
+            if routes!=expected_routes:f.append('route-cards:'+str(routes))
+            buttons=s.select('[data-pg27-route]')
+            if [x.get('data-pg27-route') for x in buttons]!=expected_routes:f.append('route-buttons')
+            email_hooks={
+              'general':('trade','general'),'rfq':('rfq','rfq'),'supplier':('suppliers','supplier'),'partner':('partners','partner')
+            }
+            for route,(hook,local) in email_hooks.items():
+              a=s.select_one(f'[data-pg27-email="{local}"][data-orx-email="{hook}"]')
+              if not a:f.append('email-hook:'+route)
+            if not s.select_one('[data-orx-phone]'):f.append('phone-hook')
+            if len(s.select('[data-orx-address]'))<2:f.append('address-hooks')
+            if len(s.select('[data-orx-business-hours]'))<2:f.append('business-hours-hooks')
+            social=s.select('[data-pg27-social] [data-orx-social-link]')
+            if len(social)!=6:f.append('social-hooks:'+str(len(social)))
+            form=s.select_one('form[data-pg27-form]')
+            if not form:f.append('form')
+            else:
+              if form.get('action') or form.get('method'):f.append('form-network-attributes')
+              fields={x.get('name'):x for x in form.select('[name]')}
+              if not required_names.issubset(fields):f.append('required-field-set:'+str(sorted(fields)))
+              if not optional_names.issubset(fields):f.append('optional-field-set')
+              for name in required_names:
+                if name in fields and not fields[name].has_attr('required'):f.append('required-missing:'+name)
+              if not form.has_attr('novalidate'):f.append('novalidate-contract')
+              topic=form.select_one('[data-pg27-topic-select]')
+              if not topic or [o.get('value') for o in topic.find_all('option')]!=expected_routes:f.append('topic-options')
+            if not s.select_one('[data-pg27-error][role="alert"][hidden]'):f.append('error-state')
+            if not s.select_one('[data-pg27-success][role="status"][hidden]'):f.append('success-state')
+            if 'no message was transmitted' not in text.lower() and lang=='en':f.append('demo-success-disclosure')
+            if 'لم يتم إرسال أي رسالة' not in text and lang=='ar':f.append('demo-success-disclosure')
+            if s.find('iframe') or 'maps.googleapis.com' in text or 'mapbox' in text.lower():f.append('map-provider')
+            if not s.select_one('.orx-contact-map [data-orx-address]'):f.append('map-placeholder')
+            if not s.select_one('[data-orx-mega-trigger][aria-current="page"]'):f.append('explore-current')
+            if not s.select_one('.orx-mega-menu a[href="contact.html"][aria-current="page"]'):f.append('mega-contact-current')
+            if not s.select_one('.orx-mobile-nav a[href="contact.html"][aria-current="page"]'):f.append('mobile-contact-current')
+            if not s.find('a',class_='orx-lang-switch',href=lambda x:x and spec['other'] in x):f.append('language-switch')
+            footer=s.select('footer[data-orx-global-footer="v1"]')
+            if len(footer)!=1 or not footer[0].select_one('[data-orx-business-hours]'):f.append('footer')
+            c=s.find('link',rel='canonical')
+            if not c or c.get('href')!=spec['canonical']:f.append('canonical')
+            hreflangs={x.get('hreflang') for x in s.find_all('link',rel='alternate')}
+            if not {'ar','en','x-default'}.issubset(hreflangs):f.append('hreflang')
+            try:
+              data=json.loads(s.find('script',attrs={'type':'application/ld+json'}).string)
+              types={x.get('@type') for x in data.get('@graph',[])}
+              if not {'WebPage','BreadcrumbList'}.issubset(types):f.append('schema')
+              prohibited={'LocalBusiness','Organization','ContactPoint','Product','Offer','Review','Rating','AggregateRating'}
+              if types & prohibited:f.append('prohibited-schema:'+str(sorted(types & prohibited)))
+            except Exception:f.append('schema-json')
+            combined=s.get_text(' ',strip=True).lower()
+            if 'demo' not in combined:f.append('demo-boundary')
+            if any(x in combined for x in ('guaranteed response','24/7 support','instant response','رد مضمون','دعم 24/7')):f.append('response-claim')
+            if 'TARGET' in text or 'targetft' in text.lower():f.append('client-leak')
+            icons=set(re.findall(r'sprite\.svg#([a-z0-9-]+)',text))
+            missing=sorted(icons-sprite_ids)
+            if missing:f.append('icons:'+str(missing))
+            source['pages'][lang]={'failures':f,'routes':routes,'formFields':sorted(x.get('name') for x in (form.select('[name]') if form else []))}
+            source['failures'] += [lang+':'+x for x in f]
+
+          for script,label in [('.github/scripts/normalize_global_navigation.py','nav-drift'),('.github/scripts/normalize_global_footer.py','footer-drift')]:
+            r=subprocess.run(['python',script,'--check'],capture_output=True,text=True)
+            if r.returncode:
+              source['failures'].append(label)
+              source[label]=r.stdout+r.stderr
+
+          (O/'source-report.json').write_text(json.dumps(source,ensure_ascii=False,indent=2),encoding='utf-8')
+
+          rendered={'failures':[],'cases':[],'interaction':{}}
+          opts=Options();opts.add_argument('--headless=new');opts.add_argument('--no-sandbox');opts.add_argument('--disable-dev-shm-usage');opts.add_argument('--window-size=820,1900')
+          srv=subprocess.Popen(['python','-m','http.server','8765'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+          time.sleep(1)
+          try:
+            for lang in ('ar','en'):
+              d=webdriver.Chrome(options=opts)
+              try:
+                for width in (390,820,1366,1536):
+                  f=[]
+                  try:
+                    d.set_window_size(width,1900)
+                    d.get(f'http://127.0.0.1:8765/{lang}/contact.html')
+                    WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg27-root]').get_attribute('data-pg27-ready')=='true')
+                    root=d.find_element(By.CSS_SELECTOR,'[data-pg27-root]')
+                    if root.get_attribute('data-pg27-topic')!='general':f.append('initial-topic')
+                    if root.get_attribute('data-pg27-form-state')!='idle':f.append('initial-form-state')
+                    if len([x for x in d.find_elements(By.CSS_SELECTOR,'[data-pg27-route-card]') if x.is_displayed()])!=4:f.append('route-cards')
+                    if d.execute_script('return document.documentElement.scrollWidth')>d.execute_script('return document.documentElement.clientWidth')+1:f.append('overflow')
+                    if d.find_element(By.TAG_NAME,'html').get_attribute('dir')!=('rtl' if lang=='ar' else 'ltr'):f.append('direction')
+                    if d.find_element(By.CSS_SELECTOR,'[data-orx-phone]').text.strip()!='+974 0000 0000':f.append('config-phone')
+                    if 'Doha' not in d.find_elements(By.CSS_SELECTOR,'[data-orx-address]')[0].text and lang=='en':f.append('config-address')
+                    if 'الدوحة' not in d.find_elements(By.CSS_SELECTOR,'[data-orx-address]')[0].text and lang=='ar':f.append('config-address')
+                    if not d.find_element(By.CSS_SELECTOR,'[data-pg27-social]').get_attribute('hidden'):f.append('social-default-hidden')
+                    small=[]
+                    for e in d.find_elements(By.CSS_SELECTOR,'a,button,input,select,textarea'):
+                      if e.is_displayed() and e.rect['width'] and e.rect['height'] and (e.rect['width']<24 or e.rect['height']<24):small.append({'tag':e.tag_name,'w':round(e.rect['width'],1),'h':round(e.rect['height'],1),'text':e.text[:18]})
+                    if small:f.append('touch:'+json.dumps(small,ensure_ascii=False))
+                    if width>=1051:
+                      t=d.find_element(By.CSS_SELECTOR,'[data-orx-mega-trigger]');t.click();time.sleep(.04)
+                      if t.get_attribute('aria-expanded')!='true':f.append('mega-open')
+                      t.send_keys(Keys.ESCAPE);time.sleep(.04)
+                      if t.get_attribute('aria-expanded')!='false':f.append('mega-escape')
+                    else:
+                      op=d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-open]');op.click();time.sleep(.04)
+                      drawer=d.find_element(By.CSS_SELECTOR,'[data-orx-mobile-drawer]')
+                      if drawer.get_attribute('aria-hidden')!='false':f.append('drawer-open')
+                      d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-close]').click();time.sleep(.04)
+                      if drawer.get_attribute('aria-hidden')!='true':f.append('drawer-close')
+                  except Exception as e:f.append(type(e).__name__+':'+str(e)[:180])
+                  rendered['cases'].append({'lang':lang,'width':width,'failures':f});rendered['failures'] += [f'{lang}-{width}:{x}' for x in f]
+
+                # Route click and configured summary.
+                f=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/contact.html')
+                  WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg27-root]').get_attribute('data-pg27-ready')=='true')
+                  d.find_element(By.CSS_SELECTOR,'[data-pg27-route="rfq"]').click();time.sleep(.12)
+                  root=d.find_element(By.CSS_SELECTOR,'[data-pg27-root]')
+                  if root.get_attribute('data-pg27-topic')!='rfq':f.append('root-topic')
+                  if d.find_element(By.CSS_SELECTOR,'[data-pg27-topic-select]').get_attribute('value')!='rfq':f.append('select-topic')
+                  if 'topic=rfq' not in d.current_url:f.append('url-topic')
+                  if d.find_element(By.CSS_SELECTOR,'[data-pg27-route-card="rfq"]').get_attribute('data-active')!='true':f.append('active-card')
+                  if d.find_element(By.CSS_SELECTOR,'[data-pg27-route-email]').text.strip()!='rfq@example.com':f.append('summary-email')
+                except Exception as e:f.append(type(e).__name__+':'+str(e)[:180])
+                rendered['interaction'][lang+'-route']=f;rendered['failures'] += [lang+'-route:'+x for x in f]
+
+                # Query hydration + language preservation.
+                f=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/contact.html?topic=supplier')
+                  WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg27-root]').get_attribute('data-pg27-ready')=='true')
+                  root=d.find_element(By.CSS_SELECTOR,'[data-pg27-root]')
+                  if root.get_attribute('data-pg27-topic')!='supplier':f.append('query-hydration')
+                  links=d.find_elements(By.CSS_SELECTOR,'.orx-lang-switch,.orx-mobile-nav a[lang]')
+                  if len(links)<2:f.append('language-links')
+                  if any('topic=supplier' not in a.get_attribute('href') for a in links):f.append('language-topic')
+                except Exception as e:f.append(type(e).__name__+':'+str(e)[:180])
+                rendered['interaction'][lang+'-query-language']=f;rendered['failures'] += [lang+'-query-language:'+x for x in f]
+
+                # Invalid topic normalization.
+                f=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/contact.html?topic=unknown')
+                  WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg27-root]').get_attribute('data-pg27-ready')=='true')
+                  root=d.find_element(By.CSS_SELECTOR,'[data-pg27-root]')
+                  if root.get_attribute('data-pg27-topic')!='general':f.append('invalid-fallback')
+                  if 'topic=general' not in d.current_url:f.append('invalid-url-normalize')
+                except Exception as e:f.append(type(e).__name__+':'+str(e)[:180])
+                rendered['interaction'][lang+'-invalid-topic']=f;rendered['failures'] += [lang+'-invalid-topic:'+x for x in f]
+
+                # Invalid form then valid Demo confirmation.
+                f=[]
+                try:
+                  d.get(f'http://127.0.0.1:8765/{lang}/contact.html?topic=partner')
+                  WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg27-root]').get_attribute('data-pg27-ready')=='true')
+                  form=d.find_element(By.CSS_SELECTOR,'[data-pg27-form]')
+                  d.execute_script('arguments[0].scrollIntoView({block:"center"})',form)
+                  d.find_element(By.CSS_SELECTOR,'[data-pg27-form] button[type="submit"]').click();time.sleep(.08)
+                  root=d.find_element(By.CSS_SELECTOR,'[data-pg27-root]')
+                  if root.get_attribute('data-pg27-form-state')!='invalid':f.append('invalid-state')
+                  if not d.find_element(By.CSS_SELECTOR,'[data-pg27-error]').is_displayed():f.append('error-visible')
+                  name=d.find_element(By.NAME,'contactName');email=d.find_element(By.NAME,'email');msg=d.find_element(By.NAME,'message');consent=d.find_element(By.NAME,'consent')
+                  name.send_keys('Demo Contact');email.send_keys('buyer@example.com');msg.send_keys('Demo commercial enquiry for validation only.');consent.click()
+                  d.find_element(By.CSS_SELECTOR,'[data-pg27-form] button[type="submit"]').click();time.sleep(.08)
+                  if root.get_attribute('data-pg27-form-state')!='demo-confirmed':f.append('success-state')
+                  if not d.find_element(By.CSS_SELECTOR,'[data-pg27-success]').is_displayed():f.append('success-visible')
+                  if name.get_attribute('value')!='Demo Contact':f.append('form-cleared')
+                  d.find_element(By.CSS_SELECTOR,'[data-pg27-form] button[type="reset"]').click();time.sleep(.08)
+                  if root.get_attribute('data-pg27-form-state')!='idle':f.append('reset-state')
+                  if root.get_attribute('data-pg27-topic')!='general':f.append('reset-topic')
+                  if name.get_attribute('value')!='':f.append('reset-fields')
+                except Exception as e:f.append(type(e).__name__+':'+str(e)[:180])
+                rendered['interaction'][lang+'-form']=f;rendered['failures'] += [lang+'-form:'+x for x in f]
+              finally:d.quit()
+          finally:
+            srv.terminate();srv.wait(timeout=5)
+
+          (O/'rendered-report.json').write_text(json.dumps(rendered,ensure_ascii=False,indent=2),encoding='utf-8')
+          failures=source['failures']+rendered['failures']
+          status='PASS' if not failures else 'FAIL'
+          (O/'run-status.txt').write_text(status+'\n',encoding='utf-8')
+          print(status, 'source',len(source['failures']),'rendered',len(rendered['failures']))
+          if failures:
+            print('\n'.join(failures))
+            raise SystemExit(1)
+          PY
+      - name: Commit PG27 QA evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/pg27-contact || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "PG27 record Contact QA evidence"
+          for i in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then exit 0; fi
+            sleep 2
+          done
+          exit 1
