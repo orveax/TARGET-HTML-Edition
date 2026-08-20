@@ -4,7 +4,7 @@ Product ID: ORX-P01
 Owner: ORVEAX  
 Repository: `orveax/origex-html-template`  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-20 — M6 IN PROGRESS / PG26–PG27 PS7 CI QA PASS / PG28 404 NEXT
+Last Updated: 2026-08-20 — M6 IN PROGRESS / PG26–PG28 PS7 CI QA PASS / PG29 COMING SOON NEXT
 
 Notion `ORIGEX — ORX-P01 | Project HQ` remains the product-state authority; GitHub records implementation and evidence.
 
@@ -20,12 +20,12 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 | M1 Global System & Components | PASS / CLOSED |
 | Global Navigation V1 | LOCKED / centrally normalized |
 | Global Footer V1 | LOCKED / centrally normalized |
-| F05 Icon Integrity | PASS — **56 AR/EN pages / 0 missing sprite references** |
-| Visual Site Map | `site-map.html` — **33 PG cards / 28 implemented / 5 pending / 56 AR+EN links**; PG28 next |
+| F05 Icon Integrity | PASS — **58 AR/EN pages / 0 missing sprite references** |
+| Visual Site Map | `site-map.html` — **33 PG cards / 29 implemented / 4 pending / 58 AR+EN links**; PG29 next |
 | Cloudflare Test Environment | AVAILABLE VIA MANUAL REBUILD |
 | Cloudflare Auto-Deploy | DEFERRED / repair pending |
 | M5 Page Production | **CODE/CI COMPLETE — PG20–PG25 PS7**; deployed PS8 acceptance remains open |
-| Active Sequential Production | **M6 IN PROGRESS — PG26 + PG27 PS7; PG28 404 NEXT** |
+| Active Sequential Production | **M6 IN PROGRESS — PG26–PG28 PS7; PG29 Coming Soon NEXT** |
 
 ## Page Production Snapshot
 ### M2 — Home Family
@@ -52,8 +52,8 @@ PG20–PG25 are **PS7 / CI QA PASS**. M5 page production is CODE/CI COMPLETE; ap
 ### M6 — Support / Utility
 - PG26 FAQ — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
 - PG27 Contact — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
-- PG28 404 — **NEXT VALID PAGE PRODUCTION ACTION**.
-- PG29 Coming Soon — NOT STARTED.
+- PG28 404 — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
+- PG29 Coming Soon — **NEXT VALID PAGE PRODUCTION ACTION**.
 - PG30 Privacy — NOT STARTED.
 - PG31 Terms — NOT STARTED.
 - PG32 Components / Elements Library — NOT STARTED.
@@ -61,51 +61,55 @@ PG20–PG25 are **PS7 / CI QA PASS**. M5 page production is CODE/CI COMPLETE; ap
 ## PG26 Final Evidence
 - Profile: `docs/page-design-profiles/pg26-faq-v1.md` — PS7.
 - QA report: `docs/PG26-QA-REPORT-V1.md`.
-- 18 semantic FAQ items / 6 groups in AR and EN.
-- Search/category/query/language/accordion/empty-reset interactions: PASS.
 - Final source/content/SEO/runtime failures: **0**.
 - Rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
 - Final evidence: `26a2a72870b3506f098a3dd95e38c56756575e10`.
 
 ## PG27 Final Evidence
-- Profile: `docs/page-design-profiles/pg27-contact-v1.md` — **PS7**.
-- AR/EN: `ar/contact.html` + `en/contact.html`.
-- CSS: `assets/css/origex-contact.css`.
-- Runtime: `assets/js/origex-contact.js`.
-- QA runner: `.github/scripts/qa_pg27_contact.py`.
-- CI interaction adapter: `.github/scripts/qa_pg27_contact_ci.py`.
-- QA workflow: `.github/workflows/pg27-contact-qa.yml`.
+- Profile: `docs/page-design-profiles/pg27-contact-v1.md` — PS7.
 - QA report: `docs/PG27-QA-REPORT-V1.md`.
-- Four canonical routes: `general` / `rfq` / `supplier` / `partner`.
-- Existing `config.js` hooks drive route emails, phone, address, business hours and social links.
-- `?topic=` hydration and invalid-topic normalization implemented; AR/EN desktop/mobile language links preserve normalized topic state.
-- Enquiry form is validation-only Demo behavior with no fetch/XHR/CRM/external form provider and explicit no-transmission confirmation.
-- Map remains an illustrative local placeholder with no provider, coordinates or location-verification claim.
-- Social block stays hidden while config URLs remain `#`.
-- First QA identified real phone/consent touch-target defects; fixed in page CSS.
-- QA was refactored from large inline YAML into a maintainable standalone runner; headless reset activation uses keyboard semantics while responsive hit-area QA independently verifies the public control size.
+- Four canonical contact routes with config-driven contact data and validation-only Demo form.
 - Final source/config/runtime failures: **0**.
+- Rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
+- Route/query-language/invalid-topic/form interactions: PASS.
+- Final evidence: `7cfffde78233c087ee2381247470bb024d3689e1`.
+
+## PG28 Final Evidence
+- Profile: `docs/page-design-profiles/pg28-404-v1.md` — **PS7**.
+- AR/EN: `ar/404.html` + `en/404.html`.
+- CSS: `assets/css/origex-404.css`.
+- Runtime: `assets/js/origex-404.js`.
+- QA runner: `.github/scripts/qa_pg28_404_v2.py`.
+- QA workflow: `.github/workflows/pg28-404-qa.yml`.
+- QA report: `docs/PG28-QA-REPORT-V1.md`.
+- Exact Arabic H1/support and primary CTAs preserved.
+- `robots=noindex,follow`; no canonical/hreflang/JSON-LD/SearchAction claim on the error asset.
+- Six approved recovery routes: Home / Products / Suppliers / Resources / FAQ / Contact.
+- Progressive enhancement: recovery destinations remain visible without page runtime.
+- Local search supports result count, empty/reset, Escape clear and optional `?q=` language-preserved state without external search/network/storage.
+- Explicit deployment boundary: HTML is the branded error document; PS8 must verify a genuine missing route returns HTTP 404.
+- First QA exposed checker assumptions only; QA contract corrected to test semantic supplier-route presence rather than an artificial single-result count.
+- Final source/SEO/runtime failures: **0**.
 - Final rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
-- Route / query-language / invalid-topic / form validation-success-reset interactions: **PASS** in AR and EN.
-- F05 after PG27: **56 AR/EN pages / 0 missing references**.
-- Final evidence commit: `7cfffde78233c087ee2381247470bb024d3689e1`.
-- PS7 promotion: `bdd732bd8bb969dad17c4aca05111d4a53a05379`.
+- Search / query-language / empty-reset / query-Escape interactions: **PASS** in AR and EN.
+- F05 after PG28: **58 AR/EN pages / 0 missing references**.
+- Final evidence commit: `de86b1392f523f26dffa2d53c28145653f2f0402`.
 
 ## Preview Utility
 - `site-map.html` is a noindex internal Visual Site Map / Preview Index, not PG34.
 - It contains exactly PG01–PG33.
-- Current state after PG27: **28 implemented / 5 pending / 56 AR+EN page links**.
-- PG28 404 is displayed as NEXT; pending pages intentionally expose no destination links.
+- Current state after PG28: **29 implemented / 4 pending / 58 AR+EN page links**.
+- PG29 Coming Soon is displayed as NEXT; pending pages expose no destination links.
 - Search and Implemented/Pending filters remain available.
-- Preview QA: **0 failures**; evidence `e522f94c27b17609ac179c1c012f9f9ed2f0390d`.
+- Preview QA is required to remain at zero failures after publication.
 
 ## Shared State
 - Global Navigation V1 remains locked and centrally normalized.
 - Global Footer V1 remains centrally normalized.
-- F05 Icon Integrity: **56 AR/EN pages / 0 missing sprite references**.
+- F05 Icon Integrity: **58 AR/EN pages / 0 missing sprite references**.
 - PG33 QA follow-up and deployed Cloudflare PS8 reviews remain parallel workstreams.
 
 ## Next Action
-Start **PG28 — 404** through canonical content review → PS6 Page Design Profile + SEO/recovery-route contract → AR/EN implementation → branded error state / home + recovery links / contact fallback / responsive / accessibility QA.
+Start **PG29 — Coming Soon** through canonical content review → PS6 Page Design Profile + SEO/prelaunch-state contract → AR/EN implementation → countdown/CTA/subscription/demo-boundary/responsive/accessibility QA according to frozen scope.
 
 Copyright © ORVEAX.
