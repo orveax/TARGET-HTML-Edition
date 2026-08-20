@@ -19,7 +19,7 @@
     body:root.querySelector('[data-orx-article-body]')
   };
   const invalidBox=root.querySelector('[data-orx-article-invalid]');
-  const langSwitch=document.querySelector('.orx-lang-switch');
+  const langSwitches=[...document.querySelectorAll('.orx-lang-switch,.orx-mobile-nav a[lang]')];
   const prev=root.querySelector('[data-orx-article-prev]');
   const next=root.querySelector('[data-orx-article-next]');
   const related=root.querySelector('[data-orx-related-articles]');
@@ -59,10 +59,7 @@
     if(fields.date)fields.date.textContent=meta.date;
     if(fields.read)fields.read.textContent=meta.read;
     if(fields.deck)fields.deck.textContent=meta.deck;
-    if(fields.body){
-      fields.body.replaceChildren();
-      fields.body.append(t.content.cloneNode(true));
-    }
+    if(fields.body){fields.body.replaceChildren();fields.body.append(t.content.cloneNode(true));}
   }
 
   function setInvalidState(){
@@ -73,10 +70,11 @@
 
   function articleHref(id){return `article-details.html?id=${encodeURIComponent(id)}`;}
 
-  function setLanguageSwitch(){
-    if(!langSwitch)return;
-    const base=langSwitch.getAttribute('href').split('?')[0];
-    langSwitch.setAttribute('href',`${base}?id=${encodeURIComponent(selected)}`);
+  function setLanguageSwitches(){
+    for(const link of langSwitches){
+      const base=link.getAttribute('href')?.split('?')[0];
+      if(base)link.setAttribute('href',`${base}?id=${encodeURIComponent(selected)}`);
+    }
   }
 
   function setAdjacent(){
@@ -129,13 +127,13 @@
       const ta=document.createElement('textarea');ta.value=url;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.append(ta);ta.select();
       try{ok=document.execCommand('copy');}catch(_){ok=false;}ta.remove();
     }
-    if(copyStatus){copyStatus.textContent=ok?(root.dataset.copySuccess||'Link copied'):(root.dataset.copyFailure||'Copy unavailable');}
+    if(copyStatus)copyStatus.textContent=ok?(root.dataset.copySuccess||'Link copied'):(root.dataset.copyFailure||'Copy unavailable');
   }
 
   copyBtn?.addEventListener('click',copyUrl);
   renderTemplate(selected);
   setInvalidState();
-  setLanguageSwitch();
+  setLanguageSwitches();
   setAdjacent();
   setRelated();
   setShare();
