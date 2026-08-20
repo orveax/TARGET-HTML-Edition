@@ -160,8 +160,12 @@
 .orx-lab-surface--accent-target { background: var(--orx-accent); color: var(--orx-primary-strong); }
 
 .orx-lab-table-wrap {
+  inline-size: 100%;
   max-width: 100%;
+  min-inline-size: 0;
+  contain: layout paint;
   overflow-x: auto;
+  overflow-y: hidden;
   border: 1px solid var(--orx-border);
   border-radius: var(--orx-radius-md);
   background: var(--orx-surface);
