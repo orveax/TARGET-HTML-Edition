@@ -12,12 +12,13 @@ on:
       - 'assets/js/origex-components-lab.js'
       - 'docs/page-design-profiles/pg32-components-v1.md'
       - '.github/scripts/qa_pg32_components_v2.py'
+      - '.github/scripts/qa_pg32_components_v3.py'
       - '.github/workflows/pg32-components-qa.yml'
       - '.github/scripts/normalize_global_navigation.py'
       - '.github/scripts/normalize_global_footer.py'
 
 concurrency:
-  group: pg32-components-qa-v2
+  group: pg32-components-qa-v3
   cancel-in-progress: true
 permissions:
   contents: write
@@ -30,7 +31,7 @@ jobs:
       - name: Install QA dependencies
         run: python -m pip install --quiet beautifulsoup4 selenium
       - name: Run PG32 source, registry, rendered and interaction QA
-        run: python .github/scripts/qa_pg32_components_v2.py
+        run: python .github/scripts/qa_pg32_components_v3.py
       - name: Commit PG32 QA evidence
         if: always()
         run: |
@@ -38,8 +39,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add qa/pg32-components || true
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "PG32 record Components QA V2 evidence"
+          git commit -m "PG32 record Components QA V3 evidence"
           git pull --rebase origin main || true
           git push origin main || true
 
-# PG32 V2 includes shared shell because N01–N04 are part of the page contract.
+# PG32 V3 keeps V2 source semantics and hardens browser interaction checks.
