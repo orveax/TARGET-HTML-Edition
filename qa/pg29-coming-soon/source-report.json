@@ -1,0 +1,19 @@
+{
+  "failures": [],
+  "pages": {
+    "ar": {
+      "failures": [],
+      "iconCount": 9
+    },
+    "en": {
+      "failures": [],
+      "iconCount": 9
+    }
+  },
+  "runtime": {
+    "failures": []
+  },
+  "config": {
+    "failures": []
+  }
+}
