@@ -2,8 +2,8 @@
 
 Product ID: ORX-P01  
 Owner: ORVEAX  
-Status: APPROVED — M0/M1 CLOSED / M2–M5 FINAL ACCEPTANCE OPEN / M6 READY  
-Last Alignment: 2026-08-20 — M5 PAGE PRODUCTION CODE/CI COMPLETE / PG20–PG25 PS7 / M6 PG26 NEXT
+Status: APPROVED — M0/M1 CLOSED / M2–M5 FINAL ACCEPTANCE OPEN / M6 IN PROGRESS  
+Last Alignment: 2026-08-20 — PG26 FAQ PS7 CI QA PASS / PG27 CONTACT NEXT
 
 ## Project Brief
 Build a premium Arabic-first bilingual HTML template for B2B food trading, import, distribution, suppliers and manufacturers, structured as reusable ORVEAX commercial IP for ThemeForest and independent distribution.
@@ -17,7 +17,7 @@ No page enters implementation before PS6. PS8 requires applicable page QA plus d
 Scope, architecture, content, SEO, demo policy, data schema, release policy and QA governance are frozen.
 
 ## M1 — Global System & Component Foundation — PASS / CLOSED
-Bootstrap 5.3.8 local foundation, Tajawal/Manrope, tokens, components, icon sprite, patterns, RTL/LTR, config runtime and global shell are implemented. F05 Icon Integrity covers **52 AR/EN pages with zero missing sprite references** at PG25 closure.
+Bootstrap 5.3.8 local foundation, Tajawal/Manrope, tokens, components, icon sprite, patterns, RTL/LTR, config runtime and global shell are implemented. F05 Icon Integrity now covers **54 AR/EN pages with zero missing sprite references** after PG26.
 
 ## M2 — Global Shell & Home Family — FINAL ACCEPTANCE OPEN
 - PG01 Home 01 — **PS8 / PASS / CLOSED**.
@@ -40,40 +40,35 @@ Open gate: PG33 follow-up plus Cloudflare batch acceptance.
 PG09–PG13 and PG16–PG19 are **PS7 / CI QA PASS**. Canonical product/supplier/market relations and conversion flows are implemented. Cloudflare PS8 batch acceptance remains open before milestone closure.
 
 ## M5 — Proof / Resources / Compliance / Content — PAGE PRODUCTION CODE/CI COMPLETE
-- PG20 Case Studies — **PS7 / CI QA PASS**.
-- PG21 Case Study Details — **PS7 / CI QA PASS**.
-- PG22 Downloads / Resources — **PS7 / CI QA PASS**.
-- PG23 Certifications & Compliance — **PS7 / CI QA PASS**.
-- PG24 Insights / Blog — **PS7 / CI QA PASS**.
-- PG25 Article Details — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
+PG20–PG25 are **PS7 / CI QA PASS**. M5 remains open only for applicable PS8/deployed-browser acceptance plus any verified Critical/High closure defects.
 
-### PG25 Evidence
-- Default canonical Demo article 001 remains readable as semantic HTML without JavaScript.
-- Stable PG24 article IDs `article-001..009` are supported; 002–009 remain page-local Demo `<template>` records, not a new data-schema domain.
-- Missing ID defaults to article 001; invalid ID shows a visible notice before article-001 fallback.
-- Desktop/mobile language links preserve valid article state.
-- Previous/next navigation, three related articles excluding current, Copy Link, Email, LinkedIn and WhatsApp share actions implemented.
-- No CMS/API, fetch/XHR, storage or analytics dependency.
-- Initial QA found only Global Navigation V1 drift; corrected centrally by `83275a173a12066af58654c2fda82b42e281d2fa`.
-- Final source/editorial/runtime failures: **0**.
-- Rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
-- Default / invalid-ID / state-share / last-article interaction groups: PASS in AR and EN.
-- Final evidence: `d6f9f74b4ef9352ab631fdd8f372d1963bb6852a`.
-- QA report: `docs/PG25-QA-REPORT-V1.md`.
-
-### Preview Utility
-`site-map.html` remains a noindex internal Preview Utility outside the 33-layout product scope. After PG25 it contains **33 cards / 26 implemented / 7 pending / 52 AR+EN page links**. PG26 is the next pending page; query/hash portions are ignored by the target-existence QA so valid detail preview links do not create false broken-file defects.
-
-M5 page production is complete. M5 remains open only for applicable PS8/deployed-browser acceptance plus any verified Critical/High closure defects.
-
-## M6 — Support / Utility — READY / NEXT PRODUCTION MILESTONE
-- PG26 FAQ — **NEXT VALID PAGE PRODUCTION ACTION**.
-- PG27 Contact — NOT STARTED.
+## M6 — Support / Utility — IN PROGRESS
+- PG26 FAQ — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
+- PG27 Contact — **NEXT VALID PAGE PRODUCTION ACTION**.
 - PG28 404 — NOT STARTED.
 - PG29 Coming Soon — NOT STARTED.
 - PG30 Privacy — NOT STARTED.
 - PG31 Terms — NOT STARTED.
 - PG32 Components / Elements Library — NOT STARTED.
+
+### PG26 Evidence
+- 18 semantic FAQ items in each language across Buyers / Suppliers / Products / RFQ / Distribution / Demo & Integration.
+- Exact Arabic Master submission-acceptance and pricing Q/A preserved.
+- No `faq.json`, CMS or remote API.
+- Progressive enhancement: content remains readable without PG26 JS; local runtime owns search/category/query/language state only; registered C14 owns accordion behavior.
+- Search + category AND filtering, result counts, empty/reset, Escape clear and URL state implemented.
+- Invalid category normalizes to all; AR/EN desktop/mobile language links preserve valid category/search state.
+- First workflow found checker-marker/live-region expectation mismatches only; rendered and interaction gates were already clean. QA checker corrected by `3d37726f53fb26e01bcfe26277e44f2faa30cca1` and full workflow rerun.
+- Final source/content/SEO/runtime failures: **0**.
+- Rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
+- Accordion keyboard + category + query/language + invalid category + empty/reset/Escape interaction groups: PASS.
+- Final evidence: `26a2a72870b3506f098a3dd95e38c56756575e10`.
+- QA report: `docs/PG26-QA-REPORT-V1.md`.
+- PS7 promotion: `051efff575a48eeead1aeeb93bb00e88dbe748c0`.
+- Global F05: **54 AR/EN pages / 0 missing references**.
+
+### Preview Utility
+`site-map.html` remains a noindex internal Preview Utility outside the 33-layout product scope. After PG26 it contains **33 cards / 27 implemented / 6 pending / 54 AR+EN page links**. PG27 Contact is the next pending page.
 
 M6 gate: all seven support/utility layouts implemented in AR/EN, applicable PS8 acceptance complete, utility/legal/demo boundaries verified, and zero Critical/High defects.
 
@@ -84,8 +79,8 @@ Full AR/EN parity, claim/disclaimer, data, SEO, broken-link, responsive, accessi
 Buyer documentation, customization/deployment guides, licenses/credits, changelog, preview/listing material, final ZIP and ThemeForest submission checklist. Gate: Submission Candidate 1.0.0.
 
 ## Current Production Order
-1. **M6 / PG26 — FAQ**: canonical content → PS6 Page Design Profile / SEO + FAQ contract → AR/EN build → category navigation/search/accordion/supplier-buyer/contact/responsive/accessibility QA.
-2. Continue PG27–PG32 sequentially under M6.
+1. **M6 / PG27 — Contact**: canonical content → PS6 Page Design Profile / SEO + contact-routing/config/form contract → AR/EN build → contact routes/form/demo-integration/responsive/accessibility QA.
+2. Continue PG28–PG32 sequentially under M6.
 3. In parallel, close applicable Cloudflare PS8 batches and PG33 QA follow-up.
 
 ## Change Control
