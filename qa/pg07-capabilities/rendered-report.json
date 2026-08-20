@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T13:10:21Z",
+  "generatedAt": "2026-08-20T15:16:00Z",
   "failures": 0,
   "results": [
     {
@@ -18,7 +18,7 @@
         "families": 5,
         "focus": 3,
         "h1": true,
-        "minButton": 54.625,
+        "minButton": 48,
         "off": 0,
         "overflow": false
       },
@@ -40,7 +40,7 @@
         "families": 5,
         "focus": 3,
         "h1": true,
-        "minButton": 54.625,
+        "minButton": 48,
         "off": 0,
         "overflow": false
       },
@@ -62,7 +62,7 @@
         "families": 5,
         "focus": 3,
         "h1": true,
-        "minButton": 46.234375,
+        "minButton": 40,
         "off": 0,
         "overflow": false
       },
@@ -84,7 +84,7 @@
         "families": 5,
         "focus": 3,
         "h1": true,
-        "minButton": 46.234375,
+        "minButton": 40,
         "off": 0,
         "overflow": false
       },
@@ -106,7 +106,7 @@
         "families": 5,
         "focus": 3,
         "h1": true,
-        "minButton": 52.21875,
+        "minButton": 48,
         "off": 0,
         "overflow": false
       },
@@ -128,7 +128,7 @@
         "families": 5,
         "focus": 3,
         "h1": true,
-        "minButton": 52.21875,
+        "minButton": 48,
         "off": 0,
         "overflow": false
       },
@@ -150,7 +150,7 @@
         "families": 5,
         "focus": 3,
         "h1": true,
-        "minButton": 44.078125,
+        "minButton": 40,
         "off": 0,
         "overflow": false
       },
@@ -172,7 +172,7 @@
         "families": 5,
         "focus": 3,
         "h1": true,
-        "minButton": 44.078125,
+        "minButton": 40,
         "off": 0,
         "overflow": false
       },
