@@ -81,20 +81,26 @@ section[aria-labelledby="process-title"] .orx-process-card::before{
   background:linear-gradient(90deg,var(--orx-primary),var(--orx-secondary),var(--orx-accent));
 }
 section[aria-labelledby="process-title"] .orx-process-card__number{
-  inline-size:44px;
-  block-size:44px;
+  inline-size:var(--orx-icon-container-l);
+  block-size:var(--orx-icon-container-l);
   margin-block-end:1.1rem;
   box-shadow:0 8px 18px rgba(13,37,43,.14);
 }
 
-/* Category cards: visual category cue without stock photography. */
+/* Category cards: registered visual-header variant without stock photography. */
 section[aria-labelledby="categories-title"] .orx-feature-card{
   --orx-cat-a:#15343B;
   --orx-cat-b:#3F6F68;
+  grid-template-columns:1fr;
   overflow:hidden;
   min-block-size:310px;
   padding-block-start:9.2rem;
   box-shadow:var(--orx-shadow-e1);
+}
+section[aria-labelledby="categories-title"] .orx-feature-card>.orx-card__title{
+  grid-column:1;
+  grid-row:auto;
+  align-self:auto;
 }
 section[aria-labelledby="categories-title"] .orx-feature-card::before{
   content:"";
@@ -118,7 +124,9 @@ section[aria-labelledby="categories-title"] .orx-feature-card .orx-icon-box{
   box-shadow:var(--orx-shadow-e1);
 }
 section[aria-labelledby="categories-title"] .orx-feature-card__index{
+  position:absolute;
   inset-block-start:1rem;
+  inset-inline-end:1.15rem;
   color:rgba(255,255,255,.72);
   z-index:2;
 }
