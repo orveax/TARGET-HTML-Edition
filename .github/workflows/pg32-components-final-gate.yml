@@ -8,7 +8,7 @@ on:
       - '.github/workflows/pg32-components-final-gate.yml'
 
 concurrency:
-  group: pg32-components-final-gate
+  group: pg32-components-final-gate-self-report
   cancel-in-progress: false
 permissions:
   contents: write
@@ -20,18 +20,23 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install QA dependencies
         run: python -m pip install --quiet beautifulsoup4 selenium
-      - name: Run stabilized PG32 V3 gate
+      - id: pg32
+        name: Run stabilized PG32 V3 gate
+        continue-on-error: true
         run: python .github/scripts/qa_pg32_components_v3.py
-      - name: Commit isolated PG32 final evidence
+      - name: Record and commit isolated PG32 final evidence
         if: always()
+        env:
+          PG32_OUTCOME: ${{ steps.pg32.outcome }}
         run: |
+          mkdir -p qa/pg32-components
+          printf 'source=%s\noutcome=%s\n' "$GITHUB_SHA" "$PG32_OUTCOME" > qa/pg32-components/final-gate-execution.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add qa/pg32-components || true
-          if git diff --cached --quiet; then
-            echo "No evidence diff; current evidence already matches this run."
-            exit 0
-          fi
-          git commit -m "PG32 record isolated final gate evidence"
+          git add qa/pg32-components
+          git commit -m "PG32 record self-reported final gate evidence"
           git pull --rebase origin main || true
           git push origin main || true
+      - name: Enforce PG32 gate outcome
+        if: steps.pg32.outcome == 'failure'
+        run: exit 1
