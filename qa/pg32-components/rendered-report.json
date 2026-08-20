@@ -1,9 +1,9 @@
 {
   "failures": [
     "ar-390:document-overflow",
-    "ar-desktop:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1182, 7980)\n  (Session info: chrome=151.0.7922.137); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#element",
+    "ar-desktop:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1182, 7980)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#element",
     "en-390:document-overflow",
-    "en-desktop:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (177, 8190)\n  (Session info: chrome=151.0.7922.137); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementc"
+    "en-desktop:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (177, 8190)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementc"
   ],
   "cases": [
     {
@@ -265,11 +265,11 @@
   ],
   "interaction": {
     "ar-desktop": [
-      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1182, 7980)\n  (Session info: chrome=151.0.7922.137); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#element"
+      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1182, 7980)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#element"
     ],
     "ar-mobile": [],
     "en-desktop": [
-      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (177, 8190)\n  (Session info: chrome=151.0.7922.137); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementc"
+      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (177, 8190)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementc"
     ],
     "en-mobile": []
   },
