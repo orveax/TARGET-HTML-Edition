@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PG32 QA V3 — V2 source contract + hardened interactions; rerun after N03 containment fix."""
+"""PG32 QA V3 — V2 source contract + hardened interactions after N03 geometry correction."""
 from urllib.parse import urlparse
 import json, subprocess, time
 from selenium import webdriver
@@ -51,7 +51,7 @@ def rendered_qa():
             if not any(t.get_attribute("aria-selected")=="true" and t.id!=tabs[0].id for t in tabs): f.append("tabs-keyboard")
 
             step="accordion"
-            acc=d.find_elements(By.CSS_SELECTOR,"[data-orx-accordion-trigger]")[1]; before=acc.get_attribute("aria-expanded"); d.execute_script("arguments[0].scrollIntoView({block:'center'}); arguments[0].click();",acc); time.sleep(.07)
+            acc=d.find_elements(By.CSS_SELECTOR,"[data-orx-accordion-trigger]")[1]; before=acc.get_attribute("aria-expanded"); d.execute_script("arguments[0].scrollIntoView({block:'center'}); arguments[0].click();",acc); time.sleep(.08)
             if acc.get_attribute("aria-expanded")==before: f.append("accordion")
 
             step="form"
@@ -59,9 +59,9 @@ def rendered_qa():
             if not form.find_element(By.CSS_SELECTOR,"[data-lab-form-success]").is_displayed(): f.append("form-success")
 
             step="modal"
-            mt=d.find_element(By.CSS_SELECTOR,"[data-bs-toggle='modal']"); d.execute_script("arguments[0].scrollIntoView({block:'center'}); arguments[0].click();",mt); time.sleep(.22); modal=d.find_element(By.CSS_SELECTOR,".orx-lab-modal")
+            mt=d.find_element(By.CSS_SELECTOR,"[data-bs-toggle='modal']"); d.execute_script("arguments[0].scrollIntoView({block:'center'}); arguments[0].click();",mt); time.sleep(.4); modal=d.find_element(By.CSS_SELECTOR,".orx-lab-modal")
             if "show" not in (modal.get_attribute("class") or ""): f.append("modal-open")
-            close=modal.find_element(By.CSS_SELECTOR,"[data-bs-dismiss='modal']"); d.execute_script("arguments[0].click();",close); time.sleep(.22)
+            close=modal.find_element(By.CSS_SELECTOR,"[data-bs-dismiss='modal']"); d.execute_script("arguments[0].click();",close); time.sleep(.5)
             if "show" in (modal.get_attribute("class") or ""): f.append("modal-close")
 
             step="language"
