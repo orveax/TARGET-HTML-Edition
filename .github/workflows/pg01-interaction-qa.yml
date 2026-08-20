@@ -72,24 +72,19 @@ jobs:
           failures=0
 
           for lang in ('ar','en'):
-              # Desktop navigation / FAQ / announcement.
               sid=session(1366,900)
               try:
                   req('POST',f'/session/{sid}/url',{'url':f'http://127.0.0.1:4173/{lang}/'})
                   time.sleep(.6)
-
                   desktop={}
                   desktop['mega_present']=js(sid,"return !!document.querySelector('[data-orx-mega-trigger]');")
                   desktop['mega_open']=js(sid,"const t=document.querySelector('[data-orx-mega-trigger]'); if(!t)return false; t.click(); const m=document.getElementById(t.getAttribute('aria-controls')); return t.getAttribute('aria-expanded')==='true' && m && !m.hidden;")
                   key_escape(sid)
                   desktop['mega_escape_close']=js(sid,"const t=document.querySelector('[data-orx-mega-trigger]'); const m=t&&document.getElementById(t.getAttribute('aria-controls')); return !!t && t.getAttribute('aria-expanded')==='false' && !!m && m.hidden;")
-
                   desktop['faq_present']=js(sid,"return !!document.querySelector('[data-orx-accordion-trigger]');")
                   desktop['faq_toggle']=js(sid,"let t=[...document.querySelectorAll('[data-orx-accordion-trigger]')].find(x=>x.getAttribute('aria-expanded')==='false')||document.querySelector('[data-orx-accordion-trigger]'); if(!t)return false; if(t.getAttribute('aria-expanded')==='true')t.click(); const p=document.getElementById(t.getAttribute('aria-controls')); t.click(); const opened=t.getAttribute('aria-expanded')==='true' && p && !p.hidden; t.click(); const closed=t.getAttribute('aria-expanded')==='false' && p && p.hidden; return !!(opened&&closed);")
-
                   desktop['announcement_present']=js(sid,"return !!document.querySelector('[data-orx-announcement]');")
                   desktop['announcement_close']=js(sid,"const b=document.querySelector('[data-orx-announcement]'); const c=document.querySelector('[data-orx-announcement-close]'); if(!b||!c)return false; c.click(); return b.hidden===true;")
-
                   passed=all(desktop.values())
                   if not passed: failures+=1
                   results.append({'lang':lang,'mode':'desktop','pass':passed,'checks':desktop})
@@ -97,7 +92,6 @@ jobs:
                   try:req('DELETE',f'/session/{sid}')
                   except Exception:pass
 
-              # Mobile drawer behavior.
               sid=session(390,844)
               try:
                   req('POST',f'/session/{sid}/url',{'url':f'http://127.0.0.1:4173/{lang}/'})
@@ -138,4 +132,5 @@ jobs:
           git add -A qa/pg01-interaction
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'PG01 record rendered interaction QA evidence'
+          git pull --rebase origin main || true
           git push origin main
