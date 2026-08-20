@@ -1,0 +1,139 @@
+/* ORIGEX — Home Hero Media System V3 | 2026-08-21
+ * Approved cinematic hero imagery integrated as real CSS media, while copy/CTA/navigation remain live HTML.
+ * PG01 = Global Trade Gateway, PG02 = Distribution Network, PG03 = Manufacturer/Product Readiness, PG04 = Focused Commercial Landing.
+ */
+
+/* Shared hero mechanics --------------------------------------------------- */
+main>.orx-hero[style*="pt01-route-lines.svg"],
+.orx-distribution-hero,
+.orx-manufacturer-hero,
+.orx-landing-hero{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  min-block-size:clamp(620px,72vh,820px);
+  display:flex;
+  align-items:center;
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+main>.orx-hero[style*="pt01-route-lines.svg"]::before,
+.orx-distribution-hero::before,
+.orx-manufacturer-hero::before,
+.orx-landing-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid,
+.orx-distribution-hero .orx-hero__grid,
+.orx-manufacturer-hero .orx-hero__grid,
+.orx-landing-hero .orx-hero__grid{
+  position:relative;
+  z-index:2;
+  display:block;
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid>div:first-child,
+.orx-distribution-hero .orx-hero__grid>div:first-child,
+.orx-manufacturer-hero .orx-hero__grid>div:first-child,
+.orx-landing-hero .orx-hero__grid>div:first-child{
+  max-inline-size:min(650px,54vw);
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-media--hero,
+.orx-distribution-hero .orx-media--hero,
+.orx-manufacturer-hero .orx-media--hero,
+.orx-landing-hero .orx-media--hero{
+  display:none!important;
+}
+
+/* PG01 — Global Trade Gateway -------------------------------------------- */
+main>.orx-hero[style*="pt01-route-lines.svg"]{
+  padding-block:clamp(5.5rem,8vw,8rem);
+  background-color:#061820;
+  background-image:url("../media/demo/home-01-global-trade.avif");
+  background-position:center 48%;
+  color:#fff;
+}
+main>.orx-hero[style*="pt01-route-lines.svg"]::before{
+  background:linear-gradient(90deg,rgba(3,18,25,.95) 0%,rgba(3,18,25,.84) 30%,rgba(3,18,25,.40) 58%,rgba(3,18,25,.08) 82%),linear-gradient(0deg,rgba(3,18,25,.36),rgba(3,18,25,.02) 45%,rgba(3,18,25,.18));
+}
+html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"]::before{
+  background:linear-gradient(270deg,rgba(3,18,25,.95) 0%,rgba(3,18,25,.84) 30%,rgba(3,18,25,.40) 58%,rgba(3,18,25,.08) 82%),linear-gradient(0deg,rgba(3,18,25,.36),rgba(3,18,25,.02) 45%,rgba(3,18,25,.18));
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] :is(h1,.orx-lead){color:#fff}
+main>.orx-hero[style*="pt01-route-lines.svg"] h1{max-inline-size:11ch;font-size:clamp(3.25rem,5.6vw,6.2rem);text-shadow:0 2px 20px rgba(0,0,0,.24)}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-lead{max-inline-size:52ch;color:rgba(255,255,255,.80)}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-eyebrow{color:#e0a04c}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-btn--secondary{border-color:rgba(255,255,255,.45);background:rgba(3,18,25,.32);color:#fff;backdrop-filter:blur(8px)}
+
+/* PG02 — Distribution Network -------------------------------------------- */
+.orx-distribution-hero{
+  padding-block:clamp(5rem,7vw,7.25rem);
+  background-color:#071b27;
+  background-image:url("../media/demo/home-02-distribution.avif");
+  background-position:center 52%;
+  color:#fff;
+}
+.orx-distribution-hero::before{
+  background:linear-gradient(90deg,rgba(4,19,29,.95) 0%,rgba(4,19,29,.82) 34%,rgba(4,19,29,.36) 60%,rgba(4,19,29,.08) 84%),linear-gradient(0deg,rgba(4,19,29,.38),transparent 52%);
+}
+html[dir="rtl"] .orx-distribution-hero::before{background:linear-gradient(270deg,rgba(4,19,29,.95) 0%,rgba(4,19,29,.82) 34%,rgba(4,19,29,.36) 60%,rgba(4,19,29,.08) 84%),linear-gradient(0deg,rgba(4,19,29,.38),transparent 52%)}
+.orx-distribution-hero :is(h1,.orx-lead){color:#fff}.orx-distribution-hero .orx-eyebrow{color:#f0b45e}.orx-distribution-hero .orx-lead{color:rgba(255,255,255,.78)}
+.orx-distribution-hero h1{max-inline-size:12ch;font-size:clamp(3rem,5vw,5.65rem);line-height:1.08}
+html[dir="rtl"] .orx-distribution-hero h1{line-height:1.2}
+.orx-distribution-hero .orx-btn--secondary{border-color:rgba(255,255,255,.45);background:rgba(5,20,28,.30);color:#fff;backdrop-filter:blur(8px)}
+
+/* PG03 — Manufacturer / Product Readiness -------------------------------- */
+.orx-manufacturer-hero{
+  padding-block:clamp(5rem,7vw,7rem);
+  background-color:#f5f8f8;
+  background-image:url("../media/demo/home-03-manufacturer.avif");
+  background-position:center 48%;
+  color:var(--orx-primary-strong);
+}
+.orx-manufacturer-hero::before{
+  background:linear-gradient(90deg,rgba(250,252,252,.98) 0%,rgba(250,252,252,.92) 34%,rgba(250,252,252,.46) 59%,rgba(250,252,252,.05) 82%);
+}
+html[dir="rtl"] .orx-manufacturer-hero::before{background:linear-gradient(270deg,rgba(250,252,252,.98) 0%,rgba(250,252,252,.92) 34%,rgba(250,252,252,.46) 59%,rgba(250,252,252,.05) 82%)}
+.orx-manufacturer-hero h1{max-inline-size:13ch;font-size:clamp(3rem,5vw,5.55rem);line-height:1.08;color:var(--orx-primary-strong)}
+html[dir="rtl"] .orx-manufacturer-hero h1{line-height:1.22}
+.orx-manufacturer-hero .orx-lead{max-inline-size:54ch;color:var(--orx-on-light-body)}
+.orx-manufacturer-hero .orx-eyebrow{color:#a96620}
+.orx-manufacturer-hero .orx-btn--secondary{background:rgba(255,255,255,.72);backdrop-filter:blur(8px)}
+
+/* PG04 — Focused commercial landing / warm partnership ------------------- */
+.orx-landing-hero{
+  padding-block:clamp(5.25rem,7vw,7.5rem);
+  background-color:#2b1b11;
+  background-image:url("../media/demo/home-04-landing.avif");
+  background-position:center 48%;
+  color:#fff;
+}
+.orx-landing-hero::before{
+  background:linear-gradient(90deg,rgba(35,20,12,.94) 0%,rgba(35,20,12,.80) 34%,rgba(35,20,12,.35) 60%,rgba(35,20,12,.07) 82%),linear-gradient(0deg,rgba(35,20,12,.20),transparent 50%);
+}
+html[dir="rtl"] .orx-landing-hero::before{background:linear-gradient(270deg,rgba(35,20,12,.94) 0%,rgba(35,20,12,.80) 34%,rgba(35,20,12,.35) 60%,rgba(35,20,12,.07) 82%),linear-gradient(0deg,rgba(35,20,12,.20),transparent 50%)}
+.orx-landing-hero :is(h1,.orx-lead){color:#fff}.orx-landing-hero .orx-eyebrow{color:#efb45f}.orx-landing-hero .orx-lead{max-inline-size:50ch;color:rgba(255,255,255,.82)}
+.orx-landing-hero h1{max-inline-size:12ch;font-size:clamp(3rem,5vw,5.65rem);line-height:1.08;text-shadow:0 2px 18px rgba(0,0,0,.24)}
+html[dir="rtl"] .orx-landing-hero h1{line-height:1.22}
+.orx-landing-hero .orx-btn--secondary{border-color:rgba(255,255,255,.48);background:rgba(45,26,15,.28);color:#fff;backdrop-filter:blur(8px)}
+
+/* Responsive art direction ------------------------------------------------ */
+@media(max-width:991.98px){
+  main>.orx-hero[style*="pt01-route-lines.svg"],.orx-distribution-hero,.orx-manufacturer-hero,.orx-landing-hero{min-block-size:640px;background-position:center}
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid>div:first-child,.orx-distribution-hero .orx-hero__grid>div:first-child,.orx-manufacturer-hero .orx-hero__grid>div:first-child,.orx-landing-hero .orx-hero__grid>div:first-child{max-inline-size:620px}
+}
+@media(max-width:767.98px){
+  main>.orx-hero[style*="pt01-route-lines.svg"],.orx-distribution-hero,.orx-manufacturer-hero,.orx-landing-hero{min-block-size:660px;padding-block:4.25rem;background-size:auto 100%;}
+  main>.orx-hero[style*="pt01-route-lines.svg"]{background-position:62% center}
+  html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"]{background-position:38% center}
+  .orx-distribution-hero{background-position:64% center}.orx-manufacturer-hero{background-position:62% center}.orx-landing-hero{background-position:64% center}
+  html[dir="rtl"] .orx-distribution-hero,html[dir="rtl"] .orx-manufacturer-hero,html[dir="rtl"] .orx-landing-hero{background-position:36% center}
+  main>.orx-hero[style*="pt01-route-lines.svg"]::before,.orx-distribution-hero::before,.orx-landing-hero::before{background:linear-gradient(0deg,rgba(3,18,25,.92) 0%,rgba(3,18,25,.78) 55%,rgba(3,18,25,.32) 100%)}
+  .orx-manufacturer-hero::before{background:linear-gradient(0deg,rgba(250,252,252,.97) 0%,rgba(250,252,252,.90) 60%,rgba(250,252,252,.50) 100%)}
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid>div:first-child,.orx-distribution-hero .orx-hero__grid>div:first-child,.orx-manufacturer-hero .orx-hero__grid>div:first-child,.orx-landing-hero .orx-hero__grid>div:first-child{max-inline-size:none;padding-block-start:11rem}
+  main>.orx-hero[style*="pt01-route-lines.svg"] h1,.orx-distribution-hero h1,.orx-manufacturer-hero h1,.orx-landing-hero h1{font-size:clamp(2.5rem,12vw,4rem);max-inline-size:12ch}
+}
+@media(prefers-reduced-motion:reduce){main>.orx-hero[style*="pt01-route-lines.svg"],.orx-distribution-hero,.orx-manufacturer-hero,.orx-landing-hero{background-attachment:scroll}}

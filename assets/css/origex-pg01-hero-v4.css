@@ -1,0 +1,115 @@
+/* ORIGEX — PG01 Global Trade Gateway Hero V4 | 2026-08-21
+ * Production refinement: disciplined composition, HQ media, copy-safe zones and responsive art direction.
+ */
+main>.orx-hero[style*="pt01-route-lines.svg"]{
+  --orx-pg01-copy-max:640px;
+  min-block-size:clamp(720px,78vh,820px);
+  padding-block:clamp(5.5rem,8vw,7.5rem);
+  background-color:#061820;
+  background-image:url("../media/demo/hero-pg01-hq.avif");
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:58% center;
+}
+html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"]{background-position:42% center}
+main>.orx-hero[style*="pt01-route-lines.svg"]::before{
+  background:linear-gradient(90deg,rgba(3,18,25,.94) 0%,rgba(3,18,25,.86) 28%,rgba(3,18,25,.58) 46%,rgba(3,18,25,.20) 68%,rgba(3,18,25,.05) 100%),linear-gradient(0deg,rgba(3,18,25,.30),transparent 48%,rgba(3,18,25,.12));
+}
+html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"]::before{
+  background:linear-gradient(270deg,rgba(3,18,25,.94) 0%,rgba(3,18,25,.86) 28%,rgba(3,18,25,.58) 46%,rgba(3,18,25,.20) 68%,rgba(3,18,25,.05) 100%),linear-gradient(0deg,rgba(3,18,25,.30),transparent 48%,rgba(3,18,25,.12));
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid{
+  display:grid;
+  grid-template-columns:minmax(0,var(--orx-pg01-copy-max)) minmax(280px,1fr);
+  gap:clamp(2.5rem,6vw,7rem);
+  align-items:center;
+  inline-size:100%;
+}
+html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid{grid-template-columns:minmax(280px,1fr) minmax(0,var(--orx-pg01-copy-max))}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid>div:first-child{
+  grid-column:1;
+  max-inline-size:var(--orx-pg01-copy-max);
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid>div:first-child{
+  grid-column:2;
+  justify-self:end;
+  align-items:flex-start;
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-eyebrow{margin:0 0 1.15rem;color:#e8b15e;font-size:.82rem;line-height:1.4}
+main>.orx-hero[style*="pt01-route-lines.svg"] h1{
+  max-inline-size:11.5ch;
+  margin:0;
+  color:#fff;
+  font-size:clamp(3.25rem,5vw,5.7rem);
+  line-height:1.04;
+  letter-spacing:-.025em;
+  text-wrap:balance;
+  text-shadow:0 3px 24px rgba(0,0,0,.28);
+}
+html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"] h1{line-height:1.18;letter-spacing:0;max-inline-size:12.5ch}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-lead{
+  max-inline-size:50ch;
+  margin:1.35rem 0 0;
+  color:rgba(255,255,255,.82);
+  font-size:clamp(1rem,1.25vw,1.15rem);
+  line-height:1.8;
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.75rem;
+  margin-block-start:2rem;
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__actions .orx-btn{
+  min-block-size:52px;
+  padding-inline:1.35rem;
+  justify-content:center;
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-btn--secondary{
+  border-color:rgba(255,255,255,.42);
+  background:rgba(3,18,25,.34);
+  color:#fff;
+  backdrop-filter:none;
+}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-media--hero{display:none!important}
+
+@media(max-width:1199.98px){
+  main>.orx-hero[style*="pt01-route-lines.svg"]{--orx-pg01-copy-max:590px;min-block-size:720px;background-position:62% center}
+  html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"]{background-position:38% center}
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid{grid-template-columns:minmax(0,var(--orx-pg01-copy-max)) 1fr;gap:2.5rem}
+  html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid{grid-template-columns:1fr minmax(0,var(--orx-pg01-copy-max))}
+}
+@media(max-width:991.98px){
+  main>.orx-hero[style*="pt01-route-lines.svg"]{
+    min-block-size:680px;
+    padding-block:5rem;
+    background-position:66% center;
+  }
+  html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"]{background-position:34% center}
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid,
+  html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid{grid-template-columns:1fr}
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid>div:first-child,
+  html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid>div:first-child{grid-column:1;max-inline-size:580px;justify-self:start}
+}
+@media(max-width:767.98px){
+  main>.orx-hero[style*="pt01-route-lines.svg"]{
+    min-block-size:640px;
+    padding-block:4.25rem;
+    background-size:cover;
+    background-position:67% center;
+  }
+  html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"]{background-position:33% center}
+  main>.orx-hero[style*="pt01-route-lines.svg"]::before,
+  html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"]::before{
+    background:linear-gradient(0deg,rgba(3,18,25,.95) 0%,rgba(3,18,25,.88) 48%,rgba(3,18,25,.50) 76%,rgba(3,18,25,.18) 100%);
+  }
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid>div:first-child,
+  html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid>div:first-child{max-inline-size:none;padding-block-start:7.5rem}
+  main>.orx-hero[style*="pt01-route-lines.svg"] h1{font-size:clamp(2.55rem,11vw,3.65rem);max-inline-size:12ch}
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-lead{font-size:1rem;line-height:1.7}
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__actions{inline-size:100%;gap:.65rem}
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__actions .orx-btn{flex:1 1 100%;inline-size:100%;min-block-size:52px}
+}
