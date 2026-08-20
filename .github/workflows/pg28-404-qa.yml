@@ -16,7 +16,6 @@ on:
       - 'assets/js/origex-ui.js'
       - 'assets/icons/sprite.svg'
       - 'docs/page-design-profiles/pg28-404-v1.md'
-      - '.github/scripts/qa_pg28_404.py'
       - '.github/scripts/qa_pg28_404_v2.py'
       - '.github/scripts/normalize_global_navigation.py'
       - '.github/scripts/normalize_global_footer.py'
@@ -35,7 +34,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python -m pip install --quiet beautifulsoup4 selenium
-      - name: Run PG28 source SEO recovery rendered interaction QA V2
+      - name: Run PG28 source SEO recovery rendered interaction QA
         run: python .github/scripts/qa_pg28_404_v2.py
       - name: Commit PG28 QA evidence
         if: always()
