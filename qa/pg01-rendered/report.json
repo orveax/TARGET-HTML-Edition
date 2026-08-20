@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-20T10:35:55Z",
+  "generatedAt": "2026-08-20T15:24:29Z",
   "failures": 0,
   "results": [
     {
@@ -22,7 +22,7 @@
         "bodyBg": "rgb(250, 248, 244)",
         "bodyColor": "rgb(32, 40, 44)",
         "buttonsBelow44": [],
-        "cardHeightMax": 464,
+        "cardHeightMax": 493,
         "cardHeightMin": 83,
         "clientWidth": 375,
         "dir": "rtl",
@@ -32,10 +32,10 @@
         "h1LineHeight": "46.08px",
         "h1Width": 335,
         "headerHeight": 77,
-        "heroHeight": 1071,
+        "heroHeight": 1062,
         "horizontalOverflow": false,
         "lang": "ar",
-        "minButtonHeight": 55,
+        "minButtonHeight": 48,
         "offscreen": [],
         "scrollWidth": 375
       },
@@ -71,10 +71,10 @@
         "h1LineHeight": "46.08px",
         "h1Width": 757,
         "headerHeight": 77,
-        "heroHeight": 915,
+        "heroHeight": 911,
         "horizontalOverflow": false,
         "lang": "ar",
-        "minButtonHeight": 55,
+        "minButtonHeight": 48,
         "offscreen": [],
         "scrollWidth": 805
       },
@@ -99,7 +99,13 @@
       "metrics": {
         "bodyBg": "rgb(250, 248, 244)",
         "bodyColor": "rgb(32, 40, 44)",
-        "buttonsBelow44": [],
+        "buttonsBelow44": [
+          {
+            "height": 40,
+            "text": "اطلب عرض سعر",
+            "width": 138
+          }
+        ],
         "cardHeightMax": 486,
         "cardHeightMin": 88,
         "clientWidth": 1351,
@@ -113,7 +119,7 @@
         "heroHeight": 746,
         "horizontalOverflow": false,
         "lang": "ar",
-        "minButtonHeight": 46,
+        "minButtonHeight": 40,
         "offscreen": [],
         "scrollWidth": 1351
       },
@@ -138,7 +144,13 @@
       "metrics": {
         "bodyBg": "rgb(250, 248, 244)",
         "bodyColor": "rgb(32, 40, 44)",
-        "buttonsBelow44": [],
+        "buttonsBelow44": [
+          {
+            "height": 40,
+            "text": "اطلب عرض سعر",
+            "width": 138
+          }
+        ],
         "cardHeightMax": 486,
         "cardHeightMin": 88,
         "clientWidth": 1521,
@@ -152,7 +164,7 @@
         "heroHeight": 756,
         "horizontalOverflow": false,
         "lang": "ar",
-        "minButtonHeight": 46,
+        "minButtonHeight": 40,
         "offscreen": [],
         "scrollWidth": 1521
       },
@@ -178,7 +190,7 @@
         "bodyBg": "rgb(250, 248, 244)",
         "bodyColor": "rgb(32, 40, 44)",
         "buttonsBelow44": [],
-        "cardHeightMax": 455,
+        "cardHeightMax": 482,
         "cardHeightMin": 79,
         "clientWidth": 375,
         "dir": "ltr",
@@ -188,10 +200,10 @@
         "h1LineHeight": "40.32px",
         "h1Width": 335,
         "headerHeight": 77,
-        "heroHeight": 1169,
+        "heroHeight": 1165,
         "horizontalOverflow": false,
         "lang": "en",
-        "minButtonHeight": 52,
+        "minButtonHeight": 48,
         "offscreen": [],
         "scrollWidth": 375
       },
@@ -217,7 +229,7 @@
         "bodyBg": "rgb(250, 248, 244)",
         "bodyColor": "rgb(32, 40, 44)",
         "buttonsBelow44": [],
-        "cardHeightMax": 520,
+        "cardHeightMax": 547,
         "cardHeightMin": 83,
         "clientWidth": 805,
         "dir": "ltr",
@@ -227,10 +239,10 @@
         "h1LineHeight": "40.32px",
         "h1Width": 757,
         "headerHeight": 77,
-        "heroHeight": 942,
+        "heroHeight": 940,
         "horizontalOverflow": false,
         "lang": "en",
-        "minButtonHeight": 52,
+        "minButtonHeight": 48,
         "offscreen": [],
         "scrollWidth": 805
       },
@@ -255,8 +267,14 @@
       "metrics": {
         "bodyBg": "rgb(250, 248, 244)",
         "bodyColor": "rgb(32, 40, 44)",
-        "buttonsBelow44": [],
-        "cardHeightMax": 475,
+        "buttonsBelow44": [
+          {
+            "height": 40,
+            "text": "Request a Quote",
+            "width": 148
+          }
+        ],
+        "cardHeightMax": 543,
         "cardHeightMin": 83,
         "clientWidth": 1351,
         "dir": "ltr",
@@ -266,10 +284,10 @@
         "h1LineHeight": "61.1968px",
         "h1Width": 563,
         "headerHeight": 77,
-        "heroHeight": 747,
+        "heroHeight": 746,
         "horizontalOverflow": false,
         "lang": "en",
-        "minButtonHeight": 44,
+        "minButtonHeight": 40,
         "offscreen": [],
         "scrollWidth": 1351
       },
@@ -294,8 +312,14 @@
       "metrics": {
         "bodyBg": "rgb(250, 248, 244)",
         "bodyColor": "rgb(32, 40, 44)",
-        "buttonsBelow44": [],
-        "cardHeightMax": 475,
+        "buttonsBelow44": [
+          {
+            "height": 40,
+            "text": "Request a Quote",
+            "width": 148
+          }
+        ],
+        "cardHeightMax": 543,
         "cardHeightMin": 83,
         "clientWidth": 1521,
         "dir": "ltr",
@@ -305,10 +329,10 @@
         "h1LineHeight": "68.8128px",
         "h1Width": 558,
         "headerHeight": 77,
-        "heroHeight": 793,
+        "heroHeight": 791,
         "horizontalOverflow": false,
         "lang": "en",
-        "minButtonHeight": 44,
+        "minButtonHeight": 40,
         "offscreen": [],
         "scrollWidth": 1521
       },
