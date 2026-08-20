@@ -289,11 +289,29 @@
   font-size: .88rem;
 }
 
+[data-lab-demo-form] {
+  inline-size: 100%;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  justify-self: stretch;
+}
+
+[data-lab-demo-form] > *,
+.orx-lab-form-grid,
+.orx-lab-form-grid > *,
+.orx-lab-form-grid .orx-field,
+.orx-lab-form-grid :is(.orx-input, .orx-select),
+[data-lab-demo-form] :is(.orx-textarea, .orx-upload, .orx-lab-fieldset) {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+
 .orx-lab-form-grid {
   display: grid;
+  inline-size: 100%;
+  max-inline-size: 100%;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  min-width: 0;
 }
 
 .orx-lab-fieldset {
