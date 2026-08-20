@@ -1,11 +1,5 @@
 {
-  "failures": [
-    "ar-search:search-count",
-    "ar-search:search-route",
-    "en-search:search-count",
-    "en-search:search-route",
-    "en-query-escape:query-count"
-  ],
+  "failures": [],
   "cases": [
     {
       "lang": "ar",
@@ -49,19 +43,11 @@
     }
   ],
   "interaction": {
-    "ar-search": [
-      "search-count",
-      "search-route"
-    ],
+    "ar-search": [],
     "ar-empty-reset": [],
     "ar-query-escape": [],
-    "en-search": [
-      "search-count",
-      "search-route"
-    ],
+    "en-search": [],
     "en-empty-reset": [],
-    "en-query-escape": [
-      "query-count"
-    ]
+    "en-query-escape": []
   }
 }
