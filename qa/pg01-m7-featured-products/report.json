@@ -20,28 +20,9 @@
     "prod-007"
   ],
   "source": "assets/data/products.json + assets/data/suppliers.json",
-  "failures": [
-    "ar:prod-001:missing:data-product-id=\"prod-001\"",
-    "ar:prod-003:missing:data-product-id=\"prod-003\"",
-    "ar:prod-005:missing:data-product-id=\"prod-005\"",
-    "ar:prod-007:missing:data-product-id=\"prod-007\"",
-    "en:prod-001:missing:data-product-id=\"prod-001\"",
-    "en:prod-003:missing:data-product-id=\"prod-003\"",
-    "en:prod-005:missing:data-product-id=\"prod-005\"",
-    "en:prod-007:missing:data-product-id=\"prod-007\""
-  ],
+  "failures": [],
   "pageFailures": {
-    "ar": [
-      "prod-001:missing:data-product-id=\"prod-001\"",
-      "prod-003:missing:data-product-id=\"prod-003\"",
-      "prod-005:missing:data-product-id=\"prod-005\"",
-      "prod-007:missing:data-product-id=\"prod-007\""
-    ],
-    "en": [
-      "prod-001:missing:data-product-id=\"prod-001\"",
-      "prod-003:missing:data-product-id=\"prod-003\"",
-      "prod-005:missing:data-product-id=\"prod-005\"",
-      "prod-007:missing:data-product-id=\"prod-007\""
-    ]
+    "ar": [],
+    "en": []
   }
 }
