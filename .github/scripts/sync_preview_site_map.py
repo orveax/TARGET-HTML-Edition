@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Synchronize the internal ORIGEX preview site map with the approved PS7 registry state.
 
-Update the constants below only after the Page Registry has approved a new PS7 page.
-This utility is internal QA infrastructure and does not change product scope.
+PG32 completes V1 page production at PS7. This utility is internal QA infrastructure
+and does not change product scope or claim deployed PS8 acceptance.
 """
 from pathlib import Path
 import re
@@ -10,16 +10,13 @@ import re
 R = Path(__file__).resolve().parents[2]
 PATH = R / "site-map.html"
 
-IMPLEMENTED_COUNT = 32
-PENDING_COUNT = 1
-LINKED_LANGUAGE_PAGES = 64
-THROUGH_LABEL = "PG31"
-PROMOTED_PG = "PG31"
-PROMOTED_TITLE = "Terms"
-PROMOTED_FILE = "terms.html"
-NEXT_PG = "PG32"
-NEXT_TITLE = "Components / Elements"
-NEXT_FILE = "components.html"
+IMPLEMENTED_COUNT = 33
+PENDING_COUNT = 0
+LINKED_LANGUAGE_PAGES = 66
+THROUGH_LABEL = "PG32"
+PROMOTED_PG = "PG32"
+PROMOTED_TITLE = "Components / Elements"
+PROMOTED_FILE = "components.html"
 
 text = PATH.read_text(encoding="utf-8")
 
@@ -45,15 +42,5 @@ text, count = re.subn(promoted_pattern, promoted_html, text, count=1, flags=re.S
 if count != 1:
     raise SystemExit(f"site-map sync failed: {PROMOTED_PG} card match count {count}")
 
-next_pattern = rf'<article class="card" data-status="pending"><span class="pg">{NEXT_PG}</span>.*?</article>'
-next_html = (
-    f'<article class="card" data-status="pending"><span class="pg">{NEXT_PG}</span>'
-    f'<div><div class="title">{NEXT_TITLE} <span class="status pending">NEXT</span></div>'
-    f'<div class="file">{NEXT_FILE}</div></div><div class="actions"></div></article>'
-)
-text, count = re.subn(next_pattern, next_html, text, count=1, flags=re.S)
-if count != 1:
-    raise SystemExit(f"site-map sync failed: {NEXT_PG} card match count {count}")
-
 PATH.write_text(text, encoding="utf-8")
-print(f"site-map synced: {IMPLEMENTED_COUNT} implemented / {PENDING_COUNT} pending / {LINKED_LANGUAGE_PAGES} language pages / next {NEXT_PG}")
+print(f"site-map synced: {IMPLEMENTED_COUNT} implemented / {PENDING_COUNT} pending / {LINKED_LANGUAGE_PAGES} language pages / page production complete through {THROUGH_LABEL}")
