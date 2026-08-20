@@ -1,6 +1,6 @@
 {
   "failures": [
-    "en-390:document-overflow",
+    "ar-desktop:modal-close",
     "en-desktop:modal-close"
   ],
   "cases": [
@@ -35,21 +35,9 @@
     {
       "lang": "en",
       "width": 390,
-      "failures": [
-        "document-overflow"
-      ],
-      "scrollWidth": 402,
-      "clientWidth": 375,
-      "offenders": [
-        {
-          "cls": "",
-          "left": 70,
-          "right": 402,
-          "scroll": 332,
-          "tag": "input",
-          "width": 332
-        }
-      ]
+      "failures": [],
+      "scrollWidth": 375,
+      "clientWidth": 375
     },
     {
       "lang": "en",
@@ -74,7 +62,9 @@
     }
   ],
   "interaction": {
-    "ar-desktop": [],
+    "ar-desktop": [
+      "modal-close"
+    ],
     "ar-mobile": [],
     "en-desktop": [
       "modal-close"
@@ -104,9 +94,5 @@
       "upload": "backfit",
       "pagination": "backfit"
     }
-  },
-  "modalDismissal": {
-    "ar": "PASS — dismiss button",
-    "en": "FAIL — button and Escape dismissal"
   }
 }
