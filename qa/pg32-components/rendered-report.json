@@ -104,5 +104,9 @@
       "upload": "backfit",
       "pagination": "backfit"
     }
+  },
+  "modalDismissal": {
+    "ar": "PASS — dismiss button",
+    "en": "FAIL — button and Escape dismissal"
   }
 }
