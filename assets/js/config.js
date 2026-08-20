@@ -83,6 +83,15 @@ window.ORIGEX_CONFIG = {
     ]
   },
 
+  comingSoon: {
+    /*
+     * Optional buyer-defined ISO-compatible future date, for example:
+     * "2026-12-01T09:00:00+03:00"
+     * Keep empty to show the neutral "date not configured" state.
+     */
+    launchDate: ""
+  },
+
   features: {
     showSocialLinks: true,
     showBusinessHours: true,
