@@ -13,7 +13,19 @@
   const drawer = document.querySelector('[data-orx-mobile-drawer]');
   const openers = qsa('[data-orx-drawer-open]');
   const closers = qsa('[data-orx-drawer-close]');
+  const focusableSelector = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])'
+  ].join(',');
   let lastFocused = null;
+
+  const drawerFocusables = () => drawer
+    ? qsa(focusableSelector, drawer).filter((element) => !element.hidden && element.getAttribute('aria-hidden') !== 'true')
+    : [];
 
   const setDrawer = (open) => {
     if (!drawer) return;
@@ -22,10 +34,38 @@
     document.body.classList.toggle('orx-nav-open', open);
     openers.forEach((button) => button.setAttribute('aria-expanded', String(open)));
     if (open) {
-      const focusTarget = drawer.querySelector('button, a, input, select, textarea, [tabindex]:not([tabindex="-1"])');
-      focusTarget?.focus();
+      drawerFocusables()[0]?.focus();
     } else if (lastFocused instanceof HTMLElement) {
       lastFocused.focus();
+      lastFocused = null;
+    }
+  };
+
+  const trapDrawerFocus = (event) => {
+    if (!drawer || drawer.getAttribute('aria-hidden') !== 'false' || event.key !== 'Tab') return;
+    const focusables = drawerFocusables();
+    if (!focusables.length) {
+      event.preventDefault();
+      return;
+    }
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const active = document.activeElement;
+
+    if (!drawer.contains(active)) {
+      event.preventDefault();
+      (event.shiftKey ? last : first).focus();
+      return;
+    }
+    if (event.shiftKey && active === first) {
+      event.preventDefault();
+      last.focus();
+      return;
+    }
+    if (!event.shiftKey && active === last) {
+      event.preventDefault();
+      first.focus();
     }
   };
 
@@ -121,8 +161,9 @@
     });
   });
 
-  // Escape closes transient navigation.
+  // Keyboard contract for transient navigation.
   document.addEventListener('keydown', (event) => {
+    trapDrawerFocus(event);
     if (event.key !== 'Escape') return;
     if (drawer?.getAttribute('aria-hidden') === 'false') setDrawer(false);
     qsa('[data-orx-mega-trigger][aria-expanded="true"]').forEach((trigger) => {
