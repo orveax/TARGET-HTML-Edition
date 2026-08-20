@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.hero-upload/pg01.part4'
+      - '.hero-upload/trigger'
 
 permissions:
   contents: write
