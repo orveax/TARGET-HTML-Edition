@@ -52,7 +52,8 @@ No third-party asset or dependency may enter the distributable package without a
 | ORX-MEDIA-009 | Confectionery demo packshot | `assets/media/demo/product-confectionery.svg` | ORVEAX OWNED | PG10 fictional generic confectionery packaging; no third-party brand/trademark |
 | ORX-MEDIA-010 | Ingredients demo packshot | `assets/media/demo/product-ingredients.svg` | ORVEAX OWNED | PG10 fictional generic B2B ingredient packaging; no third-party brand/trademark |
 | ORX-MEDIA-011 | Company Profile demo cover | `assets/media/demo/company-profile-cover.svg` | ORVEAX OWNED | PG33 fictional digital company-profile cover; distributable; no client document, logo, trademark, person or verified-file claim |
-| ORX-MEDIA-012 | PG01 Source-to-Market gateway hero | `assets/media/demo/hero-main-gateway.svg` | ORVEAX OWNED | flagship PG01 V2 hero; original abstract global-trade/cargo/route artwork derived from ORIGEX visual language; distributable; no third-party photography, trademark, person or operational claim |
+| ORX-MEDIA-012 | PG01 Source-to-Market gateway hero | `assets/media/demo/hero-main-gateway.svg` | ORVEAX OWNED | distributable abstract fallback / previous PG01 V2 hero; no third-party photography, trademark, person or operational claim |
+| ORX-MEDIA-013 | PG01 Global Trade Gateway cinematic hero | `assets/media/demo/hero-global-trade-gateway.webp` | APPROVED — PREVIEW ONLY | AI-generated ORVEAX-commissioned cinematic media created for the ORIGEX preview; active PG01 Cloudflare/test-deploy asset; buyer-ZIP inclusion is deferred to M8 marketplace-policy and redistribution review. The distributable fallback remains ORX-MEDIA-012 until that gate is cleared. |
 
 ## Fonts
 
@@ -84,7 +85,7 @@ Primary demo sourcing strategy:
 
 Default buyer ZIP rule: no third-party stock photography unless redistribution rights for that exact asset are verified and logged.
 
-**M2 Home decision:** PG01–PG04 use ORVEAX-owned vector demo media instead of third-party stock photography. These files are distributable, self-contained, fictional, and intentionally free from supplier packaging, trademarks, people/release risk or external attribution requirements.
+**M2 Home decision — updated 2026-08-20:** PG02–PG04 continue to use ORVEAX-owned vector demo media. PG01 uses the tracked cinematic `ORX-MEDIA-013` for the live preview/test deployment because the hero is the primary commercial selling visual. The buyer ZIP keeps `ORX-MEDIA-012` as the distributable fallback until M8 explicitly clears the cinematic asset against current marketplace and redistribution requirements.
 
 Image rows must include:
 - Asset ID
