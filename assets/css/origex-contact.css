@@ -28,16 +28,17 @@
 .orx-contact-fact .orx-business-hours__row{display:flex;justify-content:space-between;gap:1rem;padding:.3rem 0;border:0;font-size:var(--orx-fs-small)}
 
 .orx-contact-workspace{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:clamp(2rem,5vw,4rem);align-items:start}
-.orx-contact-form{padding:clamp(1.25rem,3vw,2rem);border:1px solid var(--orx-border);border-radius:var(--orx-radius-lg);background:var(--orx-surface);box-shadow:var(--orx-shadow-e1)}
+.orx-contact-form{position:relative;isolation:isolate;padding:clamp(1.25rem,3vw,2rem);border:1px solid var(--orx-border);border-radius:var(--orx-radius-lg);background:var(--orx-surface);box-shadow:var(--orx-shadow-e1)}
 .orx-contact-form__head{margin-bottom:var(--orx-space-8);padding-bottom:var(--orx-space-5);border-bottom:1px solid var(--orx-border)}
 .orx-contact-form__head h2{margin:.35rem 0 .5rem;font-size:clamp(1.55rem,2.5vw,2.25rem)}
 .orx-contact-form__head p{margin:0;color:var(--orx-text-muted)}
 .orx-contact-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--orx-space-5)}
 .orx-contact-field--full{grid-column:1/-1}
-.orx-contact-consent{position:relative;isolation:isolate;display:grid;grid-template-columns:auto minmax(0,1fr);gap:.75rem;align-items:start;padding:var(--orx-space-4);border:1px solid var(--orx-border);border-radius:var(--orx-radius-sm);background:var(--orx-surface-soft)}
+.orx-contact-consent{position:relative;z-index:2;isolation:isolate;display:grid;grid-template-columns:auto minmax(0,1fr);gap:.75rem;align-items:start;padding:var(--orx-space-4);border:1px solid var(--orx-border);border-radius:var(--orx-radius-sm);background:var(--orx-surface-soft)}
 .orx-contact-consent input{position:relative;z-index:2;width:24px;height:24px;margin:0;accent-color:var(--orx-primary);cursor:pointer}
 .orx-contact-consent label{position:relative;z-index:1;display:flex;align-items:center;min-height:24px;font-size:var(--orx-fs-small);color:var(--orx-text-muted);cursor:pointer}
-.orx-contact-form__actions{display:flex;flex-wrap:wrap;gap:var(--orx-space-3);align-items:center;margin-top:var(--orx-space-6)}
+.orx-contact-form__actions{position:relative;z-index:3;display:flex;flex-wrap:wrap;gap:var(--orx-space-3);align-items:center;margin-top:var(--orx-space-6)}
+.orx-contact-form__actions .orx-btn{position:relative;z-index:1}
 .orx-contact-form__note{margin:0;color:var(--orx-text-muted);font-size:var(--orx-fs-small)}
 .orx-contact-form [aria-invalid="true"]{border-color:var(--orx-danger);box-shadow:0 0 0 3px color-mix(in srgb,var(--orx-danger) 14%,transparent)}
 .orx-contact-status{margin-bottom:var(--orx-space-5)}
