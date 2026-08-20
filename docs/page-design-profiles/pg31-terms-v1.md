@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Milestone: M6 — Support / Utility / Components  
 Canonical file: `terms.html`  
-Status: PS6 — FROZEN FOR BUILD
+Status: PS7 — IMPLEMENTED / CI QA PASS
 
 ## Purpose
 Provide a professional bilingual sample Terms of Use layout for the ORIGEX commercial template while making it explicit that the content is a structural Demo only and is not ready-to-publish legal terms for any business or jurisdiction.
@@ -173,5 +173,17 @@ Promote only after:
 - Global Navigation V1 + Global Footer V1 PASS;
 - F05 Icon Integrity PASS;
 - zero TARGET/client leakage.
+
+## PS7 Evidence — 2026-08-20
+- Final QA status: PASS.
+- Source/legal/standards failures: 0.
+- AR: 8 sections / 8 TOC links / 2 legal lists / 4 table rows / 0 failures.
+- EN: 8 sections / 8 TOC links / 2 legal lists / 4 table rows / 0 failures.
+- Rendered AR/EN × 390/820/1366/1536: 8/8 PASS.
+- TOC / legal context navigation / language switch / semantic table focus: PASS in both languages.
+- Shared legal TOC/context controls consume the 48px STD-DIM01 tier.
+- Semantic table follows STD-DATA01 and scrolls inside its own wrapper on mobile without document overflow.
+- Global F05 after PG31: 64 AR/EN pages / 0 missing sprite references.
+- Final evidence commit: `d626862192626418ed806101dd60288d69456d09`.
 
 PS8 remains deployed browser acceptance. A real production website must replace and legally review this Demo content before any claim that its Terms are publication-ready.
