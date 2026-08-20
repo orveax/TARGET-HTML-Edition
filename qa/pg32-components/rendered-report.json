@@ -1,6 +1,7 @@
 {
   "failures": [
     "ar-390:document-overflow",
+    "ar-desktop:modal-close",
     "en-390:document-overflow"
   ],
   "cases": [
@@ -10,25 +11,9 @@
       "failures": [
         "document-overflow"
       ],
-      "scrollWidth": 421,
+      "scrollWidth": 396,
       "clientWidth": 375,
       "offenders": [
-        {
-          "cls": "orx-product-card__media orx-lab-media-placeholder",
-          "left": -197,
-          "right": 354,
-          "scroll": 551,
-          "tag": "div",
-          "width": 551
-        },
-        {
-          "cls": "orx-card orx-lab-stack",
-          "left": -46,
-          "right": 355,
-          "scroll": 399,
-          "tag": "form",
-          "width": 401
-        },
         {
           "cls": "orx-lab-form-grid",
           "left": -21,
@@ -107,6 +92,22 @@
           "right": 330,
           "scroll": 351,
           "tag": "label",
+          "width": 351
+        },
+        {
+          "cls": "orx-field__label",
+          "left": -21,
+          "right": 330,
+          "scroll": 351,
+          "tag": "span",
+          "width": 351
+        },
+        {
+          "cls": "orx-select",
+          "left": -21,
+          "right": 330,
+          "scroll": 349,
+          "tag": "select",
           "width": 351
         }
       ]
@@ -138,25 +139,9 @@
       "failures": [
         "document-overflow"
       ],
-      "scrollWidth": 452,
+      "scrollWidth": 427,
       "clientWidth": 375,
       "offenders": [
-        {
-          "cls": "orx-product-card__media orx-lab-media-placeholder",
-          "left": 21,
-          "right": 583,
-          "scroll": 562,
-          "tag": "div",
-          "width": 562
-        },
-        {
-          "cls": "orx-card orx-lab-stack",
-          "left": 20,
-          "right": 452,
-          "scroll": 430,
-          "tag": "form",
-          "width": 432
-        },
         {
           "cls": "orx-lab-form-grid",
           "left": 45,
@@ -235,6 +220,22 @@
           "right": 427,
           "scroll": 382,
           "tag": "label",
+          "width": 382
+        },
+        {
+          "cls": "orx-field__label",
+          "left": 45,
+          "right": 427,
+          "scroll": 382,
+          "tag": "span",
+          "width": 382
+        },
+        {
+          "cls": "orx-select",
+          "left": 45,
+          "right": 427,
+          "scroll": 380,
+          "tag": "select",
           "width": 382
         }
       ]
@@ -262,7 +263,9 @@
     }
   ],
   "interaction": {
-    "ar-desktop": [],
+    "ar-desktop": [
+      "modal-close"
+    ],
     "ar-mobile": [],
     "en-desktop": [],
     "en-mobile": []
