@@ -1,7 +1,7 @@
 {
   "failures": [
-    "ar-form:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1193, 3599)\n  (Session info: chrome=151.0.7922.137); For documentation on this error, please visit: https://w",
-    "en-form:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (334, 3501)\n  (Session info: chrome=151.0.7922.137); For documentation on this error, please visit: https://ww"
+    "ar-form:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1193, 3599)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://w",
+    "en-form:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (334, 3501)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://ww"
   ],
   "cases": [
     {
@@ -50,13 +50,13 @@
     "ar-query-language": [],
     "ar-invalid-topic": [],
     "ar-form": [
-      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1193, 3599)\n  (Session info: chrome=151.0.7922.137); For documentation on this error, please visit: https://w"
+      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1193, 3599)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://w"
     ],
     "en-route": [],
     "en-query-language": [],
     "en-invalid-topic": [],
     "en-form": [
-      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (334, 3501)\n  (Session info: chrome=151.0.7922.137); For documentation on this error, please visit: https://ww"
+      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (334, 3501)\n  (Session info: chrome=151.0.7922.108); For documentation on this error, please visit: https://ww"
     ]
   }
 }

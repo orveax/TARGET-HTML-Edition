@@ -1,7 +1,5 @@
 {
-  "failures": [
-    "en:response-claim"
-  ],
+  "failures": [],
   "pages": {
     "ar": {
       "failures": [],
@@ -22,9 +20,7 @@
       ]
     },
     "en": {
-      "failures": [
-        "response-claim"
-      ],
+      "failures": [],
       "routes": [
         "general",
         "rfq",
