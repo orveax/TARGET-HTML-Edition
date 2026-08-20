@@ -169,28 +169,25 @@ section[aria-labelledby="process-title"] .orx-process-card .orx-card__copy{
 }
 
 /* --------------------------------------------------------------------------
-   Categories — controlled visual-header card variant
+   Categories — visual header preserved, icon + title hierarchy normalized
    -------------------------------------------------------------------------- */
 section[aria-labelledby="categories-title"] .orx-feature-card{
   --orx-cat-a:var(--orx-ink-800);
   --orx-cat-b:var(--orx-emerald-700);
-  grid-template-columns:1fr;
+  grid-template-columns:48px minmax(0,1fr);
+  column-gap:1rem;
+  row-gap:.9rem;
   overflow:hidden;
-  min-block-size:310px;
-  padding-block-start:9.2rem;
+  min-block-size:270px;
+  padding-block-start:8.35rem;
   box-shadow:var(--orx-shadow-e1);
-}
-section[aria-labelledby="categories-title"] .orx-feature-card>.orx-card__title{
-  grid-column:1;
-  grid-row:auto;
-  align-self:auto;
 }
 section[aria-labelledby="categories-title"] .orx-feature-card::before{
   content:"";
   position:absolute;
   inset-block-start:0;
   inset-inline:0;
-  block-size:7.2rem;
+  block-size:6.35rem;
   background:
     radial-gradient(circle at 18% 28%,rgba(255,255,255,.38) 0 9%,transparent 10%),
     radial-gradient(circle at 72% 62%,rgba(255,255,255,.2) 0 14%,transparent 15%),
@@ -198,20 +195,32 @@ section[aria-labelledby="categories-title"] .orx-feature-card::before{
   opacity:.96;
 }
 section[aria-labelledby="categories-title"] .orx-feature-card .orx-icon-box{
-  position:absolute;
-  inset-block-start:4.7rem;
-  inset-inline-start:1.35rem;
+  position:static;
   z-index:2;
-  background:var(--orx-white);
-  border-color:rgba(255,255,255,.7);
-  box-shadow:var(--orx-shadow-e1);
+  grid-column:1;
+  grid-row:1;
+  inline-size:48px;
+  block-size:48px;
+  background:var(--orx-surface-subtle);
+  border-color:var(--orx-border);
+  box-shadow:none;
+}
+section[aria-labelledby="categories-title"] .orx-feature-card>.orx-card__title{
+  grid-column:2;
+  grid-row:1;
+  align-self:center;
+  margin:0;
+}
+section[aria-labelledby="categories-title"] .orx-feature-card>.orx-card__copy{
+  grid-column:1/-1;
+  margin:0;
 }
 section[aria-labelledby="categories-title"] .orx-feature-card__index{
   position:absolute;
   inset-block-start:1rem;
   inset-inline-end:1.15rem;
-  color:rgba(255,255,255,.72);
   z-index:2;
+  color:rgba(255,255,255,.8);
 }
 section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(2){--orx-cat-a:var(--orx-ink-950);--orx-cat-b:var(--orx-emerald-700)}
 section[aria-labelledby="categories-title"] .orx-feature-card:nth-child(3){--orx-cat-a:var(--orx-emerald-700);--orx-cat-b:var(--orx-emerald-300)}
@@ -281,7 +290,7 @@ section[aria-labelledby="roles-title"] .orx-feature-card .orx-text-action{
 }
 
 /* --------------------------------------------------------------------------
-   Products — B2B merchandising, larger media and clearer commercial scan
+   Products — B2B merchandising, larger media and stronger action affordance
    -------------------------------------------------------------------------- */
 section[aria-labelledby="products-title"]{
   padding-block:clamp(4.5rem,6.5vw,6rem);
@@ -316,8 +325,22 @@ section[aria-labelledby="products-title"] .orx-product-card .orx-card__copy{
   line-height:1.65;
 }
 section[aria-labelledby="products-title"] .orx-product-card .orx-text-action{
+  display:flex;
+  min-block-size:48px;
+  align-items:center;
+  justify-content:space-between;
+  gap:.75rem;
   margin-block-start:auto;
-  padding-block-start:1rem;
+  padding:.7rem .85rem;
+  border:1px solid var(--orx-border-strong);
+  border-radius:var(--orx-radius-sm);
+  background:var(--orx-surface-subtle);
+  text-decoration:none;
+}
+section[aria-labelledby="products-title"] .orx-product-card .orx-text-action:hover{
+  border-color:var(--orx-primary);
+  background:var(--orx-surface-raised);
+  text-decoration:none;
 }
 
 /* --------------------------------------------------------------------------
@@ -346,12 +369,23 @@ section[aria-labelledby="supplier-cta-title"] .orx-cta-card::after{
   box-shadow:0 0 0 55px rgba(255,255,255,.035),0 0 0 110px rgba(255,255,255,.025);
 }
 
-/* End-of-page rhythm: keep utility content readable without excessive length. */
+/* --------------------------------------------------------------------------
+   End-of-page hierarchy — separate the final conversion CTA from the footer
+   This selector is intentionally PG01-specific through its section sequence.
+   -------------------------------------------------------------------------- */
 section[aria-labelledby="faq-title"]{
   padding-block:clamp(4rem,6vw,5.25rem);
 }
-.orx-final-cta{
-  padding-block:clamp(3.75rem,5.5vw,5rem);
+section[aria-labelledby="supplier-cta-title"] ~ section[aria-labelledby="faq-title"] + .orx-final-cta{
+  padding-block:clamp(2.75rem,4.5vw,4rem);
+  background:var(--orx-surface-subtle);
+}
+section[aria-labelledby="supplier-cta-title"] ~ section[aria-labelledby="faq-title"] + .orx-final-cta .orx-final-cta__inner{
+  padding:clamp(2rem,4vw,3rem);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--orx-radius-lg);
+  background:var(--orx-surface-brand-strong);
+  box-shadow:var(--orx-shadow-e2);
 }
 
 @media(min-width:900px){
@@ -472,17 +506,35 @@ section[aria-labelledby="faq-title"]{
   }
 
   section[aria-labelledby="categories-title"] .orx-feature-card{
-    min-block-size:280px;
-    padding-block-start:8.5rem;
+    min-block-size:0;
+    grid-template-columns:48px minmax(0,1fr);
+    padding-block-start:6.1rem;
   }
-  section[aria-labelledby="categories-title"] .orx-feature-card::before{block-size:6.7rem}
-  section[aria-labelledby="categories-title"] .orx-feature-card .orx-icon-box{inset-block-start:4.25rem}
+  section[aria-labelledby="categories-title"] .orx-feature-card::before{
+    block-size:4.35rem;
+  }
+  section[aria-labelledby="categories-title"] .orx-feature-card .orx-icon-box{
+    inline-size:48px;
+    block-size:48px;
+  }
+  section[aria-labelledby="categories-title"] .orx-feature-card__index{
+    inset-block-start:.8rem;
+    font-size:1.8rem;
+  }
 
   section[aria-labelledby="roles-title"] .orx-grid{gap:.9rem}
   section[aria-labelledby="roles-title"] .orx-feature-card{min-block-size:180px}
 
   section[aria-labelledby="products-title"] .orx-product-card__media{aspect-ratio:16/10}
+  section[aria-labelledby="products-title"] .orx-product-card .orx-text-action{min-block-size:48px}
   section[aria-labelledby="supplier-cta-title"] .orx-cta-card>.orx-btn{margin-block-start:.5rem}
+  section[aria-labelledby="supplier-cta-title"] ~ section[aria-labelledby="faq-title"] + .orx-final-cta{
+    padding-block:2rem;
+  }
+  section[aria-labelledby="supplier-cta-title"] ~ section[aria-labelledby="faq-title"] + .orx-final-cta .orx-final-cta__inner{
+    padding:1.5rem;
+    border-radius:var(--orx-radius-md);
+  }
 }
 
 @media(prefers-reduced-motion:reduce){
