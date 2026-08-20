@@ -1,14 +1,10 @@
 {
-  "failures": [
-    "ar-390:exception:ReadTimeoutError:HTTPConnectionPool(host='localhost', port=40445): Read timed out. (read timeout=120)"
-  ],
+  "failures": [],
   "cases": [
     {
       "lang": "ar",
       "width": 390,
-      "failures": [
-        "exception:ReadTimeoutError:HTTPConnectionPool(host='localhost', port=40445): Read timed out. (read timeout=120)"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
