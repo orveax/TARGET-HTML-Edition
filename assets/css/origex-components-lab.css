@@ -451,8 +451,12 @@
   .orx-lab-do-dont { grid-template-columns: 1fr; }
 
   .orx-lab-counts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
   .orx-lab-reference-list li { grid-template-columns: 3.8rem minmax(0, 1fr); }
+
+  /* Mobile preserves semantic table relationships without forcing an off-viewport minimum width. */
+  .orx-lab-table { min-width: 0; table-layout: fixed; }
+  .orx-lab-table th,
+  .orx-lab-table td { overflow-wrap: anywhere; }
 }
 
 @media (max-width: 420px) {
