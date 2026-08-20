@@ -1,34 +1,5 @@
 {
-  "failures": [
-    "ar/home-02.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "ar/home-02.html:820:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "ar/home-02.html:1366:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "ar/home-02.html:1536:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "ar/home-03.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "ar/home-03.html:820:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "ar/home-03.html:1366:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "ar/home-03.html:1536:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "ar/how-we-work.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "ar/index.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt03-dot-matrix.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "ar/index.html:820:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "ar/index.html:1366:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "ar/index.html:1536:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "ar/insights.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "en/home-02.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "en/home-02.html:820:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "en/home-02.html:1366:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "en/home-02.html:1536:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "en/home-03.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "en/home-03.html:820:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "en/home-03.html:1366:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "en/home-03.html:1536:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "en/how-we-work.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "en/index.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "en/index.html:820:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt03-dot-matrix.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "en/index.html:1366:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "en/index.html:1536:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)",
-    "en/insights.html:390:console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-  ],
+  "failures": [],
   "caseCount": 264,
   "expectedCases": 264,
   "cases": [
@@ -486,9 +457,7 @@
       "width": 390,
       "scrollWidth": 375,
       "clientWidth": 375,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
@@ -496,9 +465,7 @@
       "width": 820,
       "scrollWidth": 805,
       "clientWidth": 805,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
@@ -506,9 +473,7 @@
       "width": 1366,
       "scrollWidth": 1351,
       "clientWidth": 1351,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
@@ -516,9 +481,7 @@
       "width": 1536,
       "scrollWidth": 1521,
       "clientWidth": 1521,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
@@ -526,9 +489,7 @@
       "width": 390,
       "scrollWidth": 375,
       "clientWidth": 375,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
@@ -536,9 +497,7 @@
       "width": 820,
       "scrollWidth": 805,
       "clientWidth": 805,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
@@ -546,9 +505,7 @@
       "width": 1366,
       "scrollWidth": 1351,
       "clientWidth": 1351,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
@@ -556,9 +513,7 @@
       "width": 1536,
       "scrollWidth": 1521,
       "clientWidth": 1521,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
@@ -566,9 +521,7 @@
       "width": 390,
       "scrollWidth": 375,
       "clientWidth": 375,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
@@ -600,9 +553,7 @@
       "width": 390,
       "scrollWidth": 375,
       "clientWidth": 375,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt03-dot-matrix.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
@@ -610,9 +561,7 @@
       "width": 820,
       "scrollWidth": 805,
       "clientWidth": 805,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
@@ -620,9 +569,7 @@
       "width": 1366,
       "scrollWidth": 1351,
       "clientWidth": 1351,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
@@ -630,9 +577,7 @@
       "width": 1536,
       "scrollWidth": 1521,
       "clientWidth": 1521,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
@@ -640,9 +585,7 @@
       "width": 390,
       "scrollWidth": 375,
       "clientWidth": 375,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
@@ -1570,9 +1513,7 @@
       "width": 390,
       "scrollWidth": 375,
       "clientWidth": 375,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
@@ -1580,9 +1521,7 @@
       "width": 820,
       "scrollWidth": 805,
       "clientWidth": 805,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
@@ -1590,9 +1529,7 @@
       "width": 1366,
       "scrollWidth": 1351,
       "clientWidth": 1351,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
@@ -1600,9 +1537,7 @@
       "width": 1536,
       "scrollWidth": 1521,
       "clientWidth": 1521,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
@@ -1610,9 +1545,7 @@
       "width": 390,
       "scrollWidth": 375,
       "clientWidth": 375,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
@@ -1620,9 +1553,7 @@
       "width": 820,
       "scrollWidth": 805,
       "clientWidth": 805,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
@@ -1630,9 +1561,7 @@
       "width": 1366,
       "scrollWidth": 1351,
       "clientWidth": 1351,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
@@ -1640,9 +1569,7 @@
       "width": 1536,
       "scrollWidth": 1521,
       "clientWidth": 1521,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
@@ -1650,9 +1577,7 @@
       "width": 390,
       "scrollWidth": 375,
       "clientWidth": 375,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt02-trade-grid.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
@@ -1684,9 +1609,7 @@
       "width": 390,
       "scrollWidth": 375,
       "clientWidth": 375,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
@@ -1694,9 +1617,7 @@
       "width": 820,
       "scrollWidth": 805,
       "clientWidth": 805,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt03-dot-matrix.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
@@ -1704,9 +1625,7 @@
       "width": 1366,
       "scrollWidth": 1351,
       "clientWidth": 1351,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
@@ -1714,9 +1633,7 @@
       "width": 1536,
       "scrollWidth": 1521,
       "clientWidth": 1521,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
@@ -1724,9 +1641,7 @@
       "width": 390,
       "scrollWidth": 375,
       "clientWidth": 375,
-      "failures": [
-        "console-severe:http://127.0.0.1:8782/assets/assets/patterns/pt01-route-lines.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt04-market-nodes.svg - Failed to load resource: the server responded with a status of 404 (File not found) | http://127.0.0.1:8782/assets/assets/patterns/pt05-packaging-geometry.svg - Failed to load resource: the server responded with a status of 404 (File not found)"
-      ]
+      "failures": []
     },
     {
       "lang": "en",
