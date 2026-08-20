@@ -1,0 +1,45 @@
+name: PG01 M7 Composition QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - m7-brand-system-backfit
+    paths:
+      - 'ar/index.html'
+      - 'en/index.html'
+      - 'assets/css/origex-components.css'
+      - 'assets/css/origex-marketplace-polish.css'
+      - '.github/scripts/normalize_pg01_m7_composition.py'
+      - '.github/workflows/pg01-m7-composition.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pg01-m7-composition-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  composition:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Normalize PG01 composition ownership
+        run: python .github/scripts/normalize_pg01_m7_composition.py
+
+      - name: Commit normalized PG01 and QA evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- ar/index.html en/index.html qa/pg01-m7-composition || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Normalize PG01 M7 composition ownership"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Verify deterministic PG01 composition state
+        run: python .github/scripts/normalize_pg01_m7_composition.py --check
