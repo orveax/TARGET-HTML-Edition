@@ -8,8 +8,7 @@ on:
       - m7-brand-system-backfit
     paths:
       - 'assets/brand/**'
-      - 'assets/css/origex-tokens.css'
-      - 'assets/css/origex-marketplace-polish.css'
+      - 'assets/css/*.css'
       - 'ar/*.html'
       - 'en/*.html'
       - '.github/scripts/normalize_global_navigation.py'
@@ -46,7 +45,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- ar en qa/brand-system-v12 assets/brand assets/css/origex-tokens.css assets/css/origex-marketplace-polish.css .github/scripts/normalize_global_navigation.py .github/scripts/normalize_global_footer.py .github/scripts/normalize_brand_system_v12.py || true
+          git add -- ar en qa/brand-system-v12 assets/brand .github/scripts/normalize_global_navigation.py .github/scripts/normalize_global_footer.py .github/scripts/normalize_brand_system_v12.py || true
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Normalize ORIGEX Brand System v1.2"
           git pull --rebase origin "${GITHUB_REF_NAME}" || true
