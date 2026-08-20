@@ -1,6 +1,8 @@
 name: Assemble PG01 HQ Hero
 
 on:
+  issues:
+    types: [opened]
   push:
     branches: [main]
     paths:
@@ -12,6 +14,7 @@ permissions:
 
 jobs:
   assemble:
+    if: github.event_name == 'push' || github.event.issue.title == 'PG01-HERO-ASSEMBLY'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
