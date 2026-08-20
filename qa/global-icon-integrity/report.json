@@ -1,7 +1,7 @@
 {
   "failures": [],
   "summary": {
-    "pagesChecked": 53,
+    "pagesChecked": 54,
     "symbolsRegistered": 33,
     "symbolsReferenced": 31,
     "missingReferences": 0
@@ -572,6 +572,18 @@
         "package",
         "route",
         "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/faq.html": {
+      "references": [
+        "arrow-up",
+        "chevron-down",
+        "info",
+        "menu",
+        "phone",
+        "search",
         "x"
       ],
       "missing": []
