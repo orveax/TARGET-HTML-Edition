@@ -1,0 +1,24 @@
+{
+  "failures": [],
+  "pages": {
+    "ar": {
+      "failures": [],
+      "sections": 8,
+      "tocLinks": 8,
+      "legalLists": 2,
+      "tableRows": 4,
+      "iconCount": 8
+    },
+    "en": {
+      "failures": [],
+      "sections": 8,
+      "tocLinks": 8,
+      "legalLists": 2,
+      "tableRows": 4,
+      "iconCount": 8
+    }
+  },
+  "css": {
+    "failures": []
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "failures": [],
+  "cases": [
+    {
+      "lang": "ar",
+      "width": 390,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "width": 1536,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 1536,
+      "failures": []
+    }
+  ],
+  "interaction": {
+    "ar-toc-context-language-table": [],
+    "en-toc-context-language-table": []
+  }
+}
