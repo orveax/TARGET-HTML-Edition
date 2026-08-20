@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#15343B">
+  <title>ORIGEX Components &amp; Elements | Design System Library</title>
+  <meta name="description" content="ORIGEX component reference demonstrating buttons, cards, forms, tables, states and B2B food-trading UI patterns.">
+  <link rel="canonical" href="https://example.com/en/components.html">
+  <link rel="alternate" hreflang="ar" href="https://example.com/ar/components.html">
+  <link rel="alternate" hreflang="en" href="https://example.com/en/components.html">
+  <link rel="alternate" hreflang="x-default" href="https://example.com/en/components.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ORIGEX Trading Demo">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="ORIGEX Components & Elements | Design System Library">
+  <meta property="og:description" content="A buyer-facing ORIGEX component reference and QA laboratory using realistic fictional B2B food-trading examples.">
+  <meta property="og:url" content="https://example.com/en/components.html">
+  <meta property="og:image" content="https://example.com/assets/brand/origex-brand-field.svg">
+  <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/origex-tokens.css">
+  <link rel="stylesheet" href="../assets/css/origex-foundation.css">
+  <link rel="stylesheet" href="../assets/css/origex-components.css">
+  <link rel="stylesheet" href="../assets/css/origex-shell.css">
+  <link rel="stylesheet" href="../assets/css/origex-components-lab.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"ORIGEX Components & Elements","url":"https://example.com/en/components.html","inLanguage":"en","description":"ORIGEX component reference demonstrating buttons, cards, forms, tables, states and B2B food-trading UI patterns."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://example.com/en/"},{"@type":"ListItem","position":2,"name":"Components & Elements","item":"https://example.com/en/components.html"}]}]}</script>
+</head>
+<body>
+<a class="orx-skip-link" href="#main">Skip to content</a>
+<div class="orx-announcement" data-orx-announcement>
+  <div class="orx-container orx-announcement__inner">
+    <span data-orx-announcement-text>B2B food trading &amp; distribution — from source to market.</span>
+    <a class="orx-announcement__link" href="contact.html" data-orx-announcement-link>Contact us</a>
+    <button class="orx-icon-btn orx-announcement__close" type="button" aria-label="Close announcement" data-orx-announcement-close><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#x"></use></svg></button>
+  </div>
+</div>
+<header class="orx-site-header" data-orx-site-header data-orx-global-nav="v1">
+  <div class="orx-container orx-container--wide orx-site-header__inner">
+    <a class="orx-brand" href="index.html" aria-label="ORIGEX — Home"><img src="../assets/brand/origex-logo.svg" alt="ORIGEX" width="140" height="40"></a>
+    <nav class="orx-primary-nav" aria-label="Primary navigation">
+      <a class="orx-nav-link" href="index.html">Home</a>
+      <a class="orx-nav-link" href="products.html">Products</a>
+      <a class="orx-nav-link" href="suppliers.html">Suppliers</a>
+      <a class="orx-nav-link" href="market-access.html">Market Access</a>
+      <button class="orx-nav-link" type="button" aria-expanded="false" aria-controls="global-mega-en" data-orx-mega-trigger aria-current="page">Explore <svg class="orx-icon orx-icon--sm" aria-hidden="true"><use href="../assets/icons/sprite.svg#chevron-down"></use></svg></button>
+    </nav>
+    <div class="orx-site-header__actions">
+      <a class="orx-lang-switch" href="../ar/components.html" lang="ar" hreflang="ar">AR</a>
+      <a class="orx-btn orx-btn--primary orx-btn--sm" href="rfq.html" data-orx-header-cta>Request a Quote</a>
+      <button class="orx-icon-btn orx-mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-orx-drawer-open><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#menu"></use></svg></button>
+    </div>
+    <div class="orx-mega-menu" id="global-mega-en" data-orx-mega-menu hidden>
+      <div class="orx-mega-menu__grid">
+        <div class="orx-mega-menu__group"><span class="orx-mega-menu__title">Company</span><a href="about.html">About</a><a href="how-we-work.html">How We Work</a><a href="capabilities.html">Capabilities &amp; Services</a><a href="company-profile.html">Company Profile</a></div>
+        <div class="orx-mega-menu__group"><span class="orx-mega-menu__title">Products</span><a href="product-categories.html">Product Categories</a><a href="products.html">All Products</a></div>
+        <div class="orx-mega-menu__group"><span class="orx-mega-menu__title">Suppliers</span><a href="suppliers.html">Suppliers &amp; Brands</a><a href="for-suppliers.html">For Suppliers</a><a href="submit-product.html">Submit Your Product</a></div>
+        <div class="orx-mega-menu__group"><span class="orx-mega-menu__title">Market &amp; Partnership</span><a href="market-access.html">Market Access</a><a href="markets.html">Markets &amp; Countries</a><a href="become-partner.html">Become Distributor / Partner</a></div>
+        <div class="orx-mega-menu__group"><span class="orx-mega-menu__title">Resources &amp; Support</span><a href="case-studies.html">Case Studies</a><a href="resources.html">Downloads / Resources</a><a href="certifications-compliance.html">Certifications &amp; Compliance</a><a href="insights.html">Insights</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></div>
+        <div class="orx-mega-menu__group"><span class="orx-mega-menu__title">Home Demos</span><a href="index.html">Home 01</a><a href="home-02.html">Home 02</a><a href="home-03.html">Home 03</a><a href="landing.html">Landing / One Page</a></div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="orx-mobile-drawer" data-orx-mobile-drawer aria-hidden="true" data-orx-global-nav="v1">
+  <div class="orx-mobile-drawer__backdrop" data-orx-drawer-backdrop></div>
+  <aside class="orx-mobile-drawer__panel" aria-label="Mobile menu">
+    <div class="orx-mobile-drawer__head"><img src="../assets/brand/origex-logo.svg" alt="ORIGEX" width="128" height="37"><button class="orx-icon-btn" type="button" aria-label="Close menu" data-orx-drawer-close><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#x"></use></svg></button></div>
+    <nav class="orx-mobile-nav"><a href="index.html">Home</a><a href="products.html">Products</a><a href="product-categories.html">Product Categories</a><a href="suppliers.html">Suppliers</a><a href="for-suppliers.html">For Suppliers</a><a href="market-access.html">Market Access</a><a href="markets.html">Markets &amp; Countries</a><a href="about.html">About</a><a href="how-we-work.html">How We Work</a><a href="capabilities.html">Capabilities &amp; Services</a><a href="company-profile.html">Company Profile</a><a href="submit-product.html">Submit Your Product</a><a href="become-partner.html">Become Distributor / Partner</a><a href="resources.html">Resources</a><a href="insights.html">Insights</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a><a href="../ar/components.html" lang="ar">العربية</a></nav>
+  </aside>
+</div>
+
+<main id="main" data-pg32-root>
+  <section class="orx-hero" aria-labelledby="pg32-title-en" data-lab-registry="S02">
+    <div class="orx-container orx-container--wide orx-hero__grid">
+      <div>
+        <nav class="orx-breadcrumb" aria-label="Breadcrumb" data-lab-registry="C12"><ol><li><a href="index.html">Home</a></li><li aria-current="page">Components &amp; Elements</li></ol></nav>
+        <span class="orx-eyebrow">PG32 · DESIGN SYSTEM QA LAB</span>
+        <h1 id="pg32-title-en">ORIGEX components demonstrated with realistic, customization-ready content.</h1>
+        <p class="orx-lead">Explore buttons, cards, forms, tables, states and patterns using commercial examples from the same ORIGEX template experience.</p>
+        <div class="orx-hero__actions"><a class="orx-btn orx-btn--primary" href="#primitives">Browse components</a><a class="orx-btn orx-btn--secondary" href="#diagnostics">View diagnostics</a></div>
+      </div>
+      <aside class="orx-lab-hero__aside" aria-label="Registry coverage summary">
+        <div><span class="orx-eyebrow">FROZEN V1 REGISTRY</span><h2>One controlled system, visible in one place.</h2><p>This page is both a buyer reference and a QA surface. It does not create replacement component families.</p></div>
+        <div class="orx-lab-counts">
+          <div class="orx-lab-count"><strong>7</strong><span>Foundations</span></div>
+          <div class="orx-lab-count"><strong>11</strong><span>Primitives</span></div>
+          <div class="orx-lab-count"><strong>28</strong><span>Core components</span></div>
+          <div class="orx-lab-count"><strong>6 + 4</strong><span>Sections + navigation</span></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="orx-section orx-section--soft" aria-label="QA laboratory boundary">
+    <div class="orx-container orx-container--wide">
+      <div class="orx-lab-boundary"><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#info"></use></svg></div><div><strong>Reference + QA surface — not a claim that every systemic backfit is already closed.</strong><p>All commercial names and facts are fictional Demo content. A <b>BACKFIT</b> marker intentionally exposes a current system mismatch against the frozen target; it is not hidden with a page-local override. Systemic fixes follow PG32 in the approved backfit phase.</p></div></div>
+    </div>
+  </section>
+
+  <section class="orx-section" aria-labelledby="lab-index-title">
+    <div class="orx-container orx-container--wide">
+      <header class="orx-section-header" data-lab-registry="S01"><span class="orx-eyebrow">BUYER QUICK INDEX</span><h2 id="lab-index-title">Move from system rules to real commercial specimens.</h2><p class="orx-lead">Each section keeps the component ID visible so buyers and reviewers can trace what is reusable and where it belongs.</p></header>
+      <nav class="orx-lab-index" aria-label="Component library sections"><a href="#foundations">Foundations</a><a href="#diagnostics">Dimensions</a><a href="#primitives">Primitives</a><a href="#cards">Cards</a><a href="#interactions">Interactions</a><a href="#data-trust">Data &amp; trust</a><a href="#forms">Forms</a><a href="#media">Media</a><a href="#localization">Localization</a><a href="#customization">Customization</a></nav>
+    </div>
+  </section>
+
+  <section class="orx-section orx-section--surface" id="foundations" aria-labelledby="foundations-title">
+    <div class="orx-container orx-container--wide">
+      <header class="orx-section-header"><span class="orx-eyebrow">F01–F07</span><h2 id="foundations-title">Foundations define the reusable visual language.</h2><p class="orx-lead">Color, type, spacing, shape, icons, motion and media are controlled centrally. A palette value alone does not authorize a foreground/background pairing.</p></header>
+      <div class="orx-lab-swatches" aria-label="Semantic surface reference">
+        <div class="orx-lab-swatch"><div class="orx-lab-swatch__sample orx-lab-surface--base">Surface + text</div><div class="orx-lab-swatch__meta">Reference pairing · F01</div></div>
+        <div class="orx-lab-swatch"><div class="orx-lab-swatch__sample orx-lab-surface--soft">Soft + text</div><div class="orx-lab-swatch__meta">Reference pairing · F01</div></div>
+        <div class="orx-lab-swatch"><div class="orx-lab-swatch__sample orx-lab-surface--primary">Primary + white</div><div class="orx-lab-swatch__meta">Reference pairing · F01</div></div>
+        <div class="orx-lab-swatch"><div class="orx-lab-swatch__sample orx-lab-surface--strong">Primary strong + white</div><div class="orx-lab-swatch__meta">Reference pairing · F01</div></div>
+        <div class="orx-lab-swatch"><div class="orx-lab-swatch__sample orx-lab-surface--accent-target">Accent + dark target</div><div class="orx-lab-swatch__meta">Target pair · SYS-01 backfit</div></div>
+      </div>
+      <div class="orx-lab-grid orx-lab-grid--2" style="margin-top:1rem">
+        <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Typography hierarchy</strong><span class="orx-lab-specimen__id">F02</span></div><h2>Commercial section heading</h2><h3>Component heading with useful hierarchy</h3><p>Body copy should remain readable under real buyer content, not only curated Demo text.</p><p class="orx-muted">Muted metadata supports the hierarchy without becoming unreadable.</p></div>
+        <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Icon &amp; media foundation</strong><span class="orx-lab-specimen__id">F05 / F07</span></div><div class="orx-lab-actions"><span class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#package"></use></svg></span><span class="orx-icon-box orx-icon-box--md"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#factory"></use></svg></span><span class="orx-icon-box orx-icon-box--lg"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#route"></use></svg></span></div><p class="orx-lab-current-note">Lucide remains the single registered UI icon family. Media families preserve product, logo and editorial roles rather than arbitrary page-specific shapes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="orx-section" id="diagnostics" aria-labelledby="diagnostics-title">
+    <div class="orx-container orx-container--wide">
+      <header class="orx-section-header"><span class="orx-eyebrow">PQE-02 · STD-DIM01</span><h2 id="diagnostics-title">Target dimensions versus current computed behavior.</h2><p class="orx-lead">The laboratory measures the registered component CSS in the browser. It reports mismatches; it does not repair them locally.</p></header>
+      <div class="orx-lab-probe-zone" aria-label="Live diagnostic probes">
+        <button class="orx-btn orx-btn--primary" type="button" data-lab-probe="button-default">Default button</button>
+        <button class="orx-btn orx-btn--primary orx-btn--lg" type="button" data-lab-probe="button-large">Large button</button>
+        <button class="orx-icon-btn" type="button" aria-label="Icon button probe" data-lab-probe="icon-button"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#search"></use></svg></button>
+        <input class="orx-input" style="max-width:180px" aria-label="Input probe" value="48px target" data-lab-probe="input">
+        <select class="orx-select" style="max-width:180px" aria-label="Select probe" data-lab-probe="select"><option>Market Demo</option></select>
+        <textarea class="orx-textarea" style="max-width:220px" aria-label="Textarea probe" data-lab-probe="textarea">Textarea target</textarea>
+        <label class="orx-lab-check-probe"><input type="checkbox" data-lab-probe="checkbox"> Check visual control</label>
+        <label class="orx-upload" style="min-width:220px" data-lab-probe="upload"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#upload"></use></svg><strong>Upload probe</strong><input type="file" hidden></label>
+        <nav aria-label="Pagination probe"><ul class="orx-pagination"><li><a href="#diagnostics" data-lab-probe="pagination">1</a></li></ul></nav>
+      </div>
+      <div class="orx-lab-table-wrap" style="margin-top:1.5rem" tabindex="0" aria-label="Dimension diagnostics table">
+        <table class="orx-lab-table"><caption>Frozen target compared with current rendered component size</caption><thead><tr><th scope="col">Component</th><th scope="col">Frozen target</th><th scope="col">Current computed</th><th scope="col">State</th><th scope="col">Ownership</th></tr></thead><tbody>
+          <tr class="orx-lab-diagnostic-row" data-lab-diagnostic-row="button-default"><th scope="row">P01 Default button</th><td>48px · Control M</td><td data-lab-current>Measuring…</td><td><span class="orx-lab-status" data-lab-state data-state="reference">WAIT</span></td><td>Shared component backfit</td></tr>
+          <tr class="orx-lab-diagnostic-row" data-lab-diagnostic-row="button-large"><th scope="row">P01 Large button</th><td>56px · Control L</td><td data-lab-current>Measuring…</td><td><span class="orx-lab-status" data-lab-state data-state="reference">WAIT</span></td><td>Shared component backfit</td></tr>
+          <tr class="orx-lab-diagnostic-row" data-lab-diagnostic-row="icon-button"><th scope="row">P04 Icon button</th><td>48 × 48px</td><td data-lab-current>Measuring…</td><td><span class="orx-lab-status" data-lab-state data-state="reference">WAIT</span></td><td>Shared component backfit</td></tr>
+          <tr class="orx-lab-diagnostic-row" data-lab-diagnostic-row="input"><th scope="row">P06 Input</th><td>48px · Control M</td><td data-lab-current>Measuring…</td><td><span class="orx-lab-status" data-lab-state data-state="reference">WAIT</span></td><td>Reference</td></tr>
+          <tr class="orx-lab-diagnostic-row" data-lab-diagnostic-row="select"><th scope="row">P07 Select</th><td>48px · Control M</td><td data-lab-current>Measuring…</td><td><span class="orx-lab-status" data-lab-state data-state="reference">WAIT</span></td><td>Reference</td></tr>
+          <tr class="orx-lab-diagnostic-row" data-lab-diagnostic-row="textarea"><th scope="row">P08 Textarea</th><td>≥ 144px</td><td data-lab-current>Measuring…</td><td><span class="orx-lab-status" data-lab-state data-state="reference">WAIT</span></td><td>Shared form backfit</td></tr>
+          <tr class="orx-lab-diagnostic-row" data-lab-diagnostic-row="checkbox"><th scope="row">P09 Checkbox</th><td>20 × 20px visual</td><td data-lab-current>Measuring…</td><td><span class="orx-lab-status" data-lab-state data-state="reference">WAIT</span></td><td>Shared form backfit</td></tr>
+          <tr class="orx-lab-diagnostic-row" data-lab-diagnostic-row="upload"><th scope="row">C24 Upload</th><td>≥ 144px</td><td data-lab-current>Measuring…</td><td><span class="orx-lab-status" data-lab-state data-state="reference">WAIT</span></td><td>Shared form backfit</td></tr>
+          <tr class="orx-lab-diagnostic-row" data-lab-diagnostic-row="pagination"><th scope="row">C15 Pagination</th><td>48 × 48px target</td><td data-lab-current>Measuring…</td><td><span class="orx-lab-status" data-lab-state data-state="reference">WAIT</span></td><td>Shared component backfit</td></tr>
+        </tbody></table>
+      </div>
+      <noscript><div class="orx-alert orx-alert--info" style="margin-top:1rem"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#info"></use></svg><div>JavaScript is disabled. All component specimens remain readable; only live computed-size labels are unavailable.</div></div></noscript>
+    </div>
+  </section>
+
+  <section class="orx-section orx-section--soft" id="primitives" aria-labelledby="primitives-title">
+    <div class="orx-container orx-container--wide">
+      <header class="orx-section-header"><span class="orx-eyebrow">P01–P11</span><h2 id="primitives-title">Primitives carry consistent states before page composition begins.</h2></header>
+      <div class="orx-lab-grid">
+        <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Actions</strong><span class="orx-lab-specimen__id">P01–P04</span></div><div class="orx-lab-stack"><div class="orx-lab-actions"><button class="orx-btn orx-btn--primary" type="button">Primary action</button><button class="orx-btn orx-btn--secondary" type="button">Secondary</button></div><a class="orx-text-action" href="products.html">Text action <svg class="orx-icon orx-icon--sm" aria-hidden="true"><use href="../assets/icons/sprite.svg#arrow-right"></use></svg></a><div><button class="orx-icon-btn" type="button" aria-label="Search"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#search"></use></svg></button></div><button class="orx-btn orx-btn--primary" type="button" disabled>Disabled</button></div></div>
+        <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Badges &amp; icon containers</strong><span class="orx-lab-specimen__id">P05 / P11</span></div><div class="orx-lab-stack"><div class="orx-lab-actions"><span class="orx-badge">Demo</span><span class="orx-badge orx-badge--success">Available to enquire</span><span class="orx-badge orx-badge--accent">Review needed</span></div><div class="orx-lab-actions"><span class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#package"></use></svg></span><span class="orx-icon-box orx-icon-box--md"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#factory"></use></svg></span><span class="orx-icon-box orx-icon-box--lg"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#earth"></use></svg></span></div></div></div>
+        <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Form primitives</strong><span class="orx-lab-specimen__id">P06–P10</span></div><div class="orx-lab-stack"><label class="orx-field"><span class="orx-field__label">Buyer email</span><input class="orx-input" type="email" placeholder="buyer@example.com"><span class="orx-field__help">Use the address that should receive RFQ follow-up.</span></label><label class="orx-field"><span class="orx-field__label">Market</span><select class="orx-select"><option>Qatar — Demo</option><option>Saudi Arabia — Demo</option></select></label><label class="orx-check"><input type="checkbox"><span>Receive Demo follow-up preference</span></label><hr class="orx-divider"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="orx-section" id="cards" aria-labelledby="cards-title">
+    <div class="orx-container orx-container--wide">
+      <header class="orx-section-header"><span class="orx-eyebrow">C01–C11</span><h2 id="cards-title">Commercial card families use one registry, not page-specific replacements.</h2><p class="orx-lead">The examples below keep Demo facts consistent with the product, supplier and market experience.</p></header>
+      <div class="orx-lab-card-catalog">
+        <article class="orx-card orx-feature-card" data-lab-registry="C01"><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#route"></use></svg></div><span class="orx-feature-card__index">01</span><h3 class="orx-card__title">Market route clarity</h3><p class="orx-card__copy">A feature card explains a reusable business benefit without inventing a performance claim.</p></article>
+        <article class="orx-card orx-product-card" data-lab-registry="C02"><div class="orx-product-card__media orx-lab-media-placeholder" role="img" aria-label="Demo product media placeholder">Product media · Demo</div><div class="orx-product-card__body"><div class="orx-card__meta"><span class="orx-badge">Italy — illustrative</span><span class="orx-badge orx-badge--success">Enquire</span></div><h3 class="orx-card__title">Concentrated Tomato Sauce — 400 g</h3><p class="orx-card__copy">Noura Foods Demo · 24 units/case · dry ambient storage.</p><a class="orx-text-action" href="product-details.html?id=product-001">View product <svg class="orx-icon orx-icon--sm" aria-hidden="true"><use href="../assets/icons/sprite.svg#arrow-right"></use></svg></a></div></article>
+        <article class="orx-card orx-supplier-card" data-lab-registry="C03"><div class="orx-supplier-card__identity"><div class="orx-supplier-card__logo">NF</div><div><span class="orx-badge">Demo supplier</span><h3 class="orx-card__title">Noura Foods</h3></div></div><p class="orx-card__copy">Fictional manufacturer profile used only to demonstrate supplier information architecture.</p><a class="orx-text-action" href="supplier-details.html?id=supplier-001">View supplier <svg class="orx-icon orx-icon--sm" aria-hidden="true"><use href="../assets/icons/sprite.svg#arrow-right"></use></svg></a></article>
+        <article class="orx-card orx-market-card" data-lab-registry="C04"><div class="orx-market-card__head"><div><span class="orx-badge">Illustrative market</span><h3 class="orx-card__title">Qatar</h3></div><span class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#map-pin"></use></svg></span></div><p class="orx-card__copy">Demo market content demonstrates channel and route information. Replace with verified market data.</p><div class="orx-market-card__tags"><span class="orx-badge">Retail</span><span class="orx-badge">Wholesale</span></div></article>
+        <article class="orx-card orx-process-card" data-lab-registry="C05"><span class="orx-process-card__number">1</span><h3 class="orx-card__title">Review information</h3><p class="orx-card__copy">Process cards build a sequence without creating a separate timeline component.</p></article>
+        <article class="orx-card orx-metric-card" data-lab-registry="C06"><div class="orx-metric-card__value">12</div><div class="orx-metric-card__label">fictional Demo products in the canonical dataset</div></article>
+        <article class="orx-card orx-certification-card" data-lab-registry="C07"><span class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#shield-check"></use></svg></span><div><span class="orx-certification-card__status"><svg class="orx-icon orx-icon--sm" aria-hidden="true"><use href="../assets/icons/sprite.svg#info"></use></svg> DEMO CATEGORY</span><h3 class="orx-card__title">Food-safety evidence</h3><p class="orx-card__copy">A presentation slot only. It is not a certificate held by ORIGEX or a fictional supplier.</p></div></article>
+        <article class="orx-card orx-resource-card" data-lab-registry="C08"><span class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#file-text"></use></svg></span><div><span class="orx-badge">Demo resource</span><h3 class="orx-card__title">Product specification checklist</h3><p class="orx-card__copy">TXT · bilingual Demo reference · replace with real approved file metadata.</p></div><a class="orx-btn orx-btn--secondary orx-resource-card__action" href="resources.html">Open library</a></article>
+        <article class="orx-card orx-case-study-card" data-lab-registry="C09"><div><span class="orx-badge">Demo case study</span><h3 class="orx-card__title">Preparing a food product for a new retail channel</h3><p class="orx-card__copy">Illustrative scenario only; not a real client engagement.</p></div><div class="orx-case-study-card__result">Result language must stay clearly illustrative.</div></article>
+        <article class="orx-card orx-contact-card" data-lab-registry="C10"><span class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#mail"></use></svg></span><div><span class="orx-badge">General trade enquiries</span><h3 class="orx-card__title">Commercial contact</h3><p class="orx-card__copy">Use the configured channel rather than hard-coded buyer details.</p></div><div class="orx-contact-card__channel"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#mail"></use></svg><a href="mailto:trade@example.com" data-orx-email="trade">trade@example.com</a></div></article>
+        <article class="orx-card orx-cta-card" data-lab-registry="C11"><span class="orx-eyebrow">CTA CARD</span><h3>Keep one dominant commercial next step.</h3><p>CTA composition belongs to a registered component; the page does not invent another conversion surface.</p></article>
+      </div>
+      <div class="orx-lab-process" style="margin-top:1rem" aria-label="Process timeline composition">
+        <article class="orx-card orx-process-card"><span class="orx-process-card__number">1</span><h3 class="orx-card__title">Collect</h3><p class="orx-card__copy">Product and company facts.</p></article>
+        <article class="orx-card orx-process-card"><span class="orx-process-card__number">2</span><h3 class="orx-card__title">Review</h3><p class="orx-card__copy">Completeness and fit.</p></article>
+        <article class="orx-card orx-process-card"><span class="orx-process-card__number">3</span><h3 class="orx-card__title">Evaluate</h3><p class="orx-card__copy">Market and channel route.</p></article>
+        <article class="orx-card orx-process-card"><span class="orx-process-card__number">4</span><h3 class="orx-card__title">Proceed</h3><p class="orx-card__copy">Choose the appropriate enquiry.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="orx-section orx-section--soft" id="interactions" aria-labelledby="interactions-title">
+    <div class="orx-container orx-container--wide">
+      <header class="orx-section-header"><span class="orx-eyebrow">C12–C17</span><h2 id="interactions-title">Navigation, disclosure and discovery states remain keyboard reachable.</h2></header>
+      <div class="orx-lab-grid orx-lab-grid--2">
+        <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Tabs</strong><span class="orx-lab-specimen__id">C13</span></div><div class="orx-tabs" data-orx-tabs><div class="orx-tabs__list" role="tablist" aria-label="Commercial entity examples"><button class="orx-tabs__tab" id="pg32-tab-product-en" role="tab" aria-selected="true" aria-controls="pg32-panel-product-en">Product</button><button class="orx-tabs__tab" id="pg32-tab-supplier-en" role="tab" aria-selected="false" aria-controls="pg32-panel-supplier-en" tabindex="-1">Supplier</button><button class="orx-tabs__tab" id="pg32-tab-market-en" role="tab" aria-selected="false" aria-controls="pg32-panel-market-en" tabindex="-1">Market</button></div><div class="orx-tabs__panel" id="pg32-panel-product-en" role="tabpanel" aria-labelledby="pg32-tab-product-en"><p>Concentrated Tomato Sauce 400 g · Noura Foods Demo · Italy illustrative.</p></div><div class="orx-tabs__panel" id="pg32-panel-supplier-en" role="tabpanel" aria-labelledby="pg32-tab-supplier-en" hidden><p>Noura Foods is a fictional manufacturer used to demonstrate supplier anatomy.</p></div><div class="orx-tabs__panel" id="pg32-panel-market-en" role="tabpanel" aria-labelledby="pg32-tab-market-en" hidden><p>Qatar is used as illustrative market content and is not a verified commercial recommendation.</p></div></div></div>
+        <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Accordion</strong><span class="orx-lab-specimen__id">C14</span></div><div class="orx-accordion"><div class="orx-accordion__item"><h3><button class="orx-accordion__trigger" type="button" aria-expanded="true" aria-controls="pg32-acc-1-en" data-orx-accordion-trigger>Does this page replace documentation? <svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#chevron-down"></use></svg></button></h3><div class="orx-accordion__panel" id="pg32-acc-1-en">No. It is a visual buyer reference and QA laboratory; release documentation remains a separate M8 deliverable.</div></div><div class="orx-accordion__item"><h3><button class="orx-accordion__trigger" type="button" aria-expanded="false" aria-controls="pg32-acc-2-en" data-orx-accordion-trigger>Are BACKFIT labels defects? <svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#chevron-down"></use></svg></button></h3><div class="orx-accordion__panel" id="pg32-acc-2-en" hidden>They are controlled findings against the frozen target and feed the approved systemic backfit after PG32.</div></div></div></div>
+        <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Search &amp; filters</strong><span class="orx-lab-specimen__id">C16 / C17</span></div><div class="orx-search"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#search"></use></svg><input class="orx-input" type="search" aria-label="Component reference search sample" placeholder="Search by product, supplier or origin"></div><div class="orx-filter-group" style="margin-top:1rem"><button class="orx-filter-chip" type="button" aria-pressed="true">All</button><button class="orx-filter-chip" type="button" aria-pressed="false">Products</button><button class="orx-filter-chip" type="button" aria-pressed="false">Suppliers</button></div><p class="orx-lab-current-note">This specimen demonstrates anatomy only. PG32 does not invent a second filtering runtime.</p></div>
+        <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Pagination</strong><span class="orx-lab-specimen__id">C15</span></div><nav aria-label="Component pagination example"><ul class="orx-pagination"><li><span aria-current="page">1</span></li><li><a href="components.html?page=2#interactions">2</a></li><li><a href="components.html?page=3#interactions">3</a></li></ul></nav><p class="orx-lab-current-note">The live dimension table above records the current target mismatch instead of masking it here.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="orx-section" id="data-trust" aria-labelledby="data-trust-title">
+    <div class="orx-container orx-container--wide">
+      <header class="orx-section-header"><span class="orx-eyebrow">C18–C22</span><h2 id="data-trust-title">Structured data and feedback must preserve meaning before decoration.</h2></header>
+      <div class="orx-lab-grid orx-lab-grid--2">
+        <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Specification table</strong><span class="orx-lab-specimen__id">C18</span></div><table class="orx-spec"><tbody><tr><th scope="row">Product</th><td>Concentrated Tomato Sauce — 400 g</td></tr><tr><th scope="row">Supplier</th><td>Noura Foods Demo</td></tr><tr><th scope="row">Origin</th><td>Italy — illustrative</td></tr><tr><th scope="row">Case pack</th><td>24 units</td></tr><tr><th scope="row">Shelf life</th><td>24 months — Demo</td></tr></tbody></table><p class="orx-lab-current-note">Current global C18 mobile behavior is a known SYS-14 backfit target. This specimen shows current behavior; the reference tables on this page preserve relational scrolling.</p></div>
+        <div class="orx-lab-stack">
+          <div class="orx-trust-item" data-lab-registry="C20"><div class="orx-icon-box"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#shield-check"></use></svg></div><div><h3 class="orx-card__title">Trust item</h3><p class="orx-card__copy">A label and explanation carry meaning; color alone never proves status.</p></div></div>
+          <div class="orx-alert orx-alert--info" data-lab-registry="C22"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#info"></use></svg><div><strong>Information.</strong> Demo facts must be replaced before production.</div></div>
+          <div class="orx-alert orx-alert--success"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#check"></use></svg><div><strong>Success.</strong> Local validation example completed.</div></div>
+          <div class="orx-alert orx-alert--warning"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#triangle-alert"></use></svg><div><strong>Warning.</strong> Document evidence still requires verification.</div></div>
+          <div class="orx-alert orx-alert--danger"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#x"></use></svg><div><strong>Error.</strong> Required information is missing.</div></div>
+        </div>
+      </div>
+      <div class="orx-stat-strip" style="margin-top:1rem" data-lab-registry="C19"><article class="orx-card orx-metric-card"><div class="orx-metric-card__value">7</div><div class="orx-metric-card__label">foundations</div></article><article class="orx-card orx-metric-card"><div class="orx-metric-card__value">11</div><div class="orx-metric-card__label">primitives</div></article><article class="orx-card orx-metric-card"><div class="orx-metric-card__value">28</div><div class="orx-metric-card__label">core components</div></article><article class="orx-card orx-metric-card"><div class="orx-metric-card__value">AR/EN</div><div class="orx-metric-card__label">first-class directions</div></article></div>
+      <div class="orx-empty-state" style="margin-top:1rem" data-lab-registry="C21"><svg class="orx-icon orx-icon--xl" aria-hidden="true"><use href="../assets/icons/sprite.svg#search"></use></svg><h3>No matching Demo products</h3><p class="orx-muted">Adjust the search or filters, or route the buyer to a structured enquiry.</p><button class="orx-btn orx-btn--secondary" type="button">Reset filters</button></div>
+    </div>
+  </section>
+
+  <section class="orx-section orx-section--soft" id="forms" aria-labelledby="forms-title">
+    <div class="orx-container orx-container--wide">
+      <header class="orx-section-header"><span class="orx-eyebrow">C23–C25 · RFQ SAMPLE</span><h2 id="forms-title">Form states make validation and Demo boundaries explicit.</h2><p class="orx-lead">This form validates locally only. It has no network endpoint and stores nothing.</p></header>
+      <div class="orx-lab-grid orx-lab-grid--2">
+        <form class="orx-card orx-lab-stack" data-lab-demo-form novalidate aria-label="Demo RFQ component form">
+          <div class="orx-lab-form-grid">
+            <label class="orx-field" data-lab-registry="C23"><span class="orx-field__label">Company name *</span><input class="orx-input" name="company" required value="Gulf Retail Demo"><span class="orx-field__help">Required for a structured commercial enquiry.</span></label>
+            <label class="orx-field"><span class="orx-field__label">Email *</span><input class="orx-input" name="email" type="email" required value="buyer@example.com"><span class="orx-field__help">Demo value only.</span></label>
+            <label class="orx-field"><span class="orx-field__label">Destination market</span><select class="orx-select" name="market"><option>Qatar — Demo</option><option>Saudi Arabia — Demo</option><option>UAE — Demo</option></select></label>
+            <label class="orx-field"><span class="orx-field__label">Disabled reference</span><input class="orx-input" value="System-managed example" disabled><span class="orx-field__help">Disabled is a state, not missing contrast.</span></label>
+          </div>
+          <label class="orx-field"><span class="orx-field__label">RFQ details</span><textarea class="orx-textarea" name="details">Product: Concentrated Tomato Sauce 400 g; quantity and target timing to be confirmed.</textarea><span class="orx-field__help">Textarea target is checked in the dimension laboratory.</span></label>
+          <fieldset class="orx-lab-fieldset"><legend>Preferred route</legend><label class="orx-check"><input type="radio" name="route" value="rfq" checked><span>Request a quote</span></label><label class="orx-check"><input type="radio" name="route" value="general"><span>General commercial enquiry</span></label></fieldset>
+          <label class="orx-upload" data-orx-upload data-lab-registry="C24"><svg class="orx-icon orx-icon--lg" aria-hidden="true"><use href="../assets/icons/sprite.svg#upload"></use></svg><strong>Attach a Demo requirement file</strong><span class="orx-muted" data-orx-file-name data-empty-label="No file selected">No file selected</span><input type="file" data-orx-file-input></label>
+          <label class="orx-check"><input type="checkbox" required checked><span>I understand this PG32 specimen does not send or store data.</span></label>
+          <div class="orx-lab-actions"><button class="orx-btn orx-btn--primary" type="submit">Validate Demo RFQ</button><button class="orx-btn orx-btn--secondary" type="reset">Reset</button></div>
+          <div class="orx-form-status orx-form-status--success orx-lab-status-region" role="status" data-lab-form-success data-lab-registry="C25" hidden>Demo success: required fields passed local validation. Nothing was submitted.</div>
+          <div class="orx-form-status orx-form-status--error orx-lab-status-region" role="alert" data-lab-form-error hidden>Demo error: complete the required fields before continuing.</div>
+        </form>
+        <div class="orx-lab-stack">
+          <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Error anatomy</strong><span class="orx-lab-specimen__id">C23</span></div><label class="orx-field"><span class="orx-field__label">Product code *</span><input class="orx-input" value="" placeholder="e.g. SKU-400-TOM" aria-describedby="pg32-error-en" data-lab-error-input><span class="orx-field__error" id="pg32-error-en">Example error: enter the product code used by the production business.</span></label></div>
+          <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Static form statuses</strong><span class="orx-lab-specimen__id">C25</span></div><div class="orx-lab-stack"><div class="orx-form-status orx-form-status--success" role="status">Success state with explicit text.</div><div class="orx-form-status orx-form-status--error" role="alert">Error state with explicit text.</div></div></div>
+          <div class="orx-alert orx-alert--warning"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#triangle-alert"></use></svg><div>Current shared form dimensions such as textarea, checkbox and upload are intentionally measured above and remain post-PG32 systemic backfit targets where they differ from the frozen standard.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="orx-section" id="media" aria-labelledby="media-title">
+    <div class="orx-container orx-container--wide">
+      <header class="orx-section-header"><span class="orx-eyebrow">C26–C28</span><h2 id="media-title">Media roles are explicit even when the buyer has not supplied final assets.</h2></header>
+      <div class="orx-lab-media-grid">
+        <figure class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Product media</strong><span class="orx-lab-specimen__id">C26 · 1:1</span></div><div class="orx-product-media" data-lab-registry="C26"><div class="orx-lab-media-placeholder" role="img" aria-label="Square Demo product placeholder">1:1 product media placeholder</div></div><figcaption class="orx-muted" style="margin-top:.75rem">Use real product photography with verified rights before production.</figcaption></figure>
+        <figure class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Logo frame</strong><span class="orx-lab-specimen__id">C27 · 4:3</span></div><div class="orx-logo-frame" data-lab-registry="C27"><strong>NOURA FOODS<br><small>DEMO</small></strong></div><figcaption class="orx-muted" style="margin-top:.75rem">Optical normalization remains a systemic review target across supplier contexts.</figcaption></figure>
+        <figure class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Editorial media</strong><span class="orx-lab-specimen__id">C28 · 16:10</span></div><div class="orx-editorial-media" data-lab-registry="C28"><div class="orx-lab-media-placeholder" role="img" aria-label="Editorial route-to-market Demo placeholder">16:10 editorial / route-to-market placeholder</div></div><figcaption class="orx-muted" style="margin-top:.75rem">Focal point, loading priority and art-direction rules remain centralized media-system concerns.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="orx-section orx-section--soft" id="localization" aria-labelledby="localization-title">
+    <div class="orx-container orx-container--wide">
+      <header class="orx-section-header"><span class="orx-eyebrow">LOCALIZATION + SHELL</span><h2 id="localization-title">Language and market are separate concepts.</h2><p class="orx-lead">Changing English to Arabic must not silently change a buyer’s selected country, market or commercial context.</p></header>
+      <div class="orx-lab-localization">
+        <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Language</strong><span class="orx-lab-specimen__id">N01 / locale</span></div><p>The global header language route changes presentation language only.</p><a class="orx-lang-switch" href="../ar/components.html" lang="ar" hreflang="ar">AR · العربية</a></div>
+        <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Market</strong><span class="orx-lab-specimen__id">P07 / STD-MKT01</span></div><label class="orx-field"><span class="orx-field__label">Illustrative market selector</span><select class="orx-select"><option>Qatar — Demo</option><option>Saudi Arabia — Demo</option><option>United Arab Emirates — Demo</option><option>Kuwait — Demo</option></select><span class="orx-field__help">Independent from language. Values are illustrative.</span></label></div>
+      </div>
+      <div class="orx-lab-grid orx-lab-grid--2" style="margin-top:1rem">
+        <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Mixed data</strong><span class="orx-lab-specimen__id">STD-INTL01</span></div><ul class="orx-lab-mixed-data"><li>Email: <bdi>trade@example.com</bdi></li><li>Phone: <bdi>+974 0000 0000</bdi></li><li>SKU: <code>SKU-TOM-400</code></li><li>Pack: <bdi>400 g · 24 units</bdi></li></ul></div>
+        <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Social / discovery slots</strong><span class="orx-lab-specimen__id">STD-SOC01</span></div><p>Unconfigured social destinations stay visibly unavailable; the Demo does not create fake external destinations.</p><div class="orx-lab-social-slots"><button class="orx-icon-btn" type="button" aria-label="LinkedIn not configured" aria-disabled="true" disabled><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#external-link"></use></svg></button><button class="orx-icon-btn" type="button" aria-label="Social destination not configured" aria-disabled="true" disabled><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#external-link"></use></svg></button></div></div>
+      </div>
+      <div class="orx-lab-specimen" style="margin-top:1rem"><div class="orx-lab-specimen__head"><strong>Overlay behavior primitive</strong><span class="orx-lab-specimen__id">Bootstrap 5.3.8 · no new C ID</span></div><p>The frozen registry has no ORIGEX modal component ID. Where an overlay proof is required, the local Bootstrap behavior is combined with ORIGEX visual primitives instead of inventing a page-local component family.</p><button class="orx-btn orx-btn--secondary" type="button" data-bs-toggle="modal" data-bs-target="#pg32-modal-en">Open behavior specimen</button></div>
+    </div>
+  </section>
+
+  <section class="orx-section" id="customization" aria-labelledby="customization-title">
+    <div class="orx-container orx-container--wide">
+      <header class="orx-section-header"><span class="orx-eyebrow">BUYER CUSTOMIZATION MAP</span><h2 id="customization-title">Change the right layer instead of hunting through repeated markup.</h2></header>
+      <div class="orx-lab-table-wrap" tabindex="0" aria-label="Buyer customization ownership table"><table class="orx-lab-table"><caption>Where common buyer changes belong</caption><thead><tr><th scope="col">Layer</th><th scope="col">Examples</th><th scope="col">Buyer action</th><th scope="col">Do not</th></tr></thead><tbody><tr><th scope="row">Config</th><td>Company/contact/business hours/social flags</td><td>Edit controlled values in <code>config.js</code></td><td>Repeat contact data page by page</td></tr><tr><th scope="row">Tokens</th><td>Approved brand/theme values</td><td>Use semantic design tokens</td><td>Scatter raw brand colors through page CSS</td></tr><tr><th scope="row">Data</th><td>Products, suppliers, markets where structured</td><td>Replace Demo records consistently</td><td>Change one entity fact on only one page</td></tr><tr><th scope="row">Page HTML</th><td>Editorial copy and page-specific content</td><td>Edit semantic content within the registered composition</td><td>Fork component anatomy</td></tr></tbody></table></div>
+      <div class="orx-lab-do-dont" style="margin-top:1rem">
+        <div class="orx-lab-guidance orx-lab-guidance--do"><h3>Do</h3><ul><li>Reuse the registered component family and approved variants.</li><li>Keep Arabic and English meaning aligned without forcing literal translations.</li><li>Replace Demo claims, contacts and files with verified production data.</li><li>Fix repeated defects centrally at token/component/shell level.</li></ul></div>
+        <div class="orx-lab-guidance orx-lab-guidance--dont"><h3>Don’t</h3><ul><li>Invent local button heights, logo frames or card variants.</li><li>Infer market from language.</li><li>Publish fictional certification, performance or legal claims as real.</li><li>Patch the same systemic issue across dozens of pages.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="orx-section orx-section--soft" aria-labelledby="coverage-title">
+    <div class="orx-container orx-container--wide">
+      <header class="orx-section-header"><span class="orx-eyebrow">REGISTRY COVERAGE + KNOWN BACKFIT</span><h2 id="coverage-title">The laboratory records what exists and what still needs systemic normalization.</h2></header>
+      <div class="orx-lab-grid orx-lab-grid--2">
+        <div class="orx-lab-specimen"><div class="orx-lab-specimen__head"><strong>Registry reference</strong><span class="orx-lab-specimen__id">F / P / C / S / N</span></div><ul class="orx-lab-reference-list"><li><strong>F01–07</strong><span>Color, typography, spacing, shape, icons, patterns/motion/media foundations.</span></li><li><strong>P01–11</strong><span>Actions, badges, form controls, divider and icon containers.</span></li><li><strong>C01–28</strong><span>Commercial cards, disclosure, discovery, data, utility, form and media components.</span></li><li><strong>S01–06</strong><span>Section header, split/center/detail/utility hero recipes and final CTA.</span></li><li><strong>N01–04</strong><span>Header, mega menu, mobile drawer and footer — demonstrated by this live page shell.</span></li></ul></div>
+        <div class="orx-lab-stack">
+          <div class="orx-lab-finding"><span class="orx-lab-status" data-state="backfit">BACKFIT</span><div><strong>SYS-01 · semantic contrast</strong><p>Accent foreground pairing needs central normalization; the reference target uses a dark foreground.</p></div></div>
+          <div class="orx-lab-finding"><span class="orx-lab-status" data-state="backfit">BACKFIT</span><div><strong>SYS-02/03 · dimensional tiers</strong><p>Several shared controls still compute to pre-standard sizes. The live table measures them.</p></div></div>
+          <div class="orx-lab-finding"><span class="orx-lab-status" data-state="backfit">BACKFIT</span><div><strong>SYS-04–06 · navigation behavior</strong><p>Focus trap and premium mobile/mega hierarchy remain central shell backfit work, not PG32 local fixes.</p></div></div>
+          <div class="orx-lab-finding"><span class="orx-lab-status" data-state="backfit">BACKFIT</span><div><strong>SYS-10/14 · form and structured data</strong><p>Shared field dimensions and C18 responsive semantics remain post-PG32 normalization targets.</p></div></div>
+          <div class="orx-lab-finding"><span class="orx-lab-status" data-state="reference">NEXT PHASE</span><div><strong>SYS-22 · PQE completion</strong><p>Visual regression, stress testing, global regression and PQS are M7/release controls. This page does not falsely mark them complete.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="orx-final-cta" data-lab-registry="S06" aria-labelledby="pg32-cta-en">
+    <div class="orx-container orx-final-cta__inner"><div><span class="orx-eyebrow">PG32 · FINAL V1 PAGE BUILD</span><h2 id="pg32-cta-en">Use the reference, then improve the system centrally.</h2><p>After PG32 passes PS7, ORIGEX moves into the approved systemic backfit and global bilingual regression sequence.</p></div><a class="orx-btn orx-btn--secondary" href="index.html">Back to Home</a></div>
+  </section>
+</main>
+
+<div class="modal fade orx-lab-modal" id="pg32-modal-en" tabindex="-1" aria-labelledby="pg32-modal-title-en" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h2 class="modal-title fs-5" id="pg32-modal-title-en">Overlay behavior specimen</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body"><p>Bootstrap provides the behavior primitive. ORIGEX provides the visual system. No new C01–C28 component ID is invented for this PG32 proof.</p><div class="orx-alert orx-alert--info"><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#info"></use></svg><div>Overlay behavior remains subject to the centralized overlay/accessibility contract during systemic backfit.</div></div></div><div class="modal-footer"><button type="button" class="orx-btn orx-btn--secondary" data-bs-dismiss="modal">Close specimen</button></div></div></div>
+</div>
+
+<footer class="orx-site-footer" data-orx-global-footer="v1">
+  <div class="orx-container orx-container--wide">
+    <div class="orx-footer__grid">
+      <div class="orx-footer__brand"><a class="orx-brand" href="index.html"><img src="../assets/brand/origex-logo-light.svg" alt="ORIGEX" width="140" height="40"></a><p>A fictional company inside the ORIGEX template demonstrating a B2B food-trading experience connecting products, suppliers, buyers and distribution partners.</p></div>
+      <div><h3 class="orx-footer__title">Explore</h3><ul class="orx-footer__links"><li><a href="products.html">Products</a></li><li><a href="suppliers.html">Suppliers</a></li><li><a href="markets.html">Markets</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+      <div><h3 class="orx-footer__title">Contact</h3><ul class="orx-footer__links"><li><a href="mailto:trade@example.com" data-orx-email="trade">trade@example.com</a></li><li><a href="tel:+97400000000" data-orx-phone>+974 0000 0000</a></li><li><span data-orx-address>Doha, Qatar — illustrative</span></li></ul></div>
+      <div><h3 class="orx-footer__title">Business Hours</h3><div class="orx-business-hours" data-orx-business-hours></div></div>
+    </div>
+    <div class="orx-footer__bottom"><span>ORIGEX — B2B Food Trading &amp; Distribution HTML Template</span><span>Demo data only · © ORVEAX</span></div>
+  </div>
+</footer>
+<div class="orx-floating"><a href="#" aria-label="WhatsApp" data-orx-floating-whatsapp hidden><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#phone"></use></svg></a><button type="button" aria-label="Back to top" data-orx-back-to-top data-config-managed hidden><svg class="orx-icon" aria-hidden="true"><use href="../assets/icons/sprite.svg#arrow-up"></use></svg></button></div>
+<script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/config-engine.js"></script>
+<script src="../assets/js/origex-ui.js"></script>
+<script src="../assets/js/origex-components-lab.js"></script>
+</body>
+</html>
