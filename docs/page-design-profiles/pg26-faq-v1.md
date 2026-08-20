@@ -2,7 +2,7 @@
 
 Product ID: ORX-P01  
 Milestone: M6 — Support / Utility / Components  
-Status: PS6 — FROZEN FOR BUILD  
+Status: **PS7 — IMPLEMENTED / CI QA PASS**  
 Canonical file: `faq.html`
 
 ## Purpose
@@ -87,7 +87,7 @@ Use registered C14 markup and `assets/js/origex-ui.js` behavior.
 Breadcrumb → FAQ Hero → Search + category navigation → grouped accordions → Demo/production boundary → Contact/RFQ CTA.
 
 ## Visual Direction
-Premium support utility rather than a generic help center: compact hero, prominent search field, desktop sticky category rail, clearly separated group headings, calm accordion cards, high-contrast search/result state and a restrained final CTA. Mobile collapses to one column with horizontally scrollable/wrapping category navigation and full-width accordion triggers.
+Premium support utility rather than a generic help center: compact hero, prominent search field, desktop sticky category rail, clearly separated group headings, calm accordion cards, high-contrast search/result state and a restrained final CTA. Mobile collapses to one column with wrapping category navigation and full-width accordion triggers.
 
 ## Navigation / Footer
 - Standard Global Navigation V1.
@@ -131,20 +131,25 @@ No Product, Offer, Review, Rating, AggregateRating, certification or commercial-
 - AR RTL and EN LTR tested separately;
 - minimum practical touch targets inherited from global foundation.
 
-## QA Exit Gate
-PS7 requires:
-- source/content/SEO/demo-safety checks PASS;
-- 18 FAQ items / six groups in both languages;
-- exact canonical Arabic submission and price Q/A preserved;
-- AR/EN semantic parity;
-- category filter + combined search + URL hydration + invalid-category normalization + reset + language-state preservation PASS;
-- C14 accordion click/keyboard behavior PASS;
-- responsive AR/EN 390/820/1366/1536 PASS;
-- Global Navigation V1 / Global Footer V1 PASS;
-- F05 icon integrity PASS;
-- TARGET/client leakage = 0;
-- Critical / High defects = 0.
+## QA Closure — 2026-08-20
+Final authority: `docs/PG26-QA-REPORT-V1.md`.
 
-PS8 remains gated by deployed Cloudflare browser acceptance.
+- Source/content/SEO/runtime failures: **0**.
+- Arabic FAQ records: **18 / 6 groups / PASS**.
+- English FAQ records: **18 / 6 groups / PASS**.
+- Canonical Arabic submission and pricing Q/A: PASS.
+- AR/EN 390 / 820 / 1366 / 1536: **8/8 PASS**.
+- Search + category filter + URL hydration + invalid-category normalization + reset + Escape clear: PASS.
+- AR/EN desktop/mobile language-state preservation: PASS.
+- C14 Enter/Space accordion interaction: PASS.
+- Global Navigation V1 / Global Footer V1: PASS.
+- Global F05 Icon Integrity: **54 AR/EN pages / 0 missing references**.
+- Final QA evidence commit: `26a2a72870b3506f098a3dd95e38c56756575e10`.
+- PS8 remains pending deployed Cloudflare browser acceptance.
+
+## Exit Gate
+**PS7 PASS / CLOSED FOR PAGE PRODUCTION.**
+
+Next sequential production action: **PG27 — Contact**.
 
 Copyright © ORVEAX.
