@@ -1,6 +1,5 @@
 {
   "failures": [
-    "ar-390:document-overflow",
     "en-390:document-overflow",
     "en-desktop:modal-close"
   ],
@@ -8,109 +7,9 @@
     {
       "lang": "ar",
       "width": 390,
-      "failures": [
-        "document-overflow"
-      ],
-      "scrollWidth": 396,
-      "clientWidth": 375,
-      "offenders": [
-        {
-          "cls": "orx-lab-form-grid",
-          "left": -21,
-          "right": 330,
-          "scroll": 351,
-          "tag": "div",
-          "width": 351
-        },
-        {
-          "cls": "orx-field",
-          "left": -21,
-          "right": 330,
-          "scroll": 351,
-          "tag": "label",
-          "width": 351
-        },
-        {
-          "cls": "orx-field__label",
-          "left": -21,
-          "right": 330,
-          "scroll": 351,
-          "tag": "span",
-          "width": 351
-        },
-        {
-          "cls": "orx-input",
-          "left": -21,
-          "right": 330,
-          "scroll": 349,
-          "tag": "input",
-          "width": 351
-        },
-        {
-          "cls": "orx-field__help",
-          "left": -21,
-          "right": 330,
-          "scroll": 351,
-          "tag": "span",
-          "width": 351
-        },
-        {
-          "cls": "orx-field",
-          "left": -21,
-          "right": 330,
-          "scroll": 351,
-          "tag": "label",
-          "width": 351
-        },
-        {
-          "cls": "orx-field__label",
-          "left": -21,
-          "right": 330,
-          "scroll": 351,
-          "tag": "span",
-          "width": 351
-        },
-        {
-          "cls": "orx-input",
-          "left": -21,
-          "right": 330,
-          "scroll": 349,
-          "tag": "input",
-          "width": 351
-        },
-        {
-          "cls": "orx-field__help",
-          "left": -21,
-          "right": 330,
-          "scroll": 351,
-          "tag": "span",
-          "width": 351
-        },
-        {
-          "cls": "orx-field",
-          "left": -21,
-          "right": 330,
-          "scroll": 351,
-          "tag": "label",
-          "width": 351
-        },
-        {
-          "cls": "orx-field__label",
-          "left": -21,
-          "right": 330,
-          "scroll": 351,
-          "tag": "span",
-          "width": 351
-        },
-        {
-          "cls": "orx-select",
-          "left": -21,
-          "right": 330,
-          "scroll": 349,
-          "tag": "select",
-          "width": 351
-        }
-      ]
+      "failures": [],
+      "scrollWidth": 375,
+      "clientWidth": 375
     },
     {
       "lang": "ar",
@@ -139,104 +38,16 @@
       "failures": [
         "document-overflow"
       ],
-      "scrollWidth": 427,
+      "scrollWidth": 402,
       "clientWidth": 375,
       "offenders": [
         {
-          "cls": "orx-lab-form-grid",
-          "left": 45,
-          "right": 427,
-          "scroll": 382,
-          "tag": "div",
-          "width": 382
-        },
-        {
-          "cls": "orx-field",
-          "left": 45,
-          "right": 427,
-          "scroll": 382,
-          "tag": "label",
-          "width": 382
-        },
-        {
-          "cls": "orx-field__label",
-          "left": 45,
-          "right": 427,
-          "scroll": 382,
-          "tag": "span",
-          "width": 382
-        },
-        {
-          "cls": "orx-input",
-          "left": 45,
-          "right": 427,
-          "scroll": 380,
+          "cls": "",
+          "left": 70,
+          "right": 402,
+          "scroll": 332,
           "tag": "input",
-          "width": 382
-        },
-        {
-          "cls": "orx-field__help",
-          "left": 45,
-          "right": 427,
-          "scroll": 382,
-          "tag": "span",
-          "width": 382
-        },
-        {
-          "cls": "orx-field",
-          "left": 45,
-          "right": 427,
-          "scroll": 382,
-          "tag": "label",
-          "width": 382
-        },
-        {
-          "cls": "orx-field__label",
-          "left": 45,
-          "right": 427,
-          "scroll": 382,
-          "tag": "span",
-          "width": 382
-        },
-        {
-          "cls": "orx-input",
-          "left": 45,
-          "right": 427,
-          "scroll": 380,
-          "tag": "input",
-          "width": 382
-        },
-        {
-          "cls": "orx-field__help",
-          "left": 45,
-          "right": 427,
-          "scroll": 382,
-          "tag": "span",
-          "width": 382
-        },
-        {
-          "cls": "orx-field",
-          "left": 45,
-          "right": 427,
-          "scroll": 382,
-          "tag": "label",
-          "width": 382
-        },
-        {
-          "cls": "orx-field__label",
-          "left": 45,
-          "right": 427,
-          "scroll": 382,
-          "tag": "span",
-          "width": 382
-        },
-        {
-          "cls": "orx-select",
-          "left": 45,
-          "right": 427,
-          "scroll": 380,
-          "tag": "select",
-          "width": 382
+          "width": 332
         }
       ]
     },
