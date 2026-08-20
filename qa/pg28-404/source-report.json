@@ -1,0 +1,36 @@
+{
+  "failures": [
+    "runtime-missing:data-pg28-ready"
+  ],
+  "pages": {
+    "ar": {
+      "failures": [],
+      "recoveryRoutes": [
+        "index.html",
+        "products.html",
+        "suppliers.html",
+        "resources.html",
+        "faq.html",
+        "contact.html"
+      ],
+      "iconCount": 13
+    },
+    "en": {
+      "failures": [],
+      "recoveryRoutes": [
+        "index.html",
+        "products.html",
+        "suppliers.html",
+        "resources.html",
+        "faq.html",
+        "contact.html"
+      ],
+      "iconCount": 13
+    }
+  },
+  "runtime": {
+    "failures": [
+      "runtime-missing:data-pg28-ready"
+    ]
+  }
+}
