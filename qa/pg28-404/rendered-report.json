@@ -1,0 +1,67 @@
+{
+  "failures": [
+    "ar-search:search-count",
+    "ar-search:search-route",
+    "en-search:search-count",
+    "en-search:search-route",
+    "en-query-escape:query-count"
+  ],
+  "cases": [
+    {
+      "lang": "ar",
+      "width": 390,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "width": 1536,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 1536,
+      "failures": []
+    }
+  ],
+  "interaction": {
+    "ar-search": [
+      "search-count",
+      "search-route"
+    ],
+    "ar-empty-reset": [],
+    "ar-query-escape": [],
+    "en-search": [
+      "search-count",
+      "search-route"
+    ],
+    "en-empty-reset": [],
+    "en-query-escape": [
+      "query-count"
+    ]
+  }
+}
