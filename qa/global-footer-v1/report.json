@@ -25,6 +25,9 @@
     "ar/company-profile.html": {
       "failures": []
     },
+    "ar/contact.html": {
+      "failures": []
+    },
     "ar/faq.html": {
       "failures": []
     },
@@ -168,7 +171,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 55,
+    "pagesChecked": 56,
     "failures": 0
   }
 }
