@@ -1,0 +1,88 @@
+{
+  "failures": [
+    "ar-390:document-overflow",
+    "ar-desktop:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1182, 7987)\n  (Session info: chrome=151.0.7922.137); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/erro",
+    "en-390:document-overflow",
+    "en-desktop:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (177, 8192)\n  (Session info: chrome=151.0.7922.137); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/error"
+  ],
+  "cases": [
+    {
+      "lang": "ar",
+      "width": 390,
+      "failures": [
+        "document-overflow"
+      ]
+    },
+    {
+      "lang": "ar",
+      "width": 820,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "width": 1366,
+      "failures": []
+    },
+    {
+      "lang": "ar",
+      "width": 1536,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "failures": [
+        "document-overflow"
+      ]
+    },
+    {
+      "lang": "en",
+      "width": 820,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 1366,
+      "failures": []
+    },
+    {
+      "lang": "en",
+      "width": 1536,
+      "failures": []
+    }
+  ],
+  "interaction": {
+    "ar-desktop": [
+      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (1182, 7987)\n  (Session info: chrome=151.0.7922.137); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/erro"
+    ],
+    "ar-mobile": [],
+    "en-desktop": [
+      "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (177, 8192)\n  (Session info: chrome=151.0.7922.137); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/error"
+    ],
+    "en-mobile": []
+  },
+  "diagnostics": {
+    "ar": {
+      "button-default": "backfit",
+      "button-large": "backfit",
+      "icon-button": "backfit",
+      "input": "backfit",
+      "select": "aligned",
+      "textarea": "backfit",
+      "checkbox": "backfit",
+      "upload": "backfit",
+      "pagination": "backfit"
+    },
+    "en": {
+      "button-default": "backfit",
+      "button-large": "backfit",
+      "icon-button": "backfit",
+      "input": "backfit",
+      "select": "backfit",
+      "textarea": "backfit",
+      "checkbox": "backfit",
+      "upload": "backfit",
+      "pagination": "backfit"
+    }
+  }
+}
