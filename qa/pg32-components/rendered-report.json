@@ -1,5 +1,8 @@
 {
   "failures": [
+    "ar-desktop:no-backfit",
+    "ar-desktop:modal-close",
+    "en-desktop:no-backfit",
     "en-desktop:modal-close"
   ],
   "cases": [
@@ -61,33 +64,37 @@
     }
   ],
   "interaction": {
-    "ar-desktop": [],
+    "ar-desktop": [
+      "no-backfit",
+      "modal-close"
+    ],
     "ar-mobile": [],
     "en-desktop": [
+      "no-backfit",
       "modal-close"
     ],
     "en-mobile": []
   },
   "diagnostics": {
     "ar": {
-      "button-default": "backfit",
-      "button-large": "backfit",
+      "button-default": "aligned",
+      "button-large": "aligned",
       "icon-button": "aligned",
-      "input": "backfit",
+      "input": "aligned",
       "select": "aligned",
       "textarea": "aligned",
-      "checkbox": "backfit",
+      "checkbox": "aligned",
       "upload": "aligned",
       "pagination": "aligned"
     },
     "en": {
-      "button-default": "backfit",
-      "button-large": "backfit",
+      "button-default": "aligned",
+      "button-large": "aligned",
       "icon-button": "aligned",
-      "input": "backfit",
-      "select": "backfit",
+      "input": "aligned",
+      "select": "aligned",
       "textarea": "aligned",
-      "checkbox": "backfit",
+      "checkbox": "aligned",
       "upload": "aligned",
       "pagination": "aligned"
     }
