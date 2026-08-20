@@ -1,0 +1,91 @@
+/* ORIGEX — Home Hero Media System | M7 visual integration | 2026-08-20
+ * Purpose: integrate approved ORVEAX-owned hero photography into PG01–PG04
+ * while keeping navigation, H1, lead copy, CTAs and trust/legend content as live HTML.
+ * Each homepage keeps a distinct lighting and commercial journey.
+ */
+
+:root{--orx-home-hero-radius:clamp(18px,2vw,28px);--orx-home-hero-shadow:0 30px 72px rgba(6,31,36,.22)}
+
+/* Shared hero media behavior ------------------------------------------------ */
+main>.orx-hero[style*="pt01-route-lines.svg"],
+.orx-distribution-hero,
+.orx-manufacturer-hero,
+.orx-landing-hero{overflow:hidden}
+
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid,
+.orx-distribution-hero .orx-hero__grid,
+.orx-manufacturer-hero .orx-hero__grid,
+.orx-landing-hero .orx-hero__grid{gap:clamp(2rem,4.5vw,5rem);align-items:center}
+
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-media--hero,
+.orx-distribution-hero .orx-media--hero,
+.orx-manufacturer-hero .orx-media--hero,
+.orx-landing-hero .orx-media--hero{position:relative;isolation:isolate;inline-size:100%;overflow:hidden;border-radius:var(--orx-home-hero-radius);box-shadow:var(--orx-home-hero-shadow);background-repeat:no-repeat!important;background-size:cover!important}
+
+/* PG01 — Global Trade Gateway / flagship ----------------------------------- */
+main>.orx-hero[style*="pt01-route-lines.svg"]{padding-block:clamp(4.5rem,6.5vw,6.75rem);background:radial-gradient(circle at 84% 16%,rgba(193,138,66,.16),transparent 30%),linear-gradient(118deg,#06171d 0%,#07282e 52%,#0a3438 100%);color:var(--orx-white)}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid{grid-template-columns:minmax(0,.84fr) minmax(500px,1.16fr)}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid>div:first-child{max-inline-size:620px}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-media.orx-media--hero{min-block-size:620px;border:1px solid rgba(245,241,232,.13);background-image:linear-gradient(180deg,rgba(6,23,29,.02) 42%,rgba(6,23,29,.34) 100%),url("../media/demo/hero-pg01-global-trade.webp")!important;background-position:center!important;filter:none!important}
+main>.orx-hero[style*="pt01-route-lines.svg"] .orx-media.orx-media--hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(6,23,29,.18),transparent 30%)}
+html[dir="rtl"] main>.orx-hero[style*="pt01-route-lines.svg"] .orx-media.orx-media--hero::after{background:linear-gradient(270deg,rgba(6,23,29,.18),transparent 30%)}
+
+/* PG02 — Wholesale & Distribution / operational dusk ---------------------- */
+.orx-distribution-hero{padding-block:clamp(4.25rem,6vw,6.25rem);background:linear-gradient(120deg,#061a21 0%,#082a2f 55%,#0b3035 100%);color:#fff}
+.orx-distribution-hero .orx-hero__grid{grid-template-columns:minmax(0,.82fr) minmax(520px,1.18fr)}
+.orx-distribution-hero :is(h1,.orx-lead){color:#fff}.orx-distribution-hero .orx-lead{color:rgba(255,255,255,.74)}.orx-distribution-hero .orx-eyebrow{color:var(--orx-brass-300)}
+.orx-distribution-hero .orx-media--hero{min-block-size:600px;border:1px solid rgba(255,255,255,.12);background-image:linear-gradient(180deg,rgba(5,20,26,.01) 40%,rgba(5,20,26,.72) 100%),url("../media/demo/hero-pg02-distribution.webp")!important;background-position:center!important}
+.orx-distribution-hero .orx-media--hero::after{background:linear-gradient(to bottom,transparent 48%,rgba(5,20,26,.48))!important}
+.orx-distribution-hero__legend{inset-inline:1rem;inset-block-end:1rem;gap:0;padding:.55rem;border:1px solid rgba(255,255,255,.13);border-radius:var(--orx-radius-lg);background:rgba(5,20,26,.62);backdrop-filter:blur(14px)}
+.orx-distribution-hero__legend .orx-card{border:0;border-radius:var(--orx-radius-sm);background:transparent!important;box-shadow:none!important}
+.orx-distribution-hero__legend .orx-card+.orx-card{border-inline-start:1px solid rgba(255,255,255,.12)}
+.orx-distribution-hero__legend strong{color:#fff}.orx-distribution-hero__legend span{color:rgba(255,255,255,.68)}
+.orx-distribution-hero .orx-btn--secondary{border-color:rgba(255,255,255,.34);background:rgba(255,255,255,.04);color:#fff}
+
+/* PG03 — Manufacturer & Supplier / bright assurance ----------------------- */
+.orx-manufacturer-hero{padding-block:clamp(4.25rem,6vw,6.25rem);background:radial-gradient(circle at 82% 18%,rgba(193,138,66,.10),transparent 28%),linear-gradient(135deg,#fbfcfb 0%,#f1f6f4 55%,#edf4f2 100%);color:var(--orx-on-light-primary)}
+.orx-manufacturer-hero .orx-hero__grid{grid-template-columns:minmax(0,.84fr) minmax(520px,1.16fr)}
+.orx-manufacturer-hero .orx-media--hero{min-block-size:590px;border:1px solid rgba(8,42,47,.12);background-image:linear-gradient(180deg,rgba(255,255,255,0) 48%,rgba(8,42,47,.10) 100%),url("../media/demo/hero-pg03-manufacturer.webp")!important;background-position:center!important;box-shadow:0 26px 64px rgba(8,42,47,.14)}
+.orx-manufacturer-hero__legend{inset-inline:1rem;inset-block-end:1rem;gap:.7rem}
+.orx-manufacturer-hero__legend .orx-card{border:1px solid rgba(8,42,47,.09);background:rgba(255,255,255,.88)!important;backdrop-filter:blur(14px);box-shadow:0 10px 24px rgba(8,42,47,.08)!important}
+.orx-manufacturer-hero__legend strong{color:var(--orx-primary-strong)}
+
+/* PG04 — Focused Landing / warm partnership conversion -------------------- */
+.orx-landing-hero{padding-block:clamp(4.25rem,6vw,6.25rem);background:radial-gradient(circle at 80% 18%,rgba(193,138,66,.18),transparent 30%),linear-gradient(135deg,#fbf7ef 0%,#f5eee2 58%,#f1e5d3 100%)}
+.orx-landing-hero .orx-hero__grid{grid-template-columns:minmax(0,.82fr) minmax(520px,1.18fr)}
+.orx-landing-hero .orx-media--hero{min-block-size:560px;border:1px solid rgba(126,79,31,.16);background-image:linear-gradient(180deg,rgba(43,25,15,.02) 42%,rgba(43,25,15,.25) 100%),url("../media/demo/hero-pg04-partnership.webp")!important;background-position:center!important;box-shadow:0 28px 68px rgba(82,50,24,.20)}
+.orx-landing-hero__badge{inset-inline-start:1rem;inset-block-end:1rem;max-width:310px;border:1px solid rgba(255,255,255,.20);background:rgba(21,31,31,.74);color:#fff;backdrop-filter:blur(14px);box-shadow:0 14px 34px rgba(0,0,0,.18)}
+.orx-landing-hero__badge strong{color:#fff}.orx-landing-hero__badge span{color:rgba(255,255,255,.72)}
+
+/* Responsive --------------------------------------------------------------- */
+@media(max-width:1199.98px){
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid,
+  .orx-distribution-hero .orx-hero__grid,
+  .orx-manufacturer-hero .orx-hero__grid,
+  .orx-landing-hero .orx-hero__grid{grid-template-columns:minmax(0,.9fr) minmax(440px,1.1fr);gap:2.5rem}
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-media.orx-media--hero,
+  .orx-distribution-hero .orx-media--hero,
+  .orx-manufacturer-hero .orx-media--hero{min-block-size:520px}
+  .orx-landing-hero .orx-media--hero{min-block-size:500px}
+}
+@media(max-width:991.98px){
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-hero__grid,
+  .orx-distribution-hero .orx-hero__grid,
+  .orx-manufacturer-hero .orx-hero__grid,
+  .orx-landing-hero .orx-hero__grid{grid-template-columns:1fr;gap:2rem}
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-media.orx-media--hero,
+  .orx-distribution-hero .orx-media--hero,
+  .orx-manufacturer-hero .orx-media--hero,
+  .orx-landing-hero .orx-media--hero{min-block-size:460px}
+}
+@media(max-width:767.98px){
+  main>.orx-hero[style*="pt01-route-lines.svg"],.orx-distribution-hero,.orx-manufacturer-hero,.orx-landing-hero{padding-block:3.5rem}
+  main>.orx-hero[style*="pt01-route-lines.svg"] .orx-media.orx-media--hero,
+  .orx-distribution-hero .orx-media--hero,
+  .orx-manufacturer-hero .orx-media--hero,
+  .orx-landing-hero .orx-media--hero{min-block-size:390px;border-radius:18px}
+  .orx-distribution-hero__legend,.orx-manufacturer-hero__legend{grid-template-columns:1fr;gap:.35rem;inset:.75rem}
+  .orx-distribution-hero__legend .orx-card+.orx-card{border-inline-start:0;border-block-start:1px solid rgba(255,255,255,.12)}
+  .orx-manufacturer-hero__legend .orx-card{padding:.65rem}
+  .orx-landing-hero__badge{inset:.75rem;max-width:none}
+}
