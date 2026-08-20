@@ -123,18 +123,26 @@ def inspect(path: Path, lang: str, product_map: dict, supplier_map: dict) -> lis
         supplier_name = ''
         if supplier:
             supplier_name = supplier.get('nameAr' if lang == 'ar' else 'nameEn') or supplier.get('name', '')
-        required = [
+
+        raw_required = [
             f'data-product-id="{pid}"',
             f'product-details.html?id={pid}',
+        ]
+        for value in raw_required:
+            if value not in block:
+                failures.append(f'{pid}:missing:{value}')
+
+        text_required = [
             name,
             supplier_name,
             product.get('packagingAr' if lang == 'ar' else 'packagingEn', ''),
             product.get('shelfLifeAr' if lang == 'ar' else 'shelfLifeEn', ''),
             product.get('storageAr' if lang == 'ar' else 'storageEn', ''),
         ]
-        for value in required:
+        for value in text_required:
             if value and esc(value) not in block:
                 failures.append(f'{pid}:missing:{value}')
+
         if block.count(f'data-product-id="{pid}"') != 1:
             failures.append(f'{pid}:card-count')
         if block.count(f'product-details.html?id={pid}') != 1:
