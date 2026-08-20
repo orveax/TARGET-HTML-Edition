@@ -1,0 +1,45 @@
+name: PG01 M7 Featured Products QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - m7-brand-system-backfit
+    paths:
+      - 'ar/index.html'
+      - 'en/index.html'
+      - 'assets/data/products.json'
+      - 'assets/data/suppliers.json'
+      - '.github/scripts/normalize_pg01_featured_products.py'
+      - '.github/workflows/pg01-m7-featured-products.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pg01-m7-featured-products-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  featured-products:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Normalize featured product cards from canonical data
+        run: python .github/scripts/normalize_pg01_featured_products.py
+
+      - name: Commit normalized PG01 and QA evidence
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- ar/index.html en/index.html qa/pg01-m7-featured-products || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Normalize PG01 featured products from canonical data"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Verify deterministic PG01 featured product state
+        run: python .github/scripts/normalize_pg01_featured_products.py --check
