@@ -1,8 +1,5 @@
 {
-  "failures": [
-    "ar:diagnostic:checkbox:backfit",
-    "en:diagnostic:checkbox:backfit"
-  ],
+  "failures": [],
   "cases": [
     {
       "lang": "ar",
@@ -141,7 +138,7 @@
       "input": "aligned",
       "select": "aligned",
       "textarea": "aligned",
-      "checkbox": "backfit",
+      "checkbox": "aligned",
       "upload": "aligned",
       "pagination": "aligned"
     },
@@ -152,7 +149,7 @@
       "input": "aligned",
       "select": "aligned",
       "textarea": "aligned",
-      "checkbox": "backfit",
+      "checkbox": "aligned",
       "upload": "aligned",
       "pagination": "aligned"
     }
