@@ -1,5 +1,6 @@
 /* ORIGEX — ORX-P01 | M1 Design Tokens | Copyright © ORVEAX */
 :root {
+  /* Raw brand palette */
   --orx-primary: #15343B;
   --orx-primary-strong: #0D252B;
   --orx-secondary: #3F6F68;
@@ -16,6 +17,25 @@
   --orx-warning: #9A651A;
   --orx-danger: #A63D40;
   --orx-info: #356A8A;
+
+  /* STD-COL01 — semantic surface / foreground relationships.
+     Raw palette tokens remain available for brand identity; UI consumes these roles. */
+  --orx-surface-base: var(--orx-bg);
+  --orx-surface-raised: var(--orx-surface);
+  --orx-surface-subtle: var(--orx-surface-soft);
+  --orx-surface-brand: var(--orx-primary);
+  --orx-surface-brand-strong: var(--orx-primary-strong);
+  --orx-surface-accent: var(--orx-accent);
+  --orx-on-light-primary: var(--orx-primary-strong);
+  --orx-on-light-body: var(--orx-text);
+  --orx-on-light-muted: #5F6B70;
+  --orx-on-dark-primary: #FFFFFF;
+  --orx-on-dark-muted: var(--orx-sand);
+  --orx-on-accent: var(--orx-primary-strong);
+  --orx-on-status-success: var(--orx-success);
+  --orx-on-status-warning: var(--orx-warning);
+  --orx-on-status-danger: var(--orx-danger);
+  --orx-on-status-info: var(--orx-info);
 
   --orx-font-ar: "Tajawal", Arial, sans-serif;
   --orx-font-en: "Manrope", Arial, sans-serif;
@@ -63,6 +83,20 @@
   --orx-motion-standard: 250ms;
   --orx-motion-slow: 400ms;
   --orx-ease: cubic-bezier(.2,.7,.2,1);
+
+  /* STD-DIM01 — reusable control / form / icon-container tiers. */
+  --orx-control-s: 40px;
+  --orx-control-m: 48px;
+  --orx-control-l: 56px;
+  --orx-touch-target: 48px;
+  --orx-textarea-min: 144px;
+  --orx-check-size: 20px;
+  --orx-upload-min: 144px;
+  --orx-icon-container-s: 32px;
+  --orx-icon-container-m: 40px;
+  --orx-icon-container-l: 48px;
+  --orx-icon-container-xl: 56px;
+  --orx-icon-container-2xl: 64px;
 
   --orx-header-height: 76px;
   --orx-focus-ring: 0 0 0 3px rgba(196, 122, 74, .32);
