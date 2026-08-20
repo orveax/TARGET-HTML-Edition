@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T12:32:01Z",
+  "generatedAt": "2026-08-20T15:17:05Z",
   "failures": 0,
   "results": [
     {
@@ -17,7 +17,7 @@
         "aboutFlow": true,
         "dir": "rtl",
         "h1": true,
-        "minButton": 54.625,
+        "minButton": 48,
         "off": 0,
         "overflow": false,
         "trust": 4
@@ -39,7 +39,7 @@
         "aboutFlow": true,
         "dir": "rtl",
         "h1": true,
-        "minButton": 54.625,
+        "minButton": 48,
         "off": 0,
         "overflow": false,
         "trust": 4
@@ -61,7 +61,7 @@
         "aboutFlow": true,
         "dir": "rtl",
         "h1": true,
-        "minButton": 46.234375,
+        "minButton": 40,
         "off": 0,
         "overflow": false,
         "trust": 4
@@ -83,7 +83,7 @@
         "aboutFlow": true,
         "dir": "rtl",
         "h1": true,
-        "minButton": 46.234375,
+        "minButton": 40,
         "off": 0,
         "overflow": false,
         "trust": 4
@@ -105,7 +105,7 @@
         "aboutFlow": true,
         "dir": "ltr",
         "h1": true,
-        "minButton": 52.21875,
+        "minButton": 48,
         "off": 0,
         "overflow": false,
         "trust": 4
@@ -127,7 +127,7 @@
         "aboutFlow": true,
         "dir": "ltr",
         "h1": true,
-        "minButton": 52.21875,
+        "minButton": 48,
         "off": 0,
         "overflow": false,
         "trust": 4
@@ -149,7 +149,7 @@
         "aboutFlow": true,
         "dir": "ltr",
         "h1": true,
-        "minButton": 44.078125,
+        "minButton": 40,
         "off": 0,
         "overflow": false,
         "trust": 4
@@ -171,7 +171,7 @@
         "aboutFlow": true,
         "dir": "ltr",
         "h1": true,
-        "minButton": 44.078125,
+        "minButton": 40,
         "off": 0,
         "overflow": false,
         "trust": 4
