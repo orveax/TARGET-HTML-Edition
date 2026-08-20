@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-19T14:26:38Z",
-  "failures": 0,
+  "generatedAt": "2026-08-20T15:16:17Z",
+  "failures": 4,
   "results": [
     {
       "lang": "ar",
@@ -74,7 +74,7 @@
         "dir": "rtl",
         "h1": true,
         "mapNodes": 6,
-        "minButton": 46.234375,
+        "minButton": 40,
         "off": 0,
         "overflow": false,
         "sections": 6,
@@ -101,7 +101,7 @@
         "dir": "rtl",
         "h1": true,
         "mapNodes": 6,
-        "minButton": 46.234375,
+        "minButton": 40,
         "off": 0,
         "overflow": false,
         "sections": 6,
@@ -182,7 +182,7 @@
         "dir": "ltr",
         "h1": true,
         "mapNodes": 6,
-        "minButton": 44.078125,
+        "minButton": 40,
         "off": 0,
         "overflow": false,
         "sections": 6,
@@ -209,7 +209,7 @@
         "dir": "ltr",
         "h1": true,
         "mapNodes": 6,
-        "minButton": 44.078125,
+        "minButton": 40,
         "off": 0,
         "overflow": false,
         "sections": 6,
@@ -219,5 +219,10 @@
       "pass": true
     }
   ],
-  "errors": []
+  "errors": [
+    "ar: desktop filter/Market navigation",
+    "ar: mobile Market navigation/language",
+    "en: desktop filter/Market navigation",
+    "en: mobile Market navigation/language"
+  ]
 }
