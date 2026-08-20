@@ -15,6 +15,7 @@ on:
       - 'assets/icons/sprite.svg'
       - 'docs/page-design-profiles/pg27-contact-v1.md'
       - '.github/scripts/qa_pg27_contact.py'
+      - '.github/scripts/qa_pg27_contact_ci.py'
       - '.github/scripts/normalize_global_navigation.py'
       - '.github/scripts/normalize_global_footer.py'
       - '.github/workflows/pg27-contact-qa.yml'
@@ -33,7 +34,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: python -m pip install --quiet beautifulsoup4 selenium
       - name: Run PG27 source config SEO rendered interaction QA
-        run: python .github/scripts/qa_pg27_contact.py
+        run: python .github/scripts/qa_pg27_contact_ci.py
       - name: Commit PG27 QA evidence
         if: always()
         run: |
