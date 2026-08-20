@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">ORIGEX source to market trade gateway</title>
+  <desc id="desc">A premium abstract global trade scene with cargo, route nodes and market connections in the ORIGEX brand palette.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#082A2F"/>
+      <stop offset=".58" stop-color="#0B3C42"/>
+      <stop offset="1" stop-color="#0E7567"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C18A42" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#C18A42" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="container" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0E7567"/>
+      <stop offset="1" stop-color="#0A5B52"/>
+    </linearGradient>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#03171A" flood-opacity=".28"/>
+    </filter>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="2" fill="#F5F1E8" opacity=".12"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="1000" rx="52" fill="url(#sky)"/>
+  <rect width="1600" height="1000" rx="52" fill="url(#dots)" opacity=".42"/>
+  <circle cx="1290" cy="140" r="360" fill="url(#glow)"/>
+  <circle cx="260" cy="820" r="300" fill="#0E7567" opacity=".14"/>
+
+  <!-- abstract global map -->
+  <g fill="#F5F1E8" opacity=".10">
+    <path d="M735 170c83-49 208-49 289 5 27 18 50 42 80 53 43 16 92 5 132 26 37 20 58 62 48 103-12 50-61 78-101 105-37 25-70 58-88 99-24 55-20 119-47 172-25 49-75 83-130 84-66 2-120-40-170-82-50-43-101-89-166-102-55-11-118 3-163-30-39-29-49-87-30-132 22-52 76-81 121-114 52-37 97-82 147-122 25-20 50-42 78-59z"/>
+    <path d="M1120 585c74-11 158 26 190 94 20 43 15 97-13 136-30 41-82 63-132 59-55-4-109-38-128-90-20-54-1-118 41-158 13-13 27-27 42-41z"/>
+  </g>
+
+  <!-- route network -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M180 610C370 456 512 475 664 354S972 236 1238 286" stroke="#F5F1E8" stroke-opacity=".26" stroke-width="4"/>
+    <path d="M270 760C472 672 598 698 790 562S1087 428 1405 482" stroke="#0E7567" stroke-width="7" stroke-opacity=".76"/>
+    <path d="M470 204C674 272 784 216 923 316s236 145 405 108" stroke="#C18A42" stroke-width="5" stroke-opacity=".88"/>
+  </g>
+  <g>
+    <g fill="#C18A42"><circle cx="470" cy="204" r="10"/><circle cx="923" cy="316" r="10"/><circle cx="1328" cy="424" r="10"/></g>
+    <g fill="#F5F1E8"><circle cx="180" cy="610" r="8"/><circle cx="664" cy="354" r="8"/><circle cx="1238" cy="286" r="8"/></g>
+    <g fill="#0E7567" stroke="#F5F1E8" stroke-width="5"><circle cx="270" cy="760" r="13"/><circle cx="790" cy="562" r="13"/><circle cx="1405" cy="482" r="13"/></g>
+  </g>
+
+  <!-- port / cargo composition -->
+  <g transform="translate(650 515)" filter="url(#softShadow)">
+    <rect x="0" y="235" width="770" height="92" rx="24" fill="#061E22" opacity=".86"/>
+    <g transform="translate(72 95)">
+      <rect width="250" height="142" rx="18" fill="#C18A42"/>
+      <g stroke="#F5F1E8" stroke-opacity=".32" stroke-width="4">
+        <path d="M38 0v142M76 0v142M114 0v142M152 0v142M190 0v142"/>
+      </g>
+      <rect x="250" y="38" width="230" height="104" rx="16" fill="url(#container)"/>
+      <g stroke="#F5F1E8" stroke-opacity=".26" stroke-width="4">
+        <path d="M292 38v104M334 38v104M376 38v104M418 38v104"/>
+      </g>
+    </g>
+    <g transform="translate(500 0)" fill="none" stroke="#F5F1E8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M34 236V28h37v208" stroke-width="15" opacity=".88"/>
+      <path d="M52 36h188M218 36l-60 72M178 36l42 62" stroke-width="13" opacity=".88"/>
+      <path d="M136 42v128M110 170h53" stroke-width="7" opacity=".72"/>
+      <rect x="97" y="172" width="78" height="46" rx="6" stroke="#C18A42" stroke-width="9"/>
+    </g>
+    <g transform="translate(12 272)">
+      <circle cx="80" cy="84" r="44" fill="#03171A"/><circle cx="80" cy="84" r="20" fill="#F5F1E8" opacity=".8"/>
+      <circle cx="564" cy="84" r="44" fill="#03171A"/><circle cx="564" cy="84" r="20" fill="#F5F1E8" opacity=".8"/>
+    </g>
+  </g>
+
+  <!-- product / market signal cards -->
+  <g transform="translate(118 150)" filter="url(#softShadow)">
+    <rect width="290" height="128" rx="26" fill="#F5F1E8" opacity=".96"/>
+    <circle cx="64" cy="64" r="30" fill="#0E7567" opacity=".14"/>
+    <path d="M47 66h34M64 49v34" stroke="#0E7567" stroke-width="7" stroke-linecap="round"/>
+    <rect x="116" y="39" width="116" height="14" rx="7" fill="#082A2F" opacity=".78"/>
+    <rect x="116" y="67" width="86" height="10" rx="5" fill="#0E7567" opacity=".38"/>
+  </g>
+  <g transform="translate(240 345)" filter="url(#softShadow)">
+    <rect width="250" height="112" rx="24" fill="#F5F1E8" opacity=".94"/>
+    <circle cx="55" cy="56" r="26" fill="#C18A42" opacity=".18"/>
+    <path d="M44 58l9 9 17-22" fill="none" stroke="#C18A42" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="100" y="35" width="96" height="12" rx="6" fill="#082A2F" opacity=".72"/>
+    <rect x="100" y="60" width="72" height="9" rx="4.5" fill="#0E7567" opacity=".34"/>
+  </g>
+
+  <!-- lower route guide -->
+  <g opacity=".55">
+    <path d="M92 908h1416" stroke="#F5F1E8" stroke-opacity=".15" stroke-width="2"/>
+    <circle cx="260" cy="908" r="7" fill="#C18A42"/><circle cx="590" cy="908" r="7" fill="#0E7567"/><circle cx="950" cy="908" r="7" fill="#F5F1E8"/><circle cx="1320" cy="908" r="7" fill="#C18A42"/>
+  </g>
+</svg>
