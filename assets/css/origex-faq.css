@@ -40,7 +40,7 @@
 .orx-faq-question:hover{background:var(--orx-surface-soft)}
 .orx-faq-question:focus-visible{outline:0;box-shadow:inset var(--orx-focus-ring)}
 .orx-faq-question__icon{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border-radius:50%;background:var(--orx-surface-soft);color:var(--orx-primary);transition:transform var(--orx-motion-fast) var(--orx-ease),background var(--orx-motion-fast) var(--orx-ease)}
-.orx-faq-question[aria-expanded="true"] .orx-faq-question__icon{transform:rotate(45deg);background:var(--orx-sand)}
+.orx-faq-question[aria-expanded="true"] .orx-faq-question__icon{transform:rotate(180deg);background:var(--orx-sand)}
 .orx-faq-answer{padding:0 1.25rem 1.25rem;color:var(--orx-text-muted)}
 .orx-faq-answer p{margin:0;max-width:76ch}
 .orx-faq-answer strong{color:var(--orx-text)}
