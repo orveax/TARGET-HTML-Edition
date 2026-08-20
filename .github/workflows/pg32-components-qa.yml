@@ -8,6 +8,7 @@ on:
       - 'ar/components.html'
       - 'en/components.html'
       - 'assets/css/origex-components-lab.css'
+      - 'assets/css/origex-shell.css'
       - 'assets/js/origex-components-lab.js'
       - 'docs/page-design-profiles/pg32-components-v1.md'
       - '.github/scripts/qa_pg32_components_v2.py'
@@ -41,4 +42,4 @@ jobs:
           git pull --rebase origin main || true
           git push origin main || true
 
-# PG32 explicit V2 retrigger after runner activation.
+# PG32 V2 includes shared shell because N01–N04 are part of the page contract.
