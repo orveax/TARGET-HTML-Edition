@@ -1,7 +1,7 @@
 {
   "failures": [],
   "summary": {
-    "pagesChecked": 62,
+    "pagesChecked": 63,
     "symbolsRegistered": 33,
     "symbolsReferenced": 31,
     "missingReferences": 0
@@ -1001,6 +1001,19 @@
       "references": [
         "chevron-down",
         "menu",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/terms.html": {
+      "references": [
+        "arrow-up",
+        "check",
+        "chevron-down",
+        "info",
+        "menu",
+        "phone",
+        "shield-check",
         "x"
       ],
       "missing": []
