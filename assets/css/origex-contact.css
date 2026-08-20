@@ -16,13 +16,14 @@
 .orx-contact-route[data-active="true"] .orx-contact-route__state{display:inline-flex}
 .orx-contact-route h3{margin:0 0 var(--orx-space-2);font-size:1.18rem}
 .orx-contact-route p{margin:0 0 var(--orx-space-5);color:var(--orx-text-muted)}
-.orx-contact-route__email{display:inline-flex;align-items:center;gap:.45rem;margin-top:auto;color:var(--orx-secondary);font-size:var(--orx-fs-small);font-weight:800;overflow-wrap:anywhere}
+.orx-contact-route__email{display:inline-flex;align-items:center;gap:.45rem;min-height:44px;margin-top:auto;color:var(--orx-secondary);font-size:var(--orx-fs-small);font-weight:800;overflow-wrap:anywhere}
 .orx-contact-route__action{margin-top:var(--orx-space-4);align-self:flex-start}
 
 .orx-contact-facts{display:grid;grid-template-columns:1fr 1fr 1.35fr;gap:var(--orx-space-5)}
 .orx-contact-fact{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--orx-space-4);align-items:start;padding:var(--orx-space-6);border:1px solid var(--orx-border);border-radius:var(--orx-radius-md);background:var(--orx-surface)}
 .orx-contact-fact h3{margin:0 0 .35rem;font-size:1rem}
 .orx-contact-fact p,.orx-contact-fact a{margin:0;color:var(--orx-text-muted)}
+.orx-contact-fact a[data-orx-phone]{display:inline-flex;align-items:center;min-height:44px}
 .orx-contact-fact .orx-business-hours{margin-top:.2rem}
 .orx-contact-fact .orx-business-hours__row{display:flex;justify-content:space-between;gap:1rem;padding:.3rem 0;border:0;font-size:var(--orx-fs-small)}
 
@@ -34,8 +35,8 @@
 .orx-contact-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--orx-space-5)}
 .orx-contact-field--full{grid-column:1/-1}
 .orx-contact-consent{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.75rem;align-items:start;padding:var(--orx-space-4);border:1px solid var(--orx-border);border-radius:var(--orx-radius-sm);background:var(--orx-surface-soft)}
-.orx-contact-consent input{margin-top:.2rem}
-.orx-contact-consent label{font-size:var(--orx-fs-small);color:var(--orx-text-muted)}
+.orx-contact-consent input{width:24px;height:24px;margin:0;accent-color:var(--orx-primary);cursor:pointer}
+.orx-contact-consent label{display:flex;align-items:center;min-height:24px;font-size:var(--orx-fs-small);color:var(--orx-text-muted);cursor:pointer}
 .orx-contact-form__actions{display:flex;flex-wrap:wrap;gap:var(--orx-space-3);align-items:center;margin-top:var(--orx-space-6)}
 .orx-contact-form__note{margin:0;color:var(--orx-text-muted);font-size:var(--orx-fs-small)}
 .orx-contact-form [aria-invalid="true"]{border-color:var(--orx-danger);box-shadow:0 0 0 3px color-mix(in srgb,var(--orx-danger) 14%,transparent)}
