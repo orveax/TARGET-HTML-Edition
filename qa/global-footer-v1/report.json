@@ -186,10 +186,13 @@
     },
     "en/suppliers.html": {
       "failures": []
+    },
+    "en/terms.html": {
+      "failures": []
     }
   },
   "summary": {
-    "pagesChecked": 62,
+    "pagesChecked": 63,
     "failures": 0
   }
 }
