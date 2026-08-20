@@ -6,15 +6,7 @@
   "englishPages": 33,
   "filenameParity": true,
   "activeBrandAssetsChecked": 9,
-  "failures": [
-    "legacy-css:assets/css/origex-article-details.css:#0d252b",
-    "legacy-css:assets/css/origex-article-details.css:#15343b",
-    "legacy-css:assets/css/origex-article-details.css:#3f6f68",
-    "legacy-css:assets/css/origex-article-details.css:#667278",
-    "legacy-css:assets/css/origex-article-details.css:#c47a4a",
-    "legacy-css:assets/css/origex-article-details.css:#f3efe8",
-    "legacy-css:assets/css/origex-article-details.css:#faf8f4"
-  ],
+  "failures": [],
   "pageFailures": {
     "ar/404.html": [],
     "ar/about.html": [],
