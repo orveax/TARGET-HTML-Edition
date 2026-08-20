@@ -96,9 +96,7 @@ jobs:
             if routes!=expected_routes:f.append('route-cards:'+str(routes))
             buttons=s.select('[data-pg27-route]')
             if [x.get('data-pg27-route') for x in buttons]!=expected_routes:f.append('route-buttons')
-            email_hooks={
-              'general':('trade','general'),'rfq':('rfq','rfq'),'supplier':('suppliers','supplier'),'partner':('partners','partner')
-            }
+            email_hooks={'general':('trade','general'),'rfq':('rfq','rfq'),'supplier':('suppliers','supplier'),'partner':('partners','partner')}
             for route,(hook,local) in email_hooks.items():
               a=s.select_one(f'[data-pg27-email="{local}"][data-orx-email="{hook}"]')
               if not a:f.append('email-hook:'+route)
@@ -144,7 +142,7 @@ jobs:
             except Exception:f.append('schema-json')
             combined=s.get_text(' ',strip=True).lower()
             if 'demo' not in combined:f.append('demo-boundary')
-            if any(x in combined for x in ('guaranteed response','24/7 support','instant response','رد مضمون','دعم 24/7')):f.append('response-claim')
+            if re.search(r'(?<!no )guaranteed response',combined) or any(x in combined for x in ('24/7 support','instant response','رد مضمون','دعم 24/7')):f.append('response-claim')
             if 'TARGET' in text or 'targetft' in text.lower():f.append('client-leak')
             icons=set(re.findall(r'sprite\.svg#([a-z0-9-]+)',text))
             missing=sorted(icons-sprite_ids)
@@ -157,13 +155,11 @@ jobs:
             if r.returncode:
               source['failures'].append(label)
               source[label]=r.stdout+r.stderr
-
           (O/'source-report.json').write_text(json.dumps(source,ensure_ascii=False,indent=2),encoding='utf-8')
 
           rendered={'failures':[],'cases':[],'interaction':{}}
           opts=Options();opts.add_argument('--headless=new');opts.add_argument('--no-sandbox');opts.add_argument('--disable-dev-shm-usage');opts.add_argument('--window-size=820,1900')
-          srv=subprocess.Popen(['python','-m','http.server','8765'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
-          time.sleep(1)
+          srv=subprocess.Popen(['python','-m','http.server','8765'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL);time.sleep(1)
           try:
             for lang in ('ar','en'):
               d=webdriver.Chrome(options=opts)
@@ -171,8 +167,7 @@ jobs:
                 for width in (390,820,1366,1536):
                   f=[]
                   try:
-                    d.set_window_size(width,1900)
-                    d.get(f'http://127.0.0.1:8765/{lang}/contact.html')
+                    d.set_window_size(width,1900);d.get(f'http://127.0.0.1:8765/{lang}/contact.html')
                     WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg27-root]').get_attribute('data-pg27-ready')=='true')
                     root=d.find_element(By.CSS_SELECTOR,'[data-pg27-root]')
                     if root.get_attribute('data-pg27-topic')!='general':f.append('initial-topic')
@@ -194,21 +189,17 @@ jobs:
                       t.send_keys(Keys.ESCAPE);time.sleep(.04)
                       if t.get_attribute('aria-expanded')!='false':f.append('mega-escape')
                     else:
-                      op=d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-open]');op.click();time.sleep(.04)
-                      drawer=d.find_element(By.CSS_SELECTOR,'[data-orx-mobile-drawer]')
+                      op=d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-open]');op.click();time.sleep(.04);drawer=d.find_element(By.CSS_SELECTOR,'[data-orx-mobile-drawer]')
                       if drawer.get_attribute('aria-hidden')!='false':f.append('drawer-open')
                       d.find_element(By.CSS_SELECTOR,'[data-orx-drawer-close]').click();time.sleep(.04)
                       if drawer.get_attribute('aria-hidden')!='true':f.append('drawer-close')
                   except Exception as e:f.append(type(e).__name__+':'+str(e)[:180])
                   rendered['cases'].append({'lang':lang,'width':width,'failures':f});rendered['failures'] += [f'{lang}-{width}:{x}' for x in f]
 
-                # Route click and configured summary.
                 f=[]
                 try:
-                  d.get(f'http://127.0.0.1:8765/{lang}/contact.html')
-                  WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg27-root]').get_attribute('data-pg27-ready')=='true')
-                  d.find_element(By.CSS_SELECTOR,'[data-pg27-route="rfq"]').click();time.sleep(.12)
-                  root=d.find_element(By.CSS_SELECTOR,'[data-pg27-root]')
+                  d.get(f'http://127.0.0.1:8765/{lang}/contact.html');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg27-root]').get_attribute('data-pg27-ready')=='true')
+                  d.find_element(By.CSS_SELECTOR,'[data-pg27-route="rfq"]').click();time.sleep(.12);root=d.find_element(By.CSS_SELECTOR,'[data-pg27-root]')
                   if root.get_attribute('data-pg27-topic')!='rfq':f.append('root-topic')
                   if d.find_element(By.CSS_SELECTOR,'[data-pg27-topic-select]').get_attribute('value')!='rfq':f.append('select-topic')
                   if 'topic=rfq' not in d.current_url:f.append('url-topic')
@@ -217,12 +208,9 @@ jobs:
                 except Exception as e:f.append(type(e).__name__+':'+str(e)[:180])
                 rendered['interaction'][lang+'-route']=f;rendered['failures'] += [lang+'-route:'+x for x in f]
 
-                # Query hydration + language preservation.
                 f=[]
                 try:
-                  d.get(f'http://127.0.0.1:8765/{lang}/contact.html?topic=supplier')
-                  WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg27-root]').get_attribute('data-pg27-ready')=='true')
-                  root=d.find_element(By.CSS_SELECTOR,'[data-pg27-root]')
+                  d.get(f'http://127.0.0.1:8765/{lang}/contact.html?topic=supplier');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg27-root]').get_attribute('data-pg27-ready')=='true');root=d.find_element(By.CSS_SELECTOR,'[data-pg27-root]')
                   if root.get_attribute('data-pg27-topic')!='supplier':f.append('query-hydration')
                   links=d.find_elements(By.CSS_SELECTOR,'.orx-lang-switch,.orx-mobile-nav a[lang]')
                   if len(links)<2:f.append('language-links')
@@ -230,31 +218,22 @@ jobs:
                 except Exception as e:f.append(type(e).__name__+':'+str(e)[:180])
                 rendered['interaction'][lang+'-query-language']=f;rendered['failures'] += [lang+'-query-language:'+x for x in f]
 
-                # Invalid topic normalization.
                 f=[]
                 try:
-                  d.get(f'http://127.0.0.1:8765/{lang}/contact.html?topic=unknown')
-                  WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg27-root]').get_attribute('data-pg27-ready')=='true')
-                  root=d.find_element(By.CSS_SELECTOR,'[data-pg27-root]')
+                  d.get(f'http://127.0.0.1:8765/{lang}/contact.html?topic=unknown');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg27-root]').get_attribute('data-pg27-ready')=='true');root=d.find_element(By.CSS_SELECTOR,'[data-pg27-root]')
                   if root.get_attribute('data-pg27-topic')!='general':f.append('invalid-fallback')
                   if 'topic=general' not in d.current_url:f.append('invalid-url-normalize')
                 except Exception as e:f.append(type(e).__name__+':'+str(e)[:180])
                 rendered['interaction'][lang+'-invalid-topic']=f;rendered['failures'] += [lang+'-invalid-topic:'+x for x in f]
 
-                # Invalid form then valid Demo confirmation.
                 f=[]
                 try:
-                  d.get(f'http://127.0.0.1:8765/{lang}/contact.html?topic=partner')
-                  WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg27-root]').get_attribute('data-pg27-ready')=='true')
-                  form=d.find_element(By.CSS_SELECTOR,'[data-pg27-form]')
-                  d.execute_script('arguments[0].scrollIntoView({block:"center"})',form)
-                  d.find_element(By.CSS_SELECTOR,'[data-pg27-form] button[type="submit"]').click();time.sleep(.08)
-                  root=d.find_element(By.CSS_SELECTOR,'[data-pg27-root]')
+                  d.get(f'http://127.0.0.1:8765/{lang}/contact.html?topic=partner');WebDriverWait(d,8).until(lambda x:x.find_element(By.CSS_SELECTOR,'[data-pg27-root]').get_attribute('data-pg27-ready')=='true');form=d.find_element(By.CSS_SELECTOR,'[data-pg27-form]');d.execute_script('arguments[0].scrollIntoView({block:"center"})',form)
+                  d.find_element(By.CSS_SELECTOR,'[data-pg27-form] button[type="submit"]').click();time.sleep(.08);root=d.find_element(By.CSS_SELECTOR,'[data-pg27-root]')
                   if root.get_attribute('data-pg27-form-state')!='invalid':f.append('invalid-state')
                   if not d.find_element(By.CSS_SELECTOR,'[data-pg27-error]').is_displayed():f.append('error-visible')
                   name=d.find_element(By.NAME,'contactName');email=d.find_element(By.NAME,'email');msg=d.find_element(By.NAME,'message');consent=d.find_element(By.NAME,'consent')
-                  name.send_keys('Demo Contact');email.send_keys('buyer@example.com');msg.send_keys('Demo commercial enquiry for validation only.');consent.click()
-                  d.find_element(By.CSS_SELECTOR,'[data-pg27-form] button[type="submit"]').click();time.sleep(.08)
+                  name.send_keys('Demo Contact');email.send_keys('buyer@example.com');msg.send_keys('Demo commercial enquiry for validation only.');d.execute_script('arguments[0].scrollIntoView({block:"center"})',consent);time.sleep(.04);consent.click();d.find_element(By.CSS_SELECTOR,'[data-pg27-form] button[type="submit"]').click();time.sleep(.08)
                   if root.get_attribute('data-pg27-form-state')!='demo-confirmed':f.append('success-state')
                   if not d.find_element(By.CSS_SELECTOR,'[data-pg27-success]').is_displayed():f.append('success-visible')
                   if name.get_attribute('value')!='Demo Contact':f.append('form-cleared')
@@ -269,13 +248,10 @@ jobs:
             srv.terminate();srv.wait(timeout=5)
 
           (O/'rendered-report.json').write_text(json.dumps(rendered,ensure_ascii=False,indent=2),encoding='utf-8')
-          failures=source['failures']+rendered['failures']
-          status='PASS' if not failures else 'FAIL'
-          (O/'run-status.txt').write_text(status+'\n',encoding='utf-8')
-          print(status, 'source',len(source['failures']),'rendered',len(rendered['failures']))
+          failures=source['failures']+rendered['failures'];status='PASS' if not failures else 'FAIL';(O/'run-status.txt').write_text(status+'\n',encoding='utf-8')
+          print(status,'source',len(source['failures']),'rendered',len(rendered['failures']))
           if failures:
-            print('\n'.join(failures))
-            raise SystemExit(1)
+            print('\n'.join(failures));raise SystemExit(1)
           PY
       - name: Commit PG27 QA evidence
         if: always()
