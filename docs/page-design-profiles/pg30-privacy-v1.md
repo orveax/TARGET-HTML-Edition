@@ -3,7 +3,7 @@
 Product ID: ORX-P01  
 Milestone: M6 — Support / Utility / Components  
 Canonical file: `privacy.html`  
-Status: PS6 — FROZEN FOR BUILD
+Status: PS7 — IMPLEMENTED / CI QA PASS
 
 ## Purpose
 Provide a professional bilingual sample privacy-policy layout for the ORIGEX commercial template while making it explicit that the text is a structural Demo and is not ready-to-publish legal advice or a jurisdiction-specific privacy policy.
@@ -120,7 +120,7 @@ Page identity:
 - `assets/icons/sprite.svg`
 
 ## PS7 Gate
-Promote only after:
+PASS — final evidence `13dab1fe2c8711687b38e87eec5032ff3f038b8c`:
 - exact Arabic canonical Intro PASS
 - English meaning parity PASS
 - all 8 frozen privacy sections PASS
@@ -130,10 +130,10 @@ Promote only after:
 - NOINDEX legal-demo contract PASS
 - no fabricated law/compliance/processor/cookie-technology claims PASS
 - no fake cookie/consent banner PASS
-- rendered AR/EN 390/820/1366/1536 PASS
+- rendered AR/EN 390/820/1366/1536 = 8/8 PASS
 - keyboard/focus/touch target checks PASS
 - Global Navigation V1 + Global Footer V1 PASS
-- F05 Icon Integrity PASS
+- F05 Icon Integrity PASS — 62 pages / 0 missing references
 - zero TARGET/client leakage
 
 PS8 remains deployed browser acceptance after the buyer/demo deployment state is verified. The sample must not be treated as publication-ready legal text at PS8 without explicit buyer legal replacement/review.
