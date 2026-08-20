@@ -40,3 +40,5 @@ jobs:
           git commit -m "PG32 record Components QA evidence"
           git pull --rebase origin main || true
           git push origin main || true
+
+# PG32 final gate trigger — build complete / QA in progress.
