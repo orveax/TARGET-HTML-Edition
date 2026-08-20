@@ -1,7 +1,5 @@
 {
-  "failures": [
-    "nav-drift"
-  ],
+  "failures": [],
   "pages": {
     "ar": {
       "failures": [],
@@ -14,6 +12,5 @@
   },
   "runtime": {
     "failures": []
-  },
-  "nav-drift": "DRIFT: ar/article-details.html\nDRIFT: en/article-details.html\n"
+  }
 }
