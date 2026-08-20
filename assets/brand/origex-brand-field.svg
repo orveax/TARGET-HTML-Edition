@@ -1,23 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
-  <title id="title">ORIGEX Route 3 brand field</title>
-  <desc id="desc">A subtle trade-route background field using ORIGEX route lines, market nodes and the Premium Mark geometry.</desc>
-  <rect width="1200" height="600" fill="#FAF8F4"/>
-  <g fill="none" stroke="#3F6F68" stroke-width="1.5" opacity=".14">
-    <path d="M-40 470C170 350 250 470 430 350S770 210 930 300s250 20 350-80"/>
-    <path d="M-20 150C160 245 310 150 470 220s320 120 500 20 240-40 300 15"/>
-    <path d="M85 560C250 420 430 430 620 340s320-50 520-210"/>
-  </g>
-  <g fill="#C47A4A" opacity=".34">
-    <circle cx="145" cy="420" r="5"/><circle cx="430" cy="350" r="5"/><circle cx="720" cy="270" r="5"/><circle cx="980" cy="235" r="5"/><circle cx="1120" cy="135" r="5"/>
-  </g>
-  <g transform="translate(770 105) scale(4.7)" opacity=".06">
-    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="32" cy="32" r="23" stroke="#15343B" stroke-width="4.5"/>
-      <path d="M32 9c-8 7-10.5 16.5-10.5 23S24 48 32 55c8-7 10.5-16.5 10.5-23S40 16 32 9Z" stroke="#15343B" stroke-width="2.2"/>
-      <path d="M13.5 24.5C22 20 42 20 50.5 24.5M14.5 40c9 4 26 4 35 0" stroke="#3F6F68" stroke-width="2"/>
-      <path d="M16.5 43C23.5 39.5 27.5 34.5 33 32c6-2.8 10.8-8.1 16-16" stroke="#C47A4A" stroke-width="4.4"/>
-      <path d="M42.8 16.8 50 15.2 48.5 22.5" stroke="#C47A4A" stroke-width="4.4"/>
-    </g>
-    <circle cx="16.5" cy="43" r="3.7" fill="#C47A4A"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" fill="none" aria-hidden="true">
+  <rect width="800" height="800" fill="#FCFAF6"/>
+  <g opacity=".062" transform="translate(135 108) scale(4.55)">
+  <defs>
+    <mask id="pattern-v12" maskUnits="userSpaceOnUse" x="0" y="0" width="128" height="128">
+      <rect width="128" height="128" fill="white"/>
+      <path d="M26 24.5C42.2 39.2 49.8 52.2 63.3 62.3C77.6 72.7 87.5 87 102.5 103.4" fill="none" stroke="black" stroke-width="12.25" stroke-linecap="round"/>
+      <path d="M21.7 99.7C39.5 88.5 48.5 75.5 61.8 68.2C79.8 58.5 89.4 39.4 106.3 27.8" fill="none" stroke="black" stroke-width="10.75" stroke-linecap="round"/>
+    </mask>
+  </defs>
+  <circle cx="64" cy="64" r="49.5" fill="none" stroke="#082A2F" stroke-width="15.5" mask="url(#pattern-v12)"/>
+  <path d="M21.7 99.7C39.5 88.5 48.5 75.5 61.8 68.2C79.8 58.5 89.4 39.4 106.3 27.8" fill="none" stroke="#0E7567" stroke-width="7.25" stroke-linecap="round"/>
+  <circle cx="21.7" cy="99.7" r="4.6" fill="#C18A42"/>
+</g>
+  <g stroke="#0E7567" stroke-width="1.55" opacity=".095"><path d="M-82 706C150 598 270 405 438 306C590 217 696 72 906-48"/><path d="M-52 766C200 648 306 463 484 362C642 273 746 132 930 42"/></g>
+  <g fill="#C18A42" opacity=".44"><circle cx="122" cy="614" r="4"/><circle cx="438" cy="306" r="4"/><circle cx="716" cy="104" r="4"/></g>
 </svg>
