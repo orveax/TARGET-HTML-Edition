@@ -4,6 +4,9 @@
     "ar/about.html": {
       "failures": []
     },
+    "ar/article-details.html": {
+      "failures": []
+    },
     "ar/become-partner.html": {
       "failures": []
     },
@@ -153,7 +156,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 50,
+    "pagesChecked": 51,
     "failures": 0
   }
 }
