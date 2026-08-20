@@ -8,7 +8,7 @@ on:
       - '.github/workflows/pg32-components-final-gate.yml'
 
 concurrency:
-  group: pg32-components-final-gate-v4
+  group: pg32-components-final-gate-v4-r2
   cancel-in-progress: false
 permissions:
   contents: write
@@ -41,4 +41,4 @@ jobs:
         if: steps.pg32.outcome == 'failure'
         run: exit 1
 
-# V4 after final form containment and explicit keyboard modal-dismiss verification.
+# V4 R2 after native file-input containment and alternate modal dismissal verification.
