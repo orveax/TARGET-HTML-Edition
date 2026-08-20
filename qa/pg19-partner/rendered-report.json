@@ -1,7 +1,5 @@
 {
-  "failures": [
-    "ar-820:ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (877, 38)\n  (Session info: chrome=151.0.7922.108); For documentation on this err"
-  ],
+  "failures": [],
   "cases": [
     {
       "lang": "ar",
@@ -11,9 +9,7 @@
     {
       "lang": "ar",
       "width": 820,
-      "failures": [
-        "ElementClickInterceptedException:Message: element click intercepted: Element is not clickable at point (877, 38)\n  (Session info: chrome=151.0.7922.108); For documentation on this err"
-      ]
+      "failures": []
     },
     {
       "lang": "ar",
