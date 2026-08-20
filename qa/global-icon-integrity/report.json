@@ -1,7 +1,7 @@
 {
   "failures": [],
   "summary": {
-    "pagesChecked": 64,
+    "pagesChecked": 65,
     "symbolsRegistered": 33,
     "symbolsReferenced": 31,
     "missingReferences": 0
@@ -680,6 +680,31 @@
         "package",
         "route",
         "shield-check",
+        "x"
+      ],
+      "missing": []
+    },
+    "en/components.html": {
+      "references": [
+        "arrow-right",
+        "arrow-up",
+        "check",
+        "chevron-down",
+        "earth",
+        "external-link",
+        "factory",
+        "file-text",
+        "info",
+        "mail",
+        "map-pin",
+        "menu",
+        "package",
+        "phone",
+        "route",
+        "search",
+        "shield-check",
+        "triangle-alert",
+        "upload",
         "x"
       ],
       "missing": []
