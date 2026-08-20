@@ -2,8 +2,8 @@
 
 Product ID: ORX-P01  
 Owner: ORVEAX  
-Status: APPROVED — M0/M1 CLOSED / M2–M6 FINAL ACCEPTANCE OPEN  
-Last Alignment: 2026-08-20 — **PG26–PG32 PS7 CI QA PASS / M6 PAGE PRODUCTION CODE/CI COMPLETE / SYSTEMIC BACKFIT NEXT**
+Status: APPROVED — M0/M1 CLOSED / M2–M6 FINAL ACCEPTANCE OPEN / **M7 READY — ENTRY GATE PASS**  
+Last Alignment: 2026-08-20 — **33 AR + 33 EN / M6 PAGE PRODUCTION COMPLETE / SYSTEMIC P0 PASS / GLOBAL AR-EN REGRESSION PASS / M7 READY**
 
 ## Project Brief
 Build a premium Arabic-first bilingual HTML template for B2B food trading, import, distribution, suppliers and manufacturers, structured as reusable ORVEAX commercial IP for ThemeForest and independent distribution.
@@ -11,141 +11,115 @@ Build a premium Arabic-first bilingual HTML template for B2B food trading, impor
 ## Page Stage Lifecycle
 `PS0 Brief → PS1 Arabic Draft → PS2 Commercial Review → PS3 English Adaptation → PS4 UI Fit → PS5 Demo/Claim Review → PS6 FROZEN → PS7 Implemented / CI QA → PS8 Final Page Acceptance`
 
-No page enters implementation before PS6. PS8 requires applicable page QA plus deployed Cloudflare browser acceptance. Cloudflare review is a parallel final-acceptance gate and does not block continued quality engineering.
+No page enters implementation before PS6. PS8 requires applicable page QA plus deployed Cloudflare browser acceptance. Cloudflare review remains a parallel final-acceptance gate.
+
+## Canonical Product Scope
+- CR-001 active V1 scope: **33 unique layouts**.
+- Language production: **33 Arabic + 33 English = 66 HTML pages**.
+- Filename parity: PASS.
+- Preview Utility: **33 implemented / 0 pending / 66 links / failures 0**.
+- F05 Icon Integrity: **66 pages / 0 missing references**.
 
 ## M0 — Product Foundation Freeze — PASS / CLOSED
 Scope, architecture, content, SEO, demo policy, data schema, release policy and QA governance are frozen.
 
 ## M1 — Global System & Component Foundation — PASS / CLOSED
-Bootstrap 5.3.8 local foundation, Tajawal/Manrope, tokens, components, icon sprite, patterns, RTL/LTR, config runtime and global shell are implemented. F05 Icon Integrity covers **66 AR/EN pages with zero missing sprite references** after PG32.
+Bootstrap 5.3.8 local foundation, Tajawal/Manrope, tokens, components, icon sprite, patterns, RTL/LTR, config runtime and global shell are implemented and centrally owned.
 
 ## M2 — Global Shell & Home Family — FINAL ACCEPTANCE OPEN
 - PG01 Home 01 — **PS8 / PASS / CLOSED**.
 - PG02 Home 02 — **PS7 / CI QA PASS**.
 - PG03 Home 03 — **PS7 / CI QA PASS**.
 - PG04 Landing — **PS7 / CI QA PASS**.
-Open gate: PG02–PG04 deployed Cloudflare acceptance.
+
+Open gate: deployed Cloudflare acceptance for PG02–PG04.
 
 ## M3 — Company / Business / Market — FINAL ACCEPTANCE OPEN
-- PG05 About — **PS7 / CI QA PASS**.
-- PG06 How We Work — **PS7 / CI QA PASS**.
-- PG07 Capabilities — **PS7 / CI QA PASS**.
-- PG08 Service Details — **PS7 / CI QA PASS**.
-- PG14 Market Access — **PS7 / CI QA PASS**.
-- PG15 Markets / Countries — **PS7 / CI QA PASS**.
-- PG33 Company Profile — **PS7 IMPLEMENTED / QA FOLLOW-UP OPEN**.
-Open gate: PG33 follow-up plus Cloudflare batch acceptance.
+- PG05 About — PS7.
+- PG06 How We Work — PS7.
+- PG07 Capabilities — PS7.
+- PG08 Service Details — PS7.
+- PG14 Market Access — PS7.
+- PG15 Markets / Countries — PS7.
+- PG33 Company Profile — **PS7 / page-specific QA follow-up open**.
+
+Open gate: PG33 follow-up plus applicable Cloudflare PS8 batch acceptance.
 
 ## M4 — Product / Supplier / Conversion — PAGE PRODUCTION CODE/CI COMPLETE
-PG09–PG13 and PG16–PG19 are **PS7 / CI QA PASS**. Canonical product/supplier/market relations and conversion flows are implemented. Cloudflare PS8 batch acceptance remains open before milestone closure.
+PG09–PG13 and PG16–PG19 are PS7 / CI QA PASS. Canonical product/supplier/market relations and conversion flows are implemented. Cloudflare PS8 batch acceptance remains open.
 
 ## M5 — Proof / Resources / Compliance / Content — PAGE PRODUCTION CODE/CI COMPLETE
-PG20–PG25 are **PS7 / CI QA PASS**. M5 remains open only for applicable PS8/deployed-browser acceptance plus any verified Critical/High closure defects.
+PG20–PG25 are PS7 / CI QA PASS. Cloudflare PS8 acceptance remains open where applicable.
 
 ## M6 — Support / Utility / Components — PAGE PRODUCTION CODE/CI COMPLETE
-- PG26 FAQ — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
-- PG27 Contact — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
-- PG28 404 — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
-- PG29 Coming Soon — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
-- PG30 Privacy — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
-- PG31 Terms — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
-- PG32 Components / Elements Library — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
+PG26 FAQ through PG32 Components / Elements are **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
 
-### PG26 Evidence
-- Final source/content/SEO/runtime failures: **0**.
-- Rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
-- Final evidence: `26a2a72870b3506f098a3dd95e38c56756575e10`.
-- QA report: `docs/PG26-QA-REPORT-V1.md`.
-
-### PG27 Evidence
-- Four canonical contact routes with config-driven contact data and validation-only Demo form.
-- Final source/config/runtime failures: **0**.
-- Rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
-- Route/query-language/invalid-topic/form interactions: PASS.
-- Final evidence: `7cfffde78233c087ee2381247470bb024d3689e1`.
-- QA report: `docs/PG27-QA-REPORT-V1.md`.
-
-### PG28 Evidence
-- Branded 404 recovery layout in Arabic and English.
-- `robots=noindex,follow`; six approved local recovery routes.
-- Final source/SEO/runtime failures: **0**.
-- Rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
-- Final evidence: `de86b1392f523f26dffa2d53c28145653f2f0402`.
-- QA report: `docs/PG28-QA-REPORT-V1.md`.
-
-### PG29 Evidence
-- Buyer-configured `launchDate` defaults empty; no fabricated date or countdown.
-- Demo subscribe and social-config behavior PASS with zero network/storage behavior.
-- Final source/config/runtime failures: **0**.
-- Rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
-- Final evidence: `cf91343ff95c66ba544387e26506c60076610f74`.
-- QA report: `docs/PG29-QA-REPORT-V1.md`.
-
-### PG30 Evidence
-- Exact Arabic canonical Intro + English meaning parity: PASS.
-- Eight canonical Privacy sections and eight TOC anchors: PASS.
-- Shared `assets/css/origex-legal.css` established.
-- `robots=noindex,follow`; no fabricated review/effective date, named-law compliance or fake Cookie/Consent UI.
-- Final source/legal/SEO failures: **0**.
-- Rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
-- Final evidence: `13dab1fe2c8711687b38e87eec5032ff3f038b8c`.
-- QA report: `docs/PG30-QA-REPORT-V1.md`.
-
-### PG31 Evidence
-- Exact Arabic canonical Terms Intro + English Demo boundary: PASS.
-- Eight canonical Terms sections / eight TOC anchors / numbered long-form structure: PASS.
-- Shared contextual legal navigation Privacy / Terms: PASS.
-- Shared legal shell normalized to the **STD-DIM01 48px Control M** tier for legal TOC/context controls.
-- Semantic 4-row customization matrix follows **STD-DATA01**, preserving table relationships with internal horizontal scrolling on narrow screens.
-- Final source/legal/standards failures: **0**.
-- Rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
-- Final evidence: `d626862192626418ed806101dd60288d69456d09`.
-- QA report: `docs/PG31-QA-REPORT-V1.md`.
-
-### PG32 Evidence
-- Buyer-facing Components / Elements Library + Design System QA Laboratory implemented in AR/EN.
-- Exact canonical Arabic H1/support and English meaning-equivalent H1: PASS.
-- Frozen scope represented: buttons, cards, badges, headings, tabs, accordions, forms, tables, alerts, stats, timeline/process composition, CTA blocks, Product/Supplier/Market UI and utility states.
-- Coverage per language: **11/11 card families, 17/17 C12–C28 references, 11/11 primitives, 9/9 dimension diagnostic rows**.
-- Diagnostic runtime is non-mutating; current shared-system target mismatches are surfaced as `BACKFIT` rather than hidden with page-local CSS.
-- Source / Registry / Diagnostic failures: **0**.
-- Rendered AR/EN × 390/820/1366/1536: **8/8 PASS** with zero final document overflow.
-- Mega Menu / Mobile Drawer / Tabs keyboard / Accordion / Demo form / Bootstrap modal dismissal / language route: PASS.
-- PG32 QA exposed the closed N03 Mobile Drawer overflow defect and it was corrected centrally in the shared shell.
-- Final isolated V4 gate: `95d8cf97557b2787fca293bb2f661d1481101787` — PASS.
-- PS7 promotion: `9f28810fd258652c8cb0eac81afad20bbff683eb`.
-- QA report: `docs/PG32-QA-REPORT-V1.md`.
-- Global F05: **66 AR/EN pages / 0 missing references**.
-
-### Preview Utility
-`site-map.html` remains a noindex internal Preview Utility outside the 33-layout product scope. Final V1 page-production state is **33 cards / 33 implemented / 0 pending / 66 AR+EN page links**. PG32 is PS7. `.github/scripts/sync_preview_site_map.py` synchronizes the approved final PS7 state and Preview QA is **0 failures**.
+PG32 final page gate:
+- canonical content / frozen Main Features PASS;
+- 11/11 card families;
+- 17/17 C12–C28 references;
+- 11/11 primitives;
+- 9/9 diagnostics;
+- source / registry / diagnostic failures 0;
+- rendered AR/EN × 390/820/1366/1536 = 8/8 PASS;
+- zero final document overflow;
+- navigation / disclosure / form / modal / language interactions PASS.
 
 ### M6 Remaining Closure Conditions
-M6 page production is complete, but final milestone acceptance remains open for:
+M6 page production is complete and its pre-M7 systemic/regression prerequisite is PASS. Final milestone acceptance remains open for:
 - applicable deployed Cloudflare PS8 acceptance;
-- approved post-PG32 systemic backfit and global AR/EN regression;
-- page-specific second-pass review where required;
-- zero unresolved Critical/High defects.
+- PG28 real deployed HTTP-404 verification;
+- PG30/PG31 production legal replacement/review before real publication;
+- PG33 page-specific QA follow-up;
+- zero unresolved Critical / High defects.
 
-## Post-PG32 Systemic Backfit — NEXT
-Use the canonical VQ1 / Website Standards gap register. Fix repeated defects at the correct shared ownership layer before page-specific work:
+## Pre-M7 Systemic Reconciliation — PASS
+The approved shared-system sequence was executed before M7:
 
-`Token → Foundation → Component → Shell/Runtime → Global AR/EN Regression → PG01→PG33 Second-Pass Review`
+`Token → Foundation → Component → Shell/Runtime → Global AR/EN Regression`
 
-Initial priority follows the approved gap register, beginning with the systemic P0 items such as semantic contrast/surface pairings, dimension-tier normalization, shared mobile touch targets and overlay/focus behavior. Do not patch repeated gaps independently inside pages.
+Results:
+- SYS-01 semantic surface / foreground / contrast: PASS.
+- SYS-02 STD-DIM01 dimension tiers: PASS.
+- SYS-03 shared 48px touch targets: PASS.
+- SYS-04 N03 drawer focus containment / Escape / focus return: PASS.
+- PG32 after backfit: **9/9 diagnostic probes ALIGNED in Arabic and English**.
+- Representative systemic browser gate: **16/16 PASS** with zero overflow.
+- Global AR/EN regression: **33 Arabic + 33 English / filename parity true / 264 rendered cases / 0 failures**.
+- Initial Pattern SVG path defect (`/assets/assets/patterns/...`) was corrected centrally and the full matrix reran to PASS.
+- Final regression evidence commit: `0514f2a617cd2737533337a679fb1b5601dd267f`.
+- Formal checkpoint: `docs/PRE-M7-FINAL-ALIGNMENT-2026-08-20.md`.
 
-## M7 — Full QA & Optimization — NOT STARTED
-Full AR/EN parity, claim/disclaimer, data, SEO, broken-link, responsive, accessibility, performance, cross-browser and leakage QA. Gate: zero Critical / High defects.
+## M7 — Full QA & Optimization — READY / ENTRY GATE PASS / NOT STARTED
+M7 begins only when explicitly started. Its execution sequence is the sequential **PG01→PG33 second-pass review** against VQ1 and the frozen Website Standards.
+
+Required review dimensions:
+- AR/EN parity and RTL/LTR quality;
+- visual hierarchy, typography, spacing and responsive behavior;
+- navigation and conversion UX;
+- accessibility and keyboard/focus behavior;
+- content/demo/claim boundaries;
+- SEO and route integrity;
+- performance, browser/runtime errors and overflow;
+- cross-page consistency;
+- asset/licensing integrity;
+- zero unresolved Critical / High defects.
+
+Rules:
+- repeated defects must be fixed in the shared system, not page-by-page;
+- page-local fixes are for verified page-specific defects only;
+- shared-system changes require targeted regression before continuing;
+- PS8 deployment acceptance continues in parallel and is not silently inferred from CI.
 
 ## M8 — Documentation / Licensing / Marketplace Package — NOT STARTED
 Buyer documentation, customization/deployment guides, licenses/credits, changelog, preview/listing material, final ZIP and ThemeForest submission checklist. Gate: Submission Candidate 1.0.0.
 
 ## Current Production Order
-1. **Post-PG32 systemic backfit** from VQ1 / frozen Website Standards.
-2. Global AR/EN regression after shared fixes.
-3. Sequential PG01→PG33 second-pass review for page-specific visual/UX/content issues only.
-4. In parallel, close applicable Cloudflare PS8 batches and PG33 QA follow-up.
-5. Enter M7 only after the pre-M7 systemic/reconciliation sequence is stable.
+1. **Start M7** with PG01→PG33 sequential second-pass review.
+2. Correct page-specific visual/UX/content/accessibility/performance defects; repeated gaps remain shared-system fixes.
+3. Preserve AR/EN parity and rerun targeted regression after shared corrections.
+4. In parallel, close applicable Cloudflare PS8 batches, PG28 HTTP-404 verification, PG30/PG31 production legal replacement/review and PG33 page-specific QA follow-up.
+5. M7 exit: zero unresolved Critical / High defects and approved release-quality regression state.
 
 ## Change Control
 New page or Main Feature family requires Scope Change or V1.1+. QA/accessibility/performance/responsive/RTL fixes may be corrected centrally without reopening scope.
