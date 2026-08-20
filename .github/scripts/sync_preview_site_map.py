@@ -10,16 +10,16 @@ import re
 R = Path(__file__).resolve().parents[2]
 PATH = R / "site-map.html"
 
-IMPLEMENTED_COUNT = 31
-PENDING_COUNT = 2
-LINKED_LANGUAGE_PAGES = 62
-THROUGH_LABEL = "PG30"
-PROMOTED_PG = "PG30"
-PROMOTED_TITLE = "Privacy"
-PROMOTED_FILE = "privacy.html"
-NEXT_PG = "PG31"
-NEXT_TITLE = "Terms"
-NEXT_FILE = "terms.html"
+IMPLEMENTED_COUNT = 32
+PENDING_COUNT = 1
+LINKED_LANGUAGE_PAGES = 64
+THROUGH_LABEL = "PG31"
+PROMOTED_PG = "PG31"
+PROMOTED_TITLE = "Terms"
+PROMOTED_FILE = "terms.html"
+NEXT_PG = "PG32"
+NEXT_TITLE = "Components / Elements"
+NEXT_FILE = "components.html"
 
 text = PATH.read_text(encoding="utf-8")
 
