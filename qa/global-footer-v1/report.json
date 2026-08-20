@@ -25,6 +25,9 @@
     "ar/certifications-compliance.html": {
       "failures": []
     },
+    "ar/coming-soon.html": {
+      "failures": []
+    },
     "ar/company-profile.html": {
       "failures": []
     },
@@ -112,6 +115,9 @@
     "en/certifications-compliance.html": {
       "failures": []
     },
+    "en/coming-soon.html": {
+      "failures": []
+    },
     "en/company-profile.html": {
       "failures": []
     },
@@ -177,7 +183,7 @@
     }
   },
   "summary": {
-    "pagesChecked": 58,
+    "pagesChecked": 60,
     "failures": 0
   }
 }
