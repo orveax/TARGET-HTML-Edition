@@ -4,7 +4,7 @@ Product ID: ORX-P01
 Owner: ORVEAX  
 Repository: `orveax/origex-html-template`  
 Status: ACTIVE TRACKER  
-Last Updated: 2026-08-20 — M6 IN PROGRESS / PG26–PG30 PS7 CI QA PASS / PG31 TERMS NEXT
+Last Updated: 2026-08-20 — M6 IN PROGRESS / PG26–PG31 PS7 CI QA PASS / PG32 COMPONENTS NEXT
 
 Notion `ORIGEX — ORX-P01 | Project HQ` remains the product-state authority; GitHub records implementation and evidence.
 
@@ -20,12 +20,12 @@ PS8 requires deployed Cloudflare browser acceptance where defined. Cloudflare re
 | M1 Global System & Components | PASS / CLOSED |
 | Global Navigation V1 | LOCKED / centrally normalized |
 | Global Footer V1 | LOCKED / centrally normalized |
-| F05 Icon Integrity | PASS — **62 AR/EN pages / 0 missing sprite references** |
-| Visual Site Map | `site-map.html` — target approved state **33 PG cards / 31 implemented / 2 pending / 62 AR+EN links**; PG31 next |
+| F05 Icon Integrity | PASS — **64 AR/EN pages / 0 missing sprite references** |
+| Visual Site Map | `site-map.html` — target approved state **33 PG cards / 32 implemented / 1 pending / 64 AR+EN links**; PG32 next |
 | Cloudflare Test Environment | AVAILABLE VIA MANUAL REBUILD |
 | Cloudflare Auto-Deploy | DEFERRED / repair pending |
 | M5 Page Production | **CODE/CI COMPLETE — PG20–PG25 PS7**; deployed PS8 acceptance remains open |
-| Active Sequential Production | **M6 IN PROGRESS — PG26–PG30 PS7; PG31 Terms NEXT** |
+| Active Sequential Production | **M6 IN PROGRESS — PG26–PG31 PS7; PG32 Components / Elements NEXT** |
 
 ## Page Production Snapshot
 ### M2 — Home Family
@@ -49,14 +49,14 @@ PG09–PG13 and PG16–PG19 are **PS7 / CI QA PASS**. M4 page production is code
 ### M5 — Proof / Resources / Compliance / Content
 PG20–PG25 are **PS7 / CI QA PASS**. M5 page production is CODE/CI COMPLETE; applicable deployed Cloudflare PS8 final acceptance remains open.
 
-### M6 — Support / Utility
+### M6 — Support / Utility / Components
 - PG26 FAQ — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
 - PG27 Contact — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
 - PG28 404 — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
 - PG29 Coming Soon — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
 - PG30 Privacy — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
-- PG31 Terms — **NEXT VALID PAGE PRODUCTION ACTION**.
-- PG32 Components / Elements Library — NOT STARTED.
+- PG31 Terms — **PS7 / IMPLEMENTED / CI QA PASS — AR+EN**.
+- PG32 Components / Elements Library — **NEXT VALID PAGE PRODUCTION ACTION**.
 
 ## PG26 Final Evidence
 - Profile: `docs/page-design-profiles/pg26-faq-v1.md` — PS7.
@@ -77,9 +77,7 @@ PG20–PG25 are **PS7 / CI QA PASS**. M5 page production is CODE/CI COMPLETE; ap
 ## PG28 Final Evidence
 - Profile: `docs/page-design-profiles/pg28-404-v1.md` — **PS7**.
 - QA report: `docs/PG28-QA-REPORT-V1.md`.
-- Exact Arabic H1/support and primary CTAs preserved.
-- `robots=noindex,follow`; no canonical/hreflang/JSON-LD/SearchAction claim on the error asset.
-- Six approved recovery routes: Home / Products / Suppliers / Resources / FAQ / Contact.
+- `robots=noindex,follow`; six approved local recovery routes.
 - Final source/SEO/runtime failures: **0**.
 - Final rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
 - Search/query-language/empty-reset/query-Escape interactions: **PASS**.
@@ -88,11 +86,8 @@ PG20–PG25 are **PS7 / CI QA PASS**. M5 page production is CODE/CI COMPLETE; ap
 ## PG29 Final Evidence
 - Profile: `docs/page-design-profiles/pg29-coming-soon-v1.md` — **PS7**.
 - QA report: `docs/PG29-QA-REPORT-V1.md`.
-- Frozen Main Features present: logo / status message / launch date-countdown / subscribe UI / social links / contact link.
-- `ORIGEX_CONFIG.comingSoon.launchDate` defaults empty and is buyer-defined only.
-- Default no-date / future countdown / past-date fallback: PASS.
-- Demo subscribe invalid/valid/reset: PASS with zero network/storage behavior.
-- Social configured/placeholder-hide behavior: PASS.
+- Buyer-configured launch date defaults empty; no fabricated countdown.
+- Demo subscribe/social behavior: PASS with zero network/storage behavior.
 - Final source/config/runtime failures: **0**.
 - Final rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
 - Final evidence commit: `cf91343ff95c66ba544387e26506c60076610f74`.
@@ -100,26 +95,38 @@ PG20–PG25 are **PS7 / CI QA PASS**. M5 page production is CODE/CI COMPLETE; ap
 ## PG30 Final Evidence
 - Profile: `docs/page-design-profiles/pg30-privacy-v1.md` — **PS7**.
 - QA report: `docs/PG30-QA-REPORT-V1.md`.
-- AR/EN: `ar/privacy.html` + `en/privacy.html`.
-- Shared legal UI: `assets/css/origex-legal.css` — reusable for PG31 Terms.
-- Exact Arabic canonical privacy Intro preserved; English meaning parity PASS.
 - Eight frozen legal-demo sections + eight TOC links: PASS in both languages.
-- Default `robots=noindex,follow`; no canonical/hreflang/legal structured-data claim on the unreviewed Demo sample.
-- Updated-date placeholder remains `Replace before production` / `يُستبدل قبل النشر`; no build-date or legal-review date fabrication.
-- No named law compliance claim, fabricated processor/retention/DPO/legal-basis claim, or fake cookie-consent UI.
-- Cookies section follows STD-CNS01: no banner by default; consent UI only when the real technology/legal implementation requires it.
-- No PG30-specific JavaScript; native TOC + shared shell/config runtime only.
+- `robots=noindex,follow`; no fabricated legal-review date, named-law compliance or fake cookie-consent UI.
+- No PG30-specific JavaScript.
 - Final source/legal/SEO failures: **0**.
 - Final rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
 - TOC + language-switch interactions: **PASS**.
-- F05 after PG30: **62 AR/EN pages / 0 missing references**.
 - Final evidence commit: `13dab1fe2c8711687b38e87eec5032ff3f038b8c`.
+
+## PG31 Final Evidence
+- Profile: `docs/page-design-profiles/pg31-terms-v1.md` — **PS7**.
+- QA report: `docs/PG31-QA-REPORT-V1.md`.
+- AR/EN: `ar/terms.html` + `en/terms.html`.
+- Exact Arabic canonical Terms Intro + exact English Demo boundary: PASS.
+- Eight frozen Terms sections + eight TOC anchors + numbering: PASS in both languages.
+- Shared legal contextual navigation: Privacy / Terms, with Terms current-state: PASS.
+- Long-form structure includes two lists per language plus a semantic 4-row customization matrix.
+- STD-DIM01 applied from first implementation: legal TOC/context controls use the **48px Control M** tier.
+- STD-DATA01 applied from first implementation: semantic table preserves relationships and uses internal horizontal scrolling on narrow screens without document overflow.
+- `robots=noindex,follow`; no fabricated effective/review date, liability cap, warranty exclusion, governing jurisdiction, venue or arbitration forum.
+- No PG31-specific JavaScript.
+- Final source/legal/standards failures: **0**.
+- Final rendered AR/EN × 390/820/1366/1536: **8/8 PASS**.
+- TOC / context navigation / language switch / semantic table focus: **PASS**.
+- F05 after PG31: **64 AR/EN pages / 0 missing references**.
+- Final evidence commit: `d626862192626418ed806101dd60288d69456d09`.
+- PS7 promotion: `db4d36867c9a00eecf079f4ac5089de7d59411c4`.
 
 ## Preview Utility
 - `site-map.html` is a noindex internal Visual Site Map / Preview Index, not PG34.
 - It contains exactly PG01–PG33.
-- Approved state after PG30: **31 implemented / 2 pending / 62 AR+EN page links**.
-- PG31 Terms is NEXT; pending pages expose no destination links.
+- Target approved state after PG31: **32 implemented / 1 pending / 64 AR+EN page links**.
+- PG32 Components / Elements is NEXT; the pending card exposes no destination links.
 - `.github/scripts/sync_preview_site_map.py` synchronizes approved PS7 preview state before Preview QA.
 - Search and Implemented/Pending filters remain available.
 - Preview QA must remain at zero failures after publication.
@@ -127,10 +134,10 @@ PG20–PG25 are **PS7 / CI QA PASS**. M5 page production is CODE/CI COMPLETE; ap
 ## Shared State
 - Global Navigation V1 remains locked and centrally normalized.
 - Global Footer V1 remains centrally normalized.
-- F05 Icon Integrity: **62 AR/EN pages / 0 missing sprite references**.
+- F05 Icon Integrity: **64 AR/EN pages / 0 missing sprite references**.
 - PG33 QA follow-up and deployed Cloudflare PS8 reviews remain parallel workstreams.
 
 ## Next Action
-Start **PG31 — Terms** through canonical content review → PS6 Page Design Profile + legal-demo/indexability contract → AR/EN implementation using the shared legal layout → sample terms structure / table of contents / updated-date handling / contact reference / legal disclaimer / responsive-accessibility QA according to frozen scope.
+Start **PG32 — Components / Elements Library** as the **Design System QA Laboratory + Buyer Component Reference**. It must consume the frozen Website Standards baseline from first implementation and demonstrate the registered dimensions, surfaces/foreground pairs, controls, forms/states, tables, breadcrumbs, overlays/navigation, localization/market concepts, announcement/social/file/action patterns, AR/EN parity and responsive behavior before the post-PG32 systemic backfit sequence begins.
 
 Copyright © ORVEAX.
