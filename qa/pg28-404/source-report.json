@@ -1,7 +1,5 @@
 {
-  "failures": [
-    "runtime-missing:data-pg28-ready"
-  ],
+  "failures": [],
   "pages": {
     "ar": {
       "failures": [],
@@ -29,8 +27,6 @@
     }
   },
   "runtime": {
-    "failures": [
-      "runtime-missing:data-pg28-ready"
-    ]
+    "failures": []
   }
 }
