@@ -1,7 +1,7 @@
 {
   "failures": [],
   "summary": {
-    "pagesChecked": 63,
+    "pagesChecked": 64,
     "symbolsRegistered": 33,
     "symbolsReferenced": 31,
     "missingReferences": 0
@@ -502,6 +502,19 @@
       "references": [
         "chevron-down",
         "menu",
+        "x"
+      ],
+      "missing": []
+    },
+    "ar/terms.html": {
+      "references": [
+        "arrow-up",
+        "check",
+        "chevron-down",
+        "info",
+        "menu",
+        "phone",
+        "shield-check",
         "x"
       ],
       "missing": []
